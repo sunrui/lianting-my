@@ -18,7 +18,7 @@ module.exports = {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ],
     script: [
-      { src: 'https://cdn.bootcss.com/plupload/3.1.2/plupload.full.min.js' }
+      // { src: 'https://cdn.bootcss.com/plupload/3.1.2/plupload.full.min.js' }
     ]
   },
 
@@ -31,7 +31,6 @@ module.exports = {
   ** Global CSS
   */
   css: [
-    { src: '~static/css/fade.css', lang: 'css' }
   ],
 
 
@@ -52,7 +51,7 @@ module.exports = {
     '@nuxtjs/axios',
     '@nuxtjs/proxy',
     ['nuxt-sass-resources-loader', [
-      '@/assets/scss/px2rem.scss'
+      '@/assets/scss/dpi/px2rem.scss'
     ]]
   ],
   proxy: [

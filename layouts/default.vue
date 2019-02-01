@@ -3,7 +3,9 @@
 
     <loading v-show="false" id="http_loading"></loading>
     <div class="home" onclick="window.location.href='/'"></div>
-    <nuxt/>
+    <transition class="fade">
+      <nuxt/>
+    </transition>
   </div>
 </template>
 
@@ -12,11 +14,13 @@
 
   export default {
     name: 'default',
-    components: {Loading}
+    components: { Loading }
   }
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
+  @import '~assets/scss/common.scss';
+
   html {
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
