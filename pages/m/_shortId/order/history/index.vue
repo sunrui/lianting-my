@@ -1,0 +1,109 @@
+<template>
+  <div>
+    <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
+
+    <div class="box" v-for="order in http.res.orders.elements">
+      <div class="list_title box_radius_header">
+        <div class="list_time_icon"></div>
+        <div class="list_time_label">{{new Date(parseInt(order.createdAt)).toLocaleString()}}</div>
+        <div class="order_history_status order_history_status_finish" v-if="order.status === 'Finished'">已完成</div>
+        <div class="order_history_status order_history_status_not_paid" v-if="order.status === 'NotPaid'">未支付</div>
+        <div class="order_history_status order_history_status_eating" v-if="order.status === 'Paid'">进行中</div>
+        <div class="order_history_status order_history_status_closed" v-if="order.status === 'Closed'">已取消</div>
+      </div>
+
+      <div class="box_divide_radius">
+        <div class="box_divide_radius_line"></div>
+      </div>
+
+      <div class="order_history box_radius_footer">
+        <div class="order_history_food">
+          <div class="order_history_food_content">{{getFoodContent(order)}}</div>
+        </div>
+
+        <div class="box_divide"></div>
+
+        <div class="order_history_footer">
+          <div class="order_history_price_label">总价</div>
+          <div class="order_history_price_content">{{order.price}}</div>
+          <div class="order_history_detail" @click="btnDetail(order)">查看详情</div>
+        </div>
+        <div class="blank_10"></div>
+      </div>
+
+      <div class="blank_10"></div>
+    </div>
+
+  </div>
+</template>
+
+<script>
+  import {httpOrderApi} from '../../../../../api/http/ltorder/httpOrderApi'
+  import TitleBar from '../../../../../components/TitleBar'
+
+  export default {
+    metaInfo: {
+      title: '我的订单'
+    },
+    middleware: 'auth',
+    components: {TitleBar},
+    data() {
+      return {
+        title: {
+          canBack: true,
+          title: '我的订单',
+          theme: 'image',
+          imageHeight: 220
+        },
+        ui: {
+          title: ''
+        },
+        http: {
+          res: {
+            orders: {}
+          }
+        }
+      }
+    },
+    created() {
+      let live = this.$route.query.live
+      this.title.title = live ? '实时订单' : '我的订单'
+
+      httpOrderApi.getAll(this.$route.params.shortId, live, 0, 20).then(res => {
+        if (res.elements.length === 0) {
+          this.$router.push(`/m/${this.$route.params.shortId}/order/history/empty`)
+          return
+        }
+
+        this.http.res.orders = res
+      })
+    },
+    methods: {
+      getFoodContent(order) {
+        let detail = ''
+
+        for (let index in order.orderFoods) {
+          let OrderFood = order.orderFoods[index]
+
+          detail += OrderFood.foodCategoryName
+
+          if (parseInt(index) + 1 === order.orderFoods.length) {
+            break
+          } else {
+            detail += ', '
+          }
+        }
+
+        return detail
+      },
+      btnDetail(order) {
+        this.$router.push(`/m/${this.$route.params.shortId}/order/${order.id}`)
+      }
+    }
+  }
+</script>
+
+<style scoped lang="scss">
+  @import '~assets/scss/common.scss';
+  @import '~assets/scss/order.scss';
+</style>

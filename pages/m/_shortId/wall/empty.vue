@@ -1,0 +1,32 @@
+<template>
+  <div>
+    <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
+    <empty image="/img/no/no_wall.png" content="留言墙空空如也。"></empty>
+  </div>
+</template>
+
+<script>
+  import Empty from '../../../../components/Empty'
+  import TitleBar from '../../../../components/TitleBar'
+
+  export default {
+    metaInfo: {
+      title: '没有留言墙'
+    },
+    middleware: 'auth',
+    components: {TitleBar, Empty},
+    data() {
+      return {
+        title: {
+          canBack: true,
+          title: '没有留言墙',
+          backUri: `/m/${this.$route.params.shortId}`,
+          theme: 'white',
+          imageHeight: 0
+        }}
+    }
+  }
+</script>
+
+<style scoped lang="scss">
+</style>

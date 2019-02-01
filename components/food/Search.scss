@@ -1,0 +1,136 @@
+.search_area {
+  background: white;
+  height: 100vh;
+
+  .search_box {
+    position: relative;
+    background: transparent;
+
+    .search {
+      background: #F0F1F2;
+      height: px2rem(70);
+
+      margin-left: px2rem(20);
+      margin-right: px2rem(120);
+      border-radius: px2rem(70/2);
+
+      .search_icon {
+        background-image: url("/img/common/search.png");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        width: px2rem(26);
+        height: px2rem(26);
+        left: px2rem(50);
+
+        position: absolute;
+        top: 50%;
+        transform: translate(0, -50%);
+      }
+
+      .search_input_area {
+        left: px2rem(50 + 26 + 20);
+        right: px2rem(120 + 20);
+        position: absolute;
+
+        .search_input {
+          color: #666666;
+          line-height: px2rem(70);
+          width: 100%;
+          border: none;
+          outline: medium;
+          background: none;
+        }
+      }
+    }
+
+    .search_btn {
+      position: absolute;
+      height: px2rem(120-30);
+      text-align: center;
+      right: px2rem(30);
+      font-size: px2rem(32);
+      line-height: px2rem(70);
+      color: #666666;
+      top: 0;
+    }
+  }
+
+  .search_hot {
+    margin-top: px2rem(40);
+
+    .search_hot_label {
+      color: #333333;
+      margin-left: px2rem(25);
+      font-size: px2rem(32);
+      margin-bottom: px2rem(30);
+    }
+
+    .search_hot_box {
+      text-align: center;
+      padding: px2rem(0) px2rem(10);
+
+      .search_hot_one {
+        position: relative;
+        width: 25%;
+        float: left;
+        margin-bottom: px2rem(20);
+
+        .search_hot_name {
+          display: inline-block;
+
+          background: #F5F5F5;
+          color: #666666;
+          width: 80%;
+          padding: px2rem(10) px2rem(10);
+        }
+      }
+    }
+  }
+
+  .search_result {
+    clear: both;
+    margin-top: px2rem(10);
+
+    .search_result_one {
+      margin-left: px2rem(35);
+      position: relative;
+      height: px2rem(80);
+
+      .search_result_food {
+        display: inline-block;
+
+        color: #666666;
+        line-height: px2rem(80);
+      }
+
+      .search_result_nav {
+        display: inline-block;
+        float: right;
+        height: px2rem(80);
+        width: px2rem(90);
+
+        .search_result_nav_icon {
+          background-image: url("/img/m/food/food_search_nav.png");
+          background-repeat: no-repeat;
+          background-size: 100% 100%;
+          height: px2rem(27);
+          width: px2rem(28);
+
+          margin-left: px2rem(30);
+          margin-top: px2rem((90-27)/2);
+        }
+      }
+    }
+  }
+
+  .search_not_found {
+    position: relative;
+    margin-top: px2rem(50);
+    text-align: center;
+
+    .search_not_found_label {
+      font-size: px2rem(28);
+      color: #666666;
+    }
+  }
+}

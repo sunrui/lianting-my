@@ -1,0 +1,33 @@
+import axios from 'axios'
+
+let base = '/api/c'
+
+export const httpOrderApi = {
+  getAll(shortId, live, page, size) {
+    return axios.get(`${base}/${shortId}/order`, {
+      params: {
+        live: live,
+        page: page,
+        size: size
+      }
+    }).then(res => res.data)
+  },
+  postOrder(shortId, model) {
+    return axios.post(`${base}/${shortId}/order`, model).then(res => res.data)
+  },
+  postOrderFood(shortId, orderOneId, model) {
+    return axios.post(`${base}/${shortId}/order/${orderOneId}/food`, model).then(res => res.data)
+  },
+  getOrder(shortId, orderOneId) {
+    return axios.get(`${base}/${shortId}/order/${orderOneId}`).then(res => res.data)
+  },
+  getConfig(shortId) {
+    return axios.get(`${base}/${shortId}/order/config`).then(res => res.data)
+  },
+  postPay(shortId, citusOrderId, unifiedPayWay, couponUserId) {
+    return axios.post(`${base}/${shortId}/order/${citusOrderId}/pay`, {
+      unifiedPayWay: unifiedPayWay,
+      couponUserId: couponUserId
+    }).then(res => res.data)
+  }
+}

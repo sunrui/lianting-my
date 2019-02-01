@@ -1,0 +1,69 @@
+.title_bar {
+  position: relative;
+  height: px2rem(88);
+  background: transparent;
+  text-align: center;
+  z-index: 1;
+
+  .title_bar_title {
+    color: white;
+    font-size: px2rem(32);
+    line-height: px2rem(88);
+  }
+
+  .title_bar_title_black {
+    color: #666666;
+  }
+
+  .title_bar_back {
+    position: absolute;
+    width: px2rem(88);
+    height: 100%;
+
+    .title_bar_back {
+      background-image: url("/img/common/title_bar_back_white.png");
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      width: px2rem(88);
+      height: px2rem(88);
+      position: absolute;
+      top: 50%;
+      transform: translate(0, -50%);
+    }
+
+    .title_bar_back_black {
+      background-image: url("/img/common/title_bar_back_black.png") !important;
+    }
+  }
+}
+
+.title_bar_bg {
+  background-image: url("/img/common/title_bar_bg.png");
+  background-repeat: repeat-y;
+  background-size: 100% auto;
+
+  position: absolute;
+  width: 100%;
+  max-height: px2rem(600);
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.title_bar_bg_white {
+  background: white;
+  border-bottom: solid px2rem(2) rgba(230, 230, 230, 0.5);
+}
+
+.title_bar_bg_height_330 {
+  height: px2rem(330);
+}
+
+.title_bar_bg_height_300 {
+  height: px2rem(300);
+}
+
+.title_bar_bg_height_220 {
+  height: px2rem(220);
+}

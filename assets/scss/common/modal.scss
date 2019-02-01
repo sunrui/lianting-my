@@ -1,0 +1,106 @@
+.modal_center {
+  position: fixed;
+  background: white;
+  text-align: center;
+  top: 50%;
+  transform: translate(0, -50%);
+  left: px2rem(100);
+  right: px2rem(100);
+  border-radius: px2rem(10);
+  z-index: 9 + 1;
+}
+
+.modal_center_box {
+  z-index: 9 + 1 + 1;
+}
+
+.modal_bottom {
+  position: fixed;
+  background: white;
+  width: 100%;
+  bottom: 0;
+  z-index: 9 + 1;
+}
+
+.modal_close_box {
+  position: absolute;
+  width: px2rem(88);
+  height: px2rem(88);
+  top: 0;
+  right: 0;
+
+  .modal_close {
+    width: px2rem(26);
+    height: px2rem(26);
+    left: px2rem((88 - 26) / 2);
+
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+  }
+}
+
+.modal_title {
+  font-size: px2rem(32);
+  line-height: px2rem(88);
+  color: #333333;
+  text-align: center;
+}
+
+.modal_content {
+  text-align: left;
+  min-height: px2rem(50);
+  max-height: px2rem(200);
+  overflow-y: scroll;
+
+  color: #666666;
+  margin-left: px2rem(35);
+  margin-right: px2rem(35);
+  word-wrap: break-word;
+}
+
+.modal_button_box {
+  clear: both;
+  margin-top: px2rem(50);
+  margin-bottom: px2rem(30);
+  text-align: center;
+}
+
+.modal_input_box {
+  position: relative;
+  margin: px2rem(30) px2rem(35);
+  height: px2rem(88);
+  border: solid px2rem(2) #cccccc;
+  border-radius: px2rem(10);
+  text-align: center;
+
+  .modal_input_area {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    .modal_input {
+      border: none;
+      outline: medium;
+      color: #666666;
+      font-size: px2rem(28);
+    }
+  }
+}
+
+.modal_menu {
+  text-align: center;
+  height: px2rem(102);
+  line-height: px2rem(102);
+  font-size: px2rem(30);
+  color: #666666;
+  border: solid px2rem(2) #999999;
+  border-radius: px2rem(10);
+  margin: px2rem(25) px2rem(115);
+}
+
+.modal_menu_select {
+  color: #f52626;
+  border: solid px2rem(2) #f52626;
+}

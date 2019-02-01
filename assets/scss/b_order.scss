@@ -1,0 +1,260 @@
+.order_food_count_2 {
+  right: px2rem(130 + 80 + 100) !important;
+}
+
+.order_food_price_2 {
+  right: px2rem(30 + 80 + 100) !important;
+}
+
+.order_food_button {
+  position: absolute;
+  text-align: center;
+  vertical-align: middle;
+  right: px2rem(40);
+  top: 50%;
+  transform: translate(0, -50%);
+
+  width: px2rem(120);
+  height: px2rem(48);
+  border-radius: px2rem(24);
+
+  font-size: px2rem(26);
+  font-weight: 500;
+  color: rgba(255, 255, 255, 1);
+  line-height: px2rem(48);
+}
+
+.order_food_button_finish {
+  background: linear-gradient(90deg, rgba(255, 51, 68, 1), rgba(255, 136, 51, 1)) !important;
+  box-shadow: 0 0 px2rem(18) 0 rgba(255, 65, 65, 0.2) !important;
+}
+
+.order_food_button_cooking {
+  background: linear-gradient(90deg, rgba(55, 209, 133, 1), rgba(51, 217, 173, 1)) !important;
+  box-shadow: 0 0 px2rem(18) 0 rgba(54, 211, 142, 0.2) !important;
+}
+
+.order_food_button_cooked {
+  background: linear-gradient(90deg, rgba(206, 107, 254, 1), rgba(244, 123, 251, 1)) !important;
+  box-shadow: 0 0 px2rem(18) 0 rgba(215, 111, 253, 0.2) !important;
+}
+
+.order_food_button_retire {
+  background: linear-gradient(90deg, rgba(246, 88, 132, 1), rgba(242, 100, 109, 1)) !important;
+  box-shadow: 0 0 px2rem(18) 0 rgba(245, 91, 126, 0.2) !important;
+}
+
+.order_operator {
+  height: px2rem(200);
+  position: relative;
+  text-align: center;
+
+  .order_operator_one {
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    width: 25%;
+    float: left;
+
+    top: 50%;
+    transform: translate(0, -50%);
+  }
+
+  .order_operator_status {
+    position: relative;
+
+    .order_operator_line_left {
+      position: absolute;
+      top: 50%;
+      right: 50%;
+      transform: translate(0, -50%);
+
+      width: 50%;
+      background: rgba(204, 204, 204, 1);
+      height: px2rem(2);
+    }
+
+    .order_operator_line_right {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(0, -50%);
+
+      width: 50%;
+      background: rgba(204, 204, 204, 1);
+      height: px2rem(2);
+    }
+
+    .order_operator_ball {
+      position: absolute;
+      top: 50%;
+      transform: translate(0, -50%);
+      width: px2rem(25);
+      height: px2rem(25);
+      border-radius: 50%;
+      left: 0;
+      right: 0;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .order_operator_ball_wait {
+      background: rgba(204, 204, 204, 0.2);
+    }
+
+    .order_operator_ball_cooking {
+      background: rgba(55, 209, 133, 0.2);
+    }
+
+    .order_operator_ball_cooked {
+      background: rgba(206, 107, 254, 0.2);
+    }
+
+    .order_operator_ball_finish {
+      background: rgba(255, 51, 68, 0.2);
+    }
+
+    .order_operator_ball_dot {
+      display: inline-block;
+      width: px2rem(15);
+      height: px2rem(15);
+      background: rgba(204, 204, 204, 1);
+      border-radius: 50%;
+
+      top: 50%;
+      transform: translate(0, -50%);
+      left: 0;
+      right: 0;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .order_operator_ball_dot_wait {
+      background: rgba(204, 204, 204, 1);
+    }
+
+    .order_operator_ball_dot_cooking {
+      background: rgba(55, 209, 133, 1);
+    }
+
+    .order_operator_ball_dot_cooked {
+      background: rgba(206, 107, 254, 1);
+    }
+
+    .order_operator_ball_dot_finish {
+      background: rgba(255, 51, 68, 1);
+    }
+  }
+
+  .order_operator_label {
+    color: #999999;
+  }
+
+  .order_operator_label_time {
+    color: #999999;
+    font-size: px2rem(24);
+    height: px2rem(24);
+    margin-top: px2rem(5);
+  }
+
+  .order_operator_label_wait {
+    color: #666666;
+    font-weight: bold;
+  }
+
+  .order_operator_label_cooking {
+    color: #37D28A;
+    font-weight: bold;
+  }
+
+  .order_operator_label_cooked {
+    color: #D46FFE;
+    font-weight: bold;
+  }
+
+  .order_operator_label_finish {
+    color: #F52626;
+    font-weight: bold;
+  }
+}
+
+.order_taste_note {
+  background: white;
+
+  .order_taste_note_label {
+    margin-left: px2rem(35);
+  }
+}
+
+.retire_food {
+  position: relative;
+  padding: px2rem(0) px2rem(40);
+  text-align: left;
+
+  .retire_food_label {
+    display: inline-block;
+    font-size: px2rem(28);
+    color: #333333;
+  }
+
+  .retire_food_count {
+    display: inline-block;
+    color: #F52626;
+    float: right;
+  }
+}
+
+.retire_count {
+  position: relative;
+  padding: px2rem(0) px2rem(40);
+  text-align: left;
+
+  .retire_count_label {
+    display: inline-block;
+    font-size: px2rem(28);
+    color: #333333;
+  }
+
+  .retire_count_option {
+    display: inline-block;
+    color: #F52626;
+    float: right;
+  }
+}
+
+.retire_reason {
+  position: relative;
+  padding: px2rem(0) px2rem(40);
+  text-align: left;
+
+  .retire_reason_label {
+    display: inline-block;
+    font-size: px2rem(28);
+    color: #333333;
+  }
+}
+
+.retire_remark {
+  text-align: left;
+  padding: px2rem(0) px2rem(35);
+
+  .retire_remark_one {
+    display: inline-block;
+    margin-bottom: px2rem(20);
+    margin-right: px2rem(20);
+
+    .retire_remark_name {
+      display: inline-block;
+      background: #F5F5F5;
+      color: #666666;
+      padding: px2rem(15) px2rem(20);
+    }
+
+    .retire_remark_name_select {
+      display: inline-block;
+      background: #FFEBEB;
+      color: #f52626;
+      padding: px2rem(15) px2rem(20);
+    }
+  }
+}

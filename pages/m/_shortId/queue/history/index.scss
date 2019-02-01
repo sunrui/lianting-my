@@ -1,0 +1,74 @@
+.queue_history_status {
+  float: right;
+  display: inline-block;
+  margin-right: px2rem(30);
+  font-size: px2rem(28);
+  line-height: px2rem(102);
+}
+
+.queue_history_status_wait {
+  color: #f52626;
+}
+
+.queue_history_status_now {
+  color: #3ed195;
+}
+
+.queue_history_status_expired {
+  color: #999999;
+}
+
+.queue_history_status_cancel {
+  color: #bbbbbb;
+}
+
+.queue_history {
+  position: relative;
+  background: white;
+}
+
+.queue_history_food {
+  position: relative;
+  height: px2rem(70);
+
+  .queue_history_food_label {
+    display: inline-block;
+
+    margin-left: px2rem(30);
+    line-height: px2rem(70);
+    color: #666666;
+  }
+
+  .queue_history_food_content {
+    display: inline-block;
+    font-size: px2rem(28);
+    margin-left: px2rem(10);
+    line-height: px2rem(70);
+    color: #333333;
+  }
+}
+
+.queue_history_price {
+  position: relative;
+  height: px2rem(70);
+
+  .queue_history_price_label {
+    display: inline-block;
+
+    margin-left: px2rem(30);
+    line-height: px2rem(70);
+    color: #666666;
+  }
+
+  .queue_history_price_content {
+    display: inline-block;
+    margin-left: px2rem(10);
+    line-height: px2rem(70);
+    font-size: px2rem(28);
+    color: #f52626;
+  }
+}
+
+.history_footer {
+  height: px2rem(30)
+}

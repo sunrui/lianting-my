@@ -1,0 +1,23 @@
+.empty {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background: white;
+  top: 0;
+  left: 0;
+  text-align: center;
+  overflow-y: scroll;
+
+  .empty_image {
+    display: inline-block;
+    margin-top: 35%;
+    width: px2rem(320);
+    height: px2rem(320);
+  }
+
+  .empty_label {
+    padding: px2rem(20) px2rem(35);
+    font-size: px2rem(30);
+    color: #333333;
+  }
+}

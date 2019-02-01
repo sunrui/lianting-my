@@ -1,0 +1,73 @@
+.reply_area {
+  position: relative;
+  background: white;
+  height: 100vh;
+
+  .reply_label {
+    padding-top: px2rem(50);
+    color: #333333;
+    margin-left: px2rem(35);
+    font-size: px2rem(28);
+    margin-bottom: px2rem(30);
+  }
+
+  .reply_remark {
+    text-align: left;
+    padding: px2rem(0) px2rem(35);
+
+    .reply_remark_one {
+      display: inline-block;
+      margin-bottom: px2rem(20);
+      margin-right: px2rem(20);
+
+      .reply_remark_name {
+        display: inline-block;
+        background: #F5F5F5;
+        color: #666666;
+        padding: px2rem(15) px2rem(20);
+      }
+
+      .reply_remark_name_select {
+        display: inline-block;
+        background: #FFEBEB;
+        color: #f52626;
+        padding: px2rem(15) px2rem(20);
+      }
+    }
+  }
+
+  .reply_device_area {
+    position: relative;
+    margin-top: px2rem(30);
+    padding: 0 px2rem(35);
+
+    .reply_device_input {
+      border: none;
+      outline: medium;
+      background-color: #F5F5F5;
+      color: #666666;
+
+      padding: px2rem(20);
+      width: px2rem(150);
+      height: 100%;
+    }
+  }
+
+  .reply_remark_area {
+    position: relative;
+    margin-top: px2rem(30);
+    height: px2rem(190);
+    padding: 0 px2rem(35);
+
+    .reply_remark_input {
+      border: none;
+      outline: medium;
+      background-color: #F5F5F5;
+      color: #666666;
+
+      padding: px2rem(20);
+      width: 100%;
+      height: 100%;
+    }
+  }
+}

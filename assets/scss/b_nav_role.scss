@@ -1,0 +1,65 @@
+.shop_bg_role {
+  height: px2rem(600);
+}
+
+.shop_center_role {
+  bottom: px2rem(600);
+}
+
+.shop_status_open {
+  display: inline-block;
+  vertical-align: top;
+  background: rgba(245, 38, 38, 0.15);
+  border-radius: px2rem(5);
+  height: px2rem(30);
+
+  color: #f52626;
+  font-size: px2rem(22);
+  padding: 0 px2rem(10);
+  line-height: px2rem(30);
+}
+
+.shop_status_close {
+  display: inline-block;
+  vertical-align: top;
+  background: rgba(153, 153, 153, 0.15);
+  border-radius: px2rem(5);
+  height: px2rem(30);
+
+  color: rgb(153, 153, 153);
+  font-size: px2rem(22);
+  padding: 0 px2rem(10);
+  line-height: px2rem(30);
+}
+
+.shop_nav_box_role {
+  top: px2rem(600);
+}
+
+.shop_nav_box_one_role {
+  width: 50%;
+  padding-bottom: px2rem(50);
+}
+
+.shop_nav_box_one_icon_role {
+  width: px2rem(120);
+  height: px2rem(120);
+}
+
+.shop_nav_box_one_label_role {
+  color: #f52626;
+  font-size: px2rem(28);
+  padding-top: px2rem(10);
+}
+
+.shop_menu {
+  position: relative;
+  margin-top: px2rem(50);
+
+  .shop_menu_icon {
+    display: inline-block;
+    margin: 0 px2rem(50);
+    width: px2rem(48);
+    height: px2rem(48);
+  }
+}

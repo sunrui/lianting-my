@@ -1,0 +1,57 @@
+.coupon_header {
+  background: white;
+  margin-top: px2rem(20);
+}
+
+.coupon_box {
+  position: relative;
+  height: px2rem(140);
+
+  .coupon_box_left {
+    padding-left: px2rem(35);
+
+    .coupon_type_title {
+      font-size: px2rem(36);
+      color: #333333;
+      padding-top: px2rem(30);
+    }
+
+    .coupon_type_name {
+      font-size: px2rem(24);
+      color: #666666;
+      margin-top: px2rem(10);
+    }
+  }
+
+  .coupon_box_right {
+    position: absolute;
+    width: 50%;
+    right: 0;
+    top: 0;
+    text-align: right;
+    padding-right: px2rem(35);
+
+    .coupon_deduct_price {
+      color: #f52626;
+      font-size: px2rem(54);
+      font-weight: 400;
+      margin-top: px2rem(20);
+    }
+
+    .coupon_deduct_price:before {
+      content: "￥";
+      font-size: px2rem(30);
+      color: #f52626;
+    }
+
+    .coupon_charge_price {
+      color: #666666;
+      font-size: px2rem(22);
+      margin-top: px2rem(5);
+    }
+  }
+}
+
+.coupon_footer {
+  background: white;
+}

@@ -1,0 +1,36 @@
+.wall_user_info {
+  text-align: center;
+  height: px2rem(40);
+  padding-top: px2rem(95);
+
+  .wall_user_info_nick {
+    color: #333333;
+    font-size: px2rem(32);
+    line-height: px2rem(40);
+    display: inline-block;
+    text-align: center;
+  }
+
+  .user_info_edit {
+    display: inline-block;
+    background: #f52626;
+    height: px2rem(32);
+    width: px2rem(32);
+    line-height: px2rem(40);
+  }
+}
+
+.user_phone {
+  text-align: center;
+  margin-top: px2rem(50);
+
+  .user_phone_label {
+    color: #666666;
+    display: inline-block;
+  }
+
+  .user_phone_unbind {
+    color: #f52626;
+    display: inline-block;
+  }
+}

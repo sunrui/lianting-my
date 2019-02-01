@@ -1,0 +1,70 @@
+.status {
+  position: relative;
+  margin-top: px2rem(140 / 2);
+  background: white;
+
+  .status_logo_radius {
+    width: px2rem(140);
+    height: px2rem(140);
+    border-radius: 50%;
+    overflow: hidden;
+    z-index: 2;
+    box-shadow: 0 0 px2rem(20) 0 rgba(0, 0, 0, 0.2);
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+
+    .status_logo_radius_image {
+      width: px2rem(140);
+      height: px2rem(140);
+      left: 0;
+      top: 0
+    }
+  }
+
+  .status_logo_radius_center {
+    margin-top: px2rem(-70);
+  }
+
+  .status_title {
+    color: #f52626;
+    font-size: px2rem(35);
+    text-align: center;
+    padding-top: px2rem(95);
+  }
+
+  .status_detail {
+    color: #999999;
+    text-align: center;
+    margin-top: px2rem(10);
+  }
+
+  .status_footer {
+    height: px2rem(20);
+  }
+
+  .status_item {
+    position: relative;
+    height: px2rem(60);
+  }
+
+  .status_item_label {
+    font-size: px2rem(28);
+    margin-left: px2rem(35);
+    line-height: px2rem(60);
+  }
+
+  .status_item_content {
+    position: absolute;
+    right: px2rem(35);
+    top: 0;
+    line-height: px2rem(60);
+  }
+}
+
+.status_top {
+  margin-top: px2rem(180);
+}

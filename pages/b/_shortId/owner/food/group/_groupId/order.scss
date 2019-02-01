@@ -1,0 +1,38 @@
+.order_food {
+  background: white;
+  padding: 0 px2rem(35);
+
+  .order_food_one {
+    height: px2rem(90);
+
+    .order_food_name {
+      display: inline-block;
+      line-height: px2rem(90);
+      color: #666666;
+      font-size: px2rem(28);
+    }
+
+    .order_food_down {
+      float: right;
+      display: inline-block;
+      background-image: url("/img/common/order_down.png");
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      width: px2rem(32);
+      height: px2rem(32);
+      margin-top: px2rem((90 - 32) / 2);
+      margin-left: px2rem(30);
+    }
+
+    .order_food_up {
+      float: right;
+      display: inline-block;
+      background-image: url("/img/common/order_up.png");
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      width: px2rem(32);
+      height: px2rem(32);
+      margin-top: px2rem((90 - 32) / 2);
+    }
+  }
+}

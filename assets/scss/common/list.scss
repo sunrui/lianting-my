@@ -1,0 +1,26 @@
+.list_title {
+  position: relative;
+  margin-top: px2rem(30);
+  background: white;
+  height: px2rem(88);
+  padding-top: px2rem(12 / 2);
+
+  .list_time_icon {
+    display: inline-block;
+    vertical-align: middle;
+    background-image: url("/img/common/time.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    width: px2rem(28);
+    height: px2rem(28);
+    margin-left: px2rem(35);
+  }
+
+  .list_time_label {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: px2rem(28);
+    margin-left: px2rem(5);
+    line-height: px2rem(88);
+  }
+}

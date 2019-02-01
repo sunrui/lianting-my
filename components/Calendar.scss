@@ -1,0 +1,151 @@
+.calendar {
+  border-radius: px2rem(10) px2rem(10) 0 0;
+  position: absolute;
+  background: white;
+  z-index: 9 + 1;
+  bottom: 0;
+
+  .calendar_title {
+    width: 100%;
+    height: px2rem(80);
+    background: #F2F4F5;
+    border-bottom: solid px2rem(2) rgba(230, 230, 230, 0.5);
+    text-align: center;
+
+    .calendar_title_cancel {
+      position: absolute;
+      width: px2rem(80);
+      left: px2rem(10);
+      top: 0;
+
+      .calendar_title_cancel_label {
+        color: #999999;
+        font-size: px2rem(28);
+        line-height: px2rem(80);
+      }
+    }
+
+    .calendar_title_date_minus_disable {
+      display: inline-block;
+      width: px2rem(80);
+    }
+
+    .calendar_title_date_minus {
+      display: inline-block;
+      text-align: center;
+      width: px2rem(80);
+      height: px2rem(80);
+      vertical-align: top;
+
+      .calendar_title_date_minus_icon {
+        display: inline-block;
+        background-image: url("/img/common/calendar/calendar_minus.png");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        width: px2rem(24);
+        height: px2rem(24);
+
+        margin-top: px2rem((80 - 24) / 2);
+      }
+    }
+
+    .calendar_title_date {
+      display: inline-block;
+      height: px2rem(80);
+      top: 0;
+      margin-top: 0;
+      vertical-align: top;
+
+      .calendar_title_date_label {
+        line-height: px2rem(80);
+        color: #333333;
+        font-size: px2rem(28);
+        text-align: center;
+        height: px2rem(80);
+      }
+    }
+
+    .calendar_title_date_add {
+      display: inline-block;
+      text-align: center;
+      width: px2rem(80);
+      height: px2rem(80);
+      vertical-align: top;
+
+      .calendar_title_date_add_icon {
+        display: inline-block;
+        background-image: url("/img/common/calendar/calendar_add.png");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        width: px2rem(24);
+        height: px2rem(24);
+
+        margin-top: px2rem((80 - 24) / 2);
+      }
+    }
+
+    .calendar_title_confirm {
+      position: absolute;
+      width: px2rem(80);
+      right: px2rem(10);
+      top: 0;
+      line-height: px2rem(80);
+
+      .calendar_title_confirm_label {
+        font-size: px2rem(28);
+        color: #f52626;
+        line-height: px2rem(80);
+      }
+    }
+  }
+
+  .calendar_week {
+    text-align: center;
+    margin-top: px2rem(40);
+
+    .calendar_week_one {
+      display: inline-block;
+      width: 14.28%;
+      color: #888888;
+    }
+  }
+
+  .calendar_day {
+    text-align: center;
+    margin-top: px2rem(40);
+
+    .calendar_day_one {
+      margin-bottom: px2rem(5);
+      display: inline-block;
+      width: 14.28%;
+    }
+
+    .calendar_day_one_label {
+      display: inline-block;
+      text-align: center;
+      color: #333333;
+      line-height: px2rem(72);
+      width: px2rem(72);
+    }
+
+    .calendar_day_one_label_disable {
+      display: inline-block;
+      text-align: center;
+      color: #BBBBBB;
+      line-height: px2rem(72);
+      width: px2rem(72);
+    }
+
+    .calendar_day_one_label_select {
+      display: inline-block;
+      background: linear-gradient(90deg, rgba(255, 51, 68, 1), rgba(255, 136, 51, 1));
+      width: px2rem(70);
+      height: px2rem(70);
+      box-shadow: 0 0 px2rem(20) 0 rgba(0, 0, 0, 0.1);
+      border-radius: 50%;
+      text-align: center;
+      color: white;
+      line-height: px2rem(70);
+    }
+  }
+}

@@ -1,0 +1,20 @@
+.wall_reply {
+  margin-top: px2rem(20);
+  background: #f7f8fa;
+  border-radius: px2rem(10);
+  padding: px2rem(20);
+
+  .wall_reply_one {
+    margin-bottom: px2rem(10);
+
+    .wall_reply_nick {
+      display: inline-block;
+      color: #30A2F2;
+    }
+
+    .wall_reply_content {
+      color: #808080;
+      margin-left: px2rem(10);
+    }
+  }
+}

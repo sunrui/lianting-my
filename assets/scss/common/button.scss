@@ -1,0 +1,57 @@
+.button_box {
+  margin-top: px2rem(90);
+  margin-bottom: px2rem(30);
+  text-align: center;
+}
+
+.button_big {
+  font-size: px2rem(30);
+  color: white;
+  display: inline-block;
+  background: linear-gradient(90deg, rgba(255, 51, 68, 1), rgba(255, 136, 51, 1));
+  border-radius: px2rem(90 / 2);
+
+  width: px2rem(400);
+  height: px2rem(90);
+  line-height: px2rem(90);
+  text-align: center;
+}
+
+.button_big_gray {
+  font-size: px2rem(30);
+  color: white;
+  display: inline-block;
+  background: rgba(221, 221, 221, 1);
+  border-radius: px2rem(90 / 2);
+
+  width: px2rem(400);
+  height: px2rem(90);
+  line-height: px2rem(90);
+  text-align: center;
+}
+
+.button_small {
+  display: inline-block;
+  font-size: px2rem(30);
+  color: white;
+  background: linear-gradient(90deg, rgba(255, 51, 68, 1), rgba(255, 136, 51, 1));
+  border-radius: px2rem(74 / 2);
+  width: px2rem(220);
+  height: px2rem(74);
+  line-height: px2rem(74);
+  text-align: center;
+  margin: 0 px2rem(15);
+}
+
+.button_small_gray {
+  display: inline-block;
+  font-size: px2rem(30);
+  color: white;
+  background: rgba(221, 221, 221, 1);
+  border-radius: px2rem(74 / 2);
+  width: px2rem(220);
+  height: px2rem(74);
+  line-height: px2rem(74);
+  text-align: center;
+  margin: 0 px2rem(15);
+}

@@ -1,0 +1,179 @@
+.queue_table {
+  height: px2rem(160);
+  margin-top: px2rem(40);
+  text-align: center;
+  background: white;
+
+  .queue_table_label_left {
+    display: inline-block;
+    margin-right: px2rem(10);
+    font-size: px2rem(30);
+  }
+
+  .queue_table_people {
+    display: inline-block;
+    font-size: px2rem(80);
+    color: #f52626;
+    line-height: px2rem(160);
+  }
+
+  .queue_table_label_right {
+    display: inline-block;
+    margin-left: px2rem(10);
+    font-size: px2rem(30);
+  }
+}
+
+.queue {
+  position: relative;
+  background: white;
+  margin-top: px2rem(20);
+
+  .queue_table_group {
+    height: px2rem(88);
+
+    .queue_table_group_name {
+      display: inline-block;
+      font-size: px2rem(28);
+      color: #333333;
+      margin-top: px2rem(30);
+      margin-left: px2rem(35);
+    }
+
+    .queue_table_group_people {
+      display: inline-block;
+      font-size: px2rem(26);
+      color: #666666;
+    }
+  }
+
+  .queue_ring {
+    position: relative;
+    height: px2rem(40);
+
+    .queue_ring_icon {
+      display: inline-block;
+      vertical-align: middle;
+      background-image: url("/img/b/queue/b_queue_ring.png");
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      width: px2rem(40);
+      height: px2rem(40);
+      margin-left: px2rem(35);
+    }
+
+    .queue_ring_label {
+      display: inline-block;
+      vertical-align: middle;
+      font-size: px2rem(28);
+      color: #f52626;
+      font-weight: 400;
+      margin-left: px2rem(5);
+    }
+
+    .queue_ring_button {
+      float: right;
+      display: inline-block;
+      background: linear-gradient(90deg, rgba(255, 51, 68, 1), rgba(255, 136, 51, 1));
+      border-radius: px2rem(5);
+      vertical-align: middle;
+      padding: px2rem(0) px2rem(20);
+      margin-right: px2rem(35);
+      line-height: px2rem(40);
+      font-size: px2rem(24);
+      color: white;
+      font-weight: 400;
+    }
+
+    .queue_ring_button_gray {
+      background: rgba(221, 221, 221, 1);
+    }
+  }
+
+  .queue_table {
+    position: relative;
+    height: px2rem(120);
+
+    .queue_table_number {
+      display: inline-block;
+      font-size: px2rem(80);
+      height: px2rem(120);
+      color: #f52626;
+    }
+
+    .queue_table_extra {
+      display: inline-block;
+      height: px2rem(120);
+      margin-left: px2rem(10);
+
+      .queue_table_status {
+        height: px2rem(36);
+        width: px2rem(100);
+        font-size: px2rem(24);
+        line-height: px2rem(36);
+        border-radius: px2rem(5);
+      }
+
+      .queue_table_status_now {
+        background: #f6fffc;
+        color: #3ed195;
+        border: solid px2rem(2) #00c172;
+      }
+
+      .queue_table_status_wait {
+        background: #fef2f4;
+        color: #f32824;
+        border: solid px2rem(2) #f32824;
+      }
+
+      .queue_table_status_time {
+        margin-top: px2rem(5);
+        color: #333333;
+        font-size: px2rem(24);
+      }
+    }
+  }
+
+  .queue_info_box {
+    position: relative;
+    margin: px2rem(0) px2rem(35);
+    height: px2rem(120);
+    border: solid px2rem(2) #cccccc;
+    border-radius: px2rem(10);
+    text-align: center;
+
+    .queue_info_one {
+      position: relative;
+      display: inline-block;
+      width: 33.33%;
+      float: left;
+
+      top: 50%;
+      transform: translate(0, -50%);
+
+      .queue_info_label {
+        font-size: px2rem(30);
+        color: #333333;
+        font-weight: 400;
+      }
+
+      .queue_info_name {
+        color: #999999;
+        font-size: px2rem(24);
+        margin-top: px2rem(5);
+      }
+    }
+  }
+
+  .queue_button_box {
+    text-align: center;
+  }
+
+  .queue_empty {
+    height: px2rem(200);
+    color: #999999;
+    text-align: center;
+    line-height: px2rem(200);
+    font-size: px2rem(28);
+  }
+}

@@ -1,0 +1,53 @@
+.reserve_reply_choice {
+  margin: px2rem(0) px2rem(25);
+  position: relative;
+
+  .reserve_reply_choice_select {
+    display: inline-block;
+    background: #FCECEC;
+    color: #EF4B46;
+    width: px2rem(200);
+    height: px2rem(64);
+    line-height: px2rem(64);
+    margin: 0 px2rem(10);
+  }
+
+  .reserve_reply_choice_unselect {
+    display: inline-block;
+    background: #F5F5F5;
+    color: #666666;
+    width: px2rem(200);
+    height: px2rem(64);
+    line-height: px2rem(64);
+    margin: 0 px2rem(10);
+  }
+}
+
+.reserve_table {
+
+  .reserve_table_label {
+    display: inline-block;
+  }
+
+  .reserve_table_number {
+    display: inline-block;
+
+  }
+}
+
+.reserve_remark_text_area {
+  margin: 0 px2rem(25);
+  height: px2rem(200);
+
+  .reserve_remark_text_input {
+    overflow-y: scroll;
+    border: none;
+    outline: medium;
+    background-color: #F5F5F5;
+    color: #666666;
+
+    padding: px2rem(20);
+    width: 100%;
+    height: 100%;
+  }
+}

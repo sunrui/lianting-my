@@ -1,0 +1,70 @@
+.shop_bg_owner {
+  bottom: px2rem(900);
+}
+
+.shop_title_license {
+  display: inline-block;
+  vertical-align: top;
+  background: linear-gradient(90deg, rgba(255, 76, 91, 1), rgba(255, 127, 102, 1));
+  width: px2rem(140);
+  height: px2rem(30);
+  border-radius: px2rem(3);
+
+  .shop_title_license_king {
+    display: inline-block;
+    vertical-align: top;
+
+    background-image: url("/img/b/nav/owner/b_nav_owner_king.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    width: px2rem(24);
+    height: px2rem(24);
+    margin-top: px2rem((30 - 24) / 2);
+  }
+
+  .shop_title_license_label {
+    display: inline-block;
+    vertical-align: top;
+
+    font-size: px2rem(18);
+    color: #FFFCF0;
+    line-height: px2rem(30);
+  }
+}
+
+.shop_expired_date {
+  margin-top: px2rem(30);
+  font-size: px2rem(26);
+  color: #999999;
+}
+
+.shop_charge {
+  display: inline-block;
+  margin-top: px2rem(20);
+  color: #f52626;
+  height: px2rem(60);
+  line-height: px2rem(60);
+  border-radius: px2rem(60 / 2);
+  font-size: px2rem(28);
+  padding: 0 px2rem(40);
+  border: solid px2rem(2) #f52626;
+}
+
+.shop_center_owner {
+  bottom: px2rem(750);
+}
+
+.shop_nav_box_owner {
+  height: px2rem(900);
+}
+
+.shop_nav_box_one_owner {
+  width: 33.33%;
+  padding-bottom: px2rem(20);
+}
+
+.shop_nav_box_one_icon_owner {
+  width: px2rem(80);
+  height: px2rem(80);
+}
+
