@@ -1,11 +1,8 @@
 <template>
-  <div class="container">
-
+  <div>
     <loading v-show="false" id="http_loading"></loading>
     <div class="home" onclick="window.location.href='/'"></div>
-    <transition class="fade">
-      <nuxt/>
-    </transition>
+    <nuxt/>
   </div>
 </template>
 
@@ -18,9 +15,7 @@
   }
 </script>
 
-<style scoped lang="scss">
-  @import '~assets/common.scss';
-
+<style lang="scss">
   html {
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
@@ -28,21 +23,10 @@
     -webkit-font-smoothing: antialiased;
     box-sizing: border-box;
 
-    word-break: break-all;
     user-select: none;
     background: #eef0f3;
     margin: 0;
     color: #333333;
-  }
-
-  .container {
-    clear: both;
-    margin: 0;
-    padding: 0;
-  }
-
-  * {
-    touch-action: pan-y;
   }
 
   *,
@@ -60,8 +44,8 @@
     border-radius: 30px;
     background: orangered;
     position: fixed;
-    top: px2rem(30);
     right: px2rem(30);
+    top: px2rem(100);
     z-index: 99;
   }
 </style>
