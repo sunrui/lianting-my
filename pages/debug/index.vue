@@ -135,5 +135,5 @@
 </script>
 
 <style lang="scss">
-  @import '~assets/scss/common.scss';
+  @import '~assets/common.scss';
 </style>

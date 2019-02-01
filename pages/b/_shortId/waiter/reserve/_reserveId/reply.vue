@@ -128,6 +128,6 @@
 </script>
 
 <style scoped lang="scss">
-  @import '~assets/scss/common.scss';
-  @import '~assets/scss/b_reserve_reply.scss';
+  @import '~assets/common.scss';
+  @import '~assets/b/b_reserve_reply.scss';
 </style>

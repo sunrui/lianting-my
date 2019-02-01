@@ -128,6 +128,6 @@
 </script>
 
 <style scoped lang="scss">
-  @import '~assets/scss/common.scss';
-  @import '~assets/scss/order.scss';
+  @import '~assets/common.scss';
+  @import '~assets/m/order.scss';
 </style>

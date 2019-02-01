@@ -780,7 +780,7 @@
 </script>
 
 <style scoped lang="scss">
-  @import '~assets/scss/common.scss';
-  @import '~assets/scss/order.scss';
-  @import '~assets/scss/b_order.scss';
+  @import '~assets/common.scss';
+  @import '~assets/m/order.scss';
+  @import '~assets/b/b_order.scss';
 </style>

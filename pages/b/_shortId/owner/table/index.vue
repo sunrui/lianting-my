@@ -353,8 +353,8 @@
 </script>
 
 <style scoped lang="scss">
-  @import '~assets/scss/common.scss';
-  @import '~assets/scss/food.scss';
-  @import '~assets/scss/b_table.scss';
+  @import '~assets/common.scss';
+  @import '~assets/m/food.scss';
+  @import '~assets/b/b_table.scss';
   @import 'index';
 </style>

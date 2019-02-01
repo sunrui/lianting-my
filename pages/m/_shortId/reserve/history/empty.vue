@@ -29,5 +29,5 @@
 </script>
 
 <style scoped lang="scss">
-  @import '~assets/scss/common.scss';
+  @import '~assets/common.scss';
 </style>

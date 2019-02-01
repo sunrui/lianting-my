@@ -386,6 +386,6 @@
 </script>
 
 <style scoped lang="scss">
-  @import '~assets/scss/common.scss';
-  @import '~assets/scss/b_food.scss';
+  @import '~assets/common.scss';
+  @import '~assets/b/b_food.scss';
 </style>

@@ -147,7 +147,7 @@
 </script>
 
 <style scoped lang="scss">
-  @import '~assets/scss/common.scss';
-  @import '~assets/scss/empty.scss';
+  @import '~assets/common.scss';
+  @import '~assets/empty.scss';
   @import 'index';
 </style>

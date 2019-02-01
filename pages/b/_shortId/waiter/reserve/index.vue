@@ -162,7 +162,7 @@
 </script>
 
 <style scoped lang="scss">
-  @import '~assets/scss/common.scss';
-  @import '~assets/scss/reserve.scss';
+  @import '~assets/common.scss';
+  @import '~assets/m/reserve.scss';
   @import 'index';
 </style>
