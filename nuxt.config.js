@@ -31,7 +31,7 @@ module.exports = {
   ** Global CSS
   */
   css: [
-    { src: 'assets/css/fade.css', lang: 'css' }
+    { src: '~static/css/fade.css', lang: 'css' }
   ],
 
 

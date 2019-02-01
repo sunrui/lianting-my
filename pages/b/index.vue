@@ -1,20 +1,21 @@
 <template>
+    <section></section>
 </template>
 
 <script>
-  import {httpShopApi} from '../../api/http/shop/httpShopApi'
+  import { httpShopApi } from "../../api/http/shop/httpShopApi"
 
   export default {
     metaInfo: {
-      title: '我的店铺'
+      title: "我的店铺"
     },
-    middleware: 'auth',
+    middleware: "auth",
     created() {
       httpShopApi.getCount().then(res => {
         if (res > 0) {
-          this.$router.push('/shop')
+          this.$router.push("/shop")
         } else {
-          this.$router.push('/shop/create')
+          this.$router.push("/shop/create")
         }
       })
     }
