@@ -48,7 +48,10 @@ module.exports = {
   */
   modules: [
     "@nuxtjs/axios",
-    "@nuxtjs/proxy"
+    "@nuxtjs/proxy",
+    ['nuxt-sass-resources-loader', [
+      '@/assets/px2rem.scss',
+    ]]
   ],
 
   proxy: [
