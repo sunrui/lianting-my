@@ -31,7 +31,6 @@ module.exports = {
   ** Global CSS
   */
   css: [
-    {src: '~assets/px2rem.scss', lang: 'scss'},
   ],
 
   /*
@@ -49,13 +48,7 @@ module.exports = {
   */
   modules: [
     "@nuxtjs/axios",
-    "@nuxtjs/proxy",
-    ['nuxt-sass-resources-loader', [
-      '@/assets/px2rem.scss',
-      '~/assets/px2rem.scss',
-      '/assets/px2rem.scss',
-      'assets/px2rem.scss',
-    ]]
+    "@nuxtjs/proxy"
   ],
 
   proxy: [
