@@ -92,7 +92,7 @@
 </template>
 
 <script>
-  import TitleBar from '../../../../components/TitleBar'
+  import TitleBar from '../../../../components/common/TitleBar'
   import {timeApi} from '../../../../api/local/timeApi'
   import {stateApi} from '../../../../api/local/stateApi'
   import {httpReserveApi} from '../../../../api/http/ltorder/httpReserveApi'

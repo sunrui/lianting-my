@@ -73,7 +73,7 @@
 </template>
 
 <script>
-  import TitleBar from '../../components/TitleBar'
+  import TitleBar from '../common/TitleBar'
   import {httpOrderApi} from '../../api/http/ltorder/httpOrderApi'
 
   export default {

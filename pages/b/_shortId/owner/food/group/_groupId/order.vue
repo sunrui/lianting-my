@@ -25,7 +25,7 @@
 </template>
 
 <script>
-  import TitleBar from '../../../../../../../components/TitleBar'
+  import TitleBar from '../../../../../../../components/common/TitleBar'
   import {httpFoodApi} from '../../../../../../../api/http/ltorder/httpFoodApi'
   import {httpFoodAdminApi} from '../../../../../../../api/http/ltorder/httpFoodAdminApi'
 

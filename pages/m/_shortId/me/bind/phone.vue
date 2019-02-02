@@ -41,7 +41,7 @@
   import {validatorApi} from '../../../../../api/local/validatorApi'
   import {httpSmsApi} from '../../../../../api/http/user/httpSmsApi'
   import {stateApi} from '../../../../../api/local/stateApi'
-  import TitleBar from '../../../../../components/TitleBar'
+  import TitleBar from '../../../../../components/common/TitleBar'
   import {httpUserApi} from '../../../../../api/http/user/httpUserApi'
   import {timeApi} from '../../../../../api/local/timeApi'
 

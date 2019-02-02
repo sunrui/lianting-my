@@ -117,7 +117,7 @@
   import {timeApi} from '../../../../api/local/timeApi'
   import {httpOrderApi} from '../../../../api/http/ltorder/httpOrderApi'
   import {foodDetailApi} from '../../../../api/local/foodDetail'
-  import TitleBar from '../../../../components/TitleBar'
+  import TitleBar from '../../../../components/common/TitleBar'
   import {httpUserApi} from '../../../../api/http/user/httpUserApi'
   import {stateApi} from '../../../../api/local/stateApi'
   import {scrollApi} from '../../../../api/local/scrollApi'

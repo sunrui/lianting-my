@@ -65,7 +65,7 @@
 </template>
 
 <script>
-  import TitleBar from '../../../../../../../components/TitleBar'
+  import TitleBar from '../../../../../../../components/common/TitleBar'
   import {httpTableApi} from '../../../../../../../api/http/ltorder/httpTableApi'
   import {httpTableAdminApi} from '../../../../../../../api/http/ltorder/httpTableAdminApi'
 

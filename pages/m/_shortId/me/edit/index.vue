@@ -75,7 +75,7 @@
 </template>
 
 <script>
-  import TitleBar from '../../../../../components/TitleBar'
+  import TitleBar from '../../../../../components/common/TitleBar'
   import {httpUserApi} from '../../../../../api/http/user/httpUserApi'
   import {stateApi} from '../../../../../api/local/stateApi'
 

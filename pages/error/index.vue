@@ -65,7 +65,7 @@
 <script>
   import {timeApi} from '../../api/local/timeApi'
   import {storeApi} from '../../api/local/storeApi'
-  import TitleBar from '../../components/TitleBar'
+  import TitleBar from '../../components/common/TitleBar'
   import {stringApi} from '../../api/local/stringApi'
   import {logApi} from '../../api/local/logApi'
 
@@ -148,6 +148,5 @@
 
 <style scoped lang="scss">
   @import '~assets/common.scss';
-  @import '~assets/empty.scss';
   @import 'index';
 </style>

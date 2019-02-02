@@ -78,7 +78,7 @@
 
 <script>
   import {httpTableAdminApi} from '../../../../../../api/http/ltorder/httpTableAdminApi'
-  import TitleBar from '../../../../../../components/TitleBar'
+  import TitleBar from '../../../../../../components/common/TitleBar'
 
   export default {
     metaInfo: {

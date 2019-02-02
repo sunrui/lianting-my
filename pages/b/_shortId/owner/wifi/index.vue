@@ -39,7 +39,7 @@
 <script>
   import {httpWifiApi} from '../../../../../api/http/ltorder/httpWifiApi'
   import {httpWifiAdminApi} from '../../../../../api/http/ltorder/httpWifiAdminApi'
-  import TitleBar from '../../../../../components/TitleBar'
+  import TitleBar from '../../../../../components/common/TitleBar'
 
   export default {
     metaInfo: {

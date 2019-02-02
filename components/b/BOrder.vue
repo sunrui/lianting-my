@@ -38,7 +38,7 @@
 </template>
 
 <script>
-  import TitleBar from '../../components/TitleBar'
+  import TitleBar from '../common/TitleBar'
   import { httpOrderAdminApi } from '../../api/http/ltorder/httpOrderAdminApi'
 
   export default {

@@ -79,7 +79,7 @@
 </template>
 
 <script>
-  import TitleBar from '../../../../../../components/TitleBar'
+  import TitleBar from '../../../../../../components/common/TitleBar'
   import { httpReserveApi } from '../../../../../../api/http/ltorder/httpReserveApi'
   import { httpReserveAdminApi } from '../../../../../../api/http/ltorder/httpReserveAdminApi'
 

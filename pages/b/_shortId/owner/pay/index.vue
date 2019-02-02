@@ -40,8 +40,8 @@
 <script>
   import {httpOrderApi} from '../../../../../api/http/ltorder/httpOrderApi'
   import {httpOrderAdminApi} from '../../../../../api/http/ltorder/httpOrderAdminApi'
-  import CurrencyInput from '../../../../../components/CurrencyInput'
-  import TitleBar from '../../../../../components/TitleBar'
+  import CurrencyInput from '../../../../../components/common/CurrencyInput'
+  import TitleBar from '../../../../../components/common/TitleBar'
 
   export default {
     metaInfo: {

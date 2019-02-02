@@ -44,7 +44,7 @@
 
 <script>
   import {httpFoodApi} from '../../api/http/ltorder/httpFoodApi'
-  import TitleBar from '../../components/TitleBar'
+  import TitleBar from '../common/TitleBar'
 
   export default {
     metaInfo: {

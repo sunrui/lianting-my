@@ -70,7 +70,7 @@
   import {httpSmsApi} from '../../api/http/user/httpSmsApi'
   import {validatorApi} from '../../api/local/validatorApi'
   import {httpUserApi} from '../../api/http/user/httpUserApi'
-  import TitleBar from '../../components/TitleBar'
+  import TitleBar from '../../components/common/TitleBar'
   import {httpShopApi} from '../../api/http/shop/httpShopApi'
 
   export default {

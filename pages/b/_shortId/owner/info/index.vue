@@ -82,7 +82,7 @@
   import {httpInfoApi} from '../../../../../api/http/ltorder/httpInfoApi'
   import {httpInfoAdminApi} from '../../../../../api/http/ltorder/httpInfoAdminApi'
   import {httpShopApi} from '../../../../../api/http/shop/httpShopApi'
-  import TitleBar from '../../../../../components/TitleBar'
+  import TitleBar from '../../../../../components/common/TitleBar'
 
   export default {
     metaInfo: {

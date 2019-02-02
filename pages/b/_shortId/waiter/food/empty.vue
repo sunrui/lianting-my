@@ -6,8 +6,8 @@
 </template>
 
 <script>
-  import Empty from '../../../../../components/Empty'
-  import TitleBar from '../../../../../components/TitleBar'
+  import Empty from '../../../../../components/common/Empty'
+  import TitleBar from '../../../../../components/common/TitleBar'
 
   export default {
     metaInfo: {

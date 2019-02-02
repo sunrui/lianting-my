@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import msgboxVue from '~/components/MessageBox.vue'
+import msgboxVue from '~/components/common/MessageBox.vue'
 
 const messageBox = {}
 

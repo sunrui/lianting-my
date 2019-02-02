@@ -101,8 +101,8 @@
 
 <script>
   import {httpCouponAdminApi} from '../../../../../api/http/ltorder/httpCouponAdminApi'
-  import TitleBar from '../../../../../components/TitleBar'
-  import CurrencyInput from '../../../../../components/CurrencyInput'
+  import TitleBar from '../../../../../components/common/TitleBar'
+  import CurrencyInput from '../../../../../components/common/CurrencyInput'
 
   export default {
     metaInfo: {

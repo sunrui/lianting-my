@@ -108,7 +108,7 @@
 </template>
 
 <script>
-  import TitleBar from '../../components/TitleBar'
+  import TitleBar from '../common/TitleBar'
   import { cartApi } from '../../api/local/cartApi'
   import { httpOrderApi } from '../../api/http/ltorder/httpOrderApi'
   import { stateApi } from '../../api/local/stateApi'

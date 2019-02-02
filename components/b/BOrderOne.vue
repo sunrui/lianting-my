@@ -316,7 +316,7 @@
 </template>
 
 <script>
-  import TitleBar from '../TitleBar'
+  import TitleBar from '../common/TitleBar'
   import { httpOrderApi } from '../../api/http/ltorder/httpOrderApi'
   import { httpOrderAdminApi } from '../../api/http/ltorder/httpOrderAdminApi'
   import { httpCaptchaApi } from '../../api/http/ltorder/httpCaptchaApi'

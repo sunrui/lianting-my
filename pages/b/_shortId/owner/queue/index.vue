@@ -22,7 +22,7 @@
 <script>
   import {httpQueueApi} from '../../../../../api/http/ltorder/httpQueueApi'
   import {httpQueueAdminApi} from '../../../../../api/http/ltorder/httpQueueAdminApi'
-  import TitleBar from '../../../../../components/TitleBar'
+  import TitleBar from '../../../../../components/common/TitleBar'
 
   export default {
     metaInfo: {

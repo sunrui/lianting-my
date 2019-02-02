@@ -100,8 +100,8 @@
 </template>
 
 <script>
-  import TitleBar from '../../../../components/TitleBar'
-  import Calendar from '../../../../components/Calendar'
+  import TitleBar from '../../../../components/common/TitleBar'
+  import Calendar from '../../../../components/common/Calendar'
   import {timeApi} from '../../../../api/local/timeApi'
   import {httpTableApi} from '../../../../api/http/ltorder/httpTableApi'
   import {httpShopApi} from '../../../../api/http/shop/httpShopApi'

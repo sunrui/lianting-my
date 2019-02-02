@@ -11,7 +11,7 @@
 </template>
 
 <script>
-  import TitleBar from '../components/TitleBar'
+  import TitleBar from '../components/common/TitleBar'
 
   export default {
     metaInfo: {
@@ -34,5 +34,5 @@
 </script>
 
 <style scoped lang="scss">
-  @import '~assets/empty.scss';
+  @import '~assets/common/empty.scss';
 </style>

@@ -145,7 +145,7 @@
 </template>
 
 <script>
-  import TitleBar from '../../../../components/TitleBar'
+  import TitleBar from '../../../../components/common/TitleBar'
   import {httpQueueApi} from '../../../../api/http/ltorder/httpQueueApi'
   import {httpTableApi} from '../../../../api/http/ltorder/httpTableApi'
   import {httpShopApi} from '../../../../api/http/shop/httpShopApi'

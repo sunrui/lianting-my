@@ -34,7 +34,7 @@
 </template>
 
 <script>
-  import TitleBar from '../../../../../components/TitleBar'
+  import TitleBar from '../../../../../components/common/TitleBar'
   import {httpQueueApi} from '../../../../../api/http/ltorder/httpQueueApi'
 
   export default {

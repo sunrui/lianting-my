@@ -70,7 +70,7 @@
 
 <script>
   import {httpRoleAdminApi} from '../../../../../api/http/ltorder/httpRoleAdminApi'
-  import TitleBar from '../../../../../components/TitleBar'
+  import TitleBar from '../../../../../components/common/TitleBar'
   import {validatorApi} from '../../../../../api/local/validatorApi'
 
   export default {

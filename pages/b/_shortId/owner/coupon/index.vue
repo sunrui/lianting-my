@@ -56,8 +56,8 @@
 
 <script>
   import {httpCouponAdminApi} from '../../../../../api/http/ltorder/httpCouponAdminApi'
-  import TitleBar from '../../../../../components/TitleBar'
-  import Empty from '../../../../../components/Empty'
+  import TitleBar from '../../../../../components/common/TitleBar'
+  import Empty from '../../../../../components/common/Empty'
 
   export default {
     metaInfo: {

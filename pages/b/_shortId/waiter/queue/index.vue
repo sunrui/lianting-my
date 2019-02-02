@@ -85,7 +85,7 @@
   import {httpTableApi} from '../../../../../api/http/ltorder/httpTableApi'
   import {httpQueueAdminApi} from '../../../../../api/http/ltorder/httpQueueAdminApi'
   import {timeApi} from '../../../../../api/local/timeApi'
-  import TitleBar from '../../../../../components/TitleBar'
+  import TitleBar from '../../../../../components/common/TitleBar'
 
   export default {
     metaInfo: {

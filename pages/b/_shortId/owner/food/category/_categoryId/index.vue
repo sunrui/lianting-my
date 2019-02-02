@@ -159,8 +159,8 @@
 </template>
 
 <script>
-  import TitleBar from '../../../../../../../components/TitleBar'
-  import CurrencyInput from '../../../../../../../components/CurrencyInput'
+  import TitleBar from '../../../../../../../components/common/TitleBar'
+  import CurrencyInput from '../../../../../../../components/common/CurrencyInput'
   import {httpFoodAdminApi} from '../../../../../../../api/http/ltorder/httpFoodAdminApi'
   import {httpFoodApi} from '../../../../../../../api/http/ltorder/httpFoodApi'
 

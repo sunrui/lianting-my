@@ -49,8 +49,8 @@
 <script>
   import { httpInfoApi } from '../../../../api/http/ltorder/httpInfoApi'
   import { httpShopApi } from '../../../../api/http/shop/httpShopApi'
-  import TitleBar from '../../../../components/TitleBar'
-  import Captcha from '../../../../components/Captcha'
+  import TitleBar from '../../../../components/common/TitleBar'
+  import Captcha from '../../../../components/common/Captcha'
   import { httpOrderAdminApi } from '../../../../api/http/ltorder/httpOrderAdminApi'
 
   export default {

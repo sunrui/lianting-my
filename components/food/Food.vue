@@ -211,7 +211,7 @@
   import {httpFoodApi} from '../../api/http/ltorder/httpFoodApi'
   import {cartApi} from '../../api/local/cartApi'
   import {cloneApi} from '../../api/local/cloneApi'
-  import TitleBar from '../../components/TitleBar'
+  import TitleBar from '../common/TitleBar'
   import {scrollApi} from '../../api/local/scrollApi'
   import {httpShopApi} from '../../api/http/shop/httpShopApi'
   import {httpInfoApi} from '../../api/http/ltorder/httpInfoApi'
