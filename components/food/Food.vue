@@ -664,6 +664,6 @@
 </script>
 
 <style scoped lang="scss">
-  @import '~assets/common.scss';
-  @import '~assets/m/food.scss';
+  @import '~assets/common';
+  @import '~assets/m/food';
 </style>

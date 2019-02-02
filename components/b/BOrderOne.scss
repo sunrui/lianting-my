@@ -186,75 +186,75 @@
   }
 }
 
-.retire_food {
+.retire {
   position: relative;
   padding: px2rem(0) px2rem(40);
   text-align: left;
 
-  .retire_food_label {
-    display: inline-block;
-    font-size: px2rem(28);
-    color: #333333;
-  }
+  .retire_food {
 
-  .retire_food_count {
-    display: inline-block;
-    color: #F52626;
-    float: right;
-  }
-}
-
-.retire_count {
-  position: relative;
-  padding: px2rem(0) px2rem(40);
-  text-align: left;
-
-  .retire_count_label {
-    display: inline-block;
-    font-size: px2rem(28);
-    color: #333333;
-  }
-
-  .retire_count_option {
-    display: inline-block;
-    color: #F52626;
-    float: right;
-  }
-}
-
-.retire_reason {
-  position: relative;
-  padding: px2rem(0) px2rem(40);
-  text-align: left;
-
-  .retire_reason_label {
-    display: inline-block;
-    font-size: px2rem(28);
-    color: #333333;
-  }
-}
-
-.retire_remark {
-  text-align: left;
-  padding: px2rem(0) px2rem(35);
-
-  .retire_remark_one {
-    display: inline-block;
-    margin-bottom: px2rem(20);
-    margin-right: px2rem(20);
-
-    .retire_remark_name {
+    .retire_food_label {
       display: inline-block;
-      background: #F5F5F5;
-      color: #666666;
-      padding: px2rem(15) px2rem(20);
+      font-size: px2rem(28);
+      font-weight: 400;
+      color: #333333;
     }
 
-    .retire_remark_name_select {
+    .retire_food_count {
       display: inline-block;
-      background: #FFEBEB;
-      color: #f52626;
-      padding: px2rem(15) px2rem(20);
+      color: #F52626;
+      font-size: px2rem(28);
+      font-weight: 400;
+      float: right;
+    }
+  }
+
+  .retire_count {
+
+    .retire_count_label {
+      display: inline-block;
+      font-size: px2rem(28);
+      color: #333333;
+    }
+
+    .retire_count_option {
+      position: relative;
+      display: inline-block;
+      color: #F52626;
+      float: right;
+
+
+    }
+  }
+
+  .retire_reason {
+
+    .retire_reason_label {
+      display: inline-block;
+      font-size: px2rem(28);
+      color: #333333;
+    }
+  }
+
+  .retire_remark {
+
+    .retire_remark_one {
+      display: inline-block;
+      margin-right: px2rem(20);
+
+      .retire_remark_name {
+        display: inline-block;
+        background: #F5F5F5;
+        color: #666666;
+        padding: px2rem(15) px2rem(20);
+      }
+
+      .retire_remark_name_select {
+        display: inline-block;
+        background: #FFEBEB;
+        color: #f52626;
+        padding: px2rem(15) px2rem(20);
+      }
     }
   }
 }

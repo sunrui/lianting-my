@@ -196,6 +196,6 @@
 </script>
 
 <style scoped lang="scss">
-  @import '~assets/common.scss';
-  @import '~assets/b/b_queue.scss';
+  @import '~assets/common';
+  @import '~assets/b/b_queue';
 </style>

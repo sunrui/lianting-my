@@ -201,16 +201,16 @@
         scrollApi.enable(false)
       },
       btnCoverMask() {
-        this.ui.v_cover_mask = false
         this.ui.v_people = false
+        this.ui.v_cover_mask = false
         scrollApi.enable(true)
       },
       btnPeopleChoose(one) {
         this.ui.selectPeople = one
       },
       btnPeopleConfirm() {
-        this.ui.v_cover_mask = false
         this.ui.v_people = false
+        this.ui.v_cover_mask = false
         scrollApi.enable(true)
 
         cartApi.setPeople(this.ui.selectPeople)
@@ -318,6 +318,6 @@
 </script>
 
 <style scoped lang="scss">
-  @import '~assets/common.scss';
-  @import '~assets/m/order.scss';
+  @import '~assets/common';
+  @import '~assets/m/order';
 </style>

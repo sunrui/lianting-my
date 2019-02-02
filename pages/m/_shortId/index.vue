@@ -261,8 +261,8 @@
         }
       },
       btnCoverMask() {
-        this.ui.v_cover_mask = false
         this.ui.v_wifi = false
+        this.ui.v_cover_mask = false
       },
       httpWifi() {
         httpWifiApi.getWifi(this.$route.params.shortId).then(res => {
@@ -276,6 +276,6 @@
 </script>
 
 <style scoped lang="scss">
-  @import '~assets/common.scss';
+  @import '~assets/common';
   @import 'index';
 </style>

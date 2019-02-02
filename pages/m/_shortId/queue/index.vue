@@ -301,9 +301,9 @@
         this.http.res.tableGroups = {}
         this.http.res.myTickets = {}
 
-        this.ui.v_cover_mask = false
         this.ui.v_queue_number = false
         this.ui.v_table_select = false
+        this.ui.v_cover_mask = false
 
         httpQueueApi.getState(this.$route.params.shortId).then(res => {
           this.http.res.state = res
@@ -372,8 +372,8 @@
         })
       },
       btnCoverMask() {
-        this.ui.v_cover_mask = false
         this.ui.v_table_select = false
+        this.ui.v_cover_mask = false
       },
       btnQueue() {
         if (!this.http.res.shop.open) {
@@ -499,6 +499,6 @@
 </script>
 
 <style scoped lang="scss">
-  @import '~assets/common.scss';
+  @import '~assets/common';
   @import 'index';
 </style>

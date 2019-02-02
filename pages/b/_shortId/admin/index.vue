@@ -162,7 +162,7 @@
 </script>
 
 <style scoped lang="scss">
-  @import '~assets/common.scss';
-  @import '~assets/b/b_nav.scss';
-  @import '~assets/b/b_nav_role.scss';
+  @import '~assets/common';
+  @import '~assets/b/b_nav';
+  @import '~assets/b/b_nav_role';
 </style>

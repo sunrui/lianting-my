@@ -161,8 +161,8 @@
         })
       },
       btnCoverMask() {
-        this.ui.v_cover_mask = false
         this.ui.v_table_add = false
+        this.ui.v_cover_mask = false
       },
       navToHash() {
         let hash = window.location.hash
@@ -315,8 +315,8 @@
         this.http.req.table.tableGroupId = tableGroup.id
       },
       btnTableAddConfirm() {
-        this.ui.v_cover_mask = false
         this.ui.v_table_add = false
+        this.ui.v_cover_mask = false
 
         httpTableAdminApi.postTable(this.$route.params.shortId, this.http.req.table).then(res => {
           if (res.maxLimit) {
@@ -353,8 +353,8 @@
 </script>
 
 <style scoped lang="scss">
-  @import '~assets/common.scss';
-  @import '~assets/m/food.scss';
-  @import '~assets/b/b_table.scss';
+  @import '~assets/common';
+  @import '~assets/m/food';
+  @import '~assets/b/b_table';
   @import 'index';
 </style>

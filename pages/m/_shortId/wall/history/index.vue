@@ -37,6 +37,6 @@
 </script>
 
 <style scoped lang="scss">
-  @import '~assets/common.scss';
-  @import '~assets/m/wall.scss';
+  @import '~assets/common';
+  @import '~assets/m/wall';
 </style>

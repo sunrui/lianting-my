@@ -159,6 +159,6 @@
 </script>
 
 <style scoped lang="scss">
-  @import '~assets/common.scss';
+  @import '~assets/common';
   @import 'index';
 </style>

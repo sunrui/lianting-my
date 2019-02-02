@@ -34,5 +34,5 @@
 </script>
 
 <style scoped lang="scss">
-  @import '~assets/common/empty.scss';
+  @import '~assets/common/empty';
 </style>

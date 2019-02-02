@@ -177,7 +177,7 @@
 </script>
 
 <style scoped lang="scss">
-  @import '~assets/common.scss';
-  @import '~assets/b/b_nav.scss';
+  @import '~assets/common';
+  @import '~assets/b/b_nav';
   @import 'index';
 </style>

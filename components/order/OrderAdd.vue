@@ -321,7 +321,7 @@
 </script>
 
 <style scoped lang="scss">
-  @import '~assets/common.scss';
-  @import '~assets/m/order.scss';
+  @import '~assets/common';
+  @import '~assets/m/order';
   @import 'OrderAdd';
 </style>

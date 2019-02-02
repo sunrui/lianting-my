@@ -263,8 +263,8 @@
           this.ui.selectTime = null
         }
 
-        this.ui.v_cover_mask = false
         this.ui.v_calendar = false
+        this.ui.v_cover_mask = false
       },
       btnTableGroup(tableGroup) {
         this.ui.selectTableGroup = tableGroup
@@ -273,16 +273,16 @@
         if (ok) {
           this.btnDate(0, date)
         } else {
-          this.ui.v_cover_mask = false
           this.ui.v_calendar = false
+          this.ui.v_cover_mask = false
         }
       },
       btnChooseTime(time) {
         this.ui.selectTime = time
       },
       btnCoverMask() {
-        this.ui.v_cover_mask = false
         this.ui.v_calendar = false
+        this.ui.v_cover_mask = false
       },
       btnReserve() {
         if (!this.ui.selectTime) {
@@ -310,6 +310,6 @@
 </script>
 
 <style scoped lang="scss">
-  @import '~assets/common.scss';
+  @import '~assets/common';
   @import 'index';
 </style>

@@ -152,8 +152,8 @@
         })
       },
       btnCoverMask() {
-        this.ui.v_cover_mask = false
         this.ui.v_role_add = false
+        this.ui.v_cover_mask = false
       },
       btnCreate(role) {
         this.ui.v_cover_mask = true
@@ -224,8 +224,8 @@
           }
 
           if (res.roleId) {
-            this.ui.v_cover_mask = false
             this.ui.v_role_add = false
+            this.ui.v_cover_mask = false
 
             this.$msgBox.doModal({
               type: 'yes',
@@ -249,8 +249,8 @@
               this.httpRole()
             })
           } else if (res.success) {
-            this.ui.v_cover_mask = false
             this.ui.v_role_add = false
+            this.ui.v_cover_mask = false
 
             this.$msgBox.doModal({
               type: 'yes',
@@ -270,6 +270,6 @@
 </script>
 
 <style scoped lang="scss">
-  @import '~assets/common.scss';
+  @import '~assets/common';
   @import 'index';
 </style>

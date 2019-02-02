@@ -306,11 +306,11 @@
         return count
       },
       btnCoverMask() {
-        this.ui.v_cover_mask = false
         this.ui.v_menu_extend = false
         this.ui.v_captcha = false
         this.ui.v_menu_table = false
         this.ui.v_table_change = false
+        this.ui.v_cover_mask = false
 
         scrollApi.enable(true)
       },
@@ -483,8 +483,8 @@
           let order = this.http.res.orders.elements[index]
           if (order.orderTable && order.orderTable.tableOneId === this.ui.selectTable.id) {
             httpOrderAdminApi.putTable(this.$route.params.shortId, order.id, this.ui.changeTable.id).then(res => {
-              this.ui.v_cover_mask = false
               this.ui.v_table_change = false
+              this.ui.v_cover_mask = false
 
               if (res.tableOneIdNotExists) {
                 this.$msgBox.doModal({
@@ -520,7 +520,7 @@
 </script>
 
 <style scoped lang="scss">
-  @import '~assets/common.scss';
-  @import '~assets/m/food.scss';
-  @import '~assets/b/b_table.scss';
+  @import '~assets/common';
+  @import '~assets/m/food';
+  @import '~assets/b/b_table';
 </style>

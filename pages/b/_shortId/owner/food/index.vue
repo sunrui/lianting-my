@@ -196,9 +196,9 @@
         })
       },
       btnCoverMask() {
-        this.ui.v_cover_mask = false
         this.ui.v_group_add = false
         this.ui.v_group_edit = false
+        this.ui.v_cover_mask = false
       },
       navToHash() {
         let hash = window.location.hash
@@ -307,8 +307,8 @@
       },
       btnGroupAddConfirm() {
         httpFoodAdminApi.postGroup(this.$route.params.shortId, this.http.req.group).then(res => {
-          this.ui.v_cover_mask = false
           this.ui.v_group_add = false
+          this.ui.v_cover_mask = false
 
           if (res.maxLimit) {
             this.$msgBox.doModal({
@@ -341,8 +341,8 @@
       },
       btnGroupEditConfirm() {
         httpFoodAdminApi.putGroup(this.$route.params.shortId, this.http.req.group.id, this.http.req.group).then(res => {
-          this.ui.v_cover_mask = false
           this.ui.v_group_edit = false
+          this.ui.v_cover_mask = false
 
           if (res.foodGroupIdNotExists) {
             this.$msgBox.doModal({
@@ -419,6 +419,6 @@
 </script>
 
 <style scoped lang="scss">
-  @import '~assets/common.scss';
-  @import '~assets/m/food.scss';
+  @import '~assets/common';
+  @import '~assets/m/food';
 </style>

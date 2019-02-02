@@ -272,8 +272,8 @@
         return foodDetailApi.countFood(order)
       },
       btnCoverMask() {
-        this.ui.v_cover_mask = false
         this.ui.v_order_menu = false
+        this.ui.v_cover_mask = false
 
         scrollApi.enable(true)
       },
@@ -302,7 +302,7 @@
 </script>
 
 <style scoped lang="scss">
-  @import '~assets/common.scss';
-  @import '~assets/m/wall.scss';
+  @import '~assets/common';
+  @import '~assets/m/wall';
   @import 'index'
 </style>
