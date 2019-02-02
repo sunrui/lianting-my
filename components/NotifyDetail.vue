@@ -17,7 +17,7 @@
             {{notifyOrder.type === 'New' ? '顾客提交了新的订单，点击查看详情。' :
             notifyOrder.type === 'Paid' ? '顾客支付了订单，点击查看详情。' :
             notifyOrder.type === 'FoodAdd' ? '顾客选择了加菜，点击查看详情。' :
-            notifyOrder.type === 'FoodRetire' ? '顾客选择了退菜，点击查看详情。' :
+            notifyOrder.type === 'FoodReturn' ? '顾客选择了退菜，点击查看详情。' :
             notifyOrder.type === 'FoodCooked' ? '厨师已完成菜谱，点击查看详情。' :
             notifyOrder.type
             }}
@@ -58,11 +58,11 @@
     created() {
       switch (this.role) {
         case 'waiter': {
-          this.types = 'New, FoodAdd, FoodCooked, FoodRetire, Paid'
+          this.types = 'New, FoodAdd, FoodCooked, FoodReturn, Paid'
           break
         }
         case 'cooker': {
-          this.types = 'New, FoodAdd, FoodCooked, FoodRetire'
+          this.types = 'New, FoodAdd, FoodCooked, FoodReturn'
           break
         }
         case 'cashier': {

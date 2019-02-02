@@ -148,7 +148,7 @@
           return
         }
 
-        if (this.http.req.group.maxPeople <= this.http.req.group.minPeople) {
+        if (parseInt(this.http.req.group.maxPeople) <= parseInt(this.http.req.group.minPeople)) {
           this.$msgBox.doModal({
             type: 'yes',
             title: '添加餐桌组',

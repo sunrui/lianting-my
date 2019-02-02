@@ -53,8 +53,8 @@ export const httpOrderAdminApi = {
       remark: remark
     }).then(res => res.data)
   },
-  putRetire(shortId, orderOneId, model) {
-    return axios.put(`${base}/${shortId}/order/${orderOneId}/retire`, model).then(res => res.data)
+  putReturn(shortId, orderOneId, model) {
+    return axios.put(`${base}/${shortId}/order/${orderOneId}/return`, model).then(res => res.data)
   },
   putTable(shortId, orderOneId, tableOneId) {
     return axios.put(`${base}/${shortId}/order/${orderOneId}/table`, {

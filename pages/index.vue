@@ -28,38 +28,23 @@
 </template>
 
 <script>
-  import {stateApi} from '../api/local/stateApi'
-  import NavBar from '../components/NavBar'
-  import {loadingApi} from '../api/local/loadingApi'
+  import { stateApi } from "../api/local/stateApi"
+  import NavBar from "../components/NavBar"
+  import { loadingApi } from "../api/local/loadingApi"
 
   export default {
     metaInfo: {
-      title: '测试主页'
+      title: "测试主页"
     },
     data() {
-      return {
-        authed: true,
-        urls: [
-          'c/m/order/confirm',
-          'c/m/order/add',
-          'c/m/order',
-          'c/m/order/history',
-          'c/m/order/success',
-          'c/m/shop',
-          'c/m/food',
-          'c/m/food/search',
-          'c/m/wifi',
-          'c/m/queue',
-          'c/m/queue/history'
-        ]
-      }
+      return {}
     },
-    components: {NavBar},
-    mounted() {
-      loadingApi.hide()
-
-      let userId = stateApi.user.getId()
-      this.authed = Boolean(userId)
+    components: { NavBar },
+    computed: {
+      authed() {
+        let userId = stateApi.user.getId()
+        return Boolean(userId)
+      }
     },
     methods: {}
   }

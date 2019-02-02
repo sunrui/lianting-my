@@ -39,7 +39,7 @@
   box-shadow: 0 0 px2rem(18) 0 rgba(215, 111, 253, 0.2) !important;
 }
 
-.order_food_button_retire {
+.order_food_button_return {
   background: linear-gradient(90deg, rgba(246, 88, 132, 1), rgba(242, 100, 109, 1)) !important;
   box-shadow: 0 0 px2rem(18) 0 rgba(245, 91, 126, 0.2) !important;
 }
@@ -186,21 +186,21 @@
   }
 }
 
-.retire {
+.return {
   position: relative;
   padding: px2rem(0) px2rem(40);
   text-align: left;
 
-  .retire_food {
+  .return_food {
 
-    .retire_food_label {
+    .return_food_label {
       display: inline-block;
       font-size: px2rem(28);
       font-weight: 400;
       color: #333333;
     }
 
-    .retire_food_count {
+    .return_food_count {
       display: inline-block;
       color: #F52626;
       font-size: px2rem(28);
@@ -209,15 +209,15 @@
     }
   }
 
-  .retire_count {
+  .return_count {
 
-    .retire_count_label {
+    .return_count_label {
       display: inline-block;
       font-size: px2rem(28);
       color: #333333;
     }
 
-    .retire_count_option {
+    .return_count_option {
       position: relative;
       display: inline-block;
       color: #F52626;
@@ -227,25 +227,25 @@
     }
   }
 
-  .retire_remark {
-    .retire_remark_label {
+  .return_remark {
+    .return_remark_label {
       display: inline-block;
       font-size: px2rem(28);
       color: #333333;
     }
 
-    .retire_remark_one {
+    .return_remark_one {
       display: inline-block;
       margin-right: px2rem(20);
 
-      .retire_remark_name {
+      .return_remark_name {
         display: inline-block;
         background: #F5F5F5;
         color: #666666;
         padding: px2rem(15) px2rem(20);
       }
 
-      .retire_remark_name_select {
+      .return_remark_name_select {
         display: inline-block;
         background: #FFEBEB;
         color: #f52626;
@@ -253,11 +253,11 @@
       }
     }
 
-    .retire_remark_text_area {
+    .return_remark_text_area {
       position: relative;
       height: px2rem(150);
 
-      .retire_remark_text_input {
+      .return_remark_text_input {
         overflow-y: scroll;
         border: none;
         outline: medium;

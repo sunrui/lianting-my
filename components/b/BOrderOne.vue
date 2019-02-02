@@ -35,7 +35,7 @@
           </div>
           <div class="order_food_count order_food_count_2">{{orderFood.count}}</div>
           <div class="order_food_price order_food_price_2">{{orderFood.count * orderFood.foodPrice}}</div>
-          <div class="order_food_button order_food_button_retire" v-if="role === 'admin'" @click="btnFoodRetire(orderFood)">退菜</div>
+          <div class="order_food_button order_food_button_return" v-if="role === 'admin'" @click="btnFoodReturn(orderFood)">退菜</div>
           <div v-else>
             <div class="order_food_button order_food_button_finish" v-if="orderFood.status === 'Cooked'" @click="btnStatus(orderFood, 'Finish')">上菜</div>
             <div class="order_food_button order_food_button_cooking" v-if="orderFood.status === 'Wait'" @click="btnStatus(orderFood, 'Cooking')">开始做</div>
@@ -261,7 +261,7 @@
     </transition>
 
     <transition name="toggle">
-      <div class="modal_bottom" v-if="ui.v_retire">
+      <div class="modal_bottom" v-if="ui.v_return">
         <div class="modal_close_box" @click="btnCoverMask">
           <img class="modal_close" src="/img/common/close.png">
         </div>
@@ -270,47 +270,47 @@
 
         <div class="blank_20"></div>
 
-        <div class="retire">
-          <div class="retire_food">
-            <div class="retire_food_label">{{ui.selectOrderFood.foodCategoryName}}</div>
-            <div class="retire_food_count">{{ui.selectOrderFood.count}} 份</div>
+        <div class="return">
+          <div class="return_food">
+            <div class="return_food_label">{{ui.selectOrderFood.foodCategoryName}}</div>
+            <div class="return_food_count">{{ui.selectOrderFood.count}} 份</div>
           </div>
 
           <div class="blank_20"></div>
           <div class="box_divide"></div>
           <div class="blank_20"></div>
 
-          <div class="retire_count">
-            <div class="retire_count_label">退菜份数</div>
-            <div class="retire_count_option">
-              <drop-down :options="ui.retireCounts"
-                         :selected="ui.retireCounts[0]"
-                         v-on:updateOption="btnChooseRetireCount">
+          <div class="return_count">
+            <div class="return_count_label">退菜份数</div>
+            <div class="return_count_option">
+              <drop-down :options="ui.returnCounts"
+                         :selected="ui.returnCounts[0]"
+                         v-on:updateOption="btnChooseReturnCount">
               </drop-down>
             </div>
           </div>
 
           <div class="blank_30"></div>
 
-          <div class="retire_remark">
-            <div class="retire_remark_label">退菜备注</div>
+          <div class="return_remark">
+            <div class="return_remark_label">退菜备注</div>
 
             <div class="blank_20"></div>
 
-            <div class="retire_remark_one" v-for="remark in ui.retireRemarks">
-              <div class="retire_remark_name" v-if="http.req.retire.remark !== remark" @click="btnChooseRetireRemark(remark)">{{remark}}</div>
-              <div class="retire_remark_name_select" v-else>{{remark}}</div>
+            <div class="return_remark_one" v-for="remark in ui.returnRemarks">
+              <div class="return_remark_name" v-if="http.req.return.remark !== remark" @click="btnChooseReturnRemark(remark)">{{remark}}</div>
+              <div class="return_remark_name_select" v-else>{{remark}}</div>
             </div>
 
             <div class="blank_20"></div>
 
-            <div class="retire_remark_text_area">
-              <textarea class="retire_remark_text_input" placeholder="您可以在此备注您的退菜备注。" v-model="http.req.retire.remark"></textarea>
+            <div class="return_remark_text_area">
+              <textarea class="return_remark_text_input" placeholder="您可以在此备注您的退菜备注。" v-model="http.req.return.remark"></textarea>
             </div>
           </div>
 
           <div class="modal_button_box">
-            <div class="button_big" @click="btnFoodRetireConfirm">确认</div>
+            <div class="button_big" @click="btnFoodReturnConfirm">确认</div>
           </div>
         </div>
       </div>
@@ -391,7 +391,7 @@
             cancel: {
               remark: ""
             },
-            retire: {
+            return: {
               orderFoodId: "",
               count: 1,
               remark: ""
@@ -411,16 +411,16 @@
           v_people: false,
           v_cover_mask: false,
           v_pay_offline: false,
-          v_retire: false,
+          v_return: false,
           v_change_price: false,
           selectPeople: null,
           selectOrderFood: {},
           peopleChoose: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
           v_cancel: false,
-          retireRemarks: [
+          returnRemarks: [
             "不想要了", "点错菜", "点重菜"
           ],
-          retireCounts: []
+          returnCounts: []
         }
       }
     },
@@ -430,8 +430,8 @@
       this.httpOrder()
     },
     methods: {
-      btnChooseRetireCount(payload) {
-        this.http.req.retire.count = payload.name
+      btnChooseReturnCount(payload) {
+        this.http.req.return.count = payload.name
       },
       httpOrder() {
         httpOrderApi.getOrder(this.$route.params.shortId, this.$route.params.orderOneId).then(res => {
@@ -593,7 +593,7 @@
         this.ui.v_people = false
         this.ui.v_cancel = false
         this.ui.v_pay_offline = false
-        this.ui.v_retire = false
+        this.ui.v_return = false
         this.ui.v_change_price = false
         this.ui.v_cover_mask = false
 
@@ -692,8 +692,8 @@
         if (this.role !== "admin") {
           this.$msgBox.doModal({
             type: "yes",
-            title: "离线支付",
-            content: "没有权限。"
+            title: "重置状态",
+            content: "仅允许主管可以操作，您只有查看权限。"
           })
 
           return
@@ -702,7 +702,7 @@
         if (this.http.res.order.status === "Finished" || this.http.res.order.status === "Closed") {
           this.$msgBox.doModal({
             type: "yes",
-            title: "更改状态",
+            title: "重置状态",
             content: "订单已关闭。"
           })
 
@@ -733,7 +733,7 @@
           this.$msgBox.doModal({
             type: "yes",
             title: "改价",
-            content: "没有权限。"
+            content: "仅允许主管和收银可以操作，您只有查看权限。。"
           })
 
           return
@@ -826,7 +826,7 @@
           this.$msgBox.doModal({
             type: "yes",
             title: "离线支付",
-            content: "没有权限。"
+            content: "仅允许主管可以操作，您只有查看权限。。"
           })
 
           return
@@ -867,10 +867,10 @@
           }
         })
       },
-      btnChooseRetireRemark(remark) {
-        this.http.req.retire.remark = remark
+      btnChooseReturnRemark(remark) {
+        this.http.req.return.remark = remark
       },
-      btnFoodRetire(orderFood) {
+      btnFoodReturn(orderFood) {
         if (this.http.res.order.status === "Finished" || this.http.res.order.status === "Closed") {
           this.$msgBox.doModal({
             type: "yes",
@@ -881,27 +881,27 @@
           return
         }
 
-        this.http.req.retire.count = 1
+        this.http.req.return.count = 1
         this.ui.selectOrderFood = orderFood
-        this.http.req.retire.orderFoodId = orderFood.id
+        this.http.req.return.orderFoodId = orderFood.id
 
-        this.ui.retireCounts = []
+        this.ui.returnCounts = []
         for (let i = 0; i < orderFood.count; i++) {
-          this.ui.retireCounts.push({ name: i + 1 })
+          this.ui.returnCounts.push({ name: i + 1 })
         }
 
         this.ui.v_cover_mask = true
-        this.ui.v_retire = true
+        this.ui.v_return = true
 
         scrollApi.enable(false)
       },
-      btnFoodRetireConfirm() {
-        this.ui.v_retire = false
+      btnFoodReturnConfirm() {
+        this.ui.v_return = false
         this.ui.v_cover_mask = false
 
         scrollApi.enable(true)
 
-        httpOrderAdminApi.putRetire(this.$route.params.shortId, this.$route.params.orderOneId, this.http.req.retire).then(res => {
+        httpOrderAdminApi.putReturn(this.$route.params.shortId, this.$route.params.orderOneId, this.http.req.return).then(res => {
           if (res.orderOneIdNotExists) {
             this.$msgBox.doModal({
               type: "yes",

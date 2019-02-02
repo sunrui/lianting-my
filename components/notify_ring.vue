@@ -30,11 +30,11 @@
     created() {
       switch (this.role) {
         case 'waiter': {
-          this.types = 'New, FoodAdd, FoodCooked, FoodRetire, Paid'
+          this.types = 'New, FoodAdd, FoodCooked, FoodReturn, Paid'
           break
         }
         case 'cooker': {
-          this.types = 'New, FoodAdd, FoodCooked, FoodRetire'
+          this.types = 'New, FoodAdd, FoodCooked, FoodReturn'
           break
         }
         case 'cashier': {
