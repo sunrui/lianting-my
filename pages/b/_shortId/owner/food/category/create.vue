@@ -185,7 +185,7 @@
         }
       }
     },
-    created() {
+    mounted() {
       if (!Boolean(this.$route.query.foodGroupId)) {
         this.$msgBox.doModal({
           type: 'yes',
@@ -195,8 +195,6 @@
       } else {
         this.http.req.category.foodGroupId = this.$route.query.foodGroupId
       }
-    },
-    mounted() {
     },
     methods: {
       btnCoverMask() {

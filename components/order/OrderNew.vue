@@ -147,7 +147,7 @@
           req: {
             order: {
               type: 'ForHere',
-              tableOneId: null,
+              captchaTableId: null,
               foods: [],
               tasteNote: '',
               people: 0
