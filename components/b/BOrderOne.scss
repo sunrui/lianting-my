@@ -227,16 +227,12 @@
     }
   }
 
-  .retire_reason {
-
-    .retire_reason_label {
+  .retire_remark {
+    .retire_remark_label {
       display: inline-block;
       font-size: px2rem(28);
       color: #333333;
     }
-  }
-
-  .retire_remark {
 
     .retire_remark_one {
       display: inline-block;
@@ -254,6 +250,23 @@
         background: #FFEBEB;
         color: #f52626;
         padding: px2rem(15) px2rem(20);
+      }
+    }
+
+    .retire_remark_text_area {
+      position: relative;
+      height: px2rem(150);
+
+      .retire_remark_text_input {
+        overflow-y: scroll;
+        border: none;
+        outline: medium;
+        background-color: #F5F5F5;
+        color: #666666;
+
+        padding: px2rem(20);
+        width: 100%;
+        height: 100%;
       }
     }
   }

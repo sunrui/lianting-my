@@ -1,6 +1,6 @@
-import axios from 'axios'
+import axios from "axios"
 
-let base = '/api/b'
+let base = "/api/b"
 
 export const httpOrderAdminApi = {
   getAll(shortId, live, page, size) {
@@ -56,12 +56,8 @@ export const httpOrderAdminApi = {
       remark: remark
     }).then(res => res.data)
   },
-  putRetire(shortId, orderOneId, orderFoodId, count, remark) {
-    return axios.put(`${base}/${shortId}/order/${orderOneId}/retire`, {
-      orderFoodId: orderFoodId,
-      count: count,
-      remark: remark
-    }).then(res => res.data)
+  putRetire(shortId, orderOneId, model) {
+    return axios.put(`${base}/${shortId}/order/${orderOneId}/retire`, model).then(res => res.data)
   },
   putTable(shortId, orderOneId, tableOneId) {
     return axios.put(`${base}/${shortId}/order/${orderOneId}/table`, {
