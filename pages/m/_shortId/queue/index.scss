@@ -373,7 +373,7 @@
 }
 
 .queue_table_select_none {
-  border: solid px2rem(2) #cccccc;
+  border: solid px2rem(2) rgba(230, 230, 230, 0.5);
 }
 
 .queue_table_select_yes {
@@ -391,7 +391,7 @@
 }
 
 .queue_table_name_none {
-  color: #cccccc;
+  color: rgba(230, 230, 230, 0.5);
 }
 
 .queue_table_name_yes {
@@ -409,7 +409,7 @@
 }
 
 .queue_table_people_none {
-  color: #cccccc;
+  color: rgba(230, 230, 230, 0.5);
 }
 
 .queue_table_people_yes {

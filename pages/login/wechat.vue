@@ -1,29 +1,26 @@
 <template>
-  <section>
-    <p>微信登录中</p>
-  </section>
 </template>
 <script>
 
-  import {stateApi} from '../../api/local/stateApi'
-  import {httpUserApi} from '../../api/http/user/httpUserApi'
+  import { stateApi } from "../../api/local/stateApi"
+  import { httpUserApi } from "../../api/http/user/httpUserApi"
 
   export default {
     metaInfo: {
-      title: '微信登录'
+      title: "微信登录"
     },
     mounted() {
       let code = this.$route.query.code
       let state = this.$route.query.state
 
       if (!Boolean(code)) {
-        this.$router.push('/login')
+        this.$router.push("/login")
         return
       }
 
       let shortId = this.$route.query.shortId
       if (!Boolean(shortId)) {
-        shortId = 'undefined'
+        shortId = "undefined"
       }
 
       httpUserApi.postLoginWechat(shortId, code, state).then(res => {
@@ -35,7 +32,7 @@
 
           let r = this.$route.query.r
           if (!Boolean(r)) {
-            r = '/'
+            r = "/"
           }
 
           this.$router.push(r)

@@ -106,7 +106,7 @@
     list-style: none;
     text-align: left;
     background-color: #fff;
-    border: px2rem(1) solid #ccc;
+    border: px2rem(1) solid rgba(230, 230, 230, 0.5);
     border-radius: px2rem(4);
     box-shadow: 0 px2rem(6) px2rem(12) rgba(0, 0, 0, 0.175);
     background-clip: padding-box;
