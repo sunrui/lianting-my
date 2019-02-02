@@ -271,3 +271,21 @@
     }
   }
 }
+
+.change_price_label {
+  display: inline-block;
+  margin-left: px2rem(35);
+  font-size: px2rem(28);
+}
+
+.change_price_input {
+  display: inline-block;
+  //float: right;
+  margin-right: px2rem(35);
+  color: #666666;
+  text-align: right;
+  width: 70%;
+  border: none;
+  outline: medium;
+  background: none;
+}

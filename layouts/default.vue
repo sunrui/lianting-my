@@ -1,21 +1,25 @@
 <template>
-  <div>
+  <div class="container">
     <loading v-show="false" id="http_loading"></loading>
     <div class="home" onclick="window.location.href='/'"></div>
-    <nuxt/>
+    <transition class="fade">
+      <nuxt/>
+    </transition>
   </div>
 </template>
 
 <script>
-  import Loading from '../components/common/Loading'
+  import Loading from "../components/common/Loading"
 
   export default {
-    name: 'default',
+    name: "default",
     components: { Loading }
   }
 </script>
 
 <style lang="scss">
+  @import '~assets/common.scss';
+
   html {
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
@@ -27,6 +31,16 @@
     background: #eef0f3;
     margin: 0;
     color: #333333;
+  }
+
+  .container {
+    clear: both;
+    margin: 0;
+    padding: 0;
+  }
+
+  * {
+    touch-action: pan-y;
   }
 
   *,

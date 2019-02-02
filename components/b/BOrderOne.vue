@@ -182,16 +182,11 @@
       </div>
     </div>
 
-    <div class="button_box" v-if="http.res.order.status === 'NotPaid' || http.res.order.status === 'Paid'">
-      <!--<div class="button_small" @click="btnFood" v-if="role === 'waiter'">加餐</div>-->
-      <!--<div class="button_small" @click="btnPriceChange" v-if="role === 'cashier'">改价</div>-->
-      <!--<div class="button_small" @click="btnPayOffline" v-if="role === 'cashier'">线下支付</div>-->
-      <!--<div class="button_small" @click="btnCloseForce" v-if="role === 'admin'">强制关单</div>-->
-
-      <div class="button_small" @click="btnFood">加餐</div>
-      <div class="button_small" @click="btnPriceChange">改价</div>
-      <div class="button_small" @click="btnPayOffline">线下支付</div>
-      <div class="button_small" @click="btnCancel">取消订单</div>
+    <div class="button_box" v-if="http.res.order.status === 'NotPaid'">
+      <div class="button_big" @click="btnFood" v-if="role === 'waiter'">加餐</div>
+      <div class="button_small" @click="btnChangePrice" v-if="role === 'cashier'">改价</div>
+      <div class="button_small" @click="btnPayOffline" v-if="role === 'cashier'">线下支付</div>
+      <div class="button_big" @click="btnCancel" v-if="role === 'admin'">取消订单</div>
     </div>
     <div class="blank_30" v-else></div>
 
@@ -313,10 +308,43 @@
               <textarea class="retire_remark_text_input" placeholder="您可以在此备注您的退菜备注。" v-model="http.req.retire.remark"></textarea>
             </div>
           </div>
+
+          <div class="modal_button_box">
+            <div class="button_big" @click="btnFoodRetireConfirm">确认</div>
+          </div>
+        </div>
+      </div>
+    </transition>
+
+    <transition name="toggle">
+      <div class="modal_bottom" v-if="ui.v_change_price">
+        <div class="modal_close_box" @click="btnCoverMask">
+          <img class="modal_close" src="/img/common/close.png">
+        </div>
+
+        <div class="modal_title">改价</div>
+
+        <div class="change_price_label">请输入新价格 (原价: {{http.res.order.price}})</div>
+
+        <div class="box">
+          <div class="modal_input_box">
+            <div class="modal_input_area">
+              <currency-input placeholder="请输入新价格" v-model="http.req.changePrice.price"></currency-input>
+            </div>
+          </div>
+        </div>
+
+        <div class="addition">
+          <div class="addition_item">
+            <div class="addition_item_label_text_area">备注</div>
+            <div class="addition_item_text_area">
+              <textarea class="addition_item_text_input" placeholder="您可以在此备注您的改价原因。" v-model="http.req.changePrice.remark"></textarea>
+            </div>
+          </div>
         </div>
 
         <div class="modal_button_box">
-          <div class="button_big" @click="btnFoodRetireConfirm">确认</div>
+          <div class="button_big" @click="btnChangePriceConfirm">确认</div>
         </div>
       </div>
     </transition>
@@ -332,13 +360,14 @@
   import { timeApi } from "../../api/local/timeApi"
   import { stateApi } from "../../api/local/stateApi"
   import DropDown from "../common/DropDown"
+  import CurrencyInput from "../common/CurrencyInput"
 
   export default {
     metaInfo: {
       title: "订单详情"
     },
     middleware: "auth",
-    components: { TitleBar, DropDown },
+    components: { CurrencyInput, TitleBar, DropDown },
     props: {
       role: {
         type: String,
@@ -366,6 +395,10 @@
               orderFoodId: "",
               count: 1,
               remark: ""
+            },
+            changePrice: {
+              price: 0,
+              remark: ""
             }
           },
           res: {
@@ -379,6 +412,7 @@
           v_cover_mask: false,
           v_pay_offline: false,
           v_retire: false,
+          v_change_price: false,
           selectPeople: null,
           selectOrderFood: {},
           peopleChoose: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
@@ -560,11 +594,22 @@
         this.ui.v_cancel = false
         this.ui.v_pay_offline = false
         this.ui.v_retire = false
+        this.ui.v_change_price = false
         this.ui.v_cover_mask = false
 
         scrollApi.enable(true)
       },
       btnPeople() {
+        if (this.role === "cooker") {
+          this.$msgBox.doModal({
+            type: "yes",
+            title: "更改人数",
+            content: "没有权限。"
+          })
+
+          return
+        }
+
         this.ui.v_cover_mask = true
         this.ui.v_people = true
         this.ui.selectPeople = this.http.res.order.people
@@ -583,7 +628,7 @@
             this.$msgBox.doModal({
               type: "yes",
               title: "订单",
-              content: "订单号不存在。"
+              content: "订单不存在。"
             })
           } else if (res.paid) {
             this.$msgBox.doModal({
@@ -674,8 +719,65 @@
           }
         })
       },
-      btnPriceChange() {
+      btnChangePrice() {
+        this.ui.v_change_price = true
+        this.ui.v_cover_mask = true
 
+        this.http.req.changePrice.price = this.http.res.order.price
+      },
+      btnChangePriceConfirm() {
+        this.ui.v_change_price = false
+        this.ui.v_cover_mask = false
+
+        if (this.role !== "admin" && this.role !== "cashier") {
+          this.$msgBox.doModal({
+            type: "yes",
+            title: "改价",
+            content: "没有权限。"
+          })
+
+          return
+        }
+
+        if (this.http.req.changePrice.price <= 0) {
+          this.$msgBox.doModal({
+            type: "yes",
+            title: "改价",
+            content: "更改价格不能为零，如您需取消订单请联系主管。"
+          })
+
+          return
+        }
+
+        httpOrderAdminApi.putPrice(this.$route.params.shortId, this.$route.params.orderOneId, this.http.req.changePrice).then(res => {
+          if (res.orderOneIdNotExists) {
+            this.$msgBox.doModal({
+              type: "yes",
+              title: "改价",
+              content: "订单不存在。"
+            })
+          } else if (res.paid) {
+            this.$msgBox.doModal({
+              type: "yes",
+              title: "改价",
+              content: "已支付，无法改价。"
+            })
+          } else if (res.closed) {
+            this.$msgBox.doModal({
+              type: "yes",
+              title: "改价",
+              content: "订单已关闭。"
+            })
+          } else if (res.success) {
+            this.$msgBox.doModal({
+              type: "yes",
+              title: "改价",
+              content: "已改价。"
+            }).then(async (val) => {
+              this.httpOrder()
+            })
+          }
+        })
       },
       btnPayOffline() {
         this.ui.v_pay_offline = true
@@ -804,7 +906,7 @@
             this.$msgBox.doModal({
               type: "yes",
               title: "退菜",
-              content: "订单号不存在。"
+              content: "订单不存在。"
             })
           } else if (res.orderFoodIdNotExists) {
             this.$msgBox.doModal({
