@@ -5,7 +5,7 @@
         <router-link to="login">登录入口</router-link>
       </li>
       <li v-if="!authed">
-        <router-link to="login/phone">手机登录</router-link>
+        <router-link to="login">登录</router-link>
       </li>
       <li v-if="authed">
         <router-link to="logout">登出</router-link>

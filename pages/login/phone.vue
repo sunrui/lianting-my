@@ -87,7 +87,7 @@
           req: {
             bind: {
               phone: "13012341234",
-              code: ""
+              code: "123456"
             }
           }
         },
@@ -97,18 +97,6 @@
             interval: 0
           }
         }
-      }
-    },
-    created() {
-      let phone = stateApi.user.getPhone()
-      if (Boolean(phone)) {
-        this.$msgBox.doModal({
-          type: "yes",
-          title: "绑定手机",
-          content: "您已绑定过手机。"
-        }).then(async (val) => {
-          this.$router.back()
-        })
       }
     },
     methods: {
@@ -198,8 +186,6 @@
               type: "yes",
               title: "登录",
               content: `操作过于频繁，请于 ${timeApi.elapsedTime(res.frequentLimit * 1000)}后重试。`
-            }).then(async (val) => {
-              this.http.req.bind.code = ""
             })
           } else if (res.user) {
             stateApi.user.setId(res.user.id)
@@ -207,13 +193,11 @@
             stateApi.user.setWechatOpenId(res.user.wechatOpenId)
             stateApi.user.setAlipayOpenId(res.user.alipayOpenId)
 
-            this.$msgBox.doModal({
-              type: "yes",
-              title: "登录",
-              content: `登录成功。`
-            }).then(async (val) => {
-              this.$router.back()
-            })
+            let r = this.$route.query.r
+            if (!Boolean(r)) {
+              r = "/"
+            }
+            this.$router.push(r)
           }
         })
       },

@@ -112,7 +112,7 @@
           return
         }
 
-        httpSmsApi.postSend(this.http.req.bind.phone, 'LOGIN').then(res => {
+        httpSmsApi.postSend(this.http.req.bind.phone, 'BIND').then(res => {
           if (res.success) {
             this.ui.code.limit = 60
             this.ui.code.interval = setInterval(this._updateTime, 1000)
