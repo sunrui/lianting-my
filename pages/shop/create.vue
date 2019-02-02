@@ -256,8 +256,6 @@
                 type: "yes",
                 title: "创建店铺",
                 content: "短信验证码错误。"
-              }).then(async (val) => {
-                this.http.req.bind.code = ""
               })
             } else if (res.frequentLimit) {
               this.$msgBox.doModal({

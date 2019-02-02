@@ -192,8 +192,6 @@
               type: "yes",
               title: "登录",
               content: `短信验证码错误。`
-            }).then(async (val) => {
-              this.$router.back()
             })
           } else if (res.frequentLimit) {
             this.$msgBox.doModal({
