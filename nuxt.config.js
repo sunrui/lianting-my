@@ -1,7 +1,7 @@
 const pkg = require('./package')
 
 module.exports = {
-  mode: 'universal',
+  mode: 'spa',
 
   /*
   ** Headers of the page
@@ -18,7 +18,7 @@ module.exports = {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ],
     script: [
-      // { src: 'https://cdn.bootcss.com/plupload/3.1.2/plupload.full.min.js' }
+      { src: 'https://cdn.bootcss.com/plupload/3.1.2/plupload.full.min.js' }
     ]
   },
 
@@ -51,10 +51,14 @@ module.exports = {
   modules: [
     '@nuxtjs/axios',
     '@nuxtjs/proxy',
-    ['nuxt-sass-resources-loader', [
-      '@/assets/px2rem.scss'
-    ]]
+    '@nuxtjs/style-resources'
   ],
+  styleResources: {
+    // your settings here
+    sass: ['@/assets/px2rem.scss'], // alternative: scss
+    less: [],
+    stylus: []
+  },
   proxy: [
     [
       '/api',
