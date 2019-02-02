@@ -1,5 +1,5 @@
-import {storeApi} from './storeApi'
-import {logApi} from './logApi'
+import { storeApi } from './storeApi'
+import { logApi } from './logApi'
 
 export const cartApi = {
   _key: 'cart',

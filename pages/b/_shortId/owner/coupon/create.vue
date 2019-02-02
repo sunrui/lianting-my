@@ -100,7 +100,7 @@
 </template>
 
 <script>
-  import {httpCouponAdminApi} from '../../../../../api/http/ltorder/httpCouponAdminApi'
+  import { httpCouponAdminApi } from '../../../../../api/http/ltorder/httpCouponAdminApi'
   import TitleBar from '../../../../../components/common/TitleBar'
   import CurrencyInput from '../../../../../components/common/CurrencyInput'
 
@@ -109,7 +109,7 @@
       title: '添加优惠券'
     },
     middleware: 'auth',
-    components: {TitleBar, CurrencyInput},
+    components: { TitleBar, CurrencyInput },
     data() {
       return {
         title: {

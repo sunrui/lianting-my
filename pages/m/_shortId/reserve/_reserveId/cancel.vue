@@ -26,14 +26,14 @@
 <script>
 
   import TitleBar from '../../../../../components/common/TitleBar'
-  import {httpReserveApi} from '../../../../../api/http/ltorder/httpReserveApi'
+  import { httpReserveApi } from '../../../../../api/http/ltorder/httpReserveApi'
 
   export default {
     metaInfo: {
       title: '取消预订'
     },
     middleware: 'auth',
-    components: {TitleBar},
+    components: { TitleBar },
     data() {
       return {
         title: {

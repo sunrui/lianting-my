@@ -40,7 +40,7 @@
 </template>
 
 <script>
-  import {httpShopGroupApi} from '../../../../api/http/shop/httpShopGroupApi'
+  import { httpShopGroupApi } from '../../../../api/http/shop/httpShopGroupApi'
   import NavBar from '../../../../components/NavBar'
 
   export default {
@@ -48,7 +48,7 @@
       title: '品牌管理'
     },
     middleware: 'auth',
-    components: {NavBar},
+    components: { NavBar },
     data() {
       return {
         ui: {},

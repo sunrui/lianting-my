@@ -76,15 +76,15 @@
 
 <script>
   import TitleBar from '../../../../../components/common/TitleBar'
-  import {httpUserApi} from '../../../../../api/http/user/httpUserApi'
-  import {stateApi} from '../../../../../api/local/stateApi'
+  import { httpUserApi } from '../../../../../api/http/user/httpUserApi'
+  import { stateApi } from '../../../../../api/local/stateApi'
 
   export default {
     metaInfo: {
       title: '编辑资料'
     },
     middleware: 'auth',
-    components: {TitleBar},
+    components: { TitleBar },
     data() {
       return {
         title: {

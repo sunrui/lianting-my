@@ -55,20 +55,20 @@
 
 <script>
   import TitleBar from '../../../../components/common/TitleBar'
-  import {httpWallApi} from '../../../../api/http/ltorder/httpWallApi'
-  import {stateApi} from '../../../../api/local/stateApi'
-  import {httpUserApi} from '../../../../api/http/user/httpUserApi'
-  import {stringApi} from '../../../../api/local/stringApi'
-  import {httpOrderApi} from '../../../../api/http/ltorder/httpOrderApi'
-  import {timeApi} from '../../../../api/local/timeApi'
-  import {foodDetailApi} from '../../../../api/local/foodDetail'
+  import { httpWallApi } from '../../../../api/http/ltorder/httpWallApi'
+  import { stateApi } from '../../../../api/local/stateApi'
+  import { httpUserApi } from '../../../../api/http/user/httpUserApi'
+  import { stringApi } from '../../../../api/local/stringApi'
+  import { httpOrderApi } from '../../../../api/http/ltorder/httpOrderApi'
+  import { timeApi } from '../../../../api/local/timeApi'
+  import { foodDetailApi } from '../../../../api/local/foodDetail'
 
   export default {
     metaInfo: {
       title: '提交留言墙'
     },
     middleware: 'auth',
-    components: {TitleBar},
+    components: { TitleBar },
     data() {
       return {
         title: {

@@ -59,7 +59,9 @@
               <div class="queue_info_name">正在排队</div>
             </div>
             <div class="queue_info_one">
-              <div class="queue_info_label">{{getQueueNow(tableGroup).waitPeople > 0 ? elapsedTime(new Date().getTime() - getQueueNow(tableGroup).queueTicket.createdAt) : '--分钟'}}</div>
+              <div class="queue_info_label">{{getQueueNow(tableGroup).waitPeople > 0 ? elapsedTime(new Date().getTime() - getQueueNow(tableGroup).queueTicket.createdAt) :
+                '--分钟'}}
+              </div>
               <div class="queue_info_name">首桌等待</div>
             </div>
           </div>
@@ -68,7 +70,8 @@
 
           <div class="queue_button_box">
             <div class="button_small" v-if="getQueueNow(tableGroup).queueTicket.status === 'Wait' || getQueueNow(tableGroup).queueTicket.status === 'Now'"
-                 @click="btnNext(tableGroup)">下一位</div>
+                 @click="btnNext(tableGroup)">下一位
+            </div>
             <div class="button_small_gray" v-else>下一位</div>
           </div>
 
@@ -81,10 +84,10 @@
 </template>
 
 <script>
-  import {httpQueueApi} from '../../../../../api/http/ltorder/httpQueueApi'
-  import {httpTableApi} from '../../../../../api/http/ltorder/httpTableApi'
-  import {httpQueueAdminApi} from '../../../../../api/http/ltorder/httpQueueAdminApi'
-  import {timeApi} from '../../../../../api/local/timeApi'
+  import { httpQueueApi } from '../../../../../api/http/ltorder/httpQueueApi'
+  import { httpTableApi } from '../../../../../api/http/ltorder/httpTableApi'
+  import { httpQueueAdminApi } from '../../../../../api/http/ltorder/httpQueueAdminApi'
+  import { timeApi } from '../../../../../api/local/timeApi'
   import TitleBar from '../../../../../components/common/TitleBar'
 
   export default {
@@ -92,7 +95,7 @@
       title: '排队'
     },
     middleware: 'auth',
-    components: {TitleBar},
+    components: { TitleBar },
     data() {
       return {
         title: {

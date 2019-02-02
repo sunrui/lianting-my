@@ -38,19 +38,19 @@
 </template>
 
 <script>
-  import {validatorApi} from '../../../../../api/local/validatorApi'
-  import {httpSmsApi} from '../../../../../api/http/user/httpSmsApi'
-  import {stateApi} from '../../../../../api/local/stateApi'
+  import { validatorApi } from '../../../../../api/local/validatorApi'
+  import { httpSmsApi } from '../../../../../api/http/user/httpSmsApi'
+  import { stateApi } from '../../../../../api/local/stateApi'
   import TitleBar from '../../../../../components/common/TitleBar'
-  import {httpUserApi} from '../../../../../api/http/user/httpUserApi'
-  import {timeApi} from '../../../../../api/local/timeApi'
+  import { httpUserApi } from '../../../../../api/http/user/httpUserApi'
+  import { timeApi } from '../../../../../api/local/timeApi'
 
   export default {
     metaInfo: {
       title: '绑定手机'
     },
     middleware: 'auth',
-    components: {TitleBar},
+    components: { TitleBar },
     data() {
       return {
         title: {
@@ -126,7 +126,7 @@
             this.$msgBox.doModal({
               type: 'yes',
               title: '发送短信',
-              content: `操作过于频繁，请于 ${timeApi.elapsedTime(res.frequentLimit * 1000)}后重试。`
+              content: `操作过于频繁，请于${timeApi.elapsedTime(res.frequentLimit * 1000)}后重试。`
             })
           }
         })
@@ -179,7 +179,7 @@
             this.$msgBox.doModal({
               type: 'yes',
               title: '绑定手机',
-              content: `操作过于频繁，请于 ${timeApi.elapsedTime(res.frequentLimit * 1000)}后重试。`
+              content: `操作过于频繁，请于${timeApi.elapsedTime(res.frequentLimit * 1000)}后重试。`
             }).then(async (val) => {
               this.http.req.bind.code = ''
             })

@@ -37,8 +37,8 @@
 </template>
 
 <script>
-  import {httpWifiApi} from '../../../../../api/http/ltorder/httpWifiApi'
-  import {httpWifiAdminApi} from '../../../../../api/http/ltorder/httpWifiAdminApi'
+  import { httpWifiApi } from '../../../../../api/http/ltorder/httpWifiApi'
+  import { httpWifiAdminApi } from '../../../../../api/http/ltorder/httpWifiAdminApi'
   import TitleBar from '../../../../../components/common/TitleBar'
 
   export default {
@@ -46,7 +46,7 @@
       title: '编辑 WIFI'
     },
     middleware: 'auth',
-    components: {TitleBar},
+    components: { TitleBar },
     data() {
       return {
         title: {

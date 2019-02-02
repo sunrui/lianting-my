@@ -12,7 +12,7 @@
       title: '餐桌详情'
     },
     middleware: 'auth',
-    components: {TableDetail},
+    components: { TableDetail },
     data() {
       return {
         table: {},

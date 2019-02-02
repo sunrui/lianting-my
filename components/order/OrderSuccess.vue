@@ -74,14 +74,14 @@
 
 <script>
   import TitleBar from '../common/TitleBar'
-  import {httpOrderApi} from '../../api/http/ltorder/httpOrderApi'
+  import { httpOrderApi } from '../../api/http/ltorder/httpOrderApi'
 
   export default {
     metaInfo: {
       title: '下单成功'
     },
     middleware: 'auth',
-    components: {TitleBar},
+    components: { TitleBar },
     props: {
       roleWaiter: {
         type: Boolean,

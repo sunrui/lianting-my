@@ -77,7 +77,7 @@
 </template>
 
 <script>
-  import {httpTableAdminApi} from '../../../../../../api/http/ltorder/httpTableAdminApi'
+  import { httpTableAdminApi } from '../../../../../../api/http/ltorder/httpTableAdminApi'
   import TitleBar from '../../../../../../components/common/TitleBar'
 
   export default {
@@ -85,7 +85,7 @@
       title: '添加餐桌组'
     },
     middleware: 'auth',
-    components: {TitleBar},
+    components: { TitleBar },
     data() {
       return {
         title: {

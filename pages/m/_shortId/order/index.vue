@@ -2,8 +2,8 @@
 </template>
 
 <script>
-  import {cartApi} from '../../../../api/local/cartApi'
-  import {httpOrderApi} from '../../../../api/http/ltorder/httpOrderApi'
+  import { cartApi } from '../../../../api/local/cartApi'
+  import { httpOrderApi } from '../../../../api/http/ltorder/httpOrderApi'
 
   export default {
     created() {

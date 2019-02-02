@@ -19,7 +19,7 @@
 </template>
 
 <script>
-  import {httpShopGroupApi} from '../../../../../api/http/shop/httpShopGroupApi'
+  import { httpShopGroupApi } from '../../../../../api/http/shop/httpShopGroupApi'
   import NavBar from '../../../../../components/NavBar'
 
   export default {
@@ -27,7 +27,7 @@
       title: '编辑品牌资料'
     },
     middleware: 'auth',
-    components: {NavBar},
+    components: { NavBar },
     data() {
       return {
         ui: {},
@@ -40,16 +40,16 @@
           },
           rule: {
             name: [
-              {required: true, message: '请输入店铺名称', trigger: 'blur'},
-              {type: 'string', min: 1, max: 32, message: '店铺名长度需在 1 - 32 位之间', trigger: 'blur'}
+              { required: true, message: '请输入店铺名称', trigger: 'blur' },
+              { type: 'string', min: 1, max: 32, message: '店铺名长度需在 1 - 32 位之间', trigger: 'blur' }
             ],
             category: [
-              {required: true, message: '请输入主营类目', trigger: 'blur'},
-              {type: 'string', min: 1, max: 32, message: '店铺名长度需在 1 - 32 位之间', trigger: 'blur'}
+              { required: true, message: '请输入主营类目', trigger: 'blur' },
+              { type: 'string', min: 1, max: 32, message: '店铺名长度需在 1 - 32 位之间', trigger: 'blur' }
             ],
             corporation: [
-              {required: true, message: '请输入公司名称', trigger: 'blur'},
-              {type: 'string', min: 2, max: 20, message: '公司名称长度需在 4 - 20 位之间', trigger: 'blur'}
+              { required: true, message: '请输入公司名称', trigger: 'blur' },
+              { type: 'string', min: 2, max: 20, message: '公司名称长度需在 4 - 20 位之间', trigger: 'blur' }
             ]
           }
         }

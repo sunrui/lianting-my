@@ -97,15 +97,15 @@
 
 <script>
   import TitleBar from '../../components/common/TitleBar'
-  import {httpShopApi} from '../../api/http/shop/httpShopApi'
-  import {httpInfoApi} from '../../api/http/ltorder/httpInfoApi'
+  import { httpShopApi } from '../../api/http/shop/httpShopApi'
+  import { httpInfoApi } from '../../api/http/ltorder/httpInfoApi'
 
   export default {
     metaInfo: {
       title: '我的店铺'
     },
     middleware: 'auth',
-    components: {TitleBar},
+    components: { TitleBar },
     data() {
       return {
         title: {
@@ -125,11 +125,11 @@
         },
         ui: {
           roles: [
-            {image: '/img/role/role_owner.png', name: '管理员', role: 'owner'},
-            {image: '/img/role/role_admin.png', name: '主管', role: 'admin'},
-            {image: '/img/role/role_waiter.png', name: '服务员', role: 'waiter'},
-            {image: '/img/role/role_cooker.png', name: '厨师', role: 'cooker'},
-            {image: '/img/role/role_cashier.png', name: '财务', role: 'cashier'}
+            { image: '/img/role/role_owner.png', name: '管理员', role: 'owner' },
+            { image: '/img/role/role_admin.png', name: '主管', role: 'admin' },
+            { image: '/img/role/role_waiter.png', name: '服务员', role: 'waiter' },
+            { image: '/img/role/role_cooker.png', name: '厨师', role: 'cooker' },
+            { image: '/img/role/role_cashier.png', name: '财务', role: 'cashier' }
           ],
           unActive: 0
         }

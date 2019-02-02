@@ -102,18 +102,18 @@
 <script>
   import TitleBar from '../../../../components/common/TitleBar'
   import Calendar from '../../../../components/common/Calendar'
-  import {timeApi} from '../../../../api/local/timeApi'
-  import {httpTableApi} from '../../../../api/http/ltorder/httpTableApi'
-  import {httpShopApi} from '../../../../api/http/shop/httpShopApi'
-  import {httpInfoApi} from '../../../../api/http/ltorder/httpInfoApi'
-  import {httpReserveApi} from '../../../../api/http/ltorder/httpReserveApi'
+  import { timeApi } from '../../../../api/local/timeApi'
+  import { httpTableApi } from '../../../../api/http/ltorder/httpTableApi'
+  import { httpShopApi } from '../../../../api/http/shop/httpShopApi'
+  import { httpInfoApi } from '../../../../api/http/ltorder/httpInfoApi'
+  import { httpReserveApi } from '../../../../api/http/ltorder/httpReserveApi'
 
   export default {
     metaInfo: {
       title: '预订'
     },
     middleware: 'auth',
-    components: {TitleBar, Calendar},
+    components: { TitleBar, Calendar },
     data() {
       return {
         title: {

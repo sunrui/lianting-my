@@ -1,5 +1,6 @@
 <template>
   <div>
+    <div class="blank_50"></div>
     <ul>
       <li v-if="!authed">
         <router-link to="login">登录</router-link>
@@ -141,12 +142,12 @@
 </template>
 
 <script>
-  import { stateApi } from "../api/local/stateApi"
-  import NavBar from "../components/NavBar"
+  import { stateApi } from '../api/local/stateApi'
+  import NavBar from '../components/NavBar'
 
   export default {
     metaInfo: {
-      title: "测试主页"
+      title: '测试主页'
     },
     data() {
       return {}

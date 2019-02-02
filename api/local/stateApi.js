@@ -1,4 +1,4 @@
-import {storeApi} from './storeApi'
+import { storeApi } from './storeApi'
 
 export const stateApi = {
   clear() {

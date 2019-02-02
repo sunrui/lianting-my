@@ -1,4 +1,4 @@
-import {debugApi} from './debugApi'
+import { debugApi } from './debugApi'
 
 export const logApi = {
   log(data) {
@@ -14,7 +14,7 @@ export const logApi = {
   },
   dump(data) {
     if (debugApi.debug) {
-      const {dump} = require('dumper.js')
+      const { dump } = require('dumper.js')
       dump(data)
     }
   }

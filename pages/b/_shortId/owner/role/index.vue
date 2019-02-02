@@ -69,16 +69,16 @@
 </template>
 
 <script>
-  import {httpRoleAdminApi} from '../../../../../api/http/ltorder/httpRoleAdminApi'
+  import { httpRoleAdminApi } from '../../../../../api/http/ltorder/httpRoleAdminApi'
   import TitleBar from '../../../../../components/common/TitleBar'
-  import {validatorApi} from '../../../../../api/local/validatorApi'
+  import { validatorApi } from '../../../../../api/local/validatorApi'
 
   export default {
     metaInfo: {
       title: '人事'
     },
     middleware: 'auth',
-    components: {TitleBar},
+    components: { TitleBar },
     data() {
       return {
         title: {

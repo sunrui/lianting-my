@@ -52,16 +52,16 @@
 
 <script>
   import NavBar from '../../../../../../components/NavBar'
-  import {timeApi} from '../../../../../../api/local/timeApi'
-  import {foodDetailApi} from '../../../../../../api/local/foodDetail'
-  import {httpOrderAdminApi} from '../../../../../../api/http/ltorder/httpOrderAdminApi'
+  import { timeApi } from '../../../../../../api/local/timeApi'
+  import { foodDetailApi } from '../../../../../../api/local/foodDetail'
+  import { httpOrderAdminApi } from '../../../../../../api/http/ltorder/httpOrderAdminApi'
 
   export default {
     metaInfo: {
       title: '消费记录'
     },
     middleware: 'auth',
-    components: {NavBar},
+    components: { NavBar },
     data() {
       return {
         orders: {},

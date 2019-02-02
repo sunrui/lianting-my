@@ -121,22 +121,22 @@
 </template>
 
 <script>
-  import {httpWallApi} from '../../../../../api/http/ltorder/httpWallApi'
-  import {timeApi} from '../../../../../api/local/timeApi'
-  import {httpUserApi} from '../../../../../api/http/user/httpUserApi'
-  import {stateApi} from '../../../../../api/local/stateApi'
+  import { httpWallApi } from '../../../../../api/http/ltorder/httpWallApi'
+  import { timeApi } from '../../../../../api/local/timeApi'
+  import { httpUserApi } from '../../../../../api/http/user/httpUserApi'
+  import { stateApi } from '../../../../../api/local/stateApi'
   import TitleBar from '../../../../../components/common/TitleBar'
-  import {httpOrderApi} from '../../../../../api/http/ltorder/httpOrderApi'
-  import {foodDetailApi} from '../../../../../api/local/foodDetail'
-  import {stringApi} from '../../../../../api/local/stringApi'
-  import {scrollApi} from '../../../../../api/local/scrollApi'
+  import { httpOrderApi } from '../../../../../api/http/ltorder/httpOrderApi'
+  import { foodDetailApi } from '../../../../../api/local/foodDetail'
+  import { stringApi } from '../../../../../api/local/stringApi'
+  import { scrollApi } from '../../../../../api/local/scrollApi'
 
   export default {
     metaInfo: {
       title: '留言详情'
     },
     middleware: 'auth',
-    components: {TitleBar},
+    components: { TitleBar },
     data() {
       return {
         title: {

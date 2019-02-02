@@ -18,7 +18,7 @@
       title: '访问出错'
     },
     props: ['error'],
-    components: {TitleBar},
+    components: { TitleBar },
     data() {
       return {
         title: {

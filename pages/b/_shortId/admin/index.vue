@@ -49,16 +49,17 @@
 </template>
 
 <script>
-  import {httpInfoApi} from '../../../../api/http/ltorder/httpInfoApi'
-  import {httpShopApi} from '../../../../api/http/shop/httpShopApi'
+  import { httpInfoApi } from '../../../../api/http/ltorder/httpInfoApi'
+  import { httpShopApi } from '../../../../api/http/shop/httpShopApi'
   import TitleBar from '../../../../components/common/TitleBar'
   import Captcha from '../../../../components/common/Captcha'
+  import { msgBoxApi } from '../../../../api/local/msgBoxApi'
 
   export default {
     metaInfo: {
       title: '主管'
     },
-    components: {TitleBar, Captcha},
+    components: { TitleBar, Captcha },
     data() {
       return {
         title: {
@@ -130,12 +131,10 @@
         this.$router.push(nav.url)
       },
       btnShopOpen() {
-        let content = `<span style="color:#f52626; font-weight: 400">${this.http.res.shop.open ? '打烊' : '营业'}</span>`
-
         this.$msgBox.doModal({
           type: 'yesOrNo',
           title: '店铺',
-          content: `${this.http.res.shop.open ? '打烊后顾客将无法下单，' : ''}您确定要${content}吗？`
+          content: `${this.http.res.shop.open ? '打烊后顾客将无法下单，' : ''}您确定要${msgBoxApi.highlight(this.http.res.shop.open ? '打烊' : '营业')}吗？`
         }).then(async (val) => {
           if (val === 'Yes') {
             this.http.res.shop.open = !this.http.res.shop.open

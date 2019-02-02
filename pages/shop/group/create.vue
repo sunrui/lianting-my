@@ -36,18 +36,18 @@
 
 <script>
   import NavBar from '../../../components/NavBar'
-  import {stateApi} from '../../../api/local/stateApi'
-  import {httpSmsApi} from '../../../api/http/user/httpSmsApi'
-  import {validatorApi} from '../../../api/local/validatorApi'
-  import {httpUserApi} from '../../../api/http/user/httpUserApi'
-  import {httpShopGroupApi} from '../../../api/http/shop/httpShopGroupApi'
+  import { stateApi } from '../../../api/local/stateApi'
+  import { httpSmsApi } from '../../../api/http/user/httpSmsApi'
+  import { validatorApi } from '../../../api/local/validatorApi'
+  import { httpUserApi } from '../../../api/http/user/httpUserApi'
+  import { httpShopGroupApi } from '../../../api/http/shop/httpShopGroupApi'
 
   export default {
     metaInfo: {
       title: '创建品牌'
     },
     middleware: 'auth',
-    components: {NavBar},
+    components: { NavBar },
     data() {
       return {
         shopGroupReq: {
@@ -57,16 +57,16 @@
           },
           rule: {
             shortId: [
-              {required: true, message: '请输入唯一标识', trigger: 'blur'},
-              {type: 'string', min: 4, max: 20, message: '唯一标识长度需在 4 - 20 位之间', trigger: 'blur'}
+              { required: true, message: '请输入唯一标识', trigger: 'blur' },
+              { type: 'string', min: 4, max: 20, message: '唯一标识长度需在 4 - 20 位之间', trigger: 'blur' }
             ],
             name: [
-              {required: true, message: '请输入店铺名称', trigger: 'blur'},
-              {type: 'string', min: 1, max: 32, message: '店铺名长度需在 1 - 32 位之间', trigger: 'blur'}
+              { required: true, message: '请输入店铺名称', trigger: 'blur' },
+              { type: 'string', min: 1, max: 32, message: '店铺名长度需在 1 - 32 位之间', trigger: 'blur' }
             ],
             category: [
-              {required: true, message: '请输入主营类目', trigger: 'blur'},
-              {type: 'string', min: 1, max: 32, message: '店铺名长度需在 1 - 32 位之间', trigger: 'blur'}
+              { required: true, message: '请输入主营类目', trigger: 'blur' },
+              { type: 'string', min: 1, max: 32, message: '店铺名长度需在 1 - 32 位之间', trigger: 'blur' }
             ]
           }
         },
@@ -77,12 +77,12 @@
           },
           rule: {
             phone: [
-              {required: true, message: '请输入手机号', trigger: 'blur'},
-              {type: 'string', min: 11, max: 11, message: '手机号码为 11 位数字', trigger: 'blur'}
+              { required: true, message: '请输入手机号', trigger: 'blur' },
+              { type: 'string', min: 11, max: 11, message: '手机号码为 11 位数字', trigger: 'blur' }
             ],
             code: [
-              {required: true, message: '请输入验证码', trigger: 'blur'},
-              {type: 'string', min: 6, max: 6, message: '验证码为 6 位数字', trigger: 'blur'}
+              { required: true, message: '请输入验证码', trigger: 'blur' },
+              { type: 'string', min: 6, max: 6, message: '验证码为 6 位数字', trigger: 'blur' }
             ]
           }
         },
@@ -211,7 +211,7 @@
             this.$msgBox.doModal({
               type: 'yes',
               title: '发送短信',
-              content: `操作过于频繁，请于 ${timeApi.elapsedTime(res.frequentLimit * 1000)}后重试。`
+              content: `操作过于频繁，请于${timeApi.elapsedTime(res.frequentLimit * 1000)}后重试。`
             })
           }
         })

@@ -12,7 +12,7 @@
 </template>
 
 <script>
-  import {httpShopApi} from '../../../api/http/shop/httpShopApi'
+  import { httpShopApi } from '../../../api/http/shop/httpShopApi'
 
   export default {
     metaInfo: {

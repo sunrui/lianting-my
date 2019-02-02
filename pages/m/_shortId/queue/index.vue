@@ -146,17 +146,17 @@
 
 <script>
   import TitleBar from '../../../../components/common/TitleBar'
-  import {httpQueueApi} from '../../../../api/http/ltorder/httpQueueApi'
-  import {httpTableApi} from '../../../../api/http/ltorder/httpTableApi'
-  import {httpShopApi} from '../../../../api/http/shop/httpShopApi'
-  import {httpInfoApi} from '../../../../api/http/ltorder/httpInfoApi'
+  import { httpQueueApi } from '../../../../api/http/ltorder/httpQueueApi'
+  import { httpTableApi } from '../../../../api/http/ltorder/httpTableApi'
+  import { httpShopApi } from '../../../../api/http/shop/httpShopApi'
+  import { httpInfoApi } from '../../../../api/http/ltorder/httpInfoApi'
 
   export default {
     metaInfo: {
       title: '排队'
     },
     middleware: 'auth',
-    components: {TitleBar},
+    components: { TitleBar },
     data() {
       return {
         title: {

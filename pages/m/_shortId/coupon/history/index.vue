@@ -28,14 +28,14 @@
 
 <script>
   import NavBar from '../../../../../components/NavBar'
-  import {httpCouponApi} from '../../../../../api/http/ltorder/httpCouponApi'
+  import { httpCouponApi } from '../../../../../api/http/ltorder/httpCouponApi'
 
   export default {
     metaInfo: {
       title: '我的优惠券'
     },
     middleware: 'auth',
-    components: {NavBar},
+    components: { NavBar },
     data() {
       return {
         couponUsers: null,

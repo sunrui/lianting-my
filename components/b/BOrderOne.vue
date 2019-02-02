@@ -162,11 +162,11 @@
         <div class="addition_item">
           <div class="addition_item_label">支付方式</div>
           <div class="addition_item_content">{{
-            http.res.order.payMethod === "Wechat" ? "微信支付" :
-            http.res.order.payMethod === "Alipay" ? "支付宝支付" :
-            http.res.order.payMethod === "Offline" ? "线下支付" :
-            http.res.order.payMethod === "Cancel" ? "取消支付" :
-            !http.res.order.payMethod ? "未支付" : http.res.order.payMethod
+            http.res.order.payMethod === 'Wechat' ? '微信支付' :
+            http.res.order.payMethod === 'Alipay' ? '支付宝支付' :
+            http.res.order.payMethod === 'Offline' ? '线下支付' :
+            http.res.order.payMethod === 'Cancel' ? '取消支付' :
+            !http.res.order.payMethod ? '未支付' : http.res.order.payMethod
             }}
           </div>
         </div>
@@ -352,53 +352,53 @@
 </template>
 
 <script>
-  import TitleBar from "../common/TitleBar"
-  import { httpOrderApi } from "../../api/http/ltorder/httpOrderApi"
-  import { httpOrderAdminApi } from "../../api/http/ltorder/httpOrderAdminApi"
-  import { httpCaptchaApi } from "../../api/http/ltorder/httpCaptchaApi"
-  import { scrollApi } from "../../api/local/scrollApi"
-  import { timeApi } from "../../api/local/timeApi"
-  import { stateApi } from "../../api/local/stateApi"
-  import DropDown from "../common/DropDown"
-  import CurrencyInput from "../common/CurrencyInput"
+  import TitleBar from '../common/TitleBar'
+  import { httpOrderApi } from '../../api/http/ltorder/httpOrderApi'
+  import { httpOrderAdminApi } from '../../api/http/ltorder/httpOrderAdminApi'
+  import { httpCaptchaApi } from '../../api/http/ltorder/httpCaptchaApi'
+  import { scrollApi } from '../../api/local/scrollApi'
+  import { timeApi } from '../../api/local/timeApi'
+  import { stateApi } from '../../api/local/stateApi'
+  import DropDown from '../common/DropDown'
+  import CurrencyInput from '../common/CurrencyInput'
 
   export default {
     metaInfo: {
-      title: "订单详情"
+      title: '订单详情'
     },
-    middleware: "auth",
+    middleware: 'auth',
     components: { CurrencyInput, TitleBar, DropDown },
     props: {
       role: {
         type: String,
-        default: "waiter"
+        default: 'waiter'
       }
     },
     data() {
       return {
         title: {
           canBack: true,
-          title: "订单详情",
+          title: '订单详情',
           backUri: `/b/${this.$route.params.shortId}/waiter`,
-          theme: "image",
+          theme: 'image',
           imageHeight: 330
         },
         http: {
           req: {
             payOffline: {
-              remark: ""
+              remark: ''
             },
             cancel: {
-              remark: ""
+              remark: ''
             },
             return: {
-              orderFoodId: "",
+              orderFoodId: '',
               count: 1,
-              remark: ""
+              remark: ''
             },
             changePrice: {
               price: 0,
-              remark: ""
+              remark: ''
             }
           },
           res: {
@@ -418,7 +418,7 @@
           peopleChoose: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
           v_cancel: false,
           returnRemarks: [
-            "不想要了", "点错菜", "点重菜"
+            '不想要了', '点错菜', '点重菜'
           ],
           returnCounts: []
         }
@@ -503,45 +503,45 @@
       },
       getStatusLabel(status) {
         switch (status) {
-          case "Wait":
-            return "下单"
-          case "Cooking":
-            return "开始做"
-          case "Cooked":
-            return "做好了"
-          case "Finish":
-            return "上菜"
+          case 'Wait':
+            return '下单'
+          case 'Cooking':
+            return '开始做'
+          case 'Cooked':
+            return '做好了'
+          case 'Finish':
+            return '上菜'
         }
       },
       btnStatus(orderFood, status) {
-        if (this.http.res.order.status === "Finished" || this.http.res.order.status === "Closed") {
+        if (this.http.res.order.status === 'Finished' || this.http.res.order.status === 'Closed') {
           this.$msgBox.doModal({
-            type: "yes",
-            title: "更改状态",
-            content: "订单已关闭。"
+            type: 'yes',
+            title: '更改状态',
+            content: '订单已关闭。'
           })
 
           return
         }
 
-        if (status === "Cooking" || status === "Cooked") {
-          if (this.role !== "admin" && this.role !== "cooker") {
+        if (status === 'Cooking' || status === 'Cooked') {
+          if (this.role !== 'admin' && this.role !== 'cooker') {
             this.$msgBox.doModal({
-              type: "yes",
-              title: "更改状态",
-              content: "仅允许厨师可以操作，您只有查看权限。"
+              type: 'yes',
+              title: '更改状态',
+              content: '仅允许厨师可以操作，您只有查看权限。'
             })
 
             return
           }
         }
 
-        if (status === "Finish") {
-          if (this.role !== "admin" && this.role !== "waiter") {
+        if (status === 'Finish') {
+          if (this.role !== 'admin' && this.role !== 'waiter') {
             this.$msgBox.doModal({
-              type: "yes",
-              title: "更改状态",
-              content: "仅允许服务员可以操作，您只有查看权限。"
+              type: 'yes',
+              title: '更改状态',
+              content: '仅允许服务员可以操作，您只有查看权限。'
             })
 
             return
@@ -552,35 +552,35 @@
           `的状态更为<span style="color:#f52626; font-weight: 400">"${this.getStatusLabel(status)}"</span>吗?`
 
         this.$msgBox.doModal({
-          type: "yesOrNo",
-          title: "更改状态",
+          type: 'yesOrNo',
+          title: '更改状态',
           content: content
         }).then(async (val) => {
-          if (val === "Yes") {
+          if (val === 'Yes') {
             httpOrderAdminApi.putFoodStatus(this.$route.params.shortId, this.$route.params.orderOneId, orderFood.id, status).then(res => {
               if (res.orderOneIdNotExists) {
                 this.$msgBox.doModal({
-                  type: "yes",
-                  title: "更改状态",
-                  content: "订单不存在。"
+                  type: 'yes',
+                  title: '更改状态',
+                  content: '订单不存在。'
                 })
               } else if (res.orderFoodIdNotExists) {
                 this.$msgBox.doModal({
-                  type: "yes",
-                  title: "更改状态",
-                  content: "餐食不存在。"
+                  type: 'yes',
+                  title: '更改状态',
+                  content: '餐食不存在。'
                 })
               } else if (res.closed) {
                 this.$msgBox.doModal({
-                  type: "yes",
-                  title: "更改状态",
-                  content: "订单已关闭。"
+                  type: 'yes',
+                  title: '更改状态',
+                  content: '订单已关闭。'
                 })
               } else if (res.success) {
                 this.$msgBox.doModal({
-                  type: "yes",
-                  title: "更改状态",
-                  content: "已更新。"
+                  type: 'yes',
+                  title: '更改状态',
+                  content: '已更新。'
                 }).then(async (val) => {
                   this.httpOrder()
                 })
@@ -600,11 +600,11 @@
         scrollApi.enable(true)
       },
       btnPeople() {
-        if (this.role === "cooker") {
+        if (this.role === 'cooker') {
           this.$msgBox.doModal({
-            type: "yes",
-            title: "更改人数",
-            content: "没有权限。"
+            type: 'yes',
+            title: '更改人数',
+            content: '没有权限。'
           })
 
           return
@@ -626,27 +626,27 @@
 
           if (res.orderOneIdNotExists) {
             this.$msgBox.doModal({
-              type: "yes",
-              title: "订单",
-              content: "订单不存在。"
+              type: 'yes',
+              title: '订单',
+              content: '订单不存在。'
             })
           } else if (res.paid) {
             this.$msgBox.doModal({
-              type: "yes",
-              title: "订单",
-              content: "已支付。"
+              type: 'yes',
+              title: '订单',
+              content: '已支付。'
             })
           } else if (res.closed) {
             this.$msgBox.doModal({
-              type: "yes",
-              title: "订单",
-              content: "已关闭。"
+              type: 'yes',
+              title: '订单',
+              content: '已关闭。'
             })
           } else if (res.success) {
             this.$msgBox.doModal({
-              type: "yes",
-              title: "订单",
-              content: "已更新。"
+              type: 'yes',
+              title: '订单',
+              content: '已更新。'
             })
           }
 
@@ -655,10 +655,10 @@
       },
       getTime(time) {
         if (!Boolean(time)) {
-          return ""
+          return ''
         }
 
-        return timeApi.dateFormat(new Date(time), "HH:mm")
+        return timeApi.dateFormat(new Date(time), 'HH:mm')
       },
       btnFood() {
         let tableId = this.http.res.order.orderTable.tableOneId
@@ -666,9 +666,9 @@
         httpCaptchaApi.postCaptchaTable(this.$route.params.shortId, tableId).then(res => {
           if (res.tableOneNotExists) {
             this.$msgBox.doModal({
-              type: "yes",
-              title: "无效餐桌",
-              content: "餐桌二维码已过期，请重新扫码或联系服务员。"
+              type: 'yes',
+              title: '无效餐桌',
+              content: '餐桌二维码已过期，请重新扫码或联系服务员。'
             })
 
             stateApi.table.setCaptchaTableId(null)
@@ -689,32 +689,32 @@
         })
       },
       btnStatusReset(orderFood, status) {
-        if (this.role !== "admin") {
+        if (this.role !== 'admin') {
           this.$msgBox.doModal({
-            type: "yes",
-            title: "重置状态",
-            content: "仅允许主管可以操作，您只有查看权限。"
+            type: 'yes',
+            title: '重置状态',
+            content: '仅允许主管可以操作，您只有查看权限。'
           })
 
           return
         }
 
-        if (this.http.res.order.status === "Finished" || this.http.res.order.status === "Closed") {
+        if (this.http.res.order.status === 'Finished' || this.http.res.order.status === 'Closed') {
           this.$msgBox.doModal({
-            type: "yes",
-            title: "重置状态",
-            content: "订单已关闭。"
+            type: 'yes',
+            title: '重置状态',
+            content: '订单已关闭。'
           })
 
           return
         }
 
         this.$msgBox.doModal({
-          type: "yesOrNo",
-          title: "重置状态",
-          content: "您确认要重置状态吗?"
+          type: 'yesOrNo',
+          title: '重置状态',
+          content: '您确认要重置状态吗?'
         }).then(async (val) => {
-          if (val === "Yes") {
+          if (val === 'Yes') {
             this.btnStatus(orderFood, status)
           }
         })
@@ -729,11 +729,11 @@
         this.ui.v_change_price = false
         this.ui.v_cover_mask = false
 
-        if (this.role !== "admin" && this.role !== "cashier") {
+        if (this.role !== 'admin' && this.role !== 'cashier') {
           this.$msgBox.doModal({
-            type: "yes",
-            title: "改价",
-            content: "仅允许主管和收银可以操作，您只有查看权限。。"
+            type: 'yes',
+            title: '改价',
+            content: '仅允许主管和收银可以操作，您只有查看权限。。'
           })
 
           return
@@ -741,9 +741,9 @@
 
         if (this.http.req.changePrice.price <= 0) {
           this.$msgBox.doModal({
-            type: "yes",
-            title: "改价",
-            content: "更改价格不能为零，如您需取消订单请联系主管。"
+            type: 'yes',
+            title: '改价',
+            content: '更改价格不能为零，如您需取消订单请联系主管。'
           })
 
           return
@@ -752,27 +752,27 @@
         httpOrderAdminApi.putPrice(this.$route.params.shortId, this.$route.params.orderOneId, this.http.req.changePrice).then(res => {
           if (res.orderOneIdNotExists) {
             this.$msgBox.doModal({
-              type: "yes",
-              title: "改价",
-              content: "订单不存在。"
+              type: 'yes',
+              title: '改价',
+              content: '订单不存在。'
             })
           } else if (res.paid) {
             this.$msgBox.doModal({
-              type: "yes",
-              title: "改价",
-              content: "已支付，无法改价。"
+              type: 'yes',
+              title: '改价',
+              content: '已支付，无法改价。'
             })
           } else if (res.closed) {
             this.$msgBox.doModal({
-              type: "yes",
-              title: "改价",
-              content: "订单已关闭。"
+              type: 'yes',
+              title: '改价',
+              content: '订单已关闭。'
             })
           } else if (res.success) {
             this.$msgBox.doModal({
-              type: "yes",
-              title: "改价",
-              content: "已改价。"
+              type: 'yes',
+              title: '改价',
+              content: '已改价。'
             }).then(async (val) => {
               this.httpOrder()
             })
@@ -784,11 +784,11 @@
         this.ui.v_cover_mask = true
       },
       btnPayOfflineConfirm() {
-        if (this.role !== "admin" && this.role !== "cashier") {
+        if (this.role !== 'admin' && this.role !== 'cashier') {
           this.$msgBox.doModal({
-            type: "yes",
-            title: "离线支付",
-            content: "没有权限。"
+            type: 'yes',
+            title: '离线支付',
+            content: '没有权限。'
           })
 
           return
@@ -800,21 +800,21 @@
 
           if (res.orderOneIdNotExists) {
             this.$msgBox.doModal({
-              type: "yes",
-              title: "离线支付",
-              content: "订单不存在。"
+              type: 'yes',
+              title: '离线支付',
+              content: '订单不存在。'
             })
           } else if (res.closed) {
             this.$msgBox.doModal({
-              type: "yes",
-              title: "离线支付",
-              content: "订单已关闭。"
+              type: 'yes',
+              title: '离线支付',
+              content: '订单已关闭。'
             })
           } else if (res.success) {
             this.$msgBox.doModal({
-              type: "yes",
-              title: "离线支付",
-              content: "已离线支付。"
+              type: 'yes',
+              title: '离线支付',
+              content: '已离线支付。'
             }).then(async (val) => {
               this.httpOrder()
             })
@@ -822,11 +822,11 @@
         })
       },
       btnCancel() {
-        if (this.role !== "admin") {
+        if (this.role !== 'admin') {
           this.$msgBox.doModal({
-            type: "yes",
-            title: "离线支付",
-            content: "仅允许主管可以操作，您只有查看权限。。"
+            type: 'yes',
+            title: '离线支付',
+            content: '仅允许主管可以操作，您只有查看权限。。'
           })
 
           return
@@ -846,21 +846,21 @@
 
           if (res.orderOneIdNotExists) {
             this.$msgBox.doModal({
-              type: "yes",
-              title: "取消订单",
-              content: "订单不存在。"
+              type: 'yes',
+              title: '取消订单',
+              content: '订单不存在。'
             })
           } else if (res.closed) {
             this.$msgBox.doModal({
-              type: "yes",
-              title: "取消订单",
-              content: "订单已关闭。"
+              type: 'yes',
+              title: '取消订单',
+              content: '订单已关闭。'
             })
           } else if (res.success) {
             this.$msgBox.doModal({
-              type: "yes",
-              title: "取消订单",
-              content: "已取消。"
+              type: 'yes',
+              title: '取消订单',
+              content: '已取消。'
             }).then(async (val) => {
               this.httpOrder()
             })
@@ -871,11 +871,11 @@
         this.http.req.return.remark = remark
       },
       btnFoodReturn(orderFood) {
-        if (this.http.res.order.status === "Finished" || this.http.res.order.status === "Closed") {
+        if (this.http.res.order.status === 'Finished' || this.http.res.order.status === 'Closed') {
           this.$msgBox.doModal({
-            type: "yes",
-            title: "更改状态",
-            content: "订单已关闭。"
+            type: 'yes',
+            title: '更改状态',
+            content: '订单已关闭。'
           })
 
           return
@@ -904,33 +904,33 @@
         httpOrderAdminApi.putReturn(this.$route.params.shortId, this.$route.params.orderOneId, this.http.req.return).then(res => {
           if (res.orderOneIdNotExists) {
             this.$msgBox.doModal({
-              type: "yes",
-              title: "退菜",
-              content: "订单不存在。"
+              type: 'yes',
+              title: '退菜',
+              content: '订单不存在。'
             })
           } else if (res.orderFoodIdNotExists) {
             this.$msgBox.doModal({
-              type: "yes",
-              title: "退菜",
-              content: "餐食不存在。"
+              type: 'yes',
+              title: '退菜',
+              content: '餐食不存在。'
             })
           } else if (res.paid) {
             this.$msgBox.doModal({
-              type: "yes",
-              title: "退菜",
-              content: "已支付，无法退菜。"
+              type: 'yes',
+              title: '退菜',
+              content: '已支付，无法退菜。'
             })
           } else if (res.closed) {
             this.$msgBox.doModal({
-              type: "yes",
-              title: "退菜",
-              content: "订单已关闭。"
+              type: 'yes',
+              title: '退菜',
+              content: '订单已关闭。'
             })
           } else if (res.success) {
             this.$msgBox.doModal({
-              type: "yes",
-              title: "退菜",
-              content: "已退菜。"
+              type: 'yes',
+              title: '退菜',
+              content: '已退菜。'
             }).then(async (val) => {
               this.httpOrder()
             })

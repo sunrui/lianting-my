@@ -7,14 +7,14 @@
 
 <script>
   import NavBar from '../../../../../components/NavBar'
-  import {httpTakeoutAdminApi} from '../../../../../api/http/ltorder/httpTakeOutAdminApi'
+  import { httpTakeoutAdminApi } from '../../../../../api/http/ltorder/httpTakeOutAdminApi'
 
   export default {
     metaInfo: {
       title: '外卖'
     },
     middleware: 'auth',
-    components: {NavBar},
+    components: { NavBar },
     data() {
       return {
         takeout: {

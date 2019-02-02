@@ -38,7 +38,7 @@
 </template>
 
 <script>
-  import {httpOrderApi} from '../../../../../api/http/ltorder/httpOrderApi'
+  import { httpOrderApi } from '../../../../../api/http/ltorder/httpOrderApi'
   import TitleBar from '../../../../../components/common/TitleBar'
 
   export default {
@@ -46,7 +46,7 @@
       title: '我的订单'
     },
     middleware: 'auth',
-    components: {TitleBar},
+    components: { TitleBar },
     data() {
       return {
         title: {

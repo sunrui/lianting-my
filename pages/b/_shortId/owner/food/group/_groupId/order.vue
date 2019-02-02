@@ -26,15 +26,16 @@
 
 <script>
   import TitleBar from '../../../../../../../components/common/TitleBar'
-  import {httpFoodApi} from '../../../../../../../api/http/ltorder/httpFoodApi'
-  import {httpFoodAdminApi} from '../../../../../../../api/http/ltorder/httpFoodAdminApi'
+  import { httpFoodApi } from '../../../../../../../api/http/ltorder/httpFoodApi'
+  import { httpFoodAdminApi } from '../../../../../../../api/http/ltorder/httpFoodAdminApi'
+  import { msgBoxApi } from '../../../../../../../api/local/msgBoxApi'
 
   export default {
     metaInfo: {
       title: '排序餐食'
     },
     middleware: 'auth',
-    components: {TitleBar},
+    components: { TitleBar },
     data() {
       return {
         title: {
@@ -138,7 +139,7 @@
               this.$msgBox.doModal({
                 type: 'yes',
                 title: '编辑餐食',
-                content: `名称 '${this.http.req.category.name}' 已存在。`
+                content: `名称${msgBoxApi.highlight(this.http.req.category.name)}已存在。`
               })
 
               return

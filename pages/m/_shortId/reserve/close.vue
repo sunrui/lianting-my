@@ -14,7 +14,7 @@
       title: '无法预订'
     },
     middleware: 'auth',
-    components: {TitleBar, Empty},
+    components: { TitleBar, Empty },
     data() {
       return {
         title: {

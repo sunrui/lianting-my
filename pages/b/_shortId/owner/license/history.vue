@@ -26,21 +26,19 @@
 </template>
 
 <script>
-  import NavBar from "../../../../../components/NavBar";
-  import {httpShopLicenseApi} from "../../../../../api/http/shop/httpShopLicenseApi";
+  import NavBar from '../../../../../components/NavBar'
+  import { httpShopLicenseApi } from '../../../../../api/http/shop/httpShopLicenseApi'
 
   export default {
     metaInfo: {
       title: '续费记录'
     },
     middleware: 'auth',
-    components: {NavBar},
+    components: { NavBar },
     data() {
       return {
         shopLicenseRes: {},
-        ui: {
-
-        }
+        ui: {}
       }
     },
     created() {
@@ -48,11 +46,11 @@
         canBack: true,
         title: '续费记录',
         home: `/b/${this.$route.params.shortId}/owner`
-      });
+      })
 
       httpShopLicenseApi.getAll(this.$route.params.shortId).then(res => {
-        this.shopLicenseRes = res;
-      });
+        this.shopLicenseRes = res
+      })
     }
   }
 </script>

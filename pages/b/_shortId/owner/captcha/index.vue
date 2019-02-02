@@ -33,15 +33,15 @@
 
 <script>
   import NavBar from '../../../../../components/NavBar'
-  import {httpTableApi} from '../../../../../api/http/ltorder/httpTableApi'
-  import {httpShopApi} from '../../../../../api/http/shop/httpShopApi'
+  import { httpTableApi } from '../../../../../api/http/ltorder/httpTableApi'
+  import { httpShopApi } from '../../../../../api/http/shop/httpShopApi'
 
   export default {
     metaInfo: {
       title: '二维码'
     },
     middleware: 'auth',
-    components: {NavBar},
+    components: { NavBar },
     data() {
       return {
         shop: {},

@@ -49,20 +49,20 @@
 
 <script>
   import NavBar from '../../../../../components/NavBar'
-  import {httpShopApi} from '../../../../../api/http/shop/httpShopApi'
-  import {httpShopLicenseApi} from '../../../../../api/http/shop/httpShopLicenseApi'
+  import { httpShopApi } from '../../../../../api/http/shop/httpShopApi'
+  import { httpShopLicenseApi } from '../../../../../api/http/shop/httpShopLicenseApi'
 
   export default {
     metaInfo: {
       title: '续费'
     },
     middleware: ['auth', 'user-agent'],
-    async asyncData({store, route, userAgent}) {
+    async asyncData({ store, route, userAgent }) {
       return {
         userAgent
       }
     },
-    components: {NavBar},
+    components: { NavBar },
     data() {
       return {
         shop: {},

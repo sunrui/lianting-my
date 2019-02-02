@@ -6,7 +6,7 @@
   import Search from '../../../../../components/food/Search'
 
   export default {
-    components: {Search}
+    components: { Search }
   }
 </script>
 

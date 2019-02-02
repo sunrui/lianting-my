@@ -208,22 +208,22 @@
 </template>
 
 <script>
-  import {httpFoodApi} from '../../api/http/ltorder/httpFoodApi'
-  import {cartApi} from '../../api/local/cartApi'
-  import {cloneApi} from '../../api/local/cloneApi'
+  import { httpFoodApi } from '../../api/http/ltorder/httpFoodApi'
+  import { cartApi } from '../../api/local/cartApi'
+  import { cloneApi } from '../../api/local/cloneApi'
   import TitleBar from '../common/TitleBar'
-  import {scrollApi} from '../../api/local/scrollApi'
-  import {httpShopApi} from '../../api/http/shop/httpShopApi'
-  import {httpInfoApi} from '../../api/http/ltorder/httpInfoApi'
-  import {httpOrderApi} from '../../api/http/ltorder/httpOrderApi'
-  import {httpOrderAdminApi} from '../../api/http/ltorder/httpOrderAdminApi'
+  import { scrollApi } from '../../api/local/scrollApi'
+  import { httpShopApi } from '../../api/http/shop/httpShopApi'
+  import { httpInfoApi } from '../../api/http/ltorder/httpInfoApi'
+  import { httpOrderApi } from '../../api/http/ltorder/httpOrderApi'
+  import { httpOrderAdminApi } from '../../api/http/ltorder/httpOrderAdminApi'
 
   export default {
     metaInfo: {
       title: '点餐'
     },
     middleware: 'auth',
-    components: {TitleBar},
+    components: { TitleBar },
     props: {
       roleWaiter: {
         type: Boolean,

@@ -15,7 +15,7 @@
       title: '餐桌'
     },
     middleware: 'auth',
-    components: {TitleBar, Empty},
+    components: { TitleBar, Empty },
     data() {
       return {
         title: {
@@ -24,7 +24,8 @@
           backUri: `/b/${this.$route.params.shortId}/waiter`,
           theme: 'white',
           imageHeight: 0
-        }}
+        }
+      }
     }
   }
 </script>

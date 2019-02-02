@@ -103,7 +103,7 @@
     </div>
 
     <div class="button_box">
-      <div class="button_big" @click="btnAdd">添加</div>
+      <div class="button_big" @click="btnCreate">添加</div>
     </div>
 
     <div class="modal_center" v-if="ui.v_price_add">
@@ -139,16 +139,17 @@
 </template>
 
 <script>
-  import {httpFoodAdminApi} from '../../../../../../api/http/ltorder/httpFoodAdminApi'
+  import { httpFoodAdminApi } from '../../../../../../api/http/ltorder/httpFoodAdminApi'
   import TitleBar from '../../../../../../components/common/TitleBar'
   import CurrencyInput from '../../../../../../components/common/CurrencyInput'
+  import { msgBoxApi } from '../../../../../../api/local/msgBoxApi'
 
   export default {
     metaInfo: {
       title: '创建餐食'
     },
     middleware: 'auth',
-    components: {TitleBar, CurrencyInput},
+    components: { TitleBar, CurrencyInput },
     data() {
       return {
         title: {
@@ -185,15 +186,13 @@
         }
       }
     },
-    mounted() {
+    created() {
       if (!Boolean(this.$route.query.foodGroupId)) {
         this.$msgBox.doModal({
           type: 'yes',
           title: '添加餐食',
           content: `餐食组不存在。`
         })
-      } else {
-        this.http.req.category.foodGroupId = this.$route.query.foodGroupId
       }
     },
     methods: {
@@ -251,7 +250,7 @@
             this.$msgBox.doModal({
               type: 'yes',
               title: '添加价格',
-              content: `类别 '${one.name}' 已存在。`
+              content: `类别${msgBoxApi.highlight(one.name)}已存在。`
             })
 
             return
@@ -267,7 +266,7 @@
         this.ui.v_price_add = false
         this.ui.v_cover_mask = false
       },
-      btnAdd() {
+      btnCreate() {
         if (!Boolean(this.http.req.category.image)) {
           this.$msgBox.doModal({
             type: 'yes',
@@ -313,6 +312,8 @@
           return
         }
 
+        this.http.req.category.foodGroupId = this.$route.query.foodGroupId
+
         httpFoodAdminApi.postCategory(this.$route.params.shortId, this.http.req.category).then(res => {
           if (res.maxLimit) {
             this.$msgBox.doModal({
@@ -328,7 +329,7 @@
             this.$msgBox.doModal({
               type: 'yes',
               title: '添加餐食',
-              content: `名称 '${this.http.req.category.name}' 已存在。`
+              content: `名称${msgBoxApi.highlight(this.http.req.category.name)}已存在。`
             })
 
             return
@@ -354,7 +355,7 @@
                   this.$msgBox.doModal({
                     type: 'yes',
                     title: '添加餐食价格',
-                    content: `名称 '${one.name}' 已存在。`
+                    content: `名称${msgBoxApi.highlight(one.name)}已存在。`
                   })
 
                   return
@@ -368,9 +369,7 @@
                       title: '添加餐食',
                       content: `添加成功。`
                     }).then(async (val) => {
-                      this.http.req.category = {}
-                      this.ui.foods = []
-                      // this.$router.back()
+                      this.$router.back()
                     })
                   }
                 }

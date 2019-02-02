@@ -20,8 +20,8 @@
 </template>
 
 <script>
-  import {httpQueueApi} from '../../../../../api/http/ltorder/httpQueueApi'
-  import {httpQueueAdminApi} from '../../../../../api/http/ltorder/httpQueueAdminApi'
+  import { httpQueueApi } from '../../../../../api/http/ltorder/httpQueueApi'
+  import { httpQueueAdminApi } from '../../../../../api/http/ltorder/httpQueueAdminApi'
   import TitleBar from '../../../../../components/common/TitleBar'
 
   export default {
@@ -29,7 +29,7 @@
       title: '排队'
     },
     middleware: 'auth',
-    components: {TitleBar},
+    components: { TitleBar },
     data() {
       return {
         title: {

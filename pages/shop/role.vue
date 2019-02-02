@@ -27,7 +27,7 @@
 </template>
 
 <script>
-  import {httpRoleApi} from '../../api/http/ltorder/httpRoleApi'
+  import { httpRoleApi } from '../../api/http/ltorder/httpRoleApi'
   import NavBar from '../../components/NavBar'
 
   export default {
@@ -35,7 +35,7 @@
       title: '工作台'
     },
     middleware: 'auth',
-    components: {NavBar},
+    components: { NavBar },
     data() {
       return {
         shopRoles: {},

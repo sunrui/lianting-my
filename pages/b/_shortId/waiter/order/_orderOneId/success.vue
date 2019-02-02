@@ -6,7 +6,7 @@
   import OrderSuccess from '../../../../../../components/order/OrderSuccess'
 
   export default {
-    components: {OrderSuccess}
+    components: { OrderSuccess }
   }
 </script>
 

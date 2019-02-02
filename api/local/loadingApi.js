@@ -1,4 +1,4 @@
-import {debugApi} from './debugApi'
+import { debugApi } from './debugApi'
 
 export const loadingApi = {
   ref: 0,

@@ -66,37 +66,37 @@
 </template>
 
 <script>
-  import { stateApi } from "../../api/local/stateApi"
-  import { httpSmsApi } from "../../api/http/user/httpSmsApi"
-  import { validatorApi } from "../../api/local/validatorApi"
-  import { httpUserApi } from "../../api/http/user/httpUserApi"
-  import TitleBar from "../../components/common/TitleBar"
-  import { httpShopApi } from "../../api/http/shop/httpShopApi"
+  import { stateApi } from '../../api/local/stateApi'
+  import { httpSmsApi } from '../../api/http/user/httpSmsApi'
+  import { validatorApi } from '../../api/local/validatorApi'
+  import { httpUserApi } from '../../api/http/user/httpUserApi'
+  import TitleBar from '../../components/common/TitleBar'
+  import { httpShopApi } from '../../api/http/shop/httpShopApi'
 
   export default {
     metaInfo: {
-      title: "创建店铺"
+      title: '创建店铺'
     },
-    middleware: "auth",
+    middleware: 'auth',
     components: { TitleBar },
     data() {
       return {
         title: {
           canBack: false,
-          title: "创建店铺",
-          theme: "image",
+          title: '创建店铺',
+          theme: 'image',
           imageHeight: 220
         },
         http: {
           req: {
             shop: {
-              shopGroupId: "",
-              name: "",
-              shortId: ""
+              shopGroupId: '',
+              name: '',
+              shortId: ''
             },
             bind: {
-              phone: "13012341234",
-              code: ""
+              phone: '13012341234',
+              code: ''
             }
           }
         },
@@ -123,10 +123,10 @@
     methods: {
       _updateTime() {
         if (--this.ui.code.limit === 0) {
-          this.ui.code.buttonText = "发送"
+          this.ui.code.buttonText = '发送'
           clearInterval(this.ui.code.interval)
         } else {
-          this.ui.code.buttonText = "已发送(" + this.ui.code.limit + ")"
+          this.ui.code.buttonText = '已发送(' + this.ui.code.limit + ')'
         }
       },
       btnSend() {
@@ -136,29 +136,29 @@
 
         if (!validatorApi.phone(this.http.req.bind.phone)) {
           this.$msgBox.doModal({
-            type: "yes",
-            title: "创建店铺",
-            content: "请输入正确的手机号码。"
+            type: 'yes',
+            title: '创建店铺',
+            content: '请输入正确的手机号码。'
           })
 
           return
         }
 
-        httpSmsApi.postSend(this.http.req.bind.phone, "LOGIN").then(res => {
+        httpSmsApi.postSend(this.http.req.bind.phone, 'LOGIN').then(res => {
           if (res.success) {
             this.ui.code.limit = 60
             this.ui.code.interval = setInterval(this._updateTime, 1000)
           } else if (res.userExists) {
             this.$msgBox.doModal({
-              type: "yes",
-              title: "发送短信",
+              type: 'yes',
+              title: '发送短信',
               content: `手机号码已存在。`
             })
           } else if (res.frequentLimit) {
             this.$msgBox.doModal({
-              type: "yes",
-              title: "发送短信",
-              content: `操作过于频繁，请于 ${timeApi.elapsedTime(res.frequentLimit * 1000)}后重试。`
+              type: 'yes',
+              title: '发送短信',
+              content: `操作过于频繁，请于${timeApi.elapsedTime(res.frequentLimit * 1000)}后重试。`
             })
           }
         })
@@ -167,27 +167,27 @@
         httpShopApi.post(this.http.req.shop).then(res => {
           if (res.haveNormal) {
             this.$msgBox.doModal({
-              type: "yes",
-              title: "创建店铺",
-              content: "您最多仅允许创建一个未激活店铺。"
+              type: 'yes',
+              title: '创建店铺',
+              content: '您最多仅允许创建一个未激活店铺。'
             })
           } else if (res.shopGroupIdNotExists) {
             this.$msgBox.doModal({
-              type: "yes",
-              title: "创建店铺",
-              content: "店铺组不存在。"
+              type: 'yes',
+              title: '创建店铺',
+              content: '店铺组不存在。'
             })
           } else if (res.shortIdExists) {
             this.$msgBox.doModal({
-              type: "yes",
-              title: "创建店铺",
-              content: "唯一标识已存在。"
+              type: 'yes',
+              title: '创建店铺',
+              content: '唯一标识已存在。'
             })
           } else if (res.shopId) {
             this.$msgBox.doModal({
-              type: "yes",
-              title: "创建店铺",
-              content: "创建成功。"
+              type: 'yes',
+              title: '创建店铺',
+              content: '创建成功。'
             }).then(async (val) => {
               this.$router.push(`/b/${this.http.req.shop.shortId}/init`)
             })
@@ -197,18 +197,18 @@
       btnCreate() {
         if (!Boolean(this.http.req.shop.name)) {
           this.$msgBox.doModal({
-            type: "yes",
-            title: "创建店铺",
-            content: "请输入店铺名称。"
+            type: 'yes',
+            title: '创建店铺',
+            content: '请输入店铺名称。'
           })
           return
         }
 
         if (!Boolean(this.http.req.shop.shortId)) {
           this.$msgBox.doModal({
-            type: "yes",
-            title: "创建店铺",
-            content: "请输入唯一标识。"
+            type: 'yes',
+            title: '创建店铺',
+            content: '请输入唯一标识。'
           })
           return
         }
@@ -216,18 +216,18 @@
         if (!this.havePhone) {
           if (!validatorApi.phone(this.http.req.bind.phone)) {
             this.$msgBox.doModal({
-              type: "yes",
-              title: "创建店铺",
-              content: "请输入正确的手机号码。"
+              type: 'yes',
+              title: '创建店铺',
+              content: '请输入正确的手机号码。'
             })
             return
           }
 
           if (!validatorApi.code(this.http.req.bind.code)) {
             this.$msgBox.doModal({
-              type: "yes",
-              title: "创建店铺",
-              content: "验证码为 6 位数字。"
+              type: 'yes',
+              title: '创建店铺',
+              content: '验证码为 6 位数字。'
             })
             return
           }
@@ -235,35 +235,35 @@
           httpUserApi.postBindPhone(this.http.req.bind.phone, this.http.req.bind.code).then(res => {
             if (res.bindExists) {
               this.$msgBox.doModal({
-                type: "yes",
-                title: "创建店铺",
-                content: "已绑定过手机。"
+                type: 'yes',
+                title: '创建店铺',
+                content: '已绑定过手机。'
               })
             } else if (res.phoneExists) {
               this.$msgBox.doModal({
-                type: "yes",
-                title: "创建店铺",
-                content: "手机号码已存在。"
+                type: 'yes',
+                title: '创建店铺',
+                content: '手机号码已存在。'
               })
             } else if (res.sendNeeded) {
               this.$msgBox.doModal({
-                type: "yes",
-                title: "创建店铺",
-                content: "短信验证码不存在，请重新发送。"
+                type: 'yes',
+                title: '创建店铺',
+                content: '短信验证码不存在，请重新发送。'
               })
             } else if (res.verifyError) {
               this.$msgBox.doModal({
-                type: "yes",
-                title: "创建店铺",
-                content: "短信验证码错误。"
+                type: 'yes',
+                title: '创建店铺',
+                content: '短信验证码错误。'
               })
             } else if (res.frequentLimit) {
               this.$msgBox.doModal({
-                type: "yes",
-                title: "创建店铺",
-                content: `操作过于频繁，请于 ${timeApi.elapsedTime(res.frequentLimit * 1000)}后重试。`
+                type: 'yes',
+                title: '创建店铺',
+                content: `操作过于频繁，请于${timeApi.elapsedTime(res.frequentLimit * 1000)}后重试。`
               }).then(async (val) => {
-                this.http.req.bind.code = ""
+                this.http.req.bind.code = ''
               })
             } else if (res.user) {
               stateApi.user.setId(res.user.id)

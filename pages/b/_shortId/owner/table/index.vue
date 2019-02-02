@@ -8,7 +8,7 @@
 
     <div class="shop_title_box">
       <div class="shop_title_name">{{http.res.shop.name}}</div>
-      <div class="shop_title_detail">{{http.res.info.notice ? http.res.info.notice : "欢迎光临本餐厅!"}}</div>
+      <div class="shop_title_detail">{{http.res.info.notice ? http.res.info.notice : '欢迎光临本餐厅!'}}</div>
     </div>
 
     <div class="content_box">
@@ -40,7 +40,7 @@
           <div class="group_name" @click="btnGroupEdit(tableGroup)">{{tableGroup.name}}</div>
           <div class="group_private_room" v-if="tableGroup.privateRoom">包间</div>
           <div class="group_count">({{tableGroup.tableOnes.length}})</div>
-          <div class="group_remark">{{tableGroup.remark}} ({{tableGroup.minPeople + "-" + tableGroup.maxPeople + " 人"}})</div>
+          <div class="group_remark">{{tableGroup.remark}} ({{tableGroup.minPeople + '-' + tableGroup.maxPeople + ' 人'}})</div>
         </div>
 
         <div class="food_box box" v-for="table in tableGroup.tableOnes">
@@ -101,27 +101,28 @@
 </template>
 
 <script>
-  import TitleBar from "../../../../../components/common/TitleBar"
-  import { httpShopApi } from "../../../../../api/http/shop/httpShopApi"
-  import { httpInfoApi } from "../../../../../api/http/ltorder/httpInfoApi"
-  import { httpTableApi } from "../../../../../api/http/ltorder/httpTableApi"
-  import { httpTableAdminApi } from "../../../../../api/http/ltorder/httpTableAdminApi"
-  import Captcha from "../../../../../components/common/Captcha"
-  import { scrollApi } from "../../../../../api/local/scrollApi"
+  import TitleBar from '../../../../../components/common/TitleBar'
+  import { httpShopApi } from '../../../../../api/http/shop/httpShopApi'
+  import { httpInfoApi } from '../../../../../api/http/ltorder/httpInfoApi'
+  import { httpTableApi } from '../../../../../api/http/ltorder/httpTableApi'
+  import { httpTableAdminApi } from '../../../../../api/http/ltorder/httpTableAdminApi'
+  import Captcha from '../../../../../components/common/Captcha'
+  import { scrollApi } from '../../../../../api/local/scrollApi'
+  import { msgBoxApi } from '../../../../../api/local/msgBoxApi'
 
   export default {
     metaInfo: {
-      title: "餐桌"
+      title: '餐桌'
     },
-    middleware: "auth",
+    middleware: 'auth',
     components: { TitleBar, Captcha },
     data() {
       return {
         title: {
           canBack: true,
-          title: "餐桌",
+          title: '餐桌',
           backUri: `/b/${this.$route.params.shortId}/owner`,
-          theme: "image",
+          theme: 'image',
           imageHeight: 300
         },
         ui: {
@@ -130,16 +131,16 @@
           v_captcha: false,
           selectMenuId: null,
           captcha: {
-            title: "",
-            text: ""
+            title: '',
+            text: ''
           }
         },
         http: {
           req: {
             table: {
-              tableGroupId: "",
-              number: "",
-              remkar: ""
+              tableGroupId: '',
+              number: '',
+              remkar: ''
             }
           },
           res: {
@@ -156,7 +157,7 @@
       this.httpTableGroup()
     },
     mounted() {
-      window.addEventListener("scroll", this.onScroll)
+      window.addEventListener('scroll', this.onScroll)
     },
     methods: {
       httpShop() {
@@ -207,12 +208,12 @@
       onScroll() {
         let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
 
-        let groupBoxes = document.querySelectorAll(".food_group_box")
+        let groupBoxes = document.querySelectorAll('.food_group_box')
         if (!Boolean(groupBoxes) || groupBoxes.length === 0) {
           return
         }
 
-        let selectId = groupBoxes[0].id.substring("box_".length)
+        let selectId = groupBoxes[0].id.substring('box_'.length)
 
         for (let index = 0; index < groupBoxes.length; index++) {
           let groupBox = groupBoxes[index]
@@ -229,7 +230,7 @@
               nextIndex = groupBoxes.length - 1
             }
 
-            selectId = groupBoxes[nextIndex].id.substring("box_".length)
+            selectId = groupBoxes[nextIndex].id.substring('box_'.length)
           }
         }
 
@@ -253,8 +254,8 @@
         }
 
         this.ui.selectMenuId = tableGroupId
-        let menu = document.querySelector(".menu")
-        let menuItem = document.getElementById("menu_" + tableGroupId)
+        let menu = document.querySelector('.menu')
+        let menuItem = document.getElementById('menu_' + tableGroupId)
         let left = menuItem.getBoundingClientRect().left - menuItem.getBoundingClientRect().width
 
         if (left < 0) {
@@ -284,17 +285,17 @@
       },
       btnGroupDelete(tableGroup) {
         this.$msgBox.doModal({
-          type: "yesOrNo",
-          title: "删除餐桌组",
-          content: `当前组下所有的餐桌将会被删除，确定要删除 '${tableGroup.name}' 吗？`
+          type: 'yesOrNo',
+          title: '删除餐桌组',
+          content: `当前组下所有的餐桌将会被删除，确定要删除${msgBoxApi.highlight(tableGroup.name)}吗？`
         }).then(async (val) => {
-          if (val === "Yes") {
+          if (val === 'Yes') {
             httpTableAdminApi.deleteGroup(this.$route.params.shortId, tableGroup.id).then(res => {
               if (res.tableGroupIdNotExists) {
                 this.$msgBox.doModal({
-                  type: "yes",
-                  title: "删除餐桌组",
-                  content: "餐桌组不存在。"
+                  type: 'yes',
+                  title: '删除餐桌组',
+                  content: '餐桌组不存在。'
                 })
               } else if (res.success) {
                 this.httpTableGroup()
@@ -308,17 +309,17 @@
       },
       btnTableDelete(table) {
         this.$msgBox.doModal({
-          type: "yesOrNo",
-          title: "删除餐桌",
-          content: `确定要删除 '${table.fullNumber}' 吗？`
+          type: 'yesOrNo',
+          title: '删除餐桌',
+          content: `确定要删除${msgBoxApi.highlight(table.fullNumber)}吗？`
         }).then(async (val) => {
-          if (val === "Yes") {
+          if (val === 'Yes') {
             httpTableAdminApi.deleteTable(this.$route.params.shortId, table.id).then(res => {
               if (res.tableOneIdNotExists) {
                 this.$msgBox.doModal({
-                  type: "yes",
-                  title: "删除餐桌",
-                  content: "餐桌不存在。"
+                  type: 'yes',
+                  title: '删除餐桌',
+                  content: '餐桌不存在。'
                 })
               } else if (res.success) {
                 this.httpTableGroup()
@@ -340,27 +341,27 @@
         httpTableAdminApi.postTable(this.$route.params.shortId, this.http.req.table).then(res => {
           if (res.maxLimit) {
             this.$msgBox.doModal({
-              type: "yes",
-              title: "添加餐桌",
-              content: "已超过当前授权最大数目限制，如需升级授权请转至续费页或联系我们。。"
+              type: 'yes',
+              title: '添加餐桌',
+              content: '已超过当前授权最大数目限制，如需升级授权请转至续费页或联系我们。。'
             })
           } else if (res.tableGroupIdNotExists) {
             this.$msgBox.doModal({
-              type: "yes",
-              title: "添加餐桌",
-              content: "餐桌组不存在。"
+              type: 'yes',
+              title: '添加餐桌',
+              content: '餐桌组不存在。'
             })
           } else if (res.numberExists) {
             this.$msgBox.doModal({
-              type: "yes",
-              title: "添加餐桌",
-              content: "餐桌已存在。"
+              type: 'yes',
+              title: '添加餐桌',
+              content: '餐桌已存在。'
             })
           } else if (res.tableOneId) {
             this.$msgBox.doModal({
-              type: "yes",
-              title: "添加餐桌",
-              content: "添加成功。"
+              type: 'yes',
+              title: '添加餐桌',
+              content: '添加成功。'
             }).then(async (val) => {
               this.httpTableGroup()
             })

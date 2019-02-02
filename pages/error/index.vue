@@ -63,22 +63,22 @@
 </template>
 
 <script>
-  import {timeApi} from '../../api/local/timeApi'
-  import {storeApi} from '../../api/local/storeApi'
+  import { timeApi } from '../../api/local/timeApi'
+  import { storeApi } from '../../api/local/storeApi'
   import TitleBar from '../../components/common/TitleBar'
-  import {stringApi} from '../../api/local/stringApi'
-  import {logApi} from '../../api/local/logApi'
+  import { stringApi } from '../../api/local/stringApi'
+  import { logApi } from '../../api/local/logApi'
 
   export default {
     metaInfo: {
-      title: '访问出错'
+      title: '访问出错了'
     },
-    components: {TitleBar},
+    components: { TitleBar },
     data() {
       return {
         title: {
           canBack: true,
-          title: '访问出错',
+          title: '访问出错了',
           backUri: null,
           theme: 'white',
           imageHeight: 0

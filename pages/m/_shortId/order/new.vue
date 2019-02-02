@@ -6,7 +6,7 @@
   import OrderNew from '../../../../components/order/OrderNew'
 
   export default {
-    components: {OrderNew}
+    components: { OrderNew }
   }
 </script>
 

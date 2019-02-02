@@ -20,10 +20,10 @@
     data() {
       return {
         selectedOption: {
-          name: ""
+          name: ''
         },
         v_menu: false,
-        placeholderText: ""
+        placeholderText: ''
       }
     },
     props: {
@@ -40,14 +40,14 @@
         this.placeholderText = this.placeholder
       }
 
-      document.addEventListener("click", this.hideMenu, false)
+      document.addEventListener('click', this.hideMenu, false)
 
     },
     methods: {
       updateOption(option) {
         this.selectedOption = option
         this.v_menu = false
-        this.$emit("updateOption", this.selectedOption)
+        this.$emit('updateOption', this.selectedOption)
       },
       toggleMenu() {
         this.v_menu = !this.v_menu

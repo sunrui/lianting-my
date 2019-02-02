@@ -47,18 +47,18 @@
 </template>
 
 <script>
-  import {httpInfoApi} from '../../../../api/http/ltorder/httpInfoApi'
-  import {httpShopApi} from '../../../../api/http/shop/httpShopApi'
+  import { httpInfoApi } from '../../../../api/http/ltorder/httpInfoApi'
+  import { httpShopApi } from '../../../../api/http/shop/httpShopApi'
   import TitleBar from '../../../../components/common/TitleBar'
   import Captcha from '../../../../components/common/Captcha'
-  import {httpOrderAdminApi} from '../../../../api/http/ltorder/httpOrderAdminApi'
+  import { httpOrderAdminApi } from '../../../../api/http/ltorder/httpOrderAdminApi'
 
   export default {
     metaInfo: {
       title: '服务员'
     },
     middleware: 'auth',
-    components: {TitleBar, Captcha},
+    components: { TitleBar, Captcha },
     data() {
       return {
         title: {

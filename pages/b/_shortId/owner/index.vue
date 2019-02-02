@@ -49,8 +49,8 @@
 </template>
 
 <script>
-  import {httpInfoApi} from '../../../../api/http/ltorder/httpInfoApi'
-  import {httpShopApi} from '../../../../api/http/shop/httpShopApi'
+  import { httpInfoApi } from '../../../../api/http/ltorder/httpInfoApi'
+  import { httpShopApi } from '../../../../api/http/shop/httpShopApi'
   import TitleBar from '../../../../components/common/TitleBar'
 
   export default {
@@ -58,7 +58,7 @@
       title: '我的店铺'
     },
     middleware: 'auth',
-    components: {TitleBar},
+    components: { TitleBar },
     data() {
       return {
         title: {

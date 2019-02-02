@@ -20,8 +20,8 @@
 </template>
 
 <script>
-  import {httpReserveApi} from '../../../../../api/http/ltorder/httpReserveApi'
-  import {httpReserveAdminApi} from '../../../../../api/http/ltorder/httpReserveAdminApi'
+  import { httpReserveApi } from '../../../../../api/http/ltorder/httpReserveApi'
+  import { httpReserveAdminApi } from '../../../../../api/http/ltorder/httpReserveAdminApi'
   import TitleBar from '../../../../../components/common/TitleBar'
 
   export default {
@@ -29,7 +29,7 @@
       title: '预订'
     },
     middleware: 'auth',
-    components: {TitleBar},
+    components: { TitleBar },
     data() {
       return {
         title: {

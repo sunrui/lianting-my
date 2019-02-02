@@ -6,7 +6,7 @@
   import Food from '../../../../components/food/Food'
 
   export default {
-    components: {Food}
+    components: { Food }
   }
 </script>
 

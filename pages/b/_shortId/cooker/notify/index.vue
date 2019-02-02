@@ -17,7 +17,7 @@
       title: '厨师'
     },
     middleware: 'auth',
-    components: {NavBar, NotifyDetail},
+    components: { NavBar, NotifyDetail },
     data() {
       return {
         notifyOrders: {},

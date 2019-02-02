@@ -14,7 +14,7 @@
       title: '没有留言墙'
     },
     middleware: 'auth',
-    components: {TitleBar, Empty},
+    components: { TitleBar, Empty },
     data() {
       return {
         title: {
@@ -23,7 +23,8 @@
           backUri: `/m/${this.$route.params.shortId}`,
           theme: 'white',
           imageHeight: 0
-        }}
+        }
+      }
     }
   }
 </script>

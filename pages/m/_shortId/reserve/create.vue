@@ -93,16 +93,16 @@
 
 <script>
   import TitleBar from '../../../../components/common/TitleBar'
-  import {timeApi} from '../../../../api/local/timeApi'
-  import {stateApi} from '../../../../api/local/stateApi'
-  import {httpReserveApi} from '../../../../api/http/ltorder/httpReserveApi'
+  import { timeApi } from '../../../../api/local/timeApi'
+  import { stateApi } from '../../../../api/local/stateApi'
+  import { httpReserveApi } from '../../../../api/http/ltorder/httpReserveApi'
 
   export default {
     metaInfo: {
       title: '提交预订'
     },
     middleware: 'auth',
-    components: {TitleBar},
+    components: { TitleBar },
     data() {
       return {
         title: {

@@ -43,7 +43,7 @@
 </template>
 
 <script>
-  import {httpFoodApi} from '../../api/http/ltorder/httpFoodApi'
+  import { httpFoodApi } from '../../api/http/ltorder/httpFoodApi'
   import TitleBar from '../common/TitleBar'
 
   export default {
@@ -51,7 +51,7 @@
       title: '搜索'
     },
     middleware: 'auth',
-    components: {TitleBar},
+    components: { TitleBar },
     props: {
       roleWaiter: {
         type: Boolean,

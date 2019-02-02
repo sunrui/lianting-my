@@ -61,33 +61,33 @@
 </template>
 
 <script>
-  import { validatorApi } from "../../api/local/validatorApi"
-  import { httpSmsApi } from "../../api/http/user/httpSmsApi"
-  import { stateApi } from "../../api/local/stateApi"
-  import TitleBar from "../../components/common/TitleBar"
-  import { httpUserApi } from "../../api/http/user/httpUserApi"
-  import { timeApi } from "../../api/local/timeApi"
+  import { validatorApi } from '../../api/local/validatorApi'
+  import { httpSmsApi } from '../../api/http/user/httpSmsApi'
+  import { stateApi } from '../../api/local/stateApi'
+  import TitleBar from '../../components/common/TitleBar'
+  import { httpUserApi } from '../../api/http/user/httpUserApi'
+  import { timeApi } from '../../api/local/timeApi'
 
   export default {
     metaInfo: {
-      title: "登录"
+      title: '登录'
     },
-    middleware: "auth",
+    middleware: 'auth',
     components: { TitleBar },
     data() {
       return {
         title: {
           canBack: false,
-          title: "登录",
+          title: '登录',
           backUri: ``,
-          theme: "white",
+          theme: 'white',
           imageHeight: 0
         },
         http: {
           req: {
             bind: {
-              phone: "13012341234",
-              code: "123456"
+              phone: '13012341234',
+              code: '123456'
             }
           }
         },
@@ -102,10 +102,10 @@
     methods: {
       _updateTime() {
         if (--this.ui.code.limit === 0) {
-          this.ui.code.buttonText = "发送"
+          this.ui.code.buttonText = '发送'
           clearInterval(this.ui.code.interval)
         } else {
-          this.ui.code.buttonText = "已发送(" + this.ui.code.limit + ")"
+          this.ui.code.buttonText = '已发送(' + this.ui.code.limit + ')'
         }
       },
       btnSend() {
@@ -115,29 +115,29 @@
 
         if (!validatorApi.phone(this.http.req.bind.phone)) {
           this.$msgBox.doModal({
-            type: "yes",
-            title: "绑定手机",
-            content: "请输入正确的手机号码。"
+            type: 'yes',
+            title: '绑定手机',
+            content: '请输入正确的手机号码。'
           })
 
           return
         }
 
-        httpSmsApi.postSend(this.http.req.bind.phone, "LOGIN").then(res => {
+        httpSmsApi.postSend(this.http.req.bind.phone, 'LOGIN').then(res => {
           if (res.success) {
             this.ui.code.limit = 60
             this.ui.code.interval = setInterval(this._updateTime, 1000)
           } else if (res.userExists) {
             this.$msgBox.doModal({
-              type: "yes",
-              title: "发送短信",
+              type: 'yes',
+              title: '发送短信',
               content: `手机号码已存在。`
             })
           } else if (res.frequentLimit) {
             this.$msgBox.doModal({
-              type: "yes",
-              title: "发送短信",
-              content: `操作过于频繁，请于 ${timeApi.elapsedTime(res.frequentLimit * 1000)}后重试。`
+              type: 'yes',
+              title: '发送短信',
+              content: `操作过于频繁，请于${timeApi.elapsedTime(res.frequentLimit * 1000)}后重试。`
             })
           }
         })
@@ -145,47 +145,47 @@
       btnLogin() {
         if (!validatorApi.phone(this.http.req.bind.phone)) {
           this.$msgBox.doModal({
-            type: "yes",
-            title: "绑定手机",
-            content: "请输入正确的手机号码。"
+            type: 'yes',
+            title: '绑定手机',
+            content: '请输入正确的手机号码。'
           })
           return
         }
 
         if (!validatorApi.code(this.http.req.bind.code)) {
           this.$msgBox.doModal({
-            type: "yes",
-            title: "绑定手机",
-            content: "验证码为 6 位数字。"
+            type: 'yes',
+            title: '绑定手机',
+            content: '验证码为 6 位数字。'
           })
           return
         }
 
         let shortId = this.$route.query.shortId
         if (!Boolean(shortId)) {
-          shortId = "undefined"
+          shortId = 'undefined'
         }
 
         httpUserApi.postLoginPhone(shortId, this.http.req.bind.phone, this.http.req.bind.code).then(res => {
           if (res.sendNeeded) {
             this.$msgBox.doModal({
-              type: "yes",
-              title: "登录",
+              type: 'yes',
+              title: '登录',
               content: `短信验证码不存在，请重新发送。`
             }).then(async (val) => {
               this.$router.back()
             })
           } else if (res.verifyError) {
             this.$msgBox.doModal({
-              type: "yes",
-              title: "登录",
+              type: 'yes',
+              title: '登录',
               content: `短信验证码错误。`
             })
           } else if (res.frequentLimit) {
             this.$msgBox.doModal({
-              type: "yes",
-              title: "登录",
-              content: `操作过于频繁，请于 ${timeApi.elapsedTime(res.frequentLimit * 1000)}后重试。`
+              type: 'yes',
+              title: '登录',
+              content: `操作过于频繁，请于${timeApi.elapsedTime(res.frequentLimit * 1000)}后重试。`
             })
           } else if (res.user) {
             stateApi.user.setId(res.user.id)
@@ -195,22 +195,22 @@
 
             let r = this.$route.query.r
             if (!Boolean(r)) {
-              r = "/"
+              r = '/'
             }
             this.$router.push(r)
           }
         })
       },
       btnWechat() {
-        this.$router.push("/login?scope=snsapi_base")
+        this.$router.push('/login?scope=snsapi_base')
       },
       btnAlipay() {
         this.$msgBox.doModal({
-          type: "yes",
-          title: "登录",
+          type: 'yes',
+          title: '登录',
           content: `测试微信登录。`
         }).then(async (val) => {
-          this.$router.push("/login/wechat?code=123456&state=123456")
+          this.$router.push('/login/wechat?code=123456&state=123456')
         })
       }
     }

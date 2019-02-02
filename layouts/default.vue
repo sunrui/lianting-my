@@ -9,10 +9,10 @@
 </template>
 
 <script>
-  import Loading from "../components/common/Loading"
+  import Loading from '../components/common/Loading'
 
   export default {
-    name: "default",
+    name: 'default',
     components: { Loading }
   }
 </script>

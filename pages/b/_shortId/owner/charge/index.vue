@@ -34,15 +34,15 @@
 
 <script>
   import NavBar from '../../../../../components/NavBar'
-  import {httpUserApi} from '../../../../../api/http/user/httpUserApi'
-  import {httpChargeAdminApi} from '../../../../../api/http/ltorder/httpChargeAdminApi'
+  import { httpUserApi } from '../../../../../api/http/user/httpUserApi'
+  import { httpChargeAdminApi } from '../../../../../api/http/ltorder/httpChargeAdminApi'
 
   export default {
     metaInfo: {
       title: '顾客'
     },
     middleware: 'auth',
-    components: {NavBar},
+    components: { NavBar },
     data() {
       return {
         charges: {},

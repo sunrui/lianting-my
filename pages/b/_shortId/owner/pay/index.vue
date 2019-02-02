@@ -38,8 +38,8 @@
 </template>
 
 <script>
-  import {httpOrderApi} from '../../../../../api/http/ltorder/httpOrderApi'
-  import {httpOrderAdminApi} from '../../../../../api/http/ltorder/httpOrderAdminApi'
+  import { httpOrderApi } from '../../../../../api/http/ltorder/httpOrderApi'
+  import { httpOrderAdminApi } from '../../../../../api/http/ltorder/httpOrderAdminApi'
   import CurrencyInput from '../../../../../components/common/CurrencyInput'
   import TitleBar from '../../../../../components/common/TitleBar'
 
@@ -48,7 +48,7 @@
       title: '支付'
     },
     middleware: 'auth',
-    components: {TitleBar, CurrencyInput},
+    components: { TitleBar, CurrencyInput },
     data() {
       return {
         title: {

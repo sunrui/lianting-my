@@ -6,7 +6,7 @@
   import OrderAdd from '../../../../../components/order/OrderAdd'
 
   export default {
-    components: {OrderAdd}
+    components: { OrderAdd }
   }
 </script>
 

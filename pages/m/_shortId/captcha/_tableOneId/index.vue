@@ -4,10 +4,10 @@
 </template>
 
 <script>
-  import {httpOrderApi} from '../../../../../api/http/ltorder/httpOrderApi'
-  import {stateApi} from '../../../../../api/local/stateApi'
-  import {httpTableApi} from '../../../../../api/http/ltorder/httpTableApi'
-  import {httpCaptchaApi} from '../../../../../api/http/ltorder/httpCaptchaApi'
+  import { httpOrderApi } from '../../../../../api/http/ltorder/httpOrderApi'
+  import { stateApi } from '../../../../../api/local/stateApi'
+  import { httpTableApi } from '../../../../../api/http/ltorder/httpTableApi'
+  import { httpCaptchaApi } from '../../../../../api/http/ltorder/httpCaptchaApi'
 
   export default {
     data() {

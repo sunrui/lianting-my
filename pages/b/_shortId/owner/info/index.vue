@@ -79,9 +79,9 @@
 </template>
 
 <script>
-  import {httpInfoApi} from '../../../../../api/http/ltorder/httpInfoApi'
-  import {httpInfoAdminApi} from '../../../../../api/http/ltorder/httpInfoAdminApi'
-  import {httpShopApi} from '../../../../../api/http/shop/httpShopApi'
+  import { httpInfoApi } from '../../../../../api/http/ltorder/httpInfoApi'
+  import { httpInfoAdminApi } from '../../../../../api/http/ltorder/httpInfoAdminApi'
+  import { httpShopApi } from '../../../../../api/http/shop/httpShopApi'
   import TitleBar from '../../../../../components/common/TitleBar'
 
   export default {
@@ -89,7 +89,7 @@
       title: '编辑资料'
     },
     middleware: 'auth',
-    components: {TitleBar},
+    components: { TitleBar },
     data() {
       return {
         title: {

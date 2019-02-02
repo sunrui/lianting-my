@@ -55,7 +55,7 @@
 </template>
 
 <script>
-  import {httpCouponAdminApi} from '../../../../../api/http/ltorder/httpCouponAdminApi'
+  import { httpCouponAdminApi } from '../../../../../api/http/ltorder/httpCouponAdminApi'
   import TitleBar from '../../../../../components/common/TitleBar'
   import Empty from '../../../../../components/common/Empty'
 
@@ -64,7 +64,7 @@
       title: '优惠券'
     },
     middleware: 'auth',
-    components: {TitleBar, Empty},
+    components: { TitleBar, Empty },
     data() {
       return {
         title: {

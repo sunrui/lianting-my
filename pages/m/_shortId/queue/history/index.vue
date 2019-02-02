@@ -35,14 +35,14 @@
 
 <script>
   import TitleBar from '../../../../../components/common/TitleBar'
-  import {httpQueueApi} from '../../../../../api/http/ltorder/httpQueueApi'
+  import { httpQueueApi } from '../../../../../api/http/ltorder/httpQueueApi'
 
   export default {
     metaInfo: {
       title: '我的排队'
     },
     middleware: 'auth',
-    components: {TitleBar},
+    components: { TitleBar },
     data() {
       return {
         title: {

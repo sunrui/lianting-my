@@ -106,18 +106,19 @@
 
 <script>
   import TitleBar from '../../../../../components/common/TitleBar'
-  import {httpShopApi} from '../../../../../api/http/shop/httpShopApi'
-  import {httpInfoApi} from '../../../../../api/http/ltorder/httpInfoApi'
-  import {httpFoodApi} from '../../../../../api/http/ltorder/httpFoodApi'
-  import {httpFoodAdminApi} from '../../../../../api/http/ltorder/httpFoodAdminApi'
-  import {scrollApi} from '../../../../../api/local/scrollApi'
+  import { httpShopApi } from '../../../../../api/http/shop/httpShopApi'
+  import { httpInfoApi } from '../../../../../api/http/ltorder/httpInfoApi'
+  import { httpFoodApi } from '../../../../../api/http/ltorder/httpFoodApi'
+  import { httpFoodAdminApi } from '../../../../../api/http/ltorder/httpFoodAdminApi'
+  import { scrollApi } from '../../../../../api/local/scrollApi'
+  import { msgBoxApi } from '../../../../../api/local/msgBoxApi'
 
   export default {
     metaInfo: {
       title: '上下架餐食'
     },
     middleware: 'auth',
-    components: {TitleBar},
+    components: { TitleBar },
     data() {
       return {
         title: {
@@ -278,12 +279,10 @@
           content = '上架'
         }
 
-        content = '<span style="color:#f52626; font-weight: 400">' + content + '</span>'
-
         this.$msgBox.doModal({
           type: 'yesOrNo',
           title: foodCategory.name,
-          content: `确定要${content}吗？`
+          content: `确定要${msgBoxApi.highlight(content)}吗？`
         }).then(async (val) => {
           if (val === 'Yes') {
             foodCategory.status = status

@@ -49,16 +49,16 @@
 </template>
 
 <script>
-  import {httpReserveAdminApi} from '../../../../../api/http/ltorder/httpReserveAdminApi'
+  import { httpReserveAdminApi } from '../../../../../api/http/ltorder/httpReserveAdminApi'
   import TitleBar from '../../../../../components/common/TitleBar'
-  import {timeApi} from '../../../../../api/local/timeApi'
+  import { timeApi } from '../../../../../api/local/timeApi'
 
   export default {
     metaInfo: {
       title: '预订'
     },
     middleware: 'auth',
-    components: {TitleBar},
+    components: { TitleBar },
     data() {
       return {
         title: {

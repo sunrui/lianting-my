@@ -34,14 +34,14 @@
 
 <script>
   import NavBar from '../../../../../components/NavBar'
-  import {httpReserveApi} from '../../../../../api/http/ltorder/httpReserveApi'
+  import { httpReserveApi } from '../../../../../api/http/ltorder/httpReserveApi'
 
   export default {
     metaInfo: {
       title: '我的预订'
     },
     middleware: 'auth',
-    components: {NavBar},
+    components: { NavBar },
     data() {
       return {
         reserves: {},

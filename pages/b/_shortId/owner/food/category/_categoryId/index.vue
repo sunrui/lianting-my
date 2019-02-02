@@ -161,15 +161,16 @@
 <script>
   import TitleBar from '../../../../../../../components/common/TitleBar'
   import CurrencyInput from '../../../../../../../components/common/CurrencyInput'
-  import {httpFoodAdminApi} from '../../../../../../../api/http/ltorder/httpFoodAdminApi'
-  import {httpFoodApi} from '../../../../../../../api/http/ltorder/httpFoodApi'
+  import { httpFoodAdminApi } from '../../../../../../../api/http/ltorder/httpFoodAdminApi'
+  import { httpFoodApi } from '../../../../../../../api/http/ltorder/httpFoodApi'
+  import { msgBoxApi } from '../../../../../../../api/local/msgBoxApi'
 
   export default {
     metaInfo: {
       title: '编辑餐食'
     },
     middleware: 'auth',
-    components: {TitleBar, CurrencyInput},
+    components: { TitleBar, CurrencyInput },
     data() {
       return {
         title: {
@@ -298,7 +299,7 @@
             this.$msgBox.doModal({
               type: 'yes',
               title: '添加价格',
-              content: `类别 '${one.name}' 已存在。`
+              content: `类别${msgBoxApi.highlight(one.name)}已存在。`
             })
 
             return
@@ -326,7 +327,7 @@
             this.$msgBox.doModal({
               type: 'yes',
               title: '添加餐食价格',
-              content: `名称 '${one.name}' 已存在。`
+              content: `名称${msgBoxApi.highlight(one.name)}已存在。`
             })
 
             return
@@ -397,7 +398,7 @@
             this.$msgBox.doModal({
               type: 'yes',
               title: '编辑餐食',
-              content: `名称 '${this.http.req.category.name}' 已存在。`
+              content: `名称${msgBoxApi.highlight(this.http.req.category.name)}已存在。`
             })
 
             return

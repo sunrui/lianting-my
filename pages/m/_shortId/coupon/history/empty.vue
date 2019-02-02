@@ -14,7 +14,7 @@
       title: '没有优惠券'
     },
     middleware: 'auth',
-    components: {TitleBar, Empty},
+    components: { TitleBar, Empty },
     data() {
       return {
         title: {
@@ -23,7 +23,8 @@
           backUri: `/b/${this.$route.params.shortId}/owner`,
           theme: 'white',
           imageHeight: 0
-        }}
+        }
+      }
     }
   }
 </script>
