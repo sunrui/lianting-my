@@ -57,7 +57,6 @@
 }
 
 .shop_license_plan {
-  margin-top: px2rem(20);
   background: white;
   border-radius: px2rem(10);
   position: relative;
@@ -94,10 +93,14 @@
 
   .shop_license_feature {
     position: relative;
+    margin-top: px2rem(15);
+    margin-bottom: px2rem(15);
+    text-align: left;
 
     .shop_license_feature_icon {
       display: inline-block;
       vertical-align: middle;
+      margin-left: 30%;
 
       background: url("/img/b/license/b_license_feature.png") no-repeat;
       background-size: 100% 100%;
@@ -120,4 +123,14 @@
     font-size: px2rem(28);
     line-height: px2rem(88);
   }
+
+  .shop_license_button_gray {
+    background: rgba(221, 221, 221, 1);
+  }
+}
+
+.charge_year_tip {
+  color: white;
+  border-radius: px2rem(5);
+  padding: 0 px2rem(10);
 }

@@ -2,6 +2,10 @@
   <div>
     <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
+    <transition name="fade">
+      <div :class="{ cover_mask_9: ui.v_cover_mask}" @click="btnCoverMask"></div>
+    </transition>
+
     <div class="box">
       <div class="list_title box_radius_header">
         <div class="shop_name">{{http.res.shop.name}}</div>
@@ -11,9 +15,9 @@
             <div class="shop_title_license_king"></div>
             <div class="shop_title_license_label">
               {{
+              http.res.shop.licenseType === 'Free' ? '免费会员' :
               http.res.shop.licenseType === 'Normal' ? '标准会员' :
-              http.res.shop.licenseType === 'Senior' ? '旗舰会员' :
-              http.res.shop.licenseType === 'Vip' ? '至尊会员' : http.res.shop.licenseType
+              http.res.shop.licenseType === 'Senior' ? '旗舰会员' : http.res.shop.licenseType
               }}
             </div>
           </div>
@@ -27,10 +31,9 @@
       <div class="shop_detail box_radius_footer">
         <div class="shop_detail_one">
           <div class="shop_detail_left">店铺类型: {{
+            http.res.shop.licenseType === 'Free' ? '免费会员' :
             http.res.shop.licenseType === 'Normal' ? '标准会员' :
-            http.res.shop.licenseType === 'Senior' ? '旗舰会员' :
-            http.res.shop.licenseType === 'Vip' ? '至尊会员' :
-            http.res.shop.licenseType
+            http.res.shop.licenseType === 'Senior' ? '旗舰会员' : http.res.shop.licenseType
             }}
           </div>
           <div class="shop_detail_expired_at">过期时间: {{new Date(parseInt(http.res.shop.licenseExpiredAt)).toLocaleDateString()}}</div>
@@ -46,31 +49,117 @@
 
     <div class="blank_50"></div>
 
-    <div class="shop_license_plan box_radius" v-for="shopLicensePlan in http.res.shopLicensePlans">
-      <div class="blank_40"></div>
+    <div v-for="license in http.res.shopLicensePlans.elements">
+      <div class="shop_license_plan box_radius">
+        <div class="blank_30"></div>
 
-      <div class="shop_license_type">
-        <div class="shop_license_icon"></div>
-        <div class="shop_license_label">免费版</div>
+        <div class="shop_license_type">
+          <div class="shop_license_icon"></div>
+          <div class="shop_license_label">{{license.plan.name}}</div>
+        </div>
+
+        <div class="blank_20"></div>
+        <div class="shop_license_price">{{license.plan.price <= 0 ? '不收取任何费用' : license.plan.price + '元/年'}}</div>
+        <div class="blank_10"></div>
+
+        <div class="box_divide"></div>
+
+        <!--private Integer maxFoods;-->
+        <!--private Integer maxTables;-->
+        <!--private Integer maxQueue;-->
+        <!--private Integer maxReserve;-->
+        <!--private Integer maxWaiter;-->
+        <!--private Integer maxCooker;-->
+        <!--private Integer maxCashier;-->
+        <!--private Integer maxAdmin;-->
+        <!--private Integer maxCoupon;-->
+
+        <div class="shop_license_feature">
+          <div class="shop_license_feature_icon"></div>
+          <div class="shop_license_feature_label">在线支付渠道</div>
+        </div>
+
+        <div class="shop_license_feature">
+          <div class="shop_license_feature_icon"></div>
+          <div class="shop_license_feature_label">{{license.limit.maxFoods}} 个上架餐食</div>
+        </div>
+
+        <div class="shop_license_feature">
+          <div class="shop_license_feature_icon"></div>
+          <div class="shop_license_feature_label">{{license.limit.maxTables}} 个餐桌</div>
+        </div>
+
+        <div class="shop_license_feature">
+          <div class="shop_license_feature_icon"></div>
+          <div class="shop_license_feature_label">{{license.limit.maxQueue}} 个排队用户</div>
+        </div>
+
+        <div class="shop_license_feature">
+          <div class="shop_license_feature_icon"></div>
+          <div class="shop_license_feature_label">{{license.limit.maxReserve}} 个预订人数/天</div>
+        </div>
+
+        <div class="shop_license_feature">
+          <div class="shop_license_feature_icon"></div>
+          <div class="shop_license_feature_label">{{license.limit.maxWaiter}} 个服务员</div>
+        </div>
+
+        <div class="shop_license_feature">
+          <div class="shop_license_feature_icon"></div>
+          <div class="shop_license_feature_label">{{license.limit.maxCooker}} 个厨师</div>
+        </div>
+
+        <div class="shop_license_feature">
+          <div class="shop_license_feature_icon"></div>
+          <div class="shop_license_feature_label">{{license.limit.maxCashier}} 个收银</div>
+        </div>
+
+        <div class="shop_license_feature">
+          <div class="shop_license_feature_icon"></div>
+          <div class="shop_license_feature_label">{{license.limit.maxAdmin}} 个主管</div>
+        </div>
+
+        <div class="shop_license_feature">
+          <div class="shop_license_feature_icon"></div>
+          <div class="shop_license_feature_label">{{license.limit.maxCoupon}} 个营销活动</div>
+        </div>
+
+        <div class="shop_license_feature">
+          <div class="shop_license_feature_icon"></div>
+          <div class="shop_license_feature_label">无限订单</div>
+        </div>
+
+        <div class="blank_30"></div>
+
+        <div class="shop_license_button shop_license_button_gray" v-if="license.plan.price <= 0">无需续费</div>
+        <div class="shop_license_button" v-else @click="btnYearSelect(license.plan)">立即续费</div>
       </div>
-
-      <div class="blank_20"></div>
-      <div class="shop_license_price">不收取任何费用</div>
-      <div class="blank_10"></div>
-
-      <div class="box_divide"></div>
-
-      <div class="shop_license_feature">
-        <div class="shop_license_feature_icon"></div>
-        <div class="shop_license_feature_label">在线支付渠道</div>
-      </div>
-
-      <div class="blank_30"></div>
-
-      <div class="shop_license_button">立即续费</div>
 
       <div class="blank_50"></div>
     </div>
+
+    <div class="modal_bottom" v-if="ui.v_charge_year">
+      <div class="modal_close_box" @click="btnCoverMask">
+        <img class="modal_close" src="/img/common/close.png">
+      </div>
+
+      <div class="modal_title">选择套餐</div>
+
+      <div class="modal_menu" v-bind:class="{modal_menu_select: ui.year === 1}"
+           @click="btnChooseYear(1)">续费 1 年
+      </div>
+      <div class="modal_menu" v-bind:class="{modal_menu_select: ui.year === 2}"
+           @click="btnChooseYear(2)">续费 2 年 <span class="charge_year_tip addition_item_tag_color_2">限时送 1 年</span></div>
+      <div class="modal_menu" v-bind:class="{modal_menu_select: ui.year === 3}"
+           @click="btnChooseYear(3)">续费 3 年 <span class="charge_year_tip addition_item_tag_color_2">限时送 2 年</span></div>
+      <div class="modal_menu" v-bind:class="{modal_menu_select: ui.year === 5}"
+           @click="btnChooseYear(5)">续费 5 年 <span class="charge_year_tip addition_item_tag_color_2">限时送 5 年</span></div>
+
+      <div class="modal_button_box">
+        <div class="button_big" @click="btnChargeConfirm">立即续费</div>
+      </div>
+    </div>
+
   </div>
 </template>
 
@@ -78,6 +167,7 @@
   import { httpShopApi } from '../../../../../api/http/shop/httpShopApi'
   import { httpShopLicenseApi } from '../../../../../api/http/shop/httpShopLicenseApi'
   import TitleBar from '../../../../../components/common/TitleBar'
+  import { scrollApi } from '../../../../../api/local/scrollApi'
 
   export default {
     metaInfo: {
@@ -105,23 +195,48 @@
             shopLicensePlans: {}
           }
         },
-        ui: {}
+        ui: {
+          v_cover_mask: false,
+          v_charge_year: false,
+          licensePlan: null,
+          year: 1
+        }
       }
     },
     created() {
-      httpShopApi.getOne(this.$route.params.shortId).then(res => {
-        this.http.res.shop = res
-        this.loadLicensePlan()
-      })
+      this.httpShop()
+      this.httpLicensePlan()
     },
     methods: {
-      loadLicensePlan() {
+      httpShop() {
+        httpShopApi.getOne(this.$route.params.shortId).then(res => {
+          this.http.res.shop = res
+        })
+      },
+      httpLicensePlan() {
         httpShopLicenseApi.getPlanAll(this.http.res.shop.type, 0, 20).then(res => {
           this.http.res.shopLicensePlans = res
         })
       },
+      btnCoverMask() {
+        this.ui.v_cover_mask = false
+        this.ui.v_charge_year = false
+
+        scrollApi.enable(true)
+      },
       btnChargeHistory() {
         this.$router.push(`/b/${this.$route.params.shortId}/owner/license/history`)
+      },
+      btnYearSelect(licensePlan) {
+        this.ui.v_cover_mask = true
+        this.ui.v_charge_year = true
+
+        this.ui.licensePlan = licensePlan
+
+        scrollApi.enable(false)
+      },
+      btnChooseYear(year) {
+        this.ui.year = year
       },
       prepareWechatPay(jsPay) {
         function onBridgeReady() {
@@ -159,17 +274,14 @@
           onBridgeReady()
         }
       },
-      btnChargeNow(shopLicensePlan) {
+      btnChargeConfirm() {
         let inWechat = this.userAgent.match(/MicroMessenger/i)
         if (!Boolean(inWechat)) {
           alert('请在微信中打开')
-          // return;
+          return
         }
 
-
-        httpShopLicenseApi.postOrder(this.$route.params.shortId, shopLicensePlan.id, 3, 'WECHAT_JSAPI').then(res => {
-          this.ui.loading = false
-
+        httpShopLicenseApi.postOrder(this.$route.params.shortId, this.ui.licensePlan.id, this.ui.year, 'WECHAT_JSAPI').then(res => {
           if (res.shortIdNotExists) {
             alert('店铺不存在')
             return

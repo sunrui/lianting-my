@@ -8,12 +8,13 @@
     <div v-else>
       <p>店铺名称 {{shop.name}}</p>
       <p>唯一标识 {{shop.shortId}}</p>
-      <p>{{
-        shop.licenseType === 'Normal' ? '标准会员' :
-        shop.licenseType === 'Senior' ? '旗舰会员' :
-        shop.licenseType === 'Vip' ? '至尊会员' :
-        shop.licenseType
-        }}</p>
+      <p>
+        {{
+        http.res.shop.licenseType === 'Free' ? '免费会员' :
+        http.res.shop.licenseType === 'Normal' ? '标准会员' :
+        http.res.shop.licenseType === 'Senior' ? '旗舰会员' : http.res.shop.licenseType
+        }}
+      </p>
       <p>过期时间 {{new Date(parseInt(shop.licenseExpiredAt)).toLocaleString()}}</p>
       <button @click="btnChargeHistory">续费记录</button>
 
@@ -78,11 +79,11 @@
 
       httpShopApi.getOne(this.$route.params.shortId).then(res => {
         this.shop = res
-        this.loadLicensePlan()
+        this.httpLicensePlan()
       })
     },
     methods: {
-      loadLicensePlan() {
+      httpLicensePlan() {
 
 
         httpShopLicenseApi.getPlanAll(this.shop.type, 0, 20).then(res => {
@@ -128,7 +129,7 @@
           onBridgeReady()
         }
       },
-      btnChargeNow(shopLicensePlan) {
+      btnChargeConfirm(shopLicensePlan) {
         let inWechat = this.userAgent.match(/MicroMessenger/i)
         if (!Boolean(inWechat)) {
           alert('请在微信中打开')
