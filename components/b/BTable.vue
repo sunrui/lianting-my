@@ -105,21 +105,23 @@
 
     <captcha v-if="ui.v_captcha" @closeCaptcha="closeCaptcha()" :title="ui.captcha.title" :text="ui.captcha.text"></captcha>
 
-    <div class="modal_bottom" v-if="ui.v_menu_table">
-      <div class="modal_close_box" @click="btnCoverMask">
-        <img class="modal_close" src="/img/common/close.png">
+    <transition name="toggle">
+      <div class="modal_bottom" v-if="ui.v_menu_table">
+        <div class="modal_close_box" @click="btnCoverMask">
+          <img class="modal_close" src="/img/common/close.png">
+        </div>
+
+        <div class="modal_title">{{ui.selectTable.tableGroup_name}} - {{ui.selectTable.fullNumber}}</div>
+
+        <div class="modal_menu modal_menu_select" v-if="getTableOrder(ui.selectTable).length > 0" @click="btnTableOrder(ui.selectTable)">查看订单</div>
+        <div class="box_divide" v-if="getTableOrder(ui.selectTable).length > 0"></div>
+
+        <div class="modal_menu" @click="btnTableFood(ui.selectTable)">{{getTableOrder(ui.selectTable).length > 0 ? '加餐' : '点餐'}}</div>
+        <div class="modal_menu" v-if="getTableOrder(ui.selectTable).length > 0" @click="btnTableChange(ui.selectTable)">换桌</div>
+
+        <div class="blank_30"></div>
       </div>
-
-      <div class="modal_title">{{ui.selectTable.tableGroup_name}} - {{ui.selectTable.fullNumber}}</div>
-
-      <div class="modal_menu modal_menu_select" v-if="getTableOrder(ui.selectTable).length > 0" @click="btnTableOrder(ui.selectTable)">查看订单</div>
-      <div class="box_divide" v-if="getTableOrder(ui.selectTable).length > 0"></div>
-
-      <div class="modal_menu" @click="btnTableFood(ui.selectTable)">{{getTableOrder(ui.selectTable).length > 0 ? '加餐' : '点餐'}}</div>
-      <div class="modal_menu" v-if="getTableOrder(ui.selectTable).length > 0" @click="btnTableChange(ui.selectTable)">换桌</div>
-
-      <div class="blank_30"></div>
-    </div>
+    </transition>
 
     <div class="modal_center" v-if="ui.v_table_change">
       <div class="modal_close_box" @click="btnCoverMask">

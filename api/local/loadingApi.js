@@ -17,7 +17,7 @@ export const loadingApi = {
   },
   hide() {
     if (debugApi.debug) {
-      this.sleep(500)
+      this.sleep(100)
     }
 
     if (--this.ref <= 0) {

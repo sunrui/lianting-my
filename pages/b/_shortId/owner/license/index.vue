@@ -138,28 +138,29 @@
       <div class="blank_50"></div>
     </div>
 
-    <div class="modal_bottom" v-if="ui.v_charge_year">
-      <div class="modal_close_box" @click="btnCoverMask">
-        <img class="modal_close" src="/img/common/close.png">
+    <transition name="toggle">
+      <div class="modal_bottom" v-if="ui.v_charge_year">
+        <div class="modal_close_box" @click="btnCoverMask">
+          <img class="modal_close" src="/img/common/close.png">
+        </div>
+
+        <div class="modal_title">选择套餐</div>
+
+        <div class="modal_menu" v-bind:class="{modal_menu_select: ui.year === 1}"
+             @click="btnChooseYear(1)">续费 1 年
+        </div>
+        <div class="modal_menu" v-bind:class="{modal_menu_select: ui.year === 2}"
+             @click="btnChooseYear(2)">续费 2 年 <span class="charge_year_tip addition_item_tag_color_2">限时送 1 年</span></div>
+        <div class="modal_menu" v-bind:class="{modal_menu_select: ui.year === 3}"
+             @click="btnChooseYear(3)">续费 3 年 <span class="charge_year_tip addition_item_tag_color_2">限时送 2 年</span></div>
+        <div class="modal_menu" v-bind:class="{modal_menu_select: ui.year === 5}"
+             @click="btnChooseYear(5)">续费 5 年 <span class="charge_year_tip addition_item_tag_color_2">限时送 5 年</span></div>
+
+        <div class="modal_button_box">
+          <div class="button_big" @click="btnChargeConfirm">立即续费</div>
+        </div>
       </div>
-
-      <div class="modal_title">选择套餐</div>
-
-      <div class="modal_menu" v-bind:class="{modal_menu_select: ui.year === 1}"
-           @click="btnChooseYear(1)">续费 1 年
-      </div>
-      <div class="modal_menu" v-bind:class="{modal_menu_select: ui.year === 2}"
-           @click="btnChooseYear(2)">续费 2 年 <span class="charge_year_tip addition_item_tag_color_2">限时送 1 年</span></div>
-      <div class="modal_menu" v-bind:class="{modal_menu_select: ui.year === 3}"
-           @click="btnChooseYear(3)">续费 3 年 <span class="charge_year_tip addition_item_tag_color_2">限时送 2 年</span></div>
-      <div class="modal_menu" v-bind:class="{modal_menu_select: ui.year === 5}"
-           @click="btnChooseYear(5)">续费 5 年 <span class="charge_year_tip addition_item_tag_color_2">限时送 5 年</span></div>
-
-      <div class="modal_button_box">
-        <div class="button_big" @click="btnChargeConfirm">立即续费</div>
-      </div>
-    </div>
-
+    </transition>
   </div>
 </template>
 
