@@ -1,0 +1,57 @@
+.shop_name {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: px2rem(30);
+  color: #333333;
+  margin-left: px2rem(35);
+  line-height: px2rem(88);
+}
+
+.shop_license {
+  position: relative;
+  float: right;
+  text-align: center;
+  margin-right: px2rem(35);
+
+  top: 50%;
+  transform: translate(0, -50%);
+}
+
+.shop_detail {
+  position: relative;
+  background: white;
+
+  .shop_detail_one {
+    position: relative;
+    height: px2rem(70);
+  }
+
+  .shop_detail_left {
+    display: inline-block;
+    line-height: px2rem(70);
+    margin-left: px2rem(35);
+  }
+
+  .shop_detail_expired_at {
+    float: right;
+    line-height: px2rem(70);
+    margin-right: px2rem(35);
+  }
+
+  .shop_license_history {
+    margin-right: px2rem(30);
+    line-height: px2rem(58);
+    text-align: center;
+    color: #666666;
+
+    width: px2rem(168);
+    height: px2rem(58);
+    border: px2rem(2) solid rgba(230, 230, 230, 0.5);
+    border-radius: px2rem(58/2);
+
+    right: 0;
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+  }
+}

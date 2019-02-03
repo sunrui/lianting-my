@@ -23,8 +23,8 @@
               <div class="shop_title_license_king"></div>
               <div class="shop_title_license_label">
                 {{
-                shop.licenseType === 'Normal' ? '普通会员' :
-                shop.licenseType === 'Senior' ? '高级会员' :
+                shop.licenseType === 'Normal' ? '标准会员' :
+                shop.licenseType === 'Senior' ? '旗舰会员' :
                 shop.licenseType === 'Vip' ? '至尊会员' : shop.licenseType
                 }}
               </div>
@@ -63,10 +63,10 @@
             <span class="shop_title_license_king"></span>
             <span class="shop_title_license_label">
               {{
-              shop.licenseType === 'Normal' ? '普通会员' :
-              shop.licenseType === 'Senior' ? '高级会员' :
-              shop.licenseType === 'Vip' ? '至尊会员' : shop.licenseType
-              }}
+                shop.licenseType === 'Normal' ? '标准会员' :
+                shop.licenseType === 'Senior' ? '旗舰会员' :
+                shop.licenseType === 'Vip' ? '至尊会员' : shop.licenseType
+                }}
             </span>
           </div>
         </div>
@@ -202,5 +202,6 @@
 
 <style scoped lang="scss">
   @import '~assets/common';
+  @import '~assets/b/b_shop';
   @import 'index';
 </style>

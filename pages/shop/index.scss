@@ -54,7 +54,6 @@
     margin: px2rem(20) px2rem(35);
   }
 
-
   .shop_title {
     position: relative;
     padding-top: px2rem(100);
@@ -65,36 +64,6 @@
       font-size: px2rem(30);
       height: px2rem(30);
       line-height: px2rem(30);
-    }
-
-    .shop_title_license {
-      display: inline-block;
-      vertical-align: top;
-      background: linear-gradient(90deg, rgba(255, 76, 91, 1), rgba(255, 127, 102, 1));
-      width: px2rem(140);
-      height: px2rem(30);
-      border-radius: px2rem(3);
-
-      .shop_title_license_king {
-        display: inline-block;
-        vertical-align: top;
-
-        background-image: url("/img/b/nav/owner/b_nav_owner_king.png");
-        background-repeat: no-repeat;
-        background-size: 100% 100%;
-        width: px2rem(24);
-        height: px2rem(24);
-        margin-top: px2rem((30 - 24) / 2);
-      }
-
-      .shop_title_license_label {
-        display: inline-block;
-        vertical-align: top;
-
-        font-size: px2rem(18);
-        color: #FFFCF0;
-        line-height: px2rem(30);
-      }
     }
   }
 

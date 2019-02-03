@@ -21,8 +21,8 @@
               <div class="shop_title_license_king"></div>
               <div class="shop_title_license_label">
                 {{
-                http.res.shop.licenseType === 'Normal' ? '普通会员' :
-                http.res.shop.licenseType === 'Senior' ? '高级会员' :
+                http.res.shop.licenseType === 'Normal' ? '标准会员' :
+                http.res.shop.licenseType === 'Senior' ? '旗舰会员' :
                 http.res.shop.licenseType === 'Vip' ? '至尊会员' : http.res.shop.licenseType
                 }}
               </div>
@@ -30,7 +30,7 @@
           </div>
 
           <div class="shop_expired_date">2019/1/1 日过期</div>
-          <div class="shop_charge">管理续费</div>
+          <div class="shop_charge" @click="btnLicense">管理续费</div>
 
           <div class="blank_30"></div>
         </div>
@@ -171,6 +171,9 @@
       },
       btnNav(nav) {
         this.$router.push(nav.url)
+      },
+      btnLicense() {
+        this.$router.push(`/b/${this.$route.params.shortId}/owner/license`)
       }
     }
   }
@@ -179,5 +182,6 @@
 <style scoped lang="scss">
   @import '~assets/common';
   @import '~assets/b/b_nav';
+  @import '~assets/b/b_shop';
   @import 'index';
 </style>
