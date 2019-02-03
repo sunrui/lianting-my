@@ -3,6 +3,11 @@ import { debugApi } from './debugApi'
 export const loadingApi = {
   ref: 0,
   enable: true,
+  sleep(delay) {
+    let start = (new Date()).getTime()
+    while ((new Date()).getTime() - start < delay) {
+    }
+  },
   show() {
     this.ref++
 
@@ -12,12 +17,7 @@ export const loadingApi = {
   },
   hide() {
     if (debugApi.debug) {
-      let sleep = function(delay) {
-        let start = (new Date()).getTime()
-        while ((new Date()).getTime() - start < delay) {
-        }
-      }
-      sleep(100)
+      this.sleep(500)
     }
 
     if (--this.ref <= 0) {

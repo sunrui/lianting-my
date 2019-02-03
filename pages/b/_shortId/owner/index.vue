@@ -29,7 +29,7 @@
             </div>
           </div>
 
-          <div class="shop_expired_date">2019/1/1 日过期</div>
+          <div class="shop_expired_date">{{new Date(parseInt(http.res.shop.licenseExpiredAt)).toLocaleDateString()}} 过期</div>
           <div class="shop_charge" @click="btnLicense">管理续费</div>
 
           <div class="blank_30"></div>

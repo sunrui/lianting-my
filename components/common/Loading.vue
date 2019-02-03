@@ -1,7 +1,7 @@
 <template>
   <div class='loading'>
     <div class="loading_image"></div>
-    <div class="loading_label">正在加载中...</div>
+    <div class="loading_label">正在加载中</div>
   </div>
 </template>
 
@@ -33,5 +33,4 @@
       color: #333333;
     }
   }
-
-</style>s
+</style>

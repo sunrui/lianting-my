@@ -31,7 +31,8 @@
             http.res.shop.licenseType === 'Senior' ? '旗舰会员' :
             http.res.shop.licenseType === 'Vip' ? '至尊会员' :
             http.res.shop.licenseType
-            }}</div>
+            }}
+          </div>
           <div class="shop_detail_expired_at">过期时间: {{new Date(parseInt(http.res.shop.licenseExpiredAt)).toLocaleDateString()}}</div>
         </div>
         <div class="shop_detail_one">
@@ -43,50 +44,37 @@
       </div>
     </div>
 
+    <div class="blank_50"></div>
 
+    <div class="shop_license_plan box_radius" v-for="shopLicensePlan in http.res.shopLicensePlans">
+      <div class="blank_40"></div>
 
+      <div class="shop_license_type">
+        <div class="shop_license_icon"></div>
+        <div class="shop_license_label">免费版</div>
+      </div>
 
-    <p>店铺名称 {{http.res.shop.name}}</p>
-    <p>唯一标识 {{http.res.shop.shortId}}</p>
-    <p>{{
-      http.res.shop.licenseType === 'Normal' ? '标准会员' :
-      http.res.shop.licenseType === 'Senior' ? '旗舰会员' :
-      http.res.shop.licenseType === 'Vip' ? '至尊会员' :
-      http.res.shop.licenseType
-      }}</p>
-    <p>过期时间 {{new Date(parseInt(http.res.shop.licenseExpiredAt)).toLocaleString()}}</p>
-    <button @click="btnChargeHistory">续费记录</button>
+      <div class="blank_20"></div>
+      <div class="shop_license_price">不收取任何费用</div>
+      <div class="blank_10"></div>
 
-    <hr>
-    <div v-bind:key="shopLicensePlan.id" v-for="shopLicensePlan in http.res.shopLicensePlans.elements">
-      <div v-if="shopLicensePlan.licenseType === 'UnActive'">
-        <p>{{shopLicensePlan.name}}</p>
-        <p>这里是标准版的介绍，前端写死</p>
-        <button @click="btnChargeNow(shopLicensePlan)">立即续费</button>
+      <div class="box_divide"></div>
+
+      <div class="shop_license_feature">
+        <div class="shop_license_feature_icon"></div>
+        <div class="shop_license_feature_label">在线支付渠道</div>
       </div>
-      <div v-if="shopLicensePlan.licenseType === 'Normal'">
-        <p>{{shopLicensePlan.name}}</p>
-        <p>这里是标准版的介绍，前端写死</p>
-        <button @click="btnChargeNow(shopLicensePlan)">立即续费</button>
-      </div>
-      <div v-if="shopLicensePlan.licenseType === 'Senior'">
-        <p>{{shopLicensePlan.name}}</p>
-        <p>这里是标准版的介绍，前端写死</p>
-        <button @click="btnChargeNow(shopLicensePlan)">立即续费</button>
-      </div>
-      <div v-if="shopLicensePlan.licenseType === 'Vip'">
-        <p>{{shopLicensePlan.name}}</p>
-        <p>这里是旗舰版的介绍，前端写死</p>
-        <button @click="btnChargeNow(shopLicensePlan)">立即续费</button>
-      </div>
-      <hr>
+
+      <div class="blank_30"></div>
+
+      <div class="shop_license_button">立即续费</div>
+
+      <div class="blank_50"></div>
     </div>
-
   </div>
 </template>
 
 <script>
-  import NavBar from '../../../../../components/NavBar'
   import { httpShopApi } from '../../../../../api/http/shop/httpShopApi'
   import { httpShopLicenseApi } from '../../../../../api/http/shop/httpShopLicenseApi'
   import TitleBar from '../../../../../components/common/TitleBar'

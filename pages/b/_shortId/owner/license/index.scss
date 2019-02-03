@@ -55,3 +55,69 @@
     transform: translate(0, -50%);
   }
 }
+
+.shop_license_plan {
+  margin-top: px2rem(20);
+  background: white;
+  border-radius: px2rem(10);
+  position: relative;
+  margin-left: px2rem(120);
+  margin-right: px2rem(120);
+  text-align: center;
+
+  .shop_license_type {
+    position: relative;
+    height: px2rem(88);
+
+    .shop_license_icon {
+      display: inline-block;
+      vertical-align: middle;
+      background: url("/img/b/license/b_license_normal.png") no-repeat;
+      background-size: 100% 100%;
+      width: px2rem(88);
+      height: px2rem(88);
+    }
+
+    .shop_license_label {
+      display: inline-block;
+      vertical-align: middle;
+      font-size: px2rem(34);
+      color: #FF6B6C;
+      font-weight: bold;
+      line-height: px2rem(88);
+    }
+  }
+
+  .shop_license_price {
+    font-weight: 400;
+  }
+
+  .shop_license_feature {
+    position: relative;
+
+    .shop_license_feature_icon {
+      display: inline-block;
+      vertical-align: middle;
+
+      background: url("/img/b/license/b_license_feature.png") no-repeat;
+      background-size: 100% 100%;
+      width: px2rem(24);
+      height: px2rem(24);
+    }
+
+    .shop_license_feature_label {
+      display: inline-block;
+      vertical-align: middle;
+      margin-left: px2rem(10);
+    }
+  }
+
+  .shop_license_button {
+    height: px2rem(88);
+    background: linear-gradient(90deg, rgba(255, 51, 68, 1), rgba(255, 136, 51, 1));
+    border-radius: 0 0 px2rem(10) px2rem(10);
+    color: white;
+    font-size: px2rem(28);
+    line-height: px2rem(88);
+  }
+}
