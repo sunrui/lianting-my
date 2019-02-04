@@ -20,6 +20,14 @@ export const httpShopLicenseApi = {
       unifiedPayWay: unifiedPayWay
     }).then(res => res.data)
   },
+  postOrderTest(shortId, shopLicensePlanId, year, unifiedPayWay) {
+    return axios.post(`${base}/order/test`, {
+      shortId: shortId,
+      shopLicensePlanId: shopLicensePlanId,
+      year: year,
+      unifiedPayWay: unifiedPayWay
+    }).then(res => res.data)
+  },
   getOrder(shopLicenseOrderId) {
     return axios.get(`${base}/order/${shopLicenseOrderId}`).then(res => res.data)
   },

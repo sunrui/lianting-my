@@ -15,7 +15,7 @@
 
   export default {
     metaInfo: {
-      title: '访问出错'
+      title: '内部错误'
     },
     props: ['error'],
     components: { TitleBar },
@@ -23,7 +23,7 @@
       return {
         title: {
           canBack: true,
-          title: '访问出错',
+          title: '内部错误',
           backUri: null,
           theme: 'white',
           imageHeight: 0

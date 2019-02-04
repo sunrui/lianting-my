@@ -71,14 +71,14 @@
 
   export default {
     metaInfo: {
-      title: '访问出错了'
+      title: '内部错误'
     },
     components: { TitleBar },
     data() {
       return {
         title: {
           canBack: true,
-          title: '访问出错了',
+          title: '内部错误',
           backUri: null,
           theme: 'white',
           imageHeight: 0

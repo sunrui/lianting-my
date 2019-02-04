@@ -40,7 +40,7 @@
         </div>
         <div class="shop_detail_one">
           <div class="shop_detail_left">唯一标识: {{http.res.shop.shortId}}</div>
-          <div class="shop_license_history">续费记录</div>
+          <div class="shop_license_history" @click="btnChargeHistory">续费记录</div>
         </div>
 
         <div class="blank_10"></div>
@@ -279,8 +279,14 @@
         let inWechat = this.userAgent.match(/MicroMessenger/i)
         if (!Boolean(inWechat)) {
           alert('请在微信中打开')
-          return
+          // return
         }
+
+        httpShopLicenseApi.postOrderTest(this.$route.params.shortId, this.ui.licensePlan.id, this.ui.year, 'WECHAT_JSAPI').then(res => {
+          alert('测试续费成功')
+        })
+
+        return
 
         httpShopLicenseApi.postOrder(this.$route.params.shortId, this.ui.licensePlan.id, this.ui.year, 'WECHAT_JSAPI').then(res => {
           if (res.shortIdNotExists) {

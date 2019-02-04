@@ -37,7 +37,9 @@
     components: { NavBar },
     data() {
       return {
-        shopLicenseRes: {},
+        shopLicenseRes: {
+          elements: []
+        },
         ui: {}
       }
     },
