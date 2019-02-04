@@ -315,7 +315,7 @@
             }
 
             if (res.pay.payWayNotSupport) {
-              alert('暂示支付此支付方式')
+              alert('暂未支持此支付方式')
             }
           }
         })
