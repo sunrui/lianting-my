@@ -31,7 +31,9 @@
           shopLicense.payMethod === 'OffLine' ? '线下支付' : shopLicense.payMethod
           }}
         </div>
-        <div class="license_label_one">支付订单号: {{shopLicense.paymentId}}</div>
+        <div class="license_label_one" v-if="shopLicense.paymentId">支付订单号: {{shopLicense.paymentId}}</div>
+        <div class="license_label_one" v-if="shopLicense.remark">备注: {{shopLicense.remark}}</div>
+        <div class="blank_10"></div>
       </div>
     </div>
   </div>

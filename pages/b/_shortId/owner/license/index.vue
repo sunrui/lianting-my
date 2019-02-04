@@ -278,24 +278,47 @@
       btnChargeConfirm() {
         let inWechat = this.userAgent.match(/MicroMessenger/i)
         if (!Boolean(inWechat)) {
-          alert('请在微信中打开')
+          this.$msgBox.doModal({
+            type: 'yes',
+            title: '立即续费',
+            content: '请在微信中打开。'
+          })
           // return
         }
 
         httpShopLicenseApi.postOrderTest(this.$route.params.shortId, this.ui.licensePlan.id, this.ui.year, 'WECHAT_JSAPI').then(res => {
-          alert('测试续费成功')
+          this.ui.v_cover_mask = false
+          this.ui.v_charge_year = false
+          this.$msgBox.doModal({
+            type: 'yes',
+            title: '立即续费',
+            content: '测试续费成功。'
+          })
         })
 
-        return
+        if (1) {
+          return
+        }
 
         httpShopLicenseApi.postOrder(this.$route.params.shortId, this.ui.licensePlan.id, this.ui.year, 'WECHAT_JSAPI').then(res => {
+          this.ui.v_cover_mask = false
+          this.ui.v_charge_year = false
+
           if (res.shortIdNotExists) {
-            alert('店铺不存在')
+            this.$msgBox.doModal({
+              type: 'yes',
+              title: '立即续费',
+              content: '店铺不存在。'
+            })
             return
           }
 
           if (res.shopLicensePlanIdNotExists) {
-            alert('续费授权不存在')
+            this.$msgBox.doModal({
+              type: 'yes',
+              title: '立即续费',
+              content: '续费授权不存在。'
+            })
             return
           }
 
@@ -305,17 +328,29 @@
             }
 
             if (res.pay.wechatOpenIdNotExists) {
-              alert('请先获得微信授权')
+              this.$msgBox.doModal({
+                type: 'yes',
+                title: '立即续费',
+                content: '请先获得微信授权。'
+              })
               return
             }
 
             if (res.pay.payConfigWechatNotExists) {
-              alert('商户尚未设置微信支付参数')
+              this.$msgBox.doModal({
+                type: 'yes',
+                title: '立即续费',
+                content: '商户尚未设置微信支付参数。'
+              })
               return
             }
 
             if (res.pay.payWayNotSupport) {
-              alert('暂未支持此支付方式')
+              this.$msgBox.doModal({
+                type: 'yes',
+                title: '立即续费',
+                content: '暂未支持此支付方式。'
+              })
             }
           }
         })
