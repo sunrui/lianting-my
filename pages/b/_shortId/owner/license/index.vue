@@ -310,6 +310,7 @@
               title: '立即续费',
               content: '店铺不存在。'
             })
+
             return
           }
 
@@ -319,6 +320,17 @@
               title: '立即续费',
               content: '续费授权不存在。'
             })
+
+            return
+          }
+
+          if (res.licenseTypeNotMatch) {
+            this.$msgBox.doModal({
+              type: 'yes',
+              title: '立即续费',
+              content: '续费类型不区配，如您需升级套餐请联系我们。'
+            })
+
             return
           }
 
