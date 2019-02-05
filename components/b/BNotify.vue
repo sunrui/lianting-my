@@ -56,11 +56,6 @@
       }
     },
     props: ['role'],
-    computed: {
-      role: function() {
-        return this.$store.state.notify.role
-      }
-    },
     created() {
       switch (this.role) {
         case 'waiter': {

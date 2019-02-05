@@ -513,7 +513,7 @@
             return '上菜'
         }
       },
-      btnStatus(orderFood, status) {
+      btnChangeStatus(orderFood, status) {
         if (this.http.res.order.status === 'Finished' || this.http.res.order.status === 'Closed') {
           this.$msgBox.doModal({
             type: 'yes',
@@ -715,7 +715,7 @@
           content: '您确认要重置状态吗?'
         }).then(async (val) => {
           if (val === 'Yes') {
-            this.btnStatus(orderFood, status)
+            this.btnChangeStatus(orderFood, status)
           }
         })
       },

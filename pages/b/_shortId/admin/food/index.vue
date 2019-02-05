@@ -58,7 +58,7 @@
           <div class="group_count">({{foodGroup.foodCategories.length}})</div>
         </div>
 
-        <div class="food_box box" @click="btnStatus(foodCategory)" v-for="foodCategory in foodGroup.foodCategories">
+        <div class="food_box box" @click="btnChangeStatus(foodCategory)" v-for="foodCategory in foodGroup.foodCategories">
           <div class="blank_10"></div>
 
           <div class="food box_radius">
@@ -101,6 +101,29 @@
       <div class="blank_30"></div>
     </div>
 
+    <transition name="toggle">
+      <div class="modal_bottom" v-if="ui.v_select_status">
+        <div class="modal_close_box" @click="btnCoverMask">
+          <img class="modal_close" src="/img/common/close.png">
+        </div>
+
+        <div class="modal_title">选择状态</div>
+
+        <div class="modal_menu" v-bind:class="{modal_menu_select: ui.status.selectStatus === 'ONLINE'}"
+             @click="btnChooseStatus('ONLINE')">上架中
+        </div>
+        <div class="modal_menu" v-bind:class="{modal_menu_select: ui.status.selectStatus === 'OFFLINE'}"
+             @click="btnChooseStatus('OFFLINE')">下架中
+        </div>
+        <div class="modal_menu" v-bind:class="{modal_menu_select: ui.status.selectStatus === 'SOLD_OUT'}"
+             @click="btnChooseStatus('SOLD_OUT')">已售罄
+        </div>
+
+        <div class="modal_button_box">
+          <div class="button_big" @click="btnChangeStatusConfirm">确认</div>
+        </div>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -131,7 +154,12 @@
         ui: {
           v_menu_extend: false,
           v_cover_mask: false,
-          selectMenuId: null
+          v_select_status: false,
+          selectMenuId: null,
+          status: {
+            foodCategory: null,
+            selectStatus: ''
+          }
         },
         http: {
           req: {
@@ -170,6 +198,7 @@
         this.ui.v_group_add = false
         this.ui.v_group_edit = false
         this.ui.v_menu_extend = false
+        this.ui.v_select_status = false
         this.ui.v_cover_mask = false
 
         scrollApi.enable(true)
@@ -264,42 +293,6 @@
           menu.scrollLeft = left
         }
       },
-      btnStatus(foodCategory) {
-        let content
-        let status
-
-        if (foodCategory.status === 'ONLINE') {
-          status = 'OFFLINE'
-          content = '下架'
-        } else if (foodCategory.status === 'OFFLINE') {
-          status = 'SOLD_OUT'
-          content = '售罄'
-        } else {
-          status = 'ONLINE'
-          content = '上架'
-        }
-
-        this.$msgBox.doModal({
-          type: 'yesOrNo',
-          title: foodCategory.name,
-          content: `确定要${msgBoxApi.highlight(content)}吗？`
-        }).then(async (val) => {
-          if (val === 'Yes') {
-            foodCategory.status = status
-
-            httpFoodAdminApi.putCategory(this.$route.params.shortId, foodCategory).then(res => {
-              if (res.foodCategoryIdNotExists) {
-                this.$msgBox.doModal({
-                  type: 'yes',
-                  title: foodCategory.name,
-                  content: '餐食不存在。'
-                })
-              } else if (res.success) {
-              }
-            })
-          }
-        })
-      },
       btnLeaf(extend) {
         this.ui.v_menu_extend = extend
         this.ui.v_cover_mask = extend
@@ -309,6 +302,34 @@
         }
 
         scrollApi.enable(!extend)
+      },
+      btnChooseStatus(status) {
+        this.ui.status.selectStatus = status
+      },
+      btnChangeStatus(foodCategory) {
+        this.ui.v_cover_mask = true
+        this.ui.v_select_status = true
+
+        this.ui.status.foodCategory = foodCategory
+        this.ui.status.selectStatus = foodCategory.status
+      },
+      btnChangeStatusConfirm() {
+        this.ui.status.foodCategory.status = this.ui.status.selectStatus
+
+        httpFoodAdminApi.putCategory(this.$route.params.shortId, this.ui.status.foodCategory).then(res => {
+          this.ui.v_select_status = false
+          this.ui.v_cover_mask = false
+
+          if (res.foodCategoryIdNotExists) {
+            this.$msgBox.doModal({
+              type: 'yes',
+              title: foodCategory.name,
+              content: '餐食不存在。'
+            })
+          } else if (res.success) {
+            this.httpFoodGroup()
+          }
+        })
       }
     }
   }
