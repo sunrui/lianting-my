@@ -160,13 +160,23 @@
     <div class="box">
       <div class="addition box_radius">
         <div class="addition_item">
+          <div class="addition_item_label">订单状态</div>
+          <div class="addition_item_content">{{
+            http.res.order.status === 'Paid' ? '已支付' :
+            http.res.order.status === 'NotPaid' ? '待支付' :
+            http.res.order.status === 'Finished' ? '已完成' :
+            http.res.order.status === 'Closed' ? '已关闭' : http.res.order.status
+            }}
+          </div>
+        </div>
+
+        <div class="addition_item" v-if="http.res.order.payMethod">
           <div class="addition_item_label">支付方式</div>
           <div class="addition_item_content">{{
             http.res.order.payMethod === 'Wechat' ? '微信支付' :
             http.res.order.payMethod === 'Alipay' ? '支付宝支付' :
             http.res.order.payMethod === 'Offline' ? '线下支付' :
-            http.res.order.payMethod === 'Cancel' ? '取消支付' :
-            !http.res.order.payMethod ? '未支付' : http.res.order.payMethod
+            http.res.order.payMethod === 'Cancel' ? '取消支付' : http.res.order.payMethod
             }}
           </div>
         </div>
@@ -178,7 +188,6 @@
             <div class="addition_item_content">{{new Date(parseInt(http.res.order.payPaidAt)).toLocaleString()}}</div>
           </div>
         </div>
-
       </div>
     </div>
 
