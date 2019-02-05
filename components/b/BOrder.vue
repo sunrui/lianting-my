@@ -90,7 +90,7 @@
           this.http.res.orders = res
         })
       } else {
-        httpOrderAdminApi.getAll(this.$route.params.shortId, live, 99).then(res => {
+        httpOrderAdminApi.getAll(this.$route.params.shortId, live, 0, 99).then(res => {
           if (res.elements.length === 0) {
             this.$router.push(`/b/${this.$route.params.shortId}/${this.role}/order/empty`)
             return
