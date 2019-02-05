@@ -24,7 +24,7 @@
 
           <div class="shop_menu">
             <img class="shop_menu_icon" src="/img/b/menu/b_menu_captcha.png" @click="btnCaptcha">
-            <img class="shop_menu_icon" src="/img/b/menu/b_menu_ring.png" @click="btnNotify">
+            <img class="shop_menu_icon" src="/img/b/menu/b_menu_ring.png" @click="httpNotifyOrder">
           </div>
 
           <div class="blank_30"></div>

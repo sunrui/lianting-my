@@ -24,7 +24,7 @@
 
           <div class="shop_menu">
             <img class="shop_menu_icon" src="/img/b/menu/b_menu_captcha.png" @click="btnCaptcha">
-            <img class="shop_menu_icon" src="/img/b/menu/b_menu_ring.png">
+            <img class="shop_menu_icon" src="/img/b/menu/b_menu_ring.png" @click="btnNotifyOrder">
           </div>
 
           <div class="blank_30"></div>
@@ -136,6 +136,9 @@
       },
       closeCaptcha() {
         this.ui.v_captcha = false
+      },
+      btnNotifyOrder() {
+        this.$router.push(`/b/${this.$route.params.shortId}/cooker/notify`)
       }
     }
   }

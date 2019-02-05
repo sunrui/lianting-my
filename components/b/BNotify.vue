@@ -94,7 +94,7 @@
             break
           }
           case 'cooker': {
-            types = 'New, FoodAdd, FoodCooked, FoodReturn'
+            types = 'New, FoodAdd, FoodReturn'
             break
           }
           case 'cashier': {

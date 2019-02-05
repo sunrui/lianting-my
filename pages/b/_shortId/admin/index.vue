@@ -133,7 +133,7 @@
       btnShopOpen() {
         this.$msgBox.doModal({
           type: 'yesOrNo',
-          title: '店铺',
+          title: '营业状态',
           content: `${this.http.res.shop.open ? '打烊后顾客将无法下单，' : ''}您确定要${msgBoxApi.highlight(this.http.res.shop.open ? '打烊' : '营业')}吗？`
         }).then(async (val) => {
           if (val === 'Yes') {
