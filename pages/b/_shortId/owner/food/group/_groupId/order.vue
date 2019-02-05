@@ -58,7 +58,7 @@
     },
     methods: {
       httpGroup() {
-        httpFoodApi.getGroup(this.$route.params.shortId, this.$route.params.groupId, false).then(res => {
+        httpFoodAdminApi.getGroup(this.$route.params.shortId, this.$route.params.groupId).then(res => {
           this.http.res.group = res
 
           this.short()

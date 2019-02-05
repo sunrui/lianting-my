@@ -3,6 +3,18 @@ import axios from 'axios'
 let base = '/api/b'
 
 export const httpFoodAdminApi = {
+  getGroup(shortId, foodGroupId) {
+    return axios.get(`${base}/${shortId}/food/group/${foodGroupId}`).then(res => res.data)
+  },
+  getGroupAll(shortId, live, page, size) {
+    return axios.get(`${base}/${shortId}/food/group`, {
+      params: {
+        live: live,
+        page: page,
+        size: size
+      }
+    }).then(res => res.data)
+  },
   postGroup(shortId, foodGroup) {
     return axios.post(`${base}/${shortId}/food/group`, foodGroup).then(res => res.data)
   },

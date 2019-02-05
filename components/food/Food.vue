@@ -307,7 +307,7 @@
         }
       },
       httpFoodGroup() {
-        httpFoodApi.getGroupAll(this.$route.params.shortId, true, 99).then(res => {
+        httpFoodApi.getGroupAll(this.$route.params.shortId, 0, 99).then(res => {
           this.http.res.foodGroups = res
 
           if (this.http.res.foodGroups.elements.length > 0) {

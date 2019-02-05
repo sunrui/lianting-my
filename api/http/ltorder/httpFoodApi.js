@@ -3,17 +3,12 @@ import axios from 'axios'
 let base = '/api/c'
 
 export const httpFoodApi = {
-  getGroup(shortId, foodGroupId, live) {
-    return axios.get(`${base}/${shortId}/food/group/${foodGroupId}`, {
-      params: {
-        live: live
-      }
-    }).then(res => res.data)
+  getGroup(shortId, foodGroupId) {
+    return axios.get(`${base}/${shortId}/food/group/${foodGroupId}`).then(res => res.data)
   },
-  getGroupAll(shortId, live, page, size) {
+  getGroupAll(shortId, page, size) {
     return axios.get(`${base}/${shortId}/food/group`, {
       params: {
-        live: live,
         page: page,
         size: size
       }
