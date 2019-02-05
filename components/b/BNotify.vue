@@ -68,8 +68,8 @@
           canBack: true,
           title: '最新消息',
           backUri: `/b/${this.$route.params.shortId}/${this.role}`,
-          theme: 'white',
-          imageHeight: 0
+          theme: 'image',
+          imageHeight: 220
         },
         http: {
           res: {
