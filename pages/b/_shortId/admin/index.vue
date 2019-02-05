@@ -49,7 +49,7 @@
 </template>
 
 <script>
-  import { httpInfoApi } from '../../../../api/http/ltorder/httpInfoApi'
+  import { httpInfoApi } from '../../../../api/http/lt/httpInfoApi'
   import { httpShopApi } from '../../../../api/http/shop/httpShopApi'
   import TitleBar from '../../../../components/common/TitleBar'
   import Captcha from '../../../../components/common/Captcha'

@@ -55,11 +55,11 @@
 
 <script>
   import TitleBar from '../../../../components/common/TitleBar'
-  import { httpWallApi } from '../../../../api/http/ltorder/httpWallApi'
+  import { httpWallApi } from '../../../../api/http/lt/httpWallApi'
   import { stateApi } from '../../../../api/local/stateApi'
   import { httpUserApi } from '../../../../api/http/user/httpUserApi'
   import { stringApi } from '../../../../api/local/stringApi'
-  import { httpOrderApi } from '../../../../api/http/ltorder/httpOrderApi'
+  import { httpOrderApi } from '../../../../api/http/lt/httpOrderApi'
   import { timeApi } from '../../../../api/local/timeApi'
   import { foodDetailApi } from '../../../../api/local/foodDetail'
 

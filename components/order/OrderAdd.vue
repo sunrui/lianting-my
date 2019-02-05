@@ -127,7 +127,7 @@
 <script>
   import TitleBar from '../common/TitleBar'
   import { cartApi } from '../../api/local/cartApi'
-  import { httpOrderApi } from '../../api/http/ltorder/httpOrderApi'
+  import { httpOrderApi } from '../../api/http/lt/httpOrderApi'
 
   export default {
     metaInfo: {

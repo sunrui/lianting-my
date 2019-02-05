@@ -130,7 +130,7 @@
 
 <script>
   import TitleBar from '../../../../../components/common/TitleBar'
-  import { httpOrderApi } from '../../../../../api/http/ltorder/httpOrderApi'
+  import { httpOrderApi } from '../../../../../api/http/lt/httpOrderApi'
 
   export default {
     metaInfo: {

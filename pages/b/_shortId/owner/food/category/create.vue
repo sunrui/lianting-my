@@ -139,7 +139,7 @@
 </template>
 
 <script>
-  import { httpFoodAdminApi } from '../../../../../../api/http/ltorder/httpFoodAdminApi'
+  import { httpFoodAdminApi } from '../../../../../../api/http/lt/httpFoodAdminApi'
   import TitleBar from '../../../../../../components/common/TitleBar'
   import CurrencyInput from '../../../../../../components/common/CurrencyInput'
   import { highlightApi } from '../../../../../../api/local/highlightApi'

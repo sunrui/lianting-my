@@ -47,11 +47,11 @@
 </template>
 
 <script>
-  import { httpInfoApi } from '../../../../api/http/ltorder/httpInfoApi'
+  import { httpInfoApi } from '../../../../api/http/lt/httpInfoApi'
   import { httpShopApi } from '../../../../api/http/shop/httpShopApi'
   import TitleBar from '../../../../components/common/TitleBar'
   import Captcha from '../../../../components/common/Captcha'
-  import { httpOrderAdminApi } from '../../../../api/http/ltorder/httpOrderAdminApi'
+  import { httpOrderAdminApi } from '../../../../api/http/lt/httpOrderAdminApi'
 
   export default {
     metaInfo: {

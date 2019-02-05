@@ -38,8 +38,8 @@
 
 <script>
   import TitleBar from '../../../../../../components/common/TitleBar'
-  import { httpReserveApi } from '../../../../../../api/http/ltorder/httpReserveApi'
-  import { httpReserveAdminApi } from '../../../../../../api/http/ltorder/httpReserveAdminApi'
+  import { httpReserveApi } from '../../../../../../api/http/lt/httpReserveApi'
+  import { httpReserveAdminApi } from '../../../../../../api/http/lt/httpReserveAdminApi'
 
   export default {
     metaInfo: {

@@ -84,9 +84,9 @@
 </template>
 
 <script>
-  import { httpQueueApi } from '../../../../../api/http/ltorder/httpQueueApi'
-  import { httpTableApi } from '../../../../../api/http/ltorder/httpTableApi'
-  import { httpQueueAdminApi } from '../../../../../api/http/ltorder/httpQueueAdminApi'
+  import { httpQueueApi } from '../../../../../api/http/lt/httpQueueApi'
+  import { httpTableApi } from '../../../../../api/http/lt/httpTableApi'
+  import { httpQueueAdminApi } from '../../../../../api/http/lt/httpQueueAdminApi'
   import { timeApi } from '../../../../../api/local/timeApi'
   import TitleBar from '../../../../../components/common/TitleBar'
 

@@ -79,8 +79,8 @@
 </template>
 
 <script>
-  import { httpInfoApi } from '../../../../../api/http/ltorder/httpInfoApi'
-  import { httpInfoAdminApi } from '../../../../../api/http/ltorder/httpInfoAdminApi'
+  import { httpInfoApi } from '../../../../../api/http/lt/httpInfoApi'
+  import { httpInfoAdminApi } from '../../../../../api/http/lt/httpInfoAdminApi'
   import { httpShopApi } from '../../../../../api/http/shop/httpShopApi'
   import TitleBar from '../../../../../components/common/TitleBar'
 

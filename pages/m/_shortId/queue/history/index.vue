@@ -35,7 +35,7 @@
 
 <script>
   import TitleBar from '../../../../../components/common/TitleBar'
-  import { httpQueueApi } from '../../../../../api/http/ltorder/httpQueueApi'
+  import { httpQueueApi } from '../../../../../api/http/lt/httpQueueApi'
 
   export default {
     metaInfo: {

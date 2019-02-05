@@ -69,7 +69,7 @@
 </template>
 
 <script>
-  import { httpRoleAdminApi } from '../../../../../api/http/ltorder/httpRoleAdminApi'
+  import { httpRoleAdminApi } from '../../../../../api/http/lt/httpRoleAdminApi'
   import TitleBar from '../../../../../components/common/TitleBar'
   import { validatorApi } from '../../../../../api/local/validatorApi'
 

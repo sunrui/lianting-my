@@ -103,9 +103,9 @@
 <script>
   import TitleBar from '../../../../../components/common/TitleBar'
   import { httpShopApi } from '../../../../../api/http/shop/httpShopApi'
-  import { httpInfoApi } from '../../../../../api/http/ltorder/httpInfoApi'
-  import { httpTableApi } from '../../../../../api/http/ltorder/httpTableApi'
-  import { httpTableAdminApi } from '../../../../../api/http/ltorder/httpTableAdminApi'
+  import { httpInfoApi } from '../../../../../api/http/lt/httpInfoApi'
+  import { httpTableApi } from '../../../../../api/http/lt/httpTableApi'
+  import { httpTableAdminApi } from '../../../../../api/http/lt/httpTableAdminApi'
   import Captcha from '../../../../../components/common/Captcha'
   import { scrollApi } from '../../../../../api/local/scrollApi'
   import { highlightApi } from '../../../../../api/local/highlightApi'

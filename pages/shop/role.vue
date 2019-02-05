@@ -26,7 +26,7 @@
 </template>
 
 <script>
-  import { httpRoleApi } from '../../api/http/ltorder/httpRoleApi'
+  import { httpRoleApi } from '../../api/http/lt/httpRoleApi'
 
   export default {
     metaInfo: {

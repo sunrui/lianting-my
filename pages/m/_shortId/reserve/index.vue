@@ -103,10 +103,10 @@
   import TitleBar from '../../../../components/common/TitleBar'
   import Calendar from '../../../../components/common/Calendar'
   import { timeApi } from '../../../../api/local/timeApi'
-  import { httpTableApi } from '../../../../api/http/ltorder/httpTableApi'
+  import { httpTableApi } from '../../../../api/http/lt/httpTableApi'
   import { httpShopApi } from '../../../../api/http/shop/httpShopApi'
-  import { httpInfoApi } from '../../../../api/http/ltorder/httpInfoApi'
-  import { httpReserveApi } from '../../../../api/http/ltorder/httpReserveApi'
+  import { httpInfoApi } from '../../../../api/http/lt/httpInfoApi'
+  import { httpReserveApi } from '../../../../api/http/lt/httpReserveApi'
 
   export default {
     metaInfo: {

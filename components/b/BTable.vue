@@ -156,16 +156,16 @@
 
 <script>
   import { httpShopApi } from '../../api/http/shop/httpShopApi'
-  import { httpInfoApi } from '../../api/http/ltorder/httpInfoApi'
-  import { httpTableApi } from '../../api/http/ltorder/httpTableApi'
+  import { httpInfoApi } from '../../api/http/lt/httpInfoApi'
+  import { httpTableApi } from '../../api/http/lt/httpTableApi'
   import { scrollApi } from '../../api/local/scrollApi'
   import TitleBar from '../common/TitleBar'
   import Captcha from '../common/Captcha'
-  import { httpOrderAdminApi } from '../../api/http/ltorder/httpOrderAdminApi'
+  import { httpOrderAdminApi } from '../../api/http/lt/httpOrderAdminApi'
   import { foodDetailApi } from '../../api/local/foodDetail'
   import { timeApi } from '../../api/local/timeApi'
   import { stateApi } from '../../api/local/stateApi'
-  import { httpCaptchaApi } from '../../api/http/ltorder/httpCaptchaApi'
+  import { httpCaptchaApi } from '../../api/http/lt/httpCaptchaApi'
 
   export default {
     metaInfo: {

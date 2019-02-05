@@ -53,7 +53,7 @@
 </template>
 
 <script>
-  import { httpNotifyAdminApi } from '../../api/http/ltorder/httpNotifyAdminApi'
+  import { httpNotifyAdminApi } from '../../api/http/lt/httpNotifyAdminApi'
   import TitleBar from '../common/TitleBar'
 
   export default {

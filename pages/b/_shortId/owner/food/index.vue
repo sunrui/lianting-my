@@ -137,9 +137,9 @@
 <script>
   import TitleBar from '../../../../../components/common/TitleBar'
   import { httpShopApi } from '../../../../../api/http/shop/httpShopApi'
-  import { httpInfoApi } from '../../../../../api/http/ltorder/httpInfoApi'
-  import { httpFoodApi } from '../../../../../api/http/ltorder/httpFoodApi'
-  import { httpFoodAdminApi } from '../../../../../api/http/ltorder/httpFoodAdminApi'
+  import { httpInfoApi } from '../../../../../api/http/lt/httpInfoApi'
+  import { httpFoodApi } from '../../../../../api/http/lt/httpFoodApi'
+  import { httpFoodAdminApi } from '../../../../../api/http/lt/httpFoodAdminApi'
   import { highlightApi } from '../../../../../api/local/highlightApi'
 
   export default {

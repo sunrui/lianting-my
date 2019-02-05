@@ -26,7 +26,7 @@
 <script>
 
   import TitleBar from '../../../../../components/common/TitleBar'
-  import { httpReserveApi } from '../../../../../api/http/ltorder/httpReserveApi'
+  import { httpReserveApi } from '../../../../../api/http/lt/httpReserveApi'
 
   export default {
     metaInfo: {

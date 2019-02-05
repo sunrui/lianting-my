@@ -53,7 +53,7 @@
 <script>
   import { timeApi } from '../../../../../../api/local/timeApi'
   import { foodDetailApi } from '../../../../../../api/local/foodDetail'
-  import { httpOrderAdminApi } from '../../../../../../api/http/ltorder/httpOrderAdminApi'
+  import { httpOrderAdminApi } from '../../../../../../api/http/lt/httpOrderAdminApi'
 
   export default {
     metaInfo: {

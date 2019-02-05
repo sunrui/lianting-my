@@ -26,7 +26,7 @@
 </template>
 
 <script>
-  import { httpCouponApi } from '../../../../../api/http/ltorder/httpCouponApi'
+  import { httpCouponApi } from '../../../../../api/http/lt/httpCouponApi'
 
   export default {
     metaInfo: {

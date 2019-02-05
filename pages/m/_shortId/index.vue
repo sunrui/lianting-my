@@ -97,13 +97,13 @@
 
 <script>
   import { httpShopApi } from '../../../api/http/shop/httpShopApi'
-  import { httpCouponApi } from '../../../api/http/ltorder/httpCouponApi'
-  import { httpInfoApi } from '../../../api/http/ltorder/httpInfoApi'
-  import { httpQueueApi } from '../../../api/http/ltorder/httpQueueApi'
-  import { httpWifiApi } from '../../../api/http/ltorder/httpWifiApi'
-  import { httpReserveApi } from '../../../api/http/ltorder/httpReserveApi'
-  import { httpWallApi } from '../../../api/http/ltorder/httpWallApi'
-  import { httpFoodApi } from '../../../api/http/ltorder/httpFoodApi'
+  import { httpCouponApi } from '../../../api/http/lt/httpCouponApi'
+  import { httpInfoApi } from '../../../api/http/lt/httpInfoApi'
+  import { httpQueueApi } from '../../../api/http/lt/httpQueueApi'
+  import { httpWifiApi } from '../../../api/http/lt/httpWifiApi'
+  import { httpReserveApi } from '../../../api/http/lt/httpReserveApi'
+  import { httpWallApi } from '../../../api/http/lt/httpWallApi'
+  import { httpFoodApi } from '../../../api/http/lt/httpFoodApi'
 
   export default {
     metaInfo: {

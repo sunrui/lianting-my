@@ -55,7 +55,7 @@
 </template>
 
 <script>
-  import { httpCouponAdminApi } from '../../../../../api/http/ltorder/httpCouponAdminApi'
+  import { httpCouponAdminApi } from '../../../../../api/http/lt/httpCouponAdminApi'
   import TitleBar from '../../../../../components/common/TitleBar'
   import Empty from '../../../../../components/common/Empty'
 

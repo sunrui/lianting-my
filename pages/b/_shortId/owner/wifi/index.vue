@@ -37,8 +37,8 @@
 </template>
 
 <script>
-  import { httpWifiApi } from '../../../../../api/http/ltorder/httpWifiApi'
-  import { httpWifiAdminApi } from '../../../../../api/http/ltorder/httpWifiAdminApi'
+  import { httpWifiApi } from '../../../../../api/http/lt/httpWifiApi'
+  import { httpWifiAdminApi } from '../../../../../api/http/lt/httpWifiAdminApi'
   import TitleBar from '../../../../../components/common/TitleBar'
 
   export default {

@@ -39,7 +39,7 @@
 
 <script>
   import TitleBar from '../common/TitleBar'
-  import { httpOrderAdminApi } from '../../api/http/ltorder/httpOrderAdminApi'
+  import { httpOrderAdminApi } from '../../api/http/lt/httpOrderAdminApi'
 
   export default {
     metaInfo: {

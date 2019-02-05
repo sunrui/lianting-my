@@ -2,9 +2,9 @@
 </template>
 
 <script>
-  import { httpWallApi } from '../../../../../api/http/ltorder/httpWallApi'
+  import { httpWallApi } from '../../../../../api/http/lt/httpWallApi'
   import { timeApi } from '../../../../../api/local/timeApi'
-  import { httpOrderApi } from '../../../../../api/http/ltorder/httpOrderApi'
+  import { httpOrderApi } from '../../../../../api/http/lt/httpOrderApi'
   import { foodDetailApi } from '../../../../../api/local/foodDetail'
   import TitleBar from '../../../../../components/common/TitleBar'
 

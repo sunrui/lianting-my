@@ -30,7 +30,7 @@
 </template>
 
 <script>
-  import { httpTableApi } from '../../../../../api/http/ltorder/httpTableApi'
+  import { httpTableApi } from '../../../../../api/http/lt/httpTableApi'
   import { httpShopApi } from '../../../../../api/http/shop/httpShopApi'
 
   export default {

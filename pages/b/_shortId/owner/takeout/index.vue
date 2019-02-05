@@ -5,7 +5,7 @@
 </template>
 
 <script>
-  import { httpTakeoutAdminApi } from '../../../../../api/http/ltorder/httpTakeOutAdminApi'
+  import { httpTakeoutAdminApi } from '../../../../../api/http/lt/httpTakeOutAdminApi'
 
   export default {
     metaInfo: {

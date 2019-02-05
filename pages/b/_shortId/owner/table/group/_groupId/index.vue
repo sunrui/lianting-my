@@ -66,8 +66,8 @@
 
 <script>
   import TitleBar from '../../../../../../../components/common/TitleBar'
-  import { httpTableApi } from '../../../../../../../api/http/ltorder/httpTableApi'
-  import { httpTableAdminApi } from '../../../../../../../api/http/ltorder/httpTableAdminApi'
+  import { httpTableApi } from '../../../../../../../api/http/lt/httpTableApi'
+  import { httpTableAdminApi } from '../../../../../../../api/http/lt/httpTableAdminApi'
 
   export default {
     metaInfo: {

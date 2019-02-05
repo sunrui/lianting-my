@@ -45,7 +45,7 @@
 </template>
 
 <script>
-  import { httpFoodApi } from '../../api/http/ltorder/httpFoodApi'
+  import { httpFoodApi } from '../../api/http/lt/httpFoodApi'
   import TitleBar from '../common/TitleBar'
 
   export default {

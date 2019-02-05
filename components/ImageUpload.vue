@@ -17,8 +17,8 @@
 </template>
 
 <script>
-  import {httpUploadAdminApi} from '../api/http/ltorder/httpUploadAdminApi'
-  import {httpWechatApi} from '../api/http/ltorder/httpWechatApi'
+  import {httpUploadAdminApi} from '../api/http/lt/httpUploadAdminApi'
+  import {httpWechatApi} from '../api/http/lt/httpWechatApi'
 
   export default {
     async asyncData({store, route, userAgent}) {

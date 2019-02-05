@@ -50,8 +50,8 @@
 </template>
 
 <script>
-  import { httpReserveApi } from '../../../../../api/http/ltorder/httpReserveApi'
-  import { httpReserveAdminApi } from '../../../../../api/http/ltorder/httpReserveAdminApi'
+  import { httpReserveApi } from '../../../../../api/http/lt/httpReserveApi'
+  import { httpReserveAdminApi } from '../../../../../api/http/lt/httpReserveAdminApi'
   import TitleBar from '../../../../../components/common/TitleBar'
 
   export default {

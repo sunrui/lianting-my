@@ -208,15 +208,15 @@
 </template>
 
 <script>
-  import { httpFoodApi } from '../../api/http/ltorder/httpFoodApi'
+  import { httpFoodApi } from '../../api/http/lt/httpFoodApi'
   import { cartApi } from '../../api/local/cartApi'
   import { cloneApi } from '../../api/local/cloneApi'
   import TitleBar from '../common/TitleBar'
   import { scrollApi } from '../../api/local/scrollApi'
   import { httpShopApi } from '../../api/http/shop/httpShopApi'
-  import { httpInfoApi } from '../../api/http/ltorder/httpInfoApi'
-  import { httpOrderApi } from '../../api/http/ltorder/httpOrderApi'
-  import { httpOrderAdminApi } from '../../api/http/ltorder/httpOrderAdminApi'
+  import { httpInfoApi } from '../../api/http/lt/httpInfoApi'
+  import { httpOrderApi } from '../../api/http/lt/httpOrderApi'
+  import { httpOrderAdminApi } from '../../api/http/lt/httpOrderAdminApi'
   import { highlightApi } from '../../api/local/highlightApi'
 
   export default {

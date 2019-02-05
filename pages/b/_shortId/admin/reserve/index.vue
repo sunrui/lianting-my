@@ -48,7 +48,7 @@
 </template>
 
 <script>
-  import { httpReserveAdminApi } from '../../../../../api/http/ltorder/httpReserveAdminApi'
+  import { httpReserveAdminApi } from '../../../../../api/http/lt/httpReserveAdminApi'
   import TitleBar from '../../../../../components/common/TitleBar'
   import { timeApi } from '../../../../../api/local/timeApi'
 

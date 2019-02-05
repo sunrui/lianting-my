@@ -110,7 +110,7 @@
 <script>
   import TitleBar from '../common/TitleBar'
   import { cartApi } from '../../api/local/cartApi'
-  import { httpOrderApi } from '../../api/http/ltorder/httpOrderApi'
+  import { httpOrderApi } from '../../api/http/lt/httpOrderApi'
   import { stateApi } from '../../api/local/stateApi'
   import { scrollApi } from '../../api/local/scrollApi'
 

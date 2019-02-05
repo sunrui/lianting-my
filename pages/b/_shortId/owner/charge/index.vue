@@ -31,7 +31,7 @@
 
 <script>
   import { httpUserApi } from '../../../../../api/http/user/httpUserApi'
-  import { httpChargeAdminApi } from '../../../../../api/http/ltorder/httpChargeAdminApi'
+  import { httpChargeAdminApi } from '../../../../../api/http/lt/httpChargeAdminApi'
 
   export default {
     metaInfo: {

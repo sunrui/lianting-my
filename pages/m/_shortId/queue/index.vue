@@ -146,10 +146,10 @@
 
 <script>
   import TitleBar from '../../../../components/common/TitleBar'
-  import { httpQueueApi } from '../../../../api/http/ltorder/httpQueueApi'
-  import { httpTableApi } from '../../../../api/http/ltorder/httpTableApi'
+  import { httpQueueApi } from '../../../../api/http/lt/httpQueueApi'
+  import { httpTableApi } from '../../../../api/http/lt/httpTableApi'
   import { httpShopApi } from '../../../../api/http/shop/httpShopApi'
-  import { httpInfoApi } from '../../../../api/http/ltorder/httpInfoApi'
+  import { httpInfoApi } from '../../../../api/http/lt/httpInfoApi'
 
   export default {
     metaInfo: {

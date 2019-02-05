@@ -363,9 +363,9 @@
 
 <script>
   import TitleBar from '../common/TitleBar'
-  import { httpOrderApi } from '../../api/http/ltorder/httpOrderApi'
-  import { httpOrderAdminApi } from '../../api/http/ltorder/httpOrderAdminApi'
-  import { httpCaptchaApi } from '../../api/http/ltorder/httpCaptchaApi'
+  import { httpOrderApi } from '../../api/http/lt/httpOrderApi'
+  import { httpOrderAdminApi } from '../../api/http/lt/httpOrderAdminApi'
+  import { httpCaptchaApi } from '../../api/http/lt/httpCaptchaApi'
   import { scrollApi } from '../../api/local/scrollApi'
   import { timeApi } from '../../api/local/timeApi'
   import { stateApi } from '../../api/local/stateApi'

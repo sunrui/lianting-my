@@ -96,7 +96,7 @@
 <script>
   import TitleBar from '../../components/common/TitleBar'
   import { httpShopApi } from '../../api/http/shop/httpShopApi'
-  import { httpInfoApi } from '../../api/http/ltorder/httpInfoApi'
+  import { httpInfoApi } from '../../api/http/lt/httpInfoApi'
 
   export default {
     metaInfo: {

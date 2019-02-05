@@ -95,7 +95,7 @@
   import TitleBar from '../../../../components/common/TitleBar'
   import { timeApi } from '../../../../api/local/timeApi'
   import { stateApi } from '../../../../api/local/stateApi'
-  import { httpReserveApi } from '../../../../api/http/ltorder/httpReserveApi'
+  import { httpReserveApi } from '../../../../api/http/lt/httpReserveApi'
 
   export default {
     metaInfo: {

@@ -77,7 +77,7 @@
 </template>
 
 <script>
-  import { httpTableAdminApi } from '../../../../../../api/http/ltorder/httpTableAdminApi'
+  import { httpTableAdminApi } from '../../../../../../api/http/lt/httpTableAdminApi'
   import TitleBar from '../../../../../../components/common/TitleBar'
 
   export default {
