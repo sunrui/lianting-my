@@ -204,7 +204,7 @@
       },
       btnNav(nav) {
         if (nav.tag === 'food') {
-          httpFoodApi.getGroupAll(this.$route.params.shortId, true, 0, 999).then(res => {
+          httpFoodApi.getGroupAll(this.$route.params.shortId, true, 99).then(res => {
             if (res.elements.length > 0) {
 
               let haveFood = false

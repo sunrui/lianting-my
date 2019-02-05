@@ -50,7 +50,7 @@
     },
     methods: {
       loadReserves() {
-        httpReserveApi.getAll(this.$route.params.shortId, null, null, 0, 999).then(res => {
+        httpReserveApi.getAll(this.$route.params.shortId, null, null, 99).then(res => {
           this.reserves = res
         })
       },

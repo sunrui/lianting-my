@@ -235,7 +235,7 @@
         })
       },
       httpTableGroup() {
-        httpTableApi.getGroupAll(this.$route.params.shortId, 0, 999).then(res => {
+        httpTableApi.getGroupAll(this.$route.params.shortId, 99).then(res => {
           this.http.res.tableGroups = res
 
           if (this.http.res.tableGroups.elements.length > 0) {
@@ -454,7 +454,7 @@
       btnTableOrder(table) {
         scrollApi.enable(true)
 
-        httpOrderAdminApi.getAllByTableOneId(this.$route.params.shortId, table.id, 1, 0, 999).then(res => {
+        httpOrderAdminApi.getAllByTableOneId(this.$route.params.shortId, table.id, 1, 99).then(res => {
           if (res.elements.length === 0) {
             this.$router.push(`/b/${this.$route.params.shortId}/${this.role}/order/empty`)
             return

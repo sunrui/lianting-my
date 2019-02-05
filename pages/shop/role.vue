@@ -47,7 +47,7 @@
         home: '/'
       })
 
-      httpRoleApi.getAll(0, 999).then(res => {
+      httpRoleApi.getAll(099).then(res => {
         console.log(res)
         this.ui.loading = false
         this.shopRoles = res

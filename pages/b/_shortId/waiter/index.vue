@@ -128,7 +128,7 @@
       },
       btnNav(nav) {
         if (nav.tag === 'order') {
-          httpOrderAdminApi.getAll(this.$route.params.shortId, 1, 0, 999).then(res => {
+          httpOrderAdminApi.getAll(this.$route.params.shortId, 1, 99).then(res => {
             if (res.elements.length === 0) {
               this.$router.push(`/b/${this.$route.params.shortId}/waiter/order/empty`)
             } else {

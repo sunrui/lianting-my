@@ -139,7 +139,7 @@
             }
           })
         } else if (url === 'coupon/history') {
-          httpCouponApi.getCouponUser(this.$route.params.shortId, false, 0, 999).then(res => {
+          httpCouponApi.getCouponUser(this.$route.params.shortId, false, 99).then(res => {
             if (res.elements.length === 0) {
               this.$router.push(`/m/${this.$route.params.shortId}/coupon/history/empty`)
             }
