@@ -140,7 +140,7 @@
   import { httpInfoApi } from '../../../../../api/http/ltorder/httpInfoApi'
   import { httpFoodApi } from '../../../../../api/http/ltorder/httpFoodApi'
   import { httpFoodAdminApi } from '../../../../../api/http/ltorder/httpFoodAdminApi'
-  import { msgBoxApi } from '../../../../../api/local/msgBoxApi'
+  import { highlightApi } from '../../../../../api/local/highlightApi'
 
   export default {
     metaInfo: {
@@ -366,7 +366,7 @@
         this.$msgBox.doModal({
           type: 'yesOrNo',
           title: '删除餐食组',
-          content: `当前组下所有的餐食将会被删除，确定要删除${msgBoxApi.highlight(foodGroup.name)}吗？`
+          content: `当前组下所有的餐食将会被删除，确定要删除${highlightApi.highlight(foodGroup.name)}吗？`
         }).then(async (val) => {
           if (val === 'Yes') {
             httpFoodAdminApi.deleteGroup(this.$route.params.shortId, foodGroup.id).then(res => {
@@ -390,7 +390,7 @@
         this.$msgBox.doModal({
           type: 'yesOrNo',
           title: '删除餐食',
-          content: `确定要删除${msgBoxApi.highlight(foodCategory.name)}吗？`
+          content: `确定要删除${highlightApi.highlight(foodCategory.name)}吗？`
         }).then(async (val) => {
           if (val === 'Yes') {
             httpFoodAdminApi.deleteCategory(this.$route.params.shortId, foodCategory.id).then(res => {

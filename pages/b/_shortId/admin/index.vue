@@ -53,7 +53,7 @@
   import { httpShopApi } from '../../../../api/http/shop/httpShopApi'
   import TitleBar from '../../../../components/common/TitleBar'
   import Captcha from '../../../../components/common/Captcha'
-  import { msgBoxApi } from '../../../../api/local/msgBoxApi'
+  import { highlightApi } from '../../../../api/local/highlightApi'
 
   export default {
     metaInfo: {
@@ -134,7 +134,7 @@
         this.$msgBox.doModal({
           type: 'yesOrNo',
           title: '营业状态',
-          content: `${this.http.res.shop.open ? '打烊后顾客将无法下单，' : ''}您确定要${msgBoxApi.highlight(this.http.res.shop.open ? '打烊' : '营业')}吗？`
+          content: `${this.http.res.shop.open ? '打烊后顾客将无法下单，' : ''}您确定要${highlightApi.highlight(this.http.res.shop.open ? '打烊' : '营业')}吗？`
         }).then(async (val) => {
           if (val === 'Yes') {
             this.http.res.shop.open = !this.http.res.shop.open

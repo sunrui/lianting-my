@@ -142,7 +142,7 @@
   import { httpFoodAdminApi } from '../../../../../../api/http/ltorder/httpFoodAdminApi'
   import TitleBar from '../../../../../../components/common/TitleBar'
   import CurrencyInput from '../../../../../../components/common/CurrencyInput'
-  import { msgBoxApi } from '../../../../../../api/local/msgBoxApi'
+  import { highlightApi } from '../../../../../../api/local/highlightApi'
 
   export default {
     metaInfo: {
@@ -250,7 +250,7 @@
             this.$msgBox.doModal({
               type: 'yes',
               title: '添加价格',
-              content: `类别${msgBoxApi.highlight(one.name)}已存在。`
+              content: `类别${highlightApi.highlight(one.name)}已存在。`
             })
 
             return
@@ -329,7 +329,7 @@
             this.$msgBox.doModal({
               type: 'yes',
               title: '添加餐食',
-              content: `名称${msgBoxApi.highlight(this.http.req.category.name)}已存在。`
+              content: `名称${highlightApi.highlight(this.http.req.category.name)}已存在。`
             })
 
             return
@@ -355,7 +355,7 @@
                   this.$msgBox.doModal({
                     type: 'yes',
                     title: '添加餐食价格',
-                    content: `名称${msgBoxApi.highlight(one.name)}已存在。`
+                    content: `名称${highlightApi.highlight(one.name)}已存在。`
                   })
 
                   return

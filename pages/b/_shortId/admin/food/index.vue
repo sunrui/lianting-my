@@ -134,7 +134,7 @@
   import { httpFoodApi } from '../../../../../api/http/ltorder/httpFoodApi'
   import { httpFoodAdminApi } from '../../../../../api/http/ltorder/httpFoodAdminApi'
   import { scrollApi } from '../../../../../api/local/scrollApi'
-  import { msgBoxApi } from '../../../../../api/local/msgBoxApi'
+  import { highlightApi } from '../../../../../api/local/highlightApi'
 
   export default {
     metaInfo: {

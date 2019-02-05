@@ -28,7 +28,7 @@
   import TitleBar from '../../../../../../../components/common/TitleBar'
   import { httpFoodApi } from '../../../../../../../api/http/ltorder/httpFoodApi'
   import { httpFoodAdminApi } from '../../../../../../../api/http/ltorder/httpFoodAdminApi'
-  import { msgBoxApi } from '../../../../../../../api/local/msgBoxApi'
+  import { highlightApi } from '../../../../../../../api/local/highlightApi'
 
   export default {
     metaInfo: {
@@ -139,7 +139,7 @@
               this.$msgBox.doModal({
                 type: 'yes',
                 title: '编辑餐食',
-                content: `名称${msgBoxApi.highlight(this.http.req.category.name)}已存在。`
+                content: `名称${highlightApi.highlight(this.http.req.category.name)}已存在。`
               })
 
               return

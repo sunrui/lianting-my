@@ -108,7 +108,7 @@
   import { httpTableAdminApi } from '../../../../../api/http/ltorder/httpTableAdminApi'
   import Captcha from '../../../../../components/common/Captcha'
   import { scrollApi } from '../../../../../api/local/scrollApi'
-  import { msgBoxApi } from '../../../../../api/local/msgBoxApi'
+  import { highlightApi } from '../../../../../api/local/highlightApi'
 
   export default {
     metaInfo: {
@@ -287,7 +287,7 @@
         this.$msgBox.doModal({
           type: 'yesOrNo',
           title: '删除餐桌组',
-          content: `当前组下所有的餐桌将会被删除，确定要删除${msgBoxApi.highlight(tableGroup.name)}吗？`
+          content: `当前组下所有的餐桌将会被删除，确定要删除${highlightApi.highlight(tableGroup.name)}吗？`
         }).then(async (val) => {
           if (val === 'Yes') {
             httpTableAdminApi.deleteGroup(this.$route.params.shortId, tableGroup.id).then(res => {
@@ -311,7 +311,7 @@
         this.$msgBox.doModal({
           type: 'yesOrNo',
           title: '删除餐桌',
-          content: `确定要删除${msgBoxApi.highlight(table.fullNumber)}吗？`
+          content: `确定要删除${highlightApi.highlight(table.fullNumber)}吗？`
         }).then(async (val) => {
           if (val === 'Yes') {
             httpTableAdminApi.deleteTable(this.$route.params.shortId, table.id).then(res => {

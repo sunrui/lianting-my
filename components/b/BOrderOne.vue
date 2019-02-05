@@ -361,7 +361,7 @@
   import { stateApi } from '../../api/local/stateApi'
   import DropDown from '../common/DropDown'
   import CurrencyInput from '../common/CurrencyInput'
-  import { msgBoxApi } from '../../api/local/msgBoxApi'
+  import { highlightApi } from '../../api/local/highlightApi'
 
   export default {
     metaInfo: {
@@ -552,7 +552,7 @@
         this.$msgBox.doModal({
           type: 'yesOrNo',
           title: '更改状态',
-          content: `确认将${msgBoxApi.highlight(orderFood.foodCategoryName)}的状态更为${msgBoxApi.highlight(this.getStatusLabel(status))}</span>吗?`
+          content: `确认将${highlightApi.highlight(orderFood.foodCategoryName)}的状态更为${highlightApi.highlight(this.getStatusLabel(status))}</span>吗?`
         }).then(async (val) => {
           if (val === 'Yes') {
             httpOrderAdminApi.putFoodStatus(this.$route.params.shortId, this.$route.params.orderOneId, orderFood.id, status).then(res => {

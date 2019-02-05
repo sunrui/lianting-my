@@ -217,7 +217,7 @@
   import { httpInfoApi } from '../../api/http/ltorder/httpInfoApi'
   import { httpOrderApi } from '../../api/http/ltorder/httpOrderApi'
   import { httpOrderAdminApi } from '../../api/http/ltorder/httpOrderAdminApi'
-  import { msgBoxApi } from '../../api/local/msgBoxApi'
+  import { highlightApi } from '../../api/local/highlightApi'
 
   export default {
     metaInfo: {
@@ -424,7 +424,7 @@
                 this.$msgBox.doModal({
                   type: 'yes',
                   title: '购物车',
-                  content: `${msgBoxApi.highlight(foodCategory.name)}已下架，请重新下单。`
+                  content: `${highlightApi.highlight(foodCategory.name)}已下架，请重新下单。`
                 })
                 return false
               }
@@ -433,7 +433,7 @@
                 this.$msgBox.doModal({
                   type: 'yes',
                   title: '购物车',
-                  content: `${msgBoxApi.highlight(foodCategory.name)}已售罄，请重新下单。`
+                  content: `${highlightApi.highlight(foodCategory.name)}已售罄，请重新下单。`
                 })
                 return false
               }
@@ -447,7 +447,7 @@
         this.$msgBox.doModal({
           type: 'yes',
           title: '购物车',
-          content: `${msgBoxApi.highlight(foodCategory.name)}已下架，请重新下单。`
+          content: `${highlightApi.highlight(foodCategory.name)}已下架，请重新下单。`
         })
 
         return false
