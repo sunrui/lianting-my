@@ -301,7 +301,7 @@
             let path
 
             if (this.roleWaiter) {
-              path = `/b/${this.$route.params.shortId}//waiter/order/${this.http.res.order.id}/success`
+              path = `/b/${this.$route.params.shortId}/waiter/order/${this.http.res.order.id}/success`
             } else {
               path = `/m/${this.$route.params.shortId}/order/${this.http.res.order.id}/success`
             }
