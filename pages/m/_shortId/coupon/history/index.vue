@@ -51,7 +51,7 @@
     },
     methods: {
       _loadCoupon() {
-        httpCouponApi.getCouponUser(this.$route.params.shortId, false, 99).then(res => {
+        httpCouponApi.getCouponUser(this.$route.params.shortId, false, 0, 99).then(res => {
           this.couponUsers = res
         })
       }

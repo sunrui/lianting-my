@@ -86,7 +86,7 @@
     },
     methods: {
       httpCoupon() {
-        httpCouponAdminApi.getCoupon(this.$route.params.shortId, 99).then(res => {
+        httpCouponAdminApi.getCoupon(this.$route.params.shortId, 0, 99).then(res => {
           this.http.res.coupons = res
         })
       },

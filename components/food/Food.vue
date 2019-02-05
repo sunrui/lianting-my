@@ -634,7 +634,7 @@
         }
 
         if (Boolean(this.$route.query.tableId)) {
-          httpOrderAdminApi.getAllByTableOneId(this.$route.params.shortId, this.$route.query.tableId, 1, 0, 99).then(res => {
+          httpOrderAdminApi.getAllByTableOneId(this.$route.params.shortId, this.$route.query.tableId, true, 0, 99).then(res => {
             this.orderRouter(res)
           })
         } else {
