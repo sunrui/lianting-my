@@ -3,6 +3,8 @@
     <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
     <div class="search_area">
+      <div class="blank_20"></div>
+
       <div class="search_box">
         <div class="search">
           <div class="search_icon"></div>
