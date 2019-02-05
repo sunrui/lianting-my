@@ -193,11 +193,18 @@
 
   .return_food {
 
-    .return_food_label {
+    .return_food_category_name {
       display: inline-block;
       font-size: px2rem(28);
       font-weight: 400;
       color: #333333;
+    }
+
+    .return_food_name {
+      display: inline-block;
+      margin-left: px2rem(5);
+      font-weight: 400;
+      color: #666666;
     }
 
     .return_food_count {

@@ -272,7 +272,8 @@
 
         <div class="return">
           <div class="return_food">
-            <div class="return_food_label">{{ui.selectOrderFood.foodCategoryName}} ({{ui.selectOrderFood.foodName}})</div>
+            <div class="return_food_category_name">{{ui.selectOrderFood.foodCategoryName}}</div>
+            <div class="return_food_name">({{ui.selectOrderFood.foodName}})</div>
             <div class="return_food_count">{{ui.selectOrderFood.count}} 份</div>
           </div>
 
