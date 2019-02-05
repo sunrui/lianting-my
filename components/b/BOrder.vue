@@ -74,8 +74,10 @@
       this.title.backUri = `/b/${this.$route.params.shortId}/${this.role}`
 
       let tableOneId = this.$route.query.tableOneId
+      let live = (this.role !== 'admin')
+
       if (Boolean(tableOneId)) {
-        httpOrderAdminApi.getAllByTableOneId(this.$route.params.shortId, tableOneId, 1, 99).then(res => {
+        httpOrderAdminApi.getAllByTableOneId(this.$route.params.shortId, tableOneId, live, 0, 99).then(res => {
           if (res.elements.length === 0) {
             this.$router.push(`/b/${this.$route.params.shortId}/${this.role}/order/empty`)
             return
@@ -88,7 +90,6 @@
           this.http.res.orders = res
         })
       } else {
-        let live = (this.role !== 'admin')
         httpOrderAdminApi.getAll(this.$route.params.shortId, live, 99).then(res => {
           if (res.elements.length === 0) {
             this.$router.push(`/b/${this.$route.params.shortId}/${this.role}/order/empty`)
