@@ -525,13 +525,7 @@
         }
       },
       btnChangeStatus(orderFood, status) {
-        if (this.http.res.order.status === 'Finished' || this.http.res.order.status === 'Closed') {
-          this.$msgBox.doModal({
-            type: 'yes',
-            title: '更改状态',
-            content: '订单已关闭。'
-          })
-
+        if (this.http.res.order.status === 'Paid' || this.http.res.order.status === 'Finished' || this.http.res.order.status === 'Closed') {
           return
         }
 
@@ -608,7 +602,7 @@
         scrollApi.enable(true)
       },
       btnPeople() {
-        if (this.http.res.order.status === 'Paid' || this.http.res.order.status === 'Finished') {
+        if (this.http.res.order.status === 'Paid' || this.http.res.order.status === 'Finished' || this.http.res.order.status === 'Closed') {
           return
         }
 
@@ -701,6 +695,10 @@
         })
       },
       btnStatusReset(orderFood, status) {
+        if (this.http.res.order.status === 'Paid' || this.http.res.order.status === 'Finished' || this.http.res.order.status === 'Closed') {
+          return
+        }
+
         if (this.role !== 'admin') {
           this.$msgBox.doModal({
             type: 'yes',
