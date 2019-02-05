@@ -217,6 +217,7 @@
   import { httpInfoApi } from '../../api/http/ltorder/httpInfoApi'
   import { httpOrderApi } from '../../api/http/ltorder/httpOrderApi'
   import { httpOrderAdminApi } from '../../api/http/ltorder/httpOrderAdminApi'
+  import { msgBoxApi } from '../../api/local/msgBoxApi'
 
   export default {
     metaInfo: {
@@ -423,7 +424,7 @@
                 this.$msgBox.doModal({
                   type: 'yes',
                   title: '购物车',
-                  content: '<span style="color:#f52626; font-weight: 400">' + foodCategory.name + '</span>' + '已下架，请重新下单。'
+                  content: `${msgBoxApi.highlight(foodCategory.name)}已下架，请重新下单。`
                 })
                 return false
               }
@@ -432,7 +433,7 @@
                 this.$msgBox.doModal({
                   type: 'yes',
                   title: '购物车',
-                  content: '<span style="color:#f52626; font-weight: 400">' + foodCategory.name + '</span>' + '已售罄，请重新下单。'
+                  content: `${msgBoxApi.highlight(foodCategory.name)}已售罄，请重新下单。`
                 })
                 return false
               }
@@ -446,7 +447,7 @@
         this.$msgBox.doModal({
           type: 'yes',
           title: '购物车',
-          content: '<span style="color:#f52626; font-weight: 400">' + foodCategory.name + '</span>' + '已下架，请重新下单。'
+          content: `${msgBoxApi.highlight(foodCategory.name)}已下架，请重新下单。`
         })
 
         return false
@@ -481,7 +482,7 @@
           this.$msgBox.doModal({
             type: 'yes',
             title: '点餐',
-            content: '菜品最多允许添加99份，如您有特殊需求请联系服务员。'
+            content: '餐食最多允许添加99份，如您有特殊需求请联系服务员。'
           })
 
           return
@@ -532,7 +533,7 @@
           this.$msgBox.doModal({
             type: 'yes',
             title: '无法删除',
-            content: '同一菜品已选中多个规格，如需删除请打开购物车。'
+            content: '同一餐食已选中多个规格，如需删除请打开购物车。'
           })
           return
         }

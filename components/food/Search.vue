@@ -7,7 +7,7 @@
         <div class="search">
           <div class="search_icon"></div>
           <div class="search_input_area">
-            <input class="search_input" placeholder="请输入菜品关键字..." v-model="http.req.search.name">
+            <input class="search_input" placeholder="请输入餐食关键字..." v-model="http.req.search.name" @input="btnInput">
           </div>
         </div>
 
@@ -36,7 +36,7 @@
       </div>
 
       <div class="search_not_found" v-if="ui.v_searchEmpty">
-        <div class="search_not_found_label">没有找到关于<span style="color:#f52626; font-weight: 400">"{{this.http.req.search.name}}"</span>的菜品</div>
+        <div class="search_not_found_label">没有找到关于<span style="color:#f52626; font-weight: 400">{{this.http.req.search.name}}</span>的结果</div>
       </div>
     </div>
   </div>
@@ -88,12 +88,17 @@
       }
     },
     methods: {
+      btnInput() {
+        this.ui.v_searchResult = false
+        this.ui.v_searchHot = true
+        this.ui.v_searchEmpty = false
+      },
       btnSearch() {
         if (!Boolean(this.http.req.search.name)) {
           this.$msgBox.doModal({
             type: 'yes',
             title: '搜索',
-            content: '请输入菜品关键字。'
+            content: '请输入餐食关键字。'
           }).then(async (val) => {
           })
           return
