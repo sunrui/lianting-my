@@ -80,7 +80,7 @@
           }
         }
       },
-      btnNotify() {
+      httpNotifyOrder() {
         this.$router.push(`/b/${this.shortId}/${this.role}/notify`)
       }
     }

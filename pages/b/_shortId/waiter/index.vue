@@ -149,7 +149,7 @@
       closeCaptcha() {
         this.ui.v_captcha = false
       },
-      btnNotify() {
+      httpNotifyOrder() {
         this.$router.push(`/b/${this.$route.params.shortId}/waiter/notify`)
       }
     }
