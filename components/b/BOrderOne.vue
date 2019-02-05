@@ -97,7 +97,7 @@
       <div class="blank_20"></div>
     </div>
 
-    <div class="box" v-if="role !== 'cooker'">
+    <div class="box">
       <div class="order_content box_radius">
         <div class="order_tableware">
           <div class="order_tableware_icon">餐位费</div>
@@ -157,7 +157,7 @@
       </div>
     </div>
 
-    <div class="box" v-if="role !== 'cooker'">
+    <div class="box">
       <div class="addition box_radius">
         <div class="addition_item">
           <div class="addition_item_label">订单状态</div>
