@@ -1,6 +1,5 @@
 <template>
   <section>
-    <nav-bar></nav-bar>
     <div v-if="ui.loading">
       <p>loading....的小圈圈</p>
     </div>
@@ -28,14 +27,13 @@
 
 <script>
   import { httpRoleApi } from '../../api/http/ltorder/httpRoleApi'
-  import NavBar from '../../components/NavBar'
 
   export default {
     metaInfo: {
       title: '工作台'
     },
     middleware: 'auth',
-    components: { NavBar },
+    components: { },
     data() {
       return {
         shopRoles: {},

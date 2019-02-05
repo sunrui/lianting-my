@@ -5,7 +5,7 @@
     <div class="empty">
       <img class="empty_image" src="/img/no/no_crash.png">
       <div class="empty_label" v-if="error.statusCode === 404">404 - 呃〜好像走丢了！~</div>
-      <div class="empty_label" v-else>{{error}}</div>
+      <div class="empty_label" v-else>{{error.message}}</div>
     </div>
   </div>
 </template>

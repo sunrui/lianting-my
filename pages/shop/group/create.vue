@@ -1,7 +1,5 @@
 <template>
   <section>
-    <nav-bar></nav-bar>
-
     <h1 v-if="ui.shopGroupName">品牌名称: {{ui.shopGroupName}}</h1>
 
     <hr>
@@ -35,7 +33,6 @@
 </template>
 
 <script>
-  import NavBar from '../../../components/NavBar'
   import { stateApi } from '../../../api/local/stateApi'
   import { httpSmsApi } from '../../../api/http/user/httpSmsApi'
   import { validatorApi } from '../../../api/local/validatorApi'
@@ -47,7 +44,7 @@
       title: '创建品牌'
     },
     middleware: 'auth',
-    components: { NavBar },
+    components: { },
     data() {
       return {
         shopGroupReq: {

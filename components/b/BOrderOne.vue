@@ -529,7 +529,7 @@
             this.$msgBox.doModal({
               type: 'yes',
               title: '更改状态',
-              content: '仅允许厨师可以操作，您只有查看权限。'
+              content: '仅允许主管、厨师可以操作，您只有查看权限。'
             })
 
             return
@@ -541,7 +541,7 @@
             this.$msgBox.doModal({
               type: 'yes',
               title: '更改状态',
-              content: '仅允许服务员可以操作，您只有查看权限。'
+              content: '仅允许主管、服务员可以操作，您只有查看权限。'
             })
 
             return
@@ -604,7 +604,7 @@
           this.$msgBox.doModal({
             type: 'yes',
             title: '更改人数',
-            content: '没有权限。'
+            content: '仅允许主管、服务员、收银可以更改，您只有查看权限。'
           })
 
           return
@@ -733,7 +733,7 @@
           this.$msgBox.doModal({
             type: 'yes',
             title: '改价',
-            content: '仅允许主管和收银可以操作，您只有查看权限。。'
+            content: '仅允许主管、收银可以操作，您只有查看权限。。'
           })
 
           return

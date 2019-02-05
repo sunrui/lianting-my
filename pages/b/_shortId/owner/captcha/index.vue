@@ -1,7 +1,5 @@
 <template>
   <section>
-    <nav-bar></nav-bar>
-
     <div v-if="ui.loading">
       <p>loading 的小圈圈</p>
     </div>
@@ -32,7 +30,6 @@
 </template>
 
 <script>
-  import NavBar from '../../../../../components/NavBar'
   import { httpTableApi } from '../../../../../api/http/ltorder/httpTableApi'
   import { httpShopApi } from '../../../../../api/http/shop/httpShopApi'
 
@@ -41,7 +38,6 @@
       title: '二维码'
     },
     middleware: 'auth',
-    components: { NavBar },
     data() {
       return {
         shop: {},

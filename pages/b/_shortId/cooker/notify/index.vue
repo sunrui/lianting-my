@@ -1,39 +1,16 @@
 <template>
-  <section>
-    <nav-bar></nav-bar>
-    <hr>
-
-    <notify-detail></notify-detail>
-
-  </section>
+  <b-notify role="cooker"></b-notify>
 </template>
 
 <script>
-  import NavBar from '../../../../../components/NavBar'
-  import NotifyDetail from '../../../../../components/NotifyDetail'
+  import BNotify from '../../../../../components/b/BNotify'
 
   export default {
     metaInfo: {
-      title: '厨师'
+      title: '最新消息'
     },
     middleware: 'auth',
-    components: { NavBar, NotifyDetail },
-    data() {
-      return {
-        notifyOrders: {},
-        ui: {}
-      }
-    },
-    created() {
-      this.$store.commit('navbar/update', {
-        canBack: true,
-        title: '厨师',
-        home: `/b/${this.$route.params.shortId}/cook`
-      })
-
-      this.$store.commit('notify/update', 'cooker')
-    },
-    methods: {}
+    components: { BNotify }
   }
 </script>
 

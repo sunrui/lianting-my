@@ -1,12 +1,10 @@
 <template>
   <section>
-    <nav-bar></nav-bar>
     <button @click="btnPutTakeOutConfig">提交</button>
   </section>
 </template>
 
 <script>
-  import NavBar from '../../../../../components/NavBar'
   import { httpTakeoutAdminApi } from '../../../../../api/http/ltorder/httpTakeOutAdminApi'
 
   export default {
@@ -14,7 +12,7 @@
       title: '外卖'
     },
     middleware: 'auth',
-    components: { NavBar },
+    components: {},
     data() {
       return {
         takeout: {

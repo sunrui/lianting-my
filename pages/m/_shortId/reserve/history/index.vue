@@ -1,7 +1,5 @@
 <template>
   <section>
-    <nav-bar></nav-bar>
-
     <div v-if="ui.loading">
       <p>loading 的小圈圈</p>
     </div>
@@ -33,7 +31,6 @@
 </template>
 
 <script>
-  import NavBar from '../../../../../components/NavBar'
   import { httpReserveApi } from '../../../../../api/http/ltorder/httpReserveApi'
 
   export default {
@@ -41,7 +38,7 @@
       title: '我的预订'
     },
     middleware: 'auth',
-    components: { NavBar },
+    components: { },
     data() {
       return {
         reserves: {},

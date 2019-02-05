@@ -1,7 +1,5 @@
 <template>
   <section>
-    <nav-bar></nav-bar>
-
     <div ref="shopGroupReq" :model="shopGroupReq.model" :rules="shopGroupReq.rule">
       <div class="form-group">
         <label>品牌名称</label>
@@ -20,14 +18,13 @@
 
 <script>
   import { httpShopGroupApi } from '../../../../../api/http/shop/httpShopGroupApi'
-  import NavBar from '../../../../../components/NavBar'
 
   export default {
     metaInfo: {
       title: '编辑品牌资料'
     },
     middleware: 'auth',
-    components: { NavBar },
+    components: { },
     data() {
       return {
         ui: {},

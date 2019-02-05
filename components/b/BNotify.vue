@@ -37,19 +37,25 @@
 </template>
 
 <script>
-  import {timeApi} from '../api/local/timeApi'
-  import {httpNotifyAdminApi} from '../api/http/ltorder/httpNotifyAdminApi'
+  import { timeApi } from '../../api/local/timeApi'
+  import { httpNotifyAdminApi } from '../../api/http/ltorder/httpNotifyAdminApi'
 
   export default {
+    metaInfo: {
+      title: '最新消息'
+    },
     middleware: 'auth',
     data() {
       return {
-        notifyOrders: {},
+        notifyOrders: {
+          elements: []
+        },
         shortId: null,
         types: null,
         ui: {}
       }
     },
+    props: ['role'],
     computed: {
       role: function() {
         return this.$store.state.notify.role
@@ -73,13 +79,11 @@
 
       this.shortId = this.$route.params.shortId
 
-      this._loadnotifyOrders()
+      this.httpNotifyOrders()
     },
     methods: {
-      _loadnotifyOrders() {
-
-
-        httpNotifyAdminApi.getnotifyOrder(this.shortId, true, this.types, 0, 20).then(res => {
+      httpNotifyOrders() {
+        httpNotifyAdminApi.getNotifyOrder(this.shortId, true, this.types, 0, 20).then(res => {
           this.notifyOrders = res
         })
       },
@@ -99,7 +103,7 @@
             alert('标识成功')
           }
 
-          this._loadnotifyOrders()
+          this.httpNotifyOrders()
         })
       }
     }

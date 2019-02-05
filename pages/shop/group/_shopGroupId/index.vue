@@ -1,7 +1,5 @@
 <template>
   <section>
-    <nav-bar></nav-bar>
-
     <div v-if="ui.loading">loading 的小圈圈</div>
     <div v-else>
       <h3>品牌信息</h3>
@@ -41,14 +39,13 @@
 
 <script>
   import { httpShopGroupApi } from '../../../../api/http/shop/httpShopGroupApi'
-  import NavBar from '../../../../components/NavBar'
 
   export default {
     metaInfo: {
       title: '品牌管理'
     },
     middleware: 'auth',
-    components: { NavBar },
+    components: { },
     data() {
       return {
         ui: {},

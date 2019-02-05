@@ -51,7 +51,6 @@
 </template>
 
 <script>
-  import NavBar from '../../../../../../components/NavBar'
   import { timeApi } from '../../../../../../api/local/timeApi'
   import { foodDetailApi } from '../../../../../../api/local/foodDetail'
   import { httpOrderAdminApi } from '../../../../../../api/http/ltorder/httpOrderAdminApi'
@@ -61,7 +60,7 @@
       title: '消费记录'
     },
     middleware: 'auth',
-    components: { NavBar },
+    components: { },
     data() {
       return {
         orders: {},

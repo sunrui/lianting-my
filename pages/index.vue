@@ -143,7 +143,6 @@
 
 <script>
   import { stateApi } from '../api/local/stateApi'
-  import NavBar from '../components/NavBar'
 
   export default {
     metaInfo: {
@@ -152,7 +151,7 @@
     data() {
       return {}
     },
-    components: { NavBar },
+    components: {},
     computed: {
       authed() {
         let userId = stateApi.user.getId()

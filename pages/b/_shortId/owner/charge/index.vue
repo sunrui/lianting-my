@@ -1,8 +1,5 @@
 <template>
   <section>
-    <nav-bar></nav-bar>
-    <hr>
-
     <div v-if="ui.loading">
       <p>正在加载中</p>
     </div>
@@ -33,7 +30,6 @@
 </template>
 
 <script>
-  import NavBar from '../../../../../components/NavBar'
   import { httpUserApi } from '../../../../../api/http/user/httpUserApi'
   import { httpChargeAdminApi } from '../../../../../api/http/ltorder/httpChargeAdminApi'
 
@@ -42,7 +38,7 @@
       title: '顾客'
     },
     middleware: 'auth',
-    components: { NavBar },
+    components: { },
     data() {
       return {
         charges: {},
@@ -50,12 +46,6 @@
       }
     },
     created() {
-      this.$store.commit('navbar/update', {
-        canBack: true,
-        title: '顾客',
-        home: `/b/${this.$route.params.shortId}/owner`
-      })
-
       this._loadCharge()
     },
     methods: {

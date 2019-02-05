@@ -1,6 +1,5 @@
 <template>
   <section>
-    <nav-bar></nav-bar>
     <hr>
 
     <div v-if="ui.loading">
@@ -27,7 +26,6 @@
 </template>
 
 <script>
-  import NavBar from '../../../../components/NavBar'
   import { httpCouponApi } from '../../../../api/http/ltorder/httpCouponApi'
 
   export default {
@@ -35,7 +33,7 @@
       title: '优惠券'
     },
     middleware: 'auth',
-    components: { NavBar },
+    components: { },
     data() {
       return {
         coupons: [],
