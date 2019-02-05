@@ -84,11 +84,6 @@
     methods: {
       httpReserveAll() {
         httpReserveAdminApi.getAll(this.$route.params.shortId, null, null, 0, 9999).then(res => {
-          if (res.elements.length === 0) {
-            this.$router.push(`/b/${this.$route.params.shortId}/waiter/reserve/empty`)
-            return
-          }
-
           res.elements.sort(function(a, b) {
             return b.date - a.date
           })

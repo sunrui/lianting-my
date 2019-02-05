@@ -1,0 +1,82 @@
+.reserve_title {
+  position: relative;
+  margin-top: px2rem(20);
+  height: px2rem(90);
+
+  .reserve_title_icon {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: px2rem(35);
+
+    background-image: url("/img/b/reserve/b_reserve_clock.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    height: px2rem(40);
+    width: px2rem(40);
+  }
+
+  .reserve_title_label {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: px2rem(10);
+    font-size: px2rem(28);
+    line-height: px2rem(90);
+  }
+}
+
+.week {
+  position: relative;
+  background: white;
+
+  .week_list {
+    padding: px2rem(20) px2rem(30);
+
+    .week_one_item {
+      position: relative;
+      width: 33%;
+      text-align: center;
+
+      .week_one {
+        display: inline-block;
+        background: #F5F5F5;
+        width: 80%;
+        height: px2rem(68);
+        margin-bottom: px2rem(20);
+      }
+    }
+  }
+}
+
+.week {
+  background: white;
+  overflow:hidden;
+
+  .week_list {
+    text-align: center;
+
+    .week_one {
+      position: relative;
+      width: 25%;
+      float: left;
+      margin-bottom: px2rem(20);
+
+      .week_one_name {
+        display: inline-block;
+
+        background: #F5F5F5;
+        color: #666666;
+        width: 80%;
+        padding: px2rem(10) px2rem(10);
+      }
+
+      .week_one_name_select {
+        display: inline-block;
+
+        background: #FFEBEB;
+        color: #f52626;
+        width: 80%;
+        padding: px2rem(10) px2rem(10);
+      }
+    }
+  }
+}

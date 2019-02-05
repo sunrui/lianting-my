@@ -112,7 +112,7 @@
           this.http.res.tableGroups = res
 
           if (res.elements.length === 0) {
-            this.$router.push(`/b/${this.$route.params.shortId}/waiter/table/empty`)
+            this.$router.push(`/b/${this.$route.params.shortId}/admin/table/empty`)
             return
           }
 
