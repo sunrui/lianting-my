@@ -34,8 +34,6 @@
           <div class="order_food_price">{{orderFood.count * orderFood.foodPrice}}</div>
         </div>
 
-        <div class="box_divide"></div>
-
         <div class="order_tableware">
           <div class="order_tableware_icon">餐位费</div>
           <div class="order_tableware_label">餐具</div>
