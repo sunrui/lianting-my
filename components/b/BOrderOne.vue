@@ -608,6 +608,10 @@
         scrollApi.enable(true)
       },
       btnPeople() {
+        if (this.http.res.order.status === 'Paid' || this.http.res.order.status === 'Finished') {
+          return
+        }
+
         if (this.role === 'cooker') {
           this.$msgBox.doModal({
             type: 'yes',
