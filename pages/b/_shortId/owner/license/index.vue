@@ -74,59 +74,61 @@
         <!--private Integer maxAdmin;-->
         <!--private Integer maxCoupon;-->
 
-        <div class="shop_license_feature">
-          <div class="shop_license_feature_icon"></div>
-          <div class="shop_license_feature_label">在线支付渠道</div>
-        </div>
+        <div class="shop_feature">
+          <div class="shop_feature_one">
+            <div class="shop_feature_one_icon"></div>
+            <div class="shop_feature_one_label">在线支付渠道</div>
+          </div>
 
-        <div class="shop_license_feature">
-          <div class="shop_license_feature_icon"></div>
-          <div class="shop_license_feature_label">{{license.limit.maxFoods}} 个上架餐食</div>
-        </div>
+          <div class="shop_feature_one">
+            <div class="shop_feature_one_icon"></div>
+            <div class="shop_feature_one_label">{{license.limit.maxFoods}} 个上架餐食</div>
+          </div>
 
-        <div class="shop_license_feature">
-          <div class="shop_license_feature_icon"></div>
-          <div class="shop_license_feature_label">{{license.limit.maxTables}} 个餐桌</div>
-        </div>
+          <div class="shop_feature_one">
+            <div class="shop_feature_one_icon"></div>
+            <div class="shop_feature_one_label">{{license.limit.maxTables}} 个餐桌</div>
+          </div>
 
-        <div class="shop_license_feature">
-          <div class="shop_license_feature_icon"></div>
-          <div class="shop_license_feature_label">{{license.limit.maxQueue}} 个排队用户</div>
-        </div>
+          <div class="shop_feature_one">
+            <div class="shop_feature_one_icon"></div>
+            <div class="shop_feature_one_label">{{license.limit.maxQueue}} 个排队用户</div>
+          </div>
 
-        <div class="shop_license_feature">
-          <div class="shop_license_feature_icon"></div>
-          <div class="shop_license_feature_label">{{license.limit.maxReserve}} 个预订人数/天</div>
-        </div>
+          <div class="shop_feature_one">
+            <div class="shop_feature_one_icon"></div>
+            <div class="shop_feature_one_label">{{license.limit.maxReserve}} 个预订人数/天</div>
+          </div>
 
-        <div class="shop_license_feature">
-          <div class="shop_license_feature_icon"></div>
-          <div class="shop_license_feature_label">{{license.limit.maxWaiter}} 个服务员</div>
-        </div>
+          <div class="shop_feature_one">
+            <div class="shop_feature_one_icon"></div>
+            <div class="shop_feature_one_label">{{license.limit.maxWaiter}} 个服务员</div>
+          </div>
 
-        <div class="shop_license_feature">
-          <div class="shop_license_feature_icon"></div>
-          <div class="shop_license_feature_label">{{license.limit.maxCooker}} 个厨师</div>
-        </div>
+          <div class="shop_feature_one">
+            <div class="shop_feature_one_icon"></div>
+            <div class="shop_feature_one_label">{{license.limit.maxCooker}} 个厨师</div>
+          </div>
 
-        <div class="shop_license_feature">
-          <div class="shop_license_feature_icon"></div>
-          <div class="shop_license_feature_label">{{license.limit.maxCashier}} 个收银</div>
-        </div>
+          <div class="shop_feature_one">
+            <div class="shop_feature_one_icon"></div>
+            <div class="shop_feature_one_label">{{license.limit.maxCashier}} 个收银</div>
+          </div>
 
-        <div class="shop_license_feature">
-          <div class="shop_license_feature_icon"></div>
-          <div class="shop_license_feature_label">{{license.limit.maxAdmin}} 个主管</div>
-        </div>
+          <div class="shop_feature_one">
+            <div class="shop_feature_one_icon"></div>
+            <div class="shop_feature_one_label">{{license.limit.maxAdmin}} 个主管</div>
+          </div>
 
-        <div class="shop_license_feature">
-          <div class="shop_license_feature_icon"></div>
-          <div class="shop_license_feature_label">{{license.limit.maxCoupon}} 个营销活动</div>
-        </div>
+          <div class="shop_feature_one">
+            <div class="shop_feature_one_icon"></div>
+            <div class="shop_feature_one_label">{{license.limit.maxCoupon}} 个营销活动</div>
+          </div>
 
-        <div class="shop_license_feature">
-          <div class="shop_license_feature_icon"></div>
-          <div class="shop_license_feature_label">无限订单</div>
+          <div class="shop_feature_one">
+            <div class="shop_feature_one_icon"></div>
+            <div class="shop_feature_one_label">无限订单</div>
+          </div>
         </div>
 
         <div class="blank_30"></div>

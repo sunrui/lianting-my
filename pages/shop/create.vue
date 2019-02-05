@@ -169,7 +169,7 @@
             this.$msgBox.doModal({
               type: 'yes',
               title: '创建店铺',
-              content: '您最多仅允许创建一个未激活店铺。'
+              content: '您最多仅允许创建一个免费店铺。'
             })
           } else if (res.shopGroupIdNotExists) {
             this.$msgBox.doModal({

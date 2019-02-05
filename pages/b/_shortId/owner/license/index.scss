@@ -91,16 +91,19 @@
     font-weight: 400;
   }
 
-  .shop_license_feature {
+  .shop_feature {
+    display: inline-block;
+  }
+
+  .shop_feature_one {
     position: relative;
     margin-top: px2rem(15);
     margin-bottom: px2rem(15);
     text-align: left;
 
-    .shop_license_feature_icon {
+    .shop_feature_one_icon {
       display: inline-block;
       vertical-align: middle;
-      margin-left: 30%;
 
       background: url("/img/b/license/b_license_feature.png") no-repeat;
       background-size: 100% 100%;
@@ -108,7 +111,7 @@
       height: px2rem(24);
     }
 
-    .shop_license_feature_label {
+    .shop_feature_one_label {
       display: inline-block;
       vertical-align: middle;
       margin-left: px2rem(10);
