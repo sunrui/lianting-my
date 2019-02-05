@@ -24,7 +24,7 @@
 
           <div class="shop_menu">
             <img class="shop_menu_icon" src="/img/b/menu/b_menu_captcha.png" @click="btnCaptcha">
-            <img class="shop_menu_icon" src="/img/b/menu/b_menu_ring.png">
+            <img class="shop_menu_icon" src="/img/b/menu/b_menu_ring.png" @click="btnNotifyOrder">
             <img class="shop_menu_icon" src="/img/b/menu/b_menu_shop_open.png" v-if="http.res.shop.open" @click="btnShopOpen">
             <img class="shop_menu_icon" src="/img/b/menu/b_menu_shop_close.png" v-else @click="btnShopOpen">
           </div>
@@ -155,6 +155,9 @@
       },
       closeCaptcha() {
         this.ui.v_captcha = false
+      },
+      btnNotifyOrder() {
+        this.$router.push(`/b/${this.$route.params.shortId}/admin/notify`)
       }
     }
   }

@@ -45,7 +45,7 @@
           <div class="notify_table_number">{{notifyOrder.tableGroupName}} {{notifyOrder.tableFullNumber}}</div>
           <div class="notify_detail_button" @click="btnOrder(notifyOrder.orderOneId)">查看详情</div>
 
-          <div class="blank_10"></div>
+          <div class="blank_20"></div>
         </div>
       </div>
     </div>
@@ -86,9 +86,10 @@
     },
     methods: {
       httpNotifyOrder() {
-        let types = []
+        let types
 
         switch (this.role) {
+          case 'admin':
           case 'waiter': {
             types = 'New, FoodAdd, FoodCooked, FoodReturn, Paid'
             break
