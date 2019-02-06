@@ -143,9 +143,7 @@
         let id = 'capture_' + table.id
 
         html2canvas(document.getElementById(id)).then(canvas => {
-          // document.body.appendChild(canvas)
-
-          let fileName = table.tableGroup_name + table.fullNumber
+          let fileName = table.tableGroup_name + '_' + table.fullNumber
           downloadApi.download(canvas, fileName)
         })
       }

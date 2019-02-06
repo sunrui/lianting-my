@@ -102,14 +102,13 @@
   height: px2rem(66);
   font-size: px2rem(40);
   font-weight: bold;
-  line-height: px2rem(66);
+  //line-height: px2rem(66);
   padding: 0 px2rem(35);
 
   z-index: 1;
 }
 
 .captcha_part_title_left {
-  position: relative;
   display: inline-block;
   margin-right: px2rem(-30);
   margin-top: px2rem(10);
@@ -121,7 +120,6 @@
 }
 
 .captcha_part_title_right {
-  position: relative;
   display: inline-block;
   margin-left: px2rem(-30);
   margin-top: px2rem(10);
