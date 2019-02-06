@@ -525,7 +525,7 @@
         }
       },
       btnChangeStatus(orderFood, status) {
-        if (this.http.res.order.status === 'Paid' || this.http.res.order.status === 'Finished' || this.http.res.order.status === 'Closed') {
+        if (this.http.res.order.status === 'Finished' || this.http.res.order.status === 'Closed') {
           return
         }
 
@@ -695,7 +695,7 @@
         })
       },
       btnStatusReset(orderFood, status) {
-        if (this.http.res.order.status === 'Paid' || this.http.res.order.status === 'Finished' || this.http.res.order.status === 'Closed') {
+        if (this.http.res.order.status === 'Finished' || this.http.res.order.status === 'Closed') {
           return
         }
 
