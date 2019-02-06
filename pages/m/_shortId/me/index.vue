@@ -31,10 +31,10 @@
             <div class="box_divide" v-if="index !== ui.navs.length - 1"></div>
           </div>
         </div>
-
-        <div class="status_footer"></div>
       </div>
     </div>
+
+    <div class="copyright" @click="btnCopyright">恋厅©提供技术支持</div>
   </div>
 </template>
 
@@ -71,7 +71,7 @@
             { name: '我的预订', url: 'reserve/history' },
             { name: '我的留言墙', url: 'wall/history' },
             { name: '我的优惠券', url: 'coupon/history' },
-            { name: '我的收货地址', url: 'address' }
+            // { name: '我的收货地址', url: 'address' }
           ]
         },
         http: {
@@ -153,6 +153,9 @@
       },
       btnInfoEdit() {
         this.$router.push(`/m/${this.$route.params.shortId}/me/edit`)
+      },
+      btnCopyright() {
+        this.$router.push('/')
       }
     }
   }

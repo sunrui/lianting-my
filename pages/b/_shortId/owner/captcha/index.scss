@@ -1,0 +1,128 @@
+.captcha {
+  position: relative;
+  text-align: center;
+  width: px2rem(750);
+  height: px2rem(1334);
+  margin-top: px2rem(50);
+}
+
+.captcha_part_cover {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+
+  background: url("/img/b/captcha/b_captcha_part_cover.png") no-repeat;
+  background-size: 100% auto;
+}
+
+.captcha_part_label {
+  position: absolute;
+  top: px2rem(212);
+
+  background: url("/img/b/captcha/b_captcha_part_label.png") no-repeat;
+  background-size: 100% auto;
+  width: px2rem(607);
+  height: px2rem(97);
+
+
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.captcha_part_panel {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+
+  background: url("/img/b/captcha/b_captcha_part_panel.png") no-repeat;
+  background-size: 100% auto;
+  width: px2rem(750);
+  height: px2rem(937);
+}
+
+.captcha_part_desk {
+  position: absolute;
+  top: px2rem(540);
+  font-size: px2rem(44);
+  color: #E4394C;
+  font-weight: 400;
+
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.captcha_part_title {
+  position: absolute;
+  top: px2rem(70);
+
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.captcha_part_title_label {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  border-radius: px2rem(4);
+
+  background: #FFCD2E;
+  color: white;
+  height: px2rem(66);
+  font-size: px2rem(40);
+  font-weight: bold;
+  line-height: px2rem(66);
+  padding: 0 px2rem(35);
+
+  z-index: 1;
+}
+
+.captcha_part_title_left {
+  position: relative;
+  display: inline-block;
+  margin-right: px2rem(-30);
+  margin-top: px2rem(10);
+
+  background: url("/img/b/captcha/b_captcha_part_title_left.png") no-repeat;
+  background-size: 100% auto;
+  width: px2rem(70);
+  height: px2rem(66);
+}
+
+.captcha_part_title_right {
+  position: relative;
+  display: inline-block;
+  margin-left: px2rem(-30);
+  margin-top: px2rem(10);
+
+  background: url("/img/b/captcha/b_captcha_part_title_right.png") no-repeat;
+  background-size: 100% auto;
+  width: px2rem(70);
+  height: px2rem(66);
+}
+
+.captcha_part_image {
+  position: absolute;
+  top: px2rem(640);
+
+  left: 0;
+  right: 0;
+  margin: auto;
+
+  width: px2rem(520) !important;
+  height: auto !important;
+}
+
+.captcha_part_copyright {
+  position: absolute;
+  bottom: px2rem(110);
+  color: #555555;
+
+  left: 0;
+  right: 0;
+  margin: auto;
+}

@@ -1,67 +1,88 @@
 <template>
-  <section>
-    <div v-if="ui.loading">
-      <p>loading 的小圈圈</p>
+  <div>
+    <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
+
+    <div class="box"></div>
+
+
+    <div class="button_box">
+      <div class="button_big" @click="renderCaptcha">渲染</div>
     </div>
-    <div v-else>
-      <p>餐厅信息</p>
-      <p>名称 {{shop.name}}</p>
-      <button @click="btnShopUser">{{ 'http://localhost:3000/m/' + shop.shortId}}</button>
-      <hr>
 
-      <p>餐桌信息</p>
-      <div v-bind:key="tableGroup.id" v-for="tableGroup in tableGroups.elements">
-        <p>{{tableGroup.name}} ({{ tableGroup.minPeople }}-{{ tableGroup.maxPeople }} 人)</p>
-        <p v-if="tableGroup.privateRoom">包间</p>
+    <div v-for="tableGroup in http.res.tableGroups.elements">
+      <div class="blank_50"></div>
 
-        <div v-bind:key="table.id" v-for="table in tableGroup.tableOnes">
-          <p>{{table.tableGroup_Name}} {{table.fullNumber}}</p>
-          <button @click="btnShopTable(table)">{{ getShopTableUri(table) }}</button>
-          <hr>
+      <div class="captcha" v-for="table in tableGroup.tableOnes">
+        <div class="captcha_part_cover"></div>
+        <div class="captcha_part_label"></div>
+        <div class="captcha_part_panel"></div>
+        <div class="captcha_part_desk">桌号: {{table.tableGroup_Name}}{{table.fullNumber}}</div>
+        <div class="captcha_part_title">
+          <div class="captcha_part_title_left"></div>
+          <div class="captcha_part_title_label">{{http.res.shop.name}}</div>
+          <div class="captcha_part_title_right"></div>
         </div>
-        <hr>
-      </div>
 
-      <div v-if="!tableGroups.elements || tableGroups.elements.length === 0">
-        <p>暂无餐桌</p>
+        <canvas :id="table.id" class="captcha_part_image"></canvas>
+
+        <!--<div class="captcha_part_copyright">恋厅©提供技术支持</div>-->
       </div>
     </div>
-  </section>
+  </div>
 </template>
 
 <script>
   import { httpTableApi } from '../../../../../api/http/lt/httpTableApi'
   import { httpShopApi } from '../../../../../api/http/shop/httpShopApi'
+  import TitleBar from '../../../../../components/common/TitleBar'
+  import QRCode from 'qrcode'
 
   export default {
     metaInfo: {
       title: '二维码'
     },
     middleware: 'auth',
+    components: { TitleBar },
     data() {
       return {
-        shop: {},
-        tableGroups: {},
+        title: {
+          canBack: true,
+          title: '二维码',
+          backUri: `/b/${this.$route.params.shortId}/owner`,
+          theme: 'white',
+          imageHeight: 0
+        },
+        http: {
+          res: {
+            shop: {},
+            tableGroups: {}
+          }
+        },
         ui: {}
       }
     },
     created() {
-      this.$store.commit('navbar/update', {
-        canBack: true,
-        title: '二维码',
-        home: `/b/${this.$route.params.shortId}/owner`
-      })
-
       httpShopApi.getOne(this.$route.params.shortId).then(res => {
-        console.log(res)
-        this.shop = res
+        this.http.res.shop = res
 
         httpTableApi.getGroupAll(this.$route.params.shortId).then(res => {
-          this.tableGroups = res
+          this.http.res.tableGroups = res
         })
       })
     },
     methods: {
+      renderCaptcha() {
+        for (let tableGroupIndex in this.http.res.tableGroups.elements) {
+          let tableGroup = this.http.res.tableGroups.elements[tableGroupIndex]
+
+          for (let tableIndex in tableGroup.tableOnes) {
+            let tableOne = tableGroup.tableOnes[tableIndex]
+
+            let canvas = document.getElementById(tableOne.id)
+            QRCode.toCanvas(canvas, this.getShopTableUri(tableOne))
+          }
+        }
+      },
       btnShopUser() {
         this.$router.push('/m/' + this.shop.shortId)
       },
@@ -69,12 +90,13 @@
         this.$router.push(`/m/${this.shop.shortId}/captcha/${table.id}`)
       },
       getShopTableUri(table) {
-        return document.location.protocol + '//' + window.location.host + `/m/${this.shop.shortId}/captcha/${table.id}`
+        return document.location.protocol + '//' + window.location.host + `/m/${this.http.res.shop.shortId}/captcha/${table.id}`
       }
     }
   }
 </script>
 
-<style scoped>
-
+<style scoped lang="scss">
+  @import '~assets/common';
+  @import 'index';
 </style>
