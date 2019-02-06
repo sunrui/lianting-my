@@ -65,6 +65,7 @@
   import TitleBar from '../../../../../components/common/TitleBar'
   import QRCode from 'qrcode'
   import html2canvas from 'html2canvas'
+  import { downloadApi } from '../../../../../api/local/downloadApi'
 
   export default {
     metaInfo: {
@@ -143,6 +144,9 @@
 
         html2canvas(document.getElementById(id)).then(canvas => {
           // document.body.appendChild(canvas)
+
+          let fileName = table.tableGroup_name + table.fullNumber
+          downloadApi.download(canvas, fileName)
         })
       }
     }
