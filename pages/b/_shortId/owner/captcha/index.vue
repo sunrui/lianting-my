@@ -2,32 +2,60 @@
   <div>
     <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
-    <div class="box"></div>
-
-
-    <div class="button_box">
-      <div class="button_big" @click="renderCaptcha">渲染</div>
-    </div>
-
-    <div v-for="tableGroup in http.res.tableGroups.elements">
-      <div class="blank_50"></div>
-
-      <div class="captcha" v-for="table in tableGroup.tableOnes">
-        <div class="captcha_part_cover"></div>
-        <div class="captcha_part_label"></div>
-        <div class="captcha_part_panel"></div>
-        <div class="captcha_part_desk">桌号: {{table.tableGroup_Name}}{{table.fullNumber}}</div>
-        <div class="captcha_part_title">
-          <div class="captcha_part_title_left"></div>
-          <div class="captcha_part_title_label">{{http.res.shop.name}}</div>
-          <div class="captcha_part_title_right"></div>
-        </div>
-
-        <canvas :id="table.id" class="captcha_part_image"></canvas>
-
-        <!--<div class="captcha_part_copyright">恋厅©提供技术支持</div>-->
+    <div class="box">
+      <div class="tip">
+        <li>"扫码点餐桌贴"需您自行购买后贴至餐桌一角或摆设在餐位上。</li>
+        <li>您在使用淘宝或京东搜索“扫码点餐桌贴"来获取您想要的风格。</li>
+        <li>每桌大概费用在 5-20 元不等，更多风格请联系商城卖家定制。</li>
+        <li>以下样式仅为您参考。</li>
       </div>
     </div>
+
+    <div v-if="!ui.v_render" class="button_box">
+      <div class="button_big" @click="btnRender">为我生成</div>
+    </div>
+
+    <div v-if="ui.v_render">
+      <div class="blank_50"></div>
+      <div class="box_divide"></div>
+      <div class="blank_50"></div>
+    </div>
+
+    <div v-if="ui.v_render" v-for="tableGroup in http.res.tableGroups.elements">
+      <div v-for="table in tableGroup.tableOnes">
+        <div class="title">
+          <div class="title_table">{{tableGroup.name}} - {{table.tableGroup_Name}}{{table.fullNumber}}</div>
+          <div class="title_download">下载</div>
+        </div>
+
+        <div class="captcha">
+          <div class="captcha_part_cover"></div>
+          <div class="captcha_part_label"></div>
+          <div class="captcha_part_panel"></div>
+          <div class="captcha_part_desk">桌号: {{table.tableGroup_Name}}{{table.fullNumber}}</div>
+          <div class="captcha_part_title">
+            <div class="captcha_part_title_left"></div>
+            <div class="captcha_part_title_label">{{http.res.shop.name}}</div>
+            <div class="captcha_part_title_right"></div>
+          </div>
+
+          <canvas :id="table.id" class="captcha_part_image"></canvas>
+
+          <div class="captcha_part_copyright" v-if="ui.v_copyright">恋厅©提供技术支持</div>
+        </div>
+      </div>
+    </div>
+
+    <div v-if="ui.v_render" class="addition">
+      <div class="addition_item">
+        <div class="addition_item_label">显示恋厅标识</div>
+        <div class="addition_item_check">
+          <div class="addition_item_check_on" v-if="ui.v_copyright" @click="btnCopyright(false)"></div>
+          <div class="addition_item_check_off" v-else @click="btnCopyright(true)"></div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </template>
 
@@ -58,7 +86,10 @@
             tableGroups: {}
           }
         },
-        ui: {}
+        ui: {
+          v_render: false,
+          v_copyright: true
+        }
       }
     },
     created() {
@@ -79,18 +110,20 @@
             let tableOne = tableGroup.tableOnes[tableIndex]
 
             let canvas = document.getElementById(tableOne.id)
-            QRCode.toCanvas(canvas, this.getShopTableUri(tableOne))
+            if (canvas) {
+              let uri = document.location.protocol + '//' + window.location.host + `/m/${this.http.res.shop.shortId}/captcha/${tableOne.id}`
+              QRCode.toCanvas(canvas, uri)
+            }
           }
         }
       },
-      btnShopUser() {
-        this.$router.push('/m/' + this.shop.shortId)
+      btnRender() {
+        this.ui.v_render = true
+
+        setTimeout(this.renderCaptcha, 0)
       },
-      btnShopTable(table) {
-        this.$router.push(`/m/${this.shop.shortId}/captcha/${table.id}`)
-      },
-      getShopTableUri(table) {
-        return document.location.protocol + '//' + window.location.host + `/m/${this.http.res.shop.shortId}/captcha/${table.id}`
+      btnCopyright(enable) {
+        this.ui.v_copyright = enable
       }
     }
   }

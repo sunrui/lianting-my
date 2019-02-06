@@ -304,5 +304,5 @@
 <style scoped lang="scss">
   @import '~assets/common';
   @import '~assets/m/wall';
-  @import 'index'
+  @import 'index';
 </style>
