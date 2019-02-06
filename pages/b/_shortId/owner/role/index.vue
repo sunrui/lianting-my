@@ -263,7 +263,7 @@
         })
       },
       btnEnter(role) {
-        this.$router.push(`/b/${this.$route.params.shortId}/${role.type}`)
+        this.$router.push(`/b/${this.$route.params.shortId}/${role.type.toLowerCase()}`)
       }
     }
   }
