@@ -83,7 +83,9 @@
         http: {
           res: {
             shop: {},
-            tableGroups: {}
+            tableGroups: {
+              elements: []
+            }
           }
         },
         ui: {
@@ -118,6 +120,16 @@
         }
       },
       btnRender() {
+        if (this.http.res.tableGroups.elements.length === 0) {
+          this.$msgBox.doModal({
+            type: 'yes',
+            title: '二维码',
+            content: '暂无餐桌，如需生成请先添加餐桌。'
+          })
+
+          return
+        }
+
         this.ui.v_render = true
 
         setTimeout(this.renderCaptcha, 0)
