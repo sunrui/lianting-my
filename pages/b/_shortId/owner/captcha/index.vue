@@ -25,10 +25,10 @@
       <div v-for="table in tableGroup.tableOnes">
         <div class="title">
           <div class="title_table">{{tableGroup.name}} - {{table.tableGroup_Name}}{{table.fullNumber}}</div>
-          <div class="title_download">下载</div>
+          <div class="title_download" @click="btnDownload(table)">下载</div>
         </div>
 
-        <div class="captcha">
+        <div class="captcha" :id="'capture_' + table.id">
           <div class="captcha_part_cover"></div>
           <div class="captcha_part_label"></div>
           <div class="captcha_part_panel"></div>
@@ -64,6 +64,7 @@
   import { httpShopApi } from '../../../../../api/http/shop/httpShopApi'
   import TitleBar from '../../../../../components/common/TitleBar'
   import QRCode from 'qrcode'
+  import html2canvas from 'html2canvas'
 
   export default {
     metaInfo: {
@@ -136,6 +137,13 @@
       },
       btnCopyright(enable) {
         this.ui.v_copyright = enable
+      },
+      btnDownload(table) {
+        let id = 'capture_' + table.id
+
+        html2canvas(document.getElementById(id)).then(canvas => {
+          // document.body.appendChild(canvas)
+        })
       }
     }
   }
