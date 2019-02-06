@@ -11,12 +11,13 @@
       </div>
     </div>
 
-    <div v-if="!ui.v_render" class="button_box">
-      <div class="button_big" @click="btnRender">为我生成</div>
+    <div class="button_box">
+      <div class="button_big" v-if="!ui.v_render" @click="btnRender">为我生成</div>
+      <div class="button_big" v-else @click="btnDownloadAll">全部下载</div>
     </div>
 
     <div v-if="ui.v_render">
-      <div class="blank_50"></div>
+      <div class="blank_30"></div>
       <div class="box_divide"></div>
       <div class="blank_50"></div>
     </div>
@@ -145,6 +146,26 @@
         html2canvas(document.getElementById(id)).then(canvas => {
           let fileName = table.tableGroup_name + '_' + table.fullNumber
           downloadApi.download(canvas, fileName)
+        })
+      },
+      btnDownloadAll() {
+        this.$msgBox.doModal({
+          type: 'yes',
+          title: '二维码',
+          content: '您确定要全部下载吗?'
+        }).then(async (val) => {
+          if (val !== 'Yes') {
+            return
+          }
+
+          for (let tableGroupIndex in this.http.res.tableGroups.elements) {
+            let tableGroup = this.http.res.tableGroups.elements[tableGroupIndex]
+
+            for (let tableIndex in tableGroup.tableOnes) {
+              let tableOne = tableGroup.tableOnes[tableIndex]
+              this.btnDownload(tableOne)
+            }
+          }
         })
       }
     }
