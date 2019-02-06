@@ -4,15 +4,15 @@
 
     <div class="box">
       <div class="tip">
-        <li>"扫码点餐桌贴"需您自行购买后贴至餐桌一角或摆设在餐位上。</li>
-        <li>您在使用淘宝或京东搜索“扫码点餐桌贴"来获取您想要的风格。</li>
-        <li>每桌大概费用在 5-20 元不等，更多风格请联系商城卖家定制。</li>
-        <li>以下样式仅为您参考。</li>
+        <li>"扫码点餐桌贴"需您自行购买后贴至餐桌一角或摆设至餐位上。</li>
+        <li>您可使用淘宝或京东等搜索“扫码点餐桌贴"来获取您想要的风格。</li>
+        <li>每桌大概费用在 5-20 元不等，更多风格可联系卖家定制。</li>
+        <li>以下样式仅供您参考。</li>
       </div>
     </div>
 
     <div class="button_box">
-      <div class="button_big" v-if="!ui.v_render" @click="btnRender">为我生成</div>
+      <div class="button_big" v-if="!ui.v_render" @click="btnRender">在线生成</div>
       <div class="button_big" v-else @click="btnDownloadAll">全部下载</div>
     </div>
 
