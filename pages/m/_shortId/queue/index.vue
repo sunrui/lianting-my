@@ -150,6 +150,7 @@
   import { httpTableApi } from '../../../../api/http/lt/httpTableApi'
   import { httpShopApi } from '../../../../api/http/shop/httpShopApi'
   import { httpInfoApi } from '../../../../api/http/lt/httpInfoApi'
+  import { langApi } from '../../../../api/local/langApi'
 
   export default {
     metaInfo: {
@@ -419,7 +420,7 @@
             this.$msgBox.doModal({
               type: 'yes',
               title: '排队',
-              content: '超过店铺最大取票限制。'
+              content: langApi.maxLimit
             })
           } else if (res.tableGroupIdNotExists) {
             this.$msgBox.doModal({

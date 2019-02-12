@@ -79,6 +79,7 @@
 <script>
   import { httpTableAdminApi } from '../../../../../../api/http/lt/httpTableAdminApi'
   import TitleBar from '../../../../../../components/common/TitleBar'
+  import { langApi } from '../../../../../../api/local/langApi'
 
   export default {
     metaInfo: {
@@ -183,7 +184,7 @@
             this.$msgBox.doModal({
               type: 'yes',
               title: '添加餐桌组',
-              content: '已超过当前授权最大数目限制，如需升级授权请转至续费页或联系我们。'
+              content: langApi.maxLimit
             })
           } else if (res.nameExists) {
             this.$msgBox.doModal({

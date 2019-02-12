@@ -96,6 +96,7 @@
   import { timeApi } from '../../../../api/local/timeApi'
   import { stateApi } from '../../../../api/local/stateApi'
   import { httpReserveApi } from '../../../../api/http/lt/httpReserveApi'
+  import { langApi } from '../../../../api/local/langApi'
 
   export default {
     metaInfo: {
@@ -180,7 +181,7 @@
             this.$msgBox.doModal({
               type: 'yes',
               title: '立即预订',
-              content: '已超过当前授权最大数目限制。'
+              content: langApi.maxLimit
             })
           } else if (res.reserveExists) {
             this.$msgBox.doModal({

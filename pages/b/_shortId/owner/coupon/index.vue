@@ -2,9 +2,13 @@
   <div>
     <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
-    <div class="empty" v-if="!http.res.coupons.elements || http.res.coupons.elements.length === 0">
+    <div class="empty" v-if="http.res.coupons.elements.length === 0">
       <img class="empty_image" src="/img/no/no_coupon.png">
       <div class="empty_label">没有优惠券</div>
+
+      <div class="button_box">
+        <div class="button_big" @click="btnCreate">添加优惠券</div>
+      </div>
     </div>
 
     <div class="box" v-for="coupon in http.res.coupons.elements">
@@ -76,7 +80,9 @@
         },
         http: {
           res: {
-            coupons: {}
+            coupons: {
+              elements: []
+            }
           }
         }
       }

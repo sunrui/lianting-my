@@ -69,8 +69,8 @@
             { name: '我的订单', url: 'order/history' },
             { name: '我的排队', url: 'queue/history' },
             { name: '我的预订', url: 'reserve/history' },
-            { name: '我的留言墙', url: 'wall/history' },
             { name: '我的优惠券', url: 'coupon/history' },
+            { name: '我的留言墙', url: 'wall/history' },
             // { name: '我的收货地址', url: 'address' }
           ]
         },
@@ -139,7 +139,7 @@
             }
           })
         } else if (url === 'coupon/history') {
-          httpCouponApi.getCouponUser(this.$route.params.shortId, false, 0, 99).then(res => {
+          httpCouponApi.getAll(this.$route.params.shortId, 0, 99).then(res => {
             if (res.elements.length === 0) {
               this.$router.push(`/m/${this.$route.params.shortId}/coupon/history/empty`)
             }

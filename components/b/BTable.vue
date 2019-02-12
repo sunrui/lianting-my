@@ -148,7 +148,7 @@
 
       <div class="modal_button_box">
         <div class="button_big" v-if="ui.changeTable.id" @click="btnTableChangeConfirm">确认换桌</div>
-        <div class="button_big_gray" v-else>确认换桌</div>
+        <div class="button_big button_gray" v-else>确认换桌</div>
       </div>
     </div>
   </div>

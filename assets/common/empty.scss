@@ -7,17 +7,17 @@
   left: 0;
   text-align: center;
   overflow-y: scroll;
+}
 
-  .empty_image {
-    display: inline-block;
-    margin-top: 35%;
-    width: px2rem(320);
-    height: px2rem(320);
-  }
+.empty_image {
+  display: inline-block;
+  margin-top: 35%;
+  width: px2rem(320);
+  height: px2rem(320);
+}
 
-  .empty_label {
-    padding: px2rem(10) px2rem(35);
-    font-size: px2rem(30);
-    color: #333333;
-  }
+.empty_label {
+  padding: px2rem(10) px2rem(35);
+  font-size: px2rem(30);
+  color: #333333;
 }

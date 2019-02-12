@@ -50,10 +50,7 @@
     },
     methods: {
       _loadCharge() {
-
-
         httpChargeAdminApi.getAll(this.$route.params.shortId, 0, 50).then(res => {
-          console.log(res)
           this.charges = res
 
           for (let index in this.charges.elements) {

@@ -72,6 +72,7 @@
   import { httpRoleAdminApi } from '../../../../../api/http/lt/httpRoleAdminApi'
   import TitleBar from '../../../../../components/common/TitleBar'
   import { validatorApi } from '../../../../../api/local/validatorApi'
+  import { langApi } from '../../../../../api/local/langApi'
 
   export default {
     metaInfo: {
@@ -197,7 +198,7 @@
             this.$msgBox.doModal({
               type: 'yes',
               title: '添加' + this.getTypeName(this.http.req.role.type),
-              content: '已超过当前授权最大数目限制，如需升级授权请转至续费页或联系我们。。'
+              content: langApi.maxLimit
             })
 
             return

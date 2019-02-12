@@ -14,7 +14,7 @@
 
       <div class="modal_button_box">
         <div class="button_small" @click="btnConfirm">确认</div>
-        <div class="button_small_gray" v-if="type === 'yesOrNo'" @click="btnCancel">取消</div>
+        <div class="button_small button_gray" v-if="type === 'yesOrNo'" @click="btnCancel">取消</div>
       </div>
     </div>
   </div>

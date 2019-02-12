@@ -143,6 +143,7 @@
   import TitleBar from '../../../../../../components/common/TitleBar'
   import CurrencyInput from '../../../../../../components/common/CurrencyInput'
   import { highlightApi } from '../../../../../../api/local/highlightApi'
+  import { langApi } from '../../../../../../api/local/langApi'
 
   export default {
     metaInfo: {
@@ -319,7 +320,7 @@
             this.$msgBox.doModal({
               type: 'yes',
               title: '添加餐食',
-              content: `已超过当前授权最大数目限制，如需升级授权请转至续费页或联系我们。`
+              content: langApi.maxLimit
             })
 
             return
@@ -345,7 +346,7 @@
                   this.$msgBox.doModal({
                     type: 'yes',
                     title: '添加餐食价格',
-                    content: `已超过当前授权最大数目限制，如需升级授权请转至续费页或联系我们。`
+                    content: langApi.maxLimit
                   })
 
                   return

@@ -311,7 +311,7 @@
           this.ui.v_group_add = false
           this.ui.v_cover_mask = false
 
-          if (res.maxLimit) {
+          if (res.let) {
             this.$msgBox.doModal({
               type: 'yes',
               title: '添加餐食组',

@@ -103,6 +103,7 @@
   import { httpCouponAdminApi } from '../../../../../api/http/lt/httpCouponAdminApi'
   import TitleBar from '../../../../../components/common/TitleBar'
   import CurrencyInput from '../../../../../components/common/CurrencyInput'
+  import { langApi } from '../../../../../api/local/langApi'
 
   export default {
     metaInfo: {
@@ -204,7 +205,7 @@
             this.$msgBox.doModal({
               type: 'yes',
               title: '添加优惠券',
-              content: '超过最大授权限制。'
+              content: langApi.maxLimit
             })
 
             return

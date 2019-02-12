@@ -1,0 +1,132 @@
+.coupon {
+  margin-top: px2rem(20);
+  height: px2rem(230);
+  background: #FFF8ED;
+}
+
+.coupon_white {
+  background: white !important;
+}
+
+.coupon_title {
+  display: inline-block;
+  height: px2rem(150);
+
+  .coupon_title_label {
+    margin-left: px2rem(35);
+    margin-top: px2rem(30);
+    font-size: px2rem(30);
+    color: #333333;
+    font-weight: 400;
+  }
+
+  .coupon_title_charge {
+    margin-left: px2rem(35);
+    margin-top: px2rem(10);
+
+    .coupon_title_charge_icon {
+      display: inline-block;
+      background: #F7DBA0;
+      color: #AA8635;
+      font-size: px2rem(22);
+      height: px2rem(34);
+      line-height: px2rem(34);
+      padding: 0 px2rem(10);
+    }
+
+    .coupon_title_charge_icon_disable {
+      background: #FAFAFA !important;
+      color: #999999;
+    }
+
+    .coupon_title_charge_label {
+      display: inline-block;
+      margin-left: px2rem(5);
+      font-size: px2rem(24);
+      color: #666666;
+    }
+  }
+}
+
+.coupon_price {
+  float: right;
+  height: px2rem(150);
+  display: inline-block;
+  font-size: px2rem(80);
+  font-weight: 400;
+  color: #F52626;
+  margin-right: px2rem(35);
+  line-height: px2rem(150);
+}
+
+.coupon_price:before {
+  content: "¥";
+  line-height: px2rem(150);
+  color: #f52626;
+  font-size: px2rem(40);
+  margin-right: px2rem(5);
+}
+
+.coupon_price_disable {
+  color: #999999 !important;
+}
+
+.coupon_price_disable:before {
+  content: "¥";
+  line-height: px2rem(150);
+  color: #999999;
+  font-size: px2rem(40);
+  margin-right: px2rem(5);
+}
+
+.coupon_footer {
+  position: relative;
+  padding: 0 px2rem(35);
+
+  .coupon_expired_time {
+    display: inline-block;
+    color: #999999;
+    font-size: px2rem(24);
+  }
+
+  .coupon_button {
+    position: absolute;
+    top: 0;
+    right: px2rem(35);
+    height: px2rem(48);
+    line-height: px2rem(48);
+    color: white;
+    background: linear-gradient(90deg, rgba(255, 51, 68, 1), rgba(255, 136, 51, 1));
+    border-radius: px2rem(20);
+    text-align: center;
+    padding: 0 px2rem(20);
+  }
+}
+
+.limit_coupon_label {
+  margin: px2rem(30) auto px2rem(20) auto;
+  text-align: center;
+  color: #666666;
+}
+
+.coupon_limit {
+  position: relative;
+  background: #FAFAFA;
+  height: px2rem(90);
+  padding: px2rem(10) px2rem(35) 0 px2rem(35);
+
+  .coupon_limit_title {
+    font-size: px2rem(20);
+    color: #F52626;
+  }
+
+  .coupon_limit_label {
+    font-size: px2rem(20);
+    color: #333333;
+    margin-top: px2rem(5);
+  }
+}
+
+.coupon_disable {
+  color: #999999 !important;
+}

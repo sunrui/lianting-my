@@ -46,7 +46,7 @@
 
           <div class="queue_button_box">
             <div class="button_small" v-if="getQueueNow(tableGroup).sequence > 1" @click="btnReset(tableGroup)">排队清零</div>
-            <div class="button_small_gray" v-else>排队清零</div>
+            <div class="button_small button_gray" v-else>排队清零</div>
           </div>
 
           <div class="blank_30"></div>

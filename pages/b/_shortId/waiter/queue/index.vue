@@ -72,7 +72,7 @@
             <div class="button_small" v-if="getQueueNow(tableGroup).queueTicket.status === 'Wait' || getQueueNow(tableGroup).queueTicket.status === 'Now'"
                  @click="btnNext(tableGroup)">下一位
             </div>
-            <div class="button_small_gray" v-else>下一位</div>
+            <div class="button_small button_gray" v-else>下一位</div>
           </div>
 
           <div class="blank_30"></div>

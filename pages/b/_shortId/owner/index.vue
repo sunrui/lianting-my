@@ -101,12 +101,6 @@
               icon: '/img/b/nav/owner/b_nav_owner_role.png',
               url: `/b/${this.$route.params.shortId}/owner/role`
             },
-            // {
-            //   tag: 'user',
-            //   name: '顾客',
-            //   icon: '/img/b/nav/owner/b_nav_owner_user.png',
-            //   url: `/b/${this.$route.params.shortId}/owner/user`
-            // },
             {
               tag: 'queue',
               name: '排队',
@@ -142,7 +136,13 @@
               name: '二维码',
               icon: '/img/b/nav/owner/b_nav_owner_captcha.png',
               url: `/b/${this.$route.params.shortId}/owner/captcha`
-            }
+            },
+            // {
+            //   tag: 'charge',
+            //   name: '顾客',
+            //   icon: '/img/b/nav/owner/b_nav_owner_user.png',
+            //   url: `/b/${this.$route.params.shortId}/owner/charge`
+            // }
           ]
         },
         http: {

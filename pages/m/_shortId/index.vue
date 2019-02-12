@@ -41,8 +41,8 @@
             </a>
           </div>
 
-          <div class="coupon" v-if="http.res.coupons.length > 0">
-            <div class="coupon_label_left">满{{parseFloat(http.res.coupons[0].chargePrice)}}元可用</div>
+          <div class="coupon" v-if="http.res.coupons.length > 0" @click="btnCouponFetch">
+            <div class="coupon_label_left">满{{getLittleCouponPrice()}}元可用</div>
             <div class="coupon_divide_radius"></div>
             <div class="coupon_label_right">领取</div>
           </div>
@@ -188,7 +188,7 @@
         })
       },
       httpCoupon() {
-        httpCouponApi.getCoupon(this.$route.params.shortId).then(res => {
+        httpCouponApi.getFetch(this.$route.params.shortId).then(res => {
           this.http.res.coupons = res
         })
       },
@@ -201,6 +201,19 @@
             this.ui.queue.waitPeople += tableGroupNow.waitPeople
           }
         })
+      },
+      getLittleCouponPrice() {
+        let price = null
+
+        for (let index in this.http.res.coupons) {
+          let coupon = this.http.res.coupons[index]
+
+          if (price === null || coupon.chargePrice < price) {
+            price = coupon.chargePrice
+          }
+        }
+
+        return parseFloat(price)
       },
       btnNav(nav) {
         if (nav.tag === 'food') {
@@ -270,6 +283,9 @@
           this.ui.v_cover_mask = true
           this.ui.v_wifi = true
         })
+      },
+      btnCouponFetch() {
+        this.$router.push(`/m/${this.$route.params.shortId}/coupon/fetch`)
       }
     }
   }
