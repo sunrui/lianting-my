@@ -100,7 +100,7 @@
       httpCoupon() {
         httpCouponApi.getAll(this.$route.params.shortId, 0, 99).then(res => {
           if (res.elements.length === 0) {
-            this.$router.push(`/m/${this.$route.params.shortId}/history/empty`)
+            this.$router.push(`/m/${this.$route.params.shortId}/coupon/history/empty`)
             return
           }
 

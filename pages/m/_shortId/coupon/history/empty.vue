@@ -20,7 +20,7 @@
         title: {
           canBack: true,
           title: '没有优惠券',
-          backUri: `/b/${this.$route.params.shortId}/owner`,
+          backUri: `/m/${this.$route.params.shortId}`,
           theme: 'white',
           imageHeight: 0
         }
