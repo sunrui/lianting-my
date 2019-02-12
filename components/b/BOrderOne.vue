@@ -106,6 +106,12 @@
           <div class="order_tableware_price">{{http.res.order.priceTableware}}</div>
         </div>
 
+        <div class="order_coupon" v-if="http.res.order.couponDeductPrice > 0">
+          <div class="order_coupon_icon">优惠券</div>
+          <div class="order_coupon_label">优惠</div>
+          <div class="order_coupon_content">{{http.res.order.couponDeductPrice}}</div>
+        </div>
+
         <div class="box_divide"></div>
 
         <div class="order_price">
