@@ -198,10 +198,9 @@
 
   .order_coupon_icon {
     font-size: px2rem(24);
-    color: #f52626;
-    background: #FBABAB;
+    background: #F7DBA0;
+    color: #AA8635;
     border-radius: 5px;
-    border: #FBABAB px2rem(2) solid;
     width: px2rem(100);
     height: px2rem(40);
     line-height: px2rem(40);
@@ -253,12 +252,14 @@
     right: px2rem(35);
     top: 0;
     line-height: px2rem(100);
+    color: #F52626;
   }
 
   .order_coupon_content:before {
-    content: "¥";
+    content: "- ¥";
     font-size: px2rem(22);
     margin-right: px2rem(5);
+    color: #F52626;
   }
 }
 
