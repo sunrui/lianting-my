@@ -41,7 +41,13 @@
           <div class="order_tableware_price">{{http.res.order.priceTableware}}</div>
         </div>
 
-        <div class="order_coupon" v-if="http.res.coupon.valid.length > 0" @click="btnChooseCoupon()">
+        <div class="order_coupon" v-if="http.res.order.couponDeductPrice &&
+        (!$route.query.deductPrice ? true : $route.query.deductPrice === http.res.order.couponDeductPrice)" @click="btnChooseCoupon()">
+          <div class="order_coupon_icon">优惠券</div>
+          <div class="order_coupon_label">优惠</div>
+          <div class="order_coupon_content">{{http.res.order.couponDeductPrice}}</div>
+        </div>
+        <div class="order_coupon" v-else-if="http.res.coupon.valid.length > 0" @click="btnChooseCoupon()">
           <div class="order_coupon_icon">优惠券</div>
           <div class="order_coupon_label">优惠</div>
           <div class="order_coupon_content" v-if="$route.query.deductPrice > 0">{{$route.query.deductPrice}}</div>
@@ -52,7 +58,7 @@
 
         <div class="order_price">
           <div class="order_price_food_count">共计 {{getTotalFood()}} 份</div>
-          <div class="order_price_total">{{http.res.order.price - ($route.query.deductPrice ? $route.query.deductPrice : 0)}}</div>
+          <div class="order_price_total">{{http.res.order.price - (($route.query.deductPrice && $route.query.deductPrice !== http.res.order.couponDeductPrice) ? $route.query.deductPrice - http.res.order.couponDeductPrice : 0)}}</div>
           <div class="order_price_total_label">小计</div>
         </div>
       </div>
@@ -187,14 +193,23 @@
           for (let index in res.elements) {
             let coupon = res.elements[index]
 
-            if (!Boolean(coupon.orderId)) {
-              if (new Date().getTime() < coupon.expiredAt) {
-
-                if (coupon.chargePrice <= this.http.res.order.price) {
-                  this.http.res.coupon.valid.push(coupon)
-                }
-              }
+            if (Boolean(coupon.orderId)) {
+              continue
             }
+
+            if (new Date().getTime() < coupon.validAt) {
+              continue
+            }
+
+            if (new Date().getTime() > coupon.expiredAt) {
+              continue
+            }
+
+            if (this.http.res.order.price < coupon.chargePrice) {
+              continue
+            }
+
+            this.http.res.coupon.valid.push(coupon)
           }
         })
       },

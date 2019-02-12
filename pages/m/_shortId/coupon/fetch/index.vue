@@ -22,7 +22,7 @@
 
         <div class="coupon_footer">
           <div class="coupon_expired_time">有效期：2018.06.30 至 2019.06.30</div>
-          <div class="coupon_button" @click="btnFetchCoupon(coupon)">立即领取</div>
+          <div class="coupon_button" @click="btnFetch(coupon)">立即领取</div>
         </div>
       </div>
     </div>
@@ -57,10 +57,10 @@
       }
     },
     created() {
-      this.httpCouponFetch()
+      this.httpFetch()
     },
     methods: {
-      httpCouponFetch() {
+      httpFetch() {
         httpCouponApi.getFetch(this.$route.params.shortId).then(res => {
           if (res.length === 0) {
             this.$router.push(`/m/${this.$route.params.shortId}`)
@@ -70,7 +70,7 @@
           this.http.res.coupons = res
         })
       },
-      btnFetchCoupon(coupon) {
+      btnFetch(coupon) {
         httpCouponApi.post(this.$route.params.shortId, coupon.id).then(res => {
           if (res.couponIdNotExists) {
             this.$msgBox.doModal({
@@ -78,7 +78,7 @@
               title: '领取优惠券',
               content: '优惠券不存在。'
             }).then(async (val) => {
-              this.httpCoupon()
+              this.httpFetch()
             })
 
             return
@@ -90,7 +90,7 @@
               title: '领取优惠券',
               content: '仅限新用户领取。'
             }).then(async (val) => {
-              this.httpCoupon()
+              this.httpFetch()
             })
 
             return
@@ -102,7 +102,7 @@
               title: '领取优惠券',
               content: '超过最大领取限制。'
             }).then(async (val) => {
-              this.httpCoupon()
+              this.httpFetch()
             })
 
             return
@@ -114,7 +114,7 @@
               title: '领取优惠券',
               content: '领取成功。'
             }).then(async (val) => {
-              this.httpCoupon()
+              this.httpFetch()
             })
           }
         })

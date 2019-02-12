@@ -164,6 +164,7 @@
     </div>
 
     <div class="blank_100"></div>
+    <div class="blank_20"></div>
 
     <div class="coupon_choose_none" @click="btnChooseNone">不使用任何优惠券</div>
   </section>
@@ -230,8 +231,6 @@
               this.http.res.coupon.expired.push(coupon)
               continue
             }
-
-            console.log(this.$route.query.price + ' ' + coupon.chargePrice)
 
             if (this.$route.query.price < coupon.chargePrice) {
               this.http.res.coupon.notPriceRich.push(coupon)
