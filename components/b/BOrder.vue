@@ -6,7 +6,7 @@
       <div class="list_title box_radius_header">
         <div class="list_time_icon"></div>
         <div class="list_time_label">{{new Date(parseInt(order.createdAt)).toLocaleString()}}</div>
-        <div class="order_history_status order_history_status_finish" v-if="order.status === 'Finished'">已完成</div>
+        <div class="order_history_status order_history_status_finish" v-if="order.status === 'Finish'">已完成</div>
         <div class="order_history_status order_history_status_not_paid" v-if="order.status === 'NotPaid'">未支付</div>
         <div class="order_history_status order_history_status_eating" v-if="order.status === 'Paid'">进行中</div>
         <div class="order_history_status order_history_status_closed" v-if="order.status === 'Closed'">已取消</div>

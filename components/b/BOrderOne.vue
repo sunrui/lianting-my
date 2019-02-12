@@ -170,7 +170,7 @@
           <div class="addition_item_content">{{
             http.res.order.status === 'Paid' ? '已支付' :
             http.res.order.status === 'NotPaid' ? '待支付' :
-            http.res.order.status === 'Finished' ? '已完成' :
+            http.res.order.status === 'Finish' ? '已完成' :
             http.res.order.status === 'Closed' ? '已关闭' : http.res.order.status
             }}
           </div>
@@ -531,7 +531,7 @@
         }
       },
       btnChangeStatus(orderFood, status) {
-        if (this.http.res.order.status === 'Finished' || this.http.res.order.status === 'Closed') {
+        if (this.http.res.order.status === 'Finish' || this.http.res.order.status === 'Closed') {
           return
         }
 
@@ -608,7 +608,7 @@
         scrollApi.enable(true)
       },
       btnPeople() {
-        if (this.http.res.order.status === 'Paid' || this.http.res.order.status === 'Finished' || this.http.res.order.status === 'Closed') {
+        if (this.http.res.order.status === 'Paid' || this.http.res.order.status === 'Finish' || this.http.res.order.status === 'Closed') {
           return
         }
 
@@ -701,7 +701,7 @@
         })
       },
       btnStatusReset(orderFood, status) {
-        if (this.http.res.order.status === 'Finished' || this.http.res.order.status === 'Closed') {
+        if (this.http.res.order.status === 'Finish' || this.http.res.order.status === 'Closed') {
           return
         }
 
@@ -715,7 +715,7 @@
           return
         }
 
-        if (this.http.res.order.status === 'Finished' || this.http.res.order.status === 'Closed') {
+        if (this.http.res.order.status === 'Finish' || this.http.res.order.status === 'Closed') {
           this.$msgBox.doModal({
             type: 'yes',
             title: '重置状态',
@@ -887,7 +887,7 @@
         this.http.req.return.remark = remark
       },
       btnFoodReturn(orderFood) {
-        if (this.http.res.order.status === 'Finished' || this.http.res.order.status === 'Closed') {
+        if (this.http.res.order.status === 'Finish' || this.http.res.order.status === 'Closed') {
           this.$msgBox.doModal({
             type: 'yes',
             title: '更改状态',

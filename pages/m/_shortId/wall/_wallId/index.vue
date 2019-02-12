@@ -32,7 +32,7 @@
         </div>
         <div class="wall_order_one">
           <img class="wall_order_icon" src="/img/m/wall/wall_time.png">
-          <div class="wall_order_label">{{elapsedTime(http.res.wall.elapsedTime)}}</div>
+          <div class="wall_order_label">{{http.res.wall.elapsedTime === 0 ? '进行中' : elapsedTime(http.res.wall.elapsedTime)}}</div>
         </div>
       </div>
 

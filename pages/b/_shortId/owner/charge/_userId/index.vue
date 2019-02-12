@@ -15,7 +15,7 @@
               order.status === 'Paid' ? '已支付' :
               order.status === 'NotPaid' ? '未支付' :
               order.status === 'Closed' ? '已关闭' :
-              order.status === 'Finished' ? '已完成' :
+              order.status === 'Finish' ? '已完成' :
               order.status
               }}
             </p>

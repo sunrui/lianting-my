@@ -32,7 +32,7 @@
           <!--</div>-->
           <!--</div>-->
 
-          <div class="wall_order">
+          <div class="wall_order" @click="btnWallOne(wall)">
             <div class="wall_order_one">
               <img class="wall_order_icon" src="/img/m/wall/wall_order.png">
               <div class="wall_order_label">{{wall.tableGroupName}} {{wall.tableFullNumber}}</div>
@@ -47,17 +47,17 @@
             </div>
             <div class="wall_order_one">
               <img class="wall_order_icon" src="/img/m/wall/wall_time.png">
-              <div class="wall_order_label">{{elapsedTime(wall.elapsedTime)}}</div>
+              <div class="wall_order_label">{{wall.elapsedTime === 0 ? '进行中' : elapsedTime(wall.elapsedTime)}}</div>
             </div>
           </div>
         </div>
 
-        <div class="box_divide_radius">
+        <div class="box_divide_radius" @click="btnWallOne(wall)">
           <div class="box_divide_radius_line"></div>
         </div>
 
         <div class="wall_message box_radius_footer">
-          <div class="wall_message_paper">{{wall.message}}</div>
+          <div class="wall_message_paper" @click="btnWallOne(wall)">{{wall.message}}</div>
           <div class="wall_message_extra">
             <div class="wall_message_one" @click="btnWallOne(wall)">
               <img class="wall_message_icon" src="/img/m/wall/wall_message.png">

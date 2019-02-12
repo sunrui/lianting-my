@@ -28,7 +28,7 @@
         </div>
         <div class="wall_order_one">
           <img class="wall_order_icon" src="/img/m/wall/wall_time.png">
-          <div class="wall_order_label">{{elapsedTime(http.res.order)}}</div>
+          <div class="wall_order_label">{{http.res.order.finishedAt ? elapsedTime(http.res.order.finishedAt) : '进行中'}}</div>
         </div>
       </div>
     </div>
@@ -55,20 +55,20 @@
 
 <script>
   import TitleBar from '../../../../components/common/TitleBar'
-  import { httpWallApi } from '../../../../api/http/lt/httpWallApi'
-  import { stateApi } from '../../../../api/local/stateApi'
-  import { httpUserApi } from '../../../../api/http/user/httpUserApi'
-  import { stringApi } from '../../../../api/local/stringApi'
-  import { httpOrderApi } from '../../../../api/http/lt/httpOrderApi'
-  import { timeApi } from '../../../../api/local/timeApi'
-  import { foodDetailApi } from '../../../../api/local/foodDetail'
+  import {httpWallApi} from '../../../../api/http/lt/httpWallApi'
+  import {stateApi} from '../../../../api/local/stateApi'
+  import {httpUserApi} from '../../../../api/http/user/httpUserApi'
+  import {stringApi} from '../../../../api/local/stringApi'
+  import {httpOrderApi} from '../../../../api/http/lt/httpOrderApi'
+  import {timeApi} from '../../../../api/local/timeApi'
+  import {foodDetailApi} from '../../../../api/local/foodDetail'
 
   export default {
     metaInfo: {
       title: '提交留言墙'
     },
     middleware: 'auth',
-    components: { TitleBar },
+    components: {TitleBar},
     data() {
       return {
         title: {
@@ -99,18 +99,6 @@
       }
     },
     created() {
-      if (!Boolean(this.$route.query.orderOneId)) {
-        this.$msgBox.doModal({
-          type: 'yes',
-          title: '提交留言墙',
-          content: '订单号不能为空。'
-        }).then(async (val) => {
-          this.$router.back()
-        })
-      }
-
-      this.http.req.wall.orderOneId = this.$route.query.orderOneId
-
       this.httpUserInfo()
       this.httpOrder()
     },
@@ -131,16 +119,15 @@
         })
       },
       httpOrder() {
-        httpOrderApi.getOrder(this.$route.params.shortId, this.http.req.wall.orderOneId).then(res => {
+        httpOrderApi.getOrder(this.$route.params.shortId, this.$route.query.orderOneId).then(res => {
           this.http.res.order = res
 
           this.ui.v_order_menu = true
           this.ui.v_cover_mask = true
         })
       },
-      elapsedTime(order) {
-        let time = order.payPaidAt ? order.payPaidAt : order.createdAt
-        return timeApi.elapsedTime(time / 1000)
+      elapsedTime(time) {
+        return timeApi.elapsedTime(time)
       },
       countFood(order) {
         return foodDetailApi.countFood(order)
@@ -160,6 +147,7 @@
         }
 
         this.http.req.wall.message = stringApi.trim(this.http.req.wall.message)
+        this.http.req.wall.orderOneId = this.$route.query.orderOneId
 
         httpWallApi.putWall(this.$route.params.shortId, this.http.req.wall).then(res => {
           this.ui.loading = false

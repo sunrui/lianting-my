@@ -58,7 +58,9 @@
 
         <div class="order_price">
           <div class="order_price_food_count">共计 {{getTotalFood()}} 份</div>
-          <div class="order_price_total">{{http.res.order.price - (($route.query.deductPrice && $route.query.deductPrice !== http.res.order.couponDeductPrice) ? $route.query.deductPrice - http.res.order.couponDeductPrice : 0)}}</div>
+          <div class="order_price_total">{{http.res.order.price - (($route.query.deductPrice && $route.query.deductPrice !== http.res.order.couponDeductPrice) ?
+            $route.query.deductPrice - http.res.order.couponDeductPrice : 0)}}
+          </div>
           <div class="order_price_total_label">小计</div>
         </div>
       </div>
@@ -96,7 +98,7 @@
           <div class="addition_item_content">{{
             http.res.order.status === 'Paid' ? '已支付' :
             http.res.order.status === 'NotPaid' ? '待支付' :
-            http.res.order.status === 'Finished' ? '已完成' :
+            http.res.order.status === 'Finish' ? '已完成' :
             http.res.order.status === 'Closed' ? '已关闭' : http.res.order.status
             }}
           </div>
@@ -124,10 +126,10 @@
     </div>
 
     <div class="box">
-      <div class="addition box_radius">
+      <div class="addition box_radius" @click="btnWall(http.res.order)">
         <div class="addition_item">
           <div class="addition_item_label">留言墙</div>
-          <div class="addition_item_link" @click="btnWall(http.res.order)">{{ http.res.order.wallId ? '已留言' : '未留言' }}</div>
+          <div class="addition_item_link">{{ http.res.order.wallId ? '已留言' : '未留言' }}</div>
         </div>
       </div>
     </div>

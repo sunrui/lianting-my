@@ -36,7 +36,7 @@
             {{
             http.res.order.status === 'Paid' ? '已支付' :
             http.res.order.status === 'NotPaid' ? '未支付' :
-            http.res.order.status === 'Finished' ? '已完成' :
+            http.res.order.status === 'Finish' ? '已完成' :
             http.res.order.status === 'Closed' ? '已关闭' : http.res.order.status
             }}
           </div>
