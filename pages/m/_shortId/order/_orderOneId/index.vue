@@ -267,7 +267,7 @@
         }
       },
       payNow() {
-        httpOrderApi.postPay(this.$route.params.shortId, this.$route.params.orderOneId, 'WECHAT_JSAPI', this.couponUserId).then(res => {
+        httpOrderApi.postPay(this.$route.params.shortId, this.$route.params.orderOneId, 'WECHAT_JSAPI', this.$route.query.couponId).then(res => {
           if (res.orderNotExists) {
             this.$msgBox.doModal({
               type: 'yes',
@@ -299,7 +299,7 @@
             this.$msgBox.doModal({
               type: 'yes',
               title: '立即支付',
-              content: '优惠券已失效。'
+              content: '优惠券无效。'
             })
             return
           }
@@ -348,6 +348,10 @@
         })
       },
       btnPay() {
+        this.payNow()
+
+        return
+
         let wechatOpenId = localStateApi.user.getWechatOpenId()
         if (!Boolean(wechatOpenId)) {
           this.$msgBox.doModal({
@@ -356,7 +360,7 @@
             content: '请使用微信打开。'
           })
 
-          return
+          // return
         }
 
         httpOrderApi.getConfig(this.$route.params.shortId).then(res => {
@@ -367,7 +371,7 @@
               content: '尚未开通微信支付，您可线下付款。'
             })
 
-            return
+            // return
           }
 
           this.payNow()
