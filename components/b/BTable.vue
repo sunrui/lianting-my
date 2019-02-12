@@ -155,24 +155,24 @@
 </template>
 
 <script>
-  import { httpShopApi } from '../../api/http/shop/httpShopApi'
-  import { httpInfoApi } from '../../api/http/lt/httpInfoApi'
-  import { httpTableApi } from '../../api/http/lt/httpTableApi'
-  import { scrollApi } from '../../api/local/scrollApi'
+  import {httpShopApi} from '../../api/http/shop/httpShopApi'
+  import {httpInfoApi} from '../../api/http/lt/httpInfoApi'
+  import {httpTableApi} from '../../api/http/lt/httpTableApi'
+  import {scrollApi} from '../../api/local/scrollApi'
   import TitleBar from '../common/TitleBar'
   import Captcha from '../common/Captcha'
-  import { httpOrderAdminApi } from '../../api/http/lt/httpOrderAdminApi'
-  import { foodDetailApi } from '../../api/local/foodDetail'
-  import { timeApi } from '../../api/local/timeApi'
-  import { stateApi } from '../../api/local/stateApi'
-  import { httpCaptchaApi } from '../../api/http/lt/httpCaptchaApi'
+  import {httpOrderAdminApi} from '../../api/http/lt/httpOrderAdminApi'
+  import {foodDetailApi} from '../../api/local/foodDetail'
+  import {timeApi} from '../../api/local/timeApi'
+  import {stateApi} from '../../api/local/stateApi'
+  import {httpCaptchaApi} from '../../api/http/lt/httpCaptchaApi'
 
   export default {
     metaInfo: {
       title: '餐桌'
     },
     middleware: 'auth',
-    components: { TitleBar, Captcha },
+    components: {TitleBar, Captcha},
     props: {
       role: {
         type: String,
@@ -246,7 +246,7 @@
 
           for (let index in this.http.res.tableGroups.elements) {
             let tableGroup = this.http.res.tableGroups.elements[index]
-            tableGroup.tableOnes.sort(function(a, b) {
+            tableGroup.tableOnes.sort(function (a, b) {
               return a.number - b.number
             })
           }
@@ -367,7 +367,7 @@
         if (closeLeaf) {
           this.btnLeaf(false)
 
-          setTimeout(function() {
+          setTimeout(function () {
             let node = document.getElementById(tableGroupId)
             if (node != null) {
               let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
@@ -412,6 +412,12 @@
         if (this.role !== 'waiter') {
           if (this.getTableOrder(table).length > 0) {
             this.btnTableOrder(table)
+          } else {
+            this.$msgBox.doModal({
+              type: 'yes',
+              title: '餐桌 ' + table.fullNumber,
+              content: '当前餐桌没有订单。'
+            })
           }
 
           return

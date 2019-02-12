@@ -181,11 +181,13 @@
             border-radius: px2rem(5);
             width: px2rem(60);
             height: px2rem(32);
+            line-height: px2rem(32);
             left: px2rem(40);
 
             display: inline-block;
             color: white;
             font-size: px2rem(24);
+            text-align: center;
           }
         }
 
