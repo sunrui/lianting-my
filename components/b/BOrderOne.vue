@@ -540,7 +540,7 @@
             this.$msgBox.doModal({
               type: 'yes',
               title: '更改状态',
-              content: '仅允许主管、厨师可以操作，您只有查看权限。'
+              content: '仅允许店长、厨师可以操作，您只有查看权限。'
             })
 
             return
@@ -552,7 +552,7 @@
             this.$msgBox.doModal({
               type: 'yes',
               title: '更改状态',
-              content: '仅允许主管、服务员可以操作，您只有查看权限。'
+              content: '仅允许店长、服务员可以操作，您只有查看权限。'
             })
 
             return
@@ -616,7 +616,7 @@
           this.$msgBox.doModal({
             type: 'yes',
             title: '更改人数',
-            content: '仅允许主管、服务员、收银可以更改，您只有查看权限。'
+            content: '仅允许店长、服务员、收银可以更改，您只有查看权限。'
           })
 
           return
@@ -709,7 +709,7 @@
           this.$msgBox.doModal({
             type: 'yes',
             title: '重置状态',
-            content: '仅允许主管可以操作，您只有查看权限。'
+            content: '仅允许店长可以操作，您只有查看权限。'
           })
 
           return
@@ -749,7 +749,7 @@
           this.$msgBox.doModal({
             type: 'yes',
             title: '改价',
-            content: '仅允许主管、收银可以操作，您只有查看权限。。'
+            content: '仅允许店长、收银可以操作，您只有查看权限。。'
           })
 
           return
@@ -759,7 +759,7 @@
           this.$msgBox.doModal({
             type: 'yes',
             title: '改价',
-            content: '更改价格不能为零，如您需取消订单请联系主管。'
+            content: '更改价格不能为零，如您需取消订单请联系店长。'
           })
 
           return
@@ -842,7 +842,7 @@
           this.$msgBox.doModal({
             type: 'yes',
             title: '离线支付',
-            content: '仅允许主管可以操作，您只有查看权限。。'
+            content: '仅允许店长可以操作，您只有查看权限。。'
           })
 
           return

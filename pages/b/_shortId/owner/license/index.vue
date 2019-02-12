@@ -117,7 +117,7 @@
 
           <div class="shop_feature_one">
             <div class="shop_feature_one_icon"></div>
-            <div class="shop_feature_one_label">{{license.limit.maxAdmin}} 个主管</div>
+            <div class="shop_feature_one_label">{{license.limit.maxAdmin}} 个店长</div>
           </div>
 
           <div class="shop_feature_one">

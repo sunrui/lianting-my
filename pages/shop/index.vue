@@ -124,7 +124,7 @@
         ui: {
           roles: [
             { image: '/img/role/role_owner.png', name: '管理员', role: 'owner' },
-            { image: '/img/role/role_admin.png', name: '主管', role: 'admin' },
+            { image: '/img/role/role_admin.png', name: '店长', role: 'admin' },
             { image: '/img/role/role_waiter.png', name: '服务员', role: 'waiter' },
             { image: '/img/role/role_cooker.png', name: '厨师', role: 'cooker' },
             { image: '/img/role/role_cashier.png', name: '财务', role: 'cashier' }

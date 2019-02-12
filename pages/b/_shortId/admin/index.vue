@@ -57,14 +57,14 @@
 
   export default {
     metaInfo: {
-      title: '主管'
+      title: '店长'
     },
     components: { TitleBar, Captcha },
     data() {
       return {
         title: {
           canBack: false,
-          title: '主管',
+          title: '店长',
           backUri: `/b/${this.$route.params.shortId}/admin`,
           theme: 'image',
           imageHeight: 0
