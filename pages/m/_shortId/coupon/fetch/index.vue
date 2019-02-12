@@ -13,15 +13,16 @@
               coupon.type === 'ORDER_RETURN' ? '消费满返赠' : coupon.type
               }}
             </div>
-            <div class="coupon_title_charge_label">满100元可用</div>
+            <div class="coupon_title_charge_label">满{{coupon.chargePrice}}元可用</div>
           </div>
         </div>
-        <div class="coupon_price">10</div>
+        <div class="coupon_price">{{coupon.deductPrice}}</div>
 
         <div class="box_divide"></div>
 
         <div class="coupon_footer">
-          <div class="coupon_expired_time">有效期：2018.06.30 至 2019.06.30</div>
+          <div class="coupon_expired_time">自领取{{coupon.validAfterDay > 0 ? (coupon.validAfterDay + '天后') : '当日'}}可用, {{
+            coupon.expiredDate }}天后过期。</div>
           <div class="coupon_button" @click="btnFetch(coupon)">立即领取</div>
         </div>
       </div>

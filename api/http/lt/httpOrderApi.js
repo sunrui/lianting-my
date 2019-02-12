@@ -24,10 +24,14 @@ export const httpOrderApi = {
   getConfig(shortId) {
     return axios.get(`${base}/${shortId}/order/config`).then(res => res.data)
   },
-  postPay(shortId, citusOrderId, unifiedPayWay, couponUserId) {
-    return axios.post(`${base}/${shortId}/order/${citusOrderId}/pay`, {
-      unifiedPayWay: unifiedPayWay,
+  postCoupon(shortId, citusOrderId, couponUserId) {
+    return axios.post(`${base}/${shortId}/order/${citusOrderId}/coupon`, {
       couponUserId: couponUserId
+    }).then(res => res.data)
+  },
+  postPay(shortId, citusOrderId, unifiedPayWay) {
+    return axios.post(`${base}/${shortId}/order/${citusOrderId}/pay`, {
+      unifiedPayWay: unifiedPayWay
     }).then(res => res.data)
   }
 }

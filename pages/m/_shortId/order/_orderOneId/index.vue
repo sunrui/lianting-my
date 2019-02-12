@@ -41,26 +41,26 @@
           <div class="order_tableware_price">{{http.res.order.priceTableware}}</div>
         </div>
 
-        <div class="order_coupon" v-if="http.res.order.couponDeductPrice &&
-        (!$route.query.deductPrice ? true : $route.query.deductPrice === http.res.order.couponDeductPrice)" @click="btnChooseCoupon()">
-          <div class="order_coupon_icon">优惠券</div>
-          <div class="order_coupon_label">优惠</div>
-          <div class="order_coupon_content">{{http.res.order.couponDeductPrice}}</div>
-        </div>
-        <div class="order_coupon" v-else-if="http.res.coupon.valid.length > 0" @click="btnChooseCoupon()">
-          <div class="order_coupon_icon">优惠券</div>
-          <div class="order_coupon_label">优惠</div>
-          <div class="order_coupon_content" v-if="$route.query.deductPrice > 0">{{$route.query.deductPrice}}</div>
-          <div class="order_coupon_count" v-else>{{http.res.coupon.valid.length}}张优惠券可用</div>
+        <div @click="btnChooseCoupon()">
+          <div class="order_coupon" v-if="http.res.order.couponDeductPrice &&
+        (!$route.query.deductPrice ? true : $route.query.deductPrice === http.res.order.couponDeductPrice)">
+            <div class="order_coupon_icon">优惠券</div>
+            <div class="order_coupon_label">优惠</div>
+            <div class="order_coupon_content">{{http.res.order.couponDeductPrice}}</div>
+          </div>
+          <div class="order_coupon" v-else-if="http.res.coupon.valid.length > 0">
+            <div class="order_coupon_icon">优惠券</div>
+            <div class="order_coupon_label">优惠</div>
+            <div class="order_coupon_content" v-if="$route.query.deductPrice > 0">{{$route.query.deductPrice}}</div>
+            <div class="order_coupon_count" v-else>{{http.res.coupon.valid.length}}张优惠券可用</div>
+          </div>
         </div>
 
         <div class="box_divide"></div>
 
         <div class="order_price">
           <div class="order_price_food_count">共计 {{getTotalFood()}} 份</div>
-          <div class="order_price_total">{{http.res.order.price - (($route.query.deductPrice && $route.query.deductPrice !== http.res.order.couponDeductPrice) ?
-            $route.query.deductPrice - http.res.order.couponDeductPrice : 0)}}
-          </div>
+          <div class="order_price_total">{{http.res.order.price}}</div>
           <div class="order_price_total_label">小计</div>
         </div>
       </div>
@@ -176,7 +176,11 @@
       }
     },
     created() {
-      this.httpOrder()
+      if (this.$route.query.deductPrice && this.$route.query.deductPrice !== this.http.res.order.couponDeductPrice) {
+        this.btnChooseCouponConfirm()
+      } else {
+        this.httpOrder()
+      }
     },
     methods: {
       httpOrder() {
@@ -241,11 +245,56 @@
         }
       },
       btnChooseCoupon() {
-        this.$router.push({
-          path: `/m/${this.$route.params.shortId}/coupon/choose`,
-          query: {
-            orderOneId: this.$route.params.orderOneId,
-            price: this.http.res.order.price
+        if (this.http.res.coupon.valid.length > 0) {
+          this.$router.push({
+            path: `/m/${this.$route.params.shortId}/coupon/choose`,
+            query: {
+              orderOneId: this.$route.params.orderOneId,
+              price: this.http.res.order.price
+            }
+          })
+        }
+      },
+      btnChooseCouponConfirm() {
+        httpOrderApi.postCoupon(this.$route.params.shortId, this.$route.params.orderOneId, this.$route.query.couponId).then(res => {
+          if (res.orderNotExists) {
+            this.$msgBox.doModal({
+              type: 'yes',
+              title: '使用优惠券',
+              content: '订单不存在。'
+            })
+            return
+          }
+
+          if (res.orderClosed) {
+            this.$msgBox.doModal({
+              type: 'yes',
+              title: '使用优惠券',
+              content: '订单已关闭。'
+            })
+            return
+          }
+
+          if (res.orderPaid) {
+            this.$msgBox.doModal({
+              type: 'yes',
+              title: '使用优惠券',
+              content: '订单已支付。'
+            })
+            return
+          }
+
+          if (res.couponIdNotValid) {
+            this.$msgBox.doModal({
+              type: 'yes',
+              title: '使用优惠券',
+              content: '优惠券无效。'
+            })
+            return
+          }
+
+          if (res.success) {
+            this.httpOrder()
           }
         })
       },
@@ -312,15 +361,6 @@
             return
           }
 
-          if (res.couponIdNotValid) {
-            this.$msgBox.doModal({
-              type: 'yes',
-              title: '立即支付',
-              content: '优惠券无效。'
-            })
-            return
-          }
-
           if (res.pay) {
             if (res.pay.subMchIdNotExists) {
               this.$msgBox.doModal({
@@ -365,10 +405,6 @@
         })
       },
       btnPay() {
-        this.payNow()
-
-        return
-
         let wechatOpenId = localStateApi.user.getWechatOpenId()
         if (!Boolean(wechatOpenId)) {
           this.$msgBox.doModal({
@@ -377,7 +413,7 @@
             content: '请使用微信打开。'
           })
 
-          // return
+          return
         }
 
         httpOrderApi.getConfig(this.$route.params.shortId).then(res => {
@@ -388,7 +424,7 @@
               content: '尚未开通微信支付，您可线下付款。'
             })
 
-            // return
+            return
           }
 
           this.payNow()
