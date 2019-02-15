@@ -18,7 +18,7 @@ module.exports = {
       { rel: "icon", type: "image/x-icon", href: "/favicon.ico" }
     ],
     script: [
-      // { src: "https://cdn.bootcss.com/plupload/3.1.2/plupload.full.min.js" }
+      { src: "https://cdn.bootcss.com/plupload/3.1.2/plupload.full.min.js" }
     ]
   },
 

@@ -1,10 +1,9 @@
 <template>
   <div style="border: 10px">
-    <h1>hello owrld</h1>
 
     <div id="container">
-      <button v-if="inWechat" @click="btnUpload">[上传图片从微信+]</button>
-      <input v-if="!inWechat" type="file" id="pickfiles" href="javascript:;" name="[上传图片从本地+]" accept="image/*">
+      <button v-if="ui.inWechat" @click="btnUpload">[上传图片从微信+]</button>
+      <input v-else type="file" id="pickfiles" href="javascript:;" name="[上传图片从本地+]" accept="image/*">
     </div>
 
     <p>{{ui}}</p>
@@ -19,45 +18,38 @@
 </template>
 
 <script>
-  import {httpUploadAdminApi} from '../api/http/lt/httpUploadAdminApi'
-  import {httpWechatApi} from '../api/http/lt/httpWechatApi'
+  import {httpUploadAdminApi} from '../../api/http/lt/httpUploadAdminApi'
+  import {httpWechatApi} from '../../api/http/lt/httpWechatApi'
 
   export default {
-    async asyncData({store, route, userAgent}) {
-      return {
-        userAgent
-      }
-    },
-    middleware: 'user-agent',
     data() {
       return {
-        shortId: null,
         ui: {
+          inWechat: false,
           state: 'wait',
           percent: 0,
           file: null
         }
       }
     },
-    props: ['name', 'inWechat'],
+    props: ['name'],
     mounted() {
-      this.shortId = this.$route.params.shortId
+      let userAgent = navigator.userAgent.toLowerCase() || window.navigator.userAgent.toLowerCase();
+      this.ui.inWechat = userAgent.match(/MicroMessenger/i) || userAgent.match(/webdebugger/i)
 
-      // alert('in wechat: ' + this.inWechat);
-      if (!this.inWechat) {
+      if (!this.ui.inWechat) {
         this.initOssSign(null)
       }
     },
     methods: {
       btnUpload() {
-        // alert('inWechat = ' + this.inWechat);
-        if (this.inWechat) {
+        if (this.ui.inWechat) {
           this.initWxConfig(this)
         }
       },
       initWxConfig(pThis) {
         let url = location.href.split('#')[0]
-        httpWechatApi.getConfig(this.shortId, url).then(res => {
+        httpWechatApi.getConfig(this.$route.params.shortId, url).then(res => {
           console.log(res)
 
           let wx = require('weixin-js-sdk')
@@ -146,7 +138,7 @@
       initOssSign(localData) {
         // alert('init oss sign');
 
-        httpUploadAdminApi.getSignImage(this.shortId).then(res => {
+        httpUploadAdminApi.getSignImage(this.$route.params.shortId).then(res => {
           console.log(res)
           if (this.inWechat) {
             // alert('in wechat, init steam uploader');

@@ -75,6 +75,9 @@
     <div class="button_box">
       <div class="button_big" @click="btnUpdate">更新</div>
     </div>
+
+    <image-upload name="1.jpg"></image-upload>
+
   </div>
 </template>
 
@@ -83,13 +86,14 @@
   import { httpInfoAdminApi } from '../../../../../api/http/lt/httpInfoAdminApi'
   import { httpShopApi } from '../../../../../api/http/shop/httpShopApi'
   import TitleBar from '../../../../../components/common/TitleBar'
+  import ImageUpload from "../../../../../components/common/ImageUpload"
 
   export default {
     metaInfo: {
       title: '编辑资料'
     },
     middleware: 'auth',
-    components: { TitleBar },
+    components: { TitleBar, ImageUpload },
     data() {
       return {
         title: {

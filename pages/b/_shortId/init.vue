@@ -4,7 +4,7 @@
 
     <div class="task">
       <div class="task_one" v-for="(task, index) in ui.tasks">
-        <div class="task_one_number">{{index}}</div>
+        <div class="task_one_number">{{index + 1}}</div>
         <div class="task_one_content">
           <div class="task_one_content_label">{{task}}</div>
         </div>
