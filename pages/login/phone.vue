@@ -38,13 +38,13 @@
       </div>
     </div>
 
-    <div class="blank_50"></div>
+    <div class="blank_20"></div>
 
     <div class="button_box">
       <div class="button_big" @click="btnLogin">登录</div>
     </div>
 
-    <div class="blank_50"></div>
+    <div class="blank_20"></div>
 
     <div class="login_footer">
       <div class="login_third_title">

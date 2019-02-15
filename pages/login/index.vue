@@ -8,12 +8,6 @@
     metaInfo: {
       title: '用户登录'
     },
-    middleware: 'user-agent',
-    async asyncData({ store, route, userAgent }) {
-      return {
-        userAgent
-      }
-    },
     data() {
       return {
         appId: 'wxdd2ac18f974e8e70'
@@ -27,10 +21,12 @@
 
       cartApi.clear()
 
+      let userAgent = navigator.userAgent.toLowerCase() || window.navigator.userAgent.toLowerCase();
+
       let shortId = this.$route.query.shortId
       let scope = this.$route.query.scope
-      let inWechat = this.userAgent.match(/MicroMessenger/i)
-      let inWechatDebugger = this.userAgent.match(/webdebugger/i)
+      let inWechat = userAgent.match(/MicroMessenger/i)
+      let inWechatDebugger = userAgent.match(/webdebugger/i)
 
       if (!inWechatDebugger && (inWechat || scope)) {
         r = document.location.protocol + '//' + window.location.host + `/login/wechat?r=${r}&shortId=${shortId}`

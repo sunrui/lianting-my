@@ -1,7 +1,6 @@
 <template>
   <div>
     <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
-    <div class="shop_bg shop_bg_role"></div>
 
     <div class="shop_nav">
       <div class="shop_center shop_center_role">
@@ -67,7 +66,7 @@
           title: '店长',
           backUri: `/b/${this.$route.params.shortId}/admin`,
           theme: 'image',
-          imageHeight: 0
+          imageHeight: 460
         },
         ui: {
           v_cover_mask: false,

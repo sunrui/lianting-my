@@ -2,8 +2,6 @@
   <div>
     <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
-    <div class="shop_bg shop_bg_owner"></div>
-
     <div class="shop_nav">
       <div class="shop_center shop_center_owner">
         <div class="shop_info">
@@ -65,7 +63,7 @@
           title: '我的店铺',
           backUri: `/b/${this.$route.params.shortId}/owner`,
           theme: 'image',
-          imageHeight: 0
+          imageHeight: 900
         },
         ui: {
           v_cover_mask: false,

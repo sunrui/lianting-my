@@ -1,5 +1,7 @@
 <template>
-  <div style="border: 1px">
+  <div style="border: 10px">
+    <h1>hello owrld</h1>
+
     <div id="container">
       <button v-if="inWechat" @click="btnUpload">[上传图片从微信+]</button>
       <input v-if="!inWechat" type="file" id="pickfiles" href="javascript:;" name="[上传图片从本地+]" accept="image/*">
