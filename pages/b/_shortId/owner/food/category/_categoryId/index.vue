@@ -11,9 +11,7 @@
         <div class="addition_item">
           <div class="addition_item_label">餐食图片</div>
           <div class="addition_item_avatar_input">
-            <div class="addition_item_avatar_img_add" v-if="!http.req.category.image"></div>
-            <img class="addition_item_avatar_img" v-if="http.req.category.image" :src="http.req.category.image">
-            <div class="addition_item_avatar_input_link" v-if="http.req.category.image">></div>
+            <image-upload :file-url="http.req.category.image" v-on:uploadSuccess="uploadSuccess"></image-upload>
           </div>
         </div>
 
@@ -161,17 +159,18 @@
 <script>
   import TitleBar from '../../../../../../../components/common/TitleBar'
   import CurrencyInput from '../../../../../../../components/common/CurrencyInput'
-  import { httpFoodAdminApi } from '../../../../../../../api/http/lt/httpFoodAdminApi'
-  import { httpFoodApi } from '../../../../../../../api/http/lt/httpFoodApi'
-  import { highlightApi } from '../../../../../../../api/local/highlightApi'
-  import { langApi } from '../../../../../../../api/local/langApi'
+  import {httpFoodAdminApi} from '../../../../../../../api/http/lt/httpFoodAdminApi'
+  import {httpFoodApi} from '../../../../../../../api/http/lt/httpFoodApi'
+  import {highlightApi} from '../../../../../../../api/local/highlightApi'
+  import {langApi} from '../../../../../../../api/local/langApi'
+  import ImageUpload from "../../../../../../../components/common/ImageUpload"
 
   export default {
     metaInfo: {
       title: '编辑餐食'
     },
     middleware: 'auth',
-    components: { TitleBar, CurrencyInput },
+    components: {TitleBar, CurrencyInput, ImageUpload},
     data() {
       return {
         title: {
@@ -186,7 +185,7 @@
             category: {
               id: null,
               name: null,
-              image: 'url_image',
+              image: null,
               detail: null,
               tagName: null,
               tagIndex: 0,
@@ -209,9 +208,10 @@
     created() {
       this.httpFoodCategory()
     },
-    mounted() {
-    },
     methods: {
+      uploadSuccess(fileName) {
+        this.http.req.category.image = fileName
+      },
       httpFoodCategory() {
         httpFoodApi.getCategory(this.$route.params.shortId, this.$route.params.categoryId).then(res => {
           this.http.req.category = res
@@ -252,7 +252,6 @@
 
           return
         }
-
 
         httpFoodAdminApi.deleteFood(this.$route.params.shortId, food.id).then(res => {
           if (res.foodIdNotExists) {

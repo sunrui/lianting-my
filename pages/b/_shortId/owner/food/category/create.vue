@@ -11,7 +11,7 @@
         <div class="addition_item">
           <div class="addition_item_label">餐食图片</div>
           <div class="addition_item_avatar_input">
-            <image-upload :fileName="ui.image" :file-url="http.req.category.image" v-on:uploadSuccess="uploadSuccess"></image-upload>
+            <image-upload :file-url="http.req.category.image" v-on:uploadSuccess="uploadSuccess"></image-upload>
           </div>
         </div>
 
@@ -165,7 +165,7 @@
             category: {
               foodGroupId: null,
               name: null,
-              image: 'url_image',
+              image: null,
               detail: null,
               tagName: null,
               tagIndex: 0,
@@ -176,7 +176,6 @@
         ui: {
           v_price_add: false,
           v_cover_mask: false,
-          image: null,
           tagEnable: false,
           foods: [],
           food: {
@@ -189,8 +188,6 @@
       }
     },
     created() {
-      this.ui.image = uuidApi.uuid() + '.jpg'
-
       if (!Boolean(this.$route.query.foodGroupId)) {
         this.$msgBox.doModal({
           type: 'yes',

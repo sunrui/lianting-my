@@ -2,8 +2,9 @@
   <div id="image-upload">
     <div class="image_upload_button" v-if="ui.inWechat" @click="btnUploadWechat"></div>
     <div v-else id="pickfiles">
-      <div class="image_upload_button" v-if="ui.state !== 'uploaded' || !fileUrl"></div>
       <img class="image_upload_image" v-if="ui.fileUrl" :src="ui.fileUrl" alt="">
+      <img class="image_upload_image" v-else-if="fileUrl" :src="fileUrl" alt="">
+      <div class="image_upload_button" v-else="ui.state !== 'uploaded' || !fileUrl"></div>
     </div>
   </div>
 </template>
@@ -12,6 +13,7 @@
   import {httpUploadAdminApi} from '../../api/http/lt/httpUploadAdminApi'
   import {httpWechatApi} from '../../api/http/lt/httpWechatApi'
   import plupload from 'plupload'
+  import {uuidApi} from "../../api/local/uuidApi"
 
   export default {
     data() {
@@ -27,7 +29,7 @@
     props: {
       fileName: {
         type: String,
-        default: 'noName'
+        default: null
       },
       fileUrl: {
         type: String,
@@ -110,6 +112,10 @@
       },
       initOssSign(localData) {
         httpUploadAdminApi.getSignImage(this.$route.params.shortId).then(res => {
+          if (!Boolean(this.fileName)) {
+            this.fileName = uuidApi.uuid() + '.jpg'
+          }
+
           if (this.inWechat) {
             fetch(localData)
               .then(res => res.blob())
