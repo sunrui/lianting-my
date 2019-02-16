@@ -1,10 +1,8 @@
 <template>
   <div id="image-upload">
     <div class="image_upload_button" v-if="ui.inWechat" @click="btnUploadWechat"></div>
-    <div v-else>
-      <div class="image_upload_button" id="pickfiles"></div>
-      <!--<img class="image_upload_image" v-if="ui.fileUrl && ui.state === 'uploaded'" :src="ui.fileUrl" alt="">-->
-      <!--<img class="image_upload_image" v-else-if="fileUrl" :src="fileUrl" alt="">-->
+    <div v-else id="pickfiles">
+      <div class="image_upload_button" v-if="ui.state !== 'uploaded' || !fileUrl"></div>
       <img class="image_upload_image" v-if="ui.fileUrl" :src="ui.fileUrl" alt="">
     </div>
   </div>
