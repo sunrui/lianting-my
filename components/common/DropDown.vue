@@ -41,7 +41,6 @@
       }
 
       document.addEventListener('click', this.hideMenu, false)
-
     },
     methods: {
       updateOption(option) {

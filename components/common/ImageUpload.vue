@@ -2,9 +2,10 @@
   <div id="image-upload">
     <div class="image_upload_button" v-if="ui.inWechat" @click="btnUploadWechat"></div>
     <div v-else>
+      <div class="image_upload_button" id="pickfiles"></div>
+      <!--<img class="image_upload_image" v-if="ui.fileUrl && ui.state === 'uploaded'" :src="ui.fileUrl" alt="">-->
+      <!--<img class="image_upload_image" v-else-if="fileUrl" :src="fileUrl" alt="">-->
       <img class="image_upload_image" v-if="ui.fileUrl" :src="ui.fileUrl" alt="">
-      <img class="image_upload_image" v-else-if="fileUrl" :src="fileUrl" alt="">
-      <div class="image_upload_button" v-else id="pickfiles"></div>
     </div>
   </div>
 </template>
@@ -35,10 +36,14 @@
         default: null
       }
     },
+    created() {
+      if (Boolean(this.fileUrl)) {
+        this.ui.fileUrl = this.fileUrl
+      }
+    },
     mounted() {
       let userAgent = navigator.userAgent.toLowerCase() || window.navigator.userAgent.toLowerCase()
       this.ui.inWechat = userAgent.match(/MicroMessenger/i) || userAgent.match(/webdebugger/i)
-
       if (!this.ui.inWechat) {
         this.initOssSign(null)
       }
@@ -173,7 +178,6 @@
             },
             FilesAdded(up, files) {
               plupload.each(files, function (file) {
-                console.log(file.name)
                 pThis.ui.fileUrl = 'http://' + sign.endPoint + '/' + sign.key + name
               })
 
@@ -195,11 +199,12 @@
             },
 
             UploadProgress(up, file) {
-              console.log('uploading....' + file.percent)
               pThis.ui.percent = file.percent
             },
             FileUploaded(up, file, info) {
               pThis.ui.state = 'uploaded'
+              pThis.ui.fileUrl += '?' + new Date().getTime()
+              pThis.$emit('uploadSuccess', pThis.ui.fileUrl)
             },
             Error(up, err) {
               if (err.code === -600) {

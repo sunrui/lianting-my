@@ -7,9 +7,7 @@
         <div class="addition_item">
           <div class="addition_item_label">店铺头像</div>
           <div class="addition_item_avatar_input">
-            <div class="addition_item_avatar_img_add" v-if="!http.req.info.logo"></div>
-            <img class="addition_item_avatar_img" :src="http.req.info.logo" v-if="http.req.info.logo">
-            <div class="addition_item_avatar_input_link" v-if="http.req.info.logo">></div>
+            <image-upload :fileName="http.req.info.id + '.jpg'" :file-url="http.req.info.logo" v-on:uploadSuccess="uploadSuccess"></image-upload>
           </div>
         </div>
 
@@ -75,16 +73,13 @@
     <div class="button_box">
       <div class="button_big" @click="btnUpdate">更新</div>
     </div>
-
-    <image-upload fileName="1.jpg"></image-upload>
-
   </div>
 </template>
 
 <script>
-  import { httpInfoApi } from '../../../../../api/http/lt/httpInfoApi'
-  import { httpInfoAdminApi } from '../../../../../api/http/lt/httpInfoAdminApi'
-  import { httpShopApi } from '../../../../../api/http/shop/httpShopApi'
+  import {httpInfoApi} from '../../../../../api/http/lt/httpInfoApi'
+  import {httpInfoAdminApi} from '../../../../../api/http/lt/httpInfoAdminApi'
+  import {httpShopApi} from '../../../../../api/http/shop/httpShopApi'
   import TitleBar from '../../../../../components/common/TitleBar'
   import ImageUpload from "../../../../../components/common/ImageUpload"
 
@@ -93,7 +88,7 @@
       title: '编辑资料'
     },
     middleware: 'auth',
-    components: { TitleBar, ImageUpload },
+    components: {TitleBar, ImageUpload},
     data() {
       return {
         title: {
@@ -140,6 +135,9 @@
             })
           })
         })
+      },
+      uploadSuccess(fileName) {
+        this.http.req.info.logo = fileName
       }
     }
   }

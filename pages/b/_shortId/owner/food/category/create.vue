@@ -11,9 +11,7 @@
         <div class="addition_item">
           <div class="addition_item_label">餐食图片</div>
           <div class="addition_item_avatar_input">
-            <div class="addition_item_avatar_img_add" v-if="!http.req.category.image"></div>
-            <img class="addition_item_avatar_img" v-if="http.req.category.image" :src="http.req.category.image">
-            <div class="addition_item_avatar_input_link" v-if="http.req.category.image">></div>
+            <image-upload :fileName="ui.image" :file-url="http.req.category.image" v-on:uploadSuccess="uploadSuccess"></image-upload>
           </div>
         </div>
 
@@ -139,18 +137,20 @@
 </template>
 
 <script>
-  import { httpFoodAdminApi } from '../../../../../../api/http/lt/httpFoodAdminApi'
+  import {httpFoodAdminApi} from '../../../../../../api/http/lt/httpFoodAdminApi'
   import TitleBar from '../../../../../../components/common/TitleBar'
   import CurrencyInput from '../../../../../../components/common/CurrencyInput'
-  import { highlightApi } from '../../../../../../api/local/highlightApi'
-  import { langApi } from '../../../../../../api/local/langApi'
+  import {highlightApi} from '../../../../../../api/local/highlightApi'
+  import {langApi} from '../../../../../../api/local/langApi'
+  import ImageUpload from "../../../../../../components/common/ImageUpload"
+  import {uuidApi} from "../../../../../../api/local/uuidApi"
 
   export default {
     metaInfo: {
       title: '创建餐食'
     },
     middleware: 'auth',
-    components: { TitleBar, CurrencyInput },
+    components: {TitleBar, CurrencyInput, ImageUpload},
     data() {
       return {
         title: {
@@ -176,6 +176,7 @@
         ui: {
           v_price_add: false,
           v_cover_mask: false,
+          image: null,
           tagEnable: false,
           foods: [],
           food: {
@@ -188,6 +189,8 @@
       }
     },
     created() {
+      this.ui.image = uuidApi.uuid() + '.jpg'
+
       if (!Boolean(this.$route.query.foodGroupId)) {
         this.$msgBox.doModal({
           type: 'yes',
@@ -197,6 +200,9 @@
       }
     },
     methods: {
+      uploadSuccess(fileName) {
+        this.http.req.category.image = fileName
+      },
       btnCoverMask() {
         this.ui.v_price_add = false
         this.ui.v_cover_mask = false

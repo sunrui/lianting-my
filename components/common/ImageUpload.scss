@@ -1,5 +1,7 @@
 #image-upload {
   position: relative;
+  display: inline-block;
+  vertical-align: middle;
   width: px2rem(134);
   height: px2rem(80);
 }
@@ -20,4 +22,5 @@
   width: px2rem(134);
   height: auto;
   max-height: px2rem(80);
+  z-index: -1;
 }
