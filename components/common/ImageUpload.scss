@@ -19,8 +19,11 @@
 }
 
 .image_upload_image {
-  width: px2rem(134);
-  height: auto;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: px2rem(80);
   max-height: px2rem(80);
+  height: auto;
   z-index: -1;
 }
