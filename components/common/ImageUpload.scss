@@ -1,0 +1,23 @@
+#image-upload {
+  position: relative;
+  width: px2rem(134);
+  height: px2rem(80);
+}
+
+.image_upload_button {
+  position: absolute;
+  left: 0;
+  top: 0;
+
+  background-image: url("/img/common/addition/addition_item_image.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  width: px2rem(134);
+  height: px2rem(80);
+}
+
+.image_upload_image {
+  width: px2rem(134);
+  height: auto;
+  max-height: px2rem(80);
+}

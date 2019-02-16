@@ -76,7 +76,7 @@
       <div class="button_big" @click="btnUpdate">更新</div>
     </div>
 
-    <image-upload name="1.jpg"></image-upload>
+    <image-upload fileName="1.jpg"></image-upload>
 
   </div>
 </template>
