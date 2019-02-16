@@ -167,22 +167,17 @@
 </template>
 
 <script>
-  import { httpShopApi } from '../../../../../api/http/shop/httpShopApi'
-  import { httpShopLicenseApi } from '../../../../../api/http/shop/httpShopLicenseApi'
+  import {httpShopApi} from '../../../../../api/http/shop/httpShopApi'
+  import {httpShopLicenseApi} from '../../../../../api/http/shop/httpShopLicenseApi'
   import TitleBar from '../../../../../components/common/TitleBar'
-  import { scrollApi } from '../../../../../api/local/scrollApi'
+  import {scrollApi} from '../../../../../api/local/scrollApi'
 
   export default {
     metaInfo: {
       title: '续费'
     },
-    middleware: ['auth', 'user-agent'],
-    async asyncData({ store, route, userAgent }) {
-      return {
-        userAgent
-      }
-    },
-    components: { TitleBar },
+    middleware: ['auth'],
+    components: {TitleBar},
     data() {
       return {
         title: {
@@ -254,7 +249,7 @@
               'signType': jsPay.signType,   //微信签名方式：
               'paySign': jsPay.paySign //微信签名
             },
-            function(res) {
+            function (res) {
               alert(JSON.stringify(res))
               if (res.err_msg === 'get_brand_wcpay_request:ok') {
                 alert('支付已成功，支付结果可能存在延迟，请稍候刷新等待服务器返回。')
@@ -278,13 +273,16 @@
         }
       },
       btnChargeConfirm() {
-        let inWechat = this.userAgent.match(/MicroMessenger/i)
-        if (!Boolean(inWechat)) {
+        let userAgent = navigator.userAgent.toLowerCase() || window.navigator.userAgent.toLowerCase();
+        let inWechat = userAgent.match(/MicroMessenger/i) || userAgent.match(/webdebugger/i)
+
+        if (inWechat) {
           this.$msgBox.doModal({
             type: 'yes',
             title: '立即续费',
             content: '请在微信中打开。'
           })
+
           // return
         }
 
