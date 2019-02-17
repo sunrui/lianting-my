@@ -42,7 +42,7 @@
           <div class="status_item_content">{{new Date(parseInt(http.res.order.createdAt)).toLocaleString()}}</div>
         </div>
 
-        <div class="status_footer"></div>
+        <div class="blank_20"></div>
       </div>
     </div>
 
