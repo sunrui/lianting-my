@@ -24,8 +24,14 @@
         <div class="box_divide"></div>
 
         <div class="order_history_footer">
-          <div class="order_history_price_label">总价</div>
-          <div class="order_history_price_content">{{order.price}}</div>
+          <div v-if="order.orderTable">
+            <div class="order_history_table_label">餐桌</div>
+            <div class="order_history_table_content">{{order.orderTable.tableFullNumber}}</div>
+          </div>
+          <div v-else>
+            <div class="order_history_price_label">总价</div>
+            <div class="order_history_price_content">{{order.price}}</div>
+          </div>
           <div class="order_history_detail" @click="btnDetail(order)">查看详情</div>
         </div>
         <div class="blank_10"></div>
@@ -39,14 +45,14 @@
 
 <script>
   import TitleBar from '../common/TitleBar'
-  import { httpOrderAdminApi } from '../../api/http/lt/httpOrderAdminApi'
+  import {httpOrderAdminApi} from '../../api/http/lt/httpOrderAdminApi'
 
   export default {
     metaInfo: {
       title: '订单记录'
     },
     middleware: 'auth',
-    components: { TitleBar },
+    components: {TitleBar},
     props: {
       role: {
         type: String,
@@ -83,7 +89,7 @@
             return
           }
 
-          res.elements.sort(function(a, b) {
+          res.elements.sort(function (a, b) {
             return b.createdAt - a.createdAt
           })
 
@@ -96,7 +102,7 @@
             return
           }
 
-          res.elements.sort(function(a, b) {
+          res.elements.sort(function (a, b) {
             return b.createdAt - a.createdAt
           })
 
