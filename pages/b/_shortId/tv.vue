@@ -27,12 +27,21 @@
             <div class="tv_full_screen_time_date">2016/4/4</div>
           </div>
         </div>
-        <div class="tv_full_screen_footer_table"></div>
+        <div class="tv_full_screen_footer_table">
+          <div class="tv_full_screen_footer_table_title" v-for="title in ui.titles">{{title}}</div>
+          <div class="tv_full_screen_footer_table_content" v-for="title in ui.titles">{{title}}</div>
+          <div class="tv_full_screen_footer_table_content" v-for="title in ui.titles">{{title}}</div>
+          <div class="tv_full_screen_footer_table_content" v-for="title in ui.titles">{{title}}</div>
+          <div class="tv_full_screen_footer_table_content" v-for="title in ui.titles">{{title}}</div>
+        </div>
       </div>
     </div>
     <div v-else class="tv_prompt">
+      <div class="blank_100"></div>
+      <div class="tv_prompt_label">恋厅展屏</div>
+      <div class="blank_20"></div>
       <div class="tv_promt_demo"></div>
-      <div class="tv_prompt_label">由于受到浏览器限制，请<span class="tv_prompt_button" @click="btnFullScreen">手动全屏</span>。</div>
+      <div class="tv_prompt_label">由于浏览器权限限制，请<span class="tv_prompt_button" @click="btnFullScreen">手动全屏</span>。</div>
     </div>
   </div>
 
@@ -48,7 +57,8 @@
     data() {
       return {
         ui: {
-          fullScreen: true
+          fullScreen: true,
+          titles: ['餐桌', '等待桌数', '当前就餐', '首桌已等待']
         }
       }
     },

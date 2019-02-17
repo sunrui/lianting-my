@@ -154,8 +154,7 @@
       padding-bottom: px2rem(30);
       color: #6B84BD;
       text-align: center;
-      font-size: px2rem(28);
-      line-height: px2rem(30);
+      font-size: px2rem(30);
       font-weight: 500;
     }
   }
@@ -167,7 +166,7 @@
     background: rgba(2, 17, 50, 1);
     border: solid px2rem(1) rgba(0, 156, 255, 1);
     border-radius: px2rem(4);
-    box-shadow: 0 0 px2rem(50) rgba(0, 156, 255, 0.3) inset;
+    box-shadow: 0 0 px2rem(30) rgba(0, 156, 255, 0.3) inset;
     text-align: left;
 
     .tv_full_screen_time_box_left {
@@ -211,18 +210,42 @@
   top: 0;
   bottom: 0;
   margin-top: px2rem(30);
-
   background: rgba(2, 17, 50, 1);
   border: solid px2rem(1) rgba(0, 156, 255, 1);
   border-radius: px2rem(4);
-  box-shadow: 0 0 px2rem(50) rgba(0, 156, 255, 0.3) inset;
+  box-shadow: 0 0 px2rem(30) rgba(0, 156, 255, 0.3) inset;
+  padding: px2rem(40);
+
+  .tv_full_screen_footer_table_title {
+    display: inline-block;
+    vertical-align: middle;
+    background: rgba(21, 58, 138, 0.2);
+    height: px2rem(100);
+    line-height: px2rem(100);
+    width: 25%;
+    text-align: center;
+    font-size: px2rem(32);
+    color: #00A2FF;
+    font-weight: 400;
+  }
+
+  .tv_full_screen_footer_table_content {
+    display: inline-block;
+    height: px2rem(120);
+    line-height: px2rem(120);
+    width: 25%;
+    font-size: px2rem(32);
+    color: #B2C9F0;
+    font-weight: 400;
+    text-align: center;
+    border-bottom: solid px2rem(2) rgba(30, 61, 129, 0.6);;
+  }
 }
 
 .tv_prompt {
   text-align: center;
 
   .tv_promt_demo {
-    margin-top: px2rem(100);
     display: inline-block;
     background: url("/img/b/tv/tv_demo.png") no-repeat;
     background-size: 100% 100%;
