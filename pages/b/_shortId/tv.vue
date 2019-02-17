@@ -2,11 +2,12 @@
   <div>
     <div v-if="ui.fullScreen" id="tv_full_screen" class="tv_full_screen">
       <div class="tv_full_screen_header">
-        <div class="tv_shop_icon"></div>
-        <div class="tv_shop_title">北京新白鹿餐厅 (长河路店)</div>
+        <img class="tv_shop_icon" :src="http.res.info.logo" :alt="http.res.shop.name">
+        <div class="tv_shop_title">{{http.res.shop.name}}</div>
         <div class="tv_shop_state">
-          <div class="tv_shop_state_icon_open"></div>
-          <div class="tv_shop_state_label">营业中</div>
+          <div class="tv_shop_state_icon_open" v-if="http.res.shop.open"></div>
+          <div class="tv_shop_state_icon_close" v-else></div>
+          <div class="tv_shop_state_label">{{http.res.shop.open ? '营业中' : '已打烊' }}</div>
         </div>
       </div>
       <div class="tv_full_screen_radio">
@@ -15,24 +16,29 @@
       </div>
       <div class="tv_full_screen_footer">
         <div class="tv_full_screen_captcha_box">
-          <div class="tv_full_screen_captcha"></div>
+          <div class="tv_full_screen_captcha">
+            <canvas id="tv_captcha"></canvas>
+          </div>
           <div class="tv_full_screen_captcha_label">扫码可排队点餐</div>
         </div>
         <div class="tv_full_screen_time_box">
           <div class="tv_full_screen_time_box_left">
-            <div class="tv_full_screen_time_time">15:24</div>
+            <div class="tv_full_screen_time_label">{{ui.time.time}}</div>
           </div>
           <div class="tv_full_screen_time_box_right">
-            <div class="tv_full_screen_time_week">星期五</div>
-            <div class="tv_full_screen_time_date">2016/4/4</div>
+            <div class="tv_full_screen_time_week">{{ui.time.week}}</div>
+            <div class="tv_full_screen_time_date">{{ui.time.date}}</div>
           </div>
         </div>
         <div class="tv_full_screen_footer_table">
           <div class="tv_full_screen_footer_table_title" v-for="title in ui.titles">{{title}}</div>
-          <div class="tv_full_screen_footer_table_content" v-for="title in ui.titles">{{title}}</div>
-          <div class="tv_full_screen_footer_table_content" v-for="title in ui.titles">{{title}}</div>
-          <div class="tv_full_screen_footer_table_content" v-for="title in ui.titles">{{title}}</div>
-          <div class="tv_full_screen_footer_table_content" v-for="title in ui.titles">{{title}}</div>
+
+          <div v-for="tableOne in ui.tables">
+            <div class="tv_full_screen_footer_table_content" v-bind:class="{
+            tv_full_screen_footer_table_content_white: index === 1
+            }" v-for="(one, index) in tableOne">{{one}}
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -49,6 +55,14 @@
 
 <script>
   import {screenApi} from "../../../api/local/screenApi"
+  import {httpQueueApi} from '../../../api/http/lt/httpQueueApi'
+  import {httpTableApi} from '../../../api/http/lt/httpTableApi'
+  import {httpShopApi} from '../../../api/http/shop/httpShopApi'
+  import {httpInfoApi} from '../../../api/http/lt/httpInfoApi'
+
+  import QRCode from 'qrcode'
+  import {timeApi} from "../../../api/local/timeApi"
+  import {loadingApi} from "../../../api/local/loadingApi"
 
   export default {
     metaInfo: {
@@ -56,19 +70,232 @@
     },
     data() {
       return {
+        http: {
+          res: {
+            shop: {},
+            info: {},
+            state: {},
+            tableGroups: {},
+            tableGroupNows: {}
+          }
+        },
         ui: {
           fullScreen: true,
-          titles: ['餐桌', '等待桌数', '当前就餐', '首桌已等待']
+          time: {
+            time: '00:00',
+            week: '星期一',
+            date: '2000-01-01'
+          },
+          titles: ['餐桌', '等待桌数', '当前就餐', '首桌已等待'],
+          tables: []
         }
       }
     },
+    created() {
+      this.httpState()
+      this.httpShop()
+      this.httpInfo()
+
+      this.updateTime()
+
+      loadingApi.enable = false
+      setInterval(this.updateTime, 60 * 1000)
+      setInterval(this.httpState, 5 * 1000)
+    },
     mounted() {
+      let canvas = document.getElementById('tv_captcha')
+      let text = document.location.protocol + '//' + window.location.host + `/m/${this.$route.params.shortId}`
+      QRCode.toCanvas(canvas, text)
+
       document.addEventListener("fullscreenchange", this.onFullScreenChange)
       document.addEventListener("mozfullscreenchange", this.onFullScreenChange)
       document.addEventListener("webkitfullscreenchange", this.onFullScreenChange)
       document.addEventListener("msfullscreenchange", this.onFullScreenChange)
     },
     methods: {
+      updateTime() {
+        let date = new Date()
+        this.ui.time.time = timeApi.dateFormat(date, 'HH:mm')
+        this.ui.time.week = timeApi.getWeekDesc(date)
+        this.ui.time.date = timeApi.dateFormat(date, 'yyyy-MM-dd')
+      },
+      httpShop() {
+        httpShopApi.getOne(this.$route.params.shortId).then(res => {
+          this.http.res.shop = res
+        })
+      },
+      httpInfo() {
+        httpInfoApi.get(this.$route.params.shortId).then(res => {
+          this.http.res.info = res
+        })
+      },
+      getGroupNow(tableGroupId) {
+        for (let index in this.http.res.tableGroupNows.elements) {
+          let tableGroupNow = this.http.res.tableGroupNows.elements[index]
+
+          if (tableGroupNow.tableGroupId === tableGroupId) {
+            return tableGroupNow
+          }
+        }
+
+        return null
+      },
+      getWaitPeople(tableGroupId) {
+        for (let index in this.http.res.tableGroupNows.elements) {
+          let tableGroupNow = this.http.res.tableGroupNows.elements[index]
+
+          if (tableGroupNow.tableGroupId === tableGroupId) {
+            return tableGroupNow.waitPeople
+          }
+        }
+
+        return 0
+      },
+      getGroupWaitSeconds(tableGroup) {
+        let seconds = 0
+
+        for (let index in this.http.res.tableGroupNows.elements) {
+          let tableGroupNow = this.http.res.tableGroupNows.elements[index]
+          if (tableGroupNow.tableGroupId === tableGroup.id && tableGroupNow.elapsedAverage) {
+            seconds = tableGroupNow.elapsedAverage * tableGroupNow.waitPeople
+            break
+          }
+        }
+
+        return seconds
+      },
+      getTime(seconds) {
+        let day = parseInt(seconds / 60 / 60 / 24)
+        let hour = parseInt(seconds / 60 / 60)
+        let minute = parseInt(seconds / 60 % 60)
+        let second = parseInt(seconds % 60)
+
+        if (day > 0) {
+          return `${day}`
+        }
+
+        if (hour > 0) {
+          return `${hour}`
+        }
+
+        if (minute > 0) {
+          return `${minute}`
+        }
+
+        if (second > 0) {
+          return `${second}`
+        }
+
+        return '--'
+      },
+      getTime2(seconds) {
+        let day = parseInt(seconds / 60 / 60 / 24)
+        let hour = parseInt(seconds / 60 / 60)
+        let minute = parseInt(seconds / 60 % 60)
+        let second = parseInt(seconds % 60)
+
+        if (day > 0) {
+          return `天`
+        }
+
+        if (hour > 0) {
+          return `小时`
+        }
+
+        if (minute > 0) {
+          return `分钟`
+        }
+
+        if (second > 0) {
+          return `秒`
+        }
+
+        return '分钟'
+      },
+      httpState() {
+        this.http.res.state = {}
+        this.http.res.tableGroups = {}
+
+        this.ui.v_queue_number = false
+        this.ui.v_table_select = false
+        this.ui.v_cover_mask = false
+
+        httpQueueApi.getState(this.$route.params.shortId).then(res => {
+          this.http.res.state = res
+
+          if (this.http.res.state.needQueues.length === 0) {
+            this.$router.push(`/m/${this.$route.params.shortId}/queue/close`)
+            return
+          }
+
+          this.httpTableGroup()
+        })
+      },
+      httpTableGroup() {
+        httpTableApi.getGroupAll(this.$route.params.shortId).then(res => {
+          this.http.res.tableGroups = res
+
+          let haveNeedQueue = false
+
+          for (let index in this.http.res.tableGroups.elements) {
+            let tableGroup = this.http.res.tableGroups.elements[index]
+            tableGroup.needQueue = false
+
+            for (let enableQueueIndex in this.http.res.state.needQueues) {
+              let tableGroupId = this.http.res.state.needQueues[enableQueueIndex]
+
+              if (tableGroupId === tableGroup.id) {
+                tableGroup.needQueue = true
+                haveNeedQueue = true
+
+                if (!this.ui.selectTableGroupId) {
+                  this.ui.selectTableGroupId = tableGroup.id
+                }
+
+                break
+              }
+            }
+          }
+
+          this.httpNow()
+        })
+      },
+      httpNow() {
+        httpQueueApi.getNowAll(this.$route.params.shortId).then(res => {
+          this.http.res.tableGroupNows = res
+          this.refreshTables()
+        })
+      },
+      refreshTables() {
+        this.ui.tables = []
+
+        for (let index in this.http.res.tableGroups.elements) {
+          let tableGroup = this.http.res.tableGroups.elements[index]
+
+          let table = []
+          table.push(`${tableGroup.name} (${tableGroup.minPeople}-${tableGroup.maxPeople}人)`)
+          table.push(this.getWaitPeople(tableGroup.id))
+
+          if (this.getGroupNow(tableGroup.id)) {
+            let queueTicket = this.getGroupNow(tableGroup.id).queueTicket
+            table.push(queueTicket.tableGroupNumberPrefix + queueTicket.sequence)
+
+            if (this.getWaitPeople(tableGroup.id) === 0) {
+              table.push('--')
+            } else {
+              table.push(this.getTime((new Date().getTime() - queueTicket.createdAt) / 1000) +
+                this.getTime2((new Date().getTime() - queueTicket.createdAt) / 1000))
+            }
+          } else {
+            table.push('--')
+            table.push('--')
+          }
+
+          this.ui.tables.push(table)
+        }
+
+        console.log(this.ui.tables)
+      },
       onFullScreenChange(e) {
         if (!screenApi.isFullScreen()) {
           this.ui.fullScreen = false
@@ -79,7 +306,8 @@
         screenApi.enterFullScreen(element)
 
         this.ui.fullScreen = true
-      }
+      },
+
     }
   }
 </script>

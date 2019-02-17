@@ -202,16 +202,6 @@
           this.http.res.info = res
         })
       },
-      getTablePeople(tableGroupId) {
-        for (let index in this.http.res.tableGroups.elements) {
-          let tableGroup = this.http.res.tableGroups.elements[index]
-          if (tableGroup.id === tableGroupId) {
-            return tableGroup.minPeople + '-' + tableGroup.maxPeople + '人'
-          }
-        }
-
-        return ''
-      },
       getWaitPeople(tableGroupId) {
         for (let index in this.http.res.tableGroupNows.elements) {
           let tableGroupNow = this.http.res.tableGroupNows.elements[index]

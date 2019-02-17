@@ -6,6 +6,11 @@ export const timeApi = {
     let xc = (od - td) / 1000 / 60 / 60 / 24
     return xc === 0
   },
+
+  getWeekDesc(date) {
+    let weekdays = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六']
+    return weekdays[date.getDay()]
+  },
   getWeekDesc2(date) {
     let td = new Date()
     td = new Date(td.getFullYear(), td.getMonth(), td.getDate())
@@ -26,11 +31,6 @@ export const timeApi = {
     }
 
     return this.getWeekDesc(date)
-  },
-  getWeekDesc(date) {
-    let weekdays = ['周日', '周一', '周二', '周三', '周四', '周五', '周六']
-    return weekdays[date.getDay()]
-
   },
   elapsedTime(time) {
     let seconds = time / 1000

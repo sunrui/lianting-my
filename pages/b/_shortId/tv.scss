@@ -1,3 +1,8 @@
+#tv_captcha {
+  width: 100% !important;
+  height: auto !important;
+}
+
 .tv_full_screen {
   position: fixed;
   top: 0;
@@ -20,7 +25,6 @@
     vertical-align: top;
     top: px2rem(20);
     margin-left: px2rem(60);
-    background: #1F96E1;
     border: solid px2rem(1) #82CFFF;
     border-radius: 50%;
     width: px2rem(148);
@@ -143,14 +147,14 @@
     .tv_full_screen_captcha {
       position: relative;
       display: inline-block;
-      margin-top: px2rem(30);
+      margin-top: px2rem(50);
       width: px2rem(260);
       height: px2rem(260);
       background: #6B84BD;
     }
 
     .tv_full_screen_captcha_label {
-      margin-top: px2rem(15);
+      margin-top: px2rem(20);
       padding-bottom: px2rem(30);
       color: #6B84BD;
       text-align: center;
@@ -167,13 +171,16 @@
     border: solid px2rem(1) rgba(0, 156, 255, 1);
     border-radius: px2rem(4);
     box-shadow: 0 0 px2rem(30) rgba(0, 156, 255, 0.3) inset;
-    text-align: left;
 
     .tv_full_screen_time_box_left {
       display: inline-block;
+      vertical-align: middle;
       padding-left: px2rem(20);
+      text-align: center;
 
-      .tv_full_screen_time_time {
+      .tv_full_screen_time_label {
+        display: inline-block;
+        vertical-align: middle;
         color: #009CFF;
         font-size: px2rem(68);
         font-weight: 400;
@@ -183,8 +190,10 @@
 
     .tv_full_screen_time_box_right {
       display: inline-block;
+      vertical-align: middle;
       padding-left: px2rem(10);
       padding-right: px2rem(30);
+      text-align: left;
 
       .tv_full_screen_time_week {
         color: #009CFF;
@@ -215,6 +224,7 @@
   border-radius: px2rem(4);
   box-shadow: 0 0 px2rem(30) rgba(0, 156, 255, 0.3) inset;
   padding: px2rem(40);
+  overflow-y: scroll;
 
   .tv_full_screen_footer_table_title {
     display: inline-block;
@@ -238,7 +248,11 @@
     color: #B2C9F0;
     font-weight: 400;
     text-align: center;
-    border-bottom: solid px2rem(2) rgba(30, 61, 129, 0.6);;
+    border-bottom: solid px2rem(2) rgba(30, 61, 129, 0.6);
+  }
+
+  .tv_full_screen_footer_table_content_white {
+    color: white !important;
   }
 }
 

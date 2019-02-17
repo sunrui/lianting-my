@@ -89,7 +89,7 @@
       }
     },
     methods: {
-      _updateTime() {
+      updateTime() {
         if (--this.ui.code.limit === 0) {
           this.ui.code.buttonText = '发送'
           clearInterval(this.ui.code.interval)
@@ -115,7 +115,7 @@
         httpSmsApi.postSend(this.http.req.bind.phone, 'BIND').then(res => {
           if (res.success) {
             this.ui.code.limit = 60
-            this.ui.code.interval = setInterval(this._updateTime, 1000)
+            this.ui.code.interval = setInterval(this.updateTime, 1000)
           } else if (res.userExists) {
             this.$msgBox.doModal({
               type: 'yes',
