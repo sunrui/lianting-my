@@ -8,7 +8,7 @@
       <div class="shop_info">
         <div class="shop_info_logo" @click="btnShop(role.shop)">
           <div class="shop_logo_radius shop_logo_radius_center">
-            <img class="shop_logo_radius_image" :src="getLogo(role.shop)" :alt="shop.name">
+            <img class="shop_logo_radius_image" :src="getLogo(role.shop)" :alt="role.shop.name">
           </div>
         </div>
 
