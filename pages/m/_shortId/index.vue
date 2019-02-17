@@ -208,7 +208,7 @@
         for (let index in this.http.res.coupons) {
           let coupon = this.http.res.coupons[index]
 
-          if (price === null || coupon.chargePrice < price) {
+          if (!price || coupon.chargePrice < price) {
             price = coupon.chargePrice
           }
         }

@@ -150,7 +150,7 @@
           return
         }
 
-        if (this.http.req.coupon.chargePrice === null) {
+        if (!this.http.req.coupon.chargePrice) {
           this.$msgBox.doModal({
             type: 'yes',
             title: '添加优惠券',
@@ -190,7 +190,7 @@
           return
         }
 
-        if (this.http.req.coupon.type === 'ORDER_RETURN' && this.http.req.coupon.needChargePrice === null) {
+        if (this.http.req.coupon.type === 'ORDER_RETURN' && !this.http.req.coupon.needChargePrice) {
           this.$msgBox.doModal({
             type: 'yes',
             title: '添加优惠券',

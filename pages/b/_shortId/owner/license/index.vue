@@ -229,8 +229,6 @@
       },
       prepareWechatPay(jsPay) {
         function onBridgeReady() {
-          alert('onBridgeReady')
-
           WeixinJSBridge.invoke(
             'getBrandWCPayRequest', {
               'appId': jsPay.appId,     //公众号名称，由商户传入

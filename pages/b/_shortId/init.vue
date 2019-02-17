@@ -11,17 +11,15 @@
       </div>
     </div>
 
-    <div class="button_area">
-      <div class="button_big" @click="btnShopOwner">进入店铺管理</div>
-    </div>
-
+    <div class="blank_30"></div>
+    <div class="button_big" @click="btnShopOwner">进入店铺管理</div>
     <div class="blank_20"></div>
   </div>
 
 </template>
 
 <script>
-  import { httpShopApi } from '../../../api/http/shop/httpShopApi'
+  import {httpShopApi} from '../../../api/http/shop/httpShopApi'
 
   export default {
     metaInfo: {

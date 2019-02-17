@@ -139,15 +139,14 @@
               tag: 'tv',
               name: '展屏',
               icon: '/img/b/nav/owner/b_nav_owner_tv.png',
-              url: `/b/${this.$route.params.shortId}/owner/charge`
+              url: `/b/${this.$route.params.shortId}/owner/tv`
             },
-            {
-              tag: 'charge',
-              name: '顾客',
-              icon: '/img/b/nav/owner/b_nav_owner_user.png',
-              url: `/b/${this.$route.params.shortId}/owner/charge`
-            }
-
+            // {
+            //   tag: 'charge',
+            //   name: '顾客',
+            //   icon: '/img/b/nav/owner/b_nav_owner_user.png',
+            //   url: `/b/${this.$route.params.shortId}/owner/charge`
+            // }
           ]
         },
         http: {

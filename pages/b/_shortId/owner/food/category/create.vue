@@ -237,7 +237,7 @@
           return
         }
 
-        if (this.ui.food.price === null) {
+        if (!this.ui.food.price) {
           this.$msgBox.doModal({
             type: 'yes',
             title: '添加价格',

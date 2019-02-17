@@ -339,7 +339,7 @@
                 tableGroup.needQueue = true
                 haveNeedQueue = true
 
-                if (this.ui.selectTableGroupId === null) {
+                if (!this.ui.selectTableGroupId) {
                   this.ui.selectTableGroupId = tableGroup.id
                 }
 
