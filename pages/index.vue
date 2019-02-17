@@ -13,7 +13,7 @@
     <p>后台</p>
     <ul>
       <li>
-        <router-link to="shop/role">管理后台</router-link>
+        <router-link to="shop/role">工作台</router-link>
       </li>
       <li>
         <router-link to="b">我的店铺</router-link>

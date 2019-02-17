@@ -162,7 +162,7 @@
         })
       },
       httpShopInfo(shop) {
-        if (shop.licenseType === 'UnActive') {
+        if (shop.licenseType === 'Free') {
           this.ui.unActive++
         }
 

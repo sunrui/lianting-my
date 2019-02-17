@@ -1,90 +1,140 @@
 <template>
-  <section>
-    <div v-if="ui.loading">
-      <p>loading....的小圈圈</p>
-    </div>
-    <div v-else v-bind:key="shopRole.id" v-for="shopRole in shopRoles" style="background-color: coral">
-      <div class="row">
-        <div class="col-md-6">
-          <button @click="btnEnterShop(shopRole.shop)">二维码</button>
+  <div>
+    <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
+
+    <div class="top_blank"></div>
+
+    <div class="box" v-for="(role, index) in http.res.roles">
+      <div class="shop_info">
+        <div class="shop_info_logo" @click="btnShop(role.shop)">
+          <div class="shop_logo_radius shop_logo_radius_center">
+            <img class="shop_logo_radius_image" :src="getLogo(role.shop)">
+          </div>
         </div>
-        <div class="col-md-6">
-          <h3>{{shopRole.shop.name}}</h3>
-          <p>店铺标识: {{shopRole.shop.shortId}}</p>
+
+        <div class="shop_title">
+          <div class="shop_title_name">{{role.shop.name}}</div>
+          <div class="shop_title_license">
+            <span class="shop_title_license_king"></span>
+            <span class="shop_title_license_label">{{
+                role.shop.licenseType === 'Free' ? '免费会员' :
+                role.shop.licenseType === 'Normal' ? '标准会员' :
+                role.shop.licenseType === 'Senior' ? '旗舰会员' : role.shop.licenseType
+                }}
+            </span>
+          </div>
         </div>
+
+        <div class="shop_short_id">唯一标识 {{role.shop.shortId}}</div>
+
+        <div class="box_divide"></div>
+
+        <div class="shop_role">
+          <div class="shop_role_one" v-for="type in role.types">
+            <div v-if="type.toLowerCase() === oneRole.role" v-for="oneRole in ui.roles" @click="btnRole(role.shop, oneRole.role)">
+              <img class="shop_role_one_logo" :src="oneRole.image">
+              <div class="shop_role_one_label">{{oneRole.name}}</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="shop_footer"></div>
       </div>
 
-      <div v-bind:key="type" v-for="type in shopRole.types">
-        <button class="btn btn-primary" @click="btnEnterRole(shopRole.shop.shortId, 'Admin')" v-if="type === 'Admin'">管理员</button>
-        <button class="btn btn-primary" @click="btnEnterRole(shopRole.shop.shortId, 'Waiter')" v-if="type === 'Waiter'">服务员</button>
-        <button class="btn btn-primary" @click="btnEnterRole(shopRole.shop.shortId, 'Cook')" v-if="type === 'Cook'">厨师</button>
-        <button class="btn btn-primary" @click="btnEnterRole(shopRole.shop.shortId, 'Cashier')" v-if="type === 'Cashier'">收银</button>
-        <hr>
-      </div>
+      <div class="shop_divide" v-if="index !== http.res.roles.length - 1"></div>
     </div>
-  </section>
+  </div>
 </template>
 
 <script>
-  import { httpRoleApi } from '../../api/http/lt/httpRoleApi'
+  import TitleBar from '../../components/common/TitleBar'
+  import {httpShopApi} from '../../api/http/shop/httpShopApi'
+  import {httpInfoApi} from '../../api/http/lt/httpInfoApi'
+  import {httpRoleApi} from "../../api/http/lt/httpRoleApi"
 
   export default {
     metaInfo: {
       title: '工作台'
     },
     middleware: 'auth',
-    components: { },
+    components: {TitleBar},
     data() {
       return {
-        shopRoles: {},
-        ui: {}
+        title: {
+          canBack: false,
+          title: '工作台',
+          theme: 'image',
+          imageHeight: 330
+        },
+        http: {
+          res: {
+            roles: [],
+            infos: []
+          }
+        },
+        ui: {
+          roles: [
+            {image: '/img/role/role_owner.png', name: '管理员', role: 'owner'},
+            {image: '/img/role/role_admin.png', name: '店长', role: 'admin'},
+            {image: '/img/role/role_waiter.png', name: '服务员', role: 'waiter'},
+            {image: '/img/role/role_cooker.png', name: '厨师', role: 'cooker'},
+            {image: '/img/role/role_cashier.png', name: '财务', role: 'cashier'}
+          ],
+          unActive: 0
+        }
       }
     },
     created() {
-      this.$store.commit('navbar/update', {
-        canBack: false,
-        title: '工作台',
-        home: '/'
-      })
-
-      httpRoleApi.getAll(0, 99).then(res => {
-        console.log(res)
-        this.ui.loading = false
-        this.shopRoles = res
-
-        if (this.shopRoles.length === 0) {
-          this.$router.push('/shop/empty')
-        }
-      })
+      this.httpRole()
     },
     methods: {
-      btnEnterShop(shop) {
+      httpRole() {
+        httpRoleApi.getAll(0, 99).then(res => {
+          if (res.length === 0) {
+            this.$router.push('/shop/empty')
+            return
+          }
+
+          for (let index in res) {
+            let role = res[index]
+            this.httpShopInfo(role.shop)
+          }
+
+          this.http.res.roles = res
+        })
+      },
+      httpShopInfo(shop) {
+        httpInfoApi.get(shop.shortId).then(res => {
+          let info = {
+            shortId: shop.shortId,
+            info: res
+          }
+
+          this.http.res.infos.push(info)
+        })
+      },
+      getLogo(shop) {
+        for (let index in this.http.res.infos) {
+          let info = this.http.res.infos[index]
+          if (info.shortId === shop.shortId) {
+            return info.info.logo
+          }
+        }
+
+        return ''
+      },
+      btnShop(shop) {
         this.$router.push(`/m/${shop.shortId}`)
       },
-      btnEnterRole(shortId, type) {
-        if (type === 'Admin') {
-          this.$router.push(`/b/${shortId}/admin`)
-          return
-        }
-
-        if (type === 'Waiter') {
-          this.$router.push(`/b/${shortId}/waiter`)
-          return
-        }
-
-        if (type === 'Cook') {
-          this.$router.push(`/b/${shortId}/cook`)
-          return
-        }
-
-        if (type === 'Cashier') {
-          this.$router.push(`/b/${shortId}/cashier`)
-        }
+      btnRole(shop, role) {
+        this.$router.push(`/b/${shop.shortId}/${role}`)
       }
     }
   }
 </script>
 
-<style scoped>
-
+<style scoped lang="scss">
+  @import '~assets/common';
+  @import '~assets/b/b_shop';
+  @import 'index';
 </style>
