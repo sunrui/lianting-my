@@ -15,10 +15,6 @@
         <div class="box_divide"></div>
 
         <div class="status_item">
-          <div class="status_item_label">订单号</div>
-          <div class="status_item_content">{{http.res.order.id}}</div>
-        </div>
-        <div class="status_item">
           <div class="status_item_label">就餐人数</div>
           <div class="status_item_content">{{http.res.order.people}} 人</div>
         </div>
