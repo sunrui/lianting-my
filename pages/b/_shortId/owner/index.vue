@@ -46,8 +46,8 @@
 </template>
 
 <script>
-  import { httpInfoApi } from '../../../../api/http/lt/httpInfoApi'
-  import { httpShopApi } from '../../../../api/http/shop/httpShopApi'
+  import {httpInfoApi} from '../../../../api/http/lt/httpInfoApi'
+  import {httpShopApi} from '../../../../api/http/shop/httpShopApi'
   import TitleBar from '../../../../components/common/TitleBar'
 
   export default {
@@ -55,7 +55,7 @@
       title: '我的店铺'
     },
     middleware: 'auth',
-    components: { TitleBar },
+    components: {TitleBar},
     data() {
       return {
         title: {
@@ -135,12 +135,19 @@
               icon: '/img/b/nav/owner/b_nav_owner_captcha.png',
               url: `/b/${this.$route.params.shortId}/owner/captcha`
             },
-            // {
-            //   tag: 'charge',
-            //   name: '顾客',
-            //   icon: '/img/b/nav/owner/b_nav_owner_user.png',
-            //   url: `/b/${this.$route.params.shortId}/owner/charge`
-            // }
+            {
+              tag: 'tv',
+              name: '展屏',
+              icon: '/img/b/nav/owner/b_nav_owner_tv.png',
+              url: `/b/${this.$route.params.shortId}/owner/charge`
+            },
+            {
+              tag: 'charge',
+              name: '顾客',
+              icon: '/img/b/nav/owner/b_nav_owner_user.png',
+              url: `/b/${this.$route.params.shortId}/owner/charge`
+            }
+
           ]
         },
         http: {
