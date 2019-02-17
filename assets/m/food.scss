@@ -21,7 +21,7 @@
       background-size: 100% 100%;
       width: px2rem(26);
       height: px2rem(26);
-      left: px2rem(30);
+      left: px2rem(50);
 
       position: absolute;
       top: 50%;
@@ -30,7 +30,7 @@
 
     .search_label {
       position: absolute;
-      left: px2rem(30 + 26 + 20);
+      left: px2rem(50 + 26 + 20);
 
       line-height: px2rem(88);
       color: #999999;
