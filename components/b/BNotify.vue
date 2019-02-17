@@ -31,18 +31,10 @@
         <div class="notify_detail">
           <div class="blank_20"></div>
 
-          <div class="notify_message">{{
-            notifyOrder.type === 'New' ? '顾客提交了新的订单，点击可查看详情。' :
-            notifyOrder.type === 'Paid' ? '顾客支付了订单，点击可查看详情。' :
-            notifyOrder.type === 'FoodAdd' ? '顾客选择了加菜，点击可查看详情。' :
-            notifyOrder.type === 'FoodReturn' ? '顾客完成了退菜，点击可查看详情。' :
-            notifyOrder.type === 'FoodCooked' ? '厨师已做好餐食，点击可查看详情。' :
-            notifyOrder.type
-            }}
-          </div>
+          <div class="notify_message" v-if="notifyOrder.content">{{notifyOrder.content}}</div>
 
           <div class="notify_table_label">餐桌</div>
-          <div class="notify_table_number">{{notifyOrder.tableGroupName}} {{notifyOrder.tableFullNumber}}</div>
+          <div class="notify_table_number">{{notifyOrder.tableFullNumber}}</div>
           <div class="notify_detail_button" @click="btnOrder(notifyOrder.orderOneId)">查看详情</div>
 
           <div class="blank_20"></div>
