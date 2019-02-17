@@ -24,7 +24,7 @@
       <div class="order_content box_radius_footer">
         <div>
           <div class="order_food" v-for="food in cart.foods">
-            <img class="order_food_image" src="/img/m/food/food.png"/>
+            <img class="order_food_image" :src="food.category.image"/>
             <div class="order_food_name_detail">
               <div class="order_food_name_detail_name">{{food.category.name}}</div>
               <div class="order_food_name_detail_name_category">{{food.food.name}}</div>

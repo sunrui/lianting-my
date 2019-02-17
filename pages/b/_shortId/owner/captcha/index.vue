@@ -3,7 +3,7 @@
     <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
     <div class="box">
-      <div class="tip">
+      <div class="captcha_tip">
         <li>"扫码点餐桌贴"需您自行购买后贴至餐桌一角或摆设至餐位上。</li>
         <li>您可使用淘宝或京东等搜索“扫码点餐桌贴"来获取您想要的风格。</li>
         <li>每桌大概费用在 5-20 元不等，更多风格可联系卖家定制。</li>

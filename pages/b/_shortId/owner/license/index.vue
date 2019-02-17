@@ -49,7 +49,7 @@
 
     <div class="blank_50"></div>
 
-    <div v-for="license in http.res.shopLicensePlans.elements">
+    <div class="shop_license_one" v-for="license in http.res.shopLicensePlans.elements">
       <div class="shop_license_plan box_radius">
         <div class="blank_30"></div>
 
@@ -60,19 +60,10 @@
 
         <div class="blank_20"></div>
         <div class="shop_license_price">{{license.plan.price <= 0 ? '不收取任何费用' : license.plan.price + '元/年'}}</div>
+
         <div class="blank_10"></div>
 
         <div class="box_divide"></div>
-
-        <!--private Integer maxFoods;-->
-        <!--private Integer maxTables;-->
-        <!--private Integer maxQueue;-->
-        <!--private Integer maxReserve;-->
-        <!--private Integer maxWaiter;-->
-        <!--private Integer maxCooker;-->
-        <!--private Integer maxCashier;-->
-        <!--private Integer maxAdmin;-->
-        <!--private Integer maxCoupon;-->
 
         <div class="shop_feature">
           <div class="shop_feature_one">

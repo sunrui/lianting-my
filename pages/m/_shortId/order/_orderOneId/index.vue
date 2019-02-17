@@ -21,7 +21,7 @@
 
       <div class="order_content box_radius_footer">
         <div class="order_food" v-for="orderFood in http.res.order.orderFoods">
-          <img class="order_food_image" src="/img/m/food/food.png"/>
+          <img class="order_food_image" :src="orderFood.foodCategoryImage"/>
           <div class="order_food_name_detail">
             <div class="order_food_name_detail_name">{{orderFood.foodCategoryName}}</div>
             <div class="order_food_name_detail_name_category">{{orderFood.foodName}}</div>
