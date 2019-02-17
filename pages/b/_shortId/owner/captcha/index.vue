@@ -150,9 +150,9 @@
       },
       btnDownloadAll() {
         this.$msgBox.doModal({
-          type: 'yes',
-          title: '二维码',
-          content: '您确定要全部下载吗?'
+          type: 'yesOrNo',
+          title: '下载二维码',
+          content: '如无法下载时请在浏览器打开后尝试。您确定要全部下载吗? '
         }).then(async (val) => {
           if (val !== 'Yes') {
             return
