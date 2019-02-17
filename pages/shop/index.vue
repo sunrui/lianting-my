@@ -13,7 +13,7 @@
         <div class="shop_info">
           <div class="shop_info_logo" @click="btnShop(shop)">
             <div class="shop_logo_radius shop_logo_radius_center">
-              <img class="shop_logo_radius_image" :src="getLogo(shop)">
+              <img class="shop_logo_radius_image" :src="getLogo(shop)" :alt="shop.name">
             </div>
           </div>
 
@@ -36,7 +36,7 @@
 
           <div class="shop_role">
             <div class="shop_role_one" v-for="role in ui.roles">
-              <img class="shop_role_one_logo" :src="role.image">
+              <img class="shop_role_one_logo" :src="role.image" :alt="role.name">
               <div class="shop_role_one_label">{{role.name}}</div>
             </div>
           </div>
@@ -52,7 +52,7 @@
       <div class="shop_info">
         <div class="shop_info_logo" @click="btnShop(shop)">
           <div class="shop_logo_radius shop_logo_radius_center">
-            <img class="shop_logo_radius_image" :src="getLogo(shop)">
+            <img class="shop_logo_radius_image" :src="getLogo(shop)" :alt="shop.name">
           </div>
         </div>
 
@@ -75,7 +75,7 @@
 
         <div class="shop_role">
           <div class="shop_role_one" v-for="role in ui.roles" @click="btnRole(shop, role.role)">
-            <img class="shop_role_one_logo" :src="role.image">
+            <img class="shop_role_one_logo" :src="role.image" :alt="role.name">
             <div class="shop_role_one_label">{{role.name}}</div>
           </div>
         </div>

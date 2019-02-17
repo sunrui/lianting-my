@@ -9,7 +9,7 @@
           new_logo_radius_image: http.res.reserve.status === 'Wait',
           success_logo_radius_image: http.res.reserve.status === 'Accept' || http.res.reserve.status === 'AcceptRead' || http.res.reserve.status === 'Arrived',
           failed_logo_radius_image: http.res.reserve.status === 'Refused' || http.res.reserve.status === 'RefusedRead' || http.res.reserve.status === 'Cancel',
-          }">
+          }" alt="">
         </div>
 
         <div class="status_title">{{getStatus(http.res.reserve.status)}}</div>

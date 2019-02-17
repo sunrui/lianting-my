@@ -3,12 +3,12 @@
     <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
     <div class="empty" v-if="ui.error.frequent">
-      <img class="empty_image" src="/img/no/no_crash.png">
+      <img class="empty_image" src="/img/no/no_crash.png" alt="">
       <div class="empty_label2">您的操作过于频繁，请于{{elapsedTime(ui.error.frequent)}}后重试。</div>
     </div>
     <div v-else>
       <div class="empty" v-if="!ui.v_report">
-        <img class="empty_image" src="/img/no/no_crash.png">
+        <img class="empty_image" src="/img/no/no_crash.png" alt="">
         <div class="empty_label">呃〜访问出错了！</div>
         <div class="empty_label2">您可将出错原因反馈给我们或返回重试。</div>
 

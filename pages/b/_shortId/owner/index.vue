@@ -7,7 +7,7 @@
         <div class="shop_info">
           <div class="shop_info_logo">
             <div class="shop_logo_radius shop_logo_radius_center">
-              <img class="shop_logo_radius_image" :src="http.res.info.logo">
+              <img class="shop_logo_radius_image" :src="http.res.info.logo" :alt="http.res.shop.name">
             </div>
           </div>
 

@@ -7,7 +7,7 @@
         <div class="shop_info">
           <div class="shop_info_logo">
             <div class="shop_logo_radius shop_logo_radius_center">
-              <img class="shop_logo_radius_image" :src="http.res.info.logo">
+              <img class="shop_logo_radius_image" :src="http.res.info.logo" :alt="http.res.shop.name">
             </div>
           </div>
 
@@ -22,8 +22,8 @@
           </div>
 
           <div class="shop_menu">
-            <img class="shop_menu_icon" src="/img/b/menu/b_menu_captcha.png" @click="btnCaptcha">
-            <img class="shop_menu_icon" src="/img/b/menu/b_menu_ring.png" @click="btnNotifyOrder">
+            <img class="shop_menu_icon" src="/img/b/menu/b_menu_captcha.png" @click="btnCaptcha" alt="">
+            <img class="shop_menu_icon" src="/img/b/menu/b_menu_ring.png" @click="btnNotifyOrder" alt="">
           </div>
 
           <div class="blank_30"></div>
@@ -34,7 +34,7 @@
         <div class="shop_nav_blank"></div>
 
         <div class="shop_nav_box_one shop_nav_box_one_role" v-for="nav in ui.navs" @click="btnNav(nav)">
-          <img class="shop_nav_box_one_icon shop_nav_box_one_icon_role" :src="nav.icon">
+          <img class="shop_nav_box_one_icon shop_nav_box_one_icon_role" :src="nav.icon" :alt="nav.name">
           <div class="shop_nav_box_one_label shop_nav_box_one_label_role">{{nav.name}}</div>
         </div>
       </div>

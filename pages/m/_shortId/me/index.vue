@@ -5,7 +5,7 @@
     <div class="box">
       <div class="status status_top box_radius">
         <div class="status_logo_radius status_logo_radius_center">
-          <img class="status_logo_radius_image " :src="http.res.wechatInfo.headImgUrl">
+          <img class="status_logo_radius_image " :src="http.res.wechatInfo.headImgUrl" :alt="this.http.res.wechatInfo.nickName">
         </div>
 
         <div class="wall_user_info">

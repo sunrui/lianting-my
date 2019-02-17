@@ -6,7 +6,7 @@
 
     <div class="modal_center modal_center_box" v-if="ui.v_cover_mask">
       <div class="modal_close_box" @click="btnCancel">
-        <img class="modal_close" src="/img/common/close.png">
+        <img class="modal_close" src="/img/common/close.png" alt="">
       </div>
 
       <div class="modal_title">{{title}}</div>

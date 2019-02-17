@@ -5,7 +5,7 @@
     <div class="wall">
       <div class="wall_user_info">
         <div class="wall_user_avatar_radius" @click="btnUser">
-          <img class="wall_user_avatar_radius_image" :src="http.res.wechatInfo.headImgUrl">
+          <img class="wall_user_avatar_radius_image" :src="http.res.wechatInfo.headImgUrl" :alt="http.res.wechatInfo.nickName">
         </div>
         <div class="wall_user_info_title">
           <div class="wall_user_info_nick" @click="btnUser">{{http.res.wechatInfo.nickName}}</div>
@@ -15,19 +15,19 @@
 
       <div class="wall_order">
         <div class="wall_order_one">
-          <img class="wall_order_icon" src="/img/m/wall/wall_order.png">
+          <img class="wall_order_icon" src="/img/m/wall/wall_order.png" alt="">
           <div class="wall_order_label" v-if="http.res.order.orderTable">{{http.res.order.orderTable.tableGroupName}} {{http.res.order.orderTable.tableFullNumber}}</div>
         </div>
         <div class="wall_order_one">
-          <img class="wall_order_icon" src="/img/m/wall/wall_food.png">
+          <img class="wall_order_icon" src="/img/m/wall/wall_food.png" alt="">
           <div class="wall_order_label">{{countFood(http.res.order)}}</div>
         </div>
         <div class="wall_order_one">
-          <img class="wall_order_icon" src="/img/m/wall/wall_people.png">
+          <img class="wall_order_icon" src="/img/m/wall/wall_people.png" alt="">
           <div class="wall_order_label">{{http.res.order.people}}</div>
         </div>
         <div class="wall_order_one">
-          <img class="wall_order_icon" src="/img/m/wall/wall_time.png">
+          <img class="wall_order_icon" src="/img/m/wall/wall_time.png" alt="">
           <div class="wall_order_label">{{http.res.order.finishedAt ? elapsedTime(http.res.order.finishedAt) : '进行中'}}</div>
         </div>
       </div>

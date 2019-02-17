@@ -9,7 +9,7 @@
         <div class="shop_info">
           <div class="shop_info_logo">
             <div class="shop_logo_radius shop_logo_radius_center">
-              <img class="shop_logo_radius_image" :src="http.res.info.logo">
+              <img class="shop_logo_radius_image" :src="http.res.info.logo" :alt="http.res.shop.name">
             </div>
           </div>
 
@@ -70,7 +70,7 @@
 
     <div class="modal_center" v-if="ui.v_wifi">
       <div class="modal_close_box" @click="btnCoverMask">
-        <img class="modal_close" src="/img/common/close.png">
+        <img class="modal_close" src="/img/common/close.png" alt="">
       </div>
 
       <div class="wifi_box">

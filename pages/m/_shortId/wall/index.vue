@@ -11,7 +11,7 @@
         <div class="wall box_radius_header">
           <div class="wall_user_info">
             <div class="wall_user_avatar_radius" @click="btnUser(wall.userId)">
-              <img class="wall_user_avatar_radius_image" :src="getWechatHead(wall.userId)">
+              <img class="wall_user_avatar_radius_image" :src="getWechatHead(wall.userId)" alt="">
             </div>
             <div class="wall_user_info_title">
               <div class="wall_user_info_nick" @click="btnUser(wall.userId)">{{getWechatNick(wall.userId)}}</div>
@@ -34,19 +34,19 @@
 
           <div class="wall_order" @click="btnWallOne(wall)">
             <div class="wall_order_one">
-              <img class="wall_order_icon" src="/img/m/wall/wall_order.png">
+              <img class="wall_order_icon" src="/img/m/wall/wall_order.png" alt="">
               <div class="wall_order_label">{{wall.tableGroupName}} {{wall.tableFullNumber}}</div>
             </div>
             <div class="wall_order_one">
-              <img class="wall_order_icon" src="/img/m/wall/wall_food.png">
+              <img class="wall_order_icon" src="/img/m/wall/wall_food.png" alt="">
               <div class="wall_order_label">{{wall.countFood}}</div>
             </div>
             <div class="wall_order_one">
-              <img class="wall_order_icon" src="/img/m/wall/wall_people.png">
+              <img class="wall_order_icon" src="/img/m/wall/wall_people.png" alt="">
               <div class="wall_order_label">{{wall.people}}</div>
             </div>
             <div class="wall_order_one">
-              <img class="wall_order_icon" src="/img/m/wall/wall_time.png">
+              <img class="wall_order_icon" src="/img/m/wall/wall_time.png" alt="">
               <div class="wall_order_label">{{wall.elapsedTime === 0 ? '进行中' : elapsedTime(wall.elapsedTime)}}</div>
             </div>
           </div>
@@ -60,11 +60,11 @@
           <div class="wall_message_paper" @click="btnWallOne(wall)">{{wall.message}}</div>
           <div class="wall_message_extra">
             <div class="wall_message_one" @click="btnWallOne(wall)">
-              <img class="wall_message_icon" src="/img/m/wall/wall_message.png">
+              <img class="wall_message_icon" src="/img/m/wall/wall_message.png" alt="">
               <div class="wall_message_label">{{wall.countReply}}</div>
             </div>
             <!--<div class="wall_message_one">-->
-            <!--<img class="wall_message_icon" src="/img/m/wall/wall_like.png">-->
+            <!--<img class="wall_message_icon" src="/img/m/wall/wall_like.png" alt="">-->
             <!--<div class="wall_message_label">20</div>-->
             <!--</div>-->
           </div>
@@ -83,7 +83,7 @@
               <div class="modal_title">查看菜谱</div>
 
               <div class="modal_close_box" @click="btnCoverMask">
-                <img class="modal_close" src="/img/common/close.png">
+                <img class="modal_close" src="/img/common/close.png" alt="">
               </div>
             </div>
 

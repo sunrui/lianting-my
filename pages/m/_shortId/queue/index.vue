@@ -105,7 +105,7 @@
     <div class="box" v-if=" ui.v_table_select">
       <div class="modal_center">
         <div class="modal_close_box" @click="btnCoverMask">
-          <img class="modal_close" src="/img/common/close.png">
+          <img class="modal_close" src="/img/common/close.png" alt="">
         </div>
 
         <div class="modal_title">请选择餐桌</div>

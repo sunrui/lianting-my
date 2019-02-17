@@ -24,7 +24,7 @@
       <div class="order_content box_radius_footer">
         <div>
           <div class="order_food" v-for="food in cart.foods">
-            <img class="order_food_image" :src="food.category.image"/>
+            <img class="order_food_image" :src="food.category.image" :alt="food.category.name">
             <div class="order_food_name_detail">
               <div class="order_food_name_detail_name">{{food.category.name}}</div>
               <div class="order_food_name_detail_name_category">{{food.food.name}}</div>
@@ -83,7 +83,7 @@
     <transition name="toggle">
       <div class="modal_bottom" v-if="ui.v_people">
         <div class="modal_close_box" @click="btnCoverMask">
-          <img class="modal_close" src="/img/common/close.png">
+          <img class="modal_close" src="/img/common/close.png" alt="">
         </div>
 
         <div class="modal_title">请选择就餐人数</div>
@@ -109,17 +109,17 @@
 
 <script>
   import TitleBar from '../common/TitleBar'
-  import { cartApi } from '../../api/local/cartApi'
-  import { httpOrderApi } from '../../api/http/lt/httpOrderApi'
-  import { stateApi } from '../../api/local/stateApi'
-  import { scrollApi } from '../../api/local/scrollApi'
+  import {cartApi} from '../../api/local/cartApi'
+  import {httpOrderApi} from '../../api/http/lt/httpOrderApi'
+  import {stateApi} from '../../api/local/stateApi'
+  import {scrollApi} from '../../api/local/scrollApi'
 
   export default {
     metaInfo: {
       title: '下单'
     },
     middleware: 'auth',
-    components: { TitleBar },
+    components: {TitleBar},
     props: {
       roleWaiter: {
         type: Boolean,

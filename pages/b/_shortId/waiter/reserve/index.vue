@@ -5,7 +5,7 @@
     <div class="box">
       <div class="status box_radius">
         <div class="status_logo_radius status_logo_radius_center">
-          <img class="status_logo_radius_image reserve_logo_radius_image">
+          <div class="status_logo_radius_image reserve_logo_radius_image"></div>
         </div>
 
         <div class="status_title">今日预订 {{getTodayReserves().length}}</div>
@@ -13,7 +13,7 @@
         <div class="blank_20"></div>
 
         <div class="reserve_reply" @click="btnReserveDay(new Date(new Date().toLocaleDateString()).getTime())">
-          <img class="reserve_reply_icon" src="/img/b/reserve/b_reserve_reply.png">
+          <img class="reserve_reply_icon" src="/img/b/reserve/b_reserve_reply.png" alt="">
           <div class="reserve_reply_label">待回复 {{getNeedReply(getTodayReserves())}}</div>
         </div>
 
@@ -33,10 +33,10 @@
               reserve_process_content_time: index !== 0}">{{getReserveTitle(reserve.timeStamp)}}
               </div>
               <div class="reserve_process_content_name">
-                <img class="reserve_reply_icon" src="/img/b/reserve/b_reserve_people.png">
+                <img class="reserve_reply_icon" src="/img/b/reserve/b_reserve_people.png" alt="">
                 <div class="reserve_reply_label">预订 {{reserve.reserves.length}} 人</div>
                 <div class="reserve_reply_divide"></div>
-                <img class="reserve_reply_icon" src="/img/b/reserve/b_reserve_reply.png">
+                <img class="reserve_reply_icon" src="/img/b/reserve/b_reserve_reply.png" alt="">
                 <div class="reserve_reply_label">待回复 {{getNeedReply(reserve.reserves)}}</div>
               </div>
             </div>

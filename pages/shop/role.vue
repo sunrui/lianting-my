@@ -8,7 +8,7 @@
       <div class="shop_info">
         <div class="shop_info_logo" @click="btnShop(role.shop)">
           <div class="shop_logo_radius shop_logo_radius_center">
-            <img class="shop_logo_radius_image" :src="getLogo(role.shop)">
+            <img class="shop_logo_radius_image" :src="getLogo(role.shop)" :alt="shop.name">
           </div>
         </div>
 
@@ -32,7 +32,7 @@
         <div class="shop_role">
           <div class="shop_role_one" v-for="type in role.types">
             <div v-if="type.toLowerCase() === oneRole.role" v-for="oneRole in ui.roles" @click="btnRole(role.shop, oneRole.role)">
-              <img class="shop_role_one_logo" :src="oneRole.image">
+              <img class="shop_role_one_logo" :src="oneRole.image" :alt="oneRole.name">
               <div class="shop_role_one_label">{{oneRole.name}}</div>
             </div>
           </div>

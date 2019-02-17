@@ -51,7 +51,7 @@
           <div class="food box_radius">
             <div class="badge_delete" @click="btnCategoryDelete(foodCategory)"></div>
             <div class="food_category_anchor" :id="foodCategory.id"></div>
-            <img class="food_image" :src="foodCategory.image" @click="btnCategory(foodCategory)">
+            <img class="food_image" :src="foodCategory.image" @click="btnCategory(foodCategory)" :alt="foodCategory.name">
             <div v-if="foodCategory.tagName" v-bind:class="{
             addition_item_tag_color_1: foodCategory.tagIndex === 1,
             addition_item_tag_color_2: foodCategory.tagIndex === 2,
@@ -97,7 +97,7 @@
 
     <div class="modal_center" v-if="ui.v_group_add">
       <div class="modal_close_box" @click="btnCoverMask">
-        <img class="modal_close" src="/img/common/close.png">
+        <img class="modal_close" src="/img/common/close.png" alt="">
       </div>
 
       <div class="modal_title">添加餐食组</div>
@@ -115,7 +115,7 @@
 
     <div class="modal_center" v-if="ui.v_group_edit">
       <div class="modal_close_box" @click="btnCoverMask">
-        <img class="modal_close" src="/img/common/close.png">
+        <img class="modal_close" src="/img/common/close.png" alt="">
       </div>
 
       <div class="modal_title">编辑餐食组</div>

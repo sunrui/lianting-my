@@ -75,7 +75,7 @@
 
           <div class="food box_radius">
             <div class="food_category_anchor" :id="foodCategory.id"></div>
-            <img class="food_image" :src="foodCategory.image">
+            <img class="food_image" :src="foodCategory.image" :alt="foodCategory.name">
             <div v-if="foodCategory.tagName" v-bind:class="{
             addition_item_tag_color_1: foodCategory.tagIndex === 1,
             addition_item_tag_color_2: foodCategory.tagIndex === 2,
@@ -165,7 +165,7 @@
     <transition name="toggle">
       <div class="modal_bottom" v-if=" ui.v_category">
         <div class="modal_close_box" @click="btnCoverMaskCart">
-          <img class="modal_close" src="/img/common/close.png">
+          <img class="modal_close" src="/img/common/close.png" alt="">
         </div>
 
         <div class="category_food">

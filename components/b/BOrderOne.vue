@@ -28,7 +28,7 @@
       box_radius: index !== 0
       }">
         <div class="order_food">
-          <img class="order_food_image" :src="orderFood.foodCategoryImage">
+          <img class="order_food_image" :src="orderFood.foodCategoryImage" :alt="orderFood.foodCategoryName">
           <div class="order_food_name_detail">
             <div class="order_food_name_detail_name">{{orderFood.foodCategoryName}}</div>
             <div class="order_food_name_detail_name_category">{{orderFood.foodName}}</div>
@@ -208,7 +208,7 @@
     <transition name="toggle">
       <div class="modal_bottom" v-if="ui.v_people">
         <div class="modal_close_box" @click="btnCoverMask">
-          <img class="modal_close" src="/img/common/close.png">
+          <img class="modal_close" src="/img/common/close.png" alt="">
         </div>
 
         <div class="modal_title">请选择就餐人数</div>
@@ -232,7 +232,7 @@
     <transition name="toggle">
       <div class="modal_bottom" v-if="ui.v_cancel">
         <div class="modal_close_box" @click="btnCoverMask">
-          <img class="modal_close" src="/img/common/close.png">
+          <img class="modal_close" src="/img/common/close.png" alt="">
         </div>
 
         <div class="modal_title">取消订单</div>
@@ -255,7 +255,7 @@
     <transition name="toggle">
       <div class="modal_bottom" v-if="ui.v_pay_offline">
         <div class="modal_close_box" @click="btnCoverMask">
-          <img class="modal_close" src="/img/common/close.png">
+          <img class="modal_close" src="/img/common/close.png" alt="">
         </div>
 
         <div class="modal_title">线下支付</div>
@@ -278,7 +278,7 @@
     <transition name="toggle">
       <div class="modal_bottom" v-if="ui.v_return">
         <div class="modal_close_box" @click="btnCoverMask">
-          <img class="modal_close" src="/img/common/close.png">
+          <img class="modal_close" src="/img/common/close.png" alt="">
         </div>
 
         <div class="modal_title">退菜</div>
@@ -335,7 +335,7 @@
     <transition name="toggle">
       <div class="modal_bottom" v-if="ui.v_change_price">
         <div class="modal_close_box" @click="btnCoverMask">
-          <img class="modal_close" src="/img/common/close.png">
+          <img class="modal_close" src="/img/common/close.png" alt="">
         </div>
 
         <div class="modal_title">改价</div>

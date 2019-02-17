@@ -1,6 +1,6 @@
 <template>
   <div class="empty">
-    <img class="empty_image" :src="image">
+    <img class="empty_image" :src="image" alt="">
     <div class="empty_label">{{content}}</div>
   </div>
 </template>

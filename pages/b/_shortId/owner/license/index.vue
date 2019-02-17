@@ -134,7 +134,7 @@
     <transition name="toggle">
       <div class="modal_bottom" v-if="ui.v_charge_year">
         <div class="modal_close_box" @click="btnCoverMask">
-          <img class="modal_close" src="/img/common/close.png">
+          <img class="modal_close" src="/img/common/close.png" alt="">
         </div>
 
         <div class="modal_title">选择套餐</div>
