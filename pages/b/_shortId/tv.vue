@@ -12,7 +12,13 @@
       </div>
       <div class="tv_full_screen_radio">
         <div class="tv_full_screen_radio_icon"></div>
-        <div class="tv_full_screen_radio_label">请<span class="tv_full_screen_radio_label_number">A4</span>号顾客前往迎宾台就餐。</div>
+        <div class="tv_full_screen_radio_label">
+          <marquee id="tv_radio_table" scrollamount="10">
+            <div class="tv_full_screen_radio_label_content" v-if="ui.radioTable">
+              请<span class="tv_full_screen_radio_label_number">{{ui.radioTable}}</span>号顾客前往迎宾台就餐。
+            </div>
+          </marquee>
+        </div>
       </div>
       <div class="tv_full_screen_footer">
         <div class="tv_full_screen_captcha_box">
@@ -34,9 +40,7 @@
           <div class="tv_full_screen_footer_table_title" v-for="title in ui.titles">{{title}}</div>
 
           <div v-for="tableOne in ui.tables">
-            <div class="tv_full_screen_footer_table_content" v-bind:class="{
-            tv_full_screen_footer_table_content_white: index === 1
-            }" v-for="(one, index) in tableOne">{{one}}
+            <div class="tv_full_screen_footer_table_content" v-for="(one, index) in tableOne">{{one}}
             </div>
           </div>
         </div>
@@ -90,7 +94,8 @@
             date: '2000-01-01'
           },
           titles: ['餐桌', '等待桌数', '当前就餐', '首桌已等待'],
-          tables: []
+          tables: [],
+          radioTable: ''
         }
       }
     },
@@ -109,7 +114,7 @@
       this.updateTime()
 
       setInterval(this.updateTime, 60 * 1000)
-      setInterval(this.httpState, 5 * 1000)
+      setInterval(this.httpState, 10 * 1000)
     },
     methods: {
       updateTime() {
@@ -293,17 +298,19 @@
           this.ui.tables.push(table)
         }
 
+        this.refreshRadioContent()
+
         this.ui.showCaptcha = !this.ui.showCaptcha
         if (!this.ui.drewCaptcha) {
           this.drawCaptcha()
         }
       },
-      onFullScreenChange(e) {
-        if (!screenApi.isFullScreen()) {
-          this.ui.fullScreen = false
+      refreshRadioContent() {
+        this.ui.radioTable = new Date().getSeconds()
+        let element = document.getElementById('tv_radio_table')
+        if (element !== null) {
+          element.start()
         }
-
-        this.ui.drewCaptcha = false
       },
       drawCaptcha() {
         let canvas = document.getElementById('tv_captcha')
@@ -313,9 +320,16 @@
           this.ui.drewCaptcha = true
         }
       },
+      onFullScreenChange(e) {
+        if (!screenApi.isFullScreen()) {
+          this.ui.fullScreen = false
+        }
+
+        this.ui.drewCaptcha = false
+      },
       btnFullScreen() {
-        let element = window.document.getElementById('tv_full_screen')
-        screenApi.enterFullScreen(element)
+        // let element = window.document.getElementById('tv_full_screen')
+        // screenApi.enterFullScreen(element)
         this.ui.fullScreen = true
       }
     }

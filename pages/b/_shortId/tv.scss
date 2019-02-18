@@ -96,12 +96,12 @@
 }
 
 .tv_full_screen_radio {
+  position: relative;
   background: #061945;
   height: px2rem(88);
 
   .tv_full_screen_radio_icon {
     display: inline-block;
-    vertical-align: top;
     background-image: url("/img/b/tv/tv_radio.png");
     background-size: 100% 100%;
     width: px2rem(28);
@@ -114,17 +114,24 @@
   }
 
   .tv_full_screen_radio_label {
-    display: inline-block;
-    vertical-align: top;
+    position: absolute;
+    left: px2rem(60 + 28 + 10);
+    right: px2rem(60);
+    top: 0;
     font-size: px2rem(32);
     margin-left: px2rem(10);
     line-height: px2rem(88);
     color: #B9BBC3;
 
-    .tv_full_screen_radio_label_number {
-      color: white;
-      font-size: px2rem(32);
+    .tv_full_screen_radio_label_content {
+      font-size: px2rem(30);
       font-weight: 400;
+
+      .tv_full_screen_radio_label_number {
+        color: white;
+        font-size: px2rem(30);
+        font-weight: 400;
+      }
     }
   }
 }
@@ -252,10 +259,6 @@
     text-align: center;
     border-bottom: solid px2rem(2) rgba(30, 61, 129, 0.6);
     overflow: hidden;
-  }
-
-  .tv_full_screen_footer_table_content_white {
-    color: white !important;
   }
 }
 
