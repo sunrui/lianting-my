@@ -21,7 +21,7 @@
         title: {
           canBack: true,
           title: '实时订单',
-          backUri: `/b/${this.$route.params.shortId}/cooker`,
+          backUri: `/b/${this.$route.params.shortId}/admin`,
           theme: 'white',
           imageHeight: 0
         }

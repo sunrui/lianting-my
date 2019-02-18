@@ -75,7 +75,7 @@
         title: {
           canBack: true,
           title: '排队',
-          backUri: `/b/${this.$route.params.shortId}/waiter`,
+          backUri: `/b/${this.$route.params.shortId}/admin`,
           theme: 'image',
           imageHeight: 220
         },

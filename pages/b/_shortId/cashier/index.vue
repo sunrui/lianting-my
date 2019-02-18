@@ -54,7 +54,7 @@
 
   export default {
     metaInfo: {
-      title: '厨师'
+      title: '收银'
     },
     middleware: 'auth',
     components: { TitleBar, Captcha },
@@ -62,8 +62,8 @@
       return {
         title: {
           canBack: false,
-          title: '厨师',
-          backUri: `/b/${this.$route.params.shortId}/cooker`,
+          title: '收银',
+          backUri: `/b/${this.$route.params.shortId}/cashier`,
           theme: 'image',
           imageHeight: 460
         },

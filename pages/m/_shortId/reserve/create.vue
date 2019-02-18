@@ -18,7 +18,7 @@
 
         <div class="addition_item">
           <div class="addition_item_label">餐桌类型</div>
-          <div class="addition_item_content">{{http.req.reserve.tableGroupName}}</div>
+          <div class="addition_item_content">{{$route.query.tableGroupName}}</div>
         </div>
 
         <div class="box_divide"></div>
@@ -130,9 +130,9 @@
     created() {
       if (!Boolean(this.$route.query.date) || !Boolean(this.$route.query.tableGroupName)) {
         this.$router.push(`/m/${this.$route.params.shortId}/reserve`)
-        return
       }
-
+    },
+    mounted() {
       this.http.req.reserve.date = new Date(parseInt(this.$route.query.date))
       this.http.req.reserve.tableGroupName = this.$route.query.tableGroupName
 

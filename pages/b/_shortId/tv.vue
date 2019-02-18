@@ -309,6 +309,7 @@
         this.ui.radioTable = new Date().getSeconds()
         let element = document.getElementById('tv_radio_table')
         if (element !== null) {
+          element.stop()
           element.start()
         }
       },
@@ -328,8 +329,8 @@
         this.ui.drewCaptcha = false
       },
       btnFullScreen() {
-        // let element = window.document.getElementById('tv_full_screen')
-        // screenApi.enterFullScreen(element)
+        let element = window.document.getElementById('tv_full_screen')
+        screenApi.enterFullScreen(element)
         this.ui.fullScreen = true
       }
     }

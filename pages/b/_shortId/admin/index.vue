@@ -96,12 +96,12 @@
               icon: '/img/b/nav/role/b_nav_role_queue.png',
               url: `/b/${this.$route.params.shortId}/admin/queue`
             },
-            {
-              tag: 'reserve',
-              name: '预订',
-              icon: '/img/b/nav/role/b_nav_role_reserve.png',
-              url: `/b/${this.$route.params.shortId}/admin/reserve`
-            }
+            // {
+            //   tag: 'reserve',
+            //   name: '预订',
+            //   icon: '/img/b/nav/role/b_nav_role_reserve.png',
+            //   url: `/b/${this.$route.params.shortId}/admin/reserve`
+            // }
           ]
         },
         http: {
