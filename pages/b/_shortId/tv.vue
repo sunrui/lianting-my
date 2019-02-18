@@ -44,10 +44,10 @@
     </div>
     <div v-else class="tv_prompt">
       <div class="blank_100"></div>
-      <div class="tv_prompt_label">恋厅展屏</div>
+      <div class="tv_prompt_label">展屏</div>
       <div class="blank_20"></div>
       <div class="tv_promt_demo"></div>
-      <div class="tv_prompt_label">由于浏览器权限限制，请<span class="tv_prompt_button" @click="btnFullScreen">手动全屏</span>。</div>
+      <div class="tv_prompt_label">由于浏览器限制，仅允许<span class="tv_prompt_button" @click="btnFullScreen">手动全屏</span>。</div>
     </div>
   </div>
 
@@ -100,16 +100,16 @@
       document.addEventListener("webkitfullscreenchange", this.onFullScreenChange)
       document.addEventListener("msfullscreenchange", this.onFullScreenChange)
 
+      loadingApi.enable = false
+
       this.httpState()
       this.httpShop()
       this.httpInfo()
 
-      loadingApi.enable = false
       this.updateTime()
+
       setInterval(this.updateTime, 60 * 1000)
       setInterval(this.httpState, 5 * 1000)
-    },
-    mounted() {
     },
     methods: {
       updateTime() {
@@ -302,6 +302,8 @@
         if (!screenApi.isFullScreen()) {
           this.ui.fullScreen = false
         }
+
+        this.ui.drewCaptcha = false
       },
       drawCaptcha() {
         let canvas = document.getElementById('tv_captcha')
