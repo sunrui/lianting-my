@@ -58,6 +58,7 @@
     metaInfo: {
       title: '店长'
     },
+    middleware: 'auth',
     components: { TitleBar, Captcha },
     data() {
       return {

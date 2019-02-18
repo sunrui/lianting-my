@@ -6,6 +6,7 @@
   import OrderSuccess from '../../../../../components/order/OrderSuccess'
 
   export default {
+    middleware: 'auth',
     components: { OrderSuccess }
   }
 </script>

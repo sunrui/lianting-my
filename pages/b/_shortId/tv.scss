@@ -1,6 +1,6 @@
 #tv_captcha {
   width: 100% !important;
-  height: auto !important;
+  height: 100% !important;
 }
 
 .tv_full_screen {
@@ -150,7 +150,9 @@
       margin-top: px2rem(50);
       width: px2rem(260);
       height: px2rem(260);
-      background: #6B84BD;
+
+      background: url("/img/b/tv/tv_captcha.png");
+      background-size: 100% 100%;
     }
 
     .tv_full_screen_captcha_label {
@@ -214,7 +216,7 @@
 
 .tv_full_screen_footer_table {
   position: absolute;
-  left: px2rem(420);
+  left: px2rem(450);
   right: 0;
   top: 0;
   bottom: 0;

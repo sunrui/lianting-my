@@ -6,6 +6,7 @@
   import OrderAdd from '../../../../../components/order/OrderAdd'
 
   export default {
+    middleware: 'auth',
     components: { OrderAdd }
   }
 </script>

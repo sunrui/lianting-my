@@ -1,15 +1,13 @@
 <template>
-  <div>
-  </div>
 </template>
 
 <script>
-  import { httpOrderApi } from '../../../../../api/http/lt/httpOrderApi'
-  import { stateApi } from '../../../../../api/local/stateApi'
-  import { httpTableApi } from '../../../../../api/http/lt/httpTableApi'
-  import { httpCaptchaApi } from '../../../../../api/http/lt/httpCaptchaApi'
+  import {stateApi} from '../../../../../api/local/stateApi'
+  import {httpTableApi} from '../../../../../api/http/lt/httpTableApi'
+  import {httpCaptchaApi} from '../../../../../api/http/lt/httpCaptchaApi'
 
   export default {
+    middleware: 'auth',
     data() {
       return {}
     },

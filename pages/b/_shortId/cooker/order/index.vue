@@ -6,6 +6,7 @@
   import BOrder from '../../../../../components/b/BOrder'
 
   export default {
+    middleware: 'auth',
     components: { BOrder }
   }
 </script>

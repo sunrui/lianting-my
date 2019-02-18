@@ -6,6 +6,7 @@
   import BTable from '../../../../../components/b/BTable'
 
   export default {
+    middleware: 'auth',
     components: { BTable }
   }
 </script>

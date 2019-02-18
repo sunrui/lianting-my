@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="ui.fullScreen" id="tv_full_screen" class="tv_full_screen">
+    <div v-if="ui.fullScreen" class="tv_full_screen">
       <div class="tv_full_screen_header">
         <img class="tv_shop_icon" :src="http.res.info.logo" :alt="http.res.shop.name">
         <div class="tv_shop_title">{{http.res.shop.name}}</div>
@@ -17,7 +17,7 @@
       <div class="tv_full_screen_footer">
         <div class="tv_full_screen_captcha_box">
           <div class="tv_full_screen_captcha">
-            <canvas id="tv_captcha"></canvas>
+            <canvas id="tv_captcha" v-show="ui.showCaptcha"></canvas>
           </div>
           <div class="tv_full_screen_captcha_label">扫码可排队点餐</div>
         </div>
@@ -68,6 +68,7 @@
     metaInfo: {
       title: '展屏'
     },
+    middleware: 'auth',
     data() {
       return {
         http: {
@@ -80,7 +81,9 @@
           }
         },
         ui: {
-          fullScreen: true,
+          fullScreen: false,
+          drewCaptcha: false,
+          showCaptcha: false,
           time: {
             time: '00:00',
             week: '星期一',
@@ -92,25 +95,21 @@
       }
     },
     created() {
-      this.httpState()
-      this.httpShop()
-      this.httpInfo()
-
-      this.updateTime()
-
-      loadingApi.enable = false
-      setInterval(this.updateTime, 60 * 1000)
-      setInterval(this.httpState, 5 * 1000)
-    },
-    mounted() {
-      let canvas = document.getElementById('tv_captcha')
-      let text = document.location.protocol + '//' + window.location.host + `/m/${this.$route.params.shortId}`
-      QRCode.toCanvas(canvas, text)
-
       document.addEventListener("fullscreenchange", this.onFullScreenChange)
       document.addEventListener("mozfullscreenchange", this.onFullScreenChange)
       document.addEventListener("webkitfullscreenchange", this.onFullScreenChange)
       document.addEventListener("msfullscreenchange", this.onFullScreenChange)
+
+      this.httpState()
+      this.httpShop()
+      this.httpInfo()
+
+      loadingApi.enable = false
+      this.updateTime()
+      setInterval(this.updateTime, 60 * 1000)
+      setInterval(this.httpState, 5 * 1000)
+    },
+    mounted() {
     },
     methods: {
       updateTime() {
@@ -294,20 +293,29 @@
           this.ui.tables.push(table)
         }
 
-        console.log(this.ui.tables)
+        this.ui.showCaptcha = !this.ui.showCaptcha
+        if (!this.ui.drewCaptcha) {
+          this.drawCaptcha()
+        }
       },
       onFullScreenChange(e) {
         if (!screenApi.isFullScreen()) {
           this.ui.fullScreen = false
         }
       },
+      drawCaptcha() {
+        let canvas = document.getElementById('tv_captcha')
+        if (canvas != null) {
+          let text = document.location.protocol + '//' + window.location.host + `/m/${this.$route.params.shortId}`
+          QRCode.toCanvas(canvas, text)
+          this.ui.drewCaptcha = true
+        }
+      },
       btnFullScreen() {
         let element = window.document.getElementById('tv_full_screen')
         screenApi.enterFullScreen(element)
-
         this.ui.fullScreen = true
-      },
-
+      }
     }
   }
 </script>

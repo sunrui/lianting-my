@@ -6,6 +6,7 @@
   import OrderNew from '../../../../../components/order/OrderNew'
 
   export default {
+    middleware: 'auth',
     components: { OrderNew }
   }
 </script>

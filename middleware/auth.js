@@ -1,7 +1,7 @@
 import {stateApi} from '../api/local/stateApi'
 
 export default function({route, redirect, req}) {
-  let authed
+  let authed = false
 
   function login() {
     let path = route.path.split('/')

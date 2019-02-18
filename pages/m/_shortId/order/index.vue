@@ -6,6 +6,7 @@
   import { httpOrderApi } from '../../../../api/http/lt/httpOrderApi'
 
   export default {
+    middleware: 'auth',
     created() {
       let cart = cartApi.getCart()
       if (cart.select === 0) {

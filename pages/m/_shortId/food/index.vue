@@ -6,6 +6,7 @@
   import Food from '../../../../components/food/Food'
 
   export default {
+    middleware: 'auth',
     components: { Food }
   }
 </script>

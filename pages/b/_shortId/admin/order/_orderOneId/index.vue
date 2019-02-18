@@ -6,6 +6,7 @@
   import BOrderOne from '../../../../../../components/b/BOrderOne'
 
   export default {
+    middleware: 'auth',
     components: { BOrderOne }
   }
 </script>
