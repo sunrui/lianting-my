@@ -240,25 +240,33 @@
         })
       },
       btnDelete(role) {
-        httpRoleAdminApi.deleteRole(this.$route.params.shortId, role.id).then(res => {
-          if (res.roleIdNotExists) {
-            this.$msgBox.doModal({
-              type: 'yes',
-              title: '删除' + this.getTypeName(this.http.req.role.type),
-              content: '人事不存在。'
-            }).then(async (val) => {
-              this.httpRole()
-            })
-          } else if (res.success) {
-            this.ui.v_role_add = false
-            this.ui.v_cover_mask = false
+        this.$msgBox.doModal({
+          type: 'yesOrNo',
+          title: '删除角色',
+          content: '您确认要删除吗？'
+        }).then(async (val) => {
+          if (val === 'Yes') {
+            httpRoleAdminApi.deleteRole(this.$route.params.shortId, role.id).then(res => {
+              if (res.roleIdNotExists) {
+                this.$msgBox.doModal({
+                  type: 'yes',
+                  title: '删除' + this.getTypeName(this.http.req.role.type),
+                  content: '人事不存在。'
+                }).then(async (val) => {
+                  this.httpRole()
+                })
+              } else if (res.success) {
+                this.ui.v_role_add = false
+                this.ui.v_cover_mask = false
 
-            this.$msgBox.doModal({
-              type: 'yes',
-              title: '删除' + this.getTypeName(this.http.req.role.type),
-              content: '删除成功。'
-            }).then(async (val) => {
-              this.httpRole()
+                this.$msgBox.doModal({
+                  type: 'yes',
+                  title: '删除' + this.getTypeName(this.http.req.role.type),
+                  content: '删除成功。'
+                }).then(async (val) => {
+                  this.httpRole()
+                })
+              }
             })
           }
         })
