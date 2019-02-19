@@ -98,7 +98,7 @@
           }
         }
 
-        httpNotifyAdminApi.getNotifyOrder(this.$route.params.shortId, types, 0, 99).then(res => {
+        httpNotifyAdminApi.getOrder(this.$route.params.shortId, types, 0, 99).then(res => {
           if (res.elements.length === 0) {
             this.$router.push(`/b/${this.$route.params.shortId}/${this.role}/notify/empty`)
             return

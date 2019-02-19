@@ -24,9 +24,10 @@
           <div class="queue_ring">
             <div class="queue_ring_icon"></div>
             <div class="queue_ring_label">请{{getQueueNow(tableGroup).queueTicket.tableGroupNumberPrefix}}{{getQueueNow(tableGroup).queueTicket.sequence}}号顾客前往迎宾台就餐。</div>
-            <div class="queue_ring_button" v-bind:class="{
-            queue_ring_button_gray: getQueueNow(tableGroup).queueTicket.status !== 'Now'
-            }">播报
+            <div class="queue_ring_button" v-if="getQueueNow(tableGroup).queueTicket.status === 'Now'"
+                 @click="btnRadio(getQueueNow(tableGroup).queueTicket.tableGroupNumberPrefix + getQueueNow(tableGroup).queueTicket.sequence)">播报
+            </div>
+            <div class="queue_ring_button queue_ring_button_gray" v-else>播报
             </div>
           </div>
 
@@ -84,18 +85,19 @@
 </template>
 
 <script>
-  import { httpQueueApi } from '../../../../../api/http/lt/httpQueueApi'
-  import { httpTableApi } from '../../../../../api/http/lt/httpTableApi'
-  import { httpQueueAdminApi } from '../../../../../api/http/lt/httpQueueAdminApi'
-  import { timeApi } from '../../../../../api/local/timeApi'
+  import {httpQueueApi} from '../../../../../api/http/lt/httpQueueApi'
+  import {httpTableApi} from '../../../../../api/http/lt/httpTableApi'
+  import {httpQueueAdminApi} from '../../../../../api/http/lt/httpQueueAdminApi'
+  import {timeApi} from '../../../../../api/local/timeApi'
   import TitleBar from '../../../../../components/common/TitleBar'
+  import {httpNotifyAdminApi} from "../../../../../api/http/lt/httpNotifyAdminApi"
 
   export default {
     metaInfo: {
       title: '排队'
     },
     middleware: 'auth',
-    components: { TitleBar },
+    components: {TitleBar},
     data() {
       return {
         title: {
@@ -180,6 +182,15 @@
         }
 
         return null
+      },
+      btnRadio(tableFullNumber) {
+        httpNotifyAdminApi.postRadio(this.$route.params.shortId, tableFullNumber, null).then(res => {
+          this.$msgBox.doModal({
+            type: 'yes',
+            title: '播报',
+            content: '播报成功。'
+          })
+        })
       },
       btnNext(tableGroup) {
         this.$msgBox.doModal({

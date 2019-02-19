@@ -14,8 +14,14 @@
         <div class="tv_full_screen_radio_icon"></div>
         <div class="tv_full_screen_radio_label">
           <marquee id="tv_radio_table" scrollamount="10">
-            <div class="tv_full_screen_radio_label_content" v-if="ui.radioTable">
-              请<span class="tv_full_screen_radio_label_number">{{ui.radioTable}}</span>号顾客前往迎宾台就餐。
+            <div class="tv_full_screen_radio_label_content" v-if="http.res.notifyRadio.tableFullNumber">
+              请<span class="tv_full_screen_radio_label_number">{{http.res.notifyRadio.tableFullNumber}}</span>号顾客前往迎宾台就餐。
+            </div>
+            <div class="tv_full_screen_radio_label_content" v-else-if="http.res.notifyRadio.content">
+              {{http.res.notifyRadio.content}}
+            </div>
+            <div class="tv_full_screen_radio_label_content" v-else>
+              {{http.res.info.notice}}
             </div>
           </marquee>
         </div>
@@ -67,6 +73,7 @@
   import QRCode from 'qrcode'
   import {timeApi} from "../../../api/local/timeApi"
   import {loadingApi} from "../../../api/local/loadingApi"
+  import {httpNotifyAdminApi} from "../../../api/http/lt/httpNotifyAdminApi"
 
   export default {
     metaInfo: {
@@ -81,7 +88,8 @@
             info: {},
             state: {},
             tableGroups: {},
-            tableGroupNows: {}
+            tableGroupNows: {},
+            notifyRadio: {}
           }
         },
         ui: {
@@ -95,7 +103,7 @@
           },
           titles: ['餐桌', '等待桌数', '当前就餐', '首桌已等待'],
           tables: [],
-          radioTable: ''
+          radioFetchTimes: 0
         }
       }
     },
@@ -298,20 +306,44 @@
           this.ui.tables.push(table)
         }
 
-        this.refreshRadioContent()
+        this.refreshRadioTable()
 
         this.ui.showCaptcha = !this.ui.showCaptcha
         if (!this.ui.drewCaptcha) {
           this.drawCaptcha()
         }
       },
-      refreshRadioContent() {
-        this.ui.radioTable = new Date().getSeconds()
-        let element = document.getElementById('tv_radio_table')
-        if (element !== null) {
-          element.stop()
-          element.start()
-        }
+      refreshRadioTable() {
+        httpNotifyAdminApi.getRadio(this.$route.params.shortId, 1).then(res => {
+          if (res.notFound) {
+            if (Boolean(this.http.res.notifyRadio.tableFullNumber) || Boolean(this.http.res.notifyRadio.content)) {
+              if (++this.ui.radioFetchTimes === 5 * (60 / 10)) {
+                this.http.res.notifyRadio.tableFullNumber = null
+                this.http.res.notifyRadio.content = null
+              }
+            }
+          } else if (res.notifyRadio) {
+            this.http.res.notifyRadio = res.notifyRadio
+            this.ui.radioFetchTimes = 0
+
+            let element = document.getElementById('tv_radio_table')
+            if (element !== null) {
+              element.stop()
+              element.start()
+            }
+
+            let radioText
+
+            if (res.notifyRadio.tableFullNumber) {
+              radioText = `请${res.notifyRadio.tableFullNumber}号顾客前往迎宾台就餐。`
+            } else {
+              radioText = res.notifyRadio.content
+            }
+
+            let utterThis = new window.SpeechSynthesisUtterance(radioText)
+            window.speechSynthesis.speak(utterThis)
+          }
+        })
       },
       drawCaptcha() {
         let canvas = document.getElementById('tv_captcha')
