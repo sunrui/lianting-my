@@ -35,6 +35,7 @@
     </div>
 
     <div class="copyright" @click="btnCopyright">恋厅©提供技术支持</div>
+    <div class="blank_30"></div>
   </div>
 </template>
 

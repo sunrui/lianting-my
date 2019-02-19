@@ -17,7 +17,7 @@
 
           <div class="shop_notice">
             <div class="shop_notice_icon">公告</div>
-            <span class="shop_notice_label">{{http.res.info.notice ? http.res.info.notice : '欢迎光临本餐厅!'}}</span>
+            <span class="shop_notice_label">{{http.res.info.notice ? http.res.info.notice : '欢迎您的光临。'}}</span>
           </div>
 
           <div class="box_divide"></div>

@@ -21,7 +21,7 @@
               {{http.res.notifyRadio.content}}
             </div>
             <div class="tv_full_screen_radio_label_content" v-else>
-              {{http.res.info.notice}}
+              {{http.res.info.notice ? http.res.info.notice : '欢迎您的光临。'}}
             </div>
           </marquee>
         </div>
