@@ -41,20 +41,20 @@
 
 <script>
   import TitleBar from '../../../../components/common/TitleBar'
-  import { stateApi } from '../../../../api/local/stateApi'
-  import { httpUserApi } from '../../../../api/http/user/httpUserApi'
-  import { httpOrderApi } from '../../../../api/http/lt/httpOrderApi'
-  import { httpQueueApi } from '../../../../api/http/lt/httpQueueApi'
-  import { httpReserveApi } from '../../../../api/http/lt/httpReserveApi'
-  import { httpWallApi } from '../../../../api/http/lt/httpWallApi'
-  import { httpCouponApi } from '../../../../api/http/lt/httpCouponApi'
+  import {stateApi} from '../../../../api/local/stateApi'
+  import {httpUserApi} from '../../../../api/http/user/httpUserApi'
+  import {httpOrderApi} from '../../../../api/http/lt/httpOrderApi'
+  import {httpQueueApi} from '../../../../api/http/lt/httpQueueApi'
+  import {httpReserveApi} from '../../../../api/http/lt/httpReserveApi'
+  import {httpWallApi} from '../../../../api/http/lt/httpWallApi'
+  import {httpCouponApi} from '../../../../api/http/lt/httpCouponApi'
 
   export default {
     metaInfo: {
       title: '个人中心'
     },
     middleware: 'auth',
-    components: { TitleBar },
+    components: {TitleBar},
     data() {
       return {
         title: {
@@ -67,11 +67,12 @@
         ui: {
           phone: '',
           navs: [
-            { name: '我的订单', url: 'order/history' },
-            { name: '我的排队', url: 'queue/history' },
-            { name: '我的预订', url: 'reserve/history' },
-            { name: '我的优惠券', url: 'coupon/history' },
-            { name: '我的留言墙', url: 'wall/history' },
+            {name: '我的订单', url: 'order/history'},
+            {name: '我的排队', url: 'queue/history'},
+            {name: '我的预订', url: 'reserve/history'},
+            {name: '我的优惠券', url: 'coupon/history'},
+            {name: '我的留言墙', url: 'wall/history'},
+            {name: '退出登录', url: 'logout'},
             // { name: '我的收货地址', url: 'address' }
           ]
         },
@@ -145,9 +146,19 @@
               this.$router.push(`/m/${this.$route.params.shortId}/coupon/history/empty`)
             }
           })
+        } else if (url === 'logout') {
+          this.$msgBox.doModal({
+            type: 'yesOrNo',
+            title: '退出登录',
+            content: '您确认要退出登录吗?'
+          }).then(async (val) => {
+            if (val === 'Yes') {
+              this.$router.push(`/logout`)
+            }
+          })
+        } else {
+          this.$router.push(`/m/${this.$route.params.shortId}/${url}`)
         }
-
-        this.$router.push(`/m/${this.$route.params.shortId}/${url}`)
       },
       btnBindPhone() {
         this.$router.push(`/m/${this.$route.params.shortId}/me/bind/phone`)
