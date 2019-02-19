@@ -2,7 +2,7 @@
   <div>
     <div v-if="ui.fullScreen" class="tv_full_screen">
       <div class="tv_full_screen_header">
-        <img class="tv_shop_icon" :src="http.res.info.logo" :alt="http.res.shop.name">
+        <img class="tv_shop_icon" :src="http.res.info.logo" :alt="http.res.shop.name" onerror="this.style.display='none'">
         <div class="tv_shop_title">{{http.res.shop.name}}</div>
         <div class="tv_shop_state">
           <div class="tv_shop_state_icon_open" v-if="http.res.shop.open"></div>
