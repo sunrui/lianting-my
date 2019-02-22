@@ -34,7 +34,6 @@
   }
 
   .container {
-    clear: both;
     margin: 0;
     padding: 0;
   }
