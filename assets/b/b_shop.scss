@@ -1,6 +1,5 @@
 .shop_title_license {
   display: inline-block;
-  vertical-align: top;
   background: linear-gradient(90deg, rgba(255, 76, 91, 1), rgba(255, 127, 102, 1));
   padding: px2rem(0) px2rem(10);
   height: px2rem(30);
@@ -22,7 +21,6 @@
   .shop_title_license_label {
     display: inline-block;
     vertical-align: top;
-
     font-size: px2rem(18);
     color: #FFFCF0;
     line-height: px2rem(30);
