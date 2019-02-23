@@ -13,7 +13,7 @@
       <div class="tv_full_screen_radio">
         <div class="tv_full_screen_radio_icon"></div>
         <div class="tv_full_screen_radio_label">
-          <marquee id="tv_radio_table" scrollamount="10">
+          <marquee id="tv_radio_table">
             <div class="tv_full_screen_radio_label_content" v-if="http.res.notifyRadio.tableFullNumber">
               请<span class="tv_full_screen_radio_label_number">{{http.res.notifyRadio.tableFullNumber}}</span>号顾客前往迎宾台就餐。
             </div>

@@ -208,9 +208,7 @@
         this.$msgBox.doModal({
           type: 'yes',
           title: '登录',
-          content: `测试微信登录。`
-        }).then(async (val) => {
-          this.$router.push('/login/wechat?code=123456&state=123456')
+          content: `请使用微信登录。`
         })
       }
     }
