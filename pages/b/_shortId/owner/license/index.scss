@@ -74,20 +74,31 @@
     .shop_license_icon {
       display: inline-block;
       vertical-align: middle;
-      background: url("/img/b/license/b_license_normal.png") no-repeat;
       background-size: 100% 100%;
-      width: px2rem(88);
-      height: px2rem(88);
+      width: px2rem(61);
+      height: px2rem(61);
     }
 
     .shop_license_label {
       display: inline-block;
       vertical-align: middle;
       font-size: px2rem(34);
-      color: #FF6B6C;
       font-weight: bold;
       line-height: px2rem(88);
+      margin-left: px2rem(5);
     }
+  }
+
+  .shop_license_label_free {
+    color: #FF6B6C !important;
+  }
+
+  .shop_license_label_normal {
+    color: #59A7FE !important;
+  }
+
+  .shop_license_label_senior {
+    color: #8E58FF !important;
   }
 
   .shop_license_price {
@@ -108,7 +119,6 @@
       display: inline-block;
       vertical-align: middle;
 
-      background: url("/img/b/license/b_license_feature.png") no-repeat;
       background-size: 100% 100%;
       width: px2rem(24);
       height: px2rem(24);
@@ -131,8 +141,16 @@
     text-align: center;
   }
 
-  .shop_license_button_gray {
+  .shop_license_button_free {
     background: rgba(221, 221, 221, 1);
+  }
+
+  .shop_license_button_normal {
+    background: #59A7FE;
+  }
+
+  .shop_license_button_senior {
+    background: #8D59FF;
   }
 }
 

@@ -54,12 +54,26 @@
         <div class="blank_30"></div>
 
         <div class="shop_license_type">
-          <div class="shop_license_icon"></div>
-          <div class="shop_license_label">{{license.plan.name}}</div>
+          <img class="shop_license_icon" :src="
+          license.plan.licenseType === 'Free' ? '/img/b/license/b_license_free.png' :
+          license.plan.licenseType === 'Normal' ? '/img/b/license/b_license_normal.png' :
+          license.plan.licenseType === 'Senior' ? '/img/b/license/b_license_senior.png' : '/img/b/license/b_license_free.png'
+          " alt="">
+          <div class="shop_license_label" v-bind:class="{
+          shop_license_label_free: license.plan.licenseType === 'Free',
+          shop_license_label_normal: license.plan.licenseType === 'Normal',
+          shop_license_label_senior: license.plan.licenseType === 'Senior'
+          }">{{license.plan.name}}
+          </div>
         </div>
 
         <div class="blank_20"></div>
-        <div class="shop_license_price">{{license.plan.price <= 0 ? '不收取任何费用' : license.plan.price + '元/年'}}</div>
+        <div class="shop_license_price" v-bind:class="{
+          shop_license_label_free: license.plan.licenseType === 'Free',
+          shop_license_label_normal: license.plan.licenseType === 'Normal',
+          shop_license_label_senior: license.plan.licenseType === 'Senior'
+          }">{{license.plan.price <= 0 ? '不收取任何费用' : '￥' + license.plan.price + '/年'}}
+        </div>
 
         <div class="blank_10"></div>
 
@@ -67,57 +81,101 @@
 
         <div class="shop_feature">
           <div class="shop_feature_one">
-            <div class="shop_feature_one_icon"></div>
+            <img class="shop_feature_one_icon" :src="
+            license.plan.licenseType === 'Free' ? '/img/b/license/b_license_free_check.png' :
+          license.plan.licenseType === 'Normal' ? '/img/b/license/b_license_normal_check.png' :
+          license.plan.licenseType === 'Senior' ? '/img/b/license/b_license_senior_check.png' : '/img/b/license/b_license_free_check.png'
+          " alt="">
             <div class="shop_feature_one_label">在线支付渠道</div>
           </div>
 
           <div class="shop_feature_one">
-            <div class="shop_feature_one_icon"></div>
+            <img class="shop_feature_one_icon" :src="
+            license.plan.licenseType === 'Free' ? '/img/b/license/b_license_free_check.png' :
+          license.plan.licenseType === 'Normal' ? '/img/b/license/b_license_normal_check.png' :
+          license.plan.licenseType === 'Senior' ? '/img/b/license/b_license_senior_check.png' : '/img/b/license/b_license_free_check.png'
+          " alt="">
             <div class="shop_feature_one_label">{{license.limit.maxFoods}} 个上架餐食</div>
           </div>
 
           <div class="shop_feature_one">
-            <div class="shop_feature_one_icon"></div>
+            <img class="shop_feature_one_icon" :src="
+            license.plan.licenseType === 'Free' ? '/img/b/license/b_license_free_check.png' :
+          license.plan.licenseType === 'Normal' ? '/img/b/license/b_license_normal_check.png' :
+          license.plan.licenseType === 'Senior' ? '/img/b/license/b_license_senior_check.png' : '/img/b/license/b_license_free_check.png'
+          " alt="">
             <div class="shop_feature_one_label">{{license.limit.maxTables}} 个餐桌</div>
           </div>
 
           <div class="shop_feature_one">
-            <div class="shop_feature_one_icon"></div>
+            <img class="shop_feature_one_icon" :src="
+            license.plan.licenseType === 'Free' ? '/img/b/license/b_license_free_check.png' :
+          license.plan.licenseType === 'Normal' ? '/img/b/license/b_license_normal_check.png' :
+          license.plan.licenseType === 'Senior' ? '/img/b/license/b_license_senior_check.png' : '/img/b/license/b_license_free_check.png'
+          " alt="">
             <div class="shop_feature_one_label">{{license.limit.maxQueue}} 个排队用户</div>
           </div>
 
           <div class="shop_feature_one">
-            <div class="shop_feature_one_icon"></div>
+            <img class="shop_feature_one_icon" :src="
+            license.plan.licenseType === 'Free' ? '/img/b/license/b_license_free_check.png' :
+          license.plan.licenseType === 'Normal' ? '/img/b/license/b_license_normal_check.png' :
+          license.plan.licenseType === 'Senior' ? '/img/b/license/b_license_senior_check.png' : '/img/b/license/b_license_free_check.png'
+          " alt="">
             <div class="shop_feature_one_label">{{license.limit.maxReserve}} 个预订人数/天</div>
           </div>
 
           <div class="shop_feature_one">
-            <div class="shop_feature_one_icon"></div>
+            <img class="shop_feature_one_icon" :src="
+            license.plan.licenseType === 'Free' ? '/img/b/license/b_license_free_check.png' :
+          license.plan.licenseType === 'Normal' ? '/img/b/license/b_license_normal_check.png' :
+          license.plan.licenseType === 'Senior' ? '/img/b/license/b_license_senior_check.png' : '/img/b/license/b_license_free_check.png'
+          " alt="">
             <div class="shop_feature_one_label">{{license.limit.maxWaiter}} 个服务员</div>
           </div>
 
           <div class="shop_feature_one">
-            <div class="shop_feature_one_icon"></div>
+            <img class="shop_feature_one_icon" :src="
+            license.plan.licenseType === 'Free' ? '/img/b/license/b_license_free_check.png' :
+          license.plan.licenseType === 'Normal' ? '/img/b/license/b_license_normal_check.png' :
+          license.plan.licenseType === 'Senior' ? '/img/b/license/b_license_senior_check.png' : '/img/b/license/b_license_free_check.png'
+          " alt="">
             <div class="shop_feature_one_label">{{license.limit.maxCooker}} 个厨师</div>
           </div>
 
           <div class="shop_feature_one">
-            <div class="shop_feature_one_icon"></div>
+            <img class="shop_feature_one_icon" :src="
+            license.plan.licenseType === 'Free' ? '/img/b/license/b_license_free_check.png' :
+          license.plan.licenseType === 'Normal' ? '/img/b/license/b_license_normal_check.png' :
+          license.plan.licenseType === 'Senior' ? '/img/b/license/b_license_senior_check.png' : '/img/b/license/b_license_free_check.png'
+          " alt="">
             <div class="shop_feature_one_label">{{license.limit.maxCashier}} 个收银</div>
           </div>
 
           <div class="shop_feature_one">
-            <div class="shop_feature_one_icon"></div>
+            <img class="shop_feature_one_icon" :src="
+            license.plan.licenseType === 'Free' ? '/img/b/license/b_license_free_check.png' :
+          license.plan.licenseType === 'Normal' ? '/img/b/license/b_license_normal_check.png' :
+          license.plan.licenseType === 'Senior' ? '/img/b/license/b_license_senior_check.png' : '/img/b/license/b_license_free_check.png'
+          " alt="">
             <div class="shop_feature_one_label">{{license.limit.maxAdmin}} 个店长</div>
           </div>
 
           <div class="shop_feature_one">
-            <div class="shop_feature_one_icon"></div>
+            <img class="shop_feature_one_icon" :src="
+            license.plan.licenseType === 'Free' ? '/img/b/license/b_license_free_check.png' :
+          license.plan.licenseType === 'Normal' ? '/img/b/license/b_license_normal_check.png' :
+          license.plan.licenseType === 'Senior' ? '/img/b/license/b_license_senior_check.png' : '/img/b/license/b_license_free_check.png'
+          " alt="">
             <div class="shop_feature_one_label">{{license.limit.maxCoupon}} 个营销活动</div>
           </div>
 
           <div class="shop_feature_one">
-            <div class="shop_feature_one_icon"></div>
+            <img class="shop_feature_one_icon" :src="
+            license.plan.licenseType === 'Free' ? '/img/b/license/b_license_free_check.png' :
+          license.plan.licenseType === 'Normal' ? '/img/b/license/b_license_normal_check.png' :
+          license.plan.licenseType === 'Senior' ? '/img/b/license/b_license_senior_check.png' : '/img/b/license/b_license_free_check.png'
+          " alt="">
             <div class="shop_feature_one_label">无限订单</div>
           </div>
         </div>
@@ -158,10 +216,10 @@
 </template>
 
 <script>
-  import {httpShopApi} from '../../../../../api/http/shop/httpShopApi'
-  import {httpShopLicenseApi} from '../../../../../api/http/shop/httpShopLicenseApi'
-  import TitleBar from '../../../../../components/common/TitleBar'
-  import {scrollApi} from '../../../../../api/local/scrollApi'
+  import {httpShopApi} from '../../../../../api/http/shop/httpShopApi';
+  import {httpShopLicenseApi} from '../../../../../api/http/shop/httpShopLicenseApi';
+  import TitleBar from '../../../../../components/common/TitleBar';
+  import {scrollApi} from '../../../../../api/local/scrollApi';
 
   export default {
     metaInfo: {
@@ -190,42 +248,42 @@
           licensePlan: null,
           year: 1
         }
-      }
+      };
     },
     created() {
-      this.httpShop()
-      this.httpLicensePlan()
+      this.httpShop();
+      this.httpLicensePlan();
     },
     methods: {
       httpShop() {
         httpShopApi.getOne(this.$route.params.shortId).then(res => {
-          this.http.res.shop = res
-        })
+          this.http.res.shop = res;
+        });
       },
       httpLicensePlan() {
         httpShopLicenseApi.getPlanAll(this.http.res.shop.type, 0, 20).then(res => {
-          this.http.res.shopLicensePlans = res
-        })
+          this.http.res.shopLicensePlans = res;
+        });
       },
       btnCoverMask() {
-        this.ui.v_cover_mask = false
-        this.ui.v_charge_year = false
+        this.ui.v_cover_mask = false;
+        this.ui.v_charge_year = false;
 
-        scrollApi.enable(true)
+        scrollApi.enable(true);
       },
       btnChargeHistory() {
-        this.$router.push(`/b/${this.$route.params.shortId}/owner/license/history`)
+        this.$router.push(`/b/${this.$route.params.shortId}/owner/license/history`);
       },
       btnYearSelect(licensePlan) {
-        this.ui.v_cover_mask = true
-        this.ui.v_charge_year = true
+        this.ui.v_cover_mask = true;
+        this.ui.v_charge_year = true;
 
-        this.ui.licensePlan = licensePlan
+        this.ui.licensePlan = licensePlan;
 
-        scrollApi.enable(false)
+        scrollApi.enable(false);
       },
       btnChooseYear(year) {
-        this.ui.year = year
+        this.ui.year = year;
       },
       prepareWechatPay(jsPay) {
         function onBridgeReady() {
@@ -239,68 +297,68 @@
               'paySign': jsPay.paySign //微信签名
             },
             function (res) {
-              alert(JSON.stringify(res))
+              alert(JSON.stringify(res));
               if (res.err_msg === 'get_brand_wcpay_request:ok') {
-                alert('支付已成功，支付结果可能存在延迟，请稍候刷新等待服务器返回。')
+                alert('支付已成功，支付结果可能存在延迟，请稍候刷新等待服务器返回。');
               }     // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠
               else if (res.err_msg === 'get_brand_wcpay_request:cancel') {
-                alert('您已取消支付')
+                alert('您已取消支付');
               }
             }
-          )
+          );
         }
 
         if (typeof WeixinJSBridge === 'undefined') {
           if (document.addEventListener) {
-            document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false)
+            document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
           } else if (document.attachEvent) {
-            document.attachEvent('WeixinJSBridgeReady', onBridgeReady)
-            document.attachEvent('onWeixinJSBridgeReady', onBridgeReady)
+            document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
+            document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
           }
         } else {
-          onBridgeReady()
+          onBridgeReady();
         }
       },
       btnChargeConfirm() {
         let userAgent = navigator.userAgent.toLowerCase() || window.navigator.userAgent.toLowerCase();
-        let inWechat = userAgent.match(/MicroMessenger/i) || userAgent.match(/webdebugger/i)
+        let inWechat = userAgent.match(/MicroMessenger/i) || userAgent.match(/webdebugger/i);
 
         if (inWechat) {
           this.$msgBox.doModal({
             type: 'yes',
             title: '立即续费',
             content: '请在微信中打开。'
-          })
+          });
 
           // return
         }
 
         httpShopLicenseApi.postOrderTest(this.$route.params.shortId, this.ui.licensePlan.id, this.ui.year, 'WECHAT_JSAPI').then(res => {
-          this.ui.v_cover_mask = false
-          this.ui.v_charge_year = false
+          this.ui.v_cover_mask = false;
+          this.ui.v_charge_year = false;
           this.$msgBox.doModal({
             type: 'yes',
             title: '立即续费',
             content: '测试续费成功。'
-          })
-        })
+          });
+        });
 
         if (1) {
-          return
+          return;
         }
 
         httpShopLicenseApi.postOrder(this.$route.params.shortId, this.ui.licensePlan.id, this.ui.year, 'WECHAT_JSAPI').then(res => {
-          this.ui.v_cover_mask = false
-          this.ui.v_charge_year = false
+          this.ui.v_cover_mask = false;
+          this.ui.v_charge_year = false;
 
           if (res.shortIdNotExists) {
             this.$msgBox.doModal({
               type: 'yes',
               title: '立即续费',
               content: '店铺不存在。'
-            })
+            });
 
-            return
+            return;
           }
 
           if (res.shopLicensePlanIdNotExists) {
@@ -308,9 +366,9 @@
               type: 'yes',
               title: '立即续费',
               content: '续费授权不存在。'
-            })
+            });
 
-            return
+            return;
           }
 
           if (res.licenseTypeNotMatch) {
@@ -318,14 +376,14 @@
               type: 'yes',
               title: '立即续费',
               content: '续费类型不区配，如您需升级套餐请联系我们。'
-            })
+            });
 
-            return
+            return;
           }
 
           if (res.pay) {
             if (res.pay.wechat) {
-              this.prepareWechatPay(res.pay.wechat.jsPay)
+              this.prepareWechatPay(res.pay.wechat.jsPay);
             }
 
             if (res.pay.wechatOpenIdNotExists) {
@@ -333,8 +391,8 @@
                 type: 'yes',
                 title: '立即续费',
                 content: '请先获得微信授权。'
-              })
-              return
+              });
+              return;
             }
 
             if (res.pay.payConfigWechatNotExists) {
@@ -342,8 +400,8 @@
                 type: 'yes',
                 title: '立即续费',
                 content: '商户尚未设置微信支付参数。'
-              })
-              return
+              });
+              return;
             }
 
             if (res.pay.payWayNotSupport) {
@@ -351,13 +409,13 @@
                 type: 'yes',
                 title: '立即续费',
                 content: '暂未支持此支付方式。'
-              })
+              });
             }
           }
-        })
+        });
       }
     }
-  }
+  };
 </script>
 
 <style scoped lang="scss">
