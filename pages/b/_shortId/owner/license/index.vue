@@ -182,8 +182,18 @@
 
         <div class="blank_30"></div>
 
-        <div class="shop_license_button shop_license_button_gray" v-if="license.plan.price <= 0">无需续费</div>
-        <div class="shop_license_button" v-else @click="btnYearSelect(license.plan)">立即续费</div>
+        <div class="shop_license_button" v-bind:class="{
+          shop_license_button_free: license.plan.licenseType === 'Free',
+          shop_license_button_normal: license.plan.licenseType === 'Normal',
+          shop_license_button_senior: license.plan.licenseType === 'Senior'
+          }" v-if="license.plan.price <= 0">无需续费
+        </div>
+        <div class="shop_license_button" v-bind:class="{
+          shop_license_button_free: license.plan.licenseType === 'Free',
+          shop_license_button_normal: license.plan.licenseType === 'Normal',
+          shop_license_button_senior: license.plan.licenseType === 'Senior'
+          }" v-else @click="btnYearSelect(license.plan)">立即续费
+        </div>
       </div>
 
       <div class="blank_50"></div>

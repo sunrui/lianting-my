@@ -133,7 +133,6 @@
 
   .shop_license_button {
     height: px2rem(88);
-    background: linear-gradient(90deg, rgba(255, 51, 68, 1), rgba(255, 136, 51, 1));
     border-radius: 0 0 px2rem(10) px2rem(10);
     color: white;
     font-size: px2rem(28);
@@ -146,11 +145,13 @@
   }
 
   .shop_license_button_normal {
-    background: #59A7FE;
+    background: linear-gradient(90deg, rgba(255, 51, 68, 1), rgba(255, 136, 51, 1));
+
   }
 
   .shop_license_button_senior {
-    background: #8D59FF;
+    background: linear-gradient(90deg, rgba(255, 51, 68, 1), rgba(255, 136, 51, 1));
+
   }
 }
 
