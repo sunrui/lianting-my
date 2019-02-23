@@ -95,20 +95,22 @@
 
       .queue_box_table_name {
         display: inline-block;
+        vertical-align: middle;
         font-size: px2rem(28);
         color: #333333;
         line-height: px2rem(32);
       }
 
       .queue_box_table_private {
+        display: inline-block;
+        vertical-align: middle;
         background: linear-gradient(90deg, rgba(255, 51, 68, 1), rgba(255, 136, 51, 1));
         border-radius: px2rem(5);
-        width: px2rem(60);
         height: px2rem(32);
         line-height: px2rem(32);
         left: px2rem(40);
+        padding: 0 px2rem(10);
 
-        display: inline-block;
         color: white;
         font-size: px2rem(24);
         text-align: center;
