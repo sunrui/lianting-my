@@ -139,7 +139,6 @@
       <div class="button_small" @click="btnPay">立即支付</div>
     </div>
     <div class="blank_30" v-else></div>
-
   </div>
 </template>
 

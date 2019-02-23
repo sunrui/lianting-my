@@ -156,9 +156,11 @@
               this.$router.push(`/logout`)
             }
           })
-        } else {
-          this.$router.push(`/m/${this.$route.params.shortId}/${url}`)
+
+          return
         }
+
+        this.$router.push(`/m/${this.$route.params.shortId}/${url}`)
       },
       btnBindPhone() {
         this.$router.push(`/m/${this.$route.params.shortId}/me/bind/phone`)

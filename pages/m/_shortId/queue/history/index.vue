@@ -29,7 +29,7 @@
       </div>
     </div>
 
-    <div class="history_footer"></div>
+    <div class="blank_30"></div>
   </div>
 </template>
 

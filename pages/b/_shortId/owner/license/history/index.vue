@@ -36,19 +36,21 @@
         <div class="blank_10"></div>
       </div>
     </div>
+
+    <div class="blank_30"></div>
   </div>
 </template>
 
 <script>
-  import { httpShopLicenseApi } from '../../../../../../api/http/shop/httpShopLicenseApi'
-  import TitleBar from '../../../../../../components/common/TitleBar'
+  import {httpShopLicenseApi} from '../../../../../../api/http/shop/httpShopLicenseApi';
+  import TitleBar from '../../../../../../components/common/TitleBar';
 
   export default {
     metaInfo: {
       title: '续费记录'
     },
     middleware: 'auth',
-    components: { TitleBar },
+    components: {TitleBar},
     data() {
       return {
         title: {
@@ -66,18 +68,18 @@
           }
         },
         ui: {}
-      }
+      };
     },
     created() {
       httpShopLicenseApi.getAll(this.$route.params.shortId).then(res => {
         if (res.elements.length === 0) {
-          this.$router.push(`/b/${this.$route.params.shortId}/owner/license/history/empty`)
+          this.$router.push(`/b/${this.$route.params.shortId}/owner/license/history/empty`);
         }
 
-        this.http.res.shopLicenseRes = res
-      })
+        this.http.res.shopLicenseRes = res;
+      });
     }
-  }
+  };
 </script>
 
 <style scoped lang="scss">

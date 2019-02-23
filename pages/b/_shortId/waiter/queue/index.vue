@@ -81,6 +81,8 @@
         <div v-else class="queue_empty">{{tableGroup.needQueue ? '暂时没人排队' : '无需排队'}}</div>
       </div>
     </div>
+
+    <div class="blank_30"></div>
   </div>
 </template>
 

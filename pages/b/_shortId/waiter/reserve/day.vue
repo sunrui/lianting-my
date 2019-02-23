@@ -43,6 +43,8 @@
         </div>
       </div>
     </div>
+
+    <div class="blank_30"></div>
   </div>
 </template>
 
@@ -140,5 +142,5 @@
 <style scoped lang="scss">
   @import '~assets/common';
   @import '~assets/m/reserve';
-  @import 'day';
+  @import '~assets/m/reserve_history';
 </style>

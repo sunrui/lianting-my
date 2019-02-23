@@ -5,11 +5,11 @@
     <div class="box">
       <div class="status box_radius">
         <div class="status_logo_radius status_logo_radius_center">
-          <img class="status_logo_radius_image " v-bind:class="{
+          <div class="status_logo_radius_image " v-bind:class="{
           new_logo_radius_image: http.res.reserve.status === 'Wait',
           success_logo_radius_image: http.res.reserve.status === 'Accept' || http.res.reserve.status === 'AcceptRead' || http.res.reserve.status === 'Arrived',
           failed_logo_radius_image: http.res.reserve.status === 'Refused' || http.res.reserve.status === 'RefusedRead' || http.res.reserve.status === 'Cancel',
-          }" alt="">
+          }"></div>
         </div>
 
         <div class="status_title">{{getStatus(http.res.reserve.status)}}</div>
@@ -79,16 +79,16 @@
 </template>
 
 <script>
-  import TitleBar from '../../../../../../components/common/TitleBar'
-  import { httpReserveApi } from '../../../../../../api/http/lt/httpReserveApi'
-  import { httpReserveAdminApi } from '../../../../../../api/http/lt/httpReserveAdminApi'
+  import TitleBar from '../../../../../../components/common/TitleBar';
+  import {httpReserveApi} from '../../../../../../api/http/lt/httpReserveApi';
+  import {httpReserveAdminApi} from '../../../../../../api/http/lt/httpReserveAdminApi';
 
   export default {
     metaInfo: {
       title: '预订详情'
     },
     middleware: 'auth',
-    components: { TitleBar },
+    components: {TitleBar},
     data() {
       return {
         title: {
@@ -113,76 +113,76 @@
         ui: {
           v_cover_mask: true
         }
-      }
+      };
     },
     created() {
-      this.httpReserve()
+      this.httpReserve();
     },
     methods: {
       getStatus(status) {
         switch (status) {
           case 'Wait':
-            return '等待确认'
+            return '等待确认';
           case 'Accept':
           case 'AcceptRead':
-            return '预订成功'
+            return '预订成功';
           case 'Refused':
           case 'RefusedRead':
-            return '预订失败'
+            return '预订失败';
           case 'Cancel':
-            return '预订取消'
+            return '预订取消';
           case 'Arrived':
-            return '已到店'
+            return '已到店';
           default:
-            return status
+            return status;
         }
       },
       getProcessName(status) {
         switch (status) {
           case 'Wait':
-            return '预约已提交，等待商家确认。'
+            return '预约已提交，等待商家确认。';
           case 'Accept':
           case 'AcceptRead':
-            return '您已预订成功，请及时到店。'
+            return '您已预订成功，请及时到店。';
           case 'Refused':
           case 'RefusedRead':
-            return '很抱歉，暂时无法接受您的预订。'
+            return '很抱歉，暂时无法接受您的预订。';
           case 'Cancel':
-            return '您的预订已取消。'
+            return '您的预订已取消。';
           case 'Arrived':
-            return '您已到店，祝您用餐愉快。'
+            return '您已到店，祝您用餐愉快。';
           default:
-            return status
+            return status;
         }
       },
       httpReserve() {
         httpReserveApi.getOne(this.$route.params.shortId, this.$route.params.reserveId).then(res => {
-          res.progress.sort(function(a, b) {
-            return b.createdAt - a.createdAt
-          })
+          res.progress.sort(function (a, b) {
+            return b.createdAt - a.createdAt;
+          });
 
-          this.http.res.reserve = res
-        })
+          this.http.res.reserve = res;
+        });
       },
       btnReply() {
-        this.$router.push(`/b/${this.$route.params.shortId}/waiter/reserve/${this.$route.params.reserveId}/reply`)
+        this.$router.push(`/b/${this.$route.params.shortId}/waiter/reserve/${this.$route.params.reserveId}/reply`);
       },
       btnArrived() {
-        this.http.req.reply.status = 'Arrived'
+        this.http.req.reply.status = 'Arrived';
 
         httpReserveAdminApi.putReply(this.$route.params.shortId, this.$route.params.reserveId, this.http.req.reply).then(res => {
           if (res.reserveIdNotExists) {
-            alert('预订不存在')
-            return
+            alert('预订不存在');
+            return;
           }
 
           if (res.success) {
-            this.httpReserve()
+            this.httpReserve();
           }
-        })
+        });
       }
     }
-  }
+  };
 </script>
 
 <style scoped lang="scss">
