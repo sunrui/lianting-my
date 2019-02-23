@@ -173,7 +173,7 @@
           filters: {
             max_file_size: '512kb',
             mime_types: [
-              {title: 'Image files', extensions: 'image/*,jpg,jpeg,png'}
+              {title: '图片', extensions: 'image/gif,image/jpeg,image/jpg,image/png,image/svg'}
             ]
           },
           init: {
@@ -212,25 +212,25 @@
             },
             Error(up, err) {
               if (err.code === -600) {
-                this.$msgBox.doModal({
+                pThis.$msgBox.doModal({
                   type: 'yes',
                   title: '上传图片',
                   content: '选择的文件最大不超过512kb。'
                 })
               } else if (err.code === -601) {
-                this.$msgBox.doModal({
+                pThis.$msgBox.doModal({
                   type: 'yes',
                   title: '上传图片',
-                  content: '选择的文件后缀不对'
+                  content: '请选择正确的图片文件。'
                 })
               } else if (err.code === -602) {
-                this.$msgBox.doModal({
+                pThis.$msgBox.doModal({
                   type: 'yes',
                   title: '上传图片',
                   content: '文件已经上传。'
                 })
               } else {
-                this.$msgBox.doModal({
+                pThis.$msgBox.doModal({
                   type: 'yes',
                   title: '上传图片',
                   content: err.response
