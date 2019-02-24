@@ -1,0 +1,23 @@
+.group_mode {
+  position: relative;
+  display: inline-block;
+  float: right;
+  line-height: px2rem(110);
+  margin-right: px2rem(30);
+
+  .group_mode_icon {
+    display: inline-block;
+    vertical-align: middle;
+    background-size: 100% 100%;
+    width: px2rem(28);
+    height: px2rem(28);
+  }
+
+  .group_mode_label {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: px2rem(24);
+    color: #666666;
+    margin-left: px2rem(5);
+  }
+}

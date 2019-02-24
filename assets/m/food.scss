@@ -264,27 +264,36 @@
         top: px2rem(-100)
       }
 
-      .food_image {
-        position: absolute;
-        height: px2rem(200);
-        width: px2rem(200);
-        top: px2rem(-10);
-        left: px2rem(-10);
-        border-radius: px2rem(10);
+      .food_image_box {
+        position: relative;
+        display: inline-block;
+        vertical-align: center;
+        margin-top: px2rem(-10);
+        margin-left: px2rem(-10);
+
+        .food_image {
+          height: px2rem(200);
+          width: px2rem(200);
+          border-radius: px2rem(10);
+        }
+
+        .food_image_tag {
+          position: absolute;
+          height: px2rem(40);
+          top: 0;
+          left: 0;
+          border-radius: px2rem(10) 0 px2rem(0) px2rem(0);
+        }
       }
 
-      .food_image_tag {
-        position: absolute;
-        height: px2rem(40);
-        top: px2rem(-10);
-        left: px2rem(-10);
-        border-radius: px2rem(10) 0 px2rem(0) px2rem(0);
-      }
 
       .food_info {
         position: relative;
+        display: inline-block;
+        vertical-align: center;
+
         margin-right: px2rem(30);
-        margin-left: px2rem(200 + 30);
+        margin-left: px2rem(30);
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;

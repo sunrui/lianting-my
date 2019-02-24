@@ -68,21 +68,30 @@
           <div class="food_group_anchor" :id="foodGroup.id"></div>
           <div class="group_name">{{foodGroup.name}}</div>
           <div class="group_count">({{foodGroup.foodCategories.length}})</div>
+          <div class="group_mode" v-if="ui.groupMode === 'Small'" @click="btnGroupMode('Big')">
+            <img class="group_mode_icon" src="/img/m/food/group_mode_big.png" alt="">
+            <div class="group_mode_label">大图模式</div>
+          </div>
+          <div class="group_mode" v-else @click="btnGroupMode('Small')">
+            <img class="group_mode_icon" src="/img/m/food/group_mode_small.png" alt="">
+            <div class="group_mode_label">小图模式</div>
+          </div>
         </div>
 
         <div class="food_box box" v-for="foodCategory in foodGroup.foodCategories">
           <div class="blank_10"></div>
 
-          <div class="food box_radius">
+
+          <div class="food box_radius" v-if="ui.groupMode === 'Big'">
             <div class="food_category_anchor" :id="foodCategory.id"></div>
-            <img class="food_image" :src="foodCategory.image" :alt="foodCategory.name">
-            <div v-if="foodCategory.tagName" v-bind:class="{
-            addition_item_tag_color_1: foodCategory.tagIndex === 1,
-            addition_item_tag_color_2: foodCategory.tagIndex === 2,
-            addition_item_tag_color_3: foodCategory.tagIndex === 3
-            }" class="addition_item_tag_label food_image_tag"
-            >{{foodCategory.tagName}}
-            </div>
+            <!--<img class="food_image" :src="foodCategory.image" :alt="foodCategory.name">-->
+            <!--<div v-if="foodCategory.tagName" v-bind:class="{-->
+            <!--addition_item_tag_color_1: foodCategory.tagIndex === 1,-->
+            <!--addition_item_tag_color_2: foodCategory.tagIndex === 2,-->
+            <!--addition_item_tag_color_3: foodCategory.tagIndex === 3-->
+            <!--}" class="addition_item_tag_label food_image_tag"-->
+            <!--&gt;{{foodCategory.tagName}}-->
+            <!--</div>-->
 
             <div class="food_info">
               <div class="food_name">{{foodCategory.name}}</div>
@@ -110,6 +119,45 @@
             <div class="food_status_offline" v-if="foodCategory.status === 'OFFLINE'"></div>
             <div class="food_status_sold_out" v-if="foodCategory.foods.length === 0 || foodCategory.status === 'SOLD_OUT'"></div>
           </div>
+
+          <div class="food box_radius" v-else>
+            <div class="food_category_anchor" :id="foodCategory.id"></div>
+            <div class="food_image_box">
+              <img class="food_image" :src="foodCategory.image" :alt="foodCategory.name">
+              <div class="addition_item_tag_label food_image_tag" v-if="foodCategory.tagName" v-bind:class="{
+                   addition_item_tag_color_1: foodCategory.tagIndex === 1,
+                   addition_item_tag_color_2: foodCategory.tagIndex === 2,
+                   addition_item_tag_color_3: foodCategory.tagIndex === 3
+            }">{{foodCategory.tagName}}
+              </div>
+            </div>
+            <div class="food_info">
+              <div class="food_name">{{foodCategory.name}}</div>
+              <div class="food_detail">{{foodCategory.detail}}</div>
+              <div v-if="foodCategory.foods.length > 0 && foodCategory.status === 'ONLINE'">
+                <div class="food_price_box">
+                  <div class="food_price_now">{{foodCategory.foods[0].price}}</div>
+                  <div class="food_price_original"
+                       v-if="foodCategory.foods[0].price !== foodCategory.foods[0].originalPrice">
+                    {{foodCategory.foods[0].originalPrice}}
+                  </div>
+                </div>
+                <div class="food_button">
+                  <div v-if="foodCategory.select > 0">
+                    <div class="food_button_add" @click="btnFoodAdd(foodGroup.id, foodCategory)"></div>
+                    <div class="food_button_count">{{foodCategory.select}}</div>
+                    <div class="food_button_minus" @click="btnFoodMinus(foodCategory)"></div>
+                  </div>
+                  <div v-else>
+                    <div class="food_button_zero" @click="btnFoodAdd(foodGroup.id, foodCategory)"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="food_status_offline" v-if="foodCategory.status === 'OFFLINE'"></div>
+            <div class="food_status_sold_out" v-if="foodCategory.foods.length === 0 || foodCategory.status === 'SOLD_OUT'"></div>
+          </div>
+
 
           <div class="blank_40" v-if="foodCategory !== foodGroup.foodCategories[foodGroup.foodCategories.length - 1]"></div>
           <div class="blank_10" v-if="foodCategory === foodGroup.foodCategories[foodGroup.foodCategories.length - 1]"></div>
@@ -208,23 +256,23 @@
 </template>
 
 <script>
-  import { httpFoodApi } from '../../api/http/lt/httpFoodApi'
-  import { cartApi } from '../../api/local/cartApi'
-  import { cloneApi } from '../../api/local/cloneApi'
+  import {httpFoodApi} from '../../api/http/lt/httpFoodApi'
+  import {cartApi} from '../../api/local/cartApi'
+  import {cloneApi} from '../../api/local/cloneApi'
   import TitleBar from '../common/TitleBar'
-  import { scrollApi } from '../../api/local/scrollApi'
-  import { httpShopApi } from '../../api/http/shop/httpShopApi'
-  import { httpInfoApi } from '../../api/http/lt/httpInfoApi'
-  import { httpOrderApi } from '../../api/http/lt/httpOrderApi'
-  import { httpOrderAdminApi } from '../../api/http/lt/httpOrderAdminApi'
-  import { highlightApi } from '../../api/local/highlightApi'
+  import {scrollApi} from '../../api/local/scrollApi'
+  import {httpShopApi} from '../../api/http/shop/httpShopApi'
+  import {httpInfoApi} from '../../api/http/lt/httpInfoApi'
+  import {httpOrderApi} from '../../api/http/lt/httpOrderApi'
+  import {httpOrderAdminApi} from '../../api/http/lt/httpOrderAdminApi'
+  import {highlightApi} from '../../api/local/highlightApi'
 
   export default {
     metaInfo: {
       title: '点餐'
     },
     middleware: 'auth',
-    components: { TitleBar },
+    components: {TitleBar},
     props: {
       roleWaiter: {
         type: Boolean,
@@ -246,6 +294,7 @@
           v_cart: false,
           v_category: false,
           v_menu_extend: false,
+          groupMode: 'Small',
           modal_category: {
             foodGroupId: null,
             category: null,
@@ -344,7 +393,7 @@
 
           for (let index in this.http.res.foodGroups.elements) {
             let categories = this.http.res.foodGroups.elements[index]
-            categories.foodCategories.sort(function(a, b) {
+            categories.foodCategories.sort(function (a, b) {
               return a.orderIndex - b.orderIndex
             })
           }
@@ -391,7 +440,7 @@
         if (closeLeaf) {
           this.btnLeaf(false)
 
-          setTimeout(function() {
+          setTimeout(function () {
             let node = document.getElementById(foodGroupId)
             if (node != null) {
               var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
@@ -476,6 +525,9 @@
             foodCategory.select = cartApi.countSelectByFoodCategoryId(foodCategory.id)
           }
         }
+      },
+      btnGroupMode(mode) {
+        this.ui.groupMode = mode
       },
       btnCartFoodAdd(foodGroupId, foodCategory, food) {
         if (this.cart.select >= 99) {
@@ -667,4 +719,5 @@
 <style scoped lang="scss">
   @import '~assets/common';
   @import '~assets/m/food';
+  @import "Food";
 </style>

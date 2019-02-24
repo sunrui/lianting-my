@@ -27,10 +27,6 @@
       }
     },
     props: {
-      fileName: {
-        type: String,
-        default: null
-      },
       fileUrl: {
         type: String,
         default: null
@@ -53,6 +49,27 @@
         if (this.ui.inWechat) {
           this.initWxConfig(this)
         }
+      },
+      getFileName() {
+        let fileName = null
+
+        if (Boolean(this.fileUrl)) {
+          let index = this.fileUrl.lastIndexOf('/')
+          if (index !== -1) {
+            fileName = this.fileUrl.substr(index)
+            if (fileName.length < 32) {
+              fileName = null
+            } else {
+              fileName = fileName.substr(0, 32)
+            }
+          }
+        }
+
+        if (!Boolean(fileName)) {
+          fileName = uuidApi.uuid()
+        }
+
+        return fileName + '.png'
       },
       initWxConfig(pThis) {
         let url = location.href.split('#')[0]
@@ -112,24 +129,20 @@
       },
       initOssSign(localData) {
         httpUploadAdminApi.getSignImage(this.$route.params.shortId).then(res => {
-          if (!Boolean(this.fileName)) {
-            this.fileName = uuidApi.uuid() + '.jpg'
-          }
-
           if (this.inWechat) {
             fetch(localData)
               .then(res => res.blob())
               .then(blob => {
-                this.initStreamUploader(res, this.fileName, blob)
+                this.initStreamUploader(res, blob)
               })
           } else {
-            this.initFileUploader(res, this.fileName, this)
+            this.initFileUploader(res, this)
           }
         })
       },
-      initStreamUploader(sign, name, localData) {
+      initStreamUploader(sign, localData) {
         let param = {
-          'key': sign.key + name,
+          'key': sign.key + this.getFileName(),
           'policy': sign.policy,
           'OSSAccessKeyId': sign.accessId,
           'success_action_status': '200',
@@ -162,7 +175,7 @@
         xmlHttpRequest.open('POST', 'http://' + sign.endPoint)
         xmlHttpRequest.send(formData)
       },
-      initFileUploader(sign, name, pThis) {
+      initFileUploader(sign, pThis) {
         let uploader = new plupload.Uploader({
           runtimes: 'html5,html4',
           browse_button: 'pickfiles',
@@ -173,7 +186,7 @@
           filters: {
             max_file_size: '512kb',
             mime_types: [
-              {title: '图片', extensions: 'image/gif,image/jpeg,image/jpg,image/png,image/svg'}
+              {title: '图片', extensions: 'jpg,gif,png'}
             ]
           },
           init: {
@@ -182,11 +195,11 @@
             },
             FilesAdded(up, files) {
               plupload.each(files, function (file) {
-                pThis.ui.fileUrl = 'http://' + sign.endPoint + '/' + sign.key + name
+                pThis.ui.fileUrl = 'http://' + sign.endPoint + '/' + sign.key + pThis.getFileName()
               })
 
               let new_multipart_params = {
-                'key': sign.key + name,
+                'key': sign.key + pThis.getFileName(),
                 'policy': sign.policy,
                 'OSSAccessKeyId': sign.accessId,
                 'success_action_status': '200',
@@ -207,7 +220,16 @@
             },
             FileUploaded(up, file, info) {
               pThis.ui.state = 'uploaded'
+
+              let index = pThis.ui.fileUrl.lastIndexOf('?')
+              if (index !== -1) {
+                pThis.ui.fileUrl = pThis.ui.fileUrl.substr(0, index)
+              }
+
               pThis.ui.fileUrl += '?' + new Date().getTime()
+
+              console.log(pThis.ui.fileUrl)
+
               pThis.$emit('uploadSuccess', pThis.ui.fileUrl)
             },
             Error(up, err) {

@@ -51,15 +51,15 @@
           <div class="food box_radius">
             <div class="badge_delete" @click="btnCategoryDelete(foodCategory)"></div>
             <div class="food_category_anchor" :id="foodCategory.id"></div>
-            <img class="food_image" :src="foodCategory.image" @click="btnCategory(foodCategory)" :alt="foodCategory.name">
-            <div v-if="foodCategory.tagName" v-bind:class="{
-            addition_item_tag_color_1: foodCategory.tagIndex === 1,
-            addition_item_tag_color_2: foodCategory.tagIndex === 2,
-            addition_item_tag_color_3: foodCategory.tagIndex === 3
-            }" class="addition_item_tag_label food_image_tag"
-            >{{foodCategory.tagName}}
+            <div class="food_image_box" @click="btnCategory(foodCategory)">
+              <img class="food_image" :src="foodCategory.image" :alt="foodCategory.name">
+              <div class="addition_item_tag_label food_image_tag" v-if="foodCategory.tagName" v-bind:class="{
+                   addition_item_tag_color_1: foodCategory.tagIndex === 1,
+                   addition_item_tag_color_2: foodCategory.tagIndex === 2,
+                   addition_item_tag_color_3: foodCategory.tagIndex === 3
+            }">{{foodCategory.tagName}}
+              </div>
             </div>
-
             <div class="food_info" @click="btnCategory(foodCategory)">
               <div class="food_name">{{foodCategory.name}}</div>
               <div class="food_detail">{{foodCategory.detail}}</div>

@@ -63,15 +63,15 @@
 
           <div class="food box_radius">
             <div class="food_category_anchor" :id="foodCategory.id"></div>
-            <img class="food_image" :src="foodCategory.image" :alt="foodCategory.name">
-            <div v-if="foodCategory.tagName" v-bind:class="{
-            addition_item_tag_color_1: foodCategory.tagIndex === 1,
-            addition_item_tag_color_2: foodCategory.tagIndex === 2,
-            addition_item_tag_color_3: foodCategory.tagIndex === 3
-            }" class="addition_item_tag_label food_image_tag"
-            >{{foodCategory.tagName}}
+            <div class="food_image_box">
+              <img class="food_image" :src="foodCategory.image" :alt="foodCategory.name">
+              <div class="addition_item_tag_label food_image_tag" v-if="foodCategory.tagName" v-bind:class="{
+                   addition_item_tag_color_1: foodCategory.tagIndex === 1,
+                   addition_item_tag_color_2: foodCategory.tagIndex === 2,
+                   addition_item_tag_color_3: foodCategory.tagIndex === 3
+            }">{{foodCategory.tagName}}
+              </div>
             </div>
-
             <div class="food_info">
               <div class="food_name">{{foodCategory.name}}</div>
               <div class="food_detail">{{foodCategory.detail}}</div>
@@ -129,19 +129,19 @@
 
 <script>
   import TitleBar from '../../../../../components/common/TitleBar'
-  import { httpShopApi } from '../../../../../api/http/shop/httpShopApi'
-  import { httpInfoApi } from '../../../../../api/http/lt/httpInfoApi'
-  import { httpFoodApi } from '../../../../../api/http/lt/httpFoodApi'
-  import { httpFoodAdminApi } from '../../../../../api/http/lt/httpFoodAdminApi'
-  import { scrollApi } from '../../../../../api/local/scrollApi'
-  import { highlightApi } from '../../../../../api/local/highlightApi'
+  import {httpShopApi} from '../../../../../api/http/shop/httpShopApi'
+  import {httpInfoApi} from '../../../../../api/http/lt/httpInfoApi'
+  import {httpFoodApi} from '../../../../../api/http/lt/httpFoodApi'
+  import {httpFoodAdminApi} from '../../../../../api/http/lt/httpFoodAdminApi'
+  import {scrollApi} from '../../../../../api/local/scrollApi'
+  import {highlightApi} from '../../../../../api/local/highlightApi'
 
   export default {
     metaInfo: {
       title: '上下架餐食'
     },
     middleware: 'auth',
-    components: { TitleBar },
+    components: {TitleBar},
     data() {
       return {
         title: {
@@ -226,7 +226,7 @@
 
           for (let groupIndex in this.http.res.foodGroups.elements) {
             let categories = this.http.res.foodGroups.elements[groupIndex]
-            categories.foodCategories.sort(function(a, b) {
+            categories.foodCategories.sort(function (a, b) {
               return a.orderIndex - b.orderIndex
             })
           }
@@ -272,7 +272,7 @@
         if (closeLeaf) {
           this.btnLeaf(false)
 
-          setTimeout(function() {
+          setTimeout(function () {
             let node = document.getElementById(foodGroupId)
             if (node != null) {
               let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop

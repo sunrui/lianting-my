@@ -7,7 +7,7 @@
         <div class="addition_item">
           <div class="addition_item_label">店铺头像</div>
           <div class="addition_item_avatar_input">
-            <image-upload :fileName="http.req.info.id + '.jpg'" :file-url="http.req.info.logo" v-on:uploadSuccess="uploadSuccess"></image-upload>
+            <image-upload :file-url="http.req.info.logo" v-on:uploadSuccess="uploadSuccess"></image-upload>
           </div>
         </div>
 
