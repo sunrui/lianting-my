@@ -55,7 +55,7 @@
 
       <div class="shop_nav_box">
         <div class="shop_nav_box_one" v-for="nav in ui.navs" @click="btnNav(nav)">
-          <img class="shop_nav_box_one_icon" :src="nav.icon">
+          <img class="shop_nav_box_one_icon" :src="nav.icon" :alt="nav.name">
           <div class="shop_nav_box_one_label">{{nav.name}}</div>
         </div>
       </div>

@@ -72,6 +72,7 @@
   import { httpUserApi } from '../../api/http/user/httpUserApi'
   import TitleBar from '../../components/common/TitleBar'
   import { httpShopApi } from '../../api/http/shop/httpShopApi'
+  import {timeApi} from '../../api/local/timeApi'
 
   export default {
     metaInfo: {

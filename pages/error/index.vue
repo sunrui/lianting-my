@@ -22,7 +22,9 @@
             <div class="addition_item" v-if="ui.error.message">
               <div class="addition_item_label_text_area">内容</div>
               <div class="addition_item_text_area">
-                <textarea class="addition_item_text_input" v-model="ui.error.message"></textarea>
+                <label>
+                  <textarea class="addition_item_text_input" v-model="ui.error.message"></textarea>
+                </label>
               </div>
             </div>
             <div v-else-if="ui.error.json.error">

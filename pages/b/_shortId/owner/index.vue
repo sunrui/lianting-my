@@ -37,7 +37,7 @@
         <div class="shop_nav_blank"></div>
 
         <div class="shop_nav_box_one shop_nav_box_one_owner" v-for="nav in ui.navs" @click="btnNav(nav)">
-          <img class="shop_nav_box_one_icon shop_nav_box_one_icon_owner" :src="nav.icon">
+          <img class="shop_nav_box_one_icon shop_nav_box_one_icon_owner" :src="nav.icon" :alt="nav.name">
           <div class="shop_nav_box_one_label">{{nav.name}}</div>
         </div>
       </div>

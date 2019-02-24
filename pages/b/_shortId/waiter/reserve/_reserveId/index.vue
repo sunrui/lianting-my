@@ -188,5 +188,5 @@
 <style scoped lang="scss">
   @import '~assets/common';
   @import '~assets/m/reserve';
-  @import 'index'
+  @import 'index';
 </style>

@@ -143,7 +143,6 @@
   import {highlightApi} from '../../../../../../api/local/highlightApi'
   import {langApi} from '../../../../../../api/local/langApi'
   import ImageUpload from "../../../../../../components/common/ImageUpload"
-  import {uuidApi} from "../../../../../../api/local/uuidApi"
 
   export default {
     metaInfo: {

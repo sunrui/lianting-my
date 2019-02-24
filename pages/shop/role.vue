@@ -48,7 +48,6 @@
 
 <script>
   import TitleBar from '../../components/common/TitleBar'
-  import {httpShopApi} from '../../api/http/shop/httpShopApi'
   import {httpInfoApi} from '../../api/http/lt/httpInfoApi'
   import {httpRoleApi} from "../../api/http/lt/httpRoleApi"
 

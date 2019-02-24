@@ -136,7 +136,6 @@
   import {httpFoodApi} from '../../../../../api/http/lt/httpFoodApi'
   import {httpFoodAdminApi} from '../../../../../api/http/lt/httpFoodAdminApi'
   import {scrollApi} from '../../../../../api/local/scrollApi'
-  import {highlightApi} from '../../../../../api/local/highlightApi'
 
   export default {
     metaInfo: {

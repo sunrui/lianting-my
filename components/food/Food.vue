@@ -188,7 +188,7 @@
         </div>
 
         <div class="category_food">
-          <img class="category_food_image" :src="ui.modal_category.category.image">
+          <img class="category_food_image" :src="ui.modal_category.category.image" :alt="ui.modal_category.selectFood.name">
 
           <div class="category_food_info">
             <div class="category_food_name">{{ui.modal_category.category.name}}</div>
@@ -320,7 +320,7 @@
           let id = window.location.hash.substring(1)
           let node = document.getElementById(id)
           if (node != null) {
-            var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
             let posY = node.getBoundingClientRect().top + scrollTop
             window.scroll(0, posY)
           }
@@ -374,7 +374,7 @@
         })
       },
       onScroll() {
-        var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
 
         let groupBoxes = document.querySelectorAll('.food_group_box')
         if (!Boolean(groupBoxes) || groupBoxes.length === 0) {
@@ -414,7 +414,7 @@
           setTimeout(function () {
             let node = document.getElementById(foodGroupId)
             if (node != null) {
-              var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+              const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
               let posY = node.getBoundingClientRect().top + scrollTop
               window.scroll(0, posY)
             }

@@ -1,4 +1,5 @@
 import axios from 'axios'
+import Food from '../../../components/food/Food'
 
 let base = '/api/b'
 

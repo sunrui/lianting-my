@@ -38,6 +38,7 @@
   import { validatorApi } from '../../../api/local/validatorApi'
   import { httpUserApi } from '../../../api/http/user/httpUserApi'
   import { httpShopGroupApi } from '../../../api/http/shop/httpShopGroupApi'
+  import {timeApi} from '../../../api/local/timeApi'
 
   export default {
     metaInfo: {

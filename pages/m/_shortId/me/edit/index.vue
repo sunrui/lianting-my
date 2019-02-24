@@ -14,7 +14,9 @@
         <div class="addition ">
           <div class="addition_item">
             <div class="addition_item_label">昵称</div>
-            <input class="addition_item_input" v-model="http.res.wechatInfo.nickName">
+            <label>
+              <input class="addition_item_input" v-model="http.res.wechatInfo.nickName">
+            </label>
           </div>
 
           <div class="box_divide"></div>
@@ -45,21 +47,27 @@
 
           <div class="addition_item">
             <div class="addition_item_label">省</div>
-            <input class="addition_item_input" v-model="http.res.wechatInfo.province">
+            <label>
+              <input class="addition_item_input" v-model="http.res.wechatInfo.province">
+            </label>
           </div>
 
           <div class="box_divide"></div>
 
           <div class="addition_item">
             <div class="addition_item_label">市</div>
-            <input class="addition_item_input" v-model="http.res.wechatInfo.city">
+            <label>
+              <input class="addition_item_input" v-model="http.res.wechatInfo.city">
+            </label>
           </div>
 
           <div class="box_divide"></div>
 
           <div class="addition_item">
             <div class="addition_item_label">国家</div>
-            <input class="addition_item_input" v-model="http.res.wechatInfo.country">
+            <label>
+              <input class="addition_item_input" v-model="http.res.wechatInfo.country">
+            </label>
           </div>
         </div>
       </div>

@@ -26,7 +26,6 @@
 
 <script>
   import TitleBar from '../../../../../../../components/common/TitleBar'
-  import { httpFoodApi } from '../../../../../../../api/http/lt/httpFoodApi'
   import { httpFoodAdminApi } from '../../../../../../../api/http/lt/httpFoodAdminApi'
   import { highlightApi } from '../../../../../../../api/local/highlightApi'
 

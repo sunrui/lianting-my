@@ -18,7 +18,9 @@
       <div v-if="http.req.reply.status === 'Accept'">
         <div class="reply_label">安排餐桌号</div>
         <div class="reply_device_area">
-          <input class="reply_device_input" maxlength="6" v-model="http.req.reply.tableNumber">
+          <label>
+            <input class="reply_device_input" maxlength="6" v-model="http.req.reply.tableNumber">
+          </label>
         </div>
       </div>
 
@@ -38,7 +40,6 @@
 
 <script>
   import TitleBar from '../../../../../../components/common/TitleBar'
-  import { httpReserveApi } from '../../../../../../api/http/lt/httpReserveApi'
   import { httpReserveAdminApi } from '../../../../../../api/http/lt/httpReserveAdminApi'
 
   export default {

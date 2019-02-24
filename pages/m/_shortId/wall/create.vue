@@ -44,7 +44,9 @@
     <!--</div>-->
 
     <div class="wall_text_input_area">
-      <textarea class="wall_text_input" :placeholder="ui.input_tip" v-model="http.req.wall.message"></textarea>
+      <label>
+        <textarea class="wall_text_input" :placeholder="ui.input_tip" v-model="http.req.wall.message"></textarea>
+      </label>
     </div>
 
     <div class="button_box">
