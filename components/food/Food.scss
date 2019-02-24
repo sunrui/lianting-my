@@ -21,3 +21,32 @@
     margin-left: px2rem(5);
   }
 }
+
+.food_big {
+  height: px2rem(570) !important;
+
+  .food_image_big_box {
+    position: relative;
+    width: 100%;
+    height: px2rem(390);
+    border-bottom: solid px2rem(1) rgba(230, 230, 230, 0.5);
+    overflow: hidden;
+
+    .food_image_big {
+      width: 100%;
+      height: auto;
+      border-radius: px2rem(10);
+    }
+
+    .food_image_big_tag {
+      position: absolute;
+      top: 0;
+      left: 0;
+      color: white;
+      height: px2rem(40);
+      font-size: px2rem(22);
+      line-height: px2rem(40);
+      border-radius: px2rem(10) 0 px2rem(0) px2rem(0);
+    }
+  }
+}

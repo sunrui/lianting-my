@@ -64,7 +64,7 @@
           <div v-if="ui.tagEnable">
             <div class="addition_item">
               <div class="addition_item_label">名称</div>
-              <input class="addition_item_input" placeholder="请输入标签名称" maxlength="12" v-model="http.req.category.tagName">
+              <input class="addition_item_input" placeholder="请输入标签名称" maxlength="6" v-model="http.req.category.tagName">
             </div>
 
             <div class="box_divide"></div>

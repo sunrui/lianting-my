@@ -252,183 +252,183 @@
     }
   }
 
-  .food_box {
+  .food {
+    position: relative;
+    height: px2rem(180);
+    margin-left: px2rem(10);
 
-    .food {
+    .food_category_anchor {
+      position: absolute;
+      top: px2rem(-100)
+    }
+
+    .food_image_box {
       position: relative;
-      height: px2rem(180);
-      margin-left: px2rem(10);
+      display: inline-block;
+      vertical-align: center;
+      margin-top: px2rem(-10);
+      margin-left: px2rem(-10);
 
-      .food_category_anchor {
+      .food_image {
+        height: px2rem(200);
+        width: px2rem(200);
+        border-radius: px2rem(10);
+      }
+
+      .food_image_tag {
         position: absolute;
-        top: px2rem(-100)
-      }
-
-      .food_image_box {
-        position: relative;
-        display: inline-block;
-        vertical-align: center;
-        margin-top: px2rem(-10);
-        margin-left: px2rem(-10);
-
-        .food_image {
-          height: px2rem(200);
-          width: px2rem(200);
-          border-radius: px2rem(10);
-        }
-
-        .food_image_tag {
-          position: absolute;
-          height: px2rem(40);
-          top: 0;
-          left: 0;
-          border-radius: px2rem(10) 0 px2rem(0) px2rem(0);
-        }
-      }
-
-
-      .food_info {
-        position: relative;
-        display: inline-block;
-        vertical-align: center;
-
-        margin-right: px2rem(30);
-        margin-left: px2rem(30);
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        height: 100%;
-
-        .food_name {
-          margin-top: px2rem(25);
-          font-size: px2rem(32);
-          color: #333333;
-        }
-
-        .food_detail {
-          margin-top: px2rem(5);
-          font-size: px2rem(24);
-          color: #666666;
-          height: px2rem(24);
-        }
-
-        .food_price_box {
-          position: absolute;
-          bottom: px2rem(15);
-
-          .food_price_now {
-            display: inline-block;
-            font-size: px2rem(36);
-            line-height: px2rem(36);
-            color: #f52626;
-          }
-
-          .food_price_now:before {
-            content: "¥";
-            line-height: px2rem(36);
-            color: #f52626;
-            margin-right: px2rem(5);
-          }
-
-          .food_price_original {
-            display: inline-block;
-            text-decoration: line-through;
-            font-size: px2rem(24);
-            line-height: px2rem(24);
-            color: #999999;
-          }
-
-          .food_price_original:before {
-            content: "¥";
-            font-size: px2rem(18);
-            line-height: px2rem(24);
-            text-decoration: line-through;
-            color: #999999;
-            margin-right: px2rem(5);
-          }
-        }
-      }
-
-      .food_button {
-        position: absolute;
-        right: 0;
-        bottom: px2rem(15);
-
-        .food_button_zero {
-          background-image: url("/img/m/food/food_add_zero.png");
-          background-repeat: no-repeat;
-          background-size: 100% 100%;
-          height: px2rem(36);
-          width: px2rem(36);
-        }
-
-        .food_button_count {
-          color: #333333;
-          float: right;
-          padding: 0 px2rem(20);
-        }
-
-        .food_button_add {
-          background-image: url("/img/m/food/food_add.png");
-          background-repeat: no-repeat;
-          background-size: 100% 100%;
-          float: right;
-          height: px2rem(40);
-          width: px2rem(40);
-        }
-
-        .food_button_minus {
-          background-image: url("/img/m/food/food_minus.png");
-          background-repeat: no-repeat;
-          background-size: 100% 100%;
-          float: right;
-          height: px2rem(40);
-          width: px2rem(40);
-        }
-      }
-
-      .food_status_online {
-        background-image: url("/img/m/food/food_status_online.png");
-        background-repeat: no-repeat;
-        background-size: 100% 100%;
-        height: px2rem(101);
-        width: px2rem(91);
-
-        position: absolute;
-        bottom: 0;
-        right: 0;
-      }
-
-      .food_status_offline {
-        background-image: url("/img/m/food/food_status_offline.png");
-        background-repeat: no-repeat;
-        background-size: 100% 100%;
-        height: px2rem(101);
-        width: px2rem(91);
-
-        position: absolute;
-        bottom: 0;
-        right: 0;
-      }
-
-      .food_status_sold_out {
-        background-image: url("/img/m/food/food_status_sold_out.png");
-        background-repeat: no-repeat;
-        background-size: 100% 100%;
-        height: px2rem(101);
-        width: px2rem(91);
-
-        position: absolute;
-        bottom: 0;
-        right: 0;
+        top: 0;
+        left: 0;
+        color: white;
+        height: px2rem(40);
+        font-size: px2rem(22);
+        line-height: px2rem(40);
+        border-radius: px2rem(10) 0 px2rem(0) px2rem(0);
       }
     }
-  }
 
-  .content_blank_footer {
-    height: px2rem(95 + 10);
-  }
+    .food_info {
+      position: relative;
+      display: inline-block;
+      vertical-align: center;
+      height: px2rem(180);
 
+      margin-right: px2rem(30);
+      margin-left: px2rem(30);
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+
+      .food_name {
+        margin-top: px2rem(15);
+        font-size: px2rem(32);
+        font-weight: 400;
+        color: #333333;
+      }
+
+      .food_detail {
+        margin-top: px2rem(10);
+        font-size: px2rem(24);
+        color: #999999;
+        font-weight:400;
+        height: px2rem(26);
+      }
+
+      .food_price_box {
+        position: absolute;
+        bottom: px2rem(15);
+
+        .food_price_now {
+          display: inline-block;
+          font-size: px2rem(36);
+          line-height: px2rem(36);
+          color: #f52626;
+        }
+
+        .food_price_now:before {
+          content: "¥";
+          line-height: px2rem(36);
+          color: #f52626;
+          margin-right: px2rem(5);
+        }
+
+        .food_price_original {
+          display: inline-block;
+          text-decoration: line-through;
+          font-size: px2rem(24);
+          line-height: px2rem(24);
+          color: #999999;
+        }
+
+        .food_price_original:before {
+          content: "¥";
+          font-size: px2rem(18);
+          line-height: px2rem(24);
+          text-decoration: line-through;
+          color: #999999;
+          margin-right: px2rem(5);
+        }
+      }
+    }
+
+    .food_button {
+      position: absolute;
+      right: px2rem(20);
+      bottom: px2rem(20);
+
+      .food_button_zero {
+        background-image: url("/img/m/food/food_add_zero.png");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        height: px2rem(36);
+        width: px2rem(36);
+      }
+
+      .food_button_count {
+        color: #333333;
+        float: right;
+        padding: 0 px2rem(20);
+      }
+
+      .food_button_add {
+        background-image: url("/img/m/food/food_add.png");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        float: right;
+        height: px2rem(40);
+        width: px2rem(40);
+      }
+
+      .food_button_minus {
+        background-image: url("/img/m/food/food_minus.png");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        float: right;
+        height: px2rem(40);
+        width: px2rem(40);
+      }
+    }
+
+    .food_status_online {
+      background-image: url("/img/m/food/food_status_online.png");
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      height: px2rem(101);
+      width: px2rem(91);
+
+      position: absolute;
+      bottom: 0;
+      right: 0;
+    }
+
+    .food_status_offline {
+      background-image: url("/img/m/food/food_status_offline.png");
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      height: px2rem(101);
+      width: px2rem(91);
+
+      position: absolute;
+      bottom: 0;
+      right: 0;
+    }
+
+    .food_status_sold_out {
+      background-image: url("/img/m/food/food_status_sold_out.png");
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      height: px2rem(101);
+      width: px2rem(91);
+
+      position: absolute;
+      bottom: 0;
+      right: 0;
+    }
+  }
+}
+
+.content_blank_footer {
+  height: px2rem(95 + 10);
 }
 
 .cart {
