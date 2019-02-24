@@ -2,9 +2,13 @@
   <div id="image-upload">
     <div class="image_upload_button" v-if="ui.inWechat" @click="btnUploadWechat"></div>
     <div v-else id="pickfiles">
-      <img class="image_upload_image" v-if="ui.fileUrl" :src="ui.fileUrl" alt="">
-      <img class="image_upload_image" v-else-if="fileUrl" :src="fileUrl" alt="">
-      <div class="image_upload_button" v-else="ui.state !== 'uploaded' || !fileUrl"></div>
+      <div class="image_upload_image_box" v-if="ui.fileUrl">
+        <img class="image_upload_image" :src="ui.fileUrl" alt="">
+      </div>
+      <div class="image_upload_image_box" v-else-if="fileUrl">
+        <img class="image_upload_image" :src="fileUrl" alt="">
+      </div>
+      <div class="image_upload_button" v-else="ui.state !== 'Uploaded' || !fileUrl"></div>
     </div>
   </div>
 </template>
@@ -22,7 +26,8 @@
           inWechat: false,
           state: 'wait',
           percent: 0,
-          fileUrl: null
+          fileUrl: null,
+          fileName: null
         }
       }
     },
@@ -51,25 +56,25 @@
         }
       },
       getFileName() {
-        let fileName = null
-
-        if (Boolean(this.fileUrl)) {
-          let index = this.fileUrl.lastIndexOf('/')
-          if (index !== -1) {
-            fileName = this.fileUrl.substr(index)
-            if (fileName.length < 32) {
-              fileName = null
-            } else {
-              fileName = fileName.substr(0, 32)
+        if (!Boolean(this.ui.fileName)) {
+          if (Boolean(this.fileUrl)) {
+            let index = this.fileUrl.lastIndexOf('/')
+            if (index !== -1) {
+              this.ui.fileName = this.fileUrl.substr(index)
+              if (fileName.length < 32) {
+                this.ui.fileName = null
+              } else {
+                this.ui.fileName = fileName.substr(0, 32)
+              }
             }
+          }
+
+          if (!Boolean(this.ui.fileName)) {
+            this.ui.fileName = uuidApi.uuid() + '.png'
           }
         }
 
-        if (!Boolean(fileName)) {
-          fileName = uuidApi.uuid()
-        }
-
-        return fileName + '.png'
+        return this.ui.fileName
       },
       initWxConfig(pThis) {
         let url = location.href.split('#')[0]
@@ -219,7 +224,7 @@
               pThis.ui.percent = file.percent
             },
             FileUploaded(up, file, info) {
-              pThis.ui.state = 'uploaded'
+              pThis.ui.state = 'Uploaded'
 
               let index = pThis.ui.fileUrl.lastIndexOf('?')
               if (index !== -1) {

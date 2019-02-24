@@ -18,10 +18,16 @@
   height: px2rem(80);
 }
 
-.image_upload_image {
+.image_upload_image_box {
   position: absolute;
   right: 0;
   top: 0;
   width: px2rem(80);
   height: px2rem(80);
+}
+
+.image_upload_image {
+  width: 100%;
+  height: auto;
+  min-height: 100%;
 }

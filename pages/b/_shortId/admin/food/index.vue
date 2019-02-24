@@ -58,8 +58,8 @@
           <div class="group_count">({{foodGroup.foodCategories.length}})</div>
         </div>
 
-        <div class="food_box box" @click="btnChangeStatus(foodCategory)" v-for="foodCategory in foodGroup.foodCategories">
-          <div class="blank_10"></div>
+        <div class="box" @click="btnChangeStatus(foodCategory)" v-for="(foodCategory, index) in foodGroup.foodCategories">
+          <div class="blank_20" v-if="index !== 0"></div>
 
           <div class="food box_radius">
             <div class="food_category_anchor" :id="foodCategory.id"></div>
@@ -72,15 +72,17 @@
             }">{{foodCategory.tagName}}
               </div>
             </div>
-            <div class="food_info">
-              <div class="food_name">{{foodCategory.name}}</div>
-              <div class="food_detail">{{foodCategory.detail}}</div>
-              <div v-if="foodCategory.foods.length > 0">
-                <div class="food_price_box">
-                  <div class="food_price_now">{{foodCategory.foods[0].price}}</div>
-                  <div class="food_price_original"
-                       v-if="foodCategory.foods[0].price !== foodCategory.foods[0].originalPrice">
-                    {{foodCategory.foods[0].originalPrice}}
+            <div class="food_info_box">
+              <div class="food_info">
+                <div class="food_name">{{foodCategory.name}}</div>
+                <div class="food_detail">{{foodCategory.detail}}</div>
+                <div v-if="foodCategory.foods.length > 0">
+                  <div class="food_price_box">
+                    <div class="food_price_now">{{foodCategory.foods[0].price}}</div>
+                    <div class="food_price_original"
+                         v-if="foodCategory.foods[0].price !== foodCategory.foods[0].originalPrice">
+                      {{foodCategory.foods[0].originalPrice}}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -92,8 +94,8 @@
             </div>
           </div>
 
-          <div class="blank_20" v-if="foodCategory !== foodGroup.foodCategories[foodGroup.foodCategories.length - 1]"></div>
-          <div class="blank_10" v-if="foodCategory === foodGroup.foodCategories[foodGroup.foodCategories.length - 1]"></div>
+          <div class="blank_20" v-if="index !== foodGroup.foodCategorie.length - 1"></div>
+          <div class="blank_10" v-if="index === foodGroup.foodCategorie.length - 1"></div>
         </div>
 
       </div>

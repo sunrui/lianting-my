@@ -43,7 +43,9 @@
           <div class="group_remark">{{tableGroup.remark}} ({{tableGroup.minPeople + '-' + tableGroup.maxPeople + ' 人'}})</div>
         </div>
 
-        <div class="food_box box" v-for="table in tableGroup.tableOnes">
+        <div class="box" v-for="(table, index) in tableGroup.tableOnes">
+          <div class="blank_10" v-if="index !== 0"></div>
+
           <div class="table box_radius">
             <div class="badge_delete" @click="btnTableDelete(table)"></div>
             <div class="table_captcha" @click="btnCaptcha(tableGroup, table)"></div>
@@ -51,7 +53,7 @@
             <div class="table_remark">{{table.remark}}</div>
           </div>
 
-          <div class="blank_20"></div>
+          <div class="blank_10" v-if="index !== tableGroup.tableOnes.length - 1"></div>
         </div>
 
         <div class="box">

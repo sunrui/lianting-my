@@ -45,8 +45,8 @@
           </div>
         </div>
 
-        <div class="food_box box" v-for="foodCategory in foodGroup.foodCategories">
-          <div class="blank_10"></div>
+        <div class="box" v-for="(foodCategory, index) in foodGroup.foodCategories">
+          <div class="blank_20" v-if="index !== 0"></div>
 
           <div class="food box_radius">
             <div class="badge_delete" @click="btnCategoryDelete(foodCategory)"></div>
@@ -60,15 +60,17 @@
             }">{{foodCategory.tagName}}
               </div>
             </div>
-            <div class="food_info" @click="btnCategory(foodCategory)">
-              <div class="food_name">{{foodCategory.name}}</div>
-              <div class="food_detail">{{foodCategory.detail}}</div>
-              <div v-if="foodCategory.foods.length > 0">
-                <div class="food_price_box">
-                  <div class="food_price_now">{{foodCategory.foods[0].price}}</div>
-                  <div class="food_price_original"
-                       v-if="foodCategory.foods[0].price !== foodCategory.foods[0].originalPrice">
-                    {{foodCategory.foods[0].originalPrice}}
+            <div class="food_info_box">
+              <div class="food_info" @click="btnCategory(foodCategory)">
+                <div class="food_name">{{foodCategory.name}}</div>
+                <div class="food_detail">{{foodCategory.detail}}</div>
+                <div v-if="foodCategory.foods.length > 0">
+                  <div class="food_price_box">
+                    <div class="food_price_now">{{foodCategory.foods[0].price}}</div>
+                    <div class="food_price_original"
+                         v-if="foodCategory.foods[0].price !== foodCategory.foods[0].originalPrice">
+                      {{foodCategory.foods[0].originalPrice}}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -80,8 +82,8 @@
             </div>
           </div>
 
-          <div class="blank_20" v-if="foodCategory !== foodGroup.foodCategories[foodGroup.foodCategories.length - 1]"></div>
-          <div class="blank_10" v-if="foodCategory === foodGroup.foodCategories[foodGroup.foodCategories.length - 1]"></div>
+          <div class="blank_20" v-if="index !== foodGroup.foodCategories.length - 1"></div>
+          <div class="blank_10" v-if="index === foodGroup.foodCategories.length - 1"></div>
         </div>
 
         <div class="box">
@@ -136,18 +138,18 @@
 
 <script>
   import TitleBar from '../../../../../components/common/TitleBar'
-  import { httpShopApi } from '../../../../../api/http/shop/httpShopApi'
-  import { httpInfoApi } from '../../../../../api/http/lt/httpInfoApi'
-  import { httpFoodApi } from '../../../../../api/http/lt/httpFoodApi'
-  import { httpFoodAdminApi } from '../../../../../api/http/lt/httpFoodAdminApi'
-  import { highlightApi } from '../../../../../api/local/highlightApi'
+  import {httpShopApi} from '../../../../../api/http/shop/httpShopApi'
+  import {httpInfoApi} from '../../../../../api/http/lt/httpInfoApi'
+  import {httpFoodApi} from '../../../../../api/http/lt/httpFoodApi'
+  import {httpFoodAdminApi} from '../../../../../api/http/lt/httpFoodAdminApi'
+  import {highlightApi} from '../../../../../api/local/highlightApi'
 
   export default {
     metaInfo: {
       title: '餐食'
     },
     middleware: 'auth',
-    components: { TitleBar },
+    components: {TitleBar},
     data() {
       return {
         title: {
@@ -224,7 +226,7 @@
 
           for (let groupIndex in this.http.res.foodGroups.elements) {
             let categories = this.http.res.foodGroups.elements[groupIndex]
-            categories.foodCategories.sort(function(a, b) {
+            categories.foodCategories.sort(function (a, b) {
               return a.orderIndex - b.orderIndex
             })
           }
@@ -270,7 +272,7 @@
         if (closeLeaf) {
           this.btnCoverMask()
 
-          setTimeout(function() {
+          setTimeout(function () {
             let node = document.getElementById(foodGroupId)
             if (node != null) {
               let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop

@@ -78,50 +78,18 @@
           </div>
         </div>
 
-        <div class="food_box box" v-for="foodCategory in foodGroup.foodCategories">
-          <div class="blank_10"></div>
+        <div class="box" v-for="(foodCategory, index) in foodGroup.foodCategories">
+          <div class="blank_20" v-if="index !== 0"></div>
 
-          <div class="food food_big box_radius" v-if="ui.groupMode === 'Big'">
+          <div v-bind:class="{
+          food_big: ui.groupMode === 'Big',
+          food: ui.groupMode !== 'Big',
+          }" class="box_radius">
             <div class="food_category_anchor" :id="foodCategory.id"></div>
-            <div class="food_image_big_box">
-              <img class="food_image_big" :src="foodCategory.image" :alt="foodCategory.name">
-              <div class="addition_item_tag_label food_image_big_tag" v-if="foodCategory.tagName" v-bind:class="{
-                   addition_item_tag_color_1: foodCategory.tagIndex === 1,
-                   addition_item_tag_color_2: foodCategory.tagIndex === 2,
-                   addition_item_tag_color_3: foodCategory.tagIndex === 3
-            }">{{foodCategory.tagName}}
-              </div>
-            </div>
-            <div class="food_info">
-              <div class="food_name">{{foodCategory.name}}</div>
-              <div class="food_detail">{{foodCategory.detail}}</div>
-              <div v-if="foodCategory.foods.length > 0 && foodCategory.status === 'ONLINE'">
-                <div class="food_price_box">
-                  <div class="food_price_now">{{foodCategory.foods[0].price}}</div>
-                  <div class="food_price_original"
-                       v-if="foodCategory.foods[0].price !== foodCategory.foods[0].originalPrice">
-                    {{foodCategory.foods[0].originalPrice}}
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="food_button" v-if="foodCategory.status === 'ONLINE'">
-              <div v-if="foodCategory.select > 0">
-                <div class="food_button_add" @click="btnFoodAdd(foodGroup.id, foodCategory)"></div>
-                <div class="food_button_count">{{foodCategory.select}}</div>
-                <div class="food_button_minus" @click="btnFoodMinus(foodCategory)"></div>
-              </div>
-              <div v-else>
-                <div class="food_button_zero" @click="btnFoodAdd(foodGroup.id, foodCategory)"></div>
-              </div>
-            </div>
-            <div class="food_status_offline" v-if="foodCategory.status === 'OFFLINE'"></div>
-            <div class="food_status_sold_out" v-if="foodCategory.foods.length === 0 || foodCategory.status === 'SOLD_OUT'"></div>
-          </div>
-
-          <div class="food box_radius" v-else>
-            <div class="food_category_anchor" :id="foodCategory.id"></div>
-            <div class="food_image_box">
+            <div v-bind:class="{
+            food_image_big_box: ui.groupMode === 'Big',
+            food_image_box: ui.groupMode !== 'Big',
+            }" class="">
               <img class="food_image" :src="foodCategory.image" :alt="foodCategory.name">
               <div class="addition_item_tag_label food_image_tag" v-if="foodCategory.tagName" v-bind:class="{
                    addition_item_tag_color_1: foodCategory.tagIndex === 1,
@@ -130,36 +98,41 @@
             }">{{foodCategory.tagName}}
               </div>
             </div>
-            <div class="food_info">
-              <div class="food_name">{{foodCategory.name}}</div>
-              <div class="food_detail">{{foodCategory.detail}}</div>
-              <div v-if="foodCategory.foods.length > 0 && foodCategory.status === 'ONLINE'">
-                <div class="food_price_box">
-                  <div class="food_price_now">{{foodCategory.foods[0].price}}</div>
-                  <div class="food_price_original"
-                       v-if="foodCategory.foods[0].price !== foodCategory.foods[0].originalPrice">
-                    {{foodCategory.foods[0].originalPrice}}
+            <div v-bind:class="{
+            food_info_big_box: ui.groupMode === 'Big',
+            food_info_box: ui.groupMode !== 'Big',
+            }">
+              <div class="food_info">
+                <div class="food_name">{{foodCategory.name}}</div>
+                <div class="food_detail">{{foodCategory.detail}}</div>
+                <div v-if="foodCategory.foods.length > 0 && foodCategory.status === 'ONLINE'">
+                  <div class="food_price_box">
+                    <div class="food_price_now">{{foodCategory.foods[0].price}}</div>
+                    <div class="food_price_original"
+                         v-if="foodCategory.foods[0].price !== foodCategory.foods[0].originalPrice">
+                      {{foodCategory.foods[0].originalPrice}}
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="food_button" v-if="foodCategory.status === 'ONLINE'">
-              <div v-if="foodCategory.select > 0">
-                <div class="food_button_add" @click="btnFoodAdd(foodGroup.id, foodCategory)"></div>
-                <div class="food_button_count">{{foodCategory.select}}</div>
-                <div class="food_button_minus" @click="btnFoodMinus(foodCategory)"></div>
-              </div>
-              <div v-else>
-                <div class="food_button_zero" @click="btnFoodAdd(foodGroup.id, foodCategory)"></div>
+              <div class="food_button" v-if="foodCategory.status === 'ONLINE'">
+                <div v-if="foodCategory.select > 0">
+                  <div class="food_button_add" @click="btnFoodAdd(foodGroup.id, foodCategory)"></div>
+                  <div class="food_button_count">{{foodCategory.select}}</div>
+                  <div class="food_button_minus" @click="btnFoodMinus(foodCategory)"></div>
+                </div>
+                <div v-else>
+                  <div class="food_button_zero" @click="btnFoodAdd(foodGroup.id, foodCategory)"></div>
+                </div>
               </div>
             </div>
             <div class="food_status_offline" v-if="foodCategory.status === 'OFFLINE'"></div>
             <div class="food_status_sold_out" v-if="foodCategory.foods.length === 0 || foodCategory.status === 'SOLD_OUT'"></div>
           </div>
 
-          <div class="blank_40" v-if="foodCategory !== foodGroup.foodCategories[foodGroup.foodCategories.length - 1]"></div>
-          <div class="blank_10" v-if="foodCategory === foodGroup.foodCategories[foodGroup.foodCategories.length - 1]"></div>
+          <div class="blank_20" v-if="index !== foodGroup.foodCategories.length - 1"></div>
         </div>
+
       </div>
 
       <div class="blank_100"></div>
