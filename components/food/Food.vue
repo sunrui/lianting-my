@@ -439,7 +439,6 @@
           for (let foodCategoryIndex in foodGroup.foodCategories) {
             let one = foodGroup.foodCategories[foodCategoryIndex]
             if (one.id === foodCategory.id) {
-
               if (one.status === 'OFFLINE') {
                 this.$msgBox.doModal({
                   type: 'yes',

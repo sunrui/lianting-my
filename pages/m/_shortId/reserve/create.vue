@@ -67,8 +67,8 @@
 
         <div class="addition_item">
           <div class="addition_item_label">手机号</div>
-          <div class="addition_item_content" v-show="http.req.reserve.phone">{{http.req.reserve.phone}}</div>
-          <div class="addition_item_link" v-show="!http.req.reserve.phone" @click="btnBindPhone">未绑定</div>
+          <div class="addition_item_content" v-if="phone">{{phone}}</div>
+          <div class="addition_item_link" v-else @click="btnBindPhone">未绑定</div>
         </div>
       </div>
     </div>
@@ -93,17 +93,17 @@
 
 <script>
   import TitleBar from '../../../../components/common/TitleBar'
-  import { timeApi } from '../../../../api/local/timeApi'
-  import { stateApi } from '../../../../api/local/stateApi'
-  import { httpReserveApi } from '../../../../api/http/lt/httpReserveApi'
-  import { langApi } from '../../../../api/local/langApi'
+  import {timeApi} from '../../../../api/local/timeApi'
+  import {stateApi} from '../../../../api/local/stateApi'
+  import {httpReserveApi} from '../../../../api/http/lt/httpReserveApi'
+  import {langApi} from '../../../../api/local/langApi'
 
   export default {
     metaInfo: {
       title: '提交预订'
     },
     middleware: 'auth',
-    components: { TitleBar },
+    components: {TitleBar},
     data() {
       return {
         title: {
@@ -127,19 +127,18 @@
         }
       }
     },
+    computed: {
+      phone() {
+        return stateApi.user.getPhone()
+      }
+    },
     created() {
       if (!Boolean(this.$route.query.date) || !Boolean(this.$route.query.tableGroupName)) {
         this.$router.push(`/m/${this.$route.params.shortId}/reserve`)
       }
-    },
-    mounted() {
+
       this.http.req.reserve.date = new Date(parseInt(this.$route.query.date))
       this.http.req.reserve.tableGroupName = this.$route.query.tableGroupName
-
-      let phone = stateApi.user.getPhone()
-      if (Boolean(phone)) {
-        this.http.req.reserve.phone = phone
-      }
     },
     methods: {
       getWeekDesc(date) {
@@ -171,6 +170,17 @@
             type: 'yes',
             title: '立即预订',
             content: '请输入您的姓名。'
+          })
+
+          return
+        }
+
+        this.http.req.reserve.phone = this.phone
+        if (!Boolean(this.http.req.reserve.phone)) {
+          this.$msgBox.doModal({
+            type: 'yes',
+            title: '立即预订',
+            content: '为了让商家更好的联系您，请您先绑定手机。'
           })
 
           return

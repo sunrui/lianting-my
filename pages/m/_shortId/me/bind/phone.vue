@@ -63,7 +63,7 @@
         http: {
           req: {
             bind: {
-              phone: '13012341234',
+              phone: '',
               code: ''
             }
           }
