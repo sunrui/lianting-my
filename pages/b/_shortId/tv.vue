@@ -289,14 +289,24 @@
           table.push(this.getWaitPeople(tableGroup.id))
 
           if (this.getGroupNow(tableGroup.id)) {
-            let queueTicket = this.getGroupNow(tableGroup.id).queueTicket
-            table.push(queueTicket.tableGroupNumberPrefix + queueTicket.sequence)
+            let ticketNow = this.getGroupNow(tableGroup.id)
+            if (!ticketNow) {
+              table.push('--')
+              table.push('--')
+              continue
+            }
+
+            if (Boolean(ticketNow.nowTicketNumber)) {
+              table.push(ticketNow.nowTicketNumber)
+            } else {
+              table.push('--')
+            }
 
             if (this.getWaitPeople(tableGroup.id) === 0) {
               table.push('--')
             } else {
-              table.push(this.getTime((new Date().getTime() - queueTicket.createdAt) / 1000) +
-                this.getTime2((new Date().getTime() - queueTicket.createdAt) / 1000))
+              table.push(this.getTime((new Date().getTime() - ticketNow.queueTicket.createdAt) / 1000) +
+                this.getTime2((new Date().getTime() - ticketNow.queueTicket.createdAt) / 1000))
             }
           } else {
             table.push('--')
