@@ -72,7 +72,7 @@
         </div>
       </div>
 
-      <div class="status_footer"></div>
+      <div class="blank_20"></div>
     </div>
 
     <div class="button_box">

@@ -44,7 +44,7 @@
           <div class="status_item_label">手机号</div>
           <div class="status_item_content">{{http.res.reserve.phone}}</div>
         </div>
-        <div class="status_footer"></div>
+        <div class="blank_20"></div>
       </div>
     </div>
 
