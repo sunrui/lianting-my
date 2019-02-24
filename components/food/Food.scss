@@ -24,6 +24,7 @@
 
 .food_big {
   height: px2rem(570) !important;
+  position: relative;
 
   .food_image_big_box {
     position: relative;
@@ -35,6 +36,7 @@
     .food_image_big {
       width: 100%;
       height: auto;
+      min-height: px2rem(390);
       border-radius: px2rem(10);
     }
 

@@ -300,7 +300,7 @@
       text-overflow: ellipsis;
 
       .food_name {
-        margin-top: px2rem(15);
+        margin-top: px2rem(20);
         font-size: px2rem(32);
         font-weight: 400;
         color: #333333;
@@ -316,7 +316,7 @@
 
       .food_price_box {
         position: absolute;
-        bottom: px2rem(15);
+        bottom: px2rem(20);
 
         .food_price_now {
           display: inline-block;
