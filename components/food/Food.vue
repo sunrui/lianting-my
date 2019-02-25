@@ -509,7 +509,7 @@
                 this.$msgBox.doModal({
                   type: 'yes',
                   title: '购物车',
-                  content: `${highlightApi.highlight(foodCategory.name)}已下架，请重新加入购物车。`
+                  content: `${highlightApi.highlight(foodCategory.name)}已下架。`
                 })
                 return false
               }
@@ -518,7 +518,7 @@
                 this.$msgBox.doModal({
                   type: 'yes',
                   title: '购物车',
-                  content: `${highlightApi.highlight(foodCategory.name)}已售罄，请重新加入购物车。`
+                  content: `${highlightApi.highlight(foodCategory.name)}已售罄。`
                 })
                 return false
               }
@@ -532,7 +532,7 @@
         this.$msgBox.doModal({
           type: 'yes',
           title: '购物车',
-          content: `${highlightApi.highlight(foodCategory.name)}已下架，请重新加入购物车。`
+          content: `${highlightApi.highlight(foodCategory.name)}已下架。`
         })
 
         return false
