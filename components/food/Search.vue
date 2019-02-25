@@ -74,7 +74,7 @@
           v_searchHot: true,
           v_searchEmpty: false,
           hotSearchNames: [
-            '鱼', '酒', '米饭', '汤'
+            '酒', '米饭'
           ]
         },
         http: {
