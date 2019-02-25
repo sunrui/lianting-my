@@ -76,11 +76,11 @@
           <div class="food_group_anchor" :id="foodGroup.id"></div>
           <div class="food_group_name">{{foodGroup.name}}</div>
           <div class="food_group_count">({{foodGroup.foodCategories.length}})</div>
-          <div class="food_group_mode" v-if="ui.groupMode === 'Small'" @click="btnGroupMode('Big')">
+          <div class="food_group_mode" v-if="foodGroup.groupMode === 'Small'" @click="btnGroupMode(foodGroup, 'Big')">
             <img class="food_group_mode_icon" src="/img/m/food/group_mode_big.png" alt="">
             <div class="food_group_mode_label">大图模式</div>
           </div>
-          <div class="food_group_mode" v-else @click="btnGroupMode('Small')">
+          <div class="food_group_mode" v-else @click="btnGroupMode(foodGroup, 'Small')">
             <img class="food_group_mode_icon" src="/img/m/food/group_mode_small.png" alt="">
             <div class="food_group_mode_label">小图模式</div>
           </div>
@@ -90,13 +90,13 @@
           <div class="blank_20" v-if="index !== 0"></div>
 
           <div v-bind:class="{
-          food_big: ui.groupMode === 'Big',
-          food: ui.groupMode !== 'Big',
+          food_big: foodGroup.groupMode === 'Big',
+          food: foodGroup.groupMode !== 'Big',
           }" class="box_radius">
             <div class="food_category_anchor" :id="foodCategory.id"></div>
             <div v-bind:class="{
-            food_image_big_box: ui.groupMode === 'Big',
-            food_image_box: ui.groupMode !== 'Big',
+            food_image_big_box: foodGroup.groupMode === 'Big',
+            food_image_box: foodGroup.groupMode !== 'Big',
             }" class="">
               <img class="food_image" :src="foodCategory.image" :alt="foodCategory.name">
               <div class="addition_item_tag_label food_image_tag" v-if="foodCategory.tagName" v-bind:class="{
@@ -107,8 +107,8 @@
               </div>
             </div>
             <div v-bind:class="{
-            food_info_big_box: ui.groupMode === 'Big',
-            food_info_box: ui.groupMode !== 'Big',
+            food_info_big_box: foodGroup.groupMode === 'Big',
+            food_info_box: foodGroup.groupMode !== 'Big',
             }">
               <div class="food_info">
                 <div class="food_name">{{foodCategory.name}}</div>
@@ -273,7 +273,6 @@
           v_cart: false,
           v_category: false,
           v_menu_extend: false,
-          groupMode: 'Small',
           modal_category: {
             foodGroupId: null,
             category: null,
@@ -429,8 +428,9 @@
           }
 
           for (let index in this.http.res.foodGroups.elements) {
-            let categories = this.http.res.foodGroups.elements[index]
-            categories.foodCategories.sort(function (a, b) {
+            let foodGroup = this.http.res.foodGroups.elements[index]
+            this.$set(foodGroup, 'groupMode', 'Small')
+            foodGroup.foodCategories.sort(function (a, b) {
               return a.orderIndex - b.orderIndex
             })
           }
@@ -566,8 +566,8 @@
           }
         }
       },
-      btnGroupMode(mode) {
-        this.ui.groupMode = mode
+      btnGroupMode(foodGroup, mode) {
+        foodGroup.groupMode = mode
       },
       btnCartFoodAdd(foodGroupId, foodCategory, food) {
         if (this.cart.select >= 99) {
