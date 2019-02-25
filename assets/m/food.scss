@@ -288,8 +288,9 @@
     left: 0;
     color: white;
     height: px2rem(40);
-    font-size: px2rem(22);
+    font-size: px2rem(24);
     line-height: px2rem(40);
+    font-weight: 400;
     border-radius: px2rem(10) 0 px2rem(0) px2rem(0);
   }
 
@@ -366,8 +367,8 @@
       background-image: url("/img/m/food/food_add_zero.png");
       background-repeat: no-repeat;
       background-size: 100% 100%;
-      height: px2rem(36);
-      width: px2rem(36);
+      height: px2rem(40);
+      width: px2rem(40);
     }
 
     .food_button_count {

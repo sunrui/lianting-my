@@ -9,6 +9,14 @@
       <div :class="{ cover_mask_11: ui.v_cover_mask_leaf}" @click="btnLeaf(false)"></div>
     </transition>
 
+    <div v-for="ball in ui.balls">
+      <transition name="drop" @before-enter="ballDropBeforeEnter" @enter="ballDropEnter" @after-enter="ballDropAfterEnter">
+        <div v-show="ball.show" class="ball">
+          <div class="inner inner-hook"></div>
+        </div>
+      </transition>
+    </div>
+
     <div class="shop_title_box">
       <div class="shop_title_name">{{http.res.shop.name}}</div>
       <div class="shop_title_detail">{{http.res.info.notice ? http.res.info.notice : '欢迎光临本餐厅!'}}</div>
@@ -117,12 +125,12 @@
               </div>
               <div class="food_button" v-if="foodCategory.status === 'ONLINE'">
                 <div v-if="foodCategory.select > 0">
-                  <div class="food_button_add" @click="btnFoodAdd(foodGroup.id, foodCategory)"></div>
+                  <div class="food_button_add" @click="btnFoodAdd(foodGroup.id, foodCategory)" @click.stop.prevent="eventFoodAdd"></div>
                   <div class="food_button_count">{{foodCategory.select}}</div>
                   <div class="food_button_minus" @click="btnFoodMinus(foodCategory)"></div>
                 </div>
                 <div v-else>
-                  <div class="food_button_zero" @click="btnFoodAdd(foodGroup.id, foodCategory)"></div>
+                  <div class="food_button_zero" @click="btnFoodAdd(foodGroup.id, foodCategory)" @click.stop.prevent="eventFoodAdd"></div>
                 </div>
               </div>
             </div>
@@ -136,7 +144,7 @@
       </div>
 
       <div class="blank_100"></div>
-      <div class="blank_20"></div>
+      <div class="blank_50"></div>
     </div>
 
     <transition name="toggle">
@@ -272,7 +280,9 @@
             selectFood: null
           },
           selectMenuId: null,
-          scrollDelay: null
+          scrollDelay: null,
+          balls: [{show: false}, {show: false}, {show: false}, {show: false}, {show: false}],
+          ballsDrop: []
         },
         http: {
           res: {
@@ -300,6 +310,62 @@
       }
     },
     methods: {
+      eventFoodAdd(event) {
+        if (this.cart.select >= 99) {
+          return
+        }
+
+        this.$nextTick(() => {
+          this.ballDrop(event.target)
+        })
+      },
+      ballDrop(el) {
+        for (let i = 0; i < this.ui.balls.length; i++) {
+          let ball = this.ui.balls[i]
+          if (ball.show === false) {
+            ball.show = true
+            ball.el = el
+            this.ui.ballsDrop.push(ball)
+            return
+          }
+        }
+      },
+      ballDropBeforeEnter(el) {
+        let count = this.ui.balls.length
+        while (count--) {
+          let ball = this.ui.balls[count]
+          if (ball.show) {
+            let rect = ball.el.getBoundingClientRect()
+            let x = rect.left - 32
+            let y = -(window.innerHeight - rect.top - 32)
+
+            el.style.display = ''
+            el.style.webkitTransform = `translate3d(0, ${y}px,0)`
+            el.style.transform = `translate3d(0, ${y}px,0)`
+            let inner = el.getElementsByClassName('inner-hook')[0]
+            inner.style.webkitTransform = `translate3d(${x}px, 0, 0)`
+            inner.style.transform = `translate3d(${x}px,0,0)`
+          }
+        }
+      },
+      ballDropEnter(el, done) {
+        el.offsetHeight
+        this.$nextTick(() => {
+          el.style.webkitTransform = 'translate3d(2em, 2em, 0)'
+          el.style.transform = 'translate3d(2em, 2em, 0)'
+          let inner = el.getElementsByClassName('inner-hook')[0]
+          inner.style.webkitTransform = 'translate3d(0, 0, 0)'
+          inner.style.transform = 'translate3d(0, 0, 0)'
+          el.addEventListener('transitionend', done)
+        })
+      },
+      ballDropAfterEnter(el) {
+        let ball = this.ui.ballsDrop.shift()
+        if (ball) {
+          ball.show = false
+          el.style.display = 'none'
+        }
+      },
       httpShop() {
         httpShopApi.getOne(this.$route.params.shortId).then(res => {
           this.http.res.shop = res
