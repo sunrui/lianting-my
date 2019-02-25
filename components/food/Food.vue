@@ -336,8 +336,8 @@
           let ball = this.ui.balls[count]
           if (ball.show) {
             let rect = ball.el.getBoundingClientRect()
-            let x = rect.left - 32
-            let y = -(window.innerHeight - rect.top - 32)
+            let x = rect.left - rect.width / 2
+            let y = -(window.innerHeight - rect.bottom - rect.height / 2)
 
             el.style.display = ''
             el.style.webkitTransform = `translate3d(0, ${y}px,0)`
