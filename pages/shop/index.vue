@@ -5,7 +5,7 @@
     <div class="top_blank"></div>
 
     <div class="box" v-bind:key="shopGroup.id" v-for="shopGroup in http.res.shop.shopGroups">
-      <div class="group_box box_radius">
+      <div class="food_group box_radius">
         <div class="group_box_name">{{shopGroup.name}}</div>
       </div>
 

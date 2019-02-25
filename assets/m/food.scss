@@ -201,7 +201,7 @@
   .food_group_box {
     position: relative;
 
-    .group_box {
+    .food_group {
       position: relative;
       height: px2rem(110);
       margin-left: px2rem(30);
@@ -211,28 +211,31 @@
         top: px2rem(-60);
       }
 
-      .group_name {
+      .food_group_name {
         display: inline-block;
+        vertical-align: middle;
         font-size: px2rem(32);
         color: #333333;
         line-height: px2rem(110);
       }
 
-      .group_count {
+      .food_group_count {
         display: inline-block;
+        vertical-align: middle;
         color: #666666;
         font-size: px2rem(24);
         margin-left: px2rem(5);
         line-height: px2rem(110);
       }
 
-      .group_order {
+      .food_group_order {
         display: inline-block;
+        vertical-align: middle;
         float: right;
         line-height: px2rem(110);
         margin-right: px2rem(25);
 
-        .group_order_icon {
+        .food_group_order_icon {
           display: inline-block;
           vertical-align: middle;
           background-image: url("/img/m/food/food_group_order.png");
@@ -243,7 +246,7 @@
           height: px2rem(24);
         }
 
-        .group_order_label {
+        .food_group_order_label {
           display: inline-block;
           vertical-align: middle;
           font-size: px2rem(24);

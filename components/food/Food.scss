@@ -1,11 +1,12 @@
-.group_mode {
+.food_group_mode {
   position: relative;
   display: inline-block;
   float: right;
   line-height: px2rem(110);
   margin-right: px2rem(30);
+  text-align: right;
 
-  .group_mode_icon {
+  .food_group_mode_icon {
     display: inline-block;
     vertical-align: middle;
     background-size: 100% 100%;
@@ -13,7 +14,7 @@
     height: px2rem(28);
   }
 
-  .group_mode_label {
+  .food_group_mode_label {
     display: inline-block;
     vertical-align: middle;
     font-size: px2rem(24);

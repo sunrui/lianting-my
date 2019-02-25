@@ -52,10 +52,10 @@
       </div>
 
       <div class="food_group_box" :id="'box_' + foodGroup.id" v-for="foodGroup in http.res.foodGroups.elements">
-        <div class="group_box">
+        <div class="food_group">
           <div class="food_group_anchor" :id="foodGroup.id"></div>
-          <div class="group_name">{{foodGroup.name}}</div>
-          <div class="group_count">({{foodGroup.foodCategories.length}})</div>
+          <div class="food_group_name">{{foodGroup.name}}</div>
+          <div class="food_group_count">({{foodGroup.foodCategories.length}})</div>
         </div>
 
         <div class="box" @click="btnChangeStatus(foodCategory)" v-for="(foodCategory, index) in foodGroup.foodCategories">
@@ -94,8 +94,8 @@
             </div>
           </div>
 
-          <div class="blank_20" v-if="index !== foodGroup.foodCategorie.length - 1"></div>
-          <div class="blank_10" v-if="index === foodGroup.foodCategorie.length - 1"></div>
+          <div class="blank_20" v-if="index !== foodGroup.foodCategories.length - 1"></div>
+          <div class="blank_10" v-if="index === foodGroup.foodCategories.length - 1"></div>
         </div>
 
       </div>

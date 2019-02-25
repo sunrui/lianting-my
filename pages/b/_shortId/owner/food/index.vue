@@ -35,13 +35,13 @@
       </div>
 
       <div class="food_group_box" :id="'box_' + foodGroup.id" v-for="foodGroup in http.res.foodGroups.elements">
-        <div class="group_box">
+        <div class="food_group">
           <div class="food_group_anchor" :id="foodGroup.id"></div>
-          <div class="group_name" @click="btnGroupEdit(foodGroup)">{{foodGroup.name}}</div>
-          <div class="group_count">({{foodGroup.foodCategories.length}})</div>
-          <div class="group_order">
-            <div class="group_order_icon"></div>
-            <div class="group_order_label" @click="btnOrder(foodGroup)">排序</div>
+          <div class="food_group_name" @click="btnGroupEdit(foodGroup)">{{foodGroup.name}}</div>
+          <div class="food_group_count">({{foodGroup.foodCategories.length}})</div>
+          <div class="food_group_order">
+            <div class="food_group_order_icon"></div>
+            <div class="food_group_order_label" @click="btnOrder(foodGroup)">排序</div>
           </div>
         </div>
 

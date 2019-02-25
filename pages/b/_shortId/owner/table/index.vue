@@ -35,12 +35,12 @@
       </div>
 
       <div class="food_group_box" :id="'box_' + tableGroup.id" v-for="tableGroup in http.res.tableGroups.elements">
-        <div class="group_box">
+        <div class="food_group">
           <div class="food_group_anchor" :id="tableGroup.id"></div>
-          <div class="group_name" @click="btnGroupEdit(tableGroup)">{{tableGroup.name}}</div>
-          <div class="group_private_room" v-if="tableGroup.privateRoom">包间</div>
-          <div class="group_count">({{tableGroup.tableOnes.length}})</div>
-          <div class="group_remark">{{tableGroup.remark}} ({{tableGroup.minPeople + '-' + tableGroup.maxPeople + ' 人'}})</div>
+          <div class="food_group_name" @click="btnGroupEdit(tableGroup)">{{tableGroup.name}}</div>
+          <div class="food_group_private_room" v-if="tableGroup.privateRoom">包间</div>
+          <div class="food_group_count">({{tableGroup.tableOnes.length}})</div>
+          <div class="food_group_remark">{{tableGroup.remark}} ({{tableGroup.minPeople + '-' + tableGroup.maxPeople + ' 人'}})</div>
         </div>
 
         <div class="box" v-for="(table, index) in tableGroup.tableOnes">

@@ -34,7 +34,7 @@
 
       <div class="menu_box">
         <div class="menu">
-          <div class="menu_item" v-for="foodGroup in http.res.foodGroups.elements">
+          <div class="menu_item" v-if="foodGroup.foodCategories.length > 0" v-for="foodGroup in http.res.foodGroups.elements">
             <a :id="'menu_' + foodGroup.id"
                :class="{menu_item_href:!isSelectMenu(foodGroup.id), menu_item_href_select:isSelectMenu(foodGroup.id)}"
                :href="'#' + foodGroup.id" @click="selectMenu(foodGroup.id, false)">
@@ -54,7 +54,7 @@
 
       <div class="menu_box_extend" v-if="ui.v_menu_extend">
         <div class="menu_extend">
-          <div class="menu_item menu_item_extend" v-for="foodGroup in http.res.foodGroups.elements">
+          <div class="menu_item menu_item_extend" v-if="foodGroup.foodCategories.length > 0" v-for="foodGroup in http.res.foodGroups.elements">
             <a :class="{menu_item_href:!isSelectMenu(foodGroup.id), menu_item_href_select:isSelectMenu(foodGroup.id)}"
                @click="selectMenu(foodGroup.id, true)">
               <div class="menu_item_badge" v-if="menuBadge(foodGroup.id) > 0">{{menuBadge(foodGroup.id)}}</div>
@@ -72,17 +72,17 @@
       </div>
 
       <div class="food_group_box" :id="'box_' + foodGroup.id" v-for="foodGroup in http.res.foodGroups.elements">
-        <div class="group_box">
+        <div class="food_group" v-if="foodGroup.foodCategories.length > 0">
           <div class="food_group_anchor" :id="foodGroup.id"></div>
-          <div class="group_name">{{foodGroup.name}}</div>
-          <div class="group_count">({{foodGroup.foodCategories.length}})</div>
-          <div class="group_mode" v-if="ui.groupMode === 'Small'" @click="btnGroupMode('Big')">
-            <img class="group_mode_icon" src="/img/m/food/group_mode_big.png" alt="">
-            <div class="group_mode_label">大图模式</div>
+          <div class="food_group_name">{{foodGroup.name}}</div>
+          <div class="food_group_count">({{foodGroup.foodCategories.length}})</div>
+          <div class="food_group_mode" v-if="ui.groupMode === 'Small'" @click="btnGroupMode('Big')">
+            <img class="food_group_mode_icon" src="/img/m/food/group_mode_big.png" alt="">
+            <div class="food_group_mode_label">大图模式</div>
           </div>
-          <div class="group_mode" v-else @click="btnGroupMode('Small')">
-            <img class="group_mode_icon" src="/img/m/food/group_mode_small.png" alt="">
-            <div class="group_mode_label">小图模式</div>
+          <div class="food_group_mode" v-else @click="btnGroupMode('Small')">
+            <img class="food_group_mode_icon" src="/img/m/food/group_mode_small.png" alt="">
+            <div class="food_group_mode_label">小图模式</div>
           </div>
         </div>
 
@@ -351,8 +351,8 @@
       ballDropEnter(el, done) {
         el.offsetHeight
         this.$nextTick(() => {
-          el.style.webkitTransform = 'translate3d(2em, 2em, 0)'
-          el.style.transform = 'translate3d(2em, 2em, 0)'
+          el.style.webkitTransform = 'translate3d(2em, 0, 0)'
+          el.style.transform = 'translate3d(2em, 0, 0)'
           let inner = el.getElementsByClassName('inner-hook')[0]
           inner.style.webkitTransform = 'translate3d(0, 0, 0)'
           inner.style.transform = 'translate3d(0, 0, 0)'
@@ -490,6 +490,10 @@
         this.ui.selectMenuId = foodGroupId
         let menu = document.querySelector('.menu')
         let menuItem = document.getElementById('menu_' + foodGroupId)
+        if (!menuItem) {
+          return
+        }
+
         let left = menuItem.getBoundingClientRect().left - menuItem.getBoundingClientRect().width
 
         if (left < 0) {
