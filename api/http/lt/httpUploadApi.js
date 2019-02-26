@@ -1,8 +1,8 @@
 import axios from 'axios'
 
-let base = '/api/b'
+let base = '/api/c'
 
-export const httpUploadAdminApi = {
+export const httpUploadApi = {
   getSignImage(shortId) {
     return axios.get(`${base}/${shortId}/upload/sign/image`).then(res => res.data)
   },

@@ -14,7 +14,7 @@
 </template>
 
 <script>
-  import {httpUploadAdminApi} from '../../api/http/lt/httpUploadAdminApi'
+  import {httpUploadApi} from '../../api/http/lt/httpUploadApi'
   import {httpWechatApi} from '../../api/http/lt/httpWechatApi'
   import plupload from 'plupload'
   import {uuidApi} from "../../api/local/uuidApi"
@@ -133,7 +133,7 @@
         })
       },
       initOssSign(localData) {
-        httpUploadAdminApi.getSignImage(this.$route.params.shortId).then(res => {
+        httpUploadApi.getSignImage(this.$route.params.shortId).then(res => {
           if (this.inWechat) {
             fetch(localData)
               .then(res => res.blob())
