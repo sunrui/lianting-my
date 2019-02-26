@@ -286,11 +286,11 @@
         })
       },
       btnUser(userId) {
-        // if (!Boolean(userId) || userId === stateApi.user.getId()) {
-        //   this.$router.push(`/m/${this.$route.params.shortId}/me/edit`)
-        // } else {
+        if (!Boolean(userId) || userId === stateApi.user.getId()) {
+          this.$router.push(`/m/${this.$route.params.shortId}/me/edit`)
+        } else {
         this.$router.push(`/m/${this.$route.params.shortId}/user/${userId}`)
-        // }
+        }
       },
       btnOrder(wall) {
         httpOrderApi.getOrder(this.$route.params.shortId, wall.orderOneId).then(res => {
