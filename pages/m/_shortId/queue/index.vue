@@ -444,7 +444,7 @@
       btnQueueCancel(myTicket) {
         this.$msgBox.doModal({
           type: 'yesOrNo',
-          title: '排队',
+          title: '取消排队',
           content: '您的号码将作废，确认要取消吗？'
         }).then(async (val) => {
           if (val === 'Yes') {
@@ -452,13 +452,13 @@
               if (res.ticketNotExists) {
                 this.$msgBox.doModal({
                   type: 'yes',
-                  title: '排队',
+                  title: '取消排队',
                   content: '排队号码不存在。'
                 })
               } else if (res.ticketNotWait) {
                 this.$msgBox.doModal({
                   type: 'yes',
-                  title: '排队',
+                  title: '取消排队',
                   content: '排队号码非等待中，无法取消。'
                 }).then(async (val) => {
                   this.httpState()
@@ -466,7 +466,7 @@
               } else if (res.success) {
                 this.$msgBox.doModal({
                   type: 'yes',
-                  title: '排队',
+                  title: '取消排队',
                   content: '您已取消成功。'
                 })
 

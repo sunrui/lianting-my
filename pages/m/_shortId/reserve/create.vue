@@ -136,9 +136,6 @@
       if (!Boolean(this.$route.query.date) || !Boolean(this.$route.query.tableGroupName)) {
         this.$router.push(`/m/${this.$route.params.shortId}/reserve`)
       }
-
-      this.http.req.reserve.date = new Date(parseInt(this.$route.query.date))
-      this.http.req.reserve.tableGroupName = this.$route.query.tableGroupName
     },
     methods: {
       getWeekDesc(date) {
@@ -186,6 +183,9 @@
           return
         }
 
+        this.http.req.reserve.date = new Date(parseInt(this.$route.query.date))
+        this.http.req.reserve.tableGroupName = this.$route.query.tableGroupName
+        
         httpReserveApi.post(this.$route.params.shortId, this.http.req.reserve).then(res => {
           if (res.maxLimit) {
             this.$msgBox.doModal({
