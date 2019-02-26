@@ -15,7 +15,7 @@
           <div class="addition_item">
             <div class="addition_item_label">头像</div>
             <div class="addition_item_avatar_input">
-              <image-upload :file-url="http.res.info.headImgUrl" v-on:uploadSuccess="uploadSuccess"></image-upload>
+              <image-upload :b="false" :file-url="http.res.info.headImgUrl" v-on:uploadSuccess="uploadSuccess"></image-upload>
             </div>
           </div>
 

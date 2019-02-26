@@ -11,7 +11,7 @@
         <div class="addition_item">
           <div class="addition_item_label">餐食图片</div>
           <div class="addition_item_avatar_input">
-            <image-upload :file-url="http.req.category.image" v-on:uploadSuccess="uploadSuccess"></image-upload>
+            <image-upload :b="true" :file-url="http.req.category.image" v-on:uploadSuccess="uploadSuccess"></image-upload>
           </div>
         </div>
 

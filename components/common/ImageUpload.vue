@@ -17,7 +17,8 @@
   import {httpUploadApi} from '../../api/http/lt/httpUploadApi'
   import {httpWechatApi} from '../../api/http/lt/httpWechatApi'
   import plupload from 'plupload'
-  import {uuidApi} from "../../api/local/uuidApi"
+  import {uuidApi} from '../../api/local/uuidApi'
+  import {httpUploadApi as httpUploadAdminApi} from '../../api/http/lt/httpUploadAdminApi'
 
   export default {
     data() {
@@ -32,6 +33,10 @@
       }
     },
     props: {
+      b: {
+        type: Boolean,
+        default: false
+      },
       fileUrl: {
         type: String,
         default: null
@@ -133,17 +138,27 @@
         })
       },
       initOssSign(localData) {
-        httpUploadApi.getSignImage(this.$route.params.shortId).then(res => {
-          if (this.inWechat) {
+        function init(pThis, res) {
+          if (pThis.inWechat) {
             fetch(localData)
               .then(res => res.blob())
               .then(blob => {
-                this.initStreamUploader(res, blob)
+                pThis.initStreamUploader(res, blob)
               })
           } else {
-            this.initFileUploader(res, this)
+            pThis.initFileUploader(res, pThis)
           }
-        })
+        }
+
+        if (this.b) {
+          httpUploadAdminApi.getSignImage(this.$route.params.shortId).then(res => {
+            init(this, res)
+          })
+        } else {
+          httpUploadApi.getSignImage(this.$route.params.shortId).then(res => {
+            init(this, res)
+          })
+        }
       },
       initStreamUploader(sign, localData) {
         let param = {
