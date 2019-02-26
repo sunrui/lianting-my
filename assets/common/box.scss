@@ -13,7 +13,7 @@
     z-index: 1;
 
     .box_divide_radius_line {
-      height: px2rem(2);
+      height: px2rem(1);
       background: rgba(230, 230, 230, 0.5);
       left: px2rem(20);
       right: px2rem(20);
@@ -42,6 +42,6 @@
 
 .box_divide {
   margin: px2rem(10) px2rem(20);
-  height: px2rem(2);
+  height: px2rem(1);
   background: rgba(230, 230, 230, 0.5);
 }

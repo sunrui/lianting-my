@@ -101,7 +101,7 @@
     float: left;
     min-width: px2rem(100);
     padding: px2rem(5) 0;
-    margin: px2rem(2) 0 0;
+    margin: px2rem(1) 0 0;
     list-style: none;
     text-align: left;
     background-color: #fff;
@@ -138,7 +138,7 @@
     position: relative;
     top: px2rem(10);
     height: 0;
-    margin-left: px2rem(2);
+    margin-left: px2rem(1);
     vertical-align: middle;
     border-top: px2rem(10) dashed;
     border-right: px2rem(10) solid transparent;

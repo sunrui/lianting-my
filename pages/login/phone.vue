@@ -54,7 +54,7 @@
       </div>
       <div class="login_third_icon">
         <div class="login_third_icon_wechat" @click="btnWechat"></div>
-        <div class="login_third_icon_alipay" @click="btnAlipay"></div>
+        <!--<div class="login_third_icon_alipay" @click="btnAlipay"></div>-->
       </div>
     </div>
   </div>

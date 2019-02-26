@@ -1,4 +1,8 @@
 $baseFontSize: 100;
 @function px2rem($px) {
+  @if ($px == 1) {
+    @return 1px
+  }
+
   @return $px / $baseFontSize * 1rem;
 }

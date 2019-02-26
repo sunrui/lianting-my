@@ -79,7 +79,7 @@
   border-radius: px2rem(10);
   margin: px2rem(20) px2rem(30);
   background: #FFF5F5;
-  border: solid px2rem(2) #F7949D;
+  border: solid px2rem(1) #F7949D;
 
   .queue_box_table_info {
     position: relative;
@@ -270,7 +270,7 @@
     .queue_number_title_status_now {
       background: #f6fffc;
       color: #3ed195;
-      border: solid px2rem(2) #00c172;
+      border: solid px2rem(1) #00c172;
 
       right: px2rem(0);
     }
@@ -278,7 +278,7 @@
     .queue_number_title_status_wait {
       background: #fef2f4;
       color: #f32824;
-      border: solid px2rem(2) #f32824;
+      border: solid px2rem(1) #f32824;
     }
 
     .queue_number_title_cancel {
@@ -377,15 +377,15 @@
 }
 
 .queue_table_select_none {
-  border: solid px2rem(2) rgba(230, 230, 230, 0.5);
+  border: solid px2rem(1) rgba(230, 230, 230, 0.5);
 }
 
 .queue_table_select_yes {
-  border: solid px2rem(2) #f52626;
+  border: solid px2rem(1) #f52626;
 }
 
 .queue_table_select_no {
-  border: solid px2rem(2) #999999;
+  border: solid px2rem(1) #999999;
 }
 
 .queue_table_name {

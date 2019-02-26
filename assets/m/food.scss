@@ -52,7 +52,7 @@
     top: 0;
     z-index: 5;
     height: px2rem(88);
-    border-bottom: solid px2rem(2) rgba(230, 230, 230, 0.5);
+    border-bottom: solid px2rem(1) rgba(230, 230, 230, 0.5);
 
     .leaf_box {
       position: absolute;
@@ -186,11 +186,11 @@
     .menu_item_select {
       position: relative;
       height: px2rem(4);
-      margin-top: px2rem(2);
+      margin-top: px2rem(1);
 
       .menu_item_select_line {
         background: #f52626;
-        border-radius: px2rem(2);
+        border-radius: px2rem(1);
         width: 60%;
         height: px2rem(4);
         margin: px2rem(5) auto 0;
@@ -451,7 +451,7 @@
   .cart_title {
     background: #f3f4f6;
     height: px2rem(80);
-    border-top: solid px2rem(2) rgba(230, 230, 230, 0.5);
+    border-top: solid px2rem(1) rgba(230, 230, 230, 0.5);
 
     .cart_title_label {
       display: inline-block;
@@ -584,7 +584,7 @@
   width: 100%;
   left: 0;
   bottom: 0;
-  border-top: solid px2rem(2) rgba(230, 230, 230, 0.5);
+  border-top: solid px2rem(1) rgba(230, 230, 230, 0.5);
   z-index: 9 + 1;
 
   .footer_cart_box {

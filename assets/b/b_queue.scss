@@ -118,13 +118,13 @@
       .queue_table_status_now {
         background: #f6fffc;
         color: #3ed195;
-        border: solid px2rem(2) #00c172;
+        border: solid px2rem(1) #00c172;
       }
 
       .queue_table_status_wait {
         background: #fef2f4;
         color: #f32824;
-        border: solid px2rem(2) #f32824;
+        border: solid px2rem(1) #f32824;
       }
 
       .queue_table_status_time {
@@ -139,7 +139,7 @@
     position: relative;
     margin: px2rem(0) px2rem(35);
     height: px2rem(120);
-    border: solid px2rem(2) rgba(230, 230, 230, 0.5);
+    border: solid px2rem(1) rgba(230, 230, 230, 0.5);
     border-radius: px2rem(10);
     text-align: center;
 

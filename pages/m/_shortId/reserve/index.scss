@@ -47,7 +47,7 @@
     position: relative;
     background: white;
     height: px2rem(110);
-    border-bottom: solid px2rem(2) rgba(230, 230, 230, 0.5);
+    border-bottom: solid px2rem(1) rgba(230, 230, 230, 0.5);
 
     .time {
       position: absolute;
@@ -80,11 +80,11 @@
         .date_item_select {
           position: relative;
           height: px2rem(4);
-          margin-top: px2rem(2);
+          margin-top: px2rem(1);
 
           .date_item_select_line {
             background: #f52626;
-            border-radius: px2rem(2);
+            border-radius: px2rem(1);
             width: px2rem(30);
             height: px2rem(4);
             margin: px2rem(5) auto 0;
@@ -95,7 +95,7 @@
 
     .date_divide {
       position: absolute;
-      width: px2rem(2);
+      width: px2rem(1);
       height: px2rem(70);
       background: rgba(230, 230, 230, 0.5);
       right: px2rem(120 + 10);
@@ -219,7 +219,7 @@
       .time_select_item_none {
         text-align: center;
         color: #999999;
-        border:px2rem(2) solid rgba(230, 230, 230, 0.5);
+        border:px2rem(1) solid rgba(230, 230, 230, 0.5);
         padding: px2rem(30) px2rem(0);
       }
 
