@@ -3,72 +3,63 @@
     <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
     <div class="box">
-      <div class="status status_top box_radius">
-        <div class="status_logo_radius status_logo_radius_center">
-          <img class="status_logo_radius_image " :src="http.res.info.headImgUrl" :alt="http.res.info.nickName">
+      <div class="addition box_radius">
+        <div class="addition_item">
+          <div class="addition_item_label">头像</div>
+          <div class="addition_item_avatar_input">
+            <image-upload :b="false" :file-url="http.res.info.headImgUrl" v-on:uploadSuccess="uploadSuccess"></image-upload>
+          </div>
         </div>
 
-        <div class="blank_40"></div>
-        <div class="blank_40"></div>
+        <div class="box_divide"></div>
 
-        <div class="addition">
-          <div class="addition_item">
-            <div class="addition_item_label">头像</div>
-            <div class="addition_item_avatar_input">
-              <image-upload :b="false" :file-url="http.res.info.headImgUrl" v-on:uploadSuccess="uploadSuccess"></image-upload>
-            </div>
-          </div>
+        <div class="addition_item">
+          <div class="addition_item_label">昵称</div>
+          <label>
+            <input class="addition_item_input" placeholder="请输入您的昵称" v-model="http.res.info.nickName">
+          </label>
+        </div>
 
-          <div class="box_divide"></div>
+        <div class="box_divide"></div>
 
-          <div class="addition_item">
-            <div class="addition_item_label">昵称</div>
-            <label>
-              <input class="addition_item_input" placeholder="请输入您的昵称" v-model="http.res.info.nickName">
-            </label>
-          </div>
+        <div class="addition_item">
+          <div class="addition_item_label">性别</div>
 
-          <div class="box_divide"></div>
-
-          <div class="addition_item">
-            <div class="addition_item_label">性别</div>
-
-            <div class="addition_item_radio">
-              <div style="display: inline-block" @click="btnChooseMale(true)">
-                <div v-bind:class="{
+          <div class="addition_item_radio">
+            <div style="display: inline-block" @click="btnChooseMale(true)">
+              <div v-bind:class="{
                 addition_item_radio_icon_select: http.res.info.male,
                 addition_item_radio_icon_unselect: !http.res.info.male
                 }"></div>
-                <div class="addition_item_radio_label">男</div>
-              </div>
-              <div style="display: inline-block" @click="btnChooseMale(false)">
-                <div v-bind:class="{
+              <div class="addition_item_radio_label">男</div>
+            </div>
+            <div style="display: inline-block" @click="btnChooseMale(false)">
+              <div v-bind:class="{
                 addition_item_radio_icon_select: !http.res.info.male,
                 addition_item_radio_icon_unselect: http.res.info.male
                 }"></div>
-                <div class="addition_item_radio_label">女</div>
-              </div>
+              <div class="addition_item_radio_label">女</div>
             </div>
-
           </div>
 
-          <div class="box_divide"></div>
+        </div>
 
-          <div class="addition_item">
-            <div class="addition_item_label">地址</div>
-            <label>
-              <input class="addition_item_input" placeholder="请输入您的地址" v-model="http.res.info.address">
-            </label>
-          </div>
+        <div class="box_divide"></div>
 
-          <div class="box_divide"></div>
+        <div class="addition_item">
+          <div class="addition_item_label">地址</div>
+          <label>
+            <input class="addition_item_input" placeholder="请输入您的地址" v-model="http.res.info.address">
+          </label>
+        </div>
 
-          <div class="addition_item">
-            <div class="addition_item_label">个性签名</div>
-            <label>
-              <input class="addition_item_input" placeholder="请输入您的个性签名" v-model="http.res.info.signature">
-            </label>
-          </div>
+        <div class="box_divide"></div>
+
+        <div class="addition_item">
+          <div class="addition_item_label">个性签名</div>
+          <label>
+            <input class="addition_item_input" placeholder="请输入您的个性签名" v-model="http.res.info.signature">
+          </label>
         </div>
       </div>
 
@@ -106,8 +97,7 @@
         },
         http: {
           res: {
-            info: {
-            }
+            info: {}
           }
         }
       }
