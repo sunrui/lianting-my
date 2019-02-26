@@ -24,10 +24,10 @@
         </div>
       </div>
 
-      <div class="reply_label">请输入回复顾客的内容</div>
+      <div class="reply_label">商家留言</div>
 
       <div class="reply_remark_area">
-        <textarea class="reply_remark_input" placeholder="请输入回复顾客的内容" maxlength="256"
+        <textarea class="reply_remark_input" placeholder="请输入要回复给顾客的留言" maxlength="256"
                   v-model="http.req.reply.remark"></textarea>
       </div>
 
@@ -40,27 +40,27 @@
 
 <script>
   import TitleBar from '../../../../../../components/common/TitleBar'
-  import { httpReserveAdminApi } from '../../../../../../api/http/lt/httpReserveAdminApi'
+  import {httpReserveAdminApi} from '../../../../../../api/http/lt/httpReserveAdminApi'
 
   export default {
     metaInfo: {
-      title: '取消预订'
+      title: '回复预订'
     },
     middleware: 'auth',
-    components: { TitleBar },
+    components: {TitleBar},
     data() {
       return {
         title: {
           canBack: true,
-          title: '取消预订',
+          title: '回复预订',
           backUri: `/b/${this.$route.params.shortId}/waiter`,
           theme: 'white',
           imageHeight: 0
         },
         ui: {
           status: [
-            { label: '预订成功', data: 'Accept' },
-            { label: '预订失败', data: 'Refused' }
+            {label: '预订成功', data: 'Accept'},
+            {label: '预订失败', data: 'Refused'}
           ]
         },
         http: {
@@ -86,7 +86,7 @@
           this.$msgBox.doModal({
             type: 'yes',
             title: '回复预订',
-            content: '请选择预订状态。'
+            content: '请先选择预订状态。'
           })
 
           return
@@ -97,7 +97,7 @@
             this.$msgBox.doModal({
               type: 'yes',
               title: '回复预订',
-              content: '请输入安排餐桌号。'
+              content: '请输入安排的餐桌号。'
             })
 
             return
