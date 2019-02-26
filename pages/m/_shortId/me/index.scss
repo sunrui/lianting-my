@@ -4,18 +4,22 @@
   padding-top: px2rem(95);
 
   .wall_user_info_nick {
+    display: inline-block;
+    vertical-align: middle;
     color: #333333;
     font-size: px2rem(32);
     line-height: px2rem(40);
-    display: inline-block;
     text-align: center;
   }
 
   .user_info_edit {
     display: inline-block;
-    background: #f52626;
-    height: px2rem(32);
-    width: px2rem(32);
+    vertical-align: middle;
+    margin-left: px2rem(5);
+    background-image: url("/img/m/me/me_edit.png");
+    background-size: 100% 100%;
+    height: px2rem(28);
+    width: px2rem(28);
     line-height: px2rem(40);
   }
 }

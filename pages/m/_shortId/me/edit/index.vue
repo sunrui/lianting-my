@@ -11,7 +11,16 @@
         <div class="blank_40"></div>
         <div class="blank_40"></div>
 
-        <div class="addition ">
+        <div class="addition">
+          <div class="addition_item">
+            <div class="addition_item_label">头像</div>
+            <div class="addition_item_avatar_input">
+              <image-upload :file-url="http.res.wechatInfo.headImgUrl" v-on:uploadSuccess="uploadSuccess"></image-upload>
+            </div>
+          </div>
+
+          <div class="box_divide"></div>
+
           <div class="addition_item">
             <div class="addition_item_label">昵称</div>
             <label>
@@ -85,15 +94,16 @@
 
 <script>
   import TitleBar from '../../../../../components/common/TitleBar'
-  import { httpUserApi } from '../../../../../api/http/user/httpUserApi'
-  import { stateApi } from '../../../../../api/local/stateApi'
+  import {httpUserApi} from '../../../../../api/http/user/httpUserApi'
+  import {stateApi} from '../../../../../api/local/stateApi'
+  import ImageUpload from '../../../../../components/common/ImageUpload'
 
   export default {
     metaInfo: {
       title: '编辑资料'
     },
     middleware: 'auth',
-    components: { TitleBar },
+    components: {TitleBar, ImageUpload},
     data() {
       return {
         title: {
@@ -116,6 +126,9 @@
       this.httpUserInfo()
     },
     methods: {
+      uploadSuccess(fileName) {
+        this.http.res.wechatInfo.headImgUrl = fileName
+      },
       httpUserInfo() {
         httpUserApi.getInfo(stateApi.user.getId()).then(res => {
           if (res.userIdNotExists) {
