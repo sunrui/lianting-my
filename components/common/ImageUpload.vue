@@ -57,14 +57,14 @@
       },
       getFileName() {
         if (!Boolean(this.ui.fileName)) {
-          if (Boolean(this.fileUrl)) {
-            let index = this.fileUrl.lastIndexOf('/')
+          if (Boolean(this.ui.fileUrl)) {
+            let index = this.ui.fileUrl.lastIndexOf('/')
             if (index !== -1) {
-              this.ui.fileName = this.fileUrl.substr(index)
-              if (fileName.length < 32) {
+              this.ui.fileName = this.ui.fileUrl.substr(index)
+              if (this.ui.fileName.length < 32) {
                 this.ui.fileName = null
               } else {
-                this.ui.fileName = fileName.substr(0, 32)
+                this.ui.fileName = this.ui.fileName.substr(0, 32)
               }
             }
           }
