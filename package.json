@@ -1,5 +1,5 @@
 {
-  "name": "ltorder",
+  "name": "lt.city",
   "title": "恋厅 - 领先的互联网+餐厅的 SaaS 级智慧餐饮平台",
   "version": "1.0.0",
   "viewport": "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0",
@@ -14,7 +14,7 @@
     "免费点餐软件"
   ],
   "description": "恋厅是集排队预定、扫码点餐、支付收银、会员营销等服务为一体的 SaaS 级智慧餐饮平台。相遇一个人，爱上一家餐厅，记忆一份美好，恋厅的愿景是为餐厅与用户带来最美的连接。",
-  "author": "ltorder",
+  "author": "上海唏美网络科技有限公司",
   "private": true,
   "scripts": {
     "dev": "nuxt",
