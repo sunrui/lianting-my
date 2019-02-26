@@ -241,7 +241,7 @@
           <div class="addition_item">
             <div class="addition_item_label_text_area">备注</div>
             <div class="addition_item_text_area">
-              <textarea class="addition_item_text_input" placeholder="您可以在此备注您取消订单的原因。" v-model="http.req.cancel.remark"></textarea>
+              <textarea class="addition_item_text_input" placeholder="您可以在此备注取消订单的原因。" v-model="http.req.cancel.remark"></textarea>
             </div>
           </div>
         </div>
@@ -264,7 +264,7 @@
           <div class="addition_item">
             <div class="addition_item_label_text_area">备注</div>
             <div class="addition_item_text_area">
-              <textarea class="addition_item_text_input" placeholder="您可以在此备注您的离线支付状况。" v-model="http.req.payOffline.remark"></textarea>
+              <textarea class="addition_item_text_input" placeholder="您可以在此备注离线支付情况。" v-model="http.req.payOffline.remark"></textarea>
             </div>
           </div>
         </div>
@@ -321,7 +321,7 @@
             <div class="blank_20"></div>
 
             <div class="return_remark_text_area">
-              <textarea class="return_remark_text_input" placeholder="您可以在此备注您的退菜备注。" v-model="http.req.return.remark"></textarea>
+              <textarea class="return_remark_text_input" placeholder="您可以在此备注退菜原因。" v-model="http.req.return.remark"></textarea>
             </div>
           </div>
 
@@ -340,7 +340,7 @@
 
         <div class="modal_title">改价</div>
 
-        <div class="change_price_label">请输入新价格 (原价: {{http.res.order.price}})</div>
+        <div class="change_price_label">请输入新价格 (原价: {{http.res.order.price}} 元)</div>
 
         <div class="box">
           <div class="modal_input_box">
@@ -500,10 +500,6 @@
             let orderFood = this.http.res.order.orderFoods[index]
             addFood(orderFood)
           }
-
-          orderFoods.sort(function(a, b) {
-            return -1
-          })
 
           this.http.res.order.orderFoods = orderFoods
         })

@@ -12,7 +12,7 @@
     <div class="box">
       <div class="list_title box_radius_header">
         <div class="list_add_food_icon"></div>
-        <div class="list_time_label">待加菜餐食</div>
+        <div class="list_time_label">待新增餐食</div>
       </div>
 
       <div class="box_divide_radius">
