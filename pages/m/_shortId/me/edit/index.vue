@@ -5,7 +5,7 @@
     <div class="box">
       <div class="status status_top box_radius">
         <div class="status_logo_radius status_logo_radius_center">
-          <img class="status_logo_radius_image " :src="http.res.wechatInfo.headImgUrl" :alt="http.res.wechatInfo.nickName">
+          <img class="status_logo_radius_image " :src="http.res.info.headImgUrl" :alt="http.res.info.nickName">
         </div>
 
         <div class="blank_40"></div>
@@ -15,7 +15,7 @@
           <div class="addition_item">
             <div class="addition_item_label">头像</div>
             <div class="addition_item_avatar_input">
-              <image-upload :file-url="http.res.wechatInfo.headImgUrl" v-on:uploadSuccess="uploadSuccess"></image-upload>
+              <image-upload :file-url="http.res.info.headImgUrl" v-on:uploadSuccess="uploadSuccess"></image-upload>
             </div>
           </div>
 
@@ -24,7 +24,7 @@
           <div class="addition_item">
             <div class="addition_item_label">昵称</div>
             <label>
-              <input class="addition_item_input" v-model="http.res.wechatInfo.nickName">
+              <input class="addition_item_input" placeholder="请输入您的昵称" v-model="http.res.info.nickName">
             </label>
           </div>
 
@@ -34,17 +34,17 @@
             <div class="addition_item_label">性别</div>
 
             <div class="addition_item_radio">
-              <div style="display: inline-block" @click="btnChooseSex(1)">
+              <div style="display: inline-block" @click="btnChooseMale(true)">
                 <div v-bind:class="{
-                addition_item_radio_icon_select: http.res.wechatInfo.sex !== 2,
-                addition_item_radio_icon_unselect: http.res.wechatInfo.sex === 2
+                addition_item_radio_icon_select: http.res.info.male,
+                addition_item_radio_icon_unselect: !http.res.info.male
                 }"></div>
                 <div class="addition_item_radio_label">男</div>
               </div>
-              <div style="display: inline-block" @click="btnChooseSex(2)">
+              <div style="display: inline-block" @click="btnChooseMale(false)">
                 <div v-bind:class="{
-                addition_item_radio_icon_select: http.res.wechatInfo.sex === 2,
-                addition_item_radio_icon_unselect: http.res.wechatInfo.sex !==2
+                addition_item_radio_icon_select: !http.res.info.male,
+                addition_item_radio_icon_unselect: http.res.info.male
                 }"></div>
                 <div class="addition_item_radio_label">女</div>
               </div>
@@ -55,27 +55,18 @@
           <div class="box_divide"></div>
 
           <div class="addition_item">
-            <div class="addition_item_label">省</div>
+            <div class="addition_item_label">地址</div>
             <label>
-              <input class="addition_item_input" v-model="http.res.wechatInfo.province">
+              <input class="addition_item_input" placeholder="请输入您的地址" v-model="http.res.info.address">
             </label>
           </div>
 
           <div class="box_divide"></div>
 
           <div class="addition_item">
-            <div class="addition_item_label">市</div>
+            <div class="addition_item_label">个性签名</div>
             <label>
-              <input class="addition_item_input" v-model="http.res.wechatInfo.city">
-            </label>
-          </div>
-
-          <div class="box_divide"></div>
-
-          <div class="addition_item">
-            <div class="addition_item_label">国家</div>
-            <label>
-              <input class="addition_item_input" v-model="http.res.wechatInfo.country">
+              <input class="addition_item_input" placeholder="请输入您的个性签名" v-model="http.res.info.signature">
             </label>
           </div>
         </div>
@@ -115,8 +106,7 @@
         },
         http: {
           res: {
-            wechatInfo: {
-              sex: 1
+            info: {
             }
           }
         }
@@ -127,7 +117,7 @@
     },
     methods: {
       uploadSuccess(fileName) {
-        this.http.res.wechatInfo.headImgUrl = fileName
+        this.$set(this.http.res.info, 'headImgUrl', fileName)
       },
       httpUserInfo() {
         httpUserApi.getInfo(stateApi.user.getId()).then(res => {
@@ -143,25 +133,17 @@
             return
           }
 
-          if (!Boolean(res.wechatInfo)) {
-            res.wechatInfo = {}
-            res.wechatInfo.nickName = '匿名用户'
-            res.wechatInfo.province = '保密'
-            res.wechatInfo.city = '保密'
-            res.wechatInfo.country = '保密'
-          }
-
-          this.http.res.wechatInfo = res.wechatInfo
+          this.http.res.info = res.info ? res.info : {}
         })
       },
-      btnChooseSex(sex) {
-        this.http.res.wechatInfo.sex = sex
+      btnChooseMale(male) {
+        this.http.res.info.male = male
       },
       btnSyncWechat() {
         this.$router.push('/login?scope=snsapi_userinfo&r=' + this.$route.path)
       },
       btnUpdate() {
-        httpUserApi.putInfo(this.http.res.wechatInfo).then(res => {
+        httpUserApi.putInfo(this.http.res.info).then(res => {
           if (res.success) {
             this.$msgBox.doModal({
               type: 'yes',

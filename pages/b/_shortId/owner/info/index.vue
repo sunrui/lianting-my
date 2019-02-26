@@ -137,7 +137,7 @@
         })
       },
       uploadSuccess(fileName) {
-        this.http.req.info.logo = fileName
+        this.$set(this.http.req.info, 'logo', fileName)
       }
     }
   }

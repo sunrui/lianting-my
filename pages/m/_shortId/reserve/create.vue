@@ -141,7 +141,7 @@
       getWeekDesc(date) {
         return timeApi.getWeekDesc2(date)
       },
-      btnChooseSex(male) {
+      btnChooseMale(male) {
         this.http.req.reserve.male = male
       },
       btnBindPhone() {

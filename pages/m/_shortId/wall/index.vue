@@ -135,14 +135,15 @@
         title: {
           canBack: true,
           title: '留言墙',
+          backUri: `/m/${this.$route.params.shortId}`,
           theme: 'image',
           imageHeight: 330
         },
         ui: {
           v_cover_mask: false,
           v_order_menu: false,
-          wechatInfos: [],
-          wechatInfoLoads: [],
+          infos: [],
+          infoLoads: [],
           wallReplyies: [],
           title: ''
         },
@@ -186,64 +187,64 @@
         }
       },
       getWechatHead(userId) {
-        for (let index in this.ui.wechatInfos) {
-          let one = this.ui.wechatInfos[index]
+        for (let index in this.ui.infos) {
+          let one = this.ui.infos[index]
 
-          if (!one.wechatInfo) {
-            one.wechatInfo = {}
+          if (!one.info) {
+            one.info = {}
           }
 
           if (one.userId === userId) {
-            return one.wechatInfo.headImgUrl
+            return one.info.headImgUrl
           }
         }
 
-        for (let index in this.ui.wechatInfoLoads) {
-          let _userId = this.ui.wechatInfoLoads[index]
+        for (let index in this.ui.infoLoads) {
+          let _userId = this.ui.infoLoads[index]
 
           if (_userId === userId) {
             return
           }
         }
 
-        this.ui.wechatInfoLoads.push(userId)
+        this.ui.infoLoads.push(userId)
 
         httpUserApi.getInfo(userId).then(res => {
-          this.ui.wechatInfos.push({
+          this.ui.infos.push({
             userId: userId,
-            wechatInfo: res.wechatInfo
+            info: res.info
           })
         })
 
         return ''
       },
       getWechatNick(userId) {
-        for (let index in this.ui.wechatInfos) {
-          let one = this.ui.wechatInfos[index]
+        for (let index in this.ui.infos) {
+          let one = this.ui.infos[index]
 
-          if (!one.wechatInfo) {
-            one.wechatInfo = {}
+          if (!one.info) {
+            one.info = {}
           }
 
           if (one.userId === userId) {
-            return one.wechatInfo.nickName ? one.wechatInfo.nickName : '匿名用户'
+            return one.info.nickName ? one.info.nickName : '匿名用户'
           }
         }
 
-        for (let index in this.ui.wechatInfoLoads) {
-          let _userId = this.ui.wechatInfoLoads[index]
+        for (let index in this.ui.infoLoads) {
+          let _userId = this.ui.infoLoads[index]
 
           if (_userId === userId) {
             return
           }
         }
 
-        this.ui.wechatInfoLoads.push(userId)
+        this.ui.infoLoads.push(userId)
 
         httpUserApi.getInfo(userId).then(res => {
-          this.ui.wechatInfos.push({
+          this.ui.infos.push({
             userId: userId,
-            wechatInfo: res.wechatInfo
+            info: res.info
           })
         })
 

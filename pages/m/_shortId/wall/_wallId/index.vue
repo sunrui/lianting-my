@@ -9,10 +9,10 @@
     <div class="wall">
       <div class="wall_user_info">
         <div class="wall_user_avatar_radius" @click="btnUser()">
-          <img class="wall_user_avatar_radius_image" :src="http.res.wechatInfo.headImgUrl" :alt="http.res.wechatInfo.nickName">
+          <img class="wall_user_avatar_radius_image" :src="http.res.info.headImgUrl" :alt="http.res.info.nickName">
         </div>
         <div class="wall_user_info_title">
-          <div class="wall_user_info_nick" @click="btnUser()">{{http.res.wechatInfo.nickName}}</div>
+          <div class="wall_user_info_nick" @click="btnUser()">{{http.res.info.nickName}}</div>
           <div class="wall_order_time">{{new Date(parseInt(http.res.wall.createdAt)).toLocaleString()}}</div>
         </div>
       </div>
@@ -149,15 +149,15 @@
           res: {
             wall: {},
             replies: {},
-            wechatInfo: {}
+            info: {}
           }
         },
         ui: {
           v_cover_mask: false,
           v_order_menu: false,
           replyContent: '',
-          wechatInfos: [],
-          wechatInfoLoads: [],
+          infos: [],
+          infoLoads: [],
           wallReplyies: []
         }
       }
@@ -173,72 +173,72 @@
             return
           }
 
-          if (!res.wechatInfo) {
-            res.wechatInfo = {}
+          if (!res.info) {
+            res.info = {}
           }
 
-          this.http.res.wechatInfo = res.wechatInfo
+          this.http.res.info = res.info
 
-          if (!Boolean(res.wechatInfo.nickName)) {
-            this.http.res.wechatInfo.nickName = '匿名用户'
+          if (!Boolean(res.info.nickName)) {
+            this.http.res.info.nickName = '匿名用户'
           }
         })
       },
       getWechatHead(userId) {
-        for (let index in this.ui.wechatInfos) {
-          let one = this.ui.wechatInfos[index]
+        for (let index in this.ui.infos) {
+          let one = this.ui.infos[index]
 
-          if (!one.wechatInfo) {
-            one.wechatInfo = {}
+          if (!one.info) {
+            one.info = {}
           }
 
           if (one.userId === userId) {
-            return one.wechatInfo.headImgUrl
+            return one.info.headImgUrl
           }
         }
 
-        for (let index in this.ui.wechatInfoLoads) {
-          let _userId = this.ui.wechatInfoLoads[index]
+        for (let index in this.ui.infoLoads) {
+          let _userId = this.ui.infoLoads[index]
 
           if (_userId === userId) {
             return
           }
         }
 
-        this.ui.wechatInfoLoads.push(userId)
+        this.ui.infoLoads.push(userId)
 
         httpUserApi.getInfo(userId).then(res => {
-          this.ui.wechatInfos.push({
+          this.ui.infos.push({
             userId: userId,
-            wechatInfo: res.wechatInfo
+            info: res.info
           })
         })
 
         return ''
       },
       getWechatNick(userId) {
-        for (let index in this.ui.wechatInfos) {
-          let one = this.ui.wechatInfos[index]
+        for (let index in this.ui.infos) {
+          let one = this.ui.infos[index]
 
           if (one.userId === userId) {
-            return one.wechatInfo.nickName ? one.wechatInfo.nickName : '匿名用户'
+            return one.info.nickName ? one.info.nickName : '匿名用户'
           }
         }
 
-        for (let index in this.ui.wechatInfoLoads) {
-          let _userId = this.ui.wechatInfoLoads[index]
+        for (let index in this.ui.infoLoads) {
+          let _userId = this.ui.infoLoads[index]
 
           if (_userId === userId) {
             return
           }
         }
 
-        this.ui.wechatInfoLoads.push(userId)
+        this.ui.infoLoads.push(userId)
 
         httpUserApi.getInfo(userId).then(res => {
-          this.ui.wechatInfos.push({
+          this.ui.infos.push({
             userId: userId,
-            wechatInfo: res.wechatInfo
+            info: res.info
           })
         })
 

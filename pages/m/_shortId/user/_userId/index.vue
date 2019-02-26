@@ -5,7 +5,7 @@
     <div class="box">
       <div class="status status_top box_radius">
         <div class="status_logo_radius status_logo_radius_center">
-          <img class="status_logo_radius_image " :src="http.res.wechatInfo.headImgUrl" :alt="http.res.wechatInfo.nickName">
+          <img class="status_logo_radius_image " :src="http.res.info.headImgUrl" :alt="http.res.info.nickName">
         </div>
 
         <div class="blank_40"></div>
@@ -14,38 +14,29 @@
         <div class="addition ">
           <div class="addition_item">
             <div class="addition_item_label">昵称</div>
-            <div class="addition_item_content">{{http.res.wechatInfo.nickName}}</div>
+            <div class="addition_item_content">{{http.res.info.nickName}}</div>
           </div>
 
           <div class="box_divide"></div>
 
           <div class="addition_item">
             <div class="addition_item_label">性别</div>
-
-            <div class="addition_item_content" v-if="http.res.wechatInfo.sex === 1">男</div>
-            <div class="addition_item_content" v-if="http.res.wechatInfo.sex === 2">女</div>
+            <div class="addition_item_content" v-if="http.res.info.sex === 1">{{http.res.info.male ? '男' : '女'}}</div>
           </div>
         </div>
 
         <div class="box_divide"></div>
 
         <div class="addition_item">
-          <div class="addition_item_label">省</div>
-          <div class="addition_item_content">{{http.res.wechatInfo.province}}</div>
+          <div class="addition_item_label">地址</div>
+          <div class="addition_item_content">{{http.res.info.address}}</div>
         </div>
 
         <div class="box_divide"></div>
 
         <div class="addition_item">
-          <div class="addition_item_label">市</div>
-          <div class="addition_item_content">{{http.res.wechatInfo.city}}</div>
-        </div>
-
-        <div class="box_divide"></div>
-
-        <div class="addition_item">
-          <div class="addition_item_label">国家</div>
-          <div class="addition_item_content">{{http.res.wechatInfo.country}}</div>
+          <div class="addition_item_label">个性签名</div>
+          <div class="addition_item_content">{{http.res.info.signature}}</div>
         </div>
       </div>
     </div>
@@ -75,7 +66,7 @@
         },
         http: {
           res: {
-            wechatInfo: {
+            info: {
               sex: 1
             }
           }
@@ -100,15 +91,13 @@
             return
           }
 
-          if (!Boolean(res.wechatInfo)) {
-            res.wechatInfo = {}
-            res.wechatInfo.nickName = '匿名用户'
-            res.wechatInfo.province = '保密'
-            res.wechatInfo.city = '保密'
-            res.wechatInfo.country = '保密'
+          if (!Boolean(res.info)) {
+            res.info = {}
+            res.info.nickName = '匿名用户'
+            res.info.male = true
           }
 
-          this.http.res.wechatInfo = res.wechatInfo
+          this.http.res.info = res.info
         })
       }
     }

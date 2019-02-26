@@ -5,10 +5,10 @@
     <div class="wall">
       <div class="wall_user_info">
         <div class="wall_user_avatar_radius" @click="btnUser">
-          <img class="wall_user_avatar_radius_image" :src="http.res.wechatInfo.headImgUrl" :alt="http.res.wechatInfo.nickName">
+          <img class="wall_user_avatar_radius_image" :src="http.res.info.headImgUrl" :alt="http.res.info.nickName">
         </div>
         <div class="wall_user_info_title">
-          <div class="wall_user_info_nick" @click="btnUser">{{http.res.wechatInfo.nickName}}</div>
+          <div class="wall_user_info_nick" @click="btnUser">{{http.res.info.nickName}}</div>
           <div class="wall_order_time">{{new Date().toLocaleString()}}</div>
         </div>
       </div>
@@ -95,7 +95,7 @@
           },
           res: {
             order: {},
-            wechatInfo: {}
+            info: {}
           }
         }
       }
@@ -111,13 +111,13 @@
             return
           }
 
-          if (!Boolean(res.wechatInfo)) {
-            res.wechatInfo = {}
-            res.wechatInfo.headImgUrl = '/img/food/food.png'
-            res.wechatInfo.nickName = '匿名用户'
+          if (!Boolean(res.info)) {
+            res.info = {}
+            res.info.headImgUrl = '/img/food/food.png'
+            res.info.nickName = '匿名用户'
           }
 
-          this.http.res.wechatInfo = res.wechatInfo
+          this.http.res.info = res.info
         })
       },
       httpOrder() {

@@ -5,11 +5,11 @@
     <div class="box">
       <div class="status status_top box_radius">
         <div class="status_logo_radius status_logo_radius_center">
-          <img class="status_logo_radius_image " :src="http.res.wechatInfo.headImgUrl" :alt="this.http.res.wechatInfo.nickName">
+          <img class="status_logo_radius_image " :src="http.res.info.headImgUrl" :alt="this.http.res.info.nickName">
         </div>
 
         <div class="wall_user_info">
-          <div class="wall_user_info_nick">{{this.http.res.wechatInfo.nickName ? this.http.res.wechatInfo.nickName :
+          <div class="wall_user_info_nick">{{this.http.res.info.nickName ? this.http.res.info.nickName :
             '匿名用户'}}
           </div>
           <div class="user_info_edit" @click="btnInfoEdit"></div>
@@ -78,7 +78,7 @@
         },
         http: {
           res: {
-            wechatInfo: {}
+            info: {}
           }
         }
       }
@@ -107,12 +107,12 @@
           stateApi.user.setPhone(res.phone)
           this.ui.phone = res.phone
 
-          if (!Boolean(res.wechatInfo)) {
-            res.wechatInfo = {}
-            res.wechatInfo.nickName = '匿名用户'
+          if (!Boolean(res.info)) {
+            res.info = {}
+            res.info.nickName = '匿名用户'
           }
 
-          this.http.res.wechatInfo = res.wechatInfo
+          this.http.res.info = res.info
         })
       },
       btnNav(url) {
