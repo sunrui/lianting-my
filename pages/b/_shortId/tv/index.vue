@@ -120,7 +120,10 @@
           titles: ['餐桌', '等待桌数', '当前就餐', '首桌已等待'],
           tables: [],
           radioFetchTimes: 0,
-          showLimitTimes: 12 * 10
+          limit: {
+            demoView: true,
+            times: 12 * 10
+          }
         }
       }
     },
@@ -153,6 +156,12 @@
       },
       httpShop() {
         httpShopApi.getOne(this.$route.params.shortId).then(res => {
+          if (res.licenseType === 'Free') {
+            this.ui.limit.demoView = true
+          } else {
+            this.ui.limit.demoView = res.licenseExpiredAt < new Date().getTime()
+          }
+
           this.http.res.shop = res
         })
       },
@@ -249,13 +258,13 @@
           return
         }
 
-        if (this.http.res.shop.licenseType === 'Free') {
-          if (this.ui.showLimitTimes === 0) {
+        if (this.ui.limit.demoView) {
+          if (this.ui.limit.times === 0) {
             this.ui.fullScreen = false
             return
           }
 
-          this.ui.showLimitTimes--
+          this.ui.limit.times--
         }
 
         this.http.res.state = {}
@@ -416,11 +425,11 @@
           pThis.ui.fullScreen = true
         }
 
-        if (this.http.res.shop.licenseType === 'Free') {
+        if (this.ui.limit.demoView) {
           this.$msgBox.doModal({
             type: 'yes',
-            title: '打开展屏',
-            content: '展屏为普通会员、旗舰会员专享，您可继续浏览此功能，展屏将在一定时间内自动关闭。'
+            title: '预览展屏',
+            content: '展屏为普通会员、旗舰会员专享，您可继续预览此功能，展屏将在一定时间内自动关闭。'
           }).then(async (val) => {
             fullScreen(this)
           })
