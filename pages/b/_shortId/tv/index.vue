@@ -392,6 +392,16 @@
         this.ui.drewCaptcha = false
       },
       btnFullScreen() {
+        if (window.screen.height > window.screen.width) {
+          this.$msgBox.doModal({
+            type: 'yes',
+            title: '无法打开展屏',
+            content: '请首先确认您的显示设备比例正确，且处在横屏模式后再使用。'
+          })
+
+          return
+        }
+
         let element = window.document.getElementById('tv_full_screen')
         screenApi.enterFullScreen(element)
         this.ui.fullScreen = true
