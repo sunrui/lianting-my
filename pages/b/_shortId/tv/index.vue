@@ -141,7 +141,7 @@
 
       this.updateTime()
 
-      setInterval(this.updateTime, 60 * 1000)
+      setInterval(this.updateTime, 1000)
       setInterval(this.httpState, 10 * 1000)
     },
     methods: {
