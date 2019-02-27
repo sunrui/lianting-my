@@ -139,7 +139,7 @@
               tag: 'tv',
               name: '展屏',
               icon: '/img/b/nav/owner/b_nav_owner_tv.png',
-              url: `/b/${this.$route.params.shortId}/owner/tv`
+              url: `/b/${this.$route.params.shortId}/tv`
             },
             // {
             //   tag: 'charge',

@@ -1,3 +1,7 @@
+.tv_link {
+  color: #F52626;
+}
+
 #tv_captcha {
   width: 100% !important;
   height: 100% !important;
@@ -259,28 +263,5 @@
     text-align: center;
     border-bottom: solid px2rem(1) rgba(30, 61, 129, 0.6);
     overflow: hidden;
-  }
-}
-
-.tv_prompt {
-  text-align: center;
-
-  .tv_promt_demo {
-    display: inline-block;
-    background: url("/img/b/tv/tv_thumbnail.png") no-repeat;
-    background-size: 100% 100%;
-
-    width: px2rem(336);
-    height: px2rem(210);
-  }
-
-  .tv_prompt_label {
-    margin-top: px2rem(30);
-    color: #999999;
-  }
-
-  .tv_prompt_button {
-    color: #F52626;
-    text-decoration: underline;
   }
 }

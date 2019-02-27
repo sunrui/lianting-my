@@ -4,10 +4,12 @@
 
     <div class="box">
       <div class="tip">
-        <li>"扫码点餐桌贴"需您自行购买后贴至餐桌一角或摆设至餐位上。</li>
-        <li>您可使用淘宝或京东等搜索“扫码点餐桌贴"来获取您想要的风格。</li>
-        <li>每桌大概费用在 5-20 元不等，更多风格可联系卖家定制。</li>
-        <li>以下样式仅供您参考。</li>
+        <ul class="tip_ul">
+          <li>"扫码点餐桌贴"需您自行购买后贴至餐桌一角或摆设至餐位上。</li>
+          <li>您可使用淘宝或京东等搜索“扫码点餐桌贴"来获取您想要的风格。</li>
+          <li>每桌大概费用在 5-20 元不等，更多风格可联系卖家定制。</li>
+          <li>以下样式仅供您参考。</li>
+        </ul>
       </div>
     </div>
 
@@ -61,19 +63,19 @@
 </template>
 
 <script>
-  import { httpTableApi } from '../../../../../api/http/lt/httpTableApi'
-  import { httpShopApi } from '../../../../../api/http/shop/httpShopApi'
+  import {httpTableApi} from '../../../../../api/http/lt/httpTableApi'
+  import {httpShopApi} from '../../../../../api/http/shop/httpShopApi'
   import TitleBar from '../../../../../components/common/TitleBar'
   import QRCode from 'qrcode'
   import html2canvas from 'html2canvas'
-  import { downloadApi } from '../../../../../api/local/downloadApi'
+  import {downloadApi} from '../../../../../api/local/downloadApi'
 
   export default {
     metaInfo: {
       title: '二维码'
     },
     middleware: 'auth',
-    components: { TitleBar },
+    components: {TitleBar},
     data() {
       return {
         title: {

@@ -52,36 +52,54 @@
         </div>
       </div>
     </div>
-    <div v-else class="tv_prompt">
-      <div class="blank_100"></div>
-      <div class="tv_prompt_label">展屏</div>
-      <div class="blank_20"></div>
-      <div class="tv_promt_demo"></div>
-      <div class="tv_prompt_label">由于浏览器限制，仅允许<span class="tv_prompt_button" @click="btnFullScreen">手动全屏</span>。</div>
+    <div v-else>
+      <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
+
+      <div class="box">
+        <div class="tip">
+          <ul class="tip_ul">
+            <li>要启用展屏功能，首先您的餐厅需要拥有一台显示设备。</li>
+            <li>推荐展示尺寸为 1920x1080，同样支持 4K 及以上高清电视。</li>
+            <li>您可在显示设备浏览器中直接访问以下地址。</li>
+            <li><a class="tv_link" :href="getTvUrl()">{{getTvUrl()}}</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="button_box">
+        <div class="button_big" @click="btnFullScreen">打开展屏</div>
+      </div>
     </div>
   </div>
-
 </template>
 
 <script>
-  import {screenApi} from "../../../api/local/screenApi"
-  import {httpQueueApi} from '../../../api/http/lt/httpQueueApi'
-  import {httpTableApi} from '../../../api/http/lt/httpTableApi'
-  import {httpShopApi} from '../../../api/http/shop/httpShopApi'
-  import {httpInfoApi} from '../../../api/http/lt/httpInfoApi'
-
+  import TitleBar from '../../../../components/common/TitleBar'
+  import {screenApi} from '../../../../api/local/screenApi'
+  import {httpQueueApi} from '../../../../api/http/lt/httpQueueApi'
+  import {httpTableApi} from '../../../../api/http/lt/httpTableApi'
+  import {httpShopApi} from '../../../../api/http/shop/httpShopApi'
+  import {httpInfoApi} from '../../../../api/http/lt/httpInfoApi'
+  import {timeApi} from '../../../../api/local/timeApi'
+  import {loadingApi} from '../../../../api/local/loadingApi'
+  import {httpNotifyAdminApi} from '../../../../api/http/lt/httpNotifyAdminApi'
   import QRCode from 'qrcode'
-  import {timeApi} from "../../../api/local/timeApi"
-  import {loadingApi} from "../../../api/local/loadingApi"
-  import {httpNotifyAdminApi} from "../../../api/http/lt/httpNotifyAdminApi"
 
   export default {
     metaInfo: {
       title: '展屏'
     },
     middleware: 'auth',
+    components: {TitleBar},
     data() {
       return {
+        title: {
+          canBack: true,
+          title: '展屏',
+          backUri: `/b/${this.$route.params.shortId}/owner`,
+          theme: 'image',
+          imageHeight: 300
+        },
         http: {
           res: {
             shop: {},
@@ -108,10 +126,10 @@
       }
     },
     created() {
-      document.addEventListener("fullscreenchange", this.onFullScreenChange)
-      document.addEventListener("mozfullscreenchange", this.onFullScreenChange)
-      document.addEventListener("webkitfullscreenchange", this.onFullScreenChange)
-      document.addEventListener("msfullscreenchange", this.onFullScreenChange)
+      document.addEventListener('fullscreenchange', this.onFullScreenChange)
+      document.addEventListener('mozfullscreenchange', this.onFullScreenChange)
+      document.addEventListener('webkitfullscreenchange', this.onFullScreenChange)
+      document.addEventListener('msfullscreenchange', this.onFullScreenChange)
 
       loadingApi.enable = false
 
@@ -125,6 +143,9 @@
       setInterval(this.httpState, 10 * 1000)
     },
     methods: {
+      getTvUrl() {
+        return document.location.protocol + '//' + window.location.host + `/b/${this.$route.params.shortId}/tv`
+      },
       updateTime() {
         let date = new Date()
         this.ui.time.time = timeApi.dateFormat(date, 'HH:mm')
@@ -225,12 +246,12 @@
         return '分钟'
       },
       httpState() {
+        if (!this.ui.fullScreen) {
+          return
+        }
+
         this.http.res.state = {}
         this.http.res.tableGroups = {}
-
-        this.ui.v_queue_number = false
-        this.ui.v_table_select = false
-        this.ui.v_cover_mask = false
 
         httpQueueApi.getState(this.$route.params.shortId).then(res => {
           this.http.res.state = res
@@ -380,5 +401,6 @@
 </script>
 
 <style scoped lang="scss">
-  @import "tv";
+  @import '~assets/common';
+  @import "index";
 </style>

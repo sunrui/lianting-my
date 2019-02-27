@@ -4,10 +4,12 @@
 
     <div class="box">
       <div class="tip">
-        <li>要启用在线支付功能，现在您无需必要拥有企业微信公共号。</li>
-        <li>根据微信要求，您需要提交相关开通支付资料至微信审核，可由我们人工客服免费代为您提交。</li>
-        <li>您可加入我们 QQ 群联系在线客服资询需要提交审核的相关资料。</li>
-        <li>即使您是免费会员，无需任何担心，我们同样竭诚为您服务。</li>
+        <ul class="tip_ul">
+          <li>要启用在线支付功能，现在您无需必要拥有企业微信公共号。</li>
+          <li>根据微信要求，您需要提交相关开通支付资料至微信审核，可由我们人工客服免费代为您提交。</li>
+          <li>您可加入我们 QQ 群联系在线客服资询需要提交审核的相关资料。</li>
+          <li>即使您是免费会员，无需任何担心，我们同样竭诚为您服务。</li>
+        </ul>
       </div>
     </div>
 
@@ -47,8 +49,8 @@
 </template>
 
 <script>
-  import { httpOrderApi } from '../../../../../api/http/lt/httpOrderApi'
-  import { httpOrderAdminApi } from '../../../../../api/http/lt/httpOrderAdminApi'
+  import {httpOrderApi} from '../../../../../api/http/lt/httpOrderApi'
+  import {httpOrderAdminApi} from '../../../../../api/http/lt/httpOrderAdminApi'
   import CurrencyInput from '../../../../../components/common/CurrencyInput'
   import TitleBar from '../../../../../components/common/TitleBar'
 
@@ -57,7 +59,7 @@
       title: '支付'
     },
     middleware: 'auth',
-    components: { TitleBar, CurrencyInput },
+    components: {TitleBar, CurrencyInput},
     data() {
       return {
         title: {
