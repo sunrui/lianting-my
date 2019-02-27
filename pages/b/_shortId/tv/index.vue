@@ -46,8 +46,7 @@
           <div class="tv_full_screen_footer_table_title" v-for="title in ui.titles">{{title}}</div>
 
           <div v-for="tableOne in ui.tables">
-            <div class="tv_full_screen_footer_table_content" v-for="(one, index) in tableOne">{{one}}
-            </div>
+            <div class="tv_full_screen_footer_table_content" v-for="one in tableOne">{{one}}</div>
           </div>
         </div>
       </div>
@@ -120,7 +119,8 @@
           },
           titles: ['餐桌', '等待桌数', '当前就餐', '首桌已等待'],
           tables: [],
-          radioFetchTimes: 0
+          radioFetchTimes: 0,
+          showLimitTimes: 12 * 10
         }
       }
     },
@@ -247,6 +247,15 @@
       httpState() {
         if (!this.ui.fullScreen) {
           return
+        }
+
+        if (this.http.res.shop.licenseType === 'Free') {
+          if (this.ui.showLimitTimes === 0) {
+            this.ui.fullScreen = false
+            return
+          }
+
+          this.ui.showLimitTimes--
         }
 
         this.http.res.state = {}
@@ -401,9 +410,25 @@
           return
         }
 
-        let element = window.document.getElementById('tv_full_screen')
-        screenApi.enterFullScreen(element)
-        this.ui.fullScreen = true
+        function fullScreen(pThis) {
+          let element = window.document.getElementById('tv_full_screen')
+          screenApi.enterFullScreen(element)
+          pThis.ui.fullScreen = true
+        }
+
+        if (this.http.res.shop.licenseType === 'Free') {
+          this.$msgBox.doModal({
+            type: 'yes',
+            title: '打开展屏',
+            content: '展屏为普通会员、旗舰会员专享，您可继续浏览此功能，展屏将在一定时间内自动关闭。'
+          }).then(async (val) => {
+            fullScreen(this)
+          })
+
+          return
+        }
+
+        fullScreen(this)
       }
     }
   }
