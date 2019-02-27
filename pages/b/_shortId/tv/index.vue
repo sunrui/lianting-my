@@ -59,8 +59,8 @@
         <div class="tip">
           <ul class="tip_ul">
             <li>要启用展屏功能，首先您的餐厅需要拥有一台显示设备。</li>
-            <li>推荐展示尺寸为 1920x1080，同样支持 4K 及以上高清电视。</li>
-            <li>您可在显示设备浏览器中直接访问以下地址。</li>
+            <li>推荐显示尺寸为 1920x1080，同样支持 4K 及以上高清电视。</li>
+            <li>您可在要显示设备的浏览器中直接访问以下地址。</li>
             <li><a class="tv_link" :href="getTvUrl()">{{getTvUrl()}}</a></li>
           </ul>
         </div>
@@ -94,9 +94,8 @@
     data() {
       return {
         title: {
-          canBack: true,
+          canBack: false,
           title: '展屏',
-          backUri: `/b/${this.$route.params.shortId}/owner`,
           theme: 'image',
           imageHeight: 300
         },
