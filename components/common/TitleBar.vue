@@ -73,10 +73,8 @@
         window.history.pushState('forward', null, null)
         window.history.forward()
 
-        if (window.history.pThis) {
+        if (window.history.pThis && window.history.backUri) {
           window.history.pThis.$router.push(window.history.backUri)
-        } else {
-          window.location = window.history.backUri
         }
       },
       setBackUri(backUri) {
