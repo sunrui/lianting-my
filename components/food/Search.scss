@@ -47,11 +47,12 @@
       position: absolute;
       height: px2rem(120-30);
       text-align: center;
-      right: px2rem(30);
+      top: 0;
+      right: 0;
       font-size: px2rem(30);
+      width: px2rem(120);
       line-height: px2rem(70);
       color: #666666;
-      top: 0;
     }
   }
 

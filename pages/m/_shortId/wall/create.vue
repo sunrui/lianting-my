@@ -31,17 +31,9 @@
           <div class="wall_order_label">{{http.res.order.finishedAt ? elapsedTime(http.res.order.finishedAt) : '进行中'}}</div>
         </div>
       </div>
-    </div>
 
-    <!--<div class="wall_picture">-->
-    <!--<div class="wall_picture_add">添加图片</div>-->
-    <!--<div class="wall_picture_box">-->
-    <!--<div class="wall_picture_one">-->
-    <!--<div class="wall_picture_one_image"></div>-->
-    <!--<div class="wall_picture_one_label">添加</div>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</div>-->
+      <div class="blank_10"></div>
+    </div>
 
     <div class="wall_text_input_area">
       <label>
