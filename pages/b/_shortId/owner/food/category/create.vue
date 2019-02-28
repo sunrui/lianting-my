@@ -372,7 +372,7 @@
                       title: '添加餐食',
                       content: `添加成功。`
                     }).then(async (val) => {
-                      this.$router.back()
+                      this.$router.push(this.title.backUri)
                     })
                   }
                 }

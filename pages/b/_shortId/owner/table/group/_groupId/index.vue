@@ -187,7 +187,7 @@
               title: '编辑餐桌组',
               content: '编辑成功。'
             }).then(async (val) => {
-              this.$router.back()
+              this.$router.push(this.title.backUri)()
             })
           }
         })

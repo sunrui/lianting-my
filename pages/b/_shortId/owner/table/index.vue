@@ -16,16 +16,16 @@
 
       <div class="menu_box">
         <div class="menu">
-          <div class="menu_item" v-for="tableGroup in http.res.tableGroups.elements">
-            <a :id="'menu_' + tableGroup.id"
+          <div class="menu_item" v-for="(tableGroup, index) in http.res.tableGroups.elements">
+            <div :id="'menu_' + tableGroup.id"
                :class="{menu_item_href:!isSelectMenu(tableGroup.id), menu_item_href_select:isSelectMenu(tableGroup.id)}"
-               :href="'#' + tableGroup.id" @click="selectMenu(tableGroup.id, false)">
+               @click="selectMenu(index, tableGroup.id, false)">
               <div class="badge_delete menu_item_badge_delete" @click="btnGroupDelete(tableGroup)"></div>
               <div class="menu_item_label">{{tableGroup.name}}</div>
               <div class="menu_item_select" v-if="isSelectMenu(tableGroup.id)">
                 <div class="menu_item_select_line"></div>
               </div>
-            </a>
+            </div>
           </div>
         </div>
 
@@ -237,28 +237,15 @@
           }
         }
 
-        this.selectMenu(selectId)
+        this.scrollMenu(selectId)
       },
       isSelectMenu(tableGroupId) {
         return this.ui.selectMenuId === tableGroupId
       },
-      selectMenu(tableGroupId, closeLeaf) {
-        if (closeLeaf) {
-          this.btnCoverMask()
-
-          setTimeout(function() {
-            let node = document.getElementById(tableGroupId)
-            if (node != null) {
-              let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
-              let posY = node.getBoundingClientRect().top + scrollTop
-              window.scroll(0, posY)
-            }
-          }, 100)
-        }
-
-        this.ui.selectMenuId = tableGroupId
+      scrollMenu(selectId) {
+        this.ui.selectMenuId = selectId
         let menu = document.querySelector('.menu')
-        let menuItem = document.getElementById('menu_' + tableGroupId)
+        let menuItem = document.getElementById('menu_' + selectId)
         let left = menuItem.getBoundingClientRect().left - menuItem.getBoundingClientRect().width
 
         if (left < 0) {
@@ -266,6 +253,25 @@
         } else if (menu.scrollLeft < left) {
           menu.scrollLeft = left
         }
+      },
+      selectMenu(index, selectId, closeLeaf) {
+        if (closeLeaf) {
+          this.btnLeaf(false)
+        }
+
+        if (index === 0) {
+          scrollApi.scrollAnimation(document.documentElement.scrollTop || document.body.scrollTop, 0)
+          return
+        }
+
+        setTimeout(function () {
+          let node = document.getElementById(selectId)
+          if (node != null) {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+            let posY = node.getBoundingClientRect().top + scrollTop
+            scrollApi.scrollAnimation(document.documentElement.scrollTop || document.body.scrollTop, posY)
+          }
+        }, 100)
       },
       btnCaptcha(tableGroup, table) {
         this.ui.captcha.title = tableGroup.name + ' - ' + table.fullNumber

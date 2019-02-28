@@ -173,7 +173,7 @@
               title: '登录',
               content: `短信验证码不存在，请重新发送。`
             }).then(async (val) => {
-              this.$router.back()
+              this.$router.push(this.title.backUri)()
             })
           } else if (res.verifyError) {
             this.$msgBox.doModal({

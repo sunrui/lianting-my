@@ -280,7 +280,7 @@
         }
       },
       btnBack() {
-        this.$router.back()
+        this.$router.push(this.title.backUri)()
       }
     }
   }

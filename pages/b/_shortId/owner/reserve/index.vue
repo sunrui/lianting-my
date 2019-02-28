@@ -179,7 +179,7 @@
             title: '预订',
             content: '已更新。'
           }).then(async (val) => {
-            this.$router.back()
+            this.$router.push(this.title.backUri)()
           })
         })
       }

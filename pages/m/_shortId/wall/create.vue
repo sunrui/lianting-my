@@ -166,7 +166,7 @@
               title: '提交留言墙',
               content: '留言成功。'
             }).then(async (val) => {
-              this.$router.back()
+              this.$router.push(this.title.backUri)()
             })
           }
         })

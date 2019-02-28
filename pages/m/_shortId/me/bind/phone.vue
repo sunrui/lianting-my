@@ -84,7 +84,7 @@
           title: '绑定手机',
           content: '您已绑定过手机。'
         }).then(async (val) => {
-          this.$router.back()
+          this.$router.push(this.title.backUri)()
         })
       }
     },
@@ -194,13 +194,13 @@
               title: '绑定手机',
               content: `绑定成功。`
             }).then(async (val) => {
-              this.$router.back()
+              this.$router.push(this.title.backUri)()
             })
           }
         })
       },
       btnBack() {
-        this.$router.back()
+        this.$router.push(this.title.backUri)()
       }
     }
   }

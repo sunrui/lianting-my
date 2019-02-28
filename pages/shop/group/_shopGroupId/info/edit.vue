@@ -66,8 +66,7 @@
     methods: {
       btnUpdate() {
         httpShopGroupApi.put(this.$route.params.shopGroupId, this.shopGroupReq.model).then(res => {
-          alert('修改成功')
-          this.$router.back()
+          this.$router.push(this.title.backUri)()
         })
 
       }

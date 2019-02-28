@@ -117,7 +117,7 @@
               title: '编辑资料',
               content: '用户不存在。'
             }).then(async (val) => {
-              this.$router.back()
+              this.$router.push(this.title.backUri)()
             })
 
             return
@@ -140,7 +140,7 @@
               title: '编辑资料',
               content: '更新成功。'
             }).then(async (val) => {
-              this.$router.back()
+              this.$router.push(this.title.backUri)()
             })
           }
         })

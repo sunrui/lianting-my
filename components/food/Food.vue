@@ -34,16 +34,16 @@
 
       <div class="menu_box">
         <div class="menu">
-          <div class="menu_item" v-if="foodGroup.foodCategories.length > 0" v-for="foodGroup in http.res.foodGroups.elements">
-            <a :id="'menu_' + foodGroup.id"
+          <div class="menu_item" v-if="foodGroup.foodCategories.length > 0" v-for="(foodGroup, index) in http.res.foodGroups.elements">
+            <div :id="'menu_' + foodGroup.id"
                :class="{menu_item_href:!isSelectMenu(foodGroup.id), menu_item_href_select:isSelectMenu(foodGroup.id)}"
-               :href="'#' + foodGroup.id" @click="selectMenu(foodGroup.id, false)">
+               @click="selectMenu(index, foodGroup.id, false)">
               <div class="menu_item_badge" v-if="menuBadge(foodGroup.id) > 0">{{menuBadge(foodGroup.id)}}</div>
               <div class="menu_item_label">{{foodGroup.name}}</div>
               <div class="menu_item_select" v-if="isSelectMenu(foodGroup.id)">
                 <div class="menu_item_select_line"></div>
               </div>
-            </a>
+            </div>
           </div>
         </div>
 
@@ -54,15 +54,15 @@
 
       <div class="menu_box_extend" v-if="ui.v_menu_extend">
         <div class="menu_extend">
-          <div class="menu_item menu_item_extend" v-if="foodGroup.foodCategories.length > 0" v-for="foodGroup in http.res.foodGroups.elements">
-            <a :class="{menu_item_href:!isSelectMenu(foodGroup.id), menu_item_href_select:isSelectMenu(foodGroup.id)}"
-               @click="selectMenu(foodGroup.id, true)">
+          <div class="menu_item menu_item_extend" v-if="foodGroup.foodCategories.length > 0" v-for="(foodGroup, index) in http.res.foodGroups.elements">
+            <div :class="{menu_item_href:!isSelectMenu(foodGroup.id), menu_item_href_select:isSelectMenu(foodGroup.id)}"
+               @click="selectMenu(index, foodGroup.id, true)">
               <div class="menu_item_badge" v-if="menuBadge(foodGroup.id) > 0">{{menuBadge(foodGroup.id)}}</div>
               <div class="menu_item_label">{{foodGroup.name}}</div>
               <div class="menu_item_select" v-if="isSelectMenu(foodGroup.id)">
                 <div class="menu_item_select_line"></div>
               </div>
-            </a>
+            </div>
           </div>
         </div>
 
@@ -468,32 +468,15 @@
           }
         }
 
-        this.selectMenu(selectId)
+        this.scrollMenu(selectId)
       },
       isSelectMenu(foodGroupId) {
         return this.ui.selectMenuId === foodGroupId
       },
-      selectMenu(foodGroupId, closeLeaf) {
-        if (closeLeaf) {
-          this.btnLeaf(false)
-
-          setTimeout(function () {
-            let node = document.getElementById(foodGroupId)
-            if (node != null) {
-              const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
-              let posY = node.getBoundingClientRect().top + scrollTop
-              window.scroll(0, posY)
-            }
-          }, 100)
-        }
-
-        this.ui.selectMenuId = foodGroupId
+      scrollMenu(selectId) {
+        this.ui.selectMenuId = selectId
         let menu = document.querySelector('.menu')
-        let menuItem = document.getElementById('menu_' + foodGroupId)
-        if (!menuItem) {
-          return
-        }
-
+        let menuItem = document.getElementById('menu_' + selectId)
         let left = menuItem.getBoundingClientRect().left - menuItem.getBoundingClientRect().width
 
         if (left < 0) {
@@ -501,6 +484,25 @@
         } else if (menu.scrollLeft < left) {
           menu.scrollLeft = left
         }
+      },
+      selectMenu(index, selectId, closeLeaf) {
+        if (closeLeaf) {
+          this.btnLeaf(false)
+        }
+
+        if (index === 0) {
+          scrollApi.scrollAnimation(document.documentElement.scrollTop || document.body.scrollTop, 0)
+          return
+        }
+
+        setTimeout(function () {
+          let node = document.getElementById(selectId)
+          if (node != null) {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+            let posY = node.getBoundingClientRect().top + scrollTop
+            scrollApi.scrollAnimation(document.documentElement.scrollTop || document.body.scrollTop, posY)
+          }
+        }, 100)
       },
       setSelectByFoodCategoryId(foodCategory, select) {
         for (let foodGroupIndex in this.http.res.foodGroups.elements) {

@@ -82,7 +82,7 @@
           title: '今日预订',
           content: '未指定时间。'
         }).then(async (val) => {
-          this.$router.back(-1)
+          this.$router.push(this.title.backUri)(-1)
         })
       }
 
