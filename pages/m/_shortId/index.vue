@@ -270,7 +270,14 @@
               return
             }
 
-            this.$router.push(nav.url)
+            httpReserveApi.getAll(this.$route.params.shortId, 'Wait, Accept, Refused', null, 0, 1).then(res => {
+              if (res.elements.length > 0) {
+                this.$router.push(`/m/${this.$route.params.shortId}/reserve/${res.elements[0].id}`)
+                return
+              }
+
+              this.$router.push(nav.url)
+            })
           })
         } else if (nav.tag === 'wall') {
           httpWallApi.getAll(this.$route.params.shortId, 0, 1).then(res => {
