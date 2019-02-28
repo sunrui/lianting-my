@@ -71,8 +71,8 @@
         </div>
       </div>
 
-      <div class="food_group_box" :id="'box_' + foodGroup.id" v-for="foodGroup in http.res.foodGroups.elements">
-        <div class="food_group" v-if="foodGroup.foodCategories.length > 0">
+      <div class="food_group_box" :id="'box_' + foodGroup.id" v-if="foodGroup.foodCategories.length > 0" v-for="foodGroup in http.res.foodGroups.elements">
+        <div class="food_group">
           <div class="food_group_anchor" :id="foodGroup.id"></div>
           <div class="food_group_name">{{foodGroup.name}}</div>
           <div class="food_group_count">({{foodGroup.foodCategories.length}})</div>

@@ -74,18 +74,16 @@
         window.history.backUri = this.backUri
         window.history.pThis = this
 
-        if (window.history && window.history.pushState) {
-          window.addEventListener('popstate', function (e) {
-            window.history.pushState('forward', null, null)
-            window.history.forward(1)
+        window.addEventListener('popstate', function (e) {
+          window.history.pushState('forward', null, null)
+          window.history.forward(1)
 
-            if (window.history.pThis) {
-              window.history.pThis.$router.push(window.history.backUri)
-            } else {
-              window.location = window.history.backUri
-            }
-          })
-        }
+          if (window.history.pThis) {
+            window.history.pThis.$router.push(window.history.backUri)
+          } else {
+            window.location = window.history.backUri
+          }
+        })
 
         window.history.pushState('forward', null, null)
         window.history.forward(1)
