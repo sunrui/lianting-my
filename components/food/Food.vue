@@ -6,6 +6,10 @@
       <div :class="{ cover_mask_9: ui.v_cover_mask_cart}" @click="btnCoverMaskCart"></div>
     </transition>
     <transition name="fade">
+      <div :class="{ cover_mask_11: ui.v_cover_mask}" @click="btnCoverMaskCart"></div>
+    </transition>
+
+    <transition name="fade">
       <div :class="{ cover_mask_11: ui.v_cover_mask_leaf}" @click="btnLeaf(false)"></div>
     </transition>
 
@@ -36,8 +40,8 @@
         <div class="menu">
           <div class="menu_item" v-if="foodGroup.foodCategories.length > 0" v-for="(foodGroup, index) in http.res.foodGroups.elements">
             <div :id="'menu_' + foodGroup.id"
-               :class="{menu_item_href:!isSelectMenu(foodGroup.id), menu_item_href_select:isSelectMenu(foodGroup.id)}"
-               @click="selectMenu(index, foodGroup.id, false)">
+                 :class="{menu_item_href:!isSelectMenu(foodGroup.id), menu_item_href_select:isSelectMenu(foodGroup.id)}"
+                 @click="selectMenu(index, foodGroup.id, false)">
               <div class="menu_item_badge" v-if="menuBadge(foodGroup.id) > 0">{{menuBadge(foodGroup.id)}}</div>
               <div class="menu_item_label">{{foodGroup.name}}</div>
               <div class="menu_item_select" v-if="isSelectMenu(foodGroup.id)">
@@ -56,7 +60,7 @@
         <div class="menu_extend">
           <div class="menu_item menu_item_extend" v-if="foodGroup.foodCategories.length > 0" v-for="(foodGroup, index) in http.res.foodGroups.elements">
             <div :class="{menu_item_href:!isSelectMenu(foodGroup.id), menu_item_href_select:isSelectMenu(foodGroup.id)}"
-               @click="selectMenu(index, foodGroup.id, true)">
+                 @click="selectMenu(index, foodGroup.id, true)">
               <div class="menu_item_badge" v-if="menuBadge(foodGroup.id) > 0">{{menuBadge(foodGroup.id)}}</div>
               <div class="menu_item_label">{{foodGroup.name}}</div>
               <div class="menu_item_select" v-if="isSelectMenu(foodGroup.id)">
@@ -98,7 +102,7 @@
             food_image_big_box: foodGroup.groupMode === 'Big',
             food_image_box: foodGroup.groupMode !== 'Big',
             }" class="">
-              <img class="food_image" :src="foodCategory.image" :alt="foodCategory.name">
+              <img class="food_image" :src="foodCategory.image" :alt="foodCategory.name" @click="btnPreview(foodCategory.image)">
               <div class="addition_item_tag_label food_image_tag" v-if="foodCategory.tagName" v-bind:class="{
                    addition_item_tag_color_1: foodCategory.tagIndex === 1,
                    addition_item_tag_color_2: foodCategory.tagIndex === 2,
@@ -190,7 +194,7 @@
     </div>
 
     <transition name="toggle">
-      <div class="modal_bottom" v-if=" ui.v_category">
+      <div class="modal_bottom" v-if="ui.v_category">
         <div class="modal_close_box" @click="btnCoverMaskCart">
           <img class="modal_close" src="/img/common/close.png" alt="">
         </div>
@@ -231,6 +235,15 @@
       </div>
     </transition>
 
+    <transition name="fade">
+      <div class="modal_center" v-if="ui.v_food_preview" @click="btnCoverMaskCart">
+        <div class="modal_close_box" @click="btnCoverMaskCart">
+          <img class="modal_close" src="/img/common/close.png" alt="">
+        </div>
+
+        <img class="preview_image" :src="ui.previewImage" alt="">
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -268,11 +281,13 @@
           imageHeight: 300
         },
         ui: {
+          v_cover_mask: false,
           v_cover_mask_cart: false,
           v_cover_mask_leaf: false,
           v_cart: false,
           v_category: false,
           v_menu_extend: false,
+          v_food_preview: false,
           modal_category: {
             foodGroupId: null,
             category: null,
@@ -281,7 +296,8 @@
           selectMenuId: null,
           scrollDelay: null,
           balls: [{show: false}, {show: false}, {show: false}, {show: false}, {show: false}],
-          ballsDrop: []
+          ballsDrop: [],
+          previewImage: null
         },
         http: {
           res: {
@@ -653,10 +669,13 @@
         this.ui.v_cover_mask_cart = false
       },
       btnCoverMaskCart() {
+        this.ui.v_cover_mask = false
         this.ui.v_cover_mask_cart = false
+        this.ui.v_cover_mask_leaf = false
         this.ui.v_cart = false
         this.ui.v_category = false
         this.ui.v_menu_extend = false
+        this.ui.v_food_preview = false
 
         scrollApi.enable(true)
       },
@@ -756,6 +775,12 @@
         }
 
         scrollApi.enable(!extend)
+      },
+      btnPreview(image) {
+        this.ui.previewImage = image
+        this.ui.v_food_preview = true
+        this.ui.v_cover_mask = true
+        scrollApi.enable(false)
       }
     }
   }

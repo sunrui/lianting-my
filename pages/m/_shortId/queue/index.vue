@@ -102,7 +102,7 @@
       </div>
     </div>
 
-    <div class="box" v-if=" ui.v_table_select">
+    <div class="box" v-if="ui.v_table_select">
       <div class="modal_center">
         <div class="modal_close_box" @click="btnCoverMask">
           <img class="modal_close" src="/img/common/close.png" alt="">

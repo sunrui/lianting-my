@@ -4,7 +4,7 @@
       <div class="cover_mask_11" @click="btnCancel"></div>
     </transition>
 
-    <div class="modal_center modal_center_box">
+    <div class="modal_center">
       <div class="modal_close_box" @click="btnCancel">
         <img class="modal_close" src="/img/common/close.png" alt="">
       </div>
