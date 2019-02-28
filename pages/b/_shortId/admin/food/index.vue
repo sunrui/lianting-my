@@ -184,6 +184,9 @@
     mounted() {
       window.addEventListener('scroll', this.onScroll)
     },
+    beforeDestroy() {
+      window.removeEventListener('scroll', this.onScroll)
+    },
     methods: {
       httpShop() {
         httpShopApi.getOne(this.$route.params.shortId).then(res => {

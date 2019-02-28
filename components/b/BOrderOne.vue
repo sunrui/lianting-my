@@ -1,6 +1,6 @@
 <template>
   <div>
-    <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
+    <title-bar ref="titleBar" :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
     <div :class="{ cover_mask_9: ui.v_cover_mask}" @click="btnCoverMask"></div>
 
@@ -369,22 +369,22 @@
 
 <script>
   import TitleBar from '../common/TitleBar'
-  import { httpOrderApi } from '../../api/http/lt/httpOrderApi'
-  import { httpOrderAdminApi } from '../../api/http/lt/httpOrderAdminApi'
-  import { httpCaptchaApi } from '../../api/http/lt/httpCaptchaApi'
-  import { scrollApi } from '../../api/local/scrollApi'
-  import { timeApi } from '../../api/local/timeApi'
-  import { stateApi } from '../../api/local/stateApi'
+  import {httpOrderApi} from '../../api/http/lt/httpOrderApi'
+  import {httpOrderAdminApi} from '../../api/http/lt/httpOrderAdminApi'
+  import {httpCaptchaApi} from '../../api/http/lt/httpCaptchaApi'
+  import {scrollApi} from '../../api/local/scrollApi'
+  import {timeApi} from '../../api/local/timeApi'
+  import {stateApi} from '../../api/local/stateApi'
   import DropDown from '../common/DropDown'
   import CurrencyInput from '../common/CurrencyInput'
-  import { highlightApi } from '../../api/local/highlightApi'
+  import {highlightApi} from '../../api/local/highlightApi'
 
   export default {
     metaInfo: {
       title: '订单详情'
     },
     middleware: 'auth',
-    components: { CurrencyInput, TitleBar, DropDown },
+    components: {CurrencyInput, TitleBar, DropDown},
     props: {
       role: {
         type: String,
@@ -442,9 +442,11 @@
       }
     },
     created() {
-      this.title.backUri = `/b/${this.$route.params.shortId}/${this.role}`
-
       this.httpOrder()
+    },
+    mounted() {
+      this.title.backUri = `/b/${this.$route.params.shortId}/${this.role}/order`
+      this.$refs.titleBar.setBackUri(this.title.backUri)
     },
     methods: {
       btnChooseReturnCount(payload) {
@@ -899,7 +901,7 @@
 
         this.ui.returnCounts = []
         for (let i = 0; i < orderFood.count; i++) {
-          this.ui.returnCounts.push({ name: i + 1 })
+          this.ui.returnCounts.push({name: i + 1})
         }
 
         this.ui.v_cover_mask = true

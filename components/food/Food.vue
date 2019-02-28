@@ -302,6 +302,9 @@
     mounted() {
       window.addEventListener('scroll', this.onScroll)
     },
+    beforeDestroy() {
+      window.removeEventListener('scroll', this.onScroll)
+    },
     computed: {
       cart() {
         let cart = this.$store.state.cart
