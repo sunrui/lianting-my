@@ -29,7 +29,7 @@
           <div class="status_item_content">{{http.res.reserve.tableGroupName}}</div>
         </div>
         <div class="status_item" v-if="http.res.reserve.tableNumber">
-          <div class="status_item_label">预订餐桌</div>
+          <div class="status_item_label">安排餐桌</div>
           <div class="status_item_content">{{http.res.reserve.tableNumber}}</div>
         </div>
         <div class="status_item">
