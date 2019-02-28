@@ -53,7 +53,7 @@
         title: {
           canBack: true,
           title: '回复预订',
-          backUri: `/b/${this.$route.params.shortId}/waiter`,
+          backUri: `/b/${this.$route.params.shortId}/waiter/reserve`,
           theme: 'white',
           imageHeight: 0
         },

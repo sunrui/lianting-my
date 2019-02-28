@@ -98,7 +98,7 @@
         title: {
           canBack: true,
           title: '预订详情',
-          backUri: `/b/${this.$route.params.shortId}/waiter`,
+          backUri: `/b/${this.$route.params.shortId}/waiter/reserve`,
           theme: 'image',
           imageHeight: 220
         },

@@ -185,7 +185,7 @@
         title: {
           canBack: true,
           title: '我的优惠券',
-          backUri: null,
+          backUri: `/m/${this.$route.params.shortId}`,
           theme: 'white',
           imageHeight: 0
         },

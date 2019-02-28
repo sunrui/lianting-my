@@ -308,11 +308,6 @@
         })
       },
       btnScanCaptcha() {
-        if (!this.cart.people) {
-          this.btnPeople()
-          return
-        }
-
         this.$msgBox.doModal({
           type: 'yes',
           title: '下单',

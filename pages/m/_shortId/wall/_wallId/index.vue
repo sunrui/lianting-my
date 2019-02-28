@@ -141,6 +141,7 @@
       return {
         title: {
           canBack: true,
+          backUri: `/m/${this.$route.params.shortId}/wall`,
           title: '留言详情',
           theme: 'white',
           imageHeight: 0
