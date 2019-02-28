@@ -58,10 +58,38 @@
       }
     },
     mounted() {
-      let userAgent = navigator.userAgent.toLowerCase() || window.navigator.userAgent.toLowerCase();
+      this.initHistoryBack()
+
+      let userAgent = navigator.userAgent.toLowerCase() || window.navigator.userAgent.toLowerCase()
       this.ui.inWechat = userAgent.match(/MicroMessenger/i) || userAgent.match(/webdebugger/i)
     },
     methods: {
+      initHistoryBack() {
+        if (!Boolean(this.backUri)) {
+          window.history.pushState('forward', null, null)
+          window.history.forward(1)
+          return
+        }
+
+        window.history.backUri = this.backUri
+        window.history.pThis = this
+
+        if (window.history && window.history.pushState) {
+          window.addEventListener('popstate', function (e) {
+            window.history.pushState('forward', null, null)
+            window.history.forward(1)
+
+            if (window.history.pThis) {
+              window.history.pThis.$router.push(window.history.backUri)
+            } else {
+              window.location = window.history.backUri
+            }
+          })
+        }
+
+        window.history.pushState('forward', null, null)
+        window.history.forward(1)
+      },
       btnBack() {
         if (Boolean(this.backUri)) {
           this.$router.push(this.backUri)

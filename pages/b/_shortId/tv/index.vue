@@ -413,7 +413,7 @@
           this.$msgBox.doModal({
             type: 'yes',
             title: '无法打开展屏',
-            content: '请首先确认您的显示设备比例正确，且处在横屏模式后再使用。'
+            content: '请首先确认您的显示设备比例正确，并且处在横屏模式后再使用。'
           })
 
           return
