@@ -16,13 +16,22 @@
       </div>
     </div>
 
-    <div class="title_bar_bg" v-bind:class="{
+    <div v-if="theme !== 'white'">
+      <div class="title_bar_bg" v-bind:class="{
       title_bar_bg_height_220: imageHeight === 220,
       title_bar_bg_height_300: imageHeight === 300,
       title_bar_bg_height_330: imageHeight === 330,
       title_bar_bg_height_460: imageHeight === 460,
-      title_bar_bg_height_900: imageHeight === 900,
-    }" v-if="theme !== 'white'"></div>
+      title_bar_bg_height_900: imageHeight === 900
+      }" v-if="!ui.inWechat"></div>
+      <div class="title_bar_bg" v-bind:class="{
+      title_bar_bg_height_220_88: imageHeight === 220,
+      title_bar_bg_height_300_88: imageHeight === 300,
+      title_bar_bg_height_330_88: imageHeight === 330,
+      title_bar_bg_height_460_88: imageHeight === 460,
+      title_bar_bg_height_900_88: imageHeight === 900
+    }" v-else></div>
+    </div>
   </div>
 </template>
 

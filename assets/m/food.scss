@@ -39,11 +39,9 @@
 }
 
 .content_box {
-  position: absolute;
+  position: relative;
   background: white;
-  top: px2rem(300);
-  left: 0;
-  width: 100%;
+  top: px2rem(-44);
 
   .menu_box {
     position: -webkit-sticky;

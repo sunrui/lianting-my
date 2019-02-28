@@ -97,7 +97,6 @@
             roles: {}
           }
         },
-        roles: {},
         ui: {
           v_role_add: false,
           v_cover_mask: false,
@@ -133,22 +132,22 @@
 
           this.ui.roles.push({
             type: 'Admin',
-            roles: res.admins
+            roles: res.admins ? res.admins : []
           })
 
           this.ui.roles.push({
             type: 'Waiter',
-            roles: res.waiters
+            roles: res.waiters ? res.waiters : []
           })
 
           this.ui.roles.push({
             type: 'Cooker',
-            roles: res.cookers
+            roles: res.cookers ? res.cookers : []
           })
 
           this.ui.roles.push({
             type: 'Cashier',
-            roles: res.cashiers
+            roles: res.cashiers ? res.cashiers : []
           })
         })
       },

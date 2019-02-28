@@ -11,6 +11,9 @@
       <div class="shop_title_detail">{{http.res.info.notice ? http.res.info.notice : '欢迎光临本餐厅!'}}</div>
     </div>
 
+    <div class="blank_50"></div>
+    <div class="blank_40"></div>
+
     <div class="content_box">
       <div class="blank_10"></div>
 

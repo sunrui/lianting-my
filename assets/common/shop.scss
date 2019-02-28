@@ -7,6 +7,7 @@
     font-size: px2rem(36);
     color: white;
     font-weight: 400;
+    height: px2rem(36);
   }
 
   .shop_title_detail {
@@ -15,5 +16,6 @@
     overflow: hidden;
     text-overflow:ellipsis;
     white-space: nowrap;
+    height: px2rem(26);
   }
 }
