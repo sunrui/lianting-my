@@ -2,8 +2,10 @@
   <div>
     <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
+    <div class="blank_100"></div>
+
     <div class="box">
-      <div class="status status_top box_radius">
+      <div class="status box_radius">
         <div class="status_logo_radius status_logo_radius_center">
           <img class="status_logo_radius_image " :src="http.res.info.headImgUrl" :alt="this.http.res.info.nickName">
         </div>
