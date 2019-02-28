@@ -67,7 +67,7 @@
 
         <div class="addition_item">
           <div class="addition_item_label">手机号</div>
-          <div class="addition_item_content" v-if="phone">{{phone}}</div>
+          <div class="addition_item_content" style="user-select: text;" v-if="phone">{{phone}}</div>
           <div class="addition_item_link" v-else @click="btnBindPhone">未绑定</div>
         </div>
       </div>

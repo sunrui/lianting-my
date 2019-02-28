@@ -46,7 +46,7 @@
         </div>
         <div class="status_item">
           <div class="status_item_label">手机号</div>
-          <div class="status_item_content">{{http.res.reserve.phone}}</div>
+          <div class="status_item_content" style="user-select: text;">{{http.res.reserve.phone}}</div>
         </div>
         <div class="blank_20"></div>
       </div>

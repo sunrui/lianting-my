@@ -45,7 +45,7 @@
           <div class="status_item_content">{{http.res.reserve.male ? '先生' : '女士'}}</div>
         </div>
         <div class="status_item">
-          <div class="status_item_label">手机号</div>
+          <div class="status_item_label" style="user-select: text;">手机号</div>
           <div class="status_item_content">{{http.res.reserve.phone}}</div>
         </div>
         <div class="blank_20"></div>
@@ -85,14 +85,14 @@
 
 <script>
   import TitleBar from '../../../../../components/common/TitleBar'
-  import { httpReserveApi } from '../../../../../api/http/lt/httpReserveApi'
+  import {httpReserveApi} from '../../../../../api/http/lt/httpReserveApi'
 
   export default {
     metaInfo: {
       title: '预订详情'
     },
     middleware: 'auth',
-    components: { TitleBar },
+    components: {TitleBar},
     data() {
       return {
         title: {
@@ -151,7 +151,7 @@
       },
       httpReserve() {
         httpReserveApi.getOne(this.$route.params.shortId, this.$route.params.reserveId).then(res => {
-          res.progress.sort(function(a, b) {
+          res.progress.sort(function (a, b) {
             return b.createdAt - a.createdAt
           })
 
