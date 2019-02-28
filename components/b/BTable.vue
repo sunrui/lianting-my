@@ -36,13 +36,13 @@
       <div class="menu_box_extend" v-if="ui.v_menu_extend">
         <div class="menu_extend">
           <div class="menu_item menu_item_extend" v-for="(tableGroup, index) in http.res.tableGroups.elements">
-            <a :class="{menu_item_href:!isSelectMenu(tableGroup.id), menu_item_href_select:isSelectMenu(tableGroup.id)}"
+            <div :class="{menu_item_href:!isSelectMenu(tableGroup.id), menu_item_href_select:isSelectMenu(tableGroup.id)}"
                @click="selectMenu(index, tableGroup.id, true)">
               <div class="menu_item_label">{{tableGroup.name}}</div>
               <div class="menu_item_select" v-if="isSelectMenu(tableGroup.id)">
                 <div class="menu_item_select_line"></div>
               </div>
-            </a>
+            </div>
           </div>
         </div>
 
