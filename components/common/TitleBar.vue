@@ -62,6 +62,7 @@
     data() {
       return {
         ui: {
+          backUri: this.backUri,
           inWechat: false
         }
       }
@@ -73,7 +74,7 @@
       this.ui.inWechat = userAgent.match(/MicroMessenger/i) || userAgent.match(/webdebugger/i)
     },
     beforeDestroy() {
-      window.removeEventListener('popstate', this.popStateHandle)
+      // window.removeEventListener('popstate', this.popStateHandle)
     },
     methods: {
       popStateHandle(e) {
@@ -85,26 +86,26 @@
         }
       },
       setBackUri(backUri) {
-        window.history.backUri = backUri
+        this.ui.backUri = backUri
       },
       initHistoryBack() {
         window.addEventListener('popstate', this.popStateHandle)
 
-        if (!Boolean(this.backUri)) {
+        if (!Boolean(this.ui.backUri)) {
           window.history.pushState('forward', null, null)
           window.history.forward()
           return
         }
 
-        window.history.backUri = this.backUri
+        window.history.backUri = this.ui.backUri
         window.history.pThis = this
 
         window.history.pushState('forward', null, null)
         window.history.forward()
       },
       btnBack() {
-        if (Boolean(this.backUri)) {
-          this.$router.push(this.backUri)
+        if (Boolean(this.ui.backUri)) {
+          this.$router.push(this.ui.backUri)
         } else {
           this.$router.back()
         }
