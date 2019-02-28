@@ -1,5 +1,7 @@
 <template>
   <div>
+    <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
+
     <div class="shop_bg"></div>
 
     <div :class="{ cover_mask_9: ui.v_cover_mask}" @click="btnCoverMask"></div>
@@ -96,22 +98,31 @@
 </template>
 
 <script>
-  import { httpShopApi } from '../../../api/http/shop/httpShopApi'
-  import { httpCouponApi } from '../../../api/http/lt/httpCouponApi'
-  import { httpInfoApi } from '../../../api/http/lt/httpInfoApi'
-  import { httpQueueApi } from '../../../api/http/lt/httpQueueApi'
-  import { httpWifiApi } from '../../../api/http/lt/httpWifiApi'
-  import { httpReserveApi } from '../../../api/http/lt/httpReserveApi'
-  import { httpWallApi } from '../../../api/http/lt/httpWallApi'
-  import { httpFoodApi } from '../../../api/http/lt/httpFoodApi'
+  import {httpShopApi} from '../../../api/http/shop/httpShopApi'
+  import {httpCouponApi} from '../../../api/http/lt/httpCouponApi'
+  import {httpInfoApi} from '../../../api/http/lt/httpInfoApi'
+  import {httpQueueApi} from '../../../api/http/lt/httpQueueApi'
+  import {httpWifiApi} from '../../../api/http/lt/httpWifiApi'
+  import {httpReserveApi} from '../../../api/http/lt/httpReserveApi'
+  import {httpWallApi} from '../../../api/http/lt/httpWallApi'
+  import {httpFoodApi} from '../../../api/http/lt/httpFoodApi'
+  import TitleBar from '../../../components/common/TitleBar'
 
   export default {
     metaInfo: {
       title: '恋厅'
     },
     middleware: 'auth',
+    components: {TitleBar},
     data() {
       return {
+        title: {
+          canBack: false,
+          title: '',
+          backUri: `/m/${this.$route.params.shortId}/`,
+          theme: 'image',
+          imageHeight: 0
+        },
         ui: {
           v_cover_mask: false,
           v_wifi: false,
@@ -168,10 +179,10 @@
       }
     },
     created() {
-      this.httpShop()
       this.httpInfo()
       this.httpCoupon()
       this.httpQueuePeople()
+      this.httpShop()
     },
     methods: {
       btnPhone() {

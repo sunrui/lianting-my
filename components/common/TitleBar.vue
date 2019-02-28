@@ -67,9 +67,7 @@
       }
     },
     mounted() {
-      window.addEventListener('popstate', this.popStateHandle)
-
-      this.initHistoryBack()
+      // this.initHistoryBack()
 
       let userAgent = navigator.userAgent.toLowerCase() || window.navigator.userAgent.toLowerCase()
       this.ui.inWechat = userAgent.match(/MicroMessenger/i) || userAgent.match(/webdebugger/i)
@@ -83,13 +81,15 @@
         window.history.forward()
 
         if (window.history.pThis && window.history.backUri) {
-          window.history.pThis.$router.push(window.history.backUri)
+          window.location = window.history.backUri
         }
       },
       setBackUri(backUri) {
         window.history.backUri = backUri
       },
       initHistoryBack() {
+        window.addEventListener('popstate', this.popStateHandle)
+
         if (!Boolean(this.backUri)) {
           window.history.pushState('forward', null, null)
           window.history.forward()
