@@ -53,12 +53,6 @@
       }
     },
     created() {
-      this.$store.commit('navbar/update', {
-        canBack: true,
-        title: '编辑品牌资料',
-        home: '/'
-      })
-
       httpShopGroupApi.get(this.$route.params.shopGroupId).then(res => {
         this.shopGroupReq.model = res
       })

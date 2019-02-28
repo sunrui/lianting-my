@@ -46,19 +46,19 @@
         <div class="addition_item">
           <div class="addition_item_label">性别</div>
           <div class="addition_item_radio">
-            <div style="display: inline-block" @click="btnChooseSex(true)">
+            <div style="display: inline-block" @click="btnChooseMale(true)">
               <div v-bind:class="{
                 addition_item_radio_icon_select: http.req.reserve.male,
                 addition_item_radio_icon_unselect: !http.req.reserve.male
                 }"></div>
-              <div class="addition_item_radio_label">男</div>
+              <div class="addition_item_radio_label">先生</div>
             </div>
-            <div style="display: inline-block" @click="btnChooseSex(false)">
+            <div style="display: inline-block" @click="btnChooseMale(false)">
               <div v-bind:class="{
                 addition_item_radio_icon_select: !http.req.reserve.male,
                 addition_item_radio_icon_unselect: http.req.reserve.male
                 }"></div>
-              <div class="addition_item_radio_label">女</div>
+              <div class="addition_item_radio_label">女士</div>
             </div>
           </div>
         </div>

@@ -95,12 +95,6 @@
       }
     },
     created() {
-      this.$store.commit('navbar/update', {
-        canBack: true,
-        title: '创建店铺',
-        home: '/'
-      })
-
       let phone = stateApi.user.getPhone()
       if (!Boolean(phone)) {
         this.ui.phoneBindNeeded = true

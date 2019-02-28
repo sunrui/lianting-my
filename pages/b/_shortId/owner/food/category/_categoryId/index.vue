@@ -327,7 +327,7 @@
             this.$msgBox.doModal({
               type: 'yes',
               title: '添加餐食价格',
-              content: `名称${highlightApi.highlight(one.name)}已存在。`
+              content: `名称${highlightApi.highlight(this.ui.food.name)}已存在。`
             })
 
             return

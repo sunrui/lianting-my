@@ -29,22 +29,24 @@
             </div>
             <div v-else-if="ui.error.json.error">
               <div class="addition_item">
-                <div class="addition_item_label"></div>
-                <input class="addition_item_input">
-              </div>
-              <div class="addition_item">
                 <div class="addition_item_label">error</div>
-                <input class="addition_item_input" v-model="ui.error.json.error">
+                <label>
+                  <input class="addition_item_input" v-model="ui.error.json.error">
+                </label>
               </div>
               <div class="addition_item">
                 <div class="addition_item_label_text_area">data</div>
                 <div class="addition_item_text_area">
-                  <textarea class="addition_item_text_input" v-model="ui.error.json.data"></textarea>
+                  <label>
+                    <textarea class="addition_item_text_input" v-model="ui.error.json.data"></textarea>
+                  </label>
                 </div>
               </div>
               <div class="addition_item">
                 <div class="addition_item_label">file</div>
-                <input class="addition_item_input" v-model="ui.error.json.file">
+                <label>
+                  <input class="addition_item_input" v-model="ui.error.json.file">
+                </label>
               </div>
             </div>
           </div>

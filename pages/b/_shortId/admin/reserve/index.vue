@@ -5,7 +5,7 @@
     <div class="box">
       <div class="status box_radius">
         <div class="status_logo_radius status_logo_radius_center">
-          <img class="status_logo_radius_image reserve_logo_radius_image" alt="">
+          <img class="status_logo_radius_image reserve_logo_radius_image" alt="预订">
         </div>
 
         <div class="status_title">今日预订 {{getTodayReserves().length}}</div>

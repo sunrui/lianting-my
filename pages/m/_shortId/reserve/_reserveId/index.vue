@@ -5,11 +5,11 @@
     <div class="box">
       <div class="status box_radius">
         <div class="status_logo_radius status_logo_radius_center">
-          <img class="status_logo_radius_image " v-bind:class="{
+          <div class="status_logo_radius_image " v-bind:class="{
           new_logo_radius_image: http.res.reserve.status === 'Wait',
           success_logo_radius_image: http.res.reserve.status === 'Accept' || http.res.reserve.status === 'AcceptRead' || http.res.reserve.status === 'Arrived',
           failed_logo_radius_image: http.res.reserve.status === 'Refused' || http.res.reserve.status === 'RefusedRead' || http.res.reserve.status === 'Cancel',
-          }" alt="">
+          }"></div>
         </div>
 
         <div class="status_title">{{getStatus(http.res.reserve.status)}}</div>
@@ -39,6 +39,10 @@
         <div class="status_item">
           <div class="status_item_label">联系人</div>
           <div class="status_item_content">{{http.res.reserve.name}}</div>
+        </div>
+        <div class="status_item">
+          <div class="status_item_label">性别</div>
+          <div class="status_item_content">{{http.res.reserve.male ? '先生' : '女士'}}</div>
         </div>
         <div class="status_item">
           <div class="status_item_label">手机号</div>

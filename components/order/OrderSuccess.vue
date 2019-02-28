@@ -5,7 +5,7 @@
     <div class="box">
       <div class="status box_radius">
         <div class="status_logo_radius status_logo_radius_center">
-          <img class="status_logo_radius_image success_logo_radius_image" alt="">
+          <img class="status_logo_radius_image success_logo_radius_image" alt="下单成功">
         </div>
 
         <div class="status_title">订单已发送后厨</div>

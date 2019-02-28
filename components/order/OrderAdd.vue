@@ -97,7 +97,9 @@
         <div class="addition_item">
           <div class="addition_item_label_text_area">口味</div>
           <div class="addition_item_text_area">
-            <textarea class="addition_item_text_input" :placeholder="roleWaiter ? '请输入顾客的口味要求。' : '请输入您的口味要求，我们会尽量安排。'" v-model="ui.tasteNote"></textarea>
+            <label>
+              <textarea class="addition_item_text_input" :placeholder="roleWaiter ? '请输入顾客的口味要求。' : '请输入您的口味要求，我们会尽量安排。'" v-model="ui.tasteNote"></textarea>
+            </label>
           </div>
         </div>
       </div>

@@ -179,19 +179,11 @@
         let xmlHttpRequest = new XMLHttpRequest()
         xmlHttpRequest.upload.onprogress = function (e) {
           if (e.type === 'progress') {
-            let percent = Math.round(e.loaded / e.total * 100, 2) + '%'
-            console.log(percent)
+            let percent = e.loaded / e.total * 100
+            this.ui.percent = Math.round(percent) + '%'
           }
         }
 
-        xmlHttpRequest.onreadystatechange = function (e) {
-          if (xmlHttpRequest.readyState === 4) {
-            if (xmlHttpRequest.status === 200)
-              console.log('成功')
-            else
-              console.log('失败')
-          }
-        }
         xmlHttpRequest.open('POST', 'http://' + sign.endPoint)
         xmlHttpRequest.send(formData)
       },
@@ -247,9 +239,6 @@
               }
 
               pThis.ui.fileUrl += '?' + new Date().getTime()
-
-              console.log(pThis.ui.fileUrl)
-
               pThis.$emit('uploadSuccess', pThis.ui.fileUrl)
             },
             Error(up, err) {

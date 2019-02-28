@@ -20,11 +20,11 @@ export const scrollApi = {
     let _currentY = currentY
     setTimeout(() => {
       _currentY += Math.ceil(needScrollTop / 10)
-      window.scrollTo(_currentY, currentY)
+      window.scrollTo(0, currentY)
       if (needScrollTop > 10 || needScrollTop < -10) {
         this.scrollAnimation(_currentY, targetY)
       } else {
-        window.scrollTo(_currentY, targetY)
+        window.scrollTo(0, targetY)
       }
     }, 1)
   }

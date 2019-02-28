@@ -67,7 +67,7 @@
       initHistoryBack() {
         if (!Boolean(this.backUri)) {
           window.history.pushState('forward', null, null)
-          window.history.forward(1)
+          window.history.forward()
           return
         }
 
@@ -76,7 +76,7 @@
 
         window.addEventListener('popstate', function (e) {
           window.history.pushState('forward', null, null)
-          window.history.forward(1)
+          window.history.forward()
 
           if (window.history.pThis) {
             window.history.pThis.$router.push(window.history.backUri)
@@ -86,13 +86,13 @@
         })
 
         window.history.pushState('forward', null, null)
-        window.history.forward(1)
+        window.history.forward()
       },
       btnBack() {
         if (Boolean(this.backUri)) {
           this.$router.push(this.backUri)
         } else {
-          this.$router.back(-1)
+          this.$router.back()
         }
       }
     }

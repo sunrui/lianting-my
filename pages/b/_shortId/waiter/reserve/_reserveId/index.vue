@@ -41,6 +41,10 @@
           <div class="status_item_content">{{http.res.reserve.name}}</div>
         </div>
         <div class="status_item">
+          <div class="status_item_label">性别</div>
+          <div class="status_item_content">{{http.res.reserve.male ? '先生' : '女士'}}</div>
+        </div>
+        <div class="status_item">
           <div class="status_item_label">手机号</div>
           <div class="status_item_content">{{http.res.reserve.phone}}</div>
         </div>

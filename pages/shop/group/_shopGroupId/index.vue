@@ -53,12 +53,6 @@
       }
     },
     created() {
-      this.$store.commit('navbar/update', {
-        canBack: true,
-        title: '品牌管理',
-        home: '/'
-      })
-
       httpShopGroupApi.get(this.$route.params.shopGroupId).then(res => {
         this.shopGroup = res
       })
