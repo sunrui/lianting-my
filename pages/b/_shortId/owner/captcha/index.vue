@@ -129,7 +129,11 @@
           this.$msgBox.doModal({
             type: 'yes',
             title: '二维码',
-            content: '暂无餐桌，如需生成请先添加餐桌。'
+            content: '暂无餐桌，点击确认要转到添加餐桌页。'
+          }).then(async (val) => {
+            if (val === 'Yes') {
+              this.$router.push(`/b/${this.$route.params.shortId}/owner/table`)
+            }
           })
 
           return
