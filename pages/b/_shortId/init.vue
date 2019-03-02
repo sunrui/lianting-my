@@ -21,7 +21,6 @@
 </template>
 
 <script>
-  import {httpShopApi} from '../../../api/http/shop/httpShopApi'
 
   export default {
     metaInfo: {
@@ -30,11 +29,6 @@
     middleware: 'auth',
     data() {
       return {
-        http: {
-          res: {
-            shop: {}
-          }
-        },
         ui: {
           tasks: [
             '认证您的身份信息',
@@ -44,11 +38,6 @@
           ]
         }
       }
-    },
-    created() {
-      httpShopApi.getOne(this.$route.params.shortId).then(res => {
-        this.http.res.shop = res
-      })
     },
     methods: {
       btnShopOwner() {
