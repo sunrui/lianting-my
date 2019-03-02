@@ -92,7 +92,7 @@
         title: {
           canBack: true,
           title: '创建餐桌组',
-          backUri: `/b/${this.$route.params.shortId}/owner`,
+          backUri: `/b/${this.$route.params.shortId}/owner/table`,
           theme: 'image',
           imageHeight: 300
         },

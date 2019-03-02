@@ -21,7 +21,7 @@
 </template>
 
 <script>
-  import { scrollApi } from '../../api/local/scrollApi'
+  import {scrollApi} from '../../api/local/scrollApi'
 
   export default {
     props: {

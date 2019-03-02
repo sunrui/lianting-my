@@ -37,7 +37,11 @@
         </div>
       </div>
 
-      <div class="food_group_box" :id="'box_' + foodGroup.id" v-for="foodGroup in http.res.foodGroups.elements">
+      <div class="empty_center" v-if="http.res.foodGroups.elements.length === 0">
+        <img class="empty_image" src="/img/no/no_food.png" alt="餐食">
+        <div class="empty_label">要添加餐食组，请点击右上角 + 号。</div>
+      </div>
+      <div class="food_group_box" v-else :id="'box_' + foodGroup.id" v-for="foodGroup in http.res.foodGroups.elements">
         <div class="food_group">
           <div class="food_group_anchor" :id="foodGroup.id"></div>
           <div class="food_group_name" @click="btnGroupEdit(foodGroup)">{{foodGroup.name}}</div>
@@ -177,7 +181,9 @@
           res: {
             shop: {},
             info: {},
-            foodGroups: {}
+            foodGroups: {
+              elements: []
+            }
           }
         }
       }
@@ -306,6 +312,10 @@
         }, 100)
       },
       btnOrder(foodGroup) {
+        if (foodGroup.foodCategories.length === 0) {
+          return
+        }
+
         this.$router.push(`/b/${this.$route.params.shortId}/owner/food/group/${foodGroup.id}/order`)
       },
       btnGroupAdd() {

@@ -37,7 +37,11 @@
         </div>
       </div>
 
-      <div class="food_group_box" :id="'box_' + tableGroup.id" v-for="tableGroup in http.res.tableGroups.elements">
+      <div class="empty_center" v-if="http.res.tableGroups.elements.length === 0">
+        <img class="empty_image" src="/img/no/no_table.png" alt="餐桌">
+        <div class="empty_label">要添加餐桌组，请点击右上角 + 号。</div>
+      </div>
+      <div class="food_group_box" v-else :id="'box_' + tableGroup.id" v-for="tableGroup in http.res.tableGroups.elements">
         <div class="food_group">
           <div class="food_group_anchor" :id="tableGroup.id"></div>
           <div class="food_group_name" @click="btnGroupEdit(tableGroup)">{{tableGroup.name}}</div>
@@ -152,7 +156,9 @@
           res: {
             shop: {},
             info: {},
-            tableGroups: {}
+            tableGroups: {
+              elements: []
+            }
           }
         }
       }
