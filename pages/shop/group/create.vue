@@ -82,7 +82,7 @@
           req: {
             shopGroup: {},
             bind: {
-              phone: '13012341234',
+              phone: '',
               code: ''
             }
           }

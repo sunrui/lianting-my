@@ -86,8 +86,8 @@
         http: {
           req: {
             bind: {
-              phone: '13012341234',
-              code: '123456'
+              phone: '',
+              code: ''
             }
           }
         },
