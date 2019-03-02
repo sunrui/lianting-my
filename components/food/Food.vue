@@ -102,7 +102,8 @@
             food_image_big_box: foodGroup.groupMode === 'Big',
             food_image_box: foodGroup.groupMode !== 'Big',
             }" class="">
-              <img class="food_image" :src="foodCategory.image" :alt="foodCategory.name" @click="btnPreview(foodCategory.image)">
+              <img class="food_image" :src="foodCategory.image" :alt="foodCategory.name" v-if="foodGroup.groupMode !== 'Big'" @click="btnPreview(foodCategory.image)">
+              <img class="food_image" :src="foodCategory.image" :alt="foodCategory.name" v-else>
               <div class="addition_item_tag_label food_image_tag" v-if="foodCategory.tagName" v-bind:class="{
                    addition_item_tag_color_1: foodCategory.tagIndex === 1,
                    addition_item_tag_color_2: foodCategory.tagIndex === 2,
