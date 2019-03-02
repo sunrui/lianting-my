@@ -370,11 +370,15 @@
       ballDropEnter(el, done) {
         el.offsetHeight
         this.$nextTick(() => {
-          el.style.webkitTransform = 'translate3d(2em, 0, 0)'
-          el.style.transform = 'translate3d(2em, 0, 0)'
+          let rect = el.getBoundingClientRect()
+          let x = rect.left + rect.width / 2
+          let y = -rect.height / 2
+
+          el.style.webkitTransform = `translate3d(${x}px, ${y}px, 0)`
+          el.style.transform = `translate3d(${x}px, ${y}px, 0)`
           let inner = el.getElementsByClassName('inner-hook')[0]
-          inner.style.webkitTransform = 'translate3d(0, 0, 0)'
-          inner.style.transform = 'translate3d(0, 0, 0)'
+          inner.style.webkitTransform = `translate3d(${x}px, 0, 0)`
+          inner.style.transform = `translate3d(${x}px, 0, 0)`
           el.addEventListener('transitionend', done)
         })
       },
