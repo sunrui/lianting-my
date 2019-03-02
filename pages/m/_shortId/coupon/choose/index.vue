@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <div>
     <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
     <div class="box" v-for="coupon in http.res.coupon.valid" @click="btnChooseCoupon(coupon)">
@@ -167,7 +167,7 @@
     <div class="blank_20"></div>
 
     <div class="coupon_choose_none" @click="btnChooseNone">不使用任何优惠券</div>
-  </section>
+  </div>
 </template>
 
 <script>

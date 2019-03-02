@@ -6,7 +6,7 @@
 
     <div class="box" v-bind:key="shopGroup.id" v-for="shopGroup in http.res.shop.shopGroups">
       <div class="food_group box_radius">
-        <div class="group_box_name">{{shopGroup.name}}</div>
+        <div class="group_box_name">{{shopGroup.name}} ({{shopGroup.corporation}})</div>
       </div>
 
       <div class="box" v-for="(shop, index) in shopGroup.shops">
@@ -86,10 +86,9 @@
       <div class="shop_divide" v-if="index !== http.res.shop.shops.length - 1"></div>
     </div>
 
-    <div class="shop_create" v-if="ui.unActive === 0">
+    <div class="shop_create" v-if="ui.freeShop === 0">
       <div class="shop_create_button" @click="btnCreate">创建新的店铺</div>
     </div>
-
   </div>
 </template>
 
@@ -129,7 +128,7 @@
             { image: '/img/role/role_cooker.png', name: '厨师', role: 'cooker' },
             { image: '/img/role/role_cashier.png', name: '财务', role: 'cashier' }
           ],
-          unActive: 0
+          freeShop: 0
         }
       }
     },
@@ -163,7 +162,7 @@
       },
       httpShopInfo(shop) {
         if (shop.licenseType === 'Free') {
-          this.ui.unActive++
+          this.ui.freeShop++
         }
 
         httpInfoApi.get(shop.shortId).then(res => {

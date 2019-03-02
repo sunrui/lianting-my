@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <div>
     <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
     <div class="box" v-for="coupon in http.res.coupon.valid">
@@ -99,7 +99,7 @@
     </div>
 
     <div class="blank_30"></div>
-  </section>
+  </div>
 </template>
 
 <script>

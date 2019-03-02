@@ -4,10 +4,10 @@
 
     <div class="box">
       <div class="addition box_radius">
-        <div v-show="ui.shopGroupName">
+        <div v-show="$route.query.shopGroupName">
           <div class="addition_item">
             <div class="addition_item_label">品牌名称</div>
-            <div class="addition_item_label">{{http.req.shop.shopGroupId}}</div>
+            <div class="addition_item_label">{{$route.query.shopGroupName}}</div>
           </div>
 
           <div class="box_divide"></div>
@@ -96,14 +96,13 @@
               shortId: ''
             },
             bind: {
-              phone: '13012341234',
+              phone: '',
               code: ''
             }
           }
         },
         ui: {
           phone: null,
-          shopGroupName: null,
           code: {
             limit: 0,
             interval: 0
@@ -119,7 +118,6 @@
     },
     mounted() {
       this.http.req.shop.shopGroupId = this.$route.query.shopGroupId
-      this.ui.shopGroupName = this.$route.query.shopGroupName
     },
     methods: {
       updateTime() {
@@ -166,7 +164,7 @@
       },
       httpCreate() {
         httpShopApi.post(this.http.req.shop).then(res => {
-          if (res.haveNormal) {
+          if (res.haveFree) {
             this.$msgBox.doModal({
               type: 'yes',
               title: '创建店铺',
@@ -278,9 +276,6 @@
         } else {
           this.httpCreate()
         }
-      },
-      btnBack() {
-        this.$router.push(this.title.backUri)()
       }
     }
   }
