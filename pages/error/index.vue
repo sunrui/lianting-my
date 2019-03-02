@@ -38,7 +38,7 @@
                 <div class="addition_item_label_text_area">data</div>
                 <div class="addition_item_text_area">
                   <label>
-                    <textarea class="addition_item_text_input" readonly="readonly" v-model="ui.error.json.data"></textarea>
+                    <textarea class="addition_item_text_input" v-model="ui.error.json.data"></textarea>
                   </label>
                 </div>
               </div>
@@ -93,8 +93,8 @@
           canBack: true,
           title: '内部错误',
           backUri: null,
-          theme: 'white',
-          imageHeight: 0
+          theme: 'image',
+          imageHeight: 220
         },
         ui: {
           v_report: false,
@@ -107,34 +107,37 @@
         }
       }
     },
-    created: function () {
-      let error = storeApi.object.get('error')
-
-      if (!Boolean(error)) {
-        this.ui.error.message = '未知错误'
-        return
-      }
-
-      try {
-        error = JSON.stringify(error)
-        this.ui.error.json = JSON.parse(error)
-
-        if (typeof this.ui.error.json === 'string') {
-          this.ui.error.json = null
-          this.ui.error.message = error
-        } else {
-          if (this.ui.error.json.error === 'CoreFrequent') {
-            this.ui.error.frequent = this.ui.error.json.data.value * 1000
-            this.ui.error.json = null
-          } else {
-            this.ui.error.json.data = JSON.stringify(this.ui.error.json.data)
-          }
-        }
-      } catch (e) {
-        this.ui.error.message = stringApi.trim(error)
-      }
+    created() {
+      this.initError()
     },
     methods: {
+      initError() {
+        let error = storeApi.object.get('error')
+
+        if (!Boolean(error)) {
+          this.ui.error.message = '未知错误'
+          return
+        }
+
+        try {
+          error = JSON.stringify(error)
+          this.ui.error.json = JSON.parse(error)
+
+          if (typeof this.ui.error.json === 'string') {
+            this.ui.error.json = null
+            this.ui.error.message = error
+          } else {
+            if (this.ui.error.json.error === 'CoreFrequent') {
+              this.ui.error.frequent = this.ui.error.json.data.value * 1000
+              this.ui.error.json = null
+            } else {
+              this.ui.error.json.data = JSON.stringify(this.ui.error.json.data)
+            }
+          }
+        } catch (e) {
+          this.ui.error.message = stringApi.trim(error)
+        }
+      },
       elapsedTime(time) {
         return timeApi.elapsedTime(time)
       },
@@ -142,6 +145,8 @@
         this.ui.v_report = true
       },
       btnReportConfirm() {
+        this.initError()
+
         if (this.ui.error.frequent) {
           this.$msgBox.doModal({
             type: 'yes',

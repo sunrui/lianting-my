@@ -22,11 +22,6 @@
           <div class="addition_item_label">我的店铺</div>
           <div class="addition_item_link"></div>
         </div>
-        <div class="box_divide"></div>
-        <div class="addition_item" @click="btnNav('shop/group/create')">
-          <div class="addition_item_label">创建品牌</div>
-          <div class="addition_item_link"></div>
-        </div>
       </div>
     </div>
   </div>
