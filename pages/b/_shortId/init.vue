@@ -2,20 +2,22 @@
   <div class="init">
     <div class="init_house"></div>
 
+    <div class="blank_20"></div>
+
     <div class="task">
       <div class="task_one" v-for="(task, index) in ui.tasks">
         <div class="task_one_number">{{index + 1}}</div>
         <div class="task_one_content">
           <div class="task_one_content_label">{{task}}</div>
+          <div class="task_one_content_finish"></div>
         </div>
       </div>
     </div>
 
-    <div class="blank_30"></div>
+    <div class="blank_100"></div>
     <div class="button_big" @click="btnShopOwner">进入店铺管理</div>
     <div class="blank_20"></div>
   </div>
-
 </template>
 
 <script>
@@ -38,8 +40,7 @@
             '认证您的身份信息',
             '确认您的店铺唯一标识',
             '生成店铺初始化数据',
-            '店铺创建成功',
-            '生成店铺二维码'
+            '店铺创建成功'
           ]
         }
       }

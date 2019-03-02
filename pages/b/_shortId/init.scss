@@ -50,5 +50,15 @@
       margin-left: px2rem(30);
       color: #999999;
     }
+
+    .task_one_content_finish {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+
+      background-image: url("/img/b/init/b_init_finish.png");
+      width: px2rem(103);
+      height: px2rem(107);
+    }
   }
 }
