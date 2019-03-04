@@ -71,8 +71,10 @@
         <div class="shop_license_price" v-bind:class="{
           shop_license_label_free: license.plan.licenseType === 'Free',
           shop_license_label_normal: license.plan.licenseType === 'Normal',
-          shop_license_label_senior: license.plan.licenseType === 'Senior'
-          }">{{license.plan.price <= 0 ? '不收取任何费用' : '￥' + license.plan.price + '/年'}}
+          shop_license_label_senior: license.plan.licenseType === 'Senior',
+          shop_license_price_free: license.plan.licenseType === 'Free',
+          }">{{license.plan.price <= 0 ? '不限时免费' : ''}} {{'￥' + license.plan.price + '/年'}}
+
         </div>
 
         <div class="blank_10"></div>
@@ -186,7 +188,7 @@
           shop_license_button_free: license.plan.licenseType === 'Free',
           shop_license_button_normal: license.plan.licenseType === 'Normal',
           shop_license_button_senior: license.plan.licenseType === 'Senior'
-          }" v-if="license.plan.price <= 0">无需续费
+          }" v-if="license.plan.price <= 0">不限时免费
         </div>
         <div class="shop_license_button" v-bind:class="{
           shop_license_button_free: license.plan.licenseType === 'Free',
@@ -226,10 +228,10 @@
 </template>
 
 <script>
-  import {httpShopApi} from '../../../../../api/http/shop/httpShopApi';
-  import {httpShopLicenseApi} from '../../../../../api/http/shop/httpShopLicenseApi';
-  import TitleBar from '../../../../../components/common/TitleBar';
-  import {scrollApi} from '../../../../../api/local/scrollApi';
+  import {httpShopApi} from '../../../../../api/http/shop/httpShopApi'
+  import {httpShopLicenseApi} from '../../../../../api/http/shop/httpShopLicenseApi'
+  import TitleBar from '../../../../../components/common/TitleBar'
+  import {scrollApi} from '../../../../../api/local/scrollApi'
 
   export default {
     metaInfo: {
@@ -258,42 +260,42 @@
           licensePlan: null,
           year: 1
         }
-      };
+      }
     },
     created() {
-      this.httpShop();
-      this.httpLicensePlan();
+      this.httpShop()
+      this.httpLicensePlan()
     },
     methods: {
       httpShop() {
         httpShopApi.getOne(this.$route.params.shortId).then(res => {
-          this.http.res.shop = res;
-        });
+          this.http.res.shop = res
+        })
       },
       httpLicensePlan() {
         httpShopLicenseApi.getPlanAll(this.http.res.shop.type, 0, 20).then(res => {
-          this.http.res.shopLicensePlans = res;
-        });
+          this.http.res.shopLicensePlans = res
+        })
       },
       btnCoverMask() {
-        this.ui.vCoverMask = false;
-        this.ui.vChargeYear = false;
+        this.ui.vCoverMask = false
+        this.ui.vChargeYear = false
 
-        scrollApi.enable(true);
+        scrollApi.enable(true)
       },
       btnChargeHistory() {
-        this.$router.push(`/b/${this.$route.params.shortId}/owner/license/history`);
+        this.$router.push(`/b/${this.$route.params.shortId}/owner/license/history`)
       },
       btnYearSelect(licensePlan) {
-        this.ui.vCoverMask = true;
-        this.ui.vChargeYear = true;
+        this.ui.vCoverMask = true
+        this.ui.vChargeYear = true
 
-        this.ui.licensePlan = licensePlan;
+        this.ui.licensePlan = licensePlan
 
-        scrollApi.enable(false);
+        scrollApi.enable(false)
       },
       btnChooseYear(year) {
-        this.ui.year = year;
+        this.ui.year = year
       },
       prepareWechatPay(jsPay) {
         function onBridgeReady() {
@@ -307,68 +309,68 @@
               'paySign': jsPay.paySign //微信签名
             },
             function (res) {
-              alert(JSON.stringify(res));
+              alert(JSON.stringify(res))
               if (res.err_msg === 'get_brand_wcpay_request:ok') {
-                alert('支付已成功，支付结果可能存在延迟，请稍候刷新等待服务器返回。');
+                alert('支付已成功，支付结果可能存在延迟，请稍候刷新等待服务器返回。')
               }     // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠
               else if (res.err_msg === 'get_brand_wcpay_request:cancel') {
-                alert('您已取消支付');
+                alert('您已取消支付')
               }
             }
-          );
+          )
         }
 
         if (typeof WeixinJSBridge === 'undefined') {
           if (document.addEventListener) {
-            document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+            document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false)
           } else if (document.attachEvent) {
-            document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
-            document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+            document.attachEvent('WeixinJSBridgeReady', onBridgeReady)
+            document.attachEvent('onWeixinJSBridgeReady', onBridgeReady)
           }
         } else {
-          onBridgeReady();
+          onBridgeReady()
         }
       },
       btnChargeConfirm() {
-        let userAgent = navigator.userAgent.toLowerCase() || window.navigator.userAgent.toLowerCase();
-        let inWechat = userAgent.match(/MicroMessenger/i) || userAgent.match(/webdebugger/i);
+        let userAgent = navigator.userAgent.toLowerCase() || window.navigator.userAgent.toLowerCase()
+        let inWechat = userAgent.match(/MicroMessenger/i) || userAgent.match(/webdebugger/i)
 
         if (inWechat) {
           this.$msgBox.doModal({
             type: 'yes',
             title: '立即续费',
             content: '请在微信中打开。'
-          });
+          })
 
           // return
         }
 
         httpShopLicenseApi.postOrderTest(this.$route.params.shortId, this.ui.licensePlan.id, this.ui.year, 'WECHAT_JSAPI').then(res => {
-          this.ui.vCoverMask = false;
-          this.ui.vChargeYear = false;
+          this.ui.vCoverMask = false
+          this.ui.vChargeYear = false
           this.$msgBox.doModal({
             type: 'yes',
             title: '立即续费',
             content: '测试续费成功。'
-          });
-        });
+          })
+        })
 
         if (1) {
-          return;
+          return
         }
 
         httpShopLicenseApi.postOrder(this.$route.params.shortId, this.ui.licensePlan.id, this.ui.year, 'WECHAT_JSAPI').then(res => {
-          this.ui.vCoverMask = false;
-          this.ui.vChargeYear = false;
+          this.ui.vCoverMask = false
+          this.ui.vChargeYear = false
 
           if (res.shortIdNotExists) {
             this.$msgBox.doModal({
               type: 'yes',
               title: '立即续费',
               content: '店铺不存在。'
-            });
+            })
 
-            return;
+            return
           }
 
           if (res.shopLicensePlanIdNotExists) {
@@ -376,9 +378,9 @@
               type: 'yes',
               title: '立即续费',
               content: '续费授权不存在。'
-            });
+            })
 
-            return;
+            return
           }
 
           if (res.licenseTypeNotMatch) {
@@ -386,14 +388,14 @@
               type: 'yes',
               title: '立即续费',
               content: '续费类型不区配，如您需升级套餐请联系我们。'
-            });
+            })
 
-            return;
+            return
           }
 
           if (res.pay) {
             if (res.pay.wechat) {
-              this.prepareWechatPay(res.pay.wechat.jsPay);
+              this.prepareWechatPay(res.pay.wechat.jsPay)
             }
 
             if (res.pay.wechatOpenIdNotExists) {
@@ -401,8 +403,8 @@
                 type: 'yes',
                 title: '立即续费',
                 content: '请先获得微信授权。'
-              });
-              return;
+              })
+              return
             }
 
             if (res.pay.payConfigWechatNotExists) {
@@ -410,8 +412,8 @@
                 type: 'yes',
                 title: '立即续费',
                 content: '商户尚未设置微信支付参数。'
-              });
-              return;
+              })
+              return
             }
 
             if (res.pay.payWayNotSupport) {
@@ -419,13 +421,13 @@
                 type: 'yes',
                 title: '立即续费',
                 content: '暂未支持此支付方式。'
-              });
+              })
             }
           }
-        });
+        })
       }
     }
-  };
+  }
 </script>
 
 <style scoped lang="scss">
