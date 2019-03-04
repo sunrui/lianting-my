@@ -2,7 +2,6 @@ import { debugApi } from './debugApi'
 
 export const logApi = {
   log(data) {
-
     if (debugApi.debug) {
       console.log(data)
     }
