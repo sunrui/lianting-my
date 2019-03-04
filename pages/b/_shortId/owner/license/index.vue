@@ -311,10 +311,14 @@
             function (res) {
               alert(JSON.stringify(res))
               if (res.err_msg === 'get_brand_wcpay_request:ok') {
-                alert('支付已成功，支付结果可能存在延迟，请稍候刷新等待服务器返回。')
-              }     // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠
-              else if (res.err_msg === 'get_brand_wcpay_request:cancel') {
-                alert('您已取消支付')
+                this.$msgBox.doModal({
+                  type: 'yes',
+                  title: '立即续费',
+                  content: '支付已成功，支付结果可能存在延迟，请稍候刷新等待服务器返回。'
+                }).then(async (val) => {
+                  this.httpShop()
+                })
+              } else if (res.err_msg === 'get_brand_wcpay_request:cancel') {
               }
             }
           )
