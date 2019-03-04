@@ -3,7 +3,7 @@
     <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
     <transition name="fade">
-      <div v-bind:class="{ cover_mask_9: ui.v_cover_mask}" @click="btnCoverMask"></div>
+      <div v-bind:class="{ cover_mask_9: ui.vCoverMask}" @click="btnCoverMask"></div>
     </transition>
 
     <div class="wall">
@@ -77,7 +77,7 @@
       </div>
     </div>
 
-    <div class="box" v-if="ui.v_order_menu">
+    <div class="box" v-if="ui.vOrderMenu">
       <div class="modal_center box_radius">
         <div class="modal_header">
           <div class="modal_title">查看菜谱</div>
@@ -154,8 +154,8 @@
           }
         },
         ui: {
-          v_cover_mask: false,
-          v_order_menu: false,
+          vCoverMask: false,
+          vOrderMenu: false,
           replyContent: '',
           infos: [],
           infoLoads: [],
@@ -267,8 +267,8 @@
         return timeApi.elapsedTime(time)
       },
       btnCoverMask() {
-        this.ui.v_order_menu = false
-        this.ui.v_cover_mask = false
+        this.ui.vOrderMenu = false
+        this.ui.vCoverMask = false
 
         scrollApi.enable(true)
       },
@@ -297,8 +297,8 @@
         httpOrderApi.getOrder(this.$route.params.shortId, wall.orderOneId).then(res => {
           this.http.res.order = res
 
-          this.ui.v_order_menu = true
-          this.ui.v_cover_mask = true
+          this.ui.vOrderMenu = true
+          this.ui.vCoverMask = true
 
           scrollApi.enable(false)
         })

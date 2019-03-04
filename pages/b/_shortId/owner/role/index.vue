@@ -3,7 +3,7 @@
     <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
     <transition name="fade">
-      <div :class="{ cover_mask_9: ui.v_cover_mask}" @click="btnCoverMask"></div>
+      <div :class="{ cover_mask_9: ui.vCoverMask}" @click="btnCoverMask"></div>
     </transition>
 
     <div class="box" v-for="role in ui.roles">
@@ -37,7 +37,7 @@
       </div>
     </div>
 
-    <div class="modal_center" v-if="ui.v_role_add">
+    <div class="modal_center" v-if="ui.vRoleAdd">
       <div class="modal_close_box" @click="btnCoverMask">
         <img class="modal_close" src="/img/common/close.png" alt="">
       </div>
@@ -98,8 +98,8 @@
           }
         },
         ui: {
-          v_role_add: false,
-          v_cover_mask: false,
+          vRoleAdd: false,
+          vCoverMask: false,
           roles: []
         }
       }
@@ -152,12 +152,12 @@
         })
       },
       btnCoverMask() {
-        this.ui.v_role_add = false
-        this.ui.v_cover_mask = false
+        this.ui.vRoleAdd = false
+        this.ui.vCoverMask = false
       },
       btnCreate(role) {
-        this.ui.v_cover_mask = true
-        this.ui.v_role_add = true
+        this.ui.vCoverMask = true
+        this.ui.vRoleAdd = true
         this.http.req.role = {}
         this.http.req.role.type = role.type
       },
@@ -224,8 +224,8 @@
           }
 
           if (res.roleId) {
-            this.ui.v_role_add = false
-            this.ui.v_cover_mask = false
+            this.ui.vRoleAdd = false
+            this.ui.vCoverMask = false
 
             this.$msgBox.doModal({
               type: 'yes',
@@ -255,8 +255,8 @@
                   this.httpRole()
                 })
               } else if (res.success) {
-                this.ui.v_role_add = false
-                this.ui.v_cover_mask = false
+                this.ui.vRoleAdd = false
+                this.ui.vCoverMask = false
 
                 this.$msgBox.doModal({
                   type: 'yes',

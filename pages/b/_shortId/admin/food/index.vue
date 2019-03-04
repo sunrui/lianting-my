@@ -3,7 +3,7 @@
     <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
     <transition name="fade">
-      <div :class="{ cover_mask_9: ui.v_cover_mask}" @click="btnCoverMask"></div>
+      <div :class="{ cover_mask_9: ui.vCoverMask}" @click="btnCoverMask"></div>
     </transition>
 
     <div class="shop_title_box">
@@ -36,7 +36,7 @@
         </div>
       </div>
 
-      <div class="menu_box_extend" v-if="ui.v_menu_extend">
+      <div class="menu_box_extend" v-if="ui.vMenuExtend">
         <div class="menu_extend">
           <div class="menu_item menu_item_extend" v-if="foodGroup.foodCategories.length > 0" v-for="(foodGroup, index) in http.res.foodGroups.elements">
             <div :class="{menu_item_href:!isSelectMenu(foodGroup.id), menu_item_href_select:isSelectMenu(foodGroup.id)}"
@@ -107,7 +107,7 @@
     </div>
 
     <transition name="toggle">
-      <div class="modal_bottom" v-if="ui.v_select_status">
+      <div class="modal_bottom" v-if="ui.vSelectStatus">
         <div class="modal_close_box" @click="btnCoverMask">
           <img class="modal_close" src="/img/common/close.png" alt="">
         </div>
@@ -156,9 +156,9 @@
           imageHeight: 300
         },
         ui: {
-          v_menu_extend: false,
-          v_cover_mask: false,
-          v_select_status: false,
+          vMenuExtend: false,
+          vCoverMask: false,
+          vSelectStatus: false,
           selectMenuId: null,
           status: {
             foodCategory: null,
@@ -204,9 +204,9 @@
       btnCoverMask() {
         this.ui.v_group_add = false
         this.ui.v_group_edit = false
-        this.ui.v_menu_extend = false
-        this.ui.v_select_status = false
-        this.ui.v_cover_mask = false
+        this.ui.vMenuExtend = false
+        this.ui.vSelectStatus = false
+        this.ui.vCoverMask = false
 
         scrollApi.enable(true)
       },
@@ -307,8 +307,8 @@
         }, 100)
       },
       btnLeaf(extend) {
-        this.ui.v_menu_extend = extend
-        this.ui.v_cover_mask = extend
+        this.ui.vMenuExtend = extend
+        this.ui.vCoverMask = extend
 
         if (extend) {
           window.scroll(0, 0)
@@ -320,8 +320,8 @@
         this.ui.status.selectStatus = status
       },
       btnChangeStatus(foodCategory) {
-        this.ui.v_cover_mask = true
-        this.ui.v_select_status = true
+        this.ui.vCoverMask = true
+        this.ui.vSelectStatus = true
 
         this.ui.status.foodCategory = foodCategory
         this.ui.status.selectStatus = foodCategory.status
@@ -330,8 +330,8 @@
         this.ui.status.foodCategory.status = this.ui.status.selectStatus
 
         httpFoodAdminApi.putCategory(this.$route.params.shortId, this.ui.status.foodCategory).then(res => {
-          this.ui.v_select_status = false
-          this.ui.v_cover_mask = false
+          this.ui.vSelectStatus = false
+          this.ui.vCoverMask = false
 
           if (res.foodCategoryIdNotExists) {
             this.$msgBox.doModal({

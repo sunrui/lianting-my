@@ -1,10 +1,10 @@
 <template>
   <div>
     <transition name="fade">
-      <div :class="{ cover_mask_11: ui.v_cover_mask}" @click="btnCancel"></div>
+      <div :class="{ cover_mask_11: ui.vCoverMask}" @click="btnCancel"></div>
     </transition>
 
-    <div class="modal_center" v-if="ui.v_cover_mask">
+    <div class="modal_center" v-if="ui.vCoverMask">
       <div class="modal_close_box" @click="btnCancel">
         <img class="modal_close" src="/img/common/close.png" alt="">
       </div>
@@ -32,7 +32,7 @@
     data() {
       return {
         ui: {
-          v_cover_mask: true
+          vCoverMask: true
         },
         resolve: '',
         promise: ''
@@ -40,18 +40,18 @@
     },
     methods: {
       btnConfirm() {
-        this.ui.v_cover_mask = false
+        this.ui.vCoverMask = false
         this.resolve('Yes')
         this.remove()
       },
       btnCancel() {
-        this.ui.v_cover_mask = false
+        this.ui.vCoverMask = false
         this.resolve('No')
         this.remove()
       },
       doModal() {
         scrollApi.enable(false)
-        this.ui.v_cover_mask = true
+        this.ui.vCoverMask = true
         this.promise = new Promise((resolve, reject) => {
           this.resolve = resolve
         })

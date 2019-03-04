@@ -14,17 +14,17 @@
     </div>
 
     <div class="button_box">
-      <div class="button_big" v-if="!ui.v_render" @click="btnRender">在线生成</div>
+      <div class="button_big" v-if="!ui.vRender" @click="btnRender">在线生成</div>
       <div class="button_big" v-else @click="btnDownloadAll">全部下载</div>
     </div>
 
-    <div v-if="ui.v_render">
+    <div v-if="ui.vRender">
       <div class="blank_30"></div>
       <div class="box_divide"></div>
       <div class="blank_50"></div>
     </div>
 
-    <div v-if="ui.v_render" v-for="tableGroup in http.res.tableGroups.elements">
+    <div v-if="ui.vRender" v-for="tableGroup in http.res.tableGroups.elements">
       <div v-for="table in tableGroup.tableOnes">
         <div class="title">
           <div class="title_table">{{tableGroup.name}} - {{table.tableGroup_Name}}{{table.fullNumber}}</div>
@@ -44,16 +44,16 @@
 
           <canvas :id="table.id" class="captcha_part_image"></canvas>
 
-          <div class="captcha_part_copyright" v-if="ui.v_copyright">恋厅©提供技术支持</div>
+          <div class="captcha_part_copyright" v-if="ui.vCopyright">恋厅©提供技术支持</div>
         </div>
       </div>
     </div>
 
-    <div v-if="ui.v_render" class="addition">
+    <div v-if="ui.vRender" class="addition">
       <div class="addition_item">
         <div class="addition_item_label">显示恋厅标识</div>
         <div class="addition_item_check">
-          <div class="addition_item_check_on" v-if="ui.v_copyright" @click="btnCopyright(false)"></div>
+          <div class="addition_item_check_on" v-if="ui.vCopyright" @click="btnCopyright(false)"></div>
           <div class="addition_item_check_off" v-else @click="btnCopyright(true)"></div>
         </div>
       </div>
@@ -94,8 +94,8 @@
           }
         },
         ui: {
-          v_render: false,
-          v_copyright: true
+          vRender: false,
+          vCopyright: true
         }
       }
     },
@@ -139,12 +139,12 @@
           return
         }
 
-        this.ui.v_render = true
+        this.ui.vRender = true
 
         setTimeout(this.renderCaptcha, 0)
       },
       btnCopyright(enable) {
-        this.ui.v_copyright = enable
+        this.ui.vCopyright = enable
       },
       btnDownload(table) {
         let id = 'capture_' + table.id

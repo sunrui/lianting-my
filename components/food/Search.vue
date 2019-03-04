@@ -16,7 +16,7 @@
         <div class="search_btn" @click="btnSearch">搜索</div>
       </div>
 
-      <div class="search_hot" v-if="ui.v_searchHot">
+      <div class="search_hot" v-if="ui.vSearchHot">
         <div class="search_hot_label">热门搜索</div>
 
         <div class="search_hot_box">
@@ -26,7 +26,7 @@
         </div>
       </div>
 
-      <div class="search_result" v-if="ui.v_searchResult" v-for="foodCategory in http.res.foodCategories.elements">
+      <div class="search_result" v-if="ui.vSearchResult" v-for="foodCategory in http.res.foodCategories.elements">
         <div class="search_result_one" @click="btnNav(foodCategory)">
           <div class="search_result_food" v-html="foodCategory.name"></div>
           <div class="search_result_nav">
@@ -37,7 +37,7 @@
         </div>
       </div>
 
-      <div class="search_not_found" v-if="ui.v_searchEmpty">
+      <div class="search_not_found" v-if="ui.vSearchEmpty">
         <div class="search_not_found_label">没有找到关于<span style="color:#f52626; font-weight: 400">{{this.http.req.search.name}}</span>的结果</div>
       </div>
     </div>
@@ -70,9 +70,9 @@
           imageHeight: 0
         },
         ui: {
-          v_searchResult: false,
-          v_searchHot: true,
-          v_searchEmpty: false,
+          vSearchResult: false,
+          vSearchHot: true,
+          vSearchEmpty: false,
           hotSearchNames: [
             '酒', '米饭'
           ]
@@ -91,9 +91,9 @@
     },
     methods: {
       btnInput() {
-        this.ui.v_searchResult = false
-        this.ui.v_searchHot = true
-        this.ui.v_searchEmpty = false
+        this.ui.vSearchResult = false
+        this.ui.vSearchHot = true
+        this.ui.vSearchEmpty = false
       },
       btnSearch() {
         if (!Boolean(this.http.req.search.name)) {
@@ -121,9 +121,9 @@
           this.http.res.foodCategories.elements = foodCategories
 
           if (this.http.res.foodCategories.elements.length === 0) {
-            this.ui.v_searchResult = false
-            this.ui.v_searchHot = false
-            this.ui.v_searchEmpty = true
+            this.ui.vSearchResult = false
+            this.ui.vSearchHot = false
+            this.ui.vSearchEmpty = true
             return
           }
 
@@ -132,9 +132,9 @@
             foodCategory.name = foodCategory.name.replace(this.http.req.search.name, `<span style="color: red; ">${this.http.req.search.name}</span>`)
           }
 
-          this.ui.v_searchResult = true
-          this.ui.v_searchHot = false
-          this.ui.v_searchEmpty = false
+          this.ui.vSearchResult = true
+          this.ui.vSearchHot = false
+          this.ui.vSearchEmpty = false
         })
       },
       btnSearchHot(name) {

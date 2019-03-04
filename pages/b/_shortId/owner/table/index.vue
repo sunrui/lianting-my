@@ -3,7 +3,7 @@
     <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
     <transition name="fade">
-      <div :class="{ cover_mask_9: ui.v_cover_mask}" @click="btnCoverMask"></div>
+      <div :class="{ cover_mask_9: ui.vCoverMask}" @click="btnCoverMask"></div>
     </transition>
 
     <div class="shop_title_box">
@@ -78,7 +78,7 @@
       <div class="blank_30"></div>
     </div>
 
-    <div class="modal_center" v-if="ui.v_table_add">
+    <div class="modal_center" v-if="ui.vTableAdd">
       <div class="modal_close_box" @click="btnCoverMask">
         <img class="modal_close" src="/img/common/close.png" alt="">
       </div>
@@ -104,7 +104,7 @@
       </div>
     </div>
 
-    <captcha v-if="ui.v_captcha" @closeCaptcha="closeCaptcha()" :title="ui.captcha.title" :text="ui.captcha.text"></captcha>
+    <captcha v-if="ui.vCaptcha" @closeCaptcha="closeCaptcha()" :title="ui.captcha.title" :text="ui.captcha.text"></captcha>
 
   </div>
 </template>
@@ -136,9 +136,9 @@
           imageHeight: 300
         },
         ui: {
-          v_cover_mask: false,
-          v_table_add: false,
-          v_captcha: false,
+          vCoverMask: false,
+          vTableAdd: false,
+          vCaptcha: false,
           selectMenuId: null,
           captcha: {
             title: '',
@@ -186,8 +186,8 @@
         })
       },
       btnCoverMask() {
-        this.ui.v_table_add = false
-        this.ui.v_cover_mask = false
+        this.ui.vTableAdd = false
+        this.ui.vCoverMask = false
       },
       navToHash() {
         let hash = window.location.hash
@@ -288,11 +288,11 @@
       btnCaptcha(tableGroup, table) {
         this.ui.captcha.title = tableGroup.name + ' - ' + table.fullNumber
         this.ui.captcha.text = document.location.protocol + '//' + window.location.host + `/m/${this.$route.params.shortId}/captcha/${table.id}`
-        this.ui.v_captcha = true
+        this.ui.vCaptcha = true
         scrollApi.enable(false)
       },
       closeCaptcha() {
-        this.ui.v_captcha = false
+        this.ui.vCaptcha = false
         scrollApi.enable(true)
       },
       btnOrder(tableGroup) {
@@ -350,14 +350,14 @@
         })
       },
       btnTableAdd(tableGroup) {
-        this.ui.v_cover_mask = true
-        this.ui.v_table_add = true
+        this.ui.vCoverMask = true
+        this.ui.vTableAdd = true
         this.http.req.table = {}
         this.http.req.table.tableGroupId = tableGroup.id
       },
       btnTableAddConfirm() {
-        this.ui.v_table_add = false
-        this.ui.v_cover_mask = false
+        this.ui.vTableAdd = false
+        this.ui.vCoverMask = false
 
         httpTableAdminApi.postTable(this.$route.params.shortId, this.http.req.table).then(res => {
           if (res.maxLimit) {

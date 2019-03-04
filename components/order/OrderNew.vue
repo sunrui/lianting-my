@@ -2,7 +2,7 @@
   <div>
     <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
-    <div :class="{ cover_mask_9: ui.v_cover_mask}" @click="btnCoverMask"></div>
+    <div :class="{ cover_mask_9: ui.vCoverMask}" @click="btnCoverMask"></div>
 
     <div class="box" v-show="ui.table.captchaTableId">
       <div class="order_table box_radius">
@@ -83,7 +83,7 @@
     </div>
 
     <transition name="toggle">
-      <div class="modal_bottom" v-if="ui.v_people">
+      <div class="modal_bottom" v-if="ui.vPeople">
         <div class="modal_close_box" @click="btnCoverMask">
           <img class="modal_close" src="/img/common/close.png" alt="">
         </div>
@@ -115,6 +115,7 @@
   import {httpOrderApi} from '../../api/http/lt/httpOrderApi'
   import {stateApi} from '../../api/local/stateApi'
   import {scrollApi} from '../../api/local/scrollApi'
+  import {logApi} from '../../api/local/logApi'
 
   export default {
     metaInfo: {
@@ -138,8 +139,8 @@
           imageHeight: 330
         },
         ui: {
-          v_people: false,
-          v_cover_mask: false,
+          vPeople: false,
+          vCoverMask: false,
           selectPeople: null,
           peopleChoose: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
           tasteNote: '',
@@ -197,22 +198,22 @@
         return price
       },
       btnPeople() {
-        this.ui.v_cover_mask = true
-        this.ui.v_people = true
+        this.ui.vCoverMask = true
+        this.ui.vPeople = true
         this.ui.selectPeople = this.cart.people
         scrollApi.enable(false)
       },
       btnCoverMask() {
-        this.ui.v_people = false
-        this.ui.v_cover_mask = false
+        this.ui.vPeople = false
+        this.ui.vCoverMask = false
         scrollApi.enable(true)
       },
       btnPeopleChoose(one) {
         this.ui.selectPeople = one
       },
       btnPeopleConfirm() {
-        this.ui.v_people = false
-        this.ui.v_cover_mask = false
+        this.ui.vPeople = false
+        this.ui.vCoverMask = false
         scrollApi.enable(true)
 
         cartApi.setPeople(this.ui.selectPeople)
@@ -324,9 +325,9 @@
           video: true,
           audio: false
         }, function (strem) {
-          console.log(strem)
+          logApi.log(strem)
         }, function (error) {
-          console.log(error)
+          logApi.log(error)
         })
       }
     }

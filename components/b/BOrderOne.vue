@@ -2,7 +2,7 @@
   <div>
     <title-bar ref="titleBar" :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
-    <div :class="{ cover_mask_9: ui.v_cover_mask}" @click="btnCoverMask"></div>
+    <div :class="{ cover_mask_9: ui.vCoverMask}" @click="btnCoverMask"></div>
 
     <div class="box" v-if="http.res.order.orderTable">
       <div class="order_table box_radius">
@@ -426,7 +426,7 @@
         },
         ui: {
           v_people: false,
-          v_cover_mask: false,
+          vCoverMask: false,
           v_pay_offline: false,
           v_return: false,
           v_change_price: false,
@@ -601,7 +601,7 @@
         this.ui.v_pay_offline = false
         this.ui.v_return = false
         this.ui.v_change_price = false
-        this.ui.v_cover_mask = false
+        this.ui.vCoverMask = false
 
         scrollApi.enable(true)
       },
@@ -620,7 +620,7 @@
           return
         }
 
-        this.ui.v_cover_mask = true
+        this.ui.vCoverMask = true
         this.ui.v_people = true
         this.ui.selectPeople = this.http.res.order.people
 
@@ -632,7 +632,7 @@
       btnPeopleConfirm() {
         httpOrderAdminApi.putPeople(this.$route.params.shortId, this.$route.params.orderOneId, this.ui.selectPeople).then(res => {
           this.ui.v_people = false
-          this.ui.v_cover_mask = false
+          this.ui.vCoverMask = false
 
           if (res.orderOneIdNotExists) {
             this.$msgBox.doModal({
@@ -735,13 +735,13 @@
       },
       btnChangePrice() {
         this.ui.v_change_price = true
-        this.ui.v_cover_mask = true
+        this.ui.vCoverMask = true
 
         this.http.req.changePrice.price = this.http.res.order.price
       },
       btnChangePriceConfirm() {
         this.ui.v_change_price = false
-        this.ui.v_cover_mask = false
+        this.ui.vCoverMask = false
 
         if (this.role !== 'admin' && this.role !== 'cashier') {
           this.$msgBox.doModal({
@@ -795,7 +795,7 @@
       },
       btnPayOffline() {
         this.ui.v_pay_offline = true
-        this.ui.v_cover_mask = true
+        this.ui.vCoverMask = true
       },
       btnPayOfflineConfirm() {
         if (this.role !== 'admin' && this.role !== 'cashier') {
@@ -810,7 +810,7 @@
 
         httpOrderAdminApi.putPayOffline(this.$route.params.shortId, this.$route.params.orderOneId, this.http.req.payOffline.remark).then(res => {
           this.ui.v_pay_offline = false
-          this.ui.v_cover_mask = false
+          this.ui.vCoverMask = false
 
           if (res.orderOneIdNotExists) {
             this.$msgBox.doModal({
@@ -846,7 +846,7 @@
           return
         }
 
-        this.ui.v_cover_mask = true
+        this.ui.vCoverMask = true
         this.ui.v_cancel = true
 
         scrollApi.enable(false)
@@ -856,7 +856,7 @@
 
         httpOrderAdminApi.putCancel(this.$route.params.shortId, this.$route.params.orderOneId, this.http.req.cancel.remark).then(res => {
           this.ui.v_cancel = false
-          this.ui.v_cover_mask = false
+          this.ui.vCoverMask = false
 
           if (res.orderOneIdNotExists) {
             this.$msgBox.doModal({
@@ -904,14 +904,14 @@
           this.ui.returnCounts.push({name: i + 1})
         }
 
-        this.ui.v_cover_mask = true
+        this.ui.vCoverMask = true
         this.ui.v_return = true
 
         scrollApi.enable(false)
       },
       btnFoodReturnConfirm() {
         this.ui.v_return = false
-        this.ui.v_cover_mask = false
+        this.ui.vCoverMask = false
 
         scrollApi.enable(true)
 

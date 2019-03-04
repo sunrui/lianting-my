@@ -40,7 +40,7 @@
       </div>
     </div>
 
-    <captcha v-if="ui.v_captcha" @closeCaptcha="closeCaptcha()" :title="ui.captcha.title" :text="ui.captcha.text"></captcha>
+    <captcha v-if="ui.vCaptcha" @closeCaptcha="closeCaptcha()" :title="ui.captcha.title" :text="ui.captcha.text"></captcha>
 
   </div>
 </template>
@@ -68,9 +68,9 @@
           imageHeight: 460
         },
         ui: {
-          v_cover_mask: false,
-          v_captcha: false,
-          v_wifi: false,
+          vCoverMask: false,
+          vCaptcha: false,
+          vWifi: false,
           captcha: {
             title: '',
             text: ''
@@ -131,10 +131,10 @@
       btnCaptcha() {
         this.ui.captcha.title = this.http.res.shop.name
         this.ui.captcha.text = document.location.protocol + '//' + window.location.host + `/m/${this.$route.params.shortId}`
-        this.ui.v_captcha = true
+        this.ui.vCaptcha = true
       },
       closeCaptcha() {
-        this.ui.v_captcha = false
+        this.ui.vCaptcha = false
       },
       btnNotifyOrder() {
         this.$router.push(`/b/${this.$route.params.shortId}/cooker/notify`)

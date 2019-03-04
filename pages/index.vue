@@ -4,7 +4,7 @@
 
     <div class="box">
       <div class="addition box_radius">
-        <div class="addition_item" v-if="!authed" @click="btnNav('login')">
+        <div class="addition_item" v-if="!auth" @click="btnNav('login')">
           <div class="addition_item_label">登录</div>
           <div class="addition_item_link"></div>
         </div>
@@ -47,7 +47,7 @@
       }
     },
     computed: {
-      authed() {
+      auth() {
         let userId = stateApi.user.getId()
         return Boolean(userId)
       }

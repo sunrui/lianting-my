@@ -3,14 +3,14 @@
     <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
     <transition name="fade">
-      <div :class="{ cover_mask_9: ui.v_cover_mask_cart}" @click="btnCoverMaskCart"></div>
+      <div :class="{ cover_mask_9: ui.vCoverMaskCart}" @click="btnCoverMaskCart"></div>
     </transition>
     <transition name="fade">
-      <div :class="{ cover_mask_11: ui.v_cover_mask}" @click="btnCoverMaskCart"></div>
+      <div :class="{ cover_mask_11: ui.vCoverMask}" @click="btnCoverMaskCart"></div>
     </transition>
 
     <transition name="fade">
-      <div :class="{ cover_mask_11: ui.v_cover_mask_leaf}" @click="btnLeaf(false)"></div>
+      <div :class="{ cover_mask_11: ui.vCoverMaskLeaf}" @click="btnLeaf(false)"></div>
     </transition>
 
     <div v-for="ball in ui.balls">
@@ -56,7 +56,7 @@
         </div>
       </div>
 
-      <div class="menu_box_extend" v-if="ui.v_menu_extend">
+      <div class="menu_box_extend" v-if="ui.vMenuExtend">
         <div class="menu_extend">
           <div class="menu_item menu_item_extend" v-if="foodGroup.foodCategories.length > 0" v-for="(foodGroup, index) in http.res.foodGroups.elements">
             <div :class="{menu_item_href:!isSelectMenu(foodGroup.id), menu_item_href_select:isSelectMenu(foodGroup.id)}"
@@ -152,7 +152,7 @@
     </div>
 
     <transition name="toggle">
-      <div class="cart" v-if="ui.v_cart">
+      <div class="cart" v-if="ui.vCart">
         <div class="cart_title">
           <div class="cart_title_label">已选餐食 ({{cart.select}})</div>
           <div class="cart_title_delete">
@@ -185,8 +185,8 @@
 
     <div class="footer">
       <div class="footer_cart_box" @click="btnCart">
-        <div v-bind:class="{footer_cart:!ui.v_cart, footer_cart_extend: ui.v_cart}"></div>
-        <div class="footer_cart_badge" v-show="!ui.v_cart && cart.select > 0">{{cart.select}}</div>
+        <div v-bind:class="{footer_cart:!ui.vCart, footer_cart_extend: ui.vCart}"></div>
+        <div class="footer_cart_badge" v-show="!ui.vCart && cart.select > 0">{{cart.select}}</div>
       </div>
       <div class="footer_price">{{cart.price}}</div>
       <div class="footer_button" v-if="cart.select > 0" @click="btnOrder">立即下单</div>
@@ -194,22 +194,22 @@
     </div>
 
     <transition name="toggle">
-      <div class="modal_bottom" v-if="ui.v_category">
+      <div class="modal_bottom" v-if="ui.vCategory">
         <div class="modal_close_box" @click="btnCoverMaskCart">
           <img class="modal_close" src="/img/common/close.png" alt="">
         </div>
 
         <div class="category_food">
-          <img class="category_food_image" :src="ui.modal_category.category.image" :alt="ui.modal_category.selectFood.name">
+          <img class="category_food_image" :src="ui.modalCategory.category.image" :alt="ui.modalCategory.selectFood.name">
 
           <div class="category_food_info">
-            <div class="category_food_name">{{ui.modal_category.category.name}}</div>
-            <div class="category_food_detail">已选：{{ui.modal_category.selectFood.name}}</div>
+            <div class="category_food_name">{{ui.modalCategory.category.name}}</div>
+            <div class="category_food_detail">已选：{{ui.modalCategory.selectFood.name}}</div>
             <div class="category_food_price">
-              <div class="category_food_price_now">{{ui.modal_category.selectFood.price}}</div>
+              <div class="category_food_price_now">{{ui.modalCategory.selectFood.price}}</div>
               <div class="category_food_price_original"
-                   v-if="ui.modal_category.selectFood.price !== ui.modal_category.selectFood.originalPrice">
-                {{ui.modal_category.selectFood.originalPrice}}
+                   v-if="ui.modalCategory.selectFood.price !== ui.modalCategory.selectFood.originalPrice">
+                {{ui.modalCategory.selectFood.originalPrice}}
               </div>
             </div>
           </div>
@@ -219,9 +219,9 @@
 
         <div class="category_label">规格</div>
         <div class="category_box">
-          <div class="category_one" v-for="food in ui.modal_category.category.foods">
-            <div class="category_one_name_select" v-if="food.id === ui.modal_category.selectFood.id">{{food.name}}</div>
-            <div class="category_one_name" v-if="food.id !== ui.modal_category.selectFood.id"
+          <div class="category_one" v-for="food in ui.modalCategory.category.foods">
+            <div class="category_one_name_select" v-if="food.id === ui.modalCategory.selectFood.id">{{food.name}}</div>
+            <div class="category_one_name" v-if="food.id !== ui.modalCategory.selectFood.id"
                  @click="btnCategoryChoose(food)">{{food.name}}
             </div>
           </div>
@@ -236,12 +236,12 @@
     </transition>
 
     <transition name="fade">
-      <div class="modal_center" v-if="ui.v_food_preview">
+      <div class="modal_center" v-if="ui.vPreview">
         <div class="modal_close_box" @click="btnCoverMaskCart">
           <img class="modal_close" src="/img/common/close.png" alt="">
         </div>
 
-        <img class="preview_image" :src="ui.previewFoodCategory.image" alt="">
+        <img class="preview_image" :src="ui.modalPreview.foodCategory.image" alt="">
       </div>
     </transition>
   </div>
@@ -281,24 +281,26 @@
           imageHeight: 300
         },
         ui: {
-          v_cover_mask: false,
-          v_cover_mask_cart: false,
-          v_cover_mask_leaf: false,
-          v_cart: false,
-          v_category: false,
-          v_menu_extend: false,
-          v_food_preview: false,
-          modal_category: {
+          vCoverMask: false,
+          vCoverMaskCart: false,
+          vCoverMaskLeaf: false,
+          vCart: false,
+          vCategory: false,
+          vMenuExtend: false,
+          vPreview: false,
+          modalCategory: {
             foodGroupId: null,
             category: null,
             selectFood: null,
             selectEvent: null
           },
+          modalPreview: {
+            foodGroup: null,
+            foodCategory: null,
+          },
           selectMenuId: null,
-          scrollDelay: null,
           balls: [{show: false}, {show: false}, {show: false}, {show: false}, {show: false}],
           ballsDrop: [],
-          previewFoodCategory: null,
         },
         http: {
           res: {
@@ -618,14 +620,14 @@
         if (foodCategory.foods.length === 1) {
           this.btnCartFoodAdd(foodGroupId, foodCategory, foodCategory.foods[0])
         } else {
-          this.ui.modal_category.foodGroupId = foodGroupId
-          this.ui.modal_category.category = foodCategory
-          this.ui.modal_category.selectFood = foodCategory.foods[0]
-          this.ui.modal_category.selectEvent = event
+          this.ui.modalCategory.foodGroupId = foodGroupId
+          this.ui.modalCategory.category = foodCategory
+          this.ui.modalCategory.selectFood = foodCategory.foods[0]
+          this.ui.modalCategory.selectEvent = event
 
-          this.ui.v_cart = false
-          this.ui.v_cover_mask_cart = true
-          this.ui.v_category = true
+          this.ui.vCart = false
+          this.ui.vCoverMaskCart = true
+          this.ui.vCategory = true
         }
       },
       btnCartFoodMinus(foodCategory, food) {
@@ -635,8 +637,8 @@
         this.computedFoodSelect()
 
         if (this.cart.select === 0) {
-          this.ui.v_cover_mask_cart = false
-          this.ui.v_cart = false
+          this.ui.vCoverMaskCart = false
+          this.ui.vCart = false
           scrollApi.enable(true)
         }
       },
@@ -671,42 +673,42 @@
         }
       },
       btnCategoryChoose(food) {
-        this.ui.modal_category.selectFood = food
+        this.ui.modalCategory.selectFood = food
       },
       btnCategoryConfirm() {
-        this.btnCartFoodAdd(this.ui.modal_category.foodGroupId, this.ui.modal_category.category, this.ui.modal_category.selectFood)
-        this.ui.v_category = false
-        this.ui.v_cover_mask_cart = false
+        this.btnCartFoodAdd(this.ui.modalCategory.foodGroupId, this.ui.modalCategory.category, this.ui.modalCategory.selectFood)
+        this.ui.vCategory = false
+        this.ui.vCoverMaskCart = false
 
         this.$nextTick(() => {
-          this.ballDrop(this.ui.modal_category.selectEvent.target)
+          this.ballDrop(this.ui.modalCategory.selectEvent.target)
         })
       },
       btnCoverMaskCart() {
-        this.ui.v_cover_mask = false
-        this.ui.v_cover_mask_cart = false
-        this.ui.v_cover_mask_leaf = false
-        this.ui.v_cart = false
-        this.ui.v_category = false
-        this.ui.v_menu_extend = false
-        this.ui.v_food_preview = false
+        this.ui.vCoverMask = false
+        this.ui.vCoverMaskCart = false
+        this.ui.vCoverMaskLeaf = false
+        this.ui.vCart = false
+        this.ui.vCategory = false
+        this.ui.vMenuExtend = false
+        this.ui.vPreview = false
 
         scrollApi.enable(true)
       },
       btnCart() {
-        this.ui.v_cart = !this.ui.v_cart
-        if (this.ui.v_cart) {
-          this.ui.v_cart = !cartApi.isEmpty()
+        this.ui.vCart = !this.ui.vCart
+        if (this.ui.vCart) {
+          this.ui.vCart = !cartApi.isEmpty()
         }
 
-        this.ui.v_cover_mask_cart = this.ui.v_cart
-        this.ui.v_category = false
+        this.ui.vCoverMaskCart = this.ui.vCart
+        this.ui.vCategory = false
 
-        scrollApi.enable(!this.ui.v_cover_mask_cart)
+        scrollApi.enable(!this.ui.vCoverMaskCart)
       },
       btnCartClear() {
-        this.ui.v_cart = false
-        this.ui.v_cover_mask_cart = false
+        this.ui.vCart = false
+        this.ui.vCoverMaskCart = false
         scrollApi.enable(true)
 
         cartApi.clear()
@@ -749,9 +751,9 @@
         }
       },
       btnOrder() {
-        this.ui.v_category = false
-        this.ui.v_cover_mask_cart = false
-        this.ui.v_cart = false
+        this.ui.vCategory = false
+        this.ui.vCoverMaskCart = false
+        this.ui.vCart = false
 
         if (!this.http.res.shop.open) {
           this.$msgBox.doModal({
@@ -781,8 +783,8 @@
         }
       },
       btnLeaf(extend) {
-        this.ui.v_menu_extend = extend
-        this.ui.v_cover_mask_leaf = extend
+        this.ui.vMenuExtend = extend
+        this.ui.vCoverMaskLeaf = extend
 
         if (extend) {
           window.scroll(0, 0)
@@ -795,9 +797,10 @@
           return
         }
 
-        this.ui.previewFoodCategory = foodCategory
-        this.ui.v_food_preview = true
-        this.ui.v_cover_mask = true
+        this.ui.modalPreview.foodGroup = foodGroup
+        this.ui.modalPreview.foodCategory = foodCategory
+        this.ui.vPreview = true
+        this.ui.vCoverMask = true
         scrollApi.enable(false)
       }
     }

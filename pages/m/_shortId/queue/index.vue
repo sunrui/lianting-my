@@ -2,7 +2,7 @@
   <div>
     <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
-    <div v-bind:class="{ cover_mask_9: ui.v_cover_mask}" @click="btnCoverMask"></div>
+    <div v-bind:class="{ cover_mask_9: ui.vCoverMask}" @click="btnCoverMask"></div>
 
     <div class="shop_title_box">
       <div class="shop_title_name">{{http.res.shop.name}}</div>
@@ -53,7 +53,7 @@
       <!--</div>-->
       <!--</div>-->
 
-      <div class="queue_number_box" v-if="ui.v_queue_number">
+      <div class="queue_number_box" v-if="ui.vQueueNumber">
         <div class="blank_10"></div>
 
         <div class="box" v-for="myTicket in http.res.myTickets.elements">
@@ -92,7 +92,7 @@
       </div>
     </div>
 
-    <div v-if="!ui.v_queue_number">
+    <div v-if="!ui.vQueueNumber">
       <div class="queue_prompt">
         <div content="queue_prompt_label">为了保证您的及时用餐，最多允许 30 公里内的顾客取号，如您距店较远，建议您立即前往。</div>
       </div>
@@ -102,7 +102,7 @@
       </div>
     </div>
 
-    <div class="box" v-if="ui.v_table_select">
+    <div class="box" v-if="ui.vTableSelect">
       <div class="modal_center">
         <div class="modal_close_box" @click="btnCoverMask">
           <img class="modal_close" src="/img/common/close.png" alt="">
@@ -168,9 +168,9 @@
           imageHeight: 330
         },
         ui: {
-          v_cover_mask_cart: false,
-          v_queue_number: false,
-          v_table_select: false,
+          vCoverMaskCart: false,
+          vQueueNumber: false,
+          vTableSelect: false,
           selectTableGroupId: null
         },
         http: {
@@ -292,9 +292,9 @@
         this.http.res.tableGroups = {}
         this.http.res.myTickets = {}
 
-        this.ui.v_queue_number = false
-        this.ui.v_table_select = false
-        this.ui.v_cover_mask = false
+        this.ui.vQueueNumber = false
+        this.ui.vTableSelect = false
+        this.ui.vCoverMask = false
 
         httpQueueApi.getState(this.$route.params.shortId).then(res => {
           this.http.res.state = res
@@ -358,13 +358,13 @@
           this.http.res.myTickets = res
 
           if (this.http.res.myTickets.elements.length > 0) {
-            this.ui.v_queue_number = true
+            this.ui.vQueueNumber = true
           }
         })
       },
       btnCoverMask() {
-        this.ui.v_table_select = false
-        this.ui.v_cover_mask = false
+        this.ui.vTableSelect = false
+        this.ui.vCoverMask = false
       },
       btnQueue() {
         if (!this.http.res.shop.open) {
@@ -377,13 +377,13 @@
           return
         }
 
-        this.ui.v_table_select = true
-        this.ui.v_cover_mask = true
+        this.ui.vTableSelect = true
+        this.ui.vCoverMask = true
       },
       btnQueueConfirm() {
         if (!Boolean(this.ui.selectTableGroupId)) {
-          this.ui.v_table_select = false
-          this.ui.v_cover_mask = false
+          this.ui.vTableSelect = false
+          this.ui.vCoverMask = false
 
           this.$msgBox.doModal({
             type: 'yes',
@@ -397,8 +397,8 @@
         httpQueueApi.postOne(this.$route.params.shortId, {
           tableGroupId: this.ui.selectTableGroupId
         }).then(res => {
-          this.ui.v_table_select = false
-          this.ui.v_cover_mask = false
+          this.ui.vTableSelect = false
+          this.ui.vCoverMask = false
 
           if (res.shopClosed) {
             this.$msgBox.doModal({
@@ -477,8 +477,8 @@
         })
       },
       btnOrder() {
-        this.ui.v_table_select = !this.ui.v_table_select
-        this.ui.v_cover_mask = this.ui.v_table_select
+        this.ui.vTableSelect = !this.ui.vTableSelect
+        this.ui.vCoverMask = this.ui.vTableSelect
       },
       btnSelectTable(tableGroup) {
         if (tableGroup.needQueue) {

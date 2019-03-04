@@ -3,7 +3,7 @@
     <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
     <transition name="fade">
-      <div :class="{ cover_mask_9: ui.v_cover_mask}" @click="btnCoverMask"></div>
+      <div :class="{ cover_mask_9: ui.vCoverMask}" @click="btnCoverMask"></div>
     </transition>
 
     <div class="box">
@@ -123,7 +123,7 @@
       <div class="button_big" @click="btnUpdate">更新</div>
     </div>
 
-    <div class="modal_center" v-if="ui.v_price_add">
+    <div class="modal_center" v-if="ui.vPriceAdd">
       <div class="modal_close_box" @click="btnCoverMask">
         <img class="modal_close" src="/img/common/close.png" alt="">
       </div>
@@ -194,8 +194,8 @@
           }
         },
         ui: {
-          v_price_add: false,
-          v_cover_mask: false,
+          vPriceAdd: false,
+          vCoverMask: false,
           tagEnable: false,
           food: {
             name: null,
@@ -219,8 +219,8 @@
         })
       },
       btnCoverMask() {
-        this.ui.v_price_add = false
-        this.ui.v_cover_mask = false
+        this.ui.vPriceAdd = false
+        this.ui.vCoverMask = false
       },
       btnTag(enable) {
         this.ui.tagEnable = enable
@@ -238,8 +238,8 @@
         }
       },
       btnFoodAdd() {
-        this.ui.v_price_add = true
-        this.ui.v_cover_mask = true
+        this.ui.vPriceAdd = true
+        this.ui.vCoverMask = true
         this.ui.food = {}
       },
       btnFoodDelete(food) {
@@ -344,8 +344,8 @@
           }
         })
 
-        this.ui.v_price_add = false
-        this.ui.v_cover_mask = false
+        this.ui.vPriceAdd = false
+        this.ui.vCoverMask = false
       },
       btnUpdate() {
         if (!Boolean(this.http.req.category.image)) {

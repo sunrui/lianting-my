@@ -66,8 +66,8 @@
           imageHeight: 900
         },
         ui: {
-          v_cover_mask: false,
-          v_wifi: false,
+          vCoverMask: false,
+          vWifi: false,
           navs: [
             {
               tag: 'info',

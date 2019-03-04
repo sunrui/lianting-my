@@ -3,7 +3,7 @@
     <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
     <transition name="fade">
-      <div v-bind:class="{ cover_mask_9: ui.v_cover_mask}" @click="btnCoverMask"></div>
+      <div v-bind:class="{ cover_mask_9: ui.vCoverMask}" @click="btnCoverMask"></div>
     </transition>
 
     <div v-for="wall in http.res.walls.elements">
@@ -77,7 +77,7 @@
           </div>
         </div>
 
-        <div class="box" v-if="ui.v_order_menu">
+        <div class="box" v-if="ui.vOrderMenu">
           <div class="modal_center box_radius">
             <div class="modal_header">
               <div class="modal_title">查看菜谱</div>
@@ -140,11 +140,11 @@
           imageHeight: 330
         },
         ui: {
-          v_cover_mask: false,
-          v_order_menu: false,
+          vCoverMask: false,
+          vOrderMenu: false,
           infos: [],
           infoLoads: [],
-          wallReplyies: [],
+          wallReplies: [],
           title: ''
         },
         http: {
@@ -251,18 +251,18 @@
         return ''
       },
       getWallReplies(wallId) {
-        for (let index in this.ui.wallReplyies) {
-          let one = this.ui.wallReplyies[index]
+        for (let index in this.ui.wallReplies) {
+          let one = this.ui.wallReplies[index]
 
           if (one.wallId === wallId) {
-            return one.wallReplyies
+            return one.wallReplies
           }
         }
 
         httpWallApi.getReplyAll(this.$route.params.shortId, wallId, 0, 20).then(res => {
-          this.ui.wallReplyies.push({
+          this.ui.wallReplies.push({
             wallId: wallId,
-            wallReplyies: res.elements
+            wallReplies: res.elements
           })
         })
 
@@ -275,8 +275,8 @@
         return foodDetailApi.countFood(order)
       },
       btnCoverMask() {
-        this.ui.v_order_menu = false
-        this.ui.v_cover_mask = false
+        this.ui.vOrderMenu = false
+        this.ui.vCoverMask = false
 
         scrollApi.enable(true)
       },
@@ -287,8 +287,8 @@
         httpOrderApi.getOrder(this.$route.params.shortId, wall.orderOneId).then(res => {
           this.http.res.order = res
 
-          this.ui.v_order_menu = true
-          this.ui.v_cover_mask = true
+          this.ui.vOrderMenu = true
+          this.ui.vCoverMask = true
 
           scrollApi.enable(false)
         })

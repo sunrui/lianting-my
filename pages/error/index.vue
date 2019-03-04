@@ -7,7 +7,7 @@
       <div class="empty_label2">您的操作过于频繁，请于{{elapsedTime(ui.error.frequent)}}后重试。</div>
     </div>
     <div v-else>
-      <div class="empty" v-if="!ui.v_report">
+      <div class="empty" v-if="!ui.vReport">
         <img class="empty_image" src="/img/no/no_crash.png" alt="">
         <div class="empty_label">呃〜访问出错了！</div>
         <div class="empty_label2">您可将出错原因反馈给我们或返回重试。</div>
@@ -97,7 +97,7 @@
           imageHeight: 220
         },
         ui: {
-          v_report: false,
+          vReport: false,
           reported: false,
           error: {
             frequent: null,
@@ -142,7 +142,7 @@
         return timeApi.elapsedTime(time)
       },
       btnReport() {
-        this.ui.v_report = true
+        this.ui.vReport = true
       },
       btnReportConfirm() {
         this.initError()

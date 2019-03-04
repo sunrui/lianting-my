@@ -117,7 +117,7 @@
           }
         },
         ui: {
-          v_cover_mask: true
+          vCoverMask: true
         }
       };
     },

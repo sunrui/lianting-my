@@ -29,7 +29,7 @@
       <div class="tv_full_screen_footer">
         <div class="tv_full_screen_captcha_box">
           <div class="tv_full_screen_captcha">
-            <canvas id="tv_captcha" v-show="ui.showCaptcha"></canvas>
+            <canvas id="tvCaptcha" v-show="ui.showCaptcha"></canvas>
           </div>
           <div class="tv_full_screen_captcha_label">扫码可排队点餐</div>
         </div>
@@ -394,7 +394,7 @@
         })
       },
       drawCaptcha() {
-        let canvas = document.getElementById('tv_captcha')
+        let canvas = document.getElementById('tvCaptcha')
         if (canvas != null) {
           let text = document.location.protocol + '//' + window.location.host + `/m/${this.$route.params.shortId}`
           QRCode.toCanvas(canvas, text)

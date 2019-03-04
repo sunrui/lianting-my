@@ -37,7 +37,7 @@
 
     <div class="wall_text_input_area">
       <label>
-        <textarea class="wall_text_input" :placeholder="ui.input_tip" v-model="http.req.wall.message"></textarea>
+        <textarea class="wall_text_input" :placeholder="ui.inputTip" v-model="http.req.wall.message"></textarea>
       </label>
     </div>
 
@@ -73,7 +73,7 @@
           imageHeight: 0
         },
         ui: {
-          input_tip: '记录您都和谁一起? 为什么要到此餐厅来？菜的味道如何？ 饭桌上你们都在聊些什么？或者对酒店和厨师说的话等等。 您的留言会被其它的顾客看到。'
+          inputTip: '记录您都和谁一起? 为什么要到此餐厅来？菜的味道如何？ 饭桌上你们都在聊些什么？或者对酒店和厨师说的话等等。 您的留言会被其它的顾客看到。'
         },
         http: {
           req: {
@@ -116,8 +116,8 @@
         httpOrderApi.getOrder(this.$route.params.shortId, this.$route.query.orderOneId).then(res => {
           this.http.res.order = res
 
-          this.ui.v_order_menu = true
-          this.ui.v_cover_mask = true
+          this.ui.vOrderMenu = true
+          this.ui.vCoverMask = true
         })
       },
       elapsedTime(time) {

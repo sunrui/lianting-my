@@ -3,7 +3,7 @@
     <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
     <transition name="fade">
-      <div :class="{ cover_mask_9: ui.v_cover_mask}" @click="btnCoverMask"></div>
+      <div :class="{ cover_mask_9: ui.vCoverMask}" @click="btnCoverMask"></div>
     </transition>
 
     <div class="box">
@@ -200,7 +200,7 @@
     </div>
 
     <transition name="toggle">
-      <div class="modal_bottom" v-if="ui.v_charge_year">
+      <div class="modal_bottom" v-if="ui.vChargeYear">
         <div class="modal_close_box" @click="btnCoverMask">
           <img class="modal_close" src="/img/common/close.png" alt="">
         </div>
@@ -253,8 +253,8 @@
           }
         },
         ui: {
-          v_cover_mask: false,
-          v_charge_year: false,
+          vCoverMask: false,
+          vChargeYear: false,
           licensePlan: null,
           year: 1
         }
@@ -276,8 +276,8 @@
         });
       },
       btnCoverMask() {
-        this.ui.v_cover_mask = false;
-        this.ui.v_charge_year = false;
+        this.ui.vCoverMask = false;
+        this.ui.vChargeYear = false;
 
         scrollApi.enable(true);
       },
@@ -285,8 +285,8 @@
         this.$router.push(`/b/${this.$route.params.shortId}/owner/license/history`);
       },
       btnYearSelect(licensePlan) {
-        this.ui.v_cover_mask = true;
-        this.ui.v_charge_year = true;
+        this.ui.vCoverMask = true;
+        this.ui.vChargeYear = true;
 
         this.ui.licensePlan = licensePlan;
 
@@ -344,8 +344,8 @@
         }
 
         httpShopLicenseApi.postOrderTest(this.$route.params.shortId, this.ui.licensePlan.id, this.ui.year, 'WECHAT_JSAPI').then(res => {
-          this.ui.v_cover_mask = false;
-          this.ui.v_charge_year = false;
+          this.ui.vCoverMask = false;
+          this.ui.vChargeYear = false;
           this.$msgBox.doModal({
             type: 'yes',
             title: '立即续费',
@@ -358,8 +358,8 @@
         }
 
         httpShopLicenseApi.postOrder(this.$route.params.shortId, this.ui.licensePlan.id, this.ui.year, 'WECHAT_JSAPI').then(res => {
-          this.ui.v_cover_mask = false;
-          this.ui.v_charge_year = false;
+          this.ui.vCoverMask = false;
+          this.ui.vChargeYear = false;
 
           if (res.shortIdNotExists) {
             this.$msgBox.doModal({

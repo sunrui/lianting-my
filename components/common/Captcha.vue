@@ -18,6 +18,7 @@
 
 <script>
   import QRCode from 'qrcode'
+  import {logApi} from '../../api/local/logApi'
 
   export default {
     props: {
@@ -39,7 +40,7 @@
       let canvas = document.getElementById('canvas')
       QRCode.toCanvas(canvas, this.text)
 
-      console.log(this.text)
+      logApi.log(this.text)
     },
     methods: {
       btnCancel() {

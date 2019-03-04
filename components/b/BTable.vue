@@ -3,7 +3,7 @@
     <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
     <transition name="fade">
-      <div :class="{ cover_mask_9: ui.v_cover_mask}" @click="btnCoverMask"></div>
+      <div :class="{ cover_mask_9: ui.vCoverMask}" @click="btnCoverMask"></div>
     </transition>
 
     <div class="shop_title_box">
@@ -36,7 +36,7 @@
         </div>
       </div>
 
-      <div class="menu_box_extend" v-if="ui.v_menu_extend">
+      <div class="menu_box_extend" v-if="ui.vMenuExtend">
         <div class="menu_extend">
           <div class="menu_item menu_item_extend" v-for="(tableGroup, index) in http.res.tableGroups.elements">
             <div :class="{menu_item_href:!isSelectMenu(tableGroup.id), menu_item_href_select:isSelectMenu(tableGroup.id)}"
@@ -107,7 +107,7 @@
       <div class="blank_30"></div>
     </div>
 
-    <captcha v-if="ui.v_captcha" @closeCaptcha="closeCaptcha()" :title="ui.captcha.title" :text="ui.captcha.text"></captcha>
+    <captcha v-if="ui.vCaptcha" @closeCaptcha="closeCaptcha()" :title="ui.captcha.title" :text="ui.captcha.text"></captcha>
 
     <transition name="toggle">
       <div class="modal_bottom" v-if="ui.v_menu_table">
@@ -193,9 +193,9 @@
           imageHeight: 300
         },
         ui: {
-          v_menu_extend: false,
-          v_cover_mask: false,
-          v_captcha: false,
+          vMenuExtend: false,
+          vCoverMask: false,
+          vCaptcha: false,
           v_menu_table: false,
           v_table_change: false,
           selectMenuId: null,
@@ -315,11 +315,11 @@
         return count
       },
       btnCoverMask() {
-        this.ui.v_menu_extend = false
-        this.ui.v_captcha = false
+        this.ui.vMenuExtend = false
+        this.ui.vCaptcha = false
         this.ui.v_menu_table = false
         this.ui.v_table_change = false
-        this.ui.v_cover_mask = false
+        this.ui.vCoverMask = false
 
         scrollApi.enable(true)
       },
@@ -402,8 +402,8 @@
         }, 100)
       },
       btnLeaf(extend) {
-        this.ui.v_menu_extend = extend
-        this.ui.v_cover_mask = extend
+        this.ui.vMenuExtend = extend
+        this.ui.vCoverMask = extend
 
         if (extend) {
           window.scroll(0, 0)
@@ -414,11 +414,11 @@
       btnCaptcha(tableGroup, table) {
         this.ui.captcha.title = tableGroup.name + ' - ' + table.fullNumber
         this.ui.captcha.text = document.location.protocol + '//' + window.location.host + `/m/${this.$route.params.shortId}/captcha/${table.id}`
-        this.ui.v_captcha = true
+        this.ui.vCaptcha = true
         scrollApi.enable(false)
       },
       closeCaptcha() {
-        this.ui.v_captcha = false
+        this.ui.vCaptcha = false
         scrollApi.enable(true)
       },
       btnTable(table) {
@@ -438,7 +438,7 @@
 
         scrollApi.enable(false)
 
-        this.ui.v_cover_mask = true
+        this.ui.vCoverMask = true
         this.ui.v_menu_table = true
         this.ui.selectTable = table
       },
@@ -495,7 +495,7 @@
         })
       },
       btnTableChange(table) {
-        this.ui.v_cover_mask = true
+        this.ui.vCoverMask = true
         this.ui.v_table_change = true
         this.ui.v_menu_table = false
         this.ui.selectTable = table
@@ -507,7 +507,7 @@
           if (order.orderTable && order.orderTable.tableOneId === this.ui.selectTable.id) {
             httpOrderAdminApi.putTable(this.$route.params.shortId, order.id, this.ui.changeTable.id).then(res => {
               this.ui.v_table_change = false
-              this.ui.v_cover_mask = false
+              this.ui.vCoverMask = false
 
               if (res.tableOneIdNotExists) {
                 this.$msgBox.doModal({

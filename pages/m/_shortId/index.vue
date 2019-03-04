@@ -4,7 +4,7 @@
 
     <div class="shop_bg"></div>
 
-    <div :class="{ cover_mask_9: ui.v_cover_mask}" @click="btnCoverMask"></div>
+    <div :class="{ cover_mask_9: ui.vCoverMask}" @click="btnCoverMask"></div>
 
     <div class="shop_nav">
       <div class="shop_center">
@@ -70,7 +70,7 @@
       <div class="shop_footer_closed" v-if="!http.res.shop.open">餐厅已打烊</div>
     </div>
 
-    <div class="modal_center" v-if="ui.v_wifi">
+    <div class="modal_center" v-if="ui.vWifi">
       <div class="modal_close_box" @click="btnCoverMask">
         <img class="modal_close" src="/img/common/close.png" alt="">
       </div>
@@ -124,8 +124,8 @@
           imageHeight: 0
         },
         ui: {
-          v_cover_mask: false,
-          v_wifi: false,
+          vCoverMask: false,
+          vWifi: false,
           navs: [
             {
               tag: 'food',
@@ -154,7 +154,7 @@
             {
               tag: 'wifi',
               name: 'WIFI',
-              icon: '/img/m/shop/shop_nav_wifi.png',
+              icon: '/img/m/shop/shop_navWifi.png',
               url: `/m/${this.$route.params.shortId}/wifi`
             },
             {
@@ -292,14 +292,14 @@
         }
       },
       btnCoverMask() {
-        this.ui.v_wifi = false
-        this.ui.v_cover_mask = false
+        this.ui.vWifi = false
+        this.ui.vCoverMask = false
       },
       httpWifi() {
         httpWifiApi.getWifi(this.$route.params.shortId).then(res => {
           this.http.res.wifi = res
-          this.ui.v_cover_mask = true
-          this.ui.v_wifi = true
+          this.ui.vCoverMask = true
+          this.ui.vWifi = true
         })
       },
       btnCouponFetch() {

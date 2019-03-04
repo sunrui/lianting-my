@@ -3,7 +3,7 @@
     <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
     <transition name="fade">
-      <div v-bind:class="{ cover_mask_9: ui.v_cover_mask}" @click="btnCoverMask"></div>
+      <div v-bind:class="{ cover_mask_9: ui.vCoverMask}" @click="btnCoverMask"></div>
     </transition>
 
     <div class="shop_title_box">
@@ -93,7 +93,7 @@
     </div>
 
     <transition name="toggle">
-      <calendar @chooseCalendar="chooseCalendar" v-if="ui.v_calendar"></calendar>
+      <calendar @chooseCalendar="chooseCalendar" v-if="ui.vCalendar"></calendar>
     </transition>
 
   </div>
@@ -124,8 +124,8 @@
           imageHeight: 330
         },
         ui: {
-          v_cover_mask: false,
-          v_calendar: false,
+          vCoverMask: false,
+          vCalendar: false,
           selectDate: null,
           selectTime: null,
           selectTableGroup: {},
@@ -197,8 +197,8 @@
         return this.ui.selectDate.toDateString() === date.toDateString()
       },
       btnCalendar() {
-        this.ui.v_cover_mask = true
-        this.ui.v_calendar = true
+        this.ui.vCoverMask = true
+        this.ui.vCalendar = true
       },
       btnDate(index, date) {
         this.ui.selectDate = date
@@ -263,8 +263,8 @@
           this.ui.selectTime = null
         }
 
-        this.ui.v_calendar = false
-        this.ui.v_cover_mask = false
+        this.ui.vCalendar = false
+        this.ui.vCoverMask = false
       },
       btnTableGroup(tableGroup) {
         this.ui.selectTableGroup = tableGroup
@@ -273,16 +273,16 @@
         if (ok) {
           this.btnDate(0, date)
         } else {
-          this.ui.v_calendar = false
-          this.ui.v_cover_mask = false
+          this.ui.vCalendar = false
+          this.ui.vCoverMask = false
         }
       },
       btnChooseTime(time) {
         this.ui.selectTime = time
       },
       btnCoverMask() {
-        this.ui.v_calendar = false
-        this.ui.v_cover_mask = false
+        this.ui.vCalendar = false
+        this.ui.vCoverMask = false
       },
       btnReserve() {
         if (!this.ui.selectTime) {

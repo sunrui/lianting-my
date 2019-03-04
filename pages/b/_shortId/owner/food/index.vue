@@ -3,7 +3,7 @@
     <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
     <transition name="fade">
-      <div :class="{ cover_mask_9: ui.v_cover_mask}" @click="btnCoverMask"></div>
+      <div :class="{ cover_mask_9: ui.vCoverMask}" @click="btnCoverMask"></div>
     </transition>
 
     <div class="shop_title_box">
@@ -167,7 +167,7 @@
           imageHeight: 300
         },
         ui: {
-          v_cover_mask: false,
+          vCoverMask: false,
           v_group_add: false,
           v_group_edit: false,
           selectMenuId: null
@@ -213,7 +213,7 @@
       btnCoverMask() {
         this.ui.v_group_add = false
         this.ui.v_group_edit = false
-        this.ui.v_cover_mask = false
+        this.ui.vCoverMask = false
       },
       navToHash() {
         let hash = window.location.hash
@@ -319,12 +319,12 @@
         this.$router.push(`/b/${this.$route.params.shortId}/owner/food/group/${foodGroup.id}/order`)
       },
       btnGroupAdd() {
-        this.ui.v_cover_mask = true
+        this.ui.vCoverMask = true
         this.ui.v_group_add = true
         this.http.req.group.name = ''
       },
       btnGroupEdit(foodGroup) {
-        this.ui.v_cover_mask = true
+        this.ui.vCoverMask = true
         this.ui.v_group_edit = true
         this.http.req.group.id = foodGroup.id
         this.http.req.group.name = foodGroup.name
@@ -333,7 +333,7 @@
       btnGroupAddConfirm() {
         httpFoodAdminApi.postGroup(this.$route.params.shortId, this.http.req.group).then(res => {
           this.ui.v_group_add = false
-          this.ui.v_cover_mask = false
+          this.ui.vCoverMask = false
 
           if (res.let) {
             this.$msgBox.doModal({
@@ -367,7 +367,7 @@
       btnGroupEditConfirm() {
         httpFoodAdminApi.putGroup(this.$route.params.shortId, this.http.req.group.id, this.http.req.group).then(res => {
           this.ui.v_group_edit = false
-          this.ui.v_cover_mask = false
+          this.ui.vCoverMask = false
 
           if (res.foodGroupIdNotExists) {
             this.$msgBox.doModal({
