@@ -102,8 +102,7 @@
             food_image_big_box: foodGroup.groupMode === 'Big',
             food_image_box: foodGroup.groupMode !== 'Big',
             }" class="">
-              <img class="food_image" :src="foodCategory.image" :alt="foodCategory.name" v-if="foodGroup.groupMode !== 'Big'" @click="btnPreview(foodCategory.image)">
-              <img class="food_image" :src="foodCategory.image" :alt="foodCategory.name" v-else>
+              <img class="food_image" :src="foodCategory.image" :alt="foodCategory.name" @click="btnPreview(foodGroup, foodCategory)">
               <div class="addition_item_tag_label food_image_tag" v-if="foodCategory.tagName" v-bind:class="{
                    addition_item_tag_color_1: foodCategory.tagIndex === 1,
                    addition_item_tag_color_2: foodCategory.tagIndex === 2,
@@ -130,12 +129,12 @@
               </div>
               <div class="food_button" v-if="foodCategory.status === 'ONLINE'">
                 <div v-if="foodCategory.select > 0">
-                  <div class="food_button_add" @click="btnFoodAdd(foodGroup.id, foodCategory)" @click.stop.prevent="eventFoodAdd"></div>
+                  <div class="food_button_add" @click="btnFoodAdd($event, foodGroup.id, foodCategory)" @click.stop.prevent="eventFoodAdd($event, foodCategory)"></div>
                   <div class="food_button_count">{{foodCategory.select}}</div>
                   <div class="food_button_minus" @click="btnFoodMinus(foodCategory)"></div>
                 </div>
                 <div v-else>
-                  <div class="food_button_zero" @click="btnFoodAdd(foodGroup.id, foodCategory)" @click.stop.prevent="eventFoodAdd"></div>
+                  <div class="food_button_zero" @click="btnFoodAdd($event, foodGroup.id, foodCategory)" @click.stop.prevent="eventFoodAdd($event, foodCategory)"></div>
                 </div>
               </div>
             </div>
@@ -231,7 +230,7 @@
         <div class="category_blank"></div>
 
         <div class="modal_button_box">
-          <div class="button_big" @click="btnCategoryConfirm">选好了</div>
+          <div class="button_big" @click="btnCategoryConfirm()">选好了</div>
         </div>
       </div>
     </transition>
@@ -242,7 +241,7 @@
           <img class="modal_close" src="/img/common/close.png" alt="">
         </div>
 
-        <img class="preview_image" :src="ui.previewImage" alt="">
+        <img class="preview_image" :src="ui.previewFoodCategory.image" alt="">
       </div>
     </transition>
   </div>
@@ -292,13 +291,14 @@
           modal_category: {
             foodGroupId: null,
             category: null,
-            selectFood: null
+            selectFood: null,
+            selectEvent: null
           },
           selectMenuId: null,
           scrollDelay: null,
           balls: [{show: false}, {show: false}, {show: false}, {show: false}, {show: false}],
           ballsDrop: [],
-          previewImage: null
+          previewFoodCategory: null,
         },
         http: {
           res: {
@@ -329,8 +329,12 @@
       }
     },
     methods: {
-      eventFoodAdd(event) {
+      eventFoodAdd(event, foodCategory) {
         if (this.cart.select >= 99) {
+          return
+        }
+
+        if (!foodCategory.foods || foodCategory.foods.length > 1) {
           return
         }
 
@@ -610,13 +614,14 @@
         this.$store.commit('cart/update', cartApi.getCart())
         this.computedCartSelect()
       },
-      btnFoodAdd(foodGroupId, foodCategory) {
+      btnFoodAdd(event, foodGroupId, foodCategory) {
         if (foodCategory.foods.length === 1) {
           this.btnCartFoodAdd(foodGroupId, foodCategory, foodCategory.foods[0])
         } else {
           this.ui.modal_category.foodGroupId = foodGroupId
           this.ui.modal_category.category = foodCategory
           this.ui.modal_category.selectFood = foodCategory.foods[0]
+          this.ui.modal_category.selectEvent = event
 
           this.ui.v_cart = false
           this.ui.v_cover_mask_cart = true
@@ -672,6 +677,10 @@
         this.btnCartFoodAdd(this.ui.modal_category.foodGroupId, this.ui.modal_category.category, this.ui.modal_category.selectFood)
         this.ui.v_category = false
         this.ui.v_cover_mask_cart = false
+
+        this.$nextTick(() => {
+          this.ballDrop(this.ui.modal_category.selectEvent.target)
+        })
       },
       btnCoverMaskCart() {
         this.ui.v_cover_mask = false
@@ -781,8 +790,12 @@
 
         scrollApi.enable(!extend)
       },
-      btnPreview(image) {
-        this.ui.previewImage = image
+      btnPreview(foodGroup, foodCategory) {
+        if (foodGroup.groupMode === 'Big') {
+          return
+        }
+
+        this.ui.previewFoodCategory = foodCategory
         this.ui.v_food_preview = true
         this.ui.v_cover_mask = true
         scrollApi.enable(false)
