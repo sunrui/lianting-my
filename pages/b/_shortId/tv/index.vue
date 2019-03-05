@@ -273,11 +273,6 @@
         httpQueueApi.getState(this.$route.params.shortId).then(res => {
           this.http.res.state = res
 
-          if (this.http.res.state.needQueues.length === 0) {
-            this.$router.push(`/c/${this.$route.params.shortId}/queue/close`)
-            return
-          }
-
           this.httpTableGroup()
         })
       },
