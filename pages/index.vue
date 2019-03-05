@@ -33,7 +33,7 @@
 
   export default {
     metaInfo: {
-      title: '主页'
+      title: '测试主页'
     },
     components: {TitleBar},
     data() {

@@ -92,6 +92,10 @@
       btnBack() {
         if (Boolean(this.ui.backUri)) {
           this.$router.push(this.ui.backUri)
+        } else {
+          if (typeof WeixinJSBridge != 'undefined') {
+            WeixinJSBridge.call('closeWindow')
+          }
         }
       }
     }
