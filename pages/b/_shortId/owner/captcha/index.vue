@@ -24,14 +24,14 @@
       <div class="blank_50"></div>
     </div>
 
-    <div v-if="ui.vRender" v-for="tableGroup in http.res.tableGroups.elements">
+    <div class="captcha" v-if="ui.vRender" v-for="tableGroup in http.res.tableGroups.elements">
       <div v-for="table in tableGroup.tableOnes">
         <div class="title">
           <div class="title_table">{{tableGroup.name}} - {{table.tableGroup_Name}}{{table.fullNumber}}</div>
           <div class="title_download" @click="btnDownload(table)">下载</div>
         </div>
 
-        <div class="captcha" :id="'capture_' + table.id">
+        <div class="captcha_one" :id="'capture_' + table.id">
           <div class="captcha_part_cover"></div>
           <div class="captcha_part_label"></div>
           <div class="captcha_part_panel"></div>
