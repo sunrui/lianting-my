@@ -83,8 +83,8 @@
           canBack: true,
           title: '二维码',
           backUri: `/b/${this.$route.params.shortId}/owner`,
-          theme: 'white',
-          imageHeight: 0
+          theme: 'image',
+          imageHeight: 300
         },
         http: {
           res: {
