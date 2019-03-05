@@ -110,7 +110,7 @@
     methods: {
       getTypeName(type) {
         if (type === 'Admin') {
-          return '管理员'
+          return '店长'
         } else if (type === 'Waiter') {
           return '服务员'
         } else if (type === 'Cooker') {
