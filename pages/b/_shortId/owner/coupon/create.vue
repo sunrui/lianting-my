@@ -21,7 +21,7 @@
         <div class="box_divide"></div>
 
         <div class="addition_item">
-          <div class="addition_item_label">多少天后才可以使用</div>
+          <div class="addition_item_label">多少天后可用</div>
           <input class="addition_item_input" placeholder="请输入天数" maxlength="3"
                  oninput="this.value=this.value.replace(/[^0-9]/g,''); if (this.value === '') this.value = 0;"
                  v-model="http.req.coupon.validAfterDay">
