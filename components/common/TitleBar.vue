@@ -68,40 +68,25 @@
       }
     },
     mounted() {
-      // this.initHistoryBack()
+      window.addEventListener('popstate', this.popStateHandle)
+      window.history.pushState('forward', null, null)
+      window.history.forward()
 
       let userAgent = navigator.userAgent.toLowerCase() || window.navigator.userAgent.toLowerCase()
       this.ui.inWechat = userAgent.match(/MicroMessenger/i) || userAgent.match(/webdebugger/i)
     },
     beforeDestroy() {
-      // window.removeEventListener('popstate', this.popStateHandle)
+      window.removeEventListener('popstate', this.popStateHandle)
     },
     methods: {
       popStateHandle(e) {
         window.history.pushState('forward', null, null)
         window.history.forward()
 
-        if (window.history.pThis && window.history.backUri) {
-          window.location = window.history.backUri
-        }
+        this.btnBack()
       },
       setBackUri(backUri) {
         this.ui.backUri = backUri
-      },
-      initHistoryBack() {
-        window.addEventListener('popstate', this.popStateHandle)
-
-        if (!Boolean(this.ui.backUri)) {
-          window.history.pushState('forward', null, null)
-          window.history.forward()
-          return
-        }
-
-        window.history.backUri = this.ui.backUri
-        window.history.pThis = this
-
-        window.history.pushState('forward', null, null)
-        window.history.forward()
       },
       btnBack() {
         if (Boolean(this.ui.backUri)) {
