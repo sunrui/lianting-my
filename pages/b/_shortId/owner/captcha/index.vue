@@ -69,6 +69,7 @@
   import QRCode from 'qrcode'
   import html2canvas from 'html2canvas'
   import {downloadApi} from '../../../../../api/local/downloadApi'
+  import {highlightApi} from '../../../../../api/local/highlightApi'
 
   export default {
     metaInfo: {
@@ -129,7 +130,7 @@
           this.$msgBox.doModal({
             type: 'yes',
             title: '暂无餐桌',
-            content: '请您先添加餐桌后再使用在线生成。'
+            content: `请先${highlightApi.highlight('添加餐桌')}，点击确认将转至餐桌页。`
           }).then(async (val) => {
             if (val === 'Yes') {
               this.$router.push(`/b/${this.$route.params.shortId}/owner/table`)
