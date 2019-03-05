@@ -123,7 +123,9 @@
             return
           }
 
-          this.http.res.info = res.info ? res.info : {}
+          this.http.res.info = res.info ? res.info : {
+            male: true
+          }
         })
       },
       btnChooseMale(male) {
