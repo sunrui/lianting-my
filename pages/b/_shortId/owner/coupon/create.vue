@@ -65,7 +65,7 @@
         <div class="box_divide" v-if="http.req.coupon.type === 'FREE'"></div>
 
         <div class="addition_item" v-if="http.req.coupon.type === 'FREE'">
-          <div class="addition_item_label">领取次数</div>
+          <div class="addition_item_label">限制次数</div>
           <input class="addition_item_input" placeholder="请输入次数" maxlength="3"
                  oninput="this.value=this.value.replace(/[^0-9]/g,'');"
                  v-model="http.req.coupon.perLimit">
@@ -86,7 +86,7 @@
         <div class="box_divide" v-if="http.req.coupon.type === 'ORDER_RETURN'"></div>
 
         <div class="addition_item" v-if="http.req.coupon.type === 'ORDER_RETURN'">
-          <div class="addition_item_label">消费满多少元返赠</div>
+          <div class="addition_item_label">消费满金额</div>
           <currency-input class="addition_item_input" right="true" placeholder="请输入金额" maxlength="20"
                           v-model="http.req.coupon.needChargePrice"></currency-input>
         </div>
