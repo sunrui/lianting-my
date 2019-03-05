@@ -92,8 +92,6 @@
       btnBack() {
         if (Boolean(this.ui.backUri)) {
           this.$router.push(this.ui.backUri)
-        } else {
-          this.$router.back()
         }
       }
     }
