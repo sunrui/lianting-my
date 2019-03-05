@@ -204,7 +204,7 @@
               title: '添加餐桌组',
               content: '添加成功。'
             }).then(async (val) => {
-              this.$router.push(this.title.backUri)()
+              this.$router.push(this.title.backUri)
             })
           }
         })

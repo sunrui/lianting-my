@@ -90,7 +90,7 @@
       },
       btnEdit() {
         httpWifiAdminApi.putWifi(this.$route.params.shortId, this.http.req.wifi).then(res => {
-          this.$router.push(this.title.backUri)()
+          this.$router.push(this.title.backUri)
         })
       }
     }

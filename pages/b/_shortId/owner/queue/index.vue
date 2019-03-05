@@ -72,7 +72,7 @@
             title: '排队',
             content: '已更新。'
           }).then(async (val) => {
-            this.$router.push(this.title.backUri)()
+            this.$router.push(this.title.backUri)
           })
         })
       }

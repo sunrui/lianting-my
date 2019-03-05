@@ -87,7 +87,7 @@
               title: '查看资料',
               content: '用户不存在。'
             }).then(async (val) => {
-              this.$router.push(this.title.backUri)()
+              this.$router.push(this.title.backUri)
             })
 
             return

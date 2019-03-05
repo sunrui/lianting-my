@@ -148,7 +148,7 @@
               finishUpdate++
 
               if (finishUpdate === this.http.res.group.foodCategories.length) {
-                this.$router.push(this.title.backUri)()
+                this.$router.push(this.title.backUri)
               }
             }
           })

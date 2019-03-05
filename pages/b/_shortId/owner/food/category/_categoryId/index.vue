@@ -405,7 +405,7 @@
           }
 
           if (res.success) {
-            this.$router.push(this.title.backUri)()
+            this.$router.push(this.title.backUri)
           }
         })
       }

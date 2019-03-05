@@ -212,7 +212,7 @@
           }
 
           if (res.couponId) {
-            this.$router.push(this.title.backUri)()
+            this.$router.push(this.title.backUri)
           }
         })
       }
