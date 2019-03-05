@@ -355,6 +355,8 @@
             type: 'yes',
             title: '立即续费',
             content: '测试续费成功。'
+          }).then(async (val) => {
+            this.httpShop()
           })
         })
 
