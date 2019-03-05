@@ -129,7 +129,7 @@
           })
 
           wx.error(function (res) {
-            this.$msgBox.doModal({
+            pThis.$msgBox.doModal({
               type: 'yes',
               title: '上传图片',
               content: res
