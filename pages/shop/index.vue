@@ -185,7 +185,7 @@
         return ''
       },
       btnShop(shop) {
-        this.$router.push(`/m/${shop.shortId}`)
+        this.$router.push(`/c/${shop.shortId}`)
       },
       btnRole(shop, role) {
         this.$router.push(`/b/${shop.shortId}/${role}`)

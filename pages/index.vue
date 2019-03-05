@@ -8,10 +8,6 @@
           <div class="addition_item_label">登录</div>
           <div class="addition_item_link"></div>
         </div>
-        <div class="addition_item" v-else @click="btnNav('logout')">
-          <div class="addition_item_label">登出</div>
-          <div class="addition_item_link"></div>
-        </div>
         <div class="box_divide"></div>
         <div class="addition_item" @click="btnNav('shop/role')">
           <div class="addition_item_label">工作台</div>
@@ -33,14 +29,14 @@
 
   export default {
     metaInfo: {
-      title: '测试主页'
+      title: '导航'
     },
     components: {TitleBar},
     data() {
       return {
         title: {
           canBack: false,
-          title: '测试主页',
+          title: '导航',
           theme: 'image',
           imageHeight: 220
         }

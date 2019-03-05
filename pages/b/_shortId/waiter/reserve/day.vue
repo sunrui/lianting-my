@@ -141,6 +141,6 @@
 
 <style scoped lang="scss">
   @import '~assets/common';
-  @import '~assets/m/reserve';
-  @import '~assets/m/reserve_history';
+  @import '~assets/c/reserve';
+  @import '~assets/c/reserve_history';
 </style>

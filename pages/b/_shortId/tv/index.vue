@@ -274,7 +274,7 @@
           this.http.res.state = res
 
           if (this.http.res.state.needQueues.length === 0) {
-            this.$router.push(`/m/${this.$route.params.shortId}/queue/close`)
+            this.$router.push(`/c/${this.$route.params.shortId}/queue/close`)
             return
           }
 
@@ -396,7 +396,7 @@
       drawCaptcha() {
         let canvas = document.getElementById('tvCaptcha')
         if (canvas != null) {
-          let text = document.location.protocol + '//' + window.location.host + `/m/${this.$route.params.shortId}`
+          let text = document.location.protocol + '//' + window.location.host + `/c/${this.$route.params.shortId}`
           QRCode.toCanvas(canvas, text)
           this.ui.drewCaptcha = true
         }

@@ -166,6 +166,6 @@
 
 <style scoped lang="scss">
   @import '~assets/common';
-  @import '~assets/m/reserve';
+  @import '~assets/c/reserve';
   @import 'index';
 </style>

@@ -134,7 +134,7 @@
         title: {
           canBack: true,
           title: '下单',
-          backUri: this.roleWaiter ? `/b/${this.$route.params.shortId}/waiter` : `/m/${this.$route.params.shortId}`,
+          backUri: this.roleWaiter ? `/b/${this.$route.params.shortId}/waiter` : `/c/${this.$route.params.shortId}`,
           theme: 'image',
           imageHeight: 330
         },
@@ -175,7 +175,7 @@
         if (this.roleWaiter) {
           this.$router.push(`/b/${this.$route.params.shortId}/waiter/food`)
         } else {
-          this.$router.push(`/m/${this.$route.params.shortId}/food`)
+          this.$router.push(`/c/${this.$route.params.shortId}/food`)
         }
         return
       }
@@ -277,7 +277,7 @@
               if (this.roleWaiter) {
                 this.$router.push(`/b/${this.$route.params.shortId}/waiter/food`)
               } else {
-                this.$router.push(`/m/${this.$route.params.shortId}/food`)
+                this.$router.push(`/c/${this.$route.params.shortId}/food`)
               }
             })
           } else if (res.orderOneId) {
@@ -295,7 +295,7 @@
             if (this.roleWaiter) {
               path = `/b/${this.$route.params.shortId}/waiter/order/${res.orderOneId}/success`
             } else {
-              path = `/m/${this.$route.params.shortId}/order/${res.orderOneId}/success`
+              path = `/c/${this.$route.params.shortId}/order/${res.orderOneId}/success`
             }
 
             this.$router.push({
@@ -336,5 +336,5 @@
 
 <style scoped lang="scss">
   @import '~assets/common';
-  @import '~assets/m/order';
+  @import '~assets/c/order';
 </style>

@@ -119,7 +119,7 @@
 
             let canvas = document.getElementById(tableOne.id)
             if (canvas) {
-              let uri = document.location.protocol + '//' + window.location.host + `/m/${this.http.res.shop.shortId}/captcha/${tableOne.id}`
+              let uri = document.location.protocol + '//' + window.location.host + `/c/${this.http.res.shop.shortId}/captcha/${tableOne.id}`
               QRCode.toCanvas(canvas, uri)
             }
           }

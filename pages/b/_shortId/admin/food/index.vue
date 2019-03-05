@@ -350,5 +350,5 @@
 
 <style scoped lang="scss">
   @import '~assets/common';
-  @import '~assets/m/food';
+  @import '~assets/c/food';
 </style>

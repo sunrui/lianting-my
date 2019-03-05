@@ -65,7 +65,7 @@
         title: {
           canBack: true,
           title: '点餐',
-          backUri: this.roleWaiter ? `/b/${this.$route.params.shortId}/waiter/food` : `/m/${this.$route.params.shortId}`,
+          backUri: this.roleWaiter ? `/b/${this.$route.params.shortId}/waiter/food` : `/c/${this.$route.params.shortId}`,
           theme: 'white',
           imageHeight: 0
         },
@@ -142,7 +142,7 @@
         this.btnSearch()
       },
       btnNav(foodCategory) {
-        this.$router.push(`/m/${this.$route.params.shortId}/food#${foodCategory.id}`)
+        this.$router.push(`/c/${this.$route.params.shortId}/food#${foodCategory.id}`)
       }
     }
   }

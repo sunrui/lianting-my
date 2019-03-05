@@ -1,0 +1,124 @@
+.wall_message_reply_more {
+  position: relative;
+  margin-top: px2rem(10);
+
+  .wall_message_one {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: px2rem(25);
+
+    .wall_message_icon {
+      display: inline-block;
+      vertical-align: middle;
+      margin-left: px2rem(10);
+      width: px2rem(32);
+      height: px2rem(32);
+    }
+
+    .wall_message_label {
+      display: inline-block;
+      vertical-align: middle;
+      color: #999999;
+      line-height: px2rem(32);
+      margin-left: px2rem(7);
+    }
+  }
+
+  .wall_message_order_menu {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: px2rem(25);
+    float: right;
+
+    .wall_message_order_menu_icon {
+      display: inline-block;
+      vertical-align: middle;
+      background-image: url("/img/c/wall/wall_menu.png");
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      height: px2rem(32);
+      width: px2rem(32);
+    }
+
+    .wall_message_order_menu_label {
+      display: inline-block;
+      margin-right: px2rem(5);
+    }
+  }
+}
+
+.wall_message_menu {
+  float: right;
+  line-height: px2rem(32);
+
+  .wall_order_menu_icon {
+    display: inline-block;
+    vertical-align: middle;
+    background-image: url("/img/c/wall/wall_menu.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    height: px2rem(32);
+    width: px2rem(32);
+  }
+
+  .wall_order_menu_label {
+    display: inline-block;
+    margin-right: px2rem(5);
+  }
+}
+
+.wall_user_reply_content {
+  margin-left: px2rem(80 + 20);
+  margin-top: px2rem(20);
+  margin-bottom: px2rem(30);
+  color: #666666;
+}
+
+.wall_reply_footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: px2rem(100);
+  background: white;
+  border-top: solid px2rem(1) rgba(230, 230, 230, 0.5);
+
+  .wall_reply_content {
+    border-radius: px2rem(70/2);
+    background: #F0F1F2;
+    height: px2rem(70);
+
+    right: px2rem(110);
+    left: px2rem(20);
+
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+
+    .wall_reply_input {
+      padding: 0 px2rem(25);
+      color: #666666;
+      line-height: px2rem(70);
+      width: 100%;
+      border: none;
+      outline: medium;
+      background: none;
+    }
+  }
+
+  .wall_reply_button {
+    float: right;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    color: #f52626;
+    font-size: px2rem(28);
+    width: 110px;
+    line-height: px2rem(100);
+  }
+}
+
+.wall_reply_empty {
+  text-align: center;
+  margin: px2rem(50);
+  color: #999999;
+}

@@ -957,6 +957,6 @@
 
 <style scoped lang="scss">
   @import '~assets/common';
-  @import '~assets/m/order';
+  @import '~assets/c/order';
   @import 'BOrderOne';
 </style>

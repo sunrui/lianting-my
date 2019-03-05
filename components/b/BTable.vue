@@ -413,7 +413,7 @@
       },
       btnCaptcha(tableGroup, table) {
         this.ui.captcha.title = tableGroup.name + ' - ' + table.fullNumber
-        this.ui.captcha.text = document.location.protocol + '//' + window.location.host + `/m/${this.$route.params.shortId}/captcha/${table.id}`
+        this.ui.captcha.text = document.location.protocol + '//' + window.location.host + `/c/${this.$route.params.shortId}/captcha/${table.id}`
         this.ui.vCaptcha = true
         scrollApi.enable(false)
       },
@@ -544,6 +544,6 @@
 
 <style scoped lang="scss">
   @import '~assets/common';
-  @import '~assets/m/food';
+  @import '~assets/c/food';
   @import '~assets/b/b_table';
 </style>

@@ -81,11 +81,11 @@
           <div class="food_group_name">{{foodGroup.name}}</div>
           <div class="food_group_count">({{foodGroup.foodCategories.length}})</div>
           <div class="food_group_mode" v-if="foodGroup.groupMode === 'Small'" @click="btnGroupMode(foodGroup, 'Big')">
-            <img class="food_group_mode_icon" src="/img/m/food/group_mode_big.png" alt="">
+            <img class="food_group_mode_icon" src="/img/c/food/group_mode_big.png" alt="">
             <div class="food_group_mode_label">大图模式</div>
           </div>
           <div class="food_group_mode" v-else @click="btnGroupMode(foodGroup, 'Small')">
-            <img class="food_group_mode_icon" src="/img/m/food/group_mode_small.png" alt="">
+            <img class="food_group_mode_icon" src="/img/c/food/group_mode_small.png" alt="">
             <div class="food_group_mode_label">小图模式</div>
           </div>
         </div>
@@ -276,7 +276,7 @@
         title: {
           canBack: true,
           title: '点餐',
-          backUri: this.roleWaiter ? `/b/${this.$route.params.shortId}/waiter` : `/m/${this.$route.params.shortId}`,
+          backUri: this.roleWaiter ? `/b/${this.$route.params.shortId}/waiter` : `/c/${this.$route.params.shortId}`,
           theme: 'image',
           imageHeight: 300
         },
@@ -441,7 +441,7 @@
               if (this.roleWaiter) {
                 this.$router.push(`/b/${this.$route.params.shortId}/waiter/food/empty`)
               } else {
-                this.$router.push(`/m/${this.$route.params.shortId}/food/empty`)
+                this.$router.push(`/c/${this.$route.params.shortId}/food/empty`)
               }
 
               return
@@ -451,7 +451,7 @@
             if (this.roleWaiter) {
               this.$router.push(`/b/${this.$route.params.shortId}/waiter/food/empty`)
             } else {
-              this.$router.push(`/m/${this.$route.params.shortId}/food/empty`)
+              this.$router.push(`/c/${this.$route.params.shortId}/food/empty`)
             }
 
             return
@@ -738,7 +738,7 @@
               this.$router.push(`/b/${this.$route.params.shortId}/waiter/order/${notPaidOrder.id}/add`)
               return
             } else {
-              this.$router.push(`/m/${this.$route.params.shortId}/order/${notPaidOrder.id}/add`)
+              this.$router.push(`/c/${this.$route.params.shortId}/order/${notPaidOrder.id}/add`)
               return
             }
           }
@@ -747,7 +747,7 @@
         if (this.roleWaiter) {
           this.$router.push(`/b/${this.$route.params.shortId}/waiter/order/new`)
         } else {
-          this.$router.push(`/m/${this.$route.params.shortId}/order/new`)
+          this.$router.push(`/c/${this.$route.params.shortId}/order/new`)
         }
       },
       btnOrder() {
@@ -779,7 +779,7 @@
         if (this.roleWaiter) {
           this.$router.push(`/b/${this.$route.params.shortId}/waiter/food/search`)
         } else {
-          this.$router.push(`/m/${this.$route.params.shortId}/food/search`)
+          this.$router.push(`/c/${this.$route.params.shortId}/food/search`)
         }
       },
       btnLeaf(extend) {
@@ -809,6 +809,6 @@
 
 <style scoped lang="scss">
   @import '~assets/common';
-  @import '~assets/m/food';
+  @import '~assets/c/food';
   @import "Food";
 </style>

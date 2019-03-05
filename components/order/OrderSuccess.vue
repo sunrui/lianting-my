@@ -91,7 +91,7 @@
         title: {
           canBack: true,
           title: '下单成功',
-          backUri: this.roleWaiter ? `/b/${this.$route.params.shortId}/waiter` : `/m/${this.$route.params.shortId}`,
+          backUri: this.roleWaiter ? `/b/${this.$route.params.shortId}/waiter` : `/c/${this.$route.params.shortId}`,
           theme: 'image',
           imageHeight: 220
         },
@@ -147,7 +147,7 @@
         if (this.roleWaiter) {
           this.$router.push(`/b/${this.$route.params.shortId}/waiter/table`)
         } else {
-          this.$router.push(`/m/${this.$route.params.shortId}/food`)
+          this.$router.push(`/c/${this.$route.params.shortId}/food`)
         }
       }
     }

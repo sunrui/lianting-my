@@ -142,7 +142,7 @@
       },
       btnCaptcha() {
         this.ui.captcha.title = this.http.res.shop.name
-        this.ui.captcha.text = document.location.protocol + '//' + window.location.host + `/m/${this.$route.params.shortId}`
+        this.ui.captcha.text = document.location.protocol + '//' + window.location.host + `/c/${this.$route.params.shortId}`
         this.ui.vCaptcha = true
       },
       closeCaptcha() {

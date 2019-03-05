@@ -1,0 +1,112 @@
+.new_logo_radius_image {
+  background-image: url("/img/c/reserve/reserve_new.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  width: px2rem(140);
+  height: px2rem(140);
+}
+
+.success_logo_radius_image {
+  background-image: url("/img/c/reserve/reserve_success.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  width: px2rem(140);
+  height: px2rem(140);
+}
+
+.failed_logo_radius_image {
+  background-image: url("/img/c/reserve/reserve_failed.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  width: px2rem(140);
+  height: px2rem(140);
+}
+
+.reserve_process {
+  background: white;
+  margin-top: px2rem(20);
+  padding-left: px2rem(40);
+  position: relative;
+  padding-bottom: px2rem(20);
+  padding-top: px2rem(30);
+
+  .reserve_process_item {
+    position: relative;
+    padding-bottom: px2rem(20);
+    margin-right: px2rem(35);
+
+    .reserve_process_icon_ball {
+      position: absolute;
+      background: rgba(230, 230, 230, 0.5);
+      border-radius: 50%;
+      width: px2rem(10);
+      height: px2rem(10);
+      top: px2rem(10);
+    }
+
+    .reserve_process_icon_ball_new {
+      background: linear-gradient(90deg, rgba(255, 51, 68, 0.2), rgba(255, 136, 51, 0.2));
+      border-radius: 50%;
+      width: px2rem(24);
+      height: px2rem(24);
+      text-align: center;
+
+      position: absolute;
+      top: px2rem(10);
+      left: px2rem(-(24 - 10) / 2);
+      z-index: 1;
+    }
+
+    .reserve_process_icon_ball_new_dot {
+      position: absolute;
+      width: px2rem(14);
+      height: px2rem(14);
+      background: linear-gradient(90deg, rgba(255, 51, 68, 1), rgba(255, 136, 51, 1));
+      border-radius: 50%;
+      text-align: center;
+
+      top: px2rem(10 + 5);
+      left: px2rem(-(24 - 10 - 10) / 2);
+      z-index: 1;
+    }
+
+    .reserve_process_icon_line {
+      position: absolute;
+      background: rgba(230, 230, 230, 0.5);
+      width: px2rem(1);
+      margin-left: px2rem(4);
+      bottom: 0;
+      height: 100%;
+    }
+
+    .reserve_process_content {
+      margin-left: px2rem(30);
+      top: 0;
+
+      .reserve_process_content_time {
+        font-size: px2rem(28);
+        color: #666666;
+      }
+
+      .reserve_process_content_time_new {
+        font-size: px2rem(28);
+        color: #f52626;
+      }
+
+      .reserve_process_content_name {
+        color: #666666;
+        margin-top: px2rem(20);
+
+      }
+
+      .reserve_process_content_remark {
+        color: #666666;
+        margin-top: px2rem(20);
+        background: #F5F5F5;
+        border-radius: px2rem(10);
+        padding: px2rem(15);
+      }
+    }
+  }
+}
+
