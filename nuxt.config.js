@@ -40,11 +40,12 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    {src: '~plugins/message_box.js', ssr: false},
-    {src: '~plugins/rem.js', ssr: false},
-    {src: '~plugins/axios.js', ssr: false},
-    {src: '~plugins/meta.js', ssr: false},
-    {src: '~plugins/console.js', ssr: false}
+    {src: '~plugins/message_box', ssr: false},
+    {src: '~plugins/rem', ssr: false},
+    {src: '~plugins/axios', ssr: false},
+    {src: '~plugins/meta', ssr: false},
+    {src: '~plugins/console', ssr: false},
+    {src: '~plugins/route', ssr: false}
   ],
 
   /*

@@ -79,18 +79,34 @@
       window.removeEventListener('popstate', this.popStateHandle)
     },
     methods: {
+      setTitle() {
+        document.title = this.title
+
+        if (/ip(hone|od|ad)/i.test(navigator.userAgent)) {
+          let i = document.createElement('iframe')
+          i.src = '/favicon.ico'
+          i.type = 'image/x-icon'
+          i.style.display = 'none'
+          i.onload = function () {
+            setTimeout(function () {
+              i.remove()
+            }, 10)
+          }
+          document.body.appendChild(i)
+        }
+      },
       popStateHandle(e) {
         window.history.pushState('forward', null, null)
         window.history.forward()
 
-        document.title = this.title
         this.btnBack()
+        this.setTitle()
       },
       setBackUri(backUri) {
         this.ui.backUri = backUri
       },
       btnBack() {
-        if (Boolean(this.ui.backUri)) {
+        if (this.canBack && Boolean(this.ui.backUri)) {
           this.$router.push(this.ui.backUri)
         } else {
           if (typeof WeixinJSBridge != 'undefined') {

@@ -33,7 +33,7 @@ export const storeApi = {
   object: {
     set(key, object) {
       if (!Boolean(key)) {
-        console.error('[storeApi.pair.set] key undefined')
+        logApi.error('[storeApi.pair.set] key undefined')
         return
       }
 
