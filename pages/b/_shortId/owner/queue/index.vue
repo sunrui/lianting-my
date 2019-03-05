@@ -1,6 +1,13 @@
 <template>
   <div>
     <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
+    <div class="box">
+      <div class="tip">
+        <ul class="tip_ul">
+          <li>如需启用排队功能，请至少添加一名店长和服务员。</li>
+        </ul>
+      </div>
+    </div>
 
     <div class="box">
       <div class="addition box_radius">
