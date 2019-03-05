@@ -83,12 +83,17 @@
 
       },
       delayInit() {
-        this.ui.tasks[this.taskInitIndex].finish = true
+        if (this.ui.tasks.length === 0) {
+          this.updateInitNext()
+          return
+        }
+
+        this.ui.tasks[this.ui.taskInitIndex].finish = true
         setTimeout(this.updateInitNext, 500)
       },
       updateInit(index) {
         let delay = index === 2 ? 1000 : 500
-        this.taskInitIndex = index
+        this.ui.taskInitIndex = index
         setTimeout(this.delayInit, delay)
       },
       btnShopOwner() {
