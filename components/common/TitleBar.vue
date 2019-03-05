@@ -82,7 +82,7 @@
       popStateHandle(e) {
         window.history.pushState('forward', null, null)
         window.history.forward()
-        
+
         document.title = this.title
         this.btnBack()
       },

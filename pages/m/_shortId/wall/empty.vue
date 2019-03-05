@@ -11,7 +11,7 @@
 
   export default {
     metaInfo: {
-      title: '没有留言墙'
+      title: '留言墙'
     },
     middleware: 'auth',
     components: { TitleBar, Empty },
@@ -19,7 +19,7 @@
       return {
         title: {
           canBack: true,
-          title: '没有留言墙',
+          title: '留言墙',
           backUri: `/m/${this.$route.params.shortId}`,
           theme: 'white',
           imageHeight: 0
