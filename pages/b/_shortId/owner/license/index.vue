@@ -73,8 +73,7 @@
           shop_license_label_normal: license.plan.licenseType === 'Normal',
           shop_license_label_senior: license.plan.licenseType === 'Senior',
           shop_license_price_free: license.plan.licenseType === 'Free',
-          }">{{license.plan.price <= 0 ? '不限时免费' : ''}} {{'￥' + license.plan.price + '/年'}}
-
+          }">{{'￥' + license.plan.price + '/年'}}
         </div>
 
         <div class="blank_10"></div>
@@ -188,7 +187,7 @@
           shop_license_button_free: license.plan.licenseType === 'Free',
           shop_license_button_normal: license.plan.licenseType === 'Normal',
           shop_license_button_senior: license.plan.licenseType === 'Senior'
-          }" v-if="license.plan.price <= 0">不限时免费
+          }" v-if="license.plan.licenseType === 'Free'">不限时免费
         </div>
         <div class="shop_license_button" v-bind:class="{
           shop_license_button_free: license.plan.licenseType === 'Free',
