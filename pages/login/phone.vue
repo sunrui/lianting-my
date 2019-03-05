@@ -10,7 +10,7 @@
     <div class="blank_100"></div>
 
     <div class="login">
-      <div class="addition box_radius">
+      <div class="addition">
         <div class="login_phone">
           <div class="login_phone_icon"></div>
           <input class="login_phone_input" placeholder="请输入手机号" maxlength="11"
