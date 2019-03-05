@@ -20,7 +20,7 @@
         title: {
           canBack: true,
           title: '我的订单',
-          backUri: `/b/${this.$route.params.shortId}/owner`,
+          backUri: `/m/${this.$route.params.shortId}`,
           theme: 'white',
           imageHeight: 0
         }
