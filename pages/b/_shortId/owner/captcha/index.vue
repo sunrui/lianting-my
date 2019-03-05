@@ -128,8 +128,8 @@
         if (this.http.res.tableGroups.elements.length === 0) {
           this.$msgBox.doModal({
             type: 'yes',
-            title: '二维码',
-            content: '暂无餐桌，点击确认要转到添加餐桌页。'
+            title: '暂无餐桌',
+            content: '请您先添加餐桌后再使用在线生成。'
           }).then(async (val) => {
             if (val === 'Yes') {
               this.$router.push(`/b/${this.$route.params.shortId}/owner/table`)
