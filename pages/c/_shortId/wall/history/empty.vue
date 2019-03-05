@@ -20,7 +20,7 @@
         title: {
           canBack: true,
           title: '我的留言墙',
-          backUri: `/c/${this.$route.params.shortId}`,
+          backUri: `/c/${this.$route.params.shortId}/me`,
           theme: 'white',
           imageHeight: 0
         }
