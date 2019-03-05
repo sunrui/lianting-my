@@ -159,7 +159,7 @@
         this.$msgBox.doModal({
           type: 'yesOrNo',
           title: '下载二维码',
-          content: '如受手机所限无法下载时，请在浏览器打开后尝试。您确定要全部下载吗? '
+          content: '如遇到权限限制无法下载时，可在其它浏览器打开后尝试。您确定要全部下载吗? '
         }).then(async (val) => {
           if (val !== 'Yes') {
             return
