@@ -11,9 +11,9 @@
 
     <div class="login">
       <div class="addition box_radius">
-        <div class="addition_item">
-          <div class="addition_item_label">手机号</div>
-          <input class="addition_item_input" placeholder="请输入手机号" maxlength="11"
+        <div class="login_phone">
+          <div class="login_phone_icon"></div>
+          <input class="login_phone_input" placeholder="请输入手机号" maxlength="11"
                  oninput="value=value.replace(/[^\d]/g,'')"
                  v-model="http.req.bind.phone">
         </div>
@@ -22,7 +22,8 @@
 
         <div class="addition_item">
           <div class="addition_item_label">
-            <input class="addition_item_code_input" placeholder="请输入验证码" maxlength="6"
+            <div class="login_sms_code_icon"></div>
+            <input class="login_sms_code_input addition_item_code_input" placeholder="验证码" maxlength="6"
                    oninput="value=value.replace(/[^\d]/g,'')"
                    v-model="http.req.bind.code">
           </div>
@@ -61,19 +62,19 @@
 </template>
 
 <script>
-  import { validatorApi } from '../../api/local/validatorApi'
-  import { httpSmsApi } from '../../api/http/user/httpSmsApi'
-  import { stateApi } from '../../api/local/stateApi'
+  import {validatorApi} from '../../api/local/validatorApi'
+  import {httpSmsApi} from '../../api/http/user/httpSmsApi'
+  import {stateApi} from '../../api/local/stateApi'
   import TitleBar from '../../components/common/TitleBar'
-  import { httpUserApi } from '../../api/http/user/httpUserApi'
-  import { timeApi } from '../../api/local/timeApi'
+  import {httpUserApi} from '../../api/http/user/httpUserApi'
+  import {timeApi} from '../../api/local/timeApi'
 
   export default {
     metaInfo: {
       title: '登录'
     },
     middleware: 'auth',
-    components: { TitleBar },
+    components: {TitleBar},
     data() {
       return {
         title: {

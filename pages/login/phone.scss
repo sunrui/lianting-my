@@ -27,7 +27,47 @@
 }
 
 .login {
+  position: relative;
   padding: px2rem(0) px2rem(50);
+
+  .login_phone {
+    position: relative;
+    height: px2rem(90);
+    vertical-align: middle;
+
+    .login_phone_icon {
+      display: inline-block;
+      vertical-align: middle;
+      background-image: url("/img/login/login_phone.png");
+      width: px2rem(35);
+      height: px2rem(47);
+
+      margin-left: px2rem(35);
+    }
+
+    .login_phone_input {
+      display: inline-block;
+      vertical-align: middle;
+      margin-left: px2rem(10);
+      line-height: px2rem(90);
+      color: #666666;
+      border: none;
+      outline: medium;
+      background: none;
+    }
+  }
+
+  .login_sms_code_icon {
+    display: inline-block;
+    vertical-align: middle;
+    background-image: url("/img/login/login_sms_code.png");
+    width: px2rem(43);
+    height: px2rem(45);
+  }
+
+  .login_sms_code_input {
+    margin-left: px2rem(2);
+  }
 }
 
 .login_footer {
