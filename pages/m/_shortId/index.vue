@@ -154,7 +154,7 @@
             {
               tag: 'wifi',
               name: 'WIFI',
-              icon: '/img/m/shop/shop_navWifi.png',
+              icon: '/img/m/shop/shop_nav_wifi.png',
               url: `/m/${this.$route.params.shortId}/wifi`
             },
             {
