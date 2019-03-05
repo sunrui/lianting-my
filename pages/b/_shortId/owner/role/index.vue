@@ -6,6 +6,18 @@
       <div :class="{ cover_mask_9: ui.vCoverMask}" @click="btnCoverMask"></div>
     </transition>
 
+    <div class="box">
+      <div class="tip">
+        <ul class="tip_ul">
+          <li>要添加人事角色，首先需相关人员登录并绑定手机。</li>
+          <li>您可将店铺二维码提供给相关人员扫描并登录。</li>
+          <li>相关人员可在店铺个人资料页中完成绑定。</li>
+          <li>相关人员可在关注恋厅公共号后处理日常工作。</li>
+          <li>您也可直接点击人事头像进入工作台。</li>
+        </ul>
+      </div>
+    </div>
+
     <div class="box" v-for="role in ui.roles">
       <div class="list_title box_radius_header">
         <div class="list_role_icon" v-bind:class="{
