@@ -57,8 +57,8 @@
           canBack: true,
           title: '续费记录',
           backUri: `/b/${this.$route.params.shortId}/owner/license`,
-          theme: 'white',
-          imageHeight: 0
+          theme: 'image',
+          imageHeight: 300
         },
         http: {
           res: {

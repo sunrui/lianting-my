@@ -118,8 +118,8 @@
           canBack: true,
           title: '我的优惠券',
           backUri: `/c/${this.$route.params.shortId}`,
-          theme: 'white',
-          imageHeight: 0
+          theme: 'image',
+          imageHeight: 300
         },
         http: {
           res: {

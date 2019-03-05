@@ -244,8 +244,8 @@
           canBack: true,
           title: '续费',
           backUri: `/b/${this.$route.params.shortId}/owner`,
-          theme: 'white',
-          imageHeight: 0
+          theme: 'image',
+          imageHeight: 300
         },
         http: {
           res: {
