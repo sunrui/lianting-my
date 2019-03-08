@@ -1,0 +1,21 @@
+.wechat {
+  position: absolute;
+  bottom: px2rem(100);
+  left: px2rem(35);
+  right: px2rem(35);
+  text-align: center;
+
+  .wechat_title {
+    color: #666666;
+    font-size: px2rem(32);
+  }
+
+  .wechat_icon {
+    display: inline-block;
+    margin-top: px2rem(30);
+    background-image: url("/img/wechat.png");
+    background-size: 100% 100%;
+    width: px2rem(500);
+    height: px2rem(500);
+  }
+}

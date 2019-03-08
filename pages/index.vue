@@ -20,6 +20,11 @@
         </div>
       </div>
     </div>
+
+    <div class="wechat">
+      <div class="wechat_title">- 微信公共号登录 -</div>
+      <div class="wechat_icon"></div>
+    </div>
   </div>
 </template>
 
@@ -58,4 +63,5 @@
 
 <style lang="scss">
   @import '~assets/common';
+  @import "index";
 </style>
