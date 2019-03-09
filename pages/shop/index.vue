@@ -86,7 +86,7 @@
       <div class="shop_divide" v-if="index !== http.res.shop.shops.length - 1"></div>
     </div>
 
-    <div class="shop_create" v-if="ui.freeShop === 0">
+    <div class="shop_create">
       <div class="shop_create_button" @click="btnCreate">创建新的店铺</div>
     </div>
   </div>
@@ -191,6 +191,16 @@
         this.$router.push(`/b/${shop.shortId}/${role}`)
       },
       btnCreate() {
+        if (this.ui.freeShop > 0) {
+          this.$msgBox.doModal({
+            type: 'yes',
+            title: '创建店铺',
+            content: '您最多可创建一个免费店铺。'
+          })
+
+          return
+        }
+
         this.$router.push(`/shop/create`)
       }
     }
