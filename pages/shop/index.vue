@@ -13,7 +13,7 @@
         <div class="shop_info">
           <div class="shop_info_logo" @click="btnShop(shop)">
             <div class="shop_logo_radius shop_logo_radius_center">
-              <img class="shop_logo_radius_image" :src="getLogo(shop)" :alt="shop.name">
+              <img class="shop_logo_radius_image" :src="getLogo(shop)" alt="">
             </div>
           </div>
 
@@ -52,7 +52,7 @@
       <div class="shop_info">
         <div class="shop_info_logo" @click="btnShop(shop)">
           <div class="shop_logo_radius shop_logo_radius_center">
-            <img class="shop_logo_radius_image" :src="getLogo(shop)" :alt="shop.name">
+            <img class="shop_logo_radius_image" :src="getLogo(shop)" alt="">
           </div>
         </div>
 
