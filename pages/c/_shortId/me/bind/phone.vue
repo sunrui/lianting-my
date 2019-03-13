@@ -6,7 +6,7 @@
       <div class="addition box_radius">
         <div class="addition_item">
           <div class="addition_item_label">手机号</div>
-          <input class="addition_item_input" placeholder="请输入手机号" maxlength="11"
+          <input type="number" class="addition_item_input" placeholder="请输入手机号" maxlength="11"
                  oninput="value=value.replace(/[^\d]/g,'')"
                  v-model="http.req.bind.phone">
         </div>
@@ -15,7 +15,7 @@
 
         <div class="addition_item">
           <div class="addition_item_label">
-            <input class="addition_item_code_input" placeholder="请输入验证码" maxlength="6"
+            <input type="number" class="addition_item_code_input" placeholder="请输入验证码" maxlength="6"
                    oninput="value=value.replace(/[^\d]/g,'')"
                    v-model="http.req.bind.code">
           </div>

@@ -13,7 +13,7 @@
       <div class="addition">
         <div class="login_phone">
           <div class="login_phone_icon"></div>
-          <input class="login_phone_input" placeholder="请输入手机号" maxlength="11"
+          <input type="number" class="login_phone_input" placeholder="请输入手机号" maxlength="11"
                  oninput="value=value.replace(/[^\d]/g,'')"
                  v-model="http.req.bind.phone">
         </div>
@@ -23,7 +23,7 @@
         <div class="addition_item">
           <div class="addition_item_label">
             <div class="login_sms_code_icon"></div>
-            <input class="login_sms_code_input addition_item_code_input" placeholder="验证码" maxlength="6"
+            <input type="number" class="login_sms_code_input addition_item_code_input" placeholder="验证码" maxlength="6"
                    oninput="value=value.replace(/[^\d]/g,'')"
                    v-model="http.req.bind.code">
           </div>

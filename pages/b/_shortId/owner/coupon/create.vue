@@ -22,7 +22,7 @@
 
         <div class="addition_item">
           <div class="addition_item_label">多少天后可用</div>
-          <input class="addition_item_input" placeholder="请输入天数" maxlength="3"
+          <input type="number" class="addition_item_input" placeholder="请输入天数" maxlength="3"
                  oninput="this.value=this.value.replace(/[^0-9]/g,''); if (this.value === '') this.value = 0;"
                  v-model="http.req.coupon.validAfterDay">
         </div>
@@ -31,7 +31,7 @@
 
         <div class="addition_item">
           <div class="addition_item_label">有效时间</div>
-          <input class="addition_item_input" placeholder="请输入天数" maxlength="3"
+          <input type="number" class="addition_item_input" placeholder="请输入天数" maxlength="3"
                  oninput="this.value=this.value.replace(/[^0-9]/g,'');"
                  v-model="http.req.coupon.expiredDate">
         </div>
@@ -66,7 +66,7 @@
 
         <div class="addition_item" v-if="http.req.coupon.type === 'FREE'">
           <div class="addition_item_label">领取次数</div>
-          <input class="addition_item_input" placeholder="请输入次数" maxlength="3"
+          <input type="number" class="addition_item_input" placeholder="请输入次数" maxlength="3"
                  oninput="this.value=this.value.replace(/[^0-9]/g,'');"
                  v-model="http.req.coupon.perLimit">
         </div>

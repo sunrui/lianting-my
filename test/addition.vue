@@ -47,7 +47,7 @@
         <div class="box_divide"></div>
         <div class="addition_item">
           <div class="addition_item_label">
-            <input class="addition_item_code_input" placeholder="请输入验证码" maxlength="6"
+            <input type="number" class="addition_item_code_input" placeholder="请输入验证码" maxlength="6"
                    oninput="value=value.replace(/[^\d]/g,'')"
             >
           </div>
@@ -61,7 +61,7 @@
         <div class="box_divide"></div>
         <div class="addition_item">
           <div class="addition_item_label">
-            <input class="addition_item_code_input" placeholder="请输入验证码" maxlength="6"
+            <input type="number" class="addition_item_code_input" placeholder="请输入验证码" maxlength="6"
                    oninput="value=value.replace(/[^\d]/g,'')"
             >
           </div>
