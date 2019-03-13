@@ -39,7 +39,7 @@
         title: {
           canBack: true,
           title: '取消预订',
-          backUri: `/c/${this.$route.params.shortId}`,
+          backUri: `/c/${this.$route.params.shortId}/reserve`,
           theme: 'white',
           imageHeight: 0
         },
