@@ -88,7 +88,7 @@
           <div class="wifi_password_content">{{http.res.wifi.password}}</div>
         </div>
 
-        <div class="wifi_empty" v-if="!http.res.wifi.name">很抱歉，暂时没有提供 WIFI。</div>
+        <div class="wifi_empty" v-if="!http.res.wifi.name">很抱歉，暂时没有提供无线。</div>
 
         <div class="blank_20"></div>
       </div>
