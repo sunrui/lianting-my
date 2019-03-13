@@ -125,7 +125,7 @@
             },
             {
               tag: 'wifi',
-              name: 'WIFI',
+              name: '无线',
               icon: '/img/b/nav/owner/b_nav_owner_wifi.png',
               url: `/b/${this.$route.params.shortId}/owner/wifi`
             },

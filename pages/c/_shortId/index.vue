@@ -153,7 +153,7 @@
             },
             {
               tag: 'wifi',
-              name: 'WIFI',
+              name: '无线',
               icon: '/img/c/shop/shop_nav_wifi.png',
               url: `/c/${this.$route.params.shortId}/wifi`
             },

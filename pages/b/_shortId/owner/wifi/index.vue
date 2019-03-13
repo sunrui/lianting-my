@@ -43,7 +43,7 @@
 
   export default {
     metaInfo: {
-      title: '编辑 WIFI'
+      title: '编辑无线'
     },
     middleware: 'auth',
     components: { TitleBar },
@@ -51,7 +51,7 @@
       return {
         title: {
           canBack: true,
-          title: '编辑 WIFI',
+          title: '编辑无线',
           backUri: `/b/${this.$route.params.shortId}/owner`,
           theme: 'image',
           imageHeight: 300
