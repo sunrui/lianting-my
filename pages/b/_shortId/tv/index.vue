@@ -2,7 +2,7 @@
   <div>
     <div v-if="ui.fullScreen" class="tv_full_screen">
       <div class="tv_full_screen_header">
-        <img class="tv_shop_icon" :src="http.res.info.logo" :alt="http.res.shop.name" onerror="this.style.display='none'">
+        <img class="tv_shop_icon" :src="http.res.info.logo" alt="">
         <div class="tv_shop_title">{{http.res.shop.name}}</div>
         <div class="tv_shop_state">
           <div class="tv_shop_state_icon_open" v-if="http.res.shop.open"></div>
@@ -57,8 +57,10 @@
       <div class="box">
         <div class="tip">
           <ul class="tip_ul">
-            <li>要启用展屏功能，首先您的餐厅需要拥有一台显示设备。</li>
-            <li>推荐显示尺寸为 1920x1080，同样支持 4K 及以上高清电视。</li>
+            <li>要启用展屏功能，首先店铺需要拥有一台显示设备。</li>
+            <li>推荐显示分辨率为 1920x1080，但同样支持 4K 及以上高清电视。</li>
+            <li>当屏幕比例不正确时将会显示异常，如在您的手机上显示时的将会撕裂。</li>
+            <li>要聆听到语音播报，您还需将显示设备调至于适中音量大小。</li>
             <li>您可在要显示设备的浏览器中直接访问以下地址。</li>
             <li><a class="tv_link" :href="getTvUrl()">{{getTvUrl()}}</a></li>
           </ul>
@@ -408,7 +410,7 @@
           this.$msgBox.doModal({
             type: 'yes',
             title: '无法打开展屏',
-            content: '请首先确认您的显示设备比例正确，并且处在横屏模式后再使用。'
+            content: '请确认您的显示设备比例正确并处在横屏模式后再使用。'
           })
 
           return
@@ -424,7 +426,7 @@
           this.$msgBox.doModal({
             type: 'yes',
             title: '预览展屏',
-            content: '展屏为普通会员、旗舰会员专享，您可继续预览此功能，展屏将在一定时间内自动关闭。'
+            content: '展屏为普通、旗舰会员专享，您可继续预览此功能，但展屏将在一定时间内自动关闭。'
           }).then(async (val) => {
             fullScreen(this)
           })
