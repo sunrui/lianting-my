@@ -1,4 +1,4 @@
-# ltorder-nuxt2-h5
+# ltcity-m
 
 > My polished Nuxt.js project
 
@@ -17,6 +17,9 @@ $ npm start
 
 # generate static project
 $ npm run generate
+
+# pm2 run daemon
+$ pm2 start npm --name "ltcity-m" -- run start
 
 # debug
 [].forEach.call($$("*"),function(a){a.style.outline="1px solid #"+(~~(Math.random()*(1<<24))).toString(16)});

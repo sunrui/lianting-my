@@ -150,5 +150,5 @@
 
 <style scoped lang="scss">
   @import '~assets/common';
-  @import 'search';
+  @import 'Search';
 </style>

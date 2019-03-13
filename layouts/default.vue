@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <loading v-show="false" id="http_loading"></loading>
-    <div class="home" onclick="window.location.href='/'"></div>
+    <div v-if="isHttp" class="home" onclick="window.location.href='/'"></div>
     <transition class="fade">
       <nuxt/>
     </transition>
@@ -13,7 +13,12 @@
 
   export default {
     name: 'default',
-    components: { Loading }
+    components: { Loading },
+    computed: {
+      isHttp() {
+        return document.location.protocol === 'http:'
+      }
+    }
   }
 </script>
 
@@ -55,7 +60,7 @@
     width: px2rem(30);
     height: px2rem(30);
     border-radius: 30px;
-    background: orangered;
+    background: #F52626;
     position: fixed;
     right: px2rem(30);
     top: px2rem(100);
