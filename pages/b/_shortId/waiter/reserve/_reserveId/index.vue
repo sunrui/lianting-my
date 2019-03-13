@@ -48,7 +48,7 @@
         </div>
         <div class="status_item">
           <div class="status_item_label">手机号</div>
-          <div class="status_item_content" style="user-select: text;">{{http.res.reserve.phone}}</div>
+          <a class="status_item_content" style="user-select: text;" :href="btnPhone(http.res.reserve.phone)">{{http.res.reserve.phone}}</a>
         </div>
         <div class="blank_20"></div>
       </div>
@@ -172,6 +172,9 @@
       },
       btnReply() {
         this.$router.push(`/b/${this.$route.params.shortId}/waiter/reserve/${this.$route.params.reserveId}/reply`);
+      },
+      btnPhone(phone) {
+        return 'tel:' + phone
       },
       btnArrived() {
         this.http.req.reply.status = 'Arrived';
