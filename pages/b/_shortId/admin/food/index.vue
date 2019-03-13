@@ -225,21 +225,36 @@
       },
       httpFoodGroup() {
         httpFoodApi.getGroupAll(this.$route.params.shortId, 0, 99).then(res => {
-          this.http.res.foodGroups = res
+            this.http.res.foodGroups = res
 
-          if (this.http.res.foodGroups.elements.length > 0) {
-            this.ui.selectMenuId = this.http.res.foodGroups.elements[0].id
+            if (this.http.res.foodGroups.elements.length > 0) {
+              this.ui.selectMenuId = this.http.res.foodGroups.elements[0].id
+
+              let haveFood = false
+              for (let index in this.http.res.foodGroups.elements) {
+                let categories = this.http.res.foodGroups.elements[index].foodCategories
+                if (categories.length > 0) {
+                  haveFood = true
+                  break
+                }
+              }
+
+              if (!haveFood) {
+                this.$router.push(`/b/${this.$route.params.shortId}/admin/food/empty`)
+                return
+              }
+            }
+
+            for (let groupIndex in this.http.res.foodGroups.elements) {
+              let categories = this.http.res.foodGroups.elements[groupIndex]
+              categories.foodCategories.sort(function (a, b) {
+                return a.orderIndex - b.orderIndex
+              })
+            }
+
+            setTimeout(this.navToHash, 100)
           }
-
-          for (let groupIndex in this.http.res.foodGroups.elements) {
-            let categories = this.http.res.foodGroups.elements[groupIndex]
-            categories.foodCategories.sort(function (a, b) {
-              return a.orderIndex - b.orderIndex
-            })
-          }
-
-          setTimeout(this.navToHash, 100)
-        })
+        )
       },
       onScroll() {
         let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
