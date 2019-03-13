@@ -63,7 +63,7 @@
       <div class="addition box_radius">
         <div class="addition_item">
           <div class="addition_item_label">预生成多少桌</div>
-          <input class="addition_item_input"
+          <input type="number" class="addition_item_input"
                  oninput="this.value=this.value.replace(/[^0-9]/g,'');"
                  placeholder="请输入预生成多少桌" maxlength="4" v-model="http.req.group.preGenTableCount">
         </div>
