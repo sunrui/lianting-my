@@ -1,19 +1,24 @@
 export const scrollApi = {
+  scrollTop: 0,
   enable(enable) {
-    let mo = function (e) {
-      e.preventDefault()
-    }
-
     if (enable) {
-      document.body.style.overflow = ''
-      document.removeEventListener('touchmove', mo, false)
+      document.body.style.overflow = 'auto'
+
+      document.body.style.position = 'initial'
+      document.body.style.height = 'auto'
+      document.scrollingElement.scrollTop = this.scrollTop
+
     } else {
       document.body.style.overflow = 'hidden'
-      document.addEventListener('touchmove', mo, false)
+
+      this.scrollTop = this.getCurrentY()
+      document.body.style.position = 'fixed'
+      document.body.style.width = '100%'
+      document.body.style.top = -this.scrollTop + 'px'
     }
   },
   getCurrentY() {
-    return document.documentElement.scrollTop || document.body.scrollTop
+    return window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
   },
   scrollAnimation(currentY, targetY) {
     let needScrollTop = targetY - currentY

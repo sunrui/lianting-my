@@ -272,16 +272,15 @@
         }
 
         if (index === 0) {
-          scrollApi.scrollAnimation(document.documentElement.scrollTop || document.body.scrollTop, 0)
+          scrollApi.scrollAnimation(scrollApi.getCurrentY(), 0)
           return
         }
 
         setTimeout(function () {
           let node = document.getElementById(selectId)
           if (node != null) {
-            let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
-            let posY = node.getBoundingClientRect().top + scrollTop
-            scrollApi.scrollAnimation(document.documentElement.scrollTop || document.body.scrollTop, posY)
+            let posY = node.getBoundingClientRect().top + scrollApi.getCurrentY()
+            scrollApi.scrollAnimation(scrollApi.getCurrentY(), posY)
           }
         }, 100)
       },

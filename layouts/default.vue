@@ -41,7 +41,7 @@
     touch-action: pan-y;
   }
 
-  a,button,input{
+  a, button, input {
     -webkit-tap-highlight-color: transparent;
     outline: none;
     box-shadow: none;
