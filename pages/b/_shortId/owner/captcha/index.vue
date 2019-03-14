@@ -151,7 +151,10 @@
       btnDownload(table) {
         let id = 'capture_' + table.id
 
-        html2canvas(document.getElementById(id)).then(canvas => {
+        html2canvas(document.getElementById(id), {
+          logging: false,
+          backgroundColor: null
+        }).then(canvas => {
           let fileName = table.tableGroup_name + '_' + table.fullNumber
           downloadApi.download(canvas, fileName)
         })
