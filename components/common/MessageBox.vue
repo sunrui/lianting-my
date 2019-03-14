@@ -38,6 +38,12 @@
         promise: ''
       }
     },
+    created() {
+      scrollApi.enable(false)
+    },
+    destroyed() {
+      scrollApi.enable(true)
+    },
     methods: {
       btnConfirm() {
         this.ui.vCoverMask = false
