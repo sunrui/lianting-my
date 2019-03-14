@@ -243,6 +243,9 @@
                 this.$router.push(`/b/${this.$route.params.shortId}/admin/food/empty`)
                 return
               }
+            } else {
+              this.$router.push(`/b/${this.$route.params.shortId}/admin/food/empty`)
+              return
             }
 
             for (let groupIndex in this.http.res.foodGroups.elements) {
