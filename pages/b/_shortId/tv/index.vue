@@ -62,7 +62,7 @@
             <li>当屏幕比例不正确时将会显示异常，如在您的手机上显示时的将会撕裂。</li>
             <li>要聆听到语音播报，您还需将显示设备调至于适中音量大小。</li>
             <li>您可在要显示设备的浏览器中直接访问以下地址。</li>
-            <li><a class="tv_link" :href="getTvUrl()">{{getTvUrl()}}</a></li>
+            <li><a class="tip_link" :href="getTvUrl()">{{getTvUrl()}}</a></li>
           </ul>
         </div>
       </div>
