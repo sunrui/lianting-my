@@ -7,7 +7,7 @@ module.exports = {
   ** Headers of the page
   */
   head: {
-    title: pkg.name,
+    title: pkg.title,
     meta: [
       {charset: 'utf-8'},
       {name: 'viewport', content: pkg.viewport},
