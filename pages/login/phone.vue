@@ -117,7 +117,7 @@
         if (!validatorApi.phone(this.http.req.bind.phone)) {
           this.$msgBox.doModal({
             type: 'yes',
-            title: '绑定手机',
+            title: '手机登录',
             content: '请输入正确的手机号码。'
           })
 
@@ -147,7 +147,7 @@
         if (!validatorApi.phone(this.http.req.bind.phone)) {
           this.$msgBox.doModal({
             type: 'yes',
-            title: '绑定手机',
+            title: '手机登录',
             content: '请输入正确的手机号码。'
           })
           return
@@ -156,7 +156,7 @@
         if (!validatorApi.code(this.http.req.bind.code)) {
           this.$msgBox.doModal({
             type: 'yes',
-            title: '绑定手机',
+            title: '手机登录',
             content: '验证码为 6 位数字。'
           })
           return
@@ -171,7 +171,7 @@
           if (res.sendNeeded) {
             this.$msgBox.doModal({
               type: 'yes',
-              title: '登录',
+              title: '手机登录',
               content: `短信验证码不存在，请重新发送。`
             }).then(async (val) => {
               this.$router.push(this.title.backUri)
@@ -179,13 +179,13 @@
           } else if (res.verifyError) {
             this.$msgBox.doModal({
               type: 'yes',
-              title: '登录',
+              title: '手机登录',
               content: `短信验证码错误。`
             })
           } else if (res.frequentLimit) {
             this.$msgBox.doModal({
               type: 'yes',
-              title: '登录',
+              title: '手机登录',
               content: `操作过于频繁，请于${timeApi.elapsedTime(res.frequentLimit * 1000)}后重试。`
             })
           } else if (res.user) {
@@ -208,7 +208,7 @@
       btnAlipay() {
         this.$msgBox.doModal({
           type: 'yes',
-          title: '登录',
+          title: '手机登录',
           content: `请使用微信登录。`
         })
       }
