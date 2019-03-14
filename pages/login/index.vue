@@ -34,7 +34,7 @@
           scope = 'snsapi_base'
         }
 
-        let state = 'cors_uncheck'
+        let state = 'csrf_uncheck'
 
         r = encodeURIComponent(r)
         r = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${this.appId}&redirect_uri=${r}&response_type=code&scope=${scope}&state=${state}&connect_redirect=1#wechat_redirect`
