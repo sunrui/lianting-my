@@ -41,6 +41,12 @@
     touch-action: pan-y;
   }
 
+  a,button,input{
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+    box-shadow: none;
+  }
+
   *,
   *:before,
   *:after {
