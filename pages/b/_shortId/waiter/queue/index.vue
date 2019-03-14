@@ -15,7 +15,7 @@
 
         <div class="queue_table_group">
           <div class="queue_table_group_name">{{tableGroup.name}}</div>
-          <div class="queue_table_group_people">({{tableGroup.minPeople}}-{{tableGroup.maxPeople}} 人)</div>
+          <div class="queue_table_group_people">({{tableGroup.minPeople}}-{{tableGroup.maxPeople}}人)</div>
         </div>
 
         <div v-if="getQueueNow(tableGroup)">

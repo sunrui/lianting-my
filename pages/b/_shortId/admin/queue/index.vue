@@ -15,7 +15,7 @@
 
         <div class="queue_table_group">
           <div class="queue_table_group_name">{{tableGroup.name}}</div>
-          <div class="queue_table_group_people">({{tableGroup.minPeople}}-{{tableGroup.maxPeople}} 人)</div>
+          <div class="queue_table_group_people">({{tableGroup.minPeople}}-{{tableGroup.maxPeople}}人)</div>
           <div class="addition_item_check">
             <div class="addition_item_check_on" v-if="tableGroup.needQueue" @click="btnEnable(tableGroup.id)"></div>
             <div class="addition_item_check_off" v-else @click="btnEnable(tableGroup.id)"></div>
