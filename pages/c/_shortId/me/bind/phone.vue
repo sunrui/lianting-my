@@ -55,7 +55,7 @@
       return {
         title: {
           canBack: true,
-          title: '编辑手机',
+          title: '手机',
           backUri: `/c/${this.$route.params.shortId}/me`,
           theme: 'image',
           imageHeight: 220

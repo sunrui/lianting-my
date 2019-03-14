@@ -127,7 +127,7 @@
         <img class="modal_close" src="/img/common/close.png" alt="">
       </div>
 
-      <div class="modal_title">编辑餐食组</div>
+      <div class="modal_title">更新餐食组</div>
 
       <div class="modal_input_box">
         <div class="modal_input_area">
@@ -372,13 +372,13 @@
           if (res.foodGroupIdNotExists) {
             this.$msgBox.doModal({
               type: 'yes',
-              title: '编辑餐食组',
+              title: '餐食组',
               content: '餐食组不存在。'
             })
           } else if (res.nameExists) {
             this.$msgBox.doModal({
               type: 'yes',
-              title: '编辑餐食组',
+              title: '餐食组',
               content: '名称已存在。'
             })
           } else if (res.success) {

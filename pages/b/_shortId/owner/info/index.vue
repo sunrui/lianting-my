@@ -85,7 +85,7 @@
 
   export default {
     metaInfo: {
-      title: '编辑资料'
+      title: '资料'
     },
     middleware: 'auth',
     components: {TitleBar, ImageUpload},
@@ -93,7 +93,7 @@
       return {
         title: {
           canBack: true,
-          title: '编辑资料',
+          title: '资料',
           backUri: `/b/${this.$route.params.shortId}/owner`,
           theme: 'image',
           imageHeight: 330
@@ -128,7 +128,7 @@
           httpInfoAdminApi.put(this.$route.params.shortId, this.http.req.info).then(res => {
             this.$msgBox.doModal({
               type: 'yes',
-              title: '编辑资料',
+              title: '资料',
               content: '已更新。'
             }).then(async (val) => {
               this.$router.push(this.title.backUri)

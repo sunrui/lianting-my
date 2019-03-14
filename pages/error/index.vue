@@ -13,7 +13,7 @@
         <div class="empty_label2">您可将出错原因反馈给我们或返回重试。</div>
 
         <div class="button_box">
-          <div class="button_big" @click="btnReport">编辑反馈</div>
+          <div class="button_big" @click="btnReport">提交反馈</div>
         </div>
       </div>
       <div v-else>

@@ -94,7 +94,13 @@
       },
       btnModify() {
         httpOrderAdminApi.putConfig(this.$route.params.shortId, this.http.req.config).then(res => {
-          this.$router.push(this.title.backUri)
+          this.$msgBox.doModal({
+            type: 'yes',
+            title: '支付',
+            content: '已更新。'
+          }).then(async (val) => {
+            this.$router.push(this.title.backUri)
+          })
         })
       }
     }

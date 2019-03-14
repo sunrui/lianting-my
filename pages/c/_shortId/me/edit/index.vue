@@ -82,7 +82,7 @@
 
   export default {
     metaInfo: {
-      title: '编辑资料'
+      title: '资料'
     },
     middleware: 'auth',
     components: {TitleBar, ImageUpload},
@@ -90,7 +90,7 @@
       return {
         title: {
           canBack: true,
-          title: '编辑资料',
+          title: '资料',
           backUri: `/c/${this.$route.params.shortId}/me`,
           theme: 'image',
           imageHeight: 330
@@ -114,7 +114,7 @@
           if (res.userIdNotExists) {
             this.$msgBox.doModal({
               type: 'yes',
-              title: '编辑资料',
+              title: '资料',
               content: '用户不存在。'
             }).then(async (val) => {
               this.$router.push(this.title.backUri)
@@ -139,7 +139,7 @@
           if (res.success) {
             this.$msgBox.doModal({
               type: 'yes',
-              title: '编辑资料',
+              title: '资料',
               content: '更新成功。'
             }).then(async (val) => {
               this.$router.push(this.title.backUri)

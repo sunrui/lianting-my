@@ -43,7 +43,7 @@
 
   export default {
     metaInfo: {
-      title: '编辑无线'
+      title: '无线'
     },
     middleware: 'auth',
     components: { TitleBar },
@@ -51,7 +51,7 @@
       return {
         title: {
           canBack: true,
-          title: '编辑无线',
+          title: '无线',
           backUri: `/b/${this.$route.params.shortId}/owner`,
           theme: 'image',
           imageHeight: 300
@@ -90,7 +90,13 @@
       },
       btnEdit() {
         httpWifiAdminApi.putWifi(this.$route.params.shortId, this.http.req.wifi).then(res => {
-          this.$router.push(this.title.backUri)
+          this.$msgBox.doModal({
+            type: 'yes',
+            title: '无线',
+            content: '已更新。'
+          }).then(async (val) => {
+            this.$router.push(this.title.backUri)
+          })
         })
       }
     }

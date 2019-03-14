@@ -167,7 +167,7 @@
 
   export default {
     metaInfo: {
-      title: '编辑餐食'
+      title: '餐食'
     },
     middleware: 'auth',
     components: {TitleBar, CurrencyInput, ImageUpload},
@@ -175,7 +175,7 @@
       return {
         title: {
           canBack: true,
-          title: '编辑餐食',
+          title: '餐食',
           backUri: `/b/${this.$route.params.shortId}/owner/food`,
           theme: 'image',
           imageHeight: 300
@@ -387,7 +387,7 @@
           if (res.foodCategoryIdNotExists) {
             this.$msgBox.doModal({
               type: 'yes',
-              title: '编辑餐食',
+              title: '餐食',
               content: `餐食不存在。`
             })
 
@@ -397,7 +397,7 @@
           if (res.nameExists) {
             this.$msgBox.doModal({
               type: 'yes',
-              title: '编辑餐食',
+              title: '餐食',
               content: `名称${highlightApi.highlight(this.http.req.category.name)}已存在。`
             })
 
