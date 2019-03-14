@@ -87,7 +87,7 @@
 
       <div class="modal_input_box">
         <div class="modal_input_area">
-          <input class="modal_input" minlength="1" maxlength="4" placeholder="请输入餐桌号，如 10"
+          <input type="number" class="modal_input" minlength="1" maxlength="4" placeholder="请输入餐桌号，如 10"
                  oninput="this.value=this.value.replace(/[^0-9]/g,'');"
                  v-model=" http.req.table.number">
         </div>
