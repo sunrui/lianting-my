@@ -34,14 +34,14 @@
 
   export default {
     metaInfo: {
-      title: '导航'
+      title: '恋厅'
     },
     components: {TitleBar},
     data() {
       return {
         title: {
           canBack: false,
-          title: '导航',
+          title: '恋厅',
           theme: 'image',
           imageHeight: 220
         }
