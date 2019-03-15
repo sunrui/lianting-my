@@ -25,6 +25,10 @@
       <div class="wechat_title">- 微信公共号登录 -</div>
       <div class="wechat_icon"></div>
     </div>
+
+    <div class="home">
+      <a class="tip_link" href="https://www.honeysense.com">恋厅官网</a>
+    </div>
   </div>
 </template>
 
@@ -34,14 +38,14 @@
 
   export default {
     metaInfo: {
-      title: '恋厅'
+      title: '恋厅移动入口'
     },
     components: {TitleBar},
     data() {
       return {
         title: {
           canBack: false,
-          title: '恋厅',
+          title: '恋厅移动入口',
           theme: 'image',
           imageHeight: 220
         }

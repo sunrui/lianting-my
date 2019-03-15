@@ -1,6 +1,6 @@
 .wechat {
   position: relative;
-  margin: px2rem(200) px2rem(35) px2rem(30);
+  margin: px2rem(200) px2rem(35) px2rem(100);
   text-align: center;
 
   .wechat_title {
@@ -16,4 +16,11 @@
     width: px2rem(500);
     height: px2rem(500);
   }
+}
+
+.home {
+  position: relative;
+  text-align: center;
+  color: #666666;
+  margin-bottom: px2rem(30);
 }
