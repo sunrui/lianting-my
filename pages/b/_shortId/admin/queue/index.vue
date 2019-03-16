@@ -22,7 +22,7 @@
           </div>
         </div>
 
-        <div v-if="getQueueNow(tableGroup)">
+        <div v-if="tableGroup.needQueue">
           <div class="blank_10"></div>
 
           <div class="queue_info_box">
@@ -51,7 +51,7 @@
 
           <div class="blank_30"></div>
         </div>
-        <div v-else class="queue_empty">{{tableGroup.needQueue ? '暂时没人排队' : '无需排队'}}</div>
+        <div v-else class="queue_empty">无需排队</div>
       </div>
     </div>
 
@@ -155,7 +155,9 @@
           }
         }
 
-        return null
+        return {
+          sequence: 1
+        }
       },
       btnReset(tableGroup) {
         this.$msgBox.doModal({
