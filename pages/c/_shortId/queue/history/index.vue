@@ -47,7 +47,7 @@
       return {
         title: {
           canBack: true,
-          backUri: `/c/${this.$route.params.shortId}`,
+          backUri: `/c/${this.$route.params.shortId}/me`,
           title: '我的排队',
           theme: 'image',
           imageHeight: 300

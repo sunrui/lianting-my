@@ -52,7 +52,7 @@
       return {
         title: {
           canBack: true,
-          backUri: `/c/${this.$route.params.shortId}`,
+          backUri: `/c/${this.$route.params.shortId}/me`,
           title: '我的订单',
           theme: 'image',
           imageHeight: 220

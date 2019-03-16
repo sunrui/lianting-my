@@ -60,7 +60,7 @@
         title: {
           canBack: true,
           title: '我的预订',
-          backUri: `/c/${this.$route.params.shortId}`,
+          backUri: `/c/${this.$route.params.shortId}/me`,
           theme: 'image',
           imageHeight: 220
         },
