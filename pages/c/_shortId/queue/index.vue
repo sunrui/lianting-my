@@ -434,7 +434,7 @@
             this.$msgBox.doModal({
               type: 'yes',
               title: '排队',
-              content: '恭喜，您已取票成功。'
+              content: '您已取票成功。'
             })
           }
 

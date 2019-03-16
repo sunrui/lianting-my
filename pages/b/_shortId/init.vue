@@ -92,9 +92,8 @@
         setTimeout(this.updateInitNext, 500)
       },
       updateInit(index) {
-        let delay = index === 2 ? 1000 : 500
         this.ui.taskInitIndex = index
-        setTimeout(this.delayInit, delay)
+        setTimeout(this.delayInit, 500)
       },
       btnShopOwner() {
         this.$router.push(`/b/${this.$route.params.shortId}/owner`)

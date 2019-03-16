@@ -59,5 +59,5 @@
     -webkit-appearance: none !important;
   }
   input[type="number"]{-moz-appearance:textfield;}
-  
+
 </style>
