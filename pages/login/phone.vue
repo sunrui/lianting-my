@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
+    <title-bar class="title_bar_hide" :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
     <div class="lt">
       <div class="lt_logo"></div>
@@ -221,4 +221,8 @@
 <style scoped lang="scss">
   @import '~assets/common';
   @import "phone";
+
+  .title_bar_hide {
+    visibility: hidden;
+  }
 </style>
