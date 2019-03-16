@@ -90,7 +90,7 @@
           <input type="number" class="modal_input" placeholder="请输入餐桌号，如 10"
                  oninput="this.value=this.value.replace(/[^0-9]/g,'');
                           if (value.length > 4) value = value.slice(0, 4)"
-                 v-model=" http.req.table.number">
+                 v-model=" http.req.table.number" autofocus>
         </div>
       </div>
 

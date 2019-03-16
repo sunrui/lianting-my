@@ -113,7 +113,7 @@
 
       <div class="modal_input_box">
         <div class="modal_input_area">
-          <input class="modal_input" placeholder="请输入类别，如：大份。" maxlength="10" v-model="ui.food.name">
+          <input class="modal_input" placeholder="请输入类别，如：大份。" maxlength="10" v-model="ui.food.name" autofocus>
         </div>
       </div>
 
