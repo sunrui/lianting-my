@@ -59,9 +59,10 @@
 
       <div class="modal_input_box">
         <div class="modal_input_area">
-          <input class="modal_input"
-                 oninput="this.value=this.value.replace(/[^0-9]/g,''); if (this.value === '0') this.value = ''"
-                 placeholder="请输入手机号" maxlength="11" v-model="http.req.role.phone">
+          <input type="number" class="modal_input"
+                 oninput="this.value=this.value.replace(/[^0-9]/g,'');
+                            if (value.length > 11) value = value.slice(0, 11)"
+                 placeholder="请输入手机号" v-model="http.req.role.phone">
         </div>
       </div>
 
