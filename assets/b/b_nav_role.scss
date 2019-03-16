@@ -33,19 +33,13 @@
 }
 
 .shop_nav_box_one_role {
-  width: 50%;
+  width: 50% !important;
   padding-bottom: px2rem(50);
 }
 
 .shop_nav_box_one_icon_role {
-  width: px2rem(120);
-  height: px2rem(120);
-}
-
-.shop_nav_box_one_label_role {
-  color: #f52626;
-  font-size: px2rem(28);
-  padding-top: px2rem(10);
+  width: px2rem(120) !important;
+  height: px2rem(120) !important;
 }
 
 .shop_menu {
