@@ -63,6 +63,8 @@
             type: 'yes',
             title: '播报',
             content: '播报成功。'
+          }).then(async (val) => {
+            this.$router.push(this.title.backUri)
           })
         })
       }
