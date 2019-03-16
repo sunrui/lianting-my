@@ -16,7 +16,7 @@
         <div class="addition_item">
           <div class="addition_item_label">店铺名称</div>
           <input class="addition_item_input" placeholder="请输入店铺名称" minlength="1" maxlength="32"
-                 v-model="http.req.shop.name">
+                 v-model="http.req.shop.name" autofocus>
         </div>
 
         <div class="box_divide"></div>

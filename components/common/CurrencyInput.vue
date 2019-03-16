@@ -53,7 +53,7 @@
 
         return value
       },
-      updateValue: function(value) {
+      updateValue: function (value) {
         this.$refs.input.value = this.formatPrice(value)
 
         if (!Boolean(this.$refs.input.value)) {

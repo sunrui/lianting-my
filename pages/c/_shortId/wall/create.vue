@@ -37,7 +37,7 @@
 
     <div class="wall_text_input_area">
       <label>
-        <textarea class="wall_text_input" :placeholder="ui.inputTip" v-model="http.req.wall.message"></textarea>
+        <textarea class="wall_text_input" :placeholder="ui.inputTip" v-model="http.req.wall.message" autofocus></textarea>
       </label>
     </div>
 

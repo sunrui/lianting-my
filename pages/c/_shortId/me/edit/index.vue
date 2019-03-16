@@ -16,7 +16,7 @@
         <div class="addition_item">
           <div class="addition_item_label">昵称</div>
           <label>
-            <input class="addition_item_input" placeholder="请输入您的昵称" v-model="http.res.info.nickName">
+            <input class="addition_item_input" placeholder="请输入您的昵称" v-model="http.res.info.nickName" autofocus>
           </label>
         </div>
 

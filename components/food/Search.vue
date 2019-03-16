@@ -9,7 +9,7 @@
         <div class="search">
           <div class="search_icon"></div>
           <div class="search_input_area">
-            <input class="search_input" placeholder="请输入餐食关键字..." v-model="http.req.search.name" @input="btnInput">
+            <input class="search_input" placeholder="请输入餐食关键字..." v-model="http.req.search.name" @input="btnInput" autofocus>
           </div>
         </div>
 

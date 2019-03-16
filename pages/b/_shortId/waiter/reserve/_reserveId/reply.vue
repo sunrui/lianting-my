@@ -19,7 +19,7 @@
         <div class="reply_label">安排餐桌号</div>
         <div class="reply_device_area">
           <label>
-            <input class="reply_device_input" maxlength="6" v-model="http.req.reply.tableNumber">
+            <input class="reply_device_input" maxlength="6" v-model="http.req.reply.tableNumber" autofocus>
           </label>
         </div>
       </div>
