@@ -152,7 +152,6 @@
         <div class="button_big" @click="btnFoodAddConfirm">确定</div>
       </div>
     </div>
-
   </div>
 </template>
 

@@ -20,7 +20,6 @@
     <div class="button_box">
       <div class="button_big" @click="btnOrder">完成</div>
     </div>
-
   </div>
 </template>
 

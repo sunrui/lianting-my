@@ -87,7 +87,6 @@
     <div class="button_box">
       <div class="button_big" @click="btnReserve">立即预订</div>
     </div>
-
   </div>
 </template>
 

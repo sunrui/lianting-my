@@ -78,10 +78,11 @@
       </div>
     </div>
 
-    <div class="button_box">
+    <div class="button_box" v-if="http.res.reserve.status === 'Accept' || http.res.reserve.status === 'Refused' || http.res.reserve.status === 'Wait'">
       <div class="button_big" @click="btnRead" v-if="http.res.reserve.status === 'Accept' || http.res.reserve.status === 'Refused'">确定</div>
       <div class="button_big" @click="btnCancel" v-if="http.res.reserve.status === 'Wait'">取消预约</div>
     </div>
+    <div class="blank_30" v-else></div>
   </div>
 </template>
 

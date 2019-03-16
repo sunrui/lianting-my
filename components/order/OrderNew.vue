@@ -78,8 +78,8 @@
     </div>
 
     <div class="button_box">
-      <div class="button_big" v-show="ui.table.captchaTableId" @click="btnOrder">立即下单</div>
-      <div class="button_big" v-show="!ui.table.captchaTableId" @click="btnScanCaptcha">扫码下单</div>
+      <div class="button_big" v-if="ui.table.captchaTableId" @click="btnOrder">立即下单</div>
+      <div class="button_big" v-else @click="btnScanCaptcha">扫码下单</div>
     </div>
 
     <transition name="toggle">

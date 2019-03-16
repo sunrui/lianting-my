@@ -77,10 +77,11 @@
       </div>
     </div>
 
-    <div class="button_box">
+    <div class="button_box" v-if="http.res.reserve.status === 'Wait' || http.res.reserve.status === 'Accept'">
       <div class="button_big" @click="btnReply" v-if="http.res.reserve.status === 'Wait'">商家回复</div>
       <div class="button_big" @click="btnArrived" v-else-if="http.res.reserve.status === 'Accept'">已到店</div>
     </div>
+    <div class="blank_30" v-else></div>
   </div>
 </template>
 

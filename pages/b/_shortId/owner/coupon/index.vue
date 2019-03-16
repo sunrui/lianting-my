@@ -54,7 +54,6 @@
     <div class="button_box">
       <div class="button_big" @click="btnCreate">添加优惠券</div>
     </div>
-
   </div>
 </template>
 

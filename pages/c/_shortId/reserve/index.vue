@@ -95,7 +95,6 @@
     <transition name="toggle">
       <calendar @chooseCalendar="chooseCalendar" v-if="ui.vCalendar"></calendar>
     </transition>
-
   </div>
 </template>
 
