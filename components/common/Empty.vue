@@ -22,5 +22,5 @@
 </script>
 
 <style scoped lang="scss">
-  @import 'Empty';
+  @import '~assets/common';
 </style>s
