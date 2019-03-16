@@ -3,6 +3,16 @@
     <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
     <div class="box">
+      <div class="tip">
+        <ul class="tip_ul">
+          <li>感谢您选择了恋厅终端餐饮解决方案。</li>
+          <li>如遇到问题请先查阅"抢先开店"教程或联系客服。</li>
+          <li>现在您可以即可拥有您的专属店铺了。</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="box">
       <div class="addition box_radius">
         <div v-show="$route.query.shopGroupName">
           <div class="addition_item">
