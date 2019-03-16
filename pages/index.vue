@@ -25,10 +25,6 @@
       <div class="wechat_title">- 微信公共号登录 -</div>
       <div class="wechat_icon"></div>
     </div>
-
-    <div class="home">
-      <a class="tip_link" href="https://www.honeysense.com">恋厅官网</a>
-    </div>
   </div>
 </template>
 
