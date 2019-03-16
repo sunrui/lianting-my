@@ -22,7 +22,7 @@
     data() {
       return {
         title: {
-          canBack: true,
+          canBack: false,
           title: '内部错误',
           backUri: null,
           theme: 'white',

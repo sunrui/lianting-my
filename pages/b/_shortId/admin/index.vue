@@ -133,7 +133,7 @@
       btnShopOpen() {
         this.$msgBox.doModal({
           type: 'yesOrNo',
-          title: '营业状态',
+          title: '店铺状态',
           content: `${this.http.res.shop.open ? '打烊后顾客将无法下单，' : ''}您确定要${highlightApi.highlight(this.http.res.shop.open ? '打烊' : '营业')}吗？`
         }).then(async (val) => {
           if (val === 'Yes') {
@@ -141,7 +141,7 @@
             httpShopApi.putOpen(this.$route.params.shortId, this.http.res.shop.open).then(res => {
               this.$msgBox.doModal({
                 type: 'yes',
-                title: '店铺',
+                title: '店铺状态',
                 content: `店铺已${this.http.res.shop.open ? '营业' : '打烊'}。`
               })
             })
