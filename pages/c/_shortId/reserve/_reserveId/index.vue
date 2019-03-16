@@ -100,7 +100,7 @@
         title: {
           canBack: true,
           title: '预订详情',
-          backUri: `/c/${this.$route.params.shortId}/reserve`,
+          backUri: `/c/${this.$route.params.shortId}`,
           theme: 'image',
           imageHeight: 220
         },
