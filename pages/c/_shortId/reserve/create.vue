@@ -6,11 +6,11 @@
       <div class="addition box_radius">
         <div class="addition_item">
           <div class="addition_item_label">预订时间</div>
-          <div class="addition_item_content">{{getWeekDesc(http.req.reserve.date)}}
-            {{http.req.reserve.date.getMonth() + 1}}-{{http.req.reserve.date.getDate()}}
-            {{http.req.reserve.date.getHours() >= 10 ? http.req.reserve.date.getHours() :
-            '0' + http.req.reserve.date.getHours() }}:{{http.req.reserve.date.getMinutes() >= 10 ?
-            http.req.reserve.date.getMinutes() : '0' + http.req.reserve.date.getMinutes()}}
+          <div class="addition_item_content">{{getWeekDesc(date)}}
+            {{date.getMonth() + 1}}-{{date.getDate()}}
+            {{date.getHours() >= 10 ? http.req.reserve.date.getHours() :
+            '0' + date.getHours() }}:{{date.getMinutes() >= 10 ?
+            date.getMinutes() : '0' + date.getMinutes()}}
           </div>
         </div>
 
@@ -128,6 +128,9 @@
       }
     },
     computed: {
+      date() {
+        return new Date(parseInt(this.$route.query.date))
+      },
       phone() {
         return stateApi.user.getPhone()
       }
@@ -222,5 +225,4 @@
 
 <style scoped lang="scss">
   @import '~assets/common';
-  @import 'create';
 </style>
