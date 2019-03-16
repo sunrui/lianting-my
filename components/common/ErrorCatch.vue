@@ -7,11 +7,12 @@
     <div v-else>
       <div class="empty" v-if="!ui.vReport">
         <img class="empty_image" src="/img/no/no_crash.png" alt="">
-        <div class="empty_label">{{ui.error.notFound? '404 - 呃〜好像走丢了！' : '呃〜访问出错了！'}}</div>
-        <div class="empty_label2">您可将出错原因反馈给我们或返回重试。</div>
-
-        <div class="button_box" v-if="!ui.reported">
-          <div class="button_big" @click="btnReport">问题反馈</div>
+        <div v-if="!ui.reported">
+          <div class="empty_label">{{ui.error.notFound? '404 - 呃〜好像走丢了！' : '呃〜访问出错了！'}}</div>
+          <div class="error_label_tip">您可将出错原因<span class="error_label_tip_report" @click="btnReport">反馈</span>给我们或选择重试。</div>
+        </div>
+        <div v-else>
+          <div class="empty_label">感谢您的反馈，请您关闭窗口。</div>
         </div>
       </div>
       <div v-else>
@@ -20,7 +21,7 @@
         <div class="box">
           <div class="addition box_radius">
             <div class="addition_item" v-if="ui.error.message">
-              <div class="addition_item_label_text_area">信息</div>
+              <div class="addition_item_label_text_area">内容</div>
               <div class="addition_item_text_area">
                 <label>
                   <textarea class="addition_item_text_input" v-model="ui.error.message"></textarea>
@@ -32,7 +33,7 @@
 
         <div class="box">
           <div class="report_input_area box_radius">
-            <textarea class="report_input" placeholder="请告之我们您的出错过程..." v-model="http.req.report.message" autofocus></textarea>
+            <textarea class="report_input" placeholder="请告之我们您的出错过程..." v-model="http.req.report.message" maxlength="256" autofocus></textarea>
           </div>
         </div>
 
@@ -100,12 +101,12 @@
 
         let error = storeApi.object.get('error')
         if (error === null) {
+          this.ui.error.message = 'unknown error'
           return
         }
 
         try {
-          error = JSON.stringify(error)
-          let errorJson = JSON.parse(error)
+          let errorJson = JSON.parse(JSON.stringify(error))
 
           if (typeof errorJson === 'string') {
             this.ui.error.message = error
@@ -113,7 +114,7 @@
             if (errorJson.error === 'CoreFrequent') {
               this.ui.error.frequent = errorJson.data.value * 1000
             } else {
-              this.ui.error.message = JSON.stringify(errorJson)
+              this.ui.error.message = JSON.stringify(errorJson, null, 2)
             }
           } else {
             this.ui.error.message = errorJson.toString()
@@ -141,19 +142,17 @@
           return
         }
 
+        if (this.ui.error.message.length > 1024) {
+          this.ui.error.message = this.ui.error.message.slice(0, 1023)
+        }
+
         httpReportApi.post({
           exception: this.ui.error.message,
           message: this.http.req.report.message
         }).then(res => {
-          this.$msgBox.doModal({
-            type: 'yes',
-            title: '问题反馈',
-            content: '您已问题成功，感谢您的反馈。'
-          }).then(async (val) => {
-            storeApi.object.set('error', null)
-            this.ui.vReport = false
-            this.ui.reported = true
-          })
+          storeApi.object.set('error', null)
+          this.ui.vReport = false
+          this.ui.reported = true
         })
       }
     }

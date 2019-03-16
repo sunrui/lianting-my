@@ -1,9 +1,13 @@
-.empty_label2 {
-  margin-top: px2rem(10);
-  padding: 0 px2rem(35);
+.error_label_tip {
+  margin-top: px2rem(30);
   font-size: px2rem(26);
   font-weight: 400;
   color: #999999;
+
+  .error_label_tip_report {
+    color: #F52626;
+    cursor: pointer;
+  }
 }
 
 .report_input_area {
