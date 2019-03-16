@@ -55,7 +55,7 @@
 
   export default {
     metaInfo: {
-      title: '今日预订'
+      title: '当日预订'
     },
     middleware: 'auth',
     components: { TitleBar },
@@ -63,7 +63,7 @@
       return {
         title: {
           canBack: true,
-          title: '今日预订',
+          title: '当日预订',
           backUri: `/b/${this.$route.params.shortId}/waiter/reserve`,
           theme: 'image',
           imageHeight: 220
@@ -79,7 +79,7 @@
       if (!Boolean(this.$route.query.timeStamp)) {
         this.$msgBox.doModal({
           type: 'yes',
-          title: '今日预订',
+          title: '当日预订',
           content: '未指定时间。'
         }).then(async (val) => {
           this.$router.push(this.title.backUri)(-1)
