@@ -89,7 +89,7 @@
         }
 
         this.ui.tasks[this.ui.taskInitIndex].finish = true
-        setTimeout(this.updateInitNext, 500)
+        setTimeout(this.updateInitNext, 200)
       },
       updateInit(index) {
         this.ui.taskInitIndex = index

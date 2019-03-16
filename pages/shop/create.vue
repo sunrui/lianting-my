@@ -5,9 +5,16 @@
     <div class="box">
       <div class="tip">
         <ul class="tip_ul">
-          <li>感谢您选择了恋厅终端餐饮解决方案。</li>
-          <li>如遇到问题请先查阅"抢先开店"教程或联系客服。</li>
-          <li>现在您可以即可拥有您的专属店铺了。</li>
+          <li>欢迎您使用恋厅终端餐饮解决方案。</li>
+          <li>如您是店铺管理者首先您需要创建唯一店铺。</li>
+          <li>确认唯一标识后将初始化您的店铺并进入管理员主页。</li>
+          <li>您可以进行餐食、排队、预订、优惠券等功能设置。</li>
+          <li>同时您还需邀请店长、服务员、后厨、收银人员加入。</li>
+          <li>然后还需下载并线下打印顾客所用的点餐二维码。</li>
+          <li>接下来顾客就可以扫描二维码点餐、排队等活动了。</li>
+          <li>店铺内部人员可由公共号工作台进入日常工作。</li>
+          <li>如需使用迎宾台展屏您还需外设一台电视或显示设备。</li>
+          <li>遇到问题请查阅"抢先开店"教程或联系人工客服。</li>
         </ul>
       </div>
     </div>
@@ -78,12 +85,12 @@
 </template>
 
 <script>
-  import { stateApi } from '../../api/local/stateApi'
-  import { httpSmsApi } from '../../api/http/user/httpSmsApi'
-  import { validatorApi } from '../../api/local/validatorApi'
-  import { httpUserApi } from '../../api/http/user/httpUserApi'
+  import {stateApi} from '../../api/local/stateApi'
+  import {httpSmsApi} from '../../api/http/user/httpSmsApi'
+  import {validatorApi} from '../../api/local/validatorApi'
+  import {httpUserApi} from '../../api/http/user/httpUserApi'
   import TitleBar from '../../components/common/TitleBar'
-  import { httpShopApi } from '../../api/http/shop/httpShopApi'
+  import {httpShopApi} from '../../api/http/shop/httpShopApi'
   import {timeApi} from '../../api/local/timeApi'
 
   export default {
@@ -91,7 +98,7 @@
       title: '创建店铺'
     },
     middleware: 'auth',
-    components: { TitleBar },
+    components: {TitleBar},
     data() {
       return {
         title: {
@@ -195,35 +202,11 @@
               content: '唯一标识已存在。'
             })
           } else if (res.shopId) {
-            this.$msgBox.doModal({
-              type: 'yes',
-              title: '创建店铺',
-              content: '创建成功。'
-            }).then(async (val) => {
-              this.$router.push(`/b/${this.http.req.shop.shortId}/init`)
-            })
+            this.$router.push(`/b/${this.http.req.shop.shortId}/init`)
           }
         })
       },
-      btnCreate() {
-        if (!Boolean(this.http.req.shop.name)) {
-          this.$msgBox.doModal({
-            type: 'yes',
-            title: '创建店铺',
-            content: '请输入店铺名称。'
-          })
-          return
-        }
-
-        if (!Boolean(this.http.req.shop.shortId)) {
-          this.$msgBox.doModal({
-            type: 'yes',
-            title: '创建店铺',
-            content: '请输入唯一标识。'
-          })
-          return
-        }
-
+      httpBindPhoneAndCreate() {
         if (!this.havePhone) {
           if (!validatorApi.phone(this.http.req.bind.phone)) {
             this.$msgBox.doModal({
@@ -288,6 +271,44 @@
         } else {
           this.httpCreate()
         }
+      },
+      btnCreate() {
+        if (!Boolean(this.http.req.shop.name)) {
+          this.$msgBox.doModal({
+            type: 'yes',
+            title: '创建店铺',
+            content: '请输入店铺名称。'
+          })
+          return
+        }
+
+        if (!Boolean(this.http.req.shop.shortId)) {
+          this.$msgBox.doModal({
+            type: 'yes',
+            title: '创建店铺',
+            content: '请输入唯一标识。'
+          })
+          return
+        }
+
+        if (this.http.req.shop.shortId.length < 2 || this.http.req.shop.shortId.length > 20) {
+          this.$msgBox.doModal({
+            type: 'yes',
+            title: '创建店铺',
+            content: '唯一标识长度在2-20位之间。'
+          })
+          return
+        }
+
+        this.$msgBox.doModal({
+          type: 'yes',
+          title: '创建店铺',
+          content: `请认真阅读以上流程，并点击确认按钮。`
+        }).then(async (val) => {
+          if (val === 'Yes') {
+            this.httpBindPhoneAndCreate()
+          }
+        })
       }
     }
   }

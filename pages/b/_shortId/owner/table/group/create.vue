@@ -13,19 +13,20 @@
 
         <div class="addition_item">
           <div class="addition_item_label">最小人数</div>
-          <input class="addition_item_input"
-                 oninput="this.value=this.value.replace(/[^0-9]/g,''); if (this.value === '0') this.value = ''"
-                 placeholder="请输入最小人数" maxlength="2" v-model="http.req.group.minPeople">
+          <input type="number" class="addition_item_input"
+                 oninput="this.value=this.value.replace(/[^0-9]/g,''); if (this.value === '0') this.value = '1'
+                          if (value.length > 2) value = value.slice(0, 2)"
+                 placeholder="请输入最小人数" v-model="http.req.group.minPeople">
         </div>
 
         <div class="box_divide"></div>
 
         <div class="addition_item">
           <div class="addition_item_label">最大人数</div>
-
-          <input class="addition_item_input"
-                 oninput="this.value=this.value.replace(/[^0-9]/g,''); if (this.value === '0') this.value = ''"
-                 placeholder="请输入最大人数" maxlength="2" v-model="http.req.group.maxPeople">
+          <input type="number" class="addition_item_input"
+                 oninput="this.value=this.value.replace(/[^0-9]/g,''); if (this.value === '0') this.value = '1'
+                          if (value.length > 2) value = value.slice(0, 2)"
+                 placeholder="请输入最大人数" v-model="http.req.group.maxPeople">
         </div>
       </div>
     </div>
@@ -78,16 +79,16 @@
 </template>
 
 <script>
-  import { httpTableAdminApi } from '../../../../../../api/http/lt/httpTableAdminApi'
+  import {httpTableAdminApi} from '../../../../../../api/http/lt/httpTableAdminApi'
   import TitleBar from '../../../../../../components/common/TitleBar'
-  import { langApi } from '../../../../../../api/local/langApi'
+  import {langApi} from '../../../../../../api/local/langApi'
 
   export default {
     metaInfo: {
       title: '添加餐桌组'
     },
     middleware: 'auth',
-    components: { TitleBar },
+    components: {TitleBar},
     data() {
       return {
         title: {
@@ -150,11 +151,11 @@
           return
         }
 
-        if (parseInt(this.http.req.group.maxPeople) <= parseInt(this.http.req.group.minPeople)) {
+        if (parseInt(this.http.req.group.maxPeople) < parseInt(this.http.req.group.minPeople)) {
           this.$msgBox.doModal({
             type: 'yes',
             title: '添加餐桌组',
-            content: '最大人数必须大于或等于最小人数'
+            content: '最大人数必须大于最小人数'
           })
 
           return

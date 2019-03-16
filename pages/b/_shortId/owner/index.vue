@@ -94,12 +94,6 @@
             //   url: `/b/${this.$route.params.shortId}/owner/order`
             // },
             {
-              tag: 'role',
-              name: '人事',
-              icon: '/img/b/nav/owner/b_nav_owner_role.png',
-              url: `/b/${this.$route.params.shortId}/owner/role`
-            },
-            {
               tag: 'queue',
               name: '排队',
               icon: '/img/b/nav/owner/b_nav_owner_queue.png',
@@ -112,16 +106,16 @@
               url: `/b/${this.$route.params.shortId}/owner/reserve`
             },
             {
-              tag: 'pay',
-              name: '支付',
-              icon: '/img/b/nav/owner/b_nav_owner_pay.png',
-              url: `/b/${this.$route.params.shortId}/owner/pay`
-            },
-            {
               tag: 'coupon',
               name: '优惠券',
               icon: '/img/b/nav/owner/b_nav_owner_coupon.png',
               url: `/b/${this.$route.params.shortId}/owner/coupon`
+            },
+            {
+              tag: 'pay',
+              name: '支付',
+              icon: '/img/b/nav/owner/b_nav_owner_pay.png',
+              url: `/b/${this.$route.params.shortId}/owner/pay`
             },
             {
               tag: 'wifi',
@@ -130,16 +124,22 @@
               url: `/b/${this.$route.params.shortId}/owner/wifi`
             },
             {
-              tag: 'captcha',
-              name: '二维码',
-              icon: '/img/b/nav/owner/b_nav_owner_captcha.png',
-              url: `/b/${this.$route.params.shortId}/owner/captcha`
+              tag: 'role',
+              name: '人事',
+              icon: '/img/b/nav/owner/b_nav_owner_role.png',
+              url: `/b/${this.$route.params.shortId}/owner/role`
             },
             {
               tag: 'tv',
               name: '展屏',
               icon: '/img/b/nav/owner/b_nav_owner_tv.png',
               url: `/b/${this.$route.params.shortId}/tv`
+            },
+            {
+              tag: 'captcha',
+              name: '二维码',
+              icon: '/img/b/nav/owner/b_nav_owner_captcha.png',
+              url: `/b/${this.$route.params.shortId}/owner/captcha`
             },
             // {
             //   tag: 'charge',
