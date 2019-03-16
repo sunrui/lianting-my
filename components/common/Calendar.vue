@@ -4,10 +4,10 @@
       <div class="calendar_title_cancel" @click="btnCancel">
         <div class="calendar_title_cancel_label">取消</div>
       </div>
-      <div class="calendar_title_date_minus_disable" v-if="!canBack"></div>
       <div class="calendar_title_date_minus" v-if="canBack" @click="btnMonthMinus">
         <div class="calendar_title_date_minus_icon"></div>
       </div>
+      <div class="calendar_title_date_minus_disable" v-else></div>
       <div class="calendar_title_date">
         <div class="calendar_title_date_label">{{ui.date.year}}.{{ui.date.month}}</div>
       </div>
@@ -58,12 +58,12 @@
         }
 
         if (this.ui.date.year === date.getFullYear()) {
-          if (date.getMonth() + 1 <= this.ui.date.month) {
-            return false
+          if (date.getMonth() + 1 < this.ui.date.month) {
+            return true
           }
         }
 
-        return true
+        return false
       }
     },
     methods: {
