@@ -36,7 +36,10 @@
 
         <div class="addition_item">
           <div class="addition_item_label">电话</div>
-          <input type="number" class="addition_item_input" placeholder="请输入电话" maxlength="20" v-model="http.req.info.phone">
+          <input type="number" class="addition_item_input" placeholder="请输入电话"
+                 oninput="this.value=this.value.replace(/[^0-9]/g,'');
+                          if (value.length > 11) value = value.slice(0, 11)"
+                 v-model="http.req.info.phone">
         </div>
 
         <div class="box_divide"></div>

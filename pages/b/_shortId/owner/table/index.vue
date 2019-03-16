@@ -21,8 +21,8 @@
         <div class="menu">
           <div class="menu_item" v-for="(tableGroup, index) in http.res.tableGroups.elements">
             <div :id="'menu_' + tableGroup.id"
-               :class="{menu_item_href:!isSelectMenu(tableGroup.id), menu_item_href_select:isSelectMenu(tableGroup.id)}"
-               @click="selectMenu(index, tableGroup.id, false)">
+                 :class="{menu_item_href:!isSelectMenu(tableGroup.id), menu_item_href_select:isSelectMenu(tableGroup.id)}"
+                 @click="selectMenu(index, tableGroup.id, false)">
               <div class="badge_delete menu_item_badge_delete" @click="btnGroupDelete(tableGroup)"></div>
               <div class="menu_item_label">{{tableGroup.name}}</div>
               <div class="menu_item_select" v-if="isSelectMenu(tableGroup.id)">
@@ -87,8 +87,9 @@
 
       <div class="modal_input_box">
         <div class="modal_input_area">
-          <input type="number" class="modal_input" minlength="1" maxlength="4" placeholder="请输入餐桌号，如 10"
-                 oninput="this.value=this.value.replace(/[^0-9]/g,'');"
+          <input type="number" class="modal_input" placeholder="请输入餐桌号，如 10"
+                 oninput="this.value=this.value.replace(/[^0-9]/g,'');
+                          if (value.length > 4) value = value.slice(0, 4)"
                  v-model=" http.req.table.number">
         </div>
       </div>
@@ -111,21 +112,21 @@
 
 <script>
   import TitleBar from '../../../../../components/common/TitleBar'
-  import { httpShopApi } from '../../../../../api/http/shop/httpShopApi'
-  import { httpInfoApi } from '../../../../../api/http/lt/httpInfoApi'
-  import { httpTableApi } from '../../../../../api/http/lt/httpTableApi'
-  import { httpTableAdminApi } from '../../../../../api/http/lt/httpTableAdminApi'
+  import {httpShopApi} from '../../../../../api/http/shop/httpShopApi'
+  import {httpInfoApi} from '../../../../../api/http/lt/httpInfoApi'
+  import {httpTableApi} from '../../../../../api/http/lt/httpTableApi'
+  import {httpTableAdminApi} from '../../../../../api/http/lt/httpTableAdminApi'
   import Captcha from '../../../../../components/common/Captcha'
-  import { scrollApi } from '../../../../../api/local/scrollApi'
-  import { highlightApi } from '../../../../../api/local/highlightApi'
-  import { langApi } from '../../../../../api/local/langApi'
+  import {scrollApi} from '../../../../../api/local/scrollApi'
+  import {highlightApi} from '../../../../../api/local/highlightApi'
+  import {langApi} from '../../../../../api/local/langApi'
 
   export default {
     metaInfo: {
       title: '餐桌'
     },
     middleware: 'auth',
-    components: { TitleBar, Captcha },
+    components: {TitleBar, Captcha},
     data() {
       return {
         title: {
@@ -212,7 +213,7 @@
 
           for (let index in this.http.res.tableGroups.elements) {
             let tableGroup = this.http.res.tableGroups.elements[index]
-            tableGroup.tableOnes.sort(function(a, b) {
+            tableGroup.tableOnes.sort(function (a, b) {
               return a.number - b.number
             })
           }

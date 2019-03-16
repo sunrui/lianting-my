@@ -1,0 +1,166 @@
+<template>
+  <div>
+    <div class="empty" v-if="ui.error.frequent">
+      <img class="empty_image" src="/img/no/no_crash.png" alt="">
+      <div class="empty_label">您的操作过于频繁，请于{{elapsedTime(ui.error.frequent)}}后重试。</div>
+    </div>
+    <div v-else>
+      <div class="empty" v-if="!ui.vReport">
+        <img class="empty_image" src="/img/no/no_crash.png" alt="">
+        <div class="empty_label">{{ui.error.notFound? '404 - 呃〜好像走丢了！' : '呃〜访问出错了！'}}</div>
+        <div class="empty_label2">您可将出错原因反馈给我们或返回重试。</div>
+
+        <div class="button_box" v-if="!ui.reported">
+          <div class="button_big" @click="btnReport">问题反馈</div>
+        </div>
+      </div>
+      <div v-else>
+        <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
+
+        <div class="box">
+          <div class="addition box_radius">
+            <div class="addition_item" v-if="ui.error.message">
+              <div class="addition_item_label_text_area">信息</div>
+              <div class="addition_item_text_area">
+                <label>
+                  <textarea class="addition_item_text_input" v-model="ui.error.message"></textarea>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="box">
+          <div class="report_input_area box_radius">
+            <textarea class="report_input" placeholder="请告之我们您的出错过程..." v-model="http.req.report.message" autofocus></textarea>
+          </div>
+        </div>
+
+        <div class="button_box">
+          <div class="button_big" v-if="http.req.report.message" @click="btnReportConfirm">确认提交</div>
+          <div class="button_big button_gray" v-else>确认提交</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+  import {timeApi} from '../../api/local/timeApi'
+  import {storeApi} from '../../api/local/storeApi'
+  import TitleBar from '../../components/common/TitleBar'
+  import {stringApi} from '../../api/local/stringApi'
+  import {httpReportApi} from '../../api/http/report/httpReportApi'
+
+  export default {
+    metaInfo: {
+      title: '捕获异常'
+    },
+    components: {TitleBar},
+    props: ['error'],
+    data() {
+      return {
+        http: {
+          req: {
+            report: {
+              exception: '',
+              message: ''
+            }
+          }
+        },
+        title: {
+          canBack: false,
+          title: '问题反馈',
+          backUri: null,
+          theme: 'image',
+          imageHeight: 220
+        },
+        ui: {
+          vReport: false,
+          reported: false,
+          error: {
+            notFound: false,
+            frequent: null,
+            message: null
+          }
+        }
+      }
+    },
+    created() {
+      this.initError()
+    },
+    methods: {
+      initError() {
+        this.ui.error.notFound = this.error && this.error.statusCode === 404
+        this.ui.error.message = this.error ? this.error.message : null
+
+        if (this.ui.error.notFound || Boolean(this.ui.error.message)) {
+          return
+        }
+
+        let error = storeApi.object.get('error')
+        if (error === null) {
+          return
+        }
+
+        try {
+          error = JSON.stringify(error)
+          let errorJson = JSON.parse(error)
+
+          if (typeof errorJson === 'string') {
+            this.ui.error.message = error
+          } else if (typeof errorJson === 'object') {
+            if (errorJson.error === 'CoreFrequent') {
+              this.ui.error.frequent = errorJson.data.value * 1000
+            } else {
+              this.ui.error.message = JSON.stringify(errorJson)
+            }
+          } else {
+            this.ui.error.message = errorJson.toString()
+          }
+        } catch (e) {
+          this.ui.error.message = stringApi.trim(e.toString())
+        }
+      },
+      elapsedTime(time) {
+        return timeApi.elapsedTime(time)
+      },
+      btnReport() {
+        this.ui.vReport = true
+      },
+      btnReportConfirm() {
+        this.initError()
+
+        if (this.ui.error.frequent) {
+          this.$msgBox.doModal({
+            type: 'yes',
+            title: '问题反馈',
+            content: '由于您的操作过于繁频，您无需反馈请稍候重试。'
+          })
+
+          return
+        }
+
+        httpReportApi.post({
+          exception: this.ui.error.message,
+          message: this.http.req.report.message
+        }).then(res => {
+          this.$msgBox.doModal({
+            type: 'yes',
+            title: '问题反馈',
+            content: '您已问题成功，感谢您的反馈。'
+          }).then(async (val) => {
+            storeApi.object.set('error', null)
+            this.ui.vReport = false
+            this.ui.reported = true
+          })
+        })
+      }
+    }
+  }
+</script>
+
+<style scoped lang="scss">
+  @import '~assets/common';
+  @import 'ErrorCatch';
+</style>

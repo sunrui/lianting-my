@@ -15,8 +15,7 @@ axios.interceptors.request.use((config) => {
 })
 
 axios.interceptors.response.use(function (response) {
-  logApi.log(
-    response.status + ' ' + response.config.method + ' ' + response.config.url)
+  logApi.log(response.status + ' ' + response.config.method + ' ' + response.config.url)
   logApi.log(response.data)
   loadingApi.hide()
   return response
@@ -31,6 +30,9 @@ axios.interceptors.response.use(function (response) {
     }
 
     storeApi.object.set('error', err.response.data)
+    window.location.href = '/error'
+  } else {
+    storeApi.object.set('error', err)
     window.location.href = '/error'
   }
 

@@ -22,8 +22,9 @@
 
         <div class="addition_item">
           <div class="addition_item_label">多少天后可用</div>
-          <input type="number" class="addition_item_input" placeholder="请输入天数" maxlength="3"
-                 oninput="this.value=this.value.replace(/[^0-9]/g,''); if (this.value === '') this.value = 0;"
+          <input type="number" class="addition_item_input" placeholder="请输入天数"
+                 oninput="this.value=this.value.replace(/[^0-9]/g,''); if (this.value === '') this.value = 0;
+                          if (value.length > 3) value = value.slice(0, 3)"
                  v-model="http.req.coupon.validAfterDay">
         </div>
 
@@ -31,8 +32,9 @@
 
         <div class="addition_item">
           <div class="addition_item_label">有效时间</div>
-          <input type="number" class="addition_item_input" placeholder="请输入天数" maxlength="3"
-                 oninput="this.value=this.value.replace(/[^0-9]/g,'');"
+          <input type="number" class="addition_item_input" placeholder="请输入天数"
+                 oninput="this.value=this.value.replace(/[^0-9]/g,'');
+                          if (value.length > 3) value = value.slice(0, 3)"
                  v-model="http.req.coupon.expiredDate">
         </div>
       </div>
@@ -66,8 +68,9 @@
 
         <div class="addition_item" v-if="http.req.coupon.type === 'FREE'">
           <div class="addition_item_label">领取次数</div>
-          <input type="number" class="addition_item_input" placeholder="请输入次数" maxlength="3"
-                 oninput="this.value=this.value.replace(/[^0-9]/g,'');"
+          <input type="number" class="addition_item_input" placeholder="请输入次数"
+                 oninput="this.value=this.value.replace(/[^0-9]/g,'');
+                          if (value.length > 3) value = value.slice(0, 3)"
                  v-model="http.req.coupon.perLimit">
         </div>
       </div>
@@ -100,17 +103,17 @@
 </template>
 
 <script>
-  import { httpCouponAdminApi } from '../../../../../api/http/lt/httpCouponAdminApi'
+  import {httpCouponAdminApi} from '../../../../../api/http/lt/httpCouponAdminApi'
   import TitleBar from '../../../../../components/common/TitleBar'
   import CurrencyInput from '../../../../../components/common/CurrencyInput'
-  import { langApi } from '../../../../../api/local/langApi'
+  import {langApi} from '../../../../../api/local/langApi'
 
   export default {
     metaInfo: {
       title: '添加优惠券'
     },
     middleware: 'auth',
-    components: { TitleBar, CurrencyInput },
+    components: {TitleBar, CurrencyInput},
     data() {
       return {
         title: {
