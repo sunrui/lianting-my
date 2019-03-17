@@ -191,6 +191,10 @@
       httpShop() {
         httpShopApi.getOne(this.$route.params.shortId).then(res => {
           this.http.res.shop = res
+
+          setTimeout(function () {
+            document.title = res.name
+          }, 100)
         })
       },
       httpInfo() {
