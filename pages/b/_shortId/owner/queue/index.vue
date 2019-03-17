@@ -17,7 +17,7 @@
         <div class="addition_item">
           <div class="addition_item_label_text_area">公告</div>
           <div class="addition_item_text_area">
-            <textarea class="addition_item_text_input" placeholder="请输入您的公告" v-model="http.req.state.notice" autofocus></textarea>
+            <textarea class="addition_item_text_input" placeholder="请输入您的公告" v-model="http.req.state.notice"></textarea>
           </div>
         </div>
       </div>
