@@ -24,7 +24,6 @@
 </template>
 
 <script>
-  import {stateApi} from '../api/local/stateApi'
   import TitleBar from '../components/common/TitleBar'
 
   export default {

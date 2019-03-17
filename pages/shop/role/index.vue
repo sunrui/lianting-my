@@ -1,6 +1,6 @@
 <template>
   <div>
-    <title-bar v-if="!ui.loading" :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
+    <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
     <div class="top_blank"></div>
 
@@ -72,7 +72,6 @@
           }
         },
         ui: {
-          loading: true,
           roles: [
             {image: '/img/role/role_owner.png', name: '管理员', role: 'owner'},
             {image: '/img/role/role_admin.png', name: '店长', role: 'admin'},
@@ -94,8 +93,6 @@
             this.$router.push('/shop/role/empty')
             return
           }
-
-          this.ui.loading = false
 
           for (let index in res) {
             let role = res[index]
