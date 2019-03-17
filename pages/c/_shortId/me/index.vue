@@ -172,7 +172,7 @@
         this.$router.push(`/c/${this.$route.params.shortId}/me/edit`)
       },
       btnCopyright() {
-        this.$router.push('/')
+        window.location = 'https://www.lt.city/'
       }
     }
   }
