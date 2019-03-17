@@ -7,8 +7,8 @@
 </template>
 
 <script>
-  import Empty from '../../components/common/Empty'
-  import TitleBar from '../../components/common/TitleBar'
+  import Empty from '../../../components/common/Empty'
+  import TitleBar from '../../../components/common/TitleBar'
 
   export default {
     metaInfo: {
@@ -40,5 +40,4 @@
     right: px2rem(20);
     color: #666666;
   }
-
 </style>

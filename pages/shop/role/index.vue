@@ -1,6 +1,6 @@
 <template>
   <div>
-    <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
+    <title-bar v-if="!ui.loading" :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
     <div class="top_blank"></div>
 
@@ -47,9 +47,9 @@
 </template>
 
 <script>
-  import TitleBar from '../../components/common/TitleBar'
-  import {httpInfoApi} from '../../api/http/lt/httpInfoApi'
-  import {httpRoleApi} from "../../api/http/lt/httpRoleApi"
+  import TitleBar from '../../../components/common/TitleBar'
+  import {httpInfoApi} from '../../../api/http/lt/httpInfoApi'
+  import {httpRoleApi} from "../../../api/http/lt/httpRoleApi"
 
   export default {
     metaInfo: {
@@ -72,6 +72,7 @@
           }
         },
         ui: {
+          loading: true,
           roles: [
             {image: '/img/role/role_owner.png', name: '管理员', role: 'owner'},
             {image: '/img/role/role_admin.png', name: '店长', role: 'admin'},
@@ -90,9 +91,11 @@
       httpRole() {
         httpRoleApi.getAll(0, 99).then(res => {
           if (res.length === 0) {
-            this.$router.push('/shop/empty')
+            this.$router.push('/shop/role/empty')
             return
           }
+
+          this.ui.loading = false
 
           for (let index in res) {
             let role = res[index]
@@ -135,5 +138,5 @@
 <style scoped lang="scss">
   @import '~assets/common';
   @import '~assets/b/b_shop';
-  @import 'index';
+  @import '../index';
 </style>
