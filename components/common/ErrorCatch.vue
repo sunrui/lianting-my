@@ -33,7 +33,7 @@
 
         <div class="box">
           <div class="report_input_area box_radius">
-            <textarea class="report_input" placeholder="请告之我们您的出错过程..." v-model="http.req.report.message" maxlength="256" autofocus></textarea>
+            <textarea class="report_input" placeholder="请告之我们您的出错过程..." v-model="http.req.report.message" maxlength="256"></textarea>
           </div>
         </div>
 

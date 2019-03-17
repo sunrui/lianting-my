@@ -17,7 +17,7 @@
         <div class="addition_item" v-if="ui.open">
           <div class="addition_item_label">名称</div>
           <input class="addition_item_input" placeholder="请输入名称" maxlength="32"
-                 v-model="http.req.wifi.name" autofocus>
+                 v-model="http.req.wifi.name">
         </div>
 
         <div class="box_divide" v-if="ui.open"></div>

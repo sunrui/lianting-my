@@ -38,7 +38,7 @@
       <div class="addition box_radius">
         <div class="addition_item">
           <div class="addition_item_label">联系人</div>
-          <input class="addition_item_input" placeholder="请输入您的姓名" maxlength="20" v-model="http.req.reserve.name" autofocus>
+          <input class="addition_item_input" placeholder="请输入您的姓名" maxlength="20" v-model="http.req.reserve.name">
         </div>
 
         <div class="box_divide"></div>

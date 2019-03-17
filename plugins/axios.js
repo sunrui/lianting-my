@@ -14,7 +14,10 @@ axios.interceptors.request.use((config) => {
   return Promise.reject(err)
 })
 
+
 axios.interceptors.response.use(function (response) {
+  // sleepApi.sleep(2000)
+
   logApi.log(response.status + ' ' + response.config.method + ' ' + response.config.url)
   logApi.log(response.data)
   loadingApi.hide()

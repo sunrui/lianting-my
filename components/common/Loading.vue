@@ -1,9 +1,29 @@
 <template>
   <div class='loading'>
-    <div class="loading_image"></div>
-    <div class="loading_label">正在加载中...</div>
+    <div class="loading_image" v-if="ui.showDelay"></div>
+    <div class="loading_label" v-if="ui.showDelay">正在加载中...</div>
   </div>
 </template>
+
+<script>
+  export default {
+    data() {
+      return {
+        ui: {
+          showDelay: false
+        }
+      }
+    },
+    mounted() {
+      setTimeout(this.showDelay, 200)
+    },
+    methods: {
+      showDelay() {
+        this.ui.showDelay = true
+      }
+    }
+  }
+</script>
 
 <style scoped lang="scss">
   .loading {

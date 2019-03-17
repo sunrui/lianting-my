@@ -6,7 +6,7 @@
       <div class="addition box_radius">
         <div class="addition_item">
           <div class="addition_item_label">名称</div>
-          <input class="addition_item_input" placeholder="请输入餐桌组名称" maxlength="20" v-model="http.req.group.name" autofocus>
+          <input class="addition_item_input" placeholder="请输入餐桌组名称" maxlength="20" v-model="http.req.group.name">
         </div>
 
         <div class="box_divide"></div>
