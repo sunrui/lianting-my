@@ -20,7 +20,7 @@
   }
 
   .lt_label {
-    margin-top: px2rem(10);
+    margin-top: px2rem(30);
     font-size: px2rem(32);
     color: #333333;
   }
@@ -49,8 +49,9 @@
     .login_phone_input {
       display: inline-block;
       vertical-align: middle;
-      margin-left: px2rem(10);
+      margin-left: px2rem(15);
       line-height: px2rem(90);
+      font-size: px2rem(26);
       color: #666666;
       border: none;
       outline: medium;
@@ -68,7 +69,8 @@
   }
 
   .login_sms_code_input {
-    margin-left: px2rem(2);
+    margin-left: px2rem(7);
+    font-size: px2rem(26);
   }
 }
 
