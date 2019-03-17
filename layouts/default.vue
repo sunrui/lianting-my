@@ -1,9 +1,7 @@
 <template>
   <div>
     <loading v-show="false" id="http_loading"></loading>
-    <transition class="fade">
-      <nuxt/>
-    </transition>
+    <nuxt/>
   </div>
 </template>
 
@@ -17,12 +15,9 @@
 </script>
 
 <style lang="scss">
-  @import '~assets/common.scss';
-
   *,
   *:before,
   *:after {
     font-size: px2rem(26);
   }
-
 </style>

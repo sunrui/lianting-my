@@ -4,9 +4,11 @@ export const loadingApi = {
   show() {
     this.ref++
 
-    if (this.enable) {
-      document.getElementById('http_loading').style.display = 'block'
-    }
+    setTimeout(function () {
+      if (this.enable && this.ref > 0) {
+        document.getElementById('http_loading').style.display = 'block'
+      }
+    }, 500)
   },
   hide() {
     if (--this.ref <= 0) {
