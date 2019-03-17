@@ -17,9 +17,9 @@
   "author": "上海唏美网络科技有限公司",
   "private": true,
   "scripts": {
-    "dev": "nuxt",
+    "dev": "cross-env NODE_ENV=development nuxt",
     "build": "nuxt build",
-    "start": "nuxt start",
+    "start": "NODE_ENV=production nuxt start",
     "generate": "nuxt generate"
   },
   "dependencies": {

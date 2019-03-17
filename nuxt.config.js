@@ -34,6 +34,10 @@ module.exports = {
     '~static/css/normalize.css'
   ],
 
+  env: {
+    NODE_ENV: process.env.NODE_ENV
+  },
+
   /*
   ** Plugins to load before mounting the App
   */
@@ -64,7 +68,7 @@ module.exports = {
       '/api',
       {
         target: 'http://localhost:8080',
-        // target: 'http://honeysense.com/api',
+        // target: 'http://m.lt.city/api',
         pathRewrite: {'^/api': '/'}
       }
     ]

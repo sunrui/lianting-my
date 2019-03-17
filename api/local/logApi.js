@@ -1,18 +1,16 @@
-import { debugApi } from './debugApi'
-
 export const logApi = {
   log(data) {
-    if (debugApi.debug) {
+    if (process.env.NODE_ENV === 'development') {
       console.log(data)
     }
   },
   error(data) {
-    if (debugApi.debug) {
+    if (process.env.NODE_ENV === 'development') {
       console.error(data)
     }
   },
   dump(data) {
-    if (debugApi.debug) {
+    if (process.env.NODE_ENV === 'development') {
       const { dump } = require('dumper.js')
       dump(data)
     }
