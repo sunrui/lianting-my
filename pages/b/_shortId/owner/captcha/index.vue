@@ -131,7 +131,7 @@
           this.$msgBox.doModal({
             type: 'yes',
             title: '暂无餐桌',
-            content: `请先${highlightApi.highlight('添加餐桌')}，点击确认将转至餐桌页。`
+            content: `请先添加餐桌，点击确认将转至餐桌页。`
           }).then(async (val) => {
             if (val === 'Yes') {
               this.$router.push(`/b/${this.$route.params.shortId}/owner/table`)

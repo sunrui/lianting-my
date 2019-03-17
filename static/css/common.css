@@ -1,0 +1,31 @@
+html {
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    box-sizing: border-box;
+
+    user-select: none;
+    background: #eef0f3;
+    color: #333333;
+    margin: 0;
+    padding: 0;
+}
+
+a, button, input {
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+    box-shadow: none;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+    touch-action: pan-y;
+}
+
+input::-webkit-outer-spin-button,input::-webkit-inner-spin-button{
+    -webkit-appearance: none !important;
+}
+input[type="number"]{-moz-appearance:textfield;}

@@ -18,23 +18,21 @@ module.exports = {
     link: [
       {rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'}
     ],
-    script: [
-      // { src: "https://cdn.bootcss.com/plupload/3.1.2/plupload.full.min.js" }
-    ]
+    script: []
   },
 
   /*
   ** Customize the progress-bar color
   */
-  loading: {color: '#f52626'},
+  loading: {color: '#FF6958'},
 
   /*
   ** Global CSS
   */
   css: [
-    // { src: 'assets/css/fade.css', lang: 'css' }
+    '~static/css/common.css',
+    '~static/css/normalize.css'
   ],
-
 
   /*
   ** Plugins to load before mounting the App
@@ -45,8 +43,7 @@ module.exports = {
     {src: '~plugins/axios', ssr: false},
     {src: '~plugins/meta', ssr: false},
     {src: '~plugins/console', ssr: false},
-    // {src: '~plugins/route', ssr: false},
-    // {src: '~plugins/https', ssr: false}
+    {src: '~plugins/https', ssr: false}
   ],
 
   /*
