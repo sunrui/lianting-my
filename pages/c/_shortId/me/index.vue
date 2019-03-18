@@ -25,7 +25,7 @@
 
         <div class="blank_40"></div>
 
-        <div class="addition ">
+        <div class="addition">
           <div v-for="(nav, index) in ui.navs">
             <div class="addition_item" @click="btnNav(nav.url)">
               <div class="addition_item_label">{{nav.name}}</div>
@@ -34,6 +34,8 @@
             <div class="box_divide" v-if="index !== ui.navs.length - 1"></div>
           </div>
         </div>
+
+        <div class="blank_5"></div>
       </div>
     </div>
 
