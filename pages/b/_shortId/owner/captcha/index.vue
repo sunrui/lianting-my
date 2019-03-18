@@ -155,7 +155,7 @@
           logging: false,
           backgroundColor: null
         }).then(canvas => {
-          let fileName = table.tableGroup_name + '_' + table.fullNumber
+          let fileName = '恋厅_餐桌二维码_' + table.tableGroup_name + '_' + table.fullNumber
           downloadApi.download(canvas, fileName)
         })
       },
