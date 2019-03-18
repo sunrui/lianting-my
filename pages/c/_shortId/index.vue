@@ -71,26 +71,31 @@
     </div>
 
     <div class="modal_center" v-if="ui.vWifi">
+      <div class="modal_title">无线</div>
+
       <div class="modal_close_box" @click="btnCoverMask">
         <img class="modal_close" src="/img/common/close.png" alt="">
       </div>
 
       <div class="wifi_box">
-        <div class="wifi_blank_header"></div>
+        <div class="blank_30"></div>
         <div class="wifi_box_icon"></div>
+        <div class="blank_10"></div>
 
-        <div class="wifi_name" v-if="http.res.wifi.name">
-          <div class="wifi_name_label">账号</div>
-          <div class="wifi_name_content">{{http.res.wifi.name}}</div>
-        </div>
-        <div class="wifi_password" v-if="http.res.wifi.password">
-          <div class="wifi_password_label">密码</div>
-          <div class="wifi_password_content">{{http.res.wifi.password}}</div>
+        <div class="addition" v-if="http.res.wifi.name">
+          <div class="addition_item">
+            <div class="addition_item_label">账号</div>
+            <div class="addition_item_content addition_item_content_select">{{http.res.wifi.name}}</div>
+          </div>
+          <div class="box_divide"></div>
+          <div class="addition_item">
+            <div class="addition_item_label">密码</div>
+            <div class="addition_item_content addition_item_content_select">{{http.res.wifi.password}}</div>
+          </div>
         </div>
 
         <div class="wifi_empty" v-if="!http.res.wifi.name">很抱歉，暂时没有提供无线。</div>
-
-        <div class="blank_20"></div>
+        <div class="blank_5"></div>
       </div>
     </div>
 

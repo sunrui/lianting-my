@@ -306,14 +306,6 @@
 .wifi_box {
   text-align: center;
 
-  .wifi_blank_header {
-    height: px2rem(80);
-  }
-
-  .wifi_blank_footer {
-    height: px2rem(30);
-  }
-
   .wifi_box_icon {
     display: inline-block;
     background-image: url("/img/c/wifi/wifi.png");
@@ -325,42 +317,8 @@
 
   .wifi_empty {
     text-align: center;
-    margin-top: px2rem(50);
+    padding-bottom: px2rem(20);
     color: #666666;
     font-size: px2rem(28)
-  }
-
-  .wifi_name {
-    margin-top: px2rem(100);
-
-    .wifi_name_label {
-      display: inline-block;
-      font-size: px2rem(36);
-      color: #333333;
-    }
-
-    .wifi_name_content {
-      display: inline-block;
-      font-size: px2rem(32);
-      color: #666666;
-      user-select: text;
-    }
-  }
-
-  .wifi_password {
-    margin-top: px2rem(30);
-
-    .wifi_password_label {
-      display: inline-block;
-      font-size: px2rem(36);
-      color: #333333;
-    }
-
-    .wifi_password_content {
-      display: inline-block;
-      font-size: px2rem(32);
-      color: #666666;
-      user-select: text;
-    }
   }
 }
