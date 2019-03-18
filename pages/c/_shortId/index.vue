@@ -44,7 +44,7 @@
           </div>
 
           <div class="coupon" v-if="http.res.coupons.length > 0" @click="btnCouponFetch">
-            <div class="coupon_label_left">满{{getLittleCouponPrice()}}元可用</div>
+            <div class="coupon_label_left">￥{{getLittleCoupon().deductPrice}}满{{getLittleCoupon().chargePrice}}元可用</div>
             <div class="coupon_divide_radius"></div>
             <div class="coupon_label_right">领取</div>
           </div>
@@ -222,18 +222,18 @@
           }
         })
       },
-      getLittleCouponPrice() {
-        let price = null
+      getLittleCoupon() {
+        let price
 
         for (let index in this.http.res.coupons) {
           let coupon = this.http.res.coupons[index]
 
           if (!price || coupon.chargePrice < price) {
-            price = coupon.chargePrice
+            return coupon
           }
         }
 
-        return parseFloat(price)
+        return null
       },
       btnNav(nav) {
         if (nav.tag === 'food') {
