@@ -44,7 +44,7 @@
   margin-right: px2rem(15);
   margin-top: px2rem(30);
   border-radius: px2rem(88/2);
-  box-shadow: 0 0 px2rem(20) 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 px2rem(10) 0 rgba(0, 0, 0, 0.2);
 }
 
 .queue_search .queue_search_icon {

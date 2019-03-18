@@ -82,7 +82,7 @@
 
   export default {
     metaInfo: {
-      title: '资料'
+      title: '个人资料'
     },
     middleware: 'auth',
     components: {TitleBar, ImageUpload},
@@ -90,7 +90,7 @@
       return {
         title: {
           canBack: true,
-          title: '资料',
+          title: '个人资料',
           backUri: `/c/${this.$route.params.shortId}/me`,
           theme: 'image',
           imageHeight: 330
