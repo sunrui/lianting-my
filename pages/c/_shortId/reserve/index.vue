@@ -14,7 +14,7 @@
     <div class="reserve_notice_box">
       <div class="reserve_notice">
         <div class="reserve_notice_icon"></div>
-        <div class="reserve_notice_label">{{http.res.state.notice ? http.res.state.notice : '听到叫号请到迎宾台，过号顺延3桌安排。'}}
+        <div class="reserve_notice_label">{{http.res.state.notice ? http.res.state.notice : '为了保证您的按时用餐，请您及时预订。'}}
         </div>
       </div>
     </div>

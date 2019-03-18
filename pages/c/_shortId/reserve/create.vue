@@ -8,7 +8,7 @@
           <div class="addition_item_label">预订时间</div>
           <div class="addition_item_content">{{getWeekDesc(date)}}
             {{date.getMonth() + 1}}-{{date.getDate()}}
-            {{date.getHours() >= 10 ? http.req.reserve.date.getHours() :
+            {{date.getHours() >= 10 ? date.getHours() :
             '0' + date.getHours() }}:{{date.getMinutes() >= 10 ?
             date.getMinutes() : '0' + date.getMinutes()}}
           </div>
