@@ -206,6 +206,9 @@
         }
 
         httpRoleAdminApi.postRole(this.$route.params.shortId, this.http.req.role).then(res => {
+          this.ui.vRoleAdd = false
+          this.ui.vCoverMask = false
+
           if (res.maxLimit) {
             this.$msgBox.doModal({
               type: 'yes',
@@ -237,9 +240,6 @@
           }
 
           if (res.roleId) {
-            this.ui.vRoleAdd = false
-            this.ui.vCoverMask = false
-
             this.$msgBox.doModal({
               type: 'yes',
               title: '添加' + this.getTypeName(this.http.req.role.type),

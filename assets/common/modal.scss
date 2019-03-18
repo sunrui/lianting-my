@@ -45,13 +45,10 @@
 
 .modal_content {
   text-align: left;
-  min-height: px2rem(70);
-  max-height: px2rem(350);
+  padding: px2rem(10) px2rem(35);
+  max-height: px2rem(600);
   overflow-y: scroll;
-
   color: #666666;
-  margin-left: px2rem(35);
-  margin-right: px2rem(35);
   word-wrap: break-word;
 }
 

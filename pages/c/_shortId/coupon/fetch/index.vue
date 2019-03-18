@@ -22,7 +22,8 @@
 
         <div class="coupon_footer">
           <div class="coupon_expired_time">自领取{{coupon.validAfterDay > 0 ? (coupon.validAfterDay + '天后') : '当日'}}可用, {{
-            coupon.expiredDate }}天后过期。</div>
+            coupon.expiredDate }}天后过期。
+          </div>
           <div class="coupon_button" @click="btnFetch(coupon)">立即领取</div>
         </div>
       </div>
@@ -117,7 +118,7 @@
               title: '领取优惠券',
               content: '领取成功。'
             }).then(async (val) => {
-              this.httpFetch()
+              this.$router.push(this.title.backUri)
             })
           }
         })

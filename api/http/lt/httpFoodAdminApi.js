@@ -7,10 +7,9 @@ export const httpFoodAdminApi = {
   getGroup(shortId, foodGroupId) {
     return axios.get(`${base}/${shortId}/food/group/${foodGroupId}`).then(res => res.data)
   },
-  getGroupAll(shortId, live, page, size) {
+  getGroupAll(shortId, page, size) {
     return axios.get(`${base}/${shortId}/food/group`, {
       params: {
-        live: live,
         page: page,
         size: size
       }

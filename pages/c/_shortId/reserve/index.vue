@@ -253,6 +253,13 @@
             }
           }
 
+          enableTimes.sort(function (a, b) {
+            let date = new Date()
+            let fmtA = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} ${a}:00.000`
+            let fmtB = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} ${b}:00.000`
+            return new Date(fmtA).getTime() - new Date(fmtB).getTime()
+          })
+
           this.ui.dayTimes = enableTimes
         }
 

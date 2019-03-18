@@ -119,7 +119,7 @@
         title: {
           canBack: true,
           title: '添加优惠券',
-          backUri: `/b/${this.$route.params.shortId}/owner`,
+          backUri: `/b/${this.$route.params.shortId}/owner/coupon`,
           theme: 'image',
           imageHeight: 300
         },

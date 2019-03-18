@@ -64,7 +64,7 @@
       return {
         title: {
           canBack: true,
-          title: '点餐',
+          title: '搜索',
           backUri: this.roleWaiter ? `/b/${this.$route.params.shortId}/waiter/food` : `/c/${this.$route.params.shortId}`,
           theme: 'white',
           imageHeight: 0

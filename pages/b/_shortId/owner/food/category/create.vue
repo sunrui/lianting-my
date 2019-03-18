@@ -146,7 +146,7 @@
 
   export default {
     metaInfo: {
-      title: '创建餐食'
+      title: '添加餐食'
     },
     middleware: 'auth',
     components: {TitleBar, CurrencyInput, ImageUpload},
@@ -154,7 +154,7 @@
       return {
         title: {
           canBack: true,
-          title: '创建餐食',
+          title: '添加餐食',
           backUri: `/b/${this.$route.params.shortId}/owner/food`,
           theme: 'image',
           imageHeight: 300
