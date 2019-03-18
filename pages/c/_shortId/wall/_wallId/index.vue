@@ -52,7 +52,7 @@
 
         <div class="wall_message_order_menu" @click="btnOrder(http.res.wall)">
           <div class="wall_message_order_menu_icon"></div>
-          <div class="wall_message_order_menu_label">查看菜谱</div>
+          <div class="wall_message_order_menu_label">分享菜谱</div>
         </div>
 
         <div class="blank_10"></div>
@@ -80,7 +80,7 @@
     <div class="box" v-if="ui.vOrderMenu">
       <div class="modal_center box_radius">
         <div class="modal_header">
-          <div class="modal_title">查看菜谱</div>
+          <div class="modal_title">分享菜谱</div>
 
           <div class="modal_close_box" @click="btnCoverMask">
             <img class="modal_close" src="/img/common/close.png" alt="">

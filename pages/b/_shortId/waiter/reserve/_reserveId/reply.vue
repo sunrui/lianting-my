@@ -24,7 +24,7 @@
         </div>
       </div>
 
-      <div class="reply_label">商家留言</div>
+      <div class="reply_label">回复留言</div>
 
       <div class="reply_remark_area">
         <textarea class="reply_remark_input" placeholder="请输入要回复给顾客的留言" maxlength="256"

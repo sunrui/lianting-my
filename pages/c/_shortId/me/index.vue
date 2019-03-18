@@ -101,7 +101,7 @@
             this.$msgBox.doModal({
               type: 'yes',
               title: '个人信息',
-              content: '用户不存在。'
+              content: '资料不存在。'
             })
 
             return

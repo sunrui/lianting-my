@@ -115,7 +115,7 @@
             this.$msgBox.doModal({
               type: 'yes',
               title: '资料',
-              content: '用户不存在。'
+              content: '资料不存在。'
             }).then(async (val) => {
               this.$router.push(this.title.backUri)
             })

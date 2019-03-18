@@ -99,7 +99,7 @@
 
   export default {
     metaInfo: {
-      title: '提交预订'
+      title: '立即预订'
     },
     middleware: 'auth',
     components: {TitleBar},
@@ -107,7 +107,7 @@
       return {
         title: {
           canBack: true,
-          title: '提交预订',
+          title: '立即预订',
           backUri: `/c/${this.$route.params.shortId}`,
           theme: 'image',
           imageHeight: 330

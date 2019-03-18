@@ -59,7 +59,7 @@
 
   export default {
     metaInfo: {
-      title: '提交留言墙'
+      title: '我的留言墙'
     },
     middleware: 'auth',
     components: {TitleBar},
@@ -67,7 +67,7 @@
       return {
         title: {
           canBack: true,
-          title: '提交留言墙',
+          title: '我的留言墙',
           backUri: `/c/${this.$route.params.shortId}`,
           theme: 'white',
           imageHeight: 0
