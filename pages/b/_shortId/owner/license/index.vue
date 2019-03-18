@@ -345,24 +345,20 @@
             content: '请在微信中打开。'
           })
 
-          // return
-        }
-
-        httpShopLicenseApi.postOrderTest(this.$route.params.shortId, this.ui.licensePlan.id, this.ui.year, 'WECHAT_JSAPI').then(res => {
-          this.ui.vCoverMask = false
-          this.ui.vChargeYear = false
-          this.$msgBox.doModal({
-            type: 'yes',
-            title: '立即续费',
-            content: '测试续费成功。'
-          }).then(async (val) => {
-            this.httpShop()
-          })
-        })
-
-        if (1) {
           return
         }
+
+        // httpShopLicenseApi.postOrderTest(this.$route.params.shortId, this.ui.licensePlan.id, this.ui.year, 'WECHAT_JSAPI').then(res => {
+        //   this.ui.vCoverMask = false
+        //   this.ui.vChargeYear = false
+        //   this.$msgBox.doModal({
+        //     type: 'yes',
+        //     title: '立即续费',
+        //     content: '测试续费成功。'
+        //   }).then(async (val) => {
+        //     this.httpShop()
+        //   })
+        // })
 
         httpShopLicenseApi.postOrder(this.$route.params.shortId, this.ui.licensePlan.id, this.ui.year, 'WECHAT_JSAPI').then(res => {
           this.ui.vCoverMask = false
