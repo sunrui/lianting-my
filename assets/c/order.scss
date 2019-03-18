@@ -440,7 +440,7 @@
 .people_box {
   margin: px2rem(30) px2rem(30);
   height: px2rem(300);
-  overflow-y: scroll;
+  overflow-y: auto;
 
   .people_one {
     display: inline-block;

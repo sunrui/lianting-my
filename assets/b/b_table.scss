@@ -99,7 +99,7 @@
 
 .modal_group {
   max-height: px2rem(500);
-  overflow-y: scroll;
+  overflow-y: auto;
 
   .modal_group_name {
     clear: both;

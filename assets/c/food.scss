@@ -489,7 +489,7 @@
 
   .cart_box {
     position: relative;
-    overflow-y: scroll;
+    overflow-y: auto;
     width: 100%;
     min-height: px2rem(0);
     max-height: px2rem(450);

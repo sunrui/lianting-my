@@ -230,7 +230,7 @@
       color: #F52626;
       float: right;
       height: px2rem(200);
-      overflow-y: scroll;
+      overflow-y: auto;
     }
   }
 
@@ -265,7 +265,7 @@
       height: px2rem(150);
 
       .return_remark_text_input {
-        overflow-y: scroll;
+        overflow-y: auto;
         border: none;
         outline: medium;
         background-color: #F5F5F5;

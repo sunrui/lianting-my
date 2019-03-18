@@ -40,7 +40,7 @@
   height: px2rem(200);
 
   .reserve_remark_text_input {
-    overflow-y: scroll;
+    overflow-y: auto;
     border: none;
     outline: medium;
     background-color: #F5F5F5;
