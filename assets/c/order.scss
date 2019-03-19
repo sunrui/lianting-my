@@ -37,8 +37,7 @@
   }
 
   .table_name {
-    position: absolute;
-    left: px2rem(155);
+    margin-left: px2rem(155);
     display: inline-block;
     font-size: px2rem(28);
     line-height: px2rem(130);
@@ -47,19 +46,20 @@
   .order_food_name_detail {
     position: absolute;
     left: px2rem(155);
-    display: inline-block;
-    top: px2rem((130-28-24)/2);
     right: px2rem(320);
-
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    top: 50%;
+    transform: translate(0, -50%);
 
     .order_food_name_detail_name {
       font-size: px2rem(28);
+      color: #333333;
     }
 
     .order_food_name_detail_name_category {
+      margin-top: px2rem(5);
       font-size: px2rem(24);
       color: #999999;
     }

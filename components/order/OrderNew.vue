@@ -309,26 +309,7 @@
         })
       },
       btnScanCaptcha() {
-        this.$msgBox.doModal({
-          type: 'yes',
-          title: '下单',
-          content: '请扫描餐桌二维码下单。'
-        }).then(async (val) => {
-
-        })
-
-        navigator.getMedia = navigator.getUserMedia ||
-          navagator.webkitGetUserMedia ||
-          navigator.mozGetUserMedia ||
-          navigator.msGetUserMedia
-        navigator.getMedia({
-          video: true,
-          audio: false
-        }, function (strem) {
-          logApi.log(strem)
-        }, function (error) {
-          logApi.log(error)
-        })
+        this.$router.push('/scan')
       }
     }
   }
