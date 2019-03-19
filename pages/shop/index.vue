@@ -127,8 +127,7 @@
             { image: '/img/role/role_waiter.png', name: '服务员', role: 'waiter' },
             { image: '/img/role/role_cooker.png', name: '厨师', role: 'cooker' },
             { image: '/img/role/role_cashier.png', name: '财务', role: 'cashier' }
-          ],
-          freeShop: 0
+          ]
         }
       }
     },
@@ -161,10 +160,6 @@
         })
       },
       httpShopInfo(shop) {
-        if (shop.licenseType === 'Free') {
-          this.ui.freeShop++
-        }
-
         httpInfoApi.get(shop.shortId).then(res => {
           let info = {
             shortId: shop.shortId,
@@ -191,16 +186,6 @@
         this.$router.push(`/b/${shop.shortId}/${role}`)
       },
       btnCreate() {
-        if (this.ui.freeShop > 0) {
-          this.$msgBox.doModal({
-            type: 'yes',
-            title: '创建店铺',
-            content: '您最多可创建一个免费店铺。'
-          })
-
-          return
-        }
-
         this.$router.push(`/shop/create`)
       }
     }
