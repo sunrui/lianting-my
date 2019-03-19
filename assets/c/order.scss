@@ -37,7 +37,8 @@
   }
 
   .table_name {
-    margin-left: px2rem(155);
+    position: absolute;
+    left: px2rem(155);
     display: inline-block;
     font-size: px2rem(28);
     line-height: px2rem(130);
