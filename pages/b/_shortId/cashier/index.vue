@@ -46,18 +46,18 @@
 </template>
 
 <script>
-  import { httpInfoApi } from '../../../../api/http/lt/httpInfoApi'
-  import { httpShopApi } from '../../../../api/http/shop/httpShopApi'
+  import {httpInfoApi} from '../../../../api/http/lt/httpInfoApi'
+  import {httpShopApi} from '../../../../api/http/shop/httpShopApi'
   import TitleBar from '../../../../components/common/TitleBar'
   import Captcha from '../../../../components/common/Captcha'
-  import { httpOrderAdminApi } from '../../../../api/http/lt/httpOrderAdminApi'
+  import {httpOrderAdminApi} from '../../../../api/http/lt/httpOrderAdminApi'
 
   export default {
     metaInfo: {
       title: '收银'
     },
     middleware: 'auth',
-    components: { TitleBar, Captcha },
+    components: {TitleBar, Captcha},
     data() {
       return {
         title: {
@@ -149,6 +149,7 @@
 
 <style scoped lang="scss">
   @import '~assets/common';
+  @import "~assets/c/shop";
   @import '~assets/b/b_nav';
   @import '~assets/b/b_nav_role';
 </style>

@@ -198,6 +198,7 @@
 
 <style scoped lang="scss">
   @import '~assets/common';
+  @import "~assets/c/shop";
   @import '~assets/b/b_shop';
   @import 'index';
 </style>
