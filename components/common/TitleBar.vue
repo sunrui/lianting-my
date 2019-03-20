@@ -40,6 +40,8 @@
 </template>
 
 <script>
+  import {httpInfoApi} from '../../api/http/lt/httpInfoApi'
+
   export default {
     props: {
       canBack: {
@@ -69,12 +71,20 @@
     },
     data() {
       return {
+        http: {
+          res: {
+            info: {}
+          }
+        },
         ui: {
           image: this.image,
           backUri: this.backUri,
           inWechat: false
         }
       }
+    },
+    created() {
+      this.httpInfo()
     },
     mounted() {
       if (Boolean(this.image)) {
@@ -94,6 +104,15 @@
       window.removeEventListener('popstate', this.popStateHandle)
     },
     methods: {
+      httpInfo() {
+        if (this.imageHeight === 0 || !Boolean(this.$route.params.shortId)) {
+          return
+        }
+
+        httpInfoApi.get(this.$route.params.shortId).then(res => {
+          this.setImage(res.image)
+        })
+      },
       setTitle() {
         document.title = this.title
 
