@@ -1,8 +1,8 @@
 <template>
   <div>
-    <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
+    <title-bar ref="titleBar" :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
-    <div class="shop_bg"></div>
+    <img class="shop_bg" :src="http.res.info.image" alt="">
 
     <div :class="{ cover_mask_9: ui.vCoverMask}" @click="btnCoverMask"></div>
 
@@ -206,6 +206,10 @@
         httpInfoApi.get(this.$route.params.shortId).then(res => {
           if (!Boolean(res.logo)) {
             res.logo = '/img/default/default_shop_logo.png'
+          }
+
+          if (!Boolean(res.image)) {
+            res.image = '/img/common/title_bar_bg.png'
           }
 
           this.http.res.info = res

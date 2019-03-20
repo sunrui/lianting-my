@@ -37,61 +37,62 @@
   }
 }
 
-.title_bar_bg {
-  background-image: url("/img/common/title_bar_bg.png");
-  background-repeat: repeat-y;
-  background-size: 100% auto;
-
+.image_box {
   position: absolute;
   width: 100%;
-  max-height: px2rem(600);
-  overflow: hidden;
   top: 0;
   left: 0;
   z-index: -1;
+  overflow: hidden;
 }
 
-.title_bar_bg_white {
+.image {
+  background-repeat: repeat-y;
+  width: 100%;
+  height: auto;
+}
+
+.image_white {
   background: white;
   border-bottom: solid px2rem(1) rgba(230, 230, 230, 0.5);
 }
 
-.title_bar_bg_height_220 {
+.image_height_220 {
   height: px2rem(220);
 }
 
-.title_bar_bg_height_300 {
+.image_height_300 {
   height: px2rem(300);
 }
 
-.title_bar_bg_height_330 {
+.image_height_330 {
   height: px2rem(330);
 }
 
-.title_bar_bg_height_460 {
+.image_height_460 {
   height: px2rem(460);
 }
 
-.title_bar_bg_height_900 {
+.image_height_900 {
   height: px2rem(900);
 }
 
-.title_bar_bg_height_220_88 {
+.image_height_220_no_title_bar {
   height: px2rem(220 - 88);
 }
 
-.title_bar_bg_height_300_88 {
+.image_height_300_no_title_bar {
   height: px2rem(300 - 88);
 }
 
-.title_bar_bg_height_330_88 {
+.image_height_330_no_title_bar {
   height: px2rem(330 - 88);
 }
 
-.title_bar_bg_height_460_88 {
+.image_height_460_no_title_bar {
   height: px2rem(460 - 88);
 }
 
-.title_bar_bg_height_900_88 {
+.image_height_900_no_title_bar {
   height: px2rem(900 - 88);
 }

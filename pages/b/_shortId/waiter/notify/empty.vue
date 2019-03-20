@@ -1,6 +1,6 @@
 <template>
   <div>
-    <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
+    <title-bar ref="titleBar" :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
     <empty image="/img/no/no_order.png" content="没有最新消息。"></empty>
   </div>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
+    <title-bar ref="titleBar" :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
     <div class="empty" v-if="http.res.coupons.elements.length === 0">
       <img class="empty_image" src="/img/no/no_coupon.png" alt="没有优惠券">

@@ -1,12 +1,12 @@
 <template>
   <div>
     <div v-if="!ui.inWechat">
-      <div class="title_bar title_bar_bg_white" v-if="theme === 'white'">
+      <div class="title_bar image_white" v-if="theme === 'white'">
         <div class="title_bar_back" v-if="canBack" @click="btnBack">
           <div class="title_bar_back title_bar_back_black"></div>
         </div>
         <div class="title_bar_title title_bar_title_black">{{title}}</div>
-        <div class="title_bar_bg_white"></div>
+        <div class="image_white"></div>
       </div>
       <div class="title_bar" v-else>
         <div class="title_bar_back" v-if="canBack" @click="btnBack">
@@ -16,21 +16,25 @@
       </div>
     </div>
 
-    <div v-if="theme !== 'white'">
-      <div class="title_bar_bg" v-bind:class="{
-      title_bar_bg_height_220: imageHeight === 220,
-      title_bar_bg_height_300: imageHeight === 300,
-      title_bar_bg_height_330: imageHeight === 330,
-      title_bar_bg_height_460: imageHeight === 460,
-      title_bar_bg_height_900: imageHeight === 900
-      }" v-if="!ui.inWechat"></div>
-      <div class="title_bar_bg" v-bind:class="{
-      title_bar_bg_height_220_88: imageHeight === 220,
-      title_bar_bg_height_300_88: imageHeight === 300,
-      title_bar_bg_height_330_88: imageHeight === 330,
-      title_bar_bg_height_460_88: imageHeight === 460,
-      title_bar_bg_height_900_88: imageHeight === 900
-    }" v-else></div>
+    <div v-if="theme !== 'white' && imageHeight > 0">
+      <div class="image_box" v-bind:class="{
+      image_height_220: imageHeight === 220,
+      image_height_300: imageHeight === 300,
+      image_height_330: imageHeight === 330,
+      image_height_460: imageHeight === 460,
+      image_height_900: imageHeight === 900
+      }" v-if="!ui.inWechat">
+        <img class="image" :src="ui.image" alt="">
+      </div>
+      <div class="image_box" v-bind:class="{
+      image_height_220_no_title_bar: imageHeight === 220,
+      image_height_300_no_title_bar: imageHeight === 300,
+      image_height_330_no_title_bar: imageHeight === 330,
+      image_height_460_no_title_bar: imageHeight === 460,
+      image_height_900_no_title_bar: imageHeight === 900
+    }" v-else>
+        <img class="image" :src="ui.image" alt="">
+      </div>
     </div>
   </div>
 </template>
@@ -54,20 +58,31 @@
         type: String,
         default: null
       },
+      image: {
+        type: String,
+        default: null
+      },
       imageHeight: {
         type: Number,
-        default: 300
+        default: 0
       }
     },
     data() {
       return {
         ui: {
+          image: this.image,
           backUri: this.backUri,
           inWechat: false
         }
       }
     },
     mounted() {
+      if (Boolean(this.image)) {
+        this.ui.image = image
+      } else {
+        this.ui.image = '/img/common/title_bar_bg.png'
+      }
+
       window.addEventListener('popstate', this.popStateHandle)
       window.history.pushState('forward', null, null)
       window.history.forward()
@@ -93,6 +108,11 @@
             }, 10)
           }
           document.body.appendChild(i)
+        }
+      },
+      setImage(image) {
+        if (Boolean(image)) {
+          this.ui.image = image
         }
       },
       popStateHandle(e) {

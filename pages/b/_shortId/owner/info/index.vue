@@ -1,13 +1,22 @@
 <template>
   <div>
-    <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
+    <title-bar ref="titleBar" :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
     <div class="box">
       <div class="addition box_radius">
         <div class="addition_item">
           <div class="addition_item_label">店铺头像</div>
           <div class="addition_item_avatar_input">
-            <image-upload :b="true" :file-url="http.req.info.logo" v-on:uploadSuccess="uploadSuccess"></image-upload>
+            <image-upload :b="true" :file-url="http.req.info.logo" v-on:uploadSuccess="uploadLogoSuccess"></image-upload>
+          </div>
+        </div>
+
+        <div class="box_divide"></div>
+
+        <div class="addition_item">
+          <div class="addition_item_label">店铺背景</div>
+          <div class="addition_item_avatar_input">
+            <image-upload :b="true" :file-url="http.req.info.image" v-on:uploadSuccess="uploadImageSuccess"></image-upload>
           </div>
         </div>
 
@@ -62,17 +71,6 @@
       </div>
     </div>
 
-    <!--<div class="box">-->
-    <!--<div class="addition box_radius">-->
-    <!--<div class="addition_item">-->
-    <!--<div class="addition_item_label_text_area">店铺图片</div>-->
-    <!--<div class="addition_item_text_area">-->
-    <!--<textarea class="addition_item_input_area_input" placeholder="" v-model="http.req.info.image"></textarea>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</div>-->
-
     <div class="button_box">
       <div class="button_big" @click="btnUpdate">更新</div>
     </div>
@@ -84,7 +82,7 @@
   import {httpInfoAdminApi} from '../../../../../api/http/lt/httpInfoAdminApi'
   import {httpShopApi} from '../../../../../api/http/shop/httpShopApi'
   import TitleBar from '../../../../../components/common/TitleBar'
-  import ImageUpload from "../../../../../components/common/ImageUpload"
+  import ImageUpload from '../../../../../components/common/ImageUpload'
 
   export default {
     metaInfo: {
@@ -139,8 +137,11 @@
           })
         })
       },
-      uploadSuccess(fileName) {
+      uploadLogoSuccess(fileName) {
         this.$set(this.http.req.info, 'logo', fileName)
+      },
+      uploadImageSuccess(fileName) {
+        this.$set(this.http.req.info, 'image', fileName)
       }
     }
   }

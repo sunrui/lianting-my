@@ -1,7 +1,7 @@
 <template>
   <div id="image-upload">
     <div class="image_upload_button" v-if="ui.inWechat" @click="btnUploadWechat"></div>
-    <div v-else id="pickfiles">
+    <div v-else :id="ui.pickFileId">
       <div class="image_upload_image_box" v-if="ui.fileUrl">
         <img class="image_upload_image" :src="ui.fileUrl" alt="">
       </div>
@@ -24,6 +24,7 @@
     data() {
       return {
         ui: {
+          pickFileId: null,
           inWechat: false,
           state: 'wait',
           percent: 0,
@@ -43,6 +44,8 @@
       }
     },
     created() {
+      this.ui.pickFileId = uuidApi.uuid()
+
       if (Boolean(this.fileUrl)) {
         this.ui.fileUrl = this.fileUrl
       }
@@ -190,7 +193,7 @@
       initFileUploader(sign, pThis) {
         let uploader = new plupload.Uploader({
           runtimes: 'html5,html4',
-          browse_button: 'pickfiles',
+          browse_button: pThis.ui.pickFileId,
           unique_names: true,
           multi_selection: false,
           container: document.getElementById('image-upload'),
