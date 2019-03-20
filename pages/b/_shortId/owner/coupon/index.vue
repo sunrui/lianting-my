@@ -74,8 +74,8 @@
           canBack: true,
           title: '优惠券',
           backUri: `/b/${this.$route.params.shortId}/owner`,
-          theme: 'white',
-          imageHeight: 0
+          theme: 'image',
+          imageHeight: 300
         },
         http: {
           res: {

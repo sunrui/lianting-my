@@ -62,7 +62,7 @@
       },
       image: {
         type: String,
-        default: null
+        default: '/img/common/title_bar_bg.png'
       },
       imageHeight: {
         type: Number,
@@ -87,12 +87,6 @@
       this.httpInfo()
     },
     mounted() {
-      if (Boolean(this.image)) {
-        this.ui.image = image
-      } else {
-        this.ui.image = '/img/common/title_bar_bg.png'
-      }
-
       window.addEventListener('popstate', this.popStateHandle)
       window.history.pushState('forward', null, null)
       window.history.forward()
