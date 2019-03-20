@@ -212,6 +212,8 @@
             res.image = '/img/common/title_bar_bg.png'
           }
 
+          this.$refs.titleBar.setImage(res.image)
+
           this.http.res.info = res
         })
       },

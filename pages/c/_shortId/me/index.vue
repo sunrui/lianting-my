@@ -7,11 +7,11 @@
     <div class="box">
       <div class="status box_radius">
         <div class="status_logo_radius status_logo_radius_center">
-          <img class="status_logo_radius_image " :src="http.res.info.headImgUrl" :alt="this.http.res.info.nickName">
+          <img class="status_logo_radius_image " :src="http.res.userInfo.headImgUrl" :alt="this.http.res.userInfo.nickName">
         </div>
 
         <div class="wall_user_info">
-          <div class="wall_user_info_nick">{{this.http.res.info.nickName ? this.http.res.info.nickName :
+          <div class="wall_user_info_nick">{{this.http.res.userInfo.nickName ? this.http.res.userInfo.nickName :
             '匿名用户'}}
           </div>
           <div class="user_info_edit" @click="btnInfoEdit"></div>
@@ -83,7 +83,7 @@
         },
         http: {
           res: {
-            info: {}
+            userInfo: {}
           }
         }
       }
@@ -103,17 +103,18 @@
             this.$msgBox.doModal({
               type: 'yes',
               title: '个人信息',
-              content: '资料不存在。'
+              content: '用户不存在。'
             })
 
+            this.$router.push('logout')
             return
           }
 
-          stateApi.user.setPhone(res.phone)
-          this.ui.phone = res.phone
-
           if (!Boolean(res.info)) {
             res.info = {}
+          }
+
+          if (!Boolean(res.info.nickName)) {
             res.info.nickName = '匿名用户'
           }
 
@@ -121,7 +122,10 @@
             res.info.headImgUrl = '/img/default/default_user_avatar.png'
           }
 
-          this.http.res.info = res.info
+          this.http.res.userInfo = res.info
+
+          stateApi.user.setPhone(res.phone)
+          this.ui.phone = res.phone
         })
       },
       btnNav(url) {

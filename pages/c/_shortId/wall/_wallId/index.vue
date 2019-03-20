@@ -9,10 +9,10 @@
     <div class="wall">
       <div class="wall_user_info">
         <div class="wall_user_avatar_radius" @click="btnUser()">
-          <img class="wall_user_avatar_radius_image" :src="http.res.info.headImgUrl" :alt="http.res.info.nickName">
+          <img class="wall_user_avatar_radius_image" :src="http.res.userInfo.headImgUrl" :alt="http.res.userInfo.nickName">
         </div>
         <div class="wall_user_info_title">
-          <div class="wall_user_info_nick" @click="btnUser()">{{http.res.info.nickName}}</div>
+          <div class="wall_user_info_nick" @click="btnUser()">{{http.res.userInfo.nickName}}</div>
           <div class="wall_order_time">{{new Date(parseInt(http.res.wall.createdAt)).toLocaleString()}}</div>
         </div>
       </div>
@@ -150,7 +150,7 @@
           res: {
             wall: {},
             replies: {},
-            info: {}
+            userInfo: {}
           }
         },
         ui: {
@@ -171,32 +171,66 @@
       httpUserInfo() {
         httpUserApi.getInfo(stateApi.user.getId()).then(res => {
           if (res.userIdNotExists) {
+            this.$msgBox.doModal({
+              type: 'yes',
+              title: '个人信息',
+              content: '用户不存在。'
+            })
+
+            this.$router.push('logout')
             return
           }
 
-          if (!res.info) {
+          if (!Boolean(res.info)) {
             res.info = {}
           }
 
-          this.http.res.info = res.info
+          if (!Boolean(res.info.nickName)) {
+            res.info.nickName = '匿名用户'
+          }
+
+          if (!Boolean(res.info.headImgUrl)) {
+            res.info.headImgUrl = '/img/default/default_user_avatar.png'
+          }
+
+          this.http.res.userInfo = res.info
+        })
+      },
+      httpGetInfo(userId) {
+        httpUserApi.getInfo(userId).then(res => {
+          if (res.userIdNotExists) {
+            return
+          }
+
+          if (!Boolean(res.info)) {
+            res.info = {}
+          }
 
           if (!Boolean(res.info.nickName)) {
-            this.http.res.info.nickName = '匿名用户'
-            res.info.headImgUrl = '/img/default/default_user_avatar.png'
-
+            res.info.nickName = '匿名用户'
           }
+
+          if (!Boolean(res.info.headImgUrl)) {
+            res.info.headImgUrl = '/img/default/default_user_avatar.png'
+          }
+
+
+          this.ui.infos.push({
+            userId: userId,
+            userInfo: res.info
+          })
         })
       },
       getWechatHead(userId) {
         for (let index in this.ui.infos) {
           let one = this.ui.infos[index]
 
-          if (!one.info) {
-            one.info = {}
+          if (!one.userInfo) {
+            one.userInfo = {}
           }
 
           if (one.userId === userId) {
-            return one.info.headImgUrl
+            return one.userInfo.headImgUrl
           }
         }
 
@@ -209,22 +243,7 @@
         }
 
         this.ui.infoLoads.push(userId)
-
-        httpUserApi.getInfo(userId).then(res => {
-          if (!Boolean(res.info)) {
-            res.info = {}
-            res.info.nickName = '匿名用户'
-          }
-
-          if (!Boolean(res.info.headImgUrl)) {
-            res.info.headImgUrl = '/img/default/default_user_avatar.png'
-          }
-
-          this.ui.infos.push({
-            userId: userId,
-            info: res.info
-          })
-        })
+        this.httpGetInfo(userId)
 
         return ''
       },
@@ -233,7 +252,7 @@
           let one = this.ui.infos[index]
 
           if (one.userId === userId) {
-            return one.info.nickName ? one.info.nickName : '匿名用户'
+            return one.userInfo.nickName ? one.userInfo.nickName : '匿名用户'
           }
         }
 
@@ -246,22 +265,7 @@
         }
 
         this.ui.infoLoads.push(userId)
-
-        httpUserApi.getInfo(userId).then(res => {
-          if (!Boolean(res.info)) {
-            res.info = {}
-            res.info.nickName = '匿名用户'
-          }
-
-          if (!Boolean(res.info.headImgUrl)) {
-            res.info.headImgUrl = '/img/default/default_user_avatar.png'
-          }
-
-          this.ui.infos.push({
-            userId: userId,
-            info: res.info
-          })
-        })
+        this.httpGetInfo(userId)
 
         return ''
       },

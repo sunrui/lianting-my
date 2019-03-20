@@ -5,6 +5,7 @@
   import {httpUserApi} from '../../api/http/user/httpUserApi'
   import {stateApi} from '../../api/local/stateApi'
   import {cartApi} from '../../api/local/cartApi'
+  import {storeApi} from '../../api/local/storeApi'
 
   export default {
     metaInfo: {
@@ -14,6 +15,7 @@
       httpUserApi.postLogout().then(res => {
         stateApi.clear()
         cartApi.clear()
+        storeApi.clearAll()
         this.clearCookie()
 
         this.$router.push('/')

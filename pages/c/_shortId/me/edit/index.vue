@@ -7,7 +7,7 @@
         <div class="addition_item">
           <div class="addition_item_label">头像</div>
           <div class="addition_item_avatar_input">
-            <image-upload :b="false" :file-url="http.res.info.headImgUrl" v-on:uploadSuccess="uploadSuccess"></image-upload>
+            <image-upload :b="false" :file-url="http.res.userInfo.headImgUrl" v-on:uploadSuccess="uploadSuccess"></image-upload>
           </div>
         </div>
 
@@ -16,7 +16,7 @@
         <div class="addition_item">
           <div class="addition_item_label">昵称</div>
           <label>
-            <input class="addition_item_input" placeholder="请输入您的昵称" v-model="http.res.info.nickName">
+            <input class="addition_item_input" placeholder="请输入您的昵称" v-model="http.res.userInfo.nickName">
           </label>
         </div>
 
@@ -28,15 +28,15 @@
           <div class="addition_item_radio">
             <div style="display: inline-block" @click="btnChooseMale(true)">
               <div v-bind:class="{
-                addition_item_radio_icon_select: http.res.info.male,
-                addition_item_radio_icon_unselect: !http.res.info.male
+                addition_item_radio_icon_select: http.res.userInfo.male,
+                addition_item_radio_icon_unselect: !http.res.userInfo.male
                 }"></div>
               <div class="addition_item_radio_label">男</div>
             </div>
             <div style="display: inline-block" @click="btnChooseMale(false)">
               <div v-bind:class="{
-                addition_item_radio_icon_select: !http.res.info.male,
-                addition_item_radio_icon_unselect: http.res.info.male
+                addition_item_radio_icon_select: !http.res.userInfo.male,
+                addition_item_radio_icon_unselect: http.res.userInfo.male
                 }"></div>
               <div class="addition_item_radio_label">女</div>
             </div>
@@ -49,7 +49,7 @@
         <div class="addition_item">
           <div class="addition_item_label">地址</div>
           <label>
-            <input class="addition_item_input" placeholder="请输入您的地址" v-model="http.res.info.address">
+            <input class="addition_item_input" placeholder="请输入您的地址" v-model="http.res.userInfo.address">
           </label>
         </div>
 
@@ -58,7 +58,7 @@
         <div class="addition_item">
           <div class="addition_item_label">个性签名</div>
           <label>
-            <input class="addition_item_input" placeholder="请输入您的个性签名" v-model="http.res.info.signature">
+            <input class="addition_item_input" placeholder="请输入您的个性签名" v-model="http.res.userInfo.signature">
           </label>
         </div>
       </div>
@@ -97,7 +97,7 @@
         },
         http: {
           res: {
-            info: {}
+            userInfo: {}
           }
         }
       }
@@ -107,7 +107,7 @@
     },
     methods: {
       uploadSuccess(fileName) {
-        this.$set(this.http.res.info, 'headImgUrl', fileName)
+        this.$set(this.http.res.userInfo, 'headImgUrl', fileName)
       },
       httpUserInfo() {
         httpUserApi.getInfo(stateApi.user.getId()).then(res => {
@@ -115,27 +115,27 @@
             this.$msgBox.doModal({
               type: 'yes',
               title: '资料',
-              content: '资料不存在。'
+              content: '用户不存在。'
             }).then(async (val) => {
-              this.$router.push(this.title.backUri)
+              this.$router.push('logout')
             })
 
             return
           }
 
-          this.http.res.info = res.info ? res.info : {
+          this.http.res.userInfo = res.info ? res.info : {
             male: true
           }
         })
       },
       btnChooseMale(male) {
-        this.http.res.info.male = male
+        this.http.res.userInfo.male = male
       },
       btnSyncWechat() {
         this.$router.push('/login?scope=snsapi_userinfo&r=' + this.$route.path)
       },
       btnUpdate() {
-        httpUserApi.putInfo(this.http.res.info).then(res => {
+        httpUserApi.putInfo(this.http.res.userInfo).then(res => {
           if (res.success) {
             this.$msgBox.doModal({
               type: 'yes',

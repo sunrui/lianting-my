@@ -186,16 +186,41 @@
           })
         }
       },
+      httpGetInfo(userId) {
+        httpUserApi.getInfo(userId).then(res => {
+          if (res.userIdNotExists) {
+            return
+          }
+
+          if (!Boolean(res.info)) {
+            res.info = {}
+          }
+
+          if (!Boolean(res.info.nickName)) {
+            res.info.nickName = '匿名用户'
+          }
+
+          if (!Boolean(res.info.headImgUrl)) {
+            res.info.headImgUrl = '/img/default/default_user_avatar.png'
+          }
+
+
+          this.ui.infos.push({
+            userId: userId,
+            userInfo: res.info
+          })
+        })
+      },
       getWechatHead(userId) {
         for (let index in this.ui.infos) {
           let one = this.ui.infos[index]
 
-          if (!one.info) {
-            one.info = {}
+          if (!one.userInfo) {
+            one.userInfo = {}
           }
 
           if (one.userId === userId) {
-            return one.info.headImgUrl
+            return one.userInfo.headImgUrl
           }
         }
 
@@ -208,35 +233,19 @@
         }
 
         this.ui.infoLoads.push(userId)
-
-        httpUserApi.getInfo(userId).then(res => {
-          if (!Boolean(res.info)) {
-            res.info = {}
-            res.info.nickName = '匿名用户'
-          }
-
-          if (!Boolean(res.info.headImgUrl)) {
-            res.info.headImgUrl = '/img/default/default_user_avatar.png'
-          }
-
-          this.ui.infos.push({
-            userId: userId,
-            info: res.info
-          })
-        })
-
+        this.httpGetInfo(userId)
         return ''
       },
       getWechatNick(userId) {
         for (let index in this.ui.infos) {
           let one = this.ui.infos[index]
 
-          if (!one.info) {
-            one.info = {}
+          if (!one.userInfo) {
+            one.userInfo = {}
           }
 
           if (one.userId === userId) {
-            return one.info.nickName ? one.info.nickName : '匿名用户'
+            return one.userInfo.nickName ? one.userInfo.nickName : '匿名用户'
           }
         }
 
@@ -249,23 +258,7 @@
         }
 
         this.ui.infoLoads.push(userId)
-
-        httpUserApi.getInfo(userId).then(res => {
-          if (!Boolean(res.info)) {
-            res.info = {}
-            res.info.nickName = '匿名用户'
-          }
-
-          if (!Boolean(res.info.headImgUrl)) {
-            res.info.headImgUrl = '/img/default/default_user_avatar.png'
-          }
-
-          this.ui.infos.push({
-            userId: userId,
-            info: res.info
-          })
-        })
-
+        this.httpGetInfo(userId)
         return ''
       },
       getWallReplies(wallId) {
