@@ -45,11 +45,13 @@
     height: px2rem(100);
 
     .shop_role_one_logo {
+      display: inline-block;
       width: px2rem(64);
       height: px2rem(64);
     }
 
     .shop_role_one_label {
+      margin-top: px2rem(5);
     }
   }
 }
