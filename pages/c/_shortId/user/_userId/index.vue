@@ -97,6 +97,7 @@
             res.info = {}
             res.info.nickName = '匿名用户'
             res.info.male = true
+            res.info.headImgUrl = '/img/default/default_user_avatar.png'
           }
 
           this.http.res.info = res.info

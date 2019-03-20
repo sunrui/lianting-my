@@ -33,21 +33,23 @@
       z-index: -1;
 
       .shop_info_logo {
+        position: relative;
+
         .shop_logo_radius {
           width: px2rem(140);
           height: px2rem(140);
-
           border-radius: 50%;
           overflow: hidden;
           z-index: 2;
-          border: solid px2rem(5) white;
           box-shadow: 0 0 px2rem(10) 0 rgba(0, 0, 0, 0.2);
 
           position: absolute;
           top: 0;
           left: 0;
           right: 0;
+          bottom: 0;
           margin: auto;
+
 
           .shop_logo_radius_image {
             border-radius: 50%;

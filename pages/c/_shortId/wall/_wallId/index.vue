@@ -182,6 +182,8 @@
 
           if (!Boolean(res.info.nickName)) {
             this.http.res.info.nickName = '匿名用户'
+            res.info.headImgUrl = '/img/default/default_user_avatar.png'
+
           }
         })
       },
@@ -209,6 +211,15 @@
         this.ui.infoLoads.push(userId)
 
         httpUserApi.getInfo(userId).then(res => {
+          if (!Boolean(res.info)) {
+            res.info = {}
+            res.info.nickName = '匿名用户'
+          }
+
+          if (!Boolean(res.info.headImgUrl)) {
+            res.info.headImgUrl = '/img/default/default_user_avatar.png'
+          }
+
           this.ui.infos.push({
             userId: userId,
             info: res.info
@@ -237,6 +248,15 @@
         this.ui.infoLoads.push(userId)
 
         httpUserApi.getInfo(userId).then(res => {
+          if (!Boolean(res.info)) {
+            res.info = {}
+            res.info.nickName = '匿名用户'
+          }
+
+          if (!Boolean(res.info.headImgUrl)) {
+            res.info.headImgUrl = '/img/default/default_user_avatar.png'
+          }
+
           this.ui.infos.push({
             userId: userId,
             info: res.info

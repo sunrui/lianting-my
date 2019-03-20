@@ -161,6 +161,10 @@
       },
       httpShopInfo(shop) {
         httpInfoApi.get(shop.shortId).then(res => {
+          if (!Boolean(res.logo)) {
+            res.logo = '/img/default/default_shop_logo.png'
+          }
+
           let info = {
             shortId: shop.shortId,
             info: res

@@ -204,6 +204,10 @@
       },
       httpInfo() {
         httpInfoApi.get(this.$route.params.shortId).then(res => {
+          if (!Boolean(res.logo)) {
+            res.logo = '/img/default/default_shop_logo.png'
+          }
+
           this.http.res.info = res
         })
       },

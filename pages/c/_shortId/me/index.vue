@@ -117,6 +117,10 @@
             res.info.nickName = '匿名用户'
           }
 
+          if (!Boolean(res.info.headImgUrl)) {
+            res.info.headImgUrl = '/img/default/default_user_avatar.png'
+          }
+
           this.http.res.info = res.info
         })
       },

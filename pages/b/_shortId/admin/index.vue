@@ -48,18 +48,18 @@
 </template>
 
 <script>
-  import { httpInfoApi } from '../../../../api/http/lt/httpInfoApi'
-  import { httpShopApi } from '../../../../api/http/shop/httpShopApi'
+  import {httpInfoApi} from '../../../../api/http/lt/httpInfoApi'
+  import {httpShopApi} from '../../../../api/http/shop/httpShopApi'
   import TitleBar from '../../../../components/common/TitleBar'
   import Captcha from '../../../../components/common/Captcha'
-  import { highlightApi } from '../../../../api/local/highlightApi'
+  import {highlightApi} from '../../../../api/local/highlightApi'
 
   export default {
     metaInfo: {
       title: '店长'
     },
     middleware: 'auth',
-    components: { TitleBar, Captcha },
+    components: {TitleBar, Captcha},
     data() {
       return {
         title: {
@@ -124,6 +124,10 @@
       },
       httpInfo() {
         httpInfoApi.get(this.$route.params.shortId).then(res => {
+          if (!Boolean(res.logo)) {
+            res.logo = '/img/default/default_shop_logo.png'
+          }
+
           this.http.res.info = res
         })
       },
