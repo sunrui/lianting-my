@@ -3,11 +3,12 @@
 }
 
 .shop_bg {
-  background-repeat: repeat-y;
   background-size: 100% auto;
+  background-repeat: repeat-y;
   top: 0;
   left: 0;
   width: 100%;
+  height: auto;
   position: absolute;
   bottom: px2rem(290+320+110);
 }

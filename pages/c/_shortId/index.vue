@@ -2,7 +2,7 @@
   <div>
     <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
-    <img class="shop_bg" :src="http.res.info.image" alt="">
+    <div class="shop_bg" :style="{'backgroundImage':'url('+http.res.info.image+')'}"></div>
 
     <div :class="{ cover_mask_9: ui.vCoverMask}" @click="btnCoverMask"></div>
 
