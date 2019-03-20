@@ -236,7 +236,7 @@
     </transition>
 
     <transition name="fade">
-      <div class="modal_center" v-if="ui.vPreview">
+      <div class="modal_center preview_modal_center" v-if="ui.vPreview">
         <div class="modal_close_box" @click="btnCoverMaskCart">
           <img class="modal_close" src="/img/common/close.png" alt="">
         </div>

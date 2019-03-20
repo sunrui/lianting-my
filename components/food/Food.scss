@@ -60,8 +60,13 @@
   }
 }
 
-.preview_image {
-  width: 100%;
-  height: auto;
-  border-radius: px2rem(10);
+.preview_modal_center {
+  left: px2rem(10) !important;
+  right: px2rem(10) !important;
+
+  .preview_image {
+    width: 100%;
+    height: auto;
+    border-radius: px2rem(10);
+  }
 }
