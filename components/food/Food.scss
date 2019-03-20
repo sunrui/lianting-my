@@ -38,6 +38,7 @@
   max-height: px2rem(600);
   min-height: px2rem(200);
   width: 100%;
+  height: auto;
   border-radius: px2rem(10);
   box-shadow: 0 0 px2rem(10) 0 rgba(0, 0, 0, 0.2);
   overflow: hidden;
@@ -63,7 +64,6 @@
 .preview_modal_center {
   left: px2rem(10) !important;
   right: px2rem(10) !important;
-  background: transparent;
 
   .preview_image {
     width: 100%;

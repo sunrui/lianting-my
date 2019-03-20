@@ -18,6 +18,10 @@ a, button, input {
     box-shadow: none;
 }
 
+img {
+    display:block;
+}
+
 *,
 *:before,
 *:after {
