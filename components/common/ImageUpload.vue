@@ -1,5 +1,6 @@
 <template>
   <div id="image-upload">
+    <div class="badge_delete" v-if="ui.fileUrl || fileUrl" @click="btnUploadDelete"></div>
     <div class="image_upload_button" v-if="ui.inWechat" @click="btnUploadWechat"></div>
     <div v-else :id="ui.pickFileId">
       <div class="image_upload_image_box" v-if="ui.fileUrl">
@@ -58,6 +59,10 @@
       }
     },
     methods: {
+      btnUploadDelete() {
+        this.ui.fileUrl = null
+        this.$emit('uploadSuccess', this.ui.fileUrl)
+      },
       btnUploadWechat() {
         if (this.ui.inWechat) {
           this.initWxConfig(this)
@@ -281,5 +286,6 @@
 </script>
 
 <style scoped lang="scss">
+  @import "~assets/common";
   @import "ImageUpload";
 </style>
