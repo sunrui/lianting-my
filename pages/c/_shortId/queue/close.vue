@@ -1,7 +1,7 @@
 <template>
   <div>
     <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
-    <empty image="/img/no/no_queue.png" content="您可直接到迎宾台就餐。"></empty>
+    <empty image="/img/no/no_queue.png" content="无需排队，您可直接到迎宾台就餐。"></empty>
   </div>
 </template>
 
