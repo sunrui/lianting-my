@@ -57,7 +57,7 @@
       </div>
       <div class="login_third_icon">
         <div class="login_third_icon_wechat" @click="btnWechat"></div>
-        <!--<div class="login_third_icon_alipay" @click="btnAlipay"></div>-->
+        <div class="login_third_icon_alipay" @click="btnAlipay"></div>
       </div>
     </div>
   </div>
@@ -211,7 +211,7 @@
         this.$msgBox.doModal({
           type: 'yes',
           title: '手机登录',
-          content: `请使用微信登录。`
+          content: `很抱歉，暂不支持支付宝登录，我们将会在稍候支持。`
         })
       }
     }
