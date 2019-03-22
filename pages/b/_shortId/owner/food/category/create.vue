@@ -141,7 +141,6 @@
   import TitleBar from '../../../../../../components/common/TitleBar'
   import CurrencyInput from '../../../../../../components/common/CurrencyInput'
   import {highlightApi} from '../../../../../../api/local/highlightApi'
-  import {langApi} from '../../../../../../api/local/langApi'
   import ImageUpload from "../../../../../../components/common/ImageUpload"
 
   export default {
@@ -319,12 +318,7 @@
 
         httpFoodAdminApi.postCategory(this.$route.params.shortId, this.http.req.category).then(res => {
           if (res.maxLimit) {
-            this.$msgBox.doModal({
-              type: 'yes',
-              title: '添加餐食',
-              content: langApi.maxLimit
-            })
-
+            this.$router.push(`/b/${this.$route.params.shortId}/owner/limit`)
             return
           }
 
@@ -345,12 +339,7 @@
 
               httpFoodAdminApi.postFood(this.$route.params.shortId, one).then(res => {
                 if (res.maxLimit) {
-                  this.$msgBox.doModal({
-                    type: 'yes',
-                    title: '添加餐食价格',
-                    content: langApi.maxLimit
-                  })
-
+                  this.$router.push(`/b/${this.$route.params.shortId}/owner/limit`)
                   return
                 }
 

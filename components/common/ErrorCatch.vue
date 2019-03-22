@@ -9,7 +9,7 @@
         <img class="empty_image" src="/img/no/no_crash.png" alt="">
         <div v-if="!ui.reported">
           <div class="empty_label">{{ui.error.notFound? '404 - 呃〜好像走丢了！' : '呃〜访问出错了！'}}</div>
-          <div class="error_label_tip">您可将出错原因<span class="error_label_tip_report" @click="btnReport">反馈</span>给我们或选择重试。</div>
+          <div class="empty_label_tip">您可将出错原因<span class="empty_label_tip_link" @click="btnReport">反馈</span>给我们或选择重试。</div>
         </div>
         <div v-else>
           <div class="empty_label">感谢您的反馈，请您关闭窗口。</div>

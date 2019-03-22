@@ -150,7 +150,6 @@
   import {httpFoodAdminApi} from '../../../../../api/http/lt/httpFoodAdminApi'
   import {highlightApi} from '../../../../../api/local/highlightApi'
   import {scrollApi} from '../../../../../api/local/scrollApi'
-  import {langApi} from '../../../../../api/local/langApi'
 
   export default {
     metaInfo: {
@@ -335,12 +334,8 @@
           this.ui.v_group_add = false
           this.ui.vCoverMask = false
 
-          if (res.let) {
-            this.$msgBox.doModal({
-              type: 'yes',
-              title: '添加餐食组',
-              content: langApi.maxLimit
-            })
+          if (res.maxLimit) {
+            this.$router.push(`/b/${this.$route.params.shortId}/owner/limit`)
             return
           }
 

@@ -81,7 +81,6 @@
 <script>
   import {httpTableAdminApi} from '../../../../../../api/http/lt/httpTableAdminApi'
   import TitleBar from '../../../../../../components/common/TitleBar'
-  import {langApi} from '../../../../../../api/local/langApi'
 
   export default {
     metaInfo: {
@@ -183,11 +182,7 @@
 
         httpTableAdminApi.postGroup(this.$route.params.shortId, this.http.req.group).then(res => {
           if (res.maxLimit) {
-            this.$msgBox.doModal({
-              type: 'yes',
-              title: '添加餐桌组',
-              content: langApi.maxLimit
-            })
+            this.$router.push(`/b/${this.$route.params.shortId}/owner/limit`)
           } else if (res.nameExists) {
             this.$msgBox.doModal({
               type: 'yes',

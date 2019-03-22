@@ -150,7 +150,6 @@
   import { httpTableApi } from '../../../../api/http/lt/httpTableApi'
   import { httpShopApi } from '../../../../api/http/shop/httpShopApi'
   import { httpInfoApi } from '../../../../api/http/lt/httpInfoApi'
-  import { langApi } from '../../../../api/local/langApi'
 
   export default {
     metaInfo: {
@@ -407,11 +406,8 @@
               content: '店铺已打烊。'
             })
           } else if (res.maxLimit) {
-            this.$msgBox.doModal({
-              type: 'yes',
-              title: '排队',
-              content: langApi.maxLimit
-            })
+            this.$router.push(`/b/${this.$route.params.shortId}/owner/limit`)
+            return
           } else if (res.tableGroupIdNotExists) {
             this.$msgBox.doModal({
               type: 'yes',

@@ -106,7 +106,6 @@
   import {httpCouponAdminApi} from '../../../../../api/http/lt/httpCouponAdminApi'
   import TitleBar from '../../../../../components/common/TitleBar'
   import CurrencyInput from '../../../../../components/common/CurrencyInput'
-  import {langApi} from '../../../../../api/local/langApi'
 
   export default {
     metaInfo: {
@@ -205,12 +204,7 @@
 
         httpCouponAdminApi.postCoupon(this.$route.params.shortId, this.http.req.coupon).then(res => {
           if (res.maxLimit) {
-            this.$msgBox.doModal({
-              type: 'yes',
-              title: '添加优惠券',
-              content: langApi.maxLimit
-            })
-
+            this.$router.push(`/b/${this.$route.params.shortId}/owner/limit`)
             return
           }
 

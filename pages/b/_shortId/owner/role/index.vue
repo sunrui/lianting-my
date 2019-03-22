@@ -85,7 +85,6 @@
   import { httpRoleAdminApi } from '../../../../../api/http/lt/httpRoleAdminApi'
   import TitleBar from '../../../../../components/common/TitleBar'
   import { validatorApi } from '../../../../../api/local/validatorApi'
-  import { langApi } from '../../../../../api/local/langApi'
 
   export default {
     metaInfo: {
@@ -210,12 +209,7 @@
           this.ui.vCoverMask = false
 
           if (res.maxLimit) {
-            this.$msgBox.doModal({
-              type: 'yes',
-              title: '添加' + this.getTypeName(this.http.req.role.type),
-              content: langApi.maxLimit
-            })
-
+            this.$router.push(`/b/${this.$route.params.shortId}/owner/limit`)
             return
           }
 

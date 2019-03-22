@@ -95,7 +95,6 @@
   import {timeApi} from '../../../../api/local/timeApi'
   import {stateApi} from '../../../../api/local/stateApi'
   import {httpReserveApi} from '../../../../api/http/lt/httpReserveApi'
-  import {langApi} from '../../../../api/local/langApi'
 
   export default {
     metaInfo: {
@@ -190,11 +189,7 @@
 
         httpReserveApi.post(this.$route.params.shortId, this.http.req.reserve).then(res => {
           if (res.maxLimit) {
-            this.$msgBox.doModal({
-              type: 'yes',
-              title: '立即预订',
-              content: langApi.maxLimit
-            })
+            this.$router.push(`/b/${this.$route.params.shortId}/owner/limit`)
           } else if (res.reserveExists) {
             this.$msgBox.doModal({
               type: 'yes',

@@ -119,7 +119,6 @@
   import Captcha from '../../../../../components/common/Captcha'
   import {scrollApi} from '../../../../../api/local/scrollApi'
   import {highlightApi} from '../../../../../api/local/highlightApi'
-  import {langApi} from '../../../../../api/local/langApi'
 
   export default {
     metaInfo: {
@@ -361,11 +360,7 @@
 
         httpTableAdminApi.postTable(this.$route.params.shortId, this.http.req.table).then(res => {
           if (res.maxLimit) {
-            this.$msgBox.doModal({
-              type: 'yes',
-              title: '添加餐桌',
-              content: langApi.maxLimit
-            })
+            this.$router.push(`/b/${this.$route.params.shortId}/owner/limit`)
           } else if (res.tableGroupIdNotExists) {
             this.$msgBox.doModal({
               type: 'yes',
