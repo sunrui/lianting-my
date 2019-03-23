@@ -156,7 +156,8 @@
         }
 
         return {
-          sequence: 1
+          sequence: 1,
+          waitPeople: 0
         }
       },
       btnReset(tableGroup) {
