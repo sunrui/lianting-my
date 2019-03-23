@@ -11,7 +11,7 @@
 
       <div class="modal_title">{{title}}</div>
 
-      <canvas id="canvas"></canvas>
+      <canvas id="captcha_canvas"></canvas>
     </div>
   </div>
 </template>
@@ -37,9 +37,8 @@
       }
     },
     mounted() {
-      let canvas = document.getElementById('canvas')
+      let canvas = document.getElementById('captcha_canvas')
       QRCode.toCanvas(canvas, this.text)
-
       logApi.log(this.text)
     },
     methods: {
@@ -53,7 +52,8 @@
 <style scoped lang="scss">
   @import '~assets/common';
 
-  #canvas {
+  #captcha_canvas {
+    border-top: solid 1px rgba(230, 230, 230, 0.5);
     width: 100% !important;
     height: auto !important;
   }
