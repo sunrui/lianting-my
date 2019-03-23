@@ -1,6 +1,6 @@
 <template>
   <div>
-    <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
+    <title-bar ref="titleBar_Coupon" :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
     <div class="empty" v-if="http.res.coupons.elements.length === 0">
       <img class="empty_image" src="/img/no/no_coupon.png" alt="没有优惠券">
@@ -74,7 +74,7 @@
           canBack: true,
           title: '优惠券',
           backUri: `/b/${this.$route.params.shortId}/owner`,
-          theme: 'image',
+          theme: 'white',
           imageHeight: 300
         },
         http: {
@@ -86,12 +86,16 @@
         }
       }
     },
-    created() {
+    mounted() {
       this.httpCoupon()
     },
     methods: {
       httpCoupon() {
         httpCouponAdminApi.getCoupon(this.$route.params.shortId, 0, 99).then(res => {
+          if (res.elements.length !== 0) {
+            this.$refs.titleBar_Coupon.setTheme('image')
+          }
+
           this.http.res.coupons = res
         })
       },

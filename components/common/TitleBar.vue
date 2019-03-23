@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="!ui.inWechat">
-      <div class="title_bar image_white" v-if="theme === 'white'">
+      <div class="title_bar image_white" v-if="ui.theme === 'white'">
         <div class="title_bar_back" v-if="canBack" @click="btnBack">
           <div class="title_bar_back title_bar_back_black"></div>
         </div>
@@ -16,7 +16,7 @@
       </div>
     </div>
 
-    <div v-if="theme !== 'white' && imageHeight > 0">
+    <div v-if="ui.theme !== 'white' && imageHeight > 0">
       <div class="image_box" v-bind:class="{
       image_height_220: imageHeight === 220,
       image_height_300: imageHeight === 300,
@@ -78,6 +78,7 @@
         },
         ui: {
           image: this.image,
+          theme: this.theme,
           backUri: this.backUri,
           inWechat: false
         }
@@ -123,6 +124,12 @@
           document.body.appendChild(i)
         }
       },
+      setBackUri(backUri) {
+        this.ui.backUri = backUri
+      },
+      setTheme(theme) {
+        this.ui.theme = theme
+      },
       setImage(image) {
         if (Boolean(image)) {
           this.ui.image = image
@@ -134,9 +141,6 @@
 
         this.btnBack()
         this.setTitle()
-      },
-      setBackUri(backUri) {
-        this.ui.backUri = backUri
       },
       btnBack() {
         if (this.canBack && Boolean(this.ui.backUri)) {

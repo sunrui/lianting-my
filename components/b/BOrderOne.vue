@@ -1,6 +1,6 @@
 <template>
   <div>
-    <title-bar ref="titleBar" :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
+    <title-bar ref="titleBar_BOrderOne" :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
     <div :class="{ cover_mask_9: ui.vCoverMask}" @click="btnCoverMask"></div>
 
@@ -447,7 +447,7 @@
     },
     mounted() {
       this.title.backUri = `/b/${this.$route.params.shortId}/${this.role}/order`
-      this.$refs.titleBar.setBackUri(this.title.backUri)
+      this.$refs.titleBar_BOrderOne.setBackUri(this.title.backUri)
     },
     methods: {
       btnChooseReturnCount(payload) {
