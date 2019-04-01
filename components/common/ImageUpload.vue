@@ -123,7 +123,7 @@
                   }, fail(res) {
                     pThis.$msgBox.doModal({
                       type: 'yes',
-                      title: '上传图片',
+                      title: '上传图片失败',
                       content: JSON.stringify(res)
                     })
                   }
@@ -135,7 +135,7 @@
           wx.error(function (res) {
             pThis.$msgBox.doModal({
               type: 'yes',
-              title: '上传图片',
+              title: '上传图片失败',
               content: res
             })
           })
@@ -193,14 +193,14 @@
         this.ui.state = 'Uploaded'
 
         this.ui.fileUrl = document.location.protocol + '//' + sign.endPoint + '/' + sign.key + this.getFileName()
+        this.$emit('uploadSuccess', this.ui.fileUrl)
 
         let index = this.ui.fileUrl.lastIndexOf('?')
         if (index !== -1) {
           this.ui.fileUrl = this.ui.fileUrl.substr(0, index)
         }
-
-        this.ui.fileUrl += '?' + new Date().getTime()
-        this.$emit('uploadSuccess', this.ui.fileUrl)
+        this.ui.fileUrl += '?r=' + Math.random()
+        this.$set(this.ui, 'fileUrl', this.ui.fileUrl)
       },
       initFileUploader(sign, pThis) {
         let uploader = new plupload.Uploader({
@@ -209,7 +209,7 @@
           unique_names: true,
           multi_selection: false,
           container: document.getElementById('image-upload'),
-          resize: {quality: 85},
+          resize: {quality: 90},
           filters: {
             max_file_size: '512kb',
             mime_types: [
@@ -222,7 +222,6 @@
             },
             FilesAdded(up, files) {
               plupload.each(files, function (file) {
-                pThis.ui.fileUrl = document.location.protocol + '//' + sign.endPoint + '/' + sign.key + pThis.getFileName()
               })
 
               let new_multipart_params = {
@@ -248,37 +247,39 @@
             FileUploaded(up, file, info) {
               pThis.ui.state = 'Uploaded'
 
+              pThis.ui.fileUrl = document.location.protocol + '//' + sign.endPoint + '/' + sign.key + pThis.getFileName()
+              pThis.$emit('uploadSuccess', pThis.ui.fileUrl)
+
               let index = pThis.ui.fileUrl.lastIndexOf('?')
               if (index !== -1) {
                 pThis.ui.fileUrl = pThis.ui.fileUrl.substr(0, index)
               }
-
-              pThis.ui.fileUrl += '?' + new Date().getTime()
-              pThis.$emit('uploadSuccess', pThis.ui.fileUrl)
+              pThis.ui.fileUrl += '?r=' + Math.random()
+              pThis.$set(pThis.ui, 'fileUrl', pThis.ui.fileUrl)
             },
             Error(up, err) {
               if (err.code === -600) {
                 pThis.$msgBox.doModal({
                   type: 'yes',
-                  title: '上传图片',
+                  title: '上传图片失败',
                   content: '选择的文件最大不超过512kb。'
                 })
               } else if (err.code === -601) {
                 pThis.$msgBox.doModal({
                   type: 'yes',
-                  title: '上传图片',
+                  title: '上传图片失败',
                   content: '请选择正确的图片文件。'
                 })
               } else if (err.code === -602) {
                 pThis.$msgBox.doModal({
                   type: 'yes',
-                  title: '上传图片',
+                  title: '上传图片失败',
                   content: '文件已经上传。'
                 })
               } else {
                 pThis.$msgBox.doModal({
                   type: 'yes',
-                  title: '上传图片',
+                  title: '上传图片失败',
                   content: err.response
                 })
               }
