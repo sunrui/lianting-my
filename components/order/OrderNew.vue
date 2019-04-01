@@ -115,7 +115,6 @@
   import {httpOrderApi} from '../../api/http/lt/httpOrderApi'
   import {stateApi} from '../../api/local/stateApi'
   import {scrollApi} from '../../api/local/scrollApi'
-  import {logApi} from '../../api/local/logApi'
 
   export default {
     metaInfo: {

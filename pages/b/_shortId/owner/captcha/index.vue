@@ -70,7 +70,6 @@
   import QRCode from 'qrcode'
   import html2canvas from 'html2canvas'
   import {downloadApi} from '../../../../../api/local/downloadApi'
-  import {highlightApi} from '../../../../../api/local/highlightApi'
 
   export default {
     metaInfo: {
