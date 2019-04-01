@@ -1,15 +1,11 @@
 <template>
   <div id="image-upload">
     <div class="badge_delete" v-if="ui.fileUrl || fileUrl" @click="btnUploadDelete"></div>
-    <div class="image_upload_button" v-if="ui.inWechat" @click="btnUploadWechat"></div>
-    <div v-else :id="ui.pickFileId">
-      <div class="image_upload_image_box" v-if="ui.fileUrl">
-        <img class="image_upload_image" :src="ui.fileUrl" alt="">
+    <div :id="ui.pickFileId" @click="btnUploadWechat">
+      <div class="image_upload_image_box" v-if="ui.fileUrl || fileUrl">
+        <img class="image_upload_image" :src="ui.fileUrl ? ui.fileUrl : fileUrl" alt="">
       </div>
-      <div class="image_upload_image_box" v-else-if="fileUrl">
-        <img class="image_upload_image" :src="fileUrl" alt="">
-      </div>
-      <div class="image_upload_button" v-else="ui.state !== 'Uploaded' || !fileUrl"></div>
+      <div class="image_upload_button" v-else></div>
     </div>
   </div>
 </template>
@@ -83,7 +79,7 @@
           }
 
           if (!Boolean(this.ui.fileName)) {
-            this.ui.fileName = uuidApi.uuid() + '.png'
+            this.ui.fileName = uuidApi.uuid()
           }
         }
 
@@ -95,7 +91,7 @@
           let wx = require('weixin-js-sdk')
 
           wx.config({
-            debug: true,
+            debug: false,
             appId: res.appId,
             timestamp: res.timestamp,
             nonceStr: res.noncestr,
@@ -122,10 +118,10 @@
                       localData = 'data:image/jpeg;base64,' + localData
                     }
 
-                    localData = localData.replace(/[\r\n]/g, '').replace('data:image/jpg', 'data:image/jpeg')
+                    localData = localData.replace(/[\r\n]/g, '').replace('data:image/jgp', 'data:image/jpeg')
                     pThis.initOssSign(localData)
                   }, fail(res) {
-                    this.$msgBox.doModal({
+                    pThis.$msgBox.doModal({
                       type: 'yes',
                       title: '上传图片',
                       content: JSON.stringify(res)
@@ -147,7 +143,7 @@
       },
       initOssSign(localData) {
         function init(pThis, res) {
-          if (pThis.inWechat) {
+          if (pThis.ui.inWechat) {
             fetch(localData)
               .then(res => res.blob())
               .then(blob => {
@@ -192,8 +188,19 @@
           }
         }
 
-        xmlHttpRequest.open('POST', 'http://' + sign.endPoint)
+        xmlHttpRequest.open('POST', document.location.protocol + '//' + sign.endPoint)
         xmlHttpRequest.send(formData)
+        this.ui.state = 'Uploaded'
+
+        this.ui.fileUrl = document.location.protocol + '//' + sign.endPoint + '/' + sign.key + this.getFileName()
+
+        let index = this.ui.fileUrl.lastIndexOf('?')
+        if (index !== -1) {
+          this.ui.fileUrl = this.ui.fileUrl.substr(0, index)
+        }
+
+        this.ui.fileUrl += '?' + new Date().getTime()
+        this.$emit('uploadSuccess', this.ui.fileUrl)
       },
       initFileUploader(sign, pThis) {
         let uploader = new plupload.Uploader({
@@ -215,7 +222,7 @@
             },
             FilesAdded(up, files) {
               plupload.each(files, function (file) {
-                pThis.ui.fileUrl = 'http://' + sign.endPoint + '/' + sign.key + pThis.getFileName()
+                pThis.ui.fileUrl = document.location.protocol + '//' + sign.endPoint + '/' + sign.key + pThis.getFileName()
               })
 
               let new_multipart_params = {
@@ -228,7 +235,7 @@
               }
 
               uploader.setOption({
-                'url': 'http://' + sign.endPoint,
+                'url': document.location.protocol + '//' + sign.endPoint,
                 'multipart_params': new_multipart_params
               })
 
