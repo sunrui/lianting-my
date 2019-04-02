@@ -86,6 +86,7 @@
   import { httpRoleAdminApi } from '../../../../../api/http/lt/httpRoleAdminApi'
   import TitleBar from '../../../../../components/common/TitleBar'
   import { validatorApi } from '../../../../../api/local/validatorApi'
+  import {scrollApi} from "../../../../../api/local/scrollApi"
 
   export default {
     metaInfo: {
@@ -166,14 +167,20 @@
       btnCoverMask() {
         this.ui.vRoleAdd = false
         this.ui.vCoverMask = false
+
+        scrollApi.enable(true)
       },
       btnCreate(role) {
         this.ui.vCoverMask = true
         this.ui.vRoleAdd = true
         this.http.req.role = {}
         this.http.req.role.type = role.type
+
+        scrollApi.enable(false)
       },
       btnCreateConfirm() {
+        scrollApi.enable(true)
+
         if (!Boolean(this.http.req.role.phone)) {
           this.$msgBox.doModal({
             type: 'yes',

@@ -6,9 +6,9 @@
       <div class="tip">
         <ul class="tip_ul">
           <li>要启用在线支付功能，现在您无需必要拥有企业微信公共号。</li>
-          <li>根据微信要求，您需要提交相关开通支付资料至微信审核，可由我们人工客服免费代为您提交。</li>
-          <li>您可加入我们 QQ 群联系在线客服资询需要提交审核的相关资料。</li>
-          <li>即使您是免费会员，无需任何担心，我们同样竭诚为您服务。</li>
+          <li>根据微信要求，您需要提交相关开通支付资料至微信审核，可由我们人工客服代为您提交。</li>
+          <li>您可加入恋厅 QQ 群联系在线客服资询需要提交审核的相关资料。</li>
+          <li>即使免费会员您也无需任何担心，我们同样竭诚为您服务。</li>
         </ul>
       </div>
     </div>
@@ -43,7 +43,7 @@
     </div>
 
     <div class="button_box">
-      <div class="button_big" @click="btnModify">修改</div>
+      <div class="button_big" @click="btnUpdate">更新</div>
     </div>
   </div>
 </template>
@@ -92,7 +92,7 @@
       btnSupportCredit(enable) {
         this.http.req.config.supportCredit = enable
       },
-      btnModify() {
+      btnUpdate() {
         httpOrderAdminApi.putConfig(this.$route.params.shortId, this.http.req.config).then(res => {
           this.$msgBox.doModal({
             type: 'yes',
