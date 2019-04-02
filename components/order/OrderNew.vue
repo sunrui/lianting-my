@@ -113,7 +113,7 @@
   import TitleBar from '../common/TitleBar'
   import {cartApi} from '../../api/local/cartApi'
   import {httpOrderApi} from '../../api/http/lt/httpOrderApi'
-  import {stateApi} from '../../api/local/stateApi'
+  import {stateApi as localStateApi, stateApi} from '../../api/local/stateApi'
   import {scrollApi} from '../../api/local/scrollApi'
 
   export default {
@@ -308,6 +308,17 @@
         })
       },
       btnScanCaptcha() {
+        let wechatOpenId = localStateApi.user.getWechatOpenId()
+        if (!Boolean(wechatOpenId)) {
+          this.$msgBox.doModal({
+            type: 'yes',
+            title: '立即支付',
+            content: '请使用微信打开。'
+          })
+
+          return
+        }
+
         this.$router.push('/scan')
       }
     }

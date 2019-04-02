@@ -104,9 +104,10 @@
               type: 'yes',
               title: '个人信息',
               content: '用户不存在。'
+            }).then(async (val) => {
+              this.$router.push('/logout')
             })
 
-            this.$router.push('logout')
             return
           }
 

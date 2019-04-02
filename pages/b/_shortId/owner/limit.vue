@@ -3,7 +3,7 @@
     <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
     <div class="empty">
       <img class="empty_image" src="/img/no/no_shop.png" alt="">
-        <div class="empty_label">呃〜无法创建更多了。</div>
+        <div class="empty_label">抱歉〜无法创建更多了。</div>
         <div class="empty_label_tip">为了更好的服务，请转至<span class="empty_label_tip_link" @click="btnLicense">续费</span>页升级您的授权。</div>
     </div>
   </div>

@@ -50,8 +50,8 @@
 </template>
 
 <script>
-  import { httpReserveApi } from '../../../../../api/http/lt/httpReserveApi'
-  import { httpReserveAdminApi } from '../../../../../api/http/lt/httpReserveAdminApi'
+  import {httpReserveApi} from '../../../../../api/http/lt/httpReserveApi'
+  import {httpReserveAdminApi} from '../../../../../api/http/lt/httpReserveAdminApi'
   import TitleBar from '../../../../../components/common/TitleBar'
 
   export default {
@@ -59,7 +59,7 @@
       title: '预订'
     },
     middleware: 'auth',
-    components: { TitleBar },
+    components: {TitleBar},
     data() {
       return {
         title: {
@@ -76,13 +76,13 @@
         },
         ui: {
           week: [
-            { label: 'monday', name: '星期一', enable: false },
-            { label: 'tuesday', name: '星期二', enable: false },
-            { label: 'wednesday', name: '星期三', enable: false },
-            { label: 'thursday', name: '星期四', enable: false },
-            { label: 'friday', name: '星期五', enable: false },
-            { label: 'saturday', name: '星期六', enable: false },
-            { label: 'sunday', name: '星期天', enable: false }
+            {label: 'monday', name: '星期一', enable: false},
+            {label: 'tuesday', name: '星期二', enable: false},
+            {label: 'wednesday', name: '星期三', enable: false},
+            {label: 'thursday', name: '星期四', enable: false},
+            {label: 'friday', name: '星期五', enable: false},
+            {label: 'saturday', name: '星期六', enable: false},
+            {label: 'sunday', name: '星期天', enable: false}
           ],
           times: [
             '0:00', '0:30', '1:00', '1:30', '2:00', '2:30', '3:00', '3:30', '4:00', '4:30', '5:00', '5:30',
@@ -99,6 +99,34 @@
     methods: {
       httpState() {
         httpReserveApi.getState(this.$route.params.shortId).then(res => {
+          if (!res.monday) {
+            res.monday = []
+          }
+
+          if (!res.tuesday) {
+            res.tuesday = []
+          }
+
+          if (!res.wednesday) {
+            res.wednesday = []
+          }
+
+          if (!res.thursday) {
+            res.thursday = []
+          }
+
+          if (!res.friday) {
+            res.friday = []
+          }
+
+          if (!res.saturday) {
+            res.saturday = []
+          }
+
+          if (!res.sunday) {
+            res.sunday = []
+          }
+
           this.http.req.reserve = res
           this.refreshEnable()
         })
