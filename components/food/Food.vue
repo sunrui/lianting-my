@@ -460,9 +460,11 @@
           for (let index in this.http.res.foodGroups.elements) {
             let foodGroup = this.http.res.foodGroups.elements[index]
             this.$set(foodGroup, 'groupMode', 'Small')
-            foodGroup.foodCategories.sort(function (a, b) {
-              return a.orderIndex - b.orderIndex
-            })
+            if (foodGroup.foodCategories && foodGroup.foodCategories.length > 0) {
+              foodGroup.foodCategories.sort(function (a, b) {
+                return a.orderIndex - b.orderIndex
+              })
+            }
           }
 
           this.computedCartSelect()

@@ -64,9 +64,11 @@
         })
       },
       short() {
-        this.http.res.group.foodCategories.sort(function(a, b) {
-          return a.orderIndex - b.orderIndex
-        })
+        if (this.http.res.group.foodCategories && this.http.res.group.foodCategories.length > 0) {
+          this.http.res.group.foodCategories.sort(function (a, b) {
+            return a.orderIndex - b.orderIndex
+          })
+        }
       },
       reIndex() {
         let orderIndex = 0

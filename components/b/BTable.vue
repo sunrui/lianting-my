@@ -253,6 +253,7 @@
 
           for (let index in this.http.res.tableGroups.elements) {
             let tableGroup = this.http.res.tableGroups.elements[index]
+            if (tableGroup.tableOnes && tableGroup.tableOnes.length > 0)
             tableGroup.tableOnes.sort(function (a, b) {
               return a.number - b.number
             })

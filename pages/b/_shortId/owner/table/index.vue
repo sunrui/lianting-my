@@ -212,9 +212,11 @@
 
           for (let index in this.http.res.tableGroups.elements) {
             let tableGroup = this.http.res.tableGroups.elements[index]
-            tableGroup.tableOnes.sort(function (a, b) {
-              return a.number - b.number
-            })
+            if (tableGroup.tableOnes && tableGroup.tableOnes.length > 0) {
+              tableGroup.tableOnes.sort(function (a, b) {
+                return a.number - b.number
+              })
+            }
           }
 
           setTimeout(this.navToHash, 100)

@@ -248,9 +248,11 @@
 
             for (let groupIndex in this.http.res.foodGroups.elements) {
               let categories = this.http.res.foodGroups.elements[groupIndex]
-              categories.foodCategories.sort(function (a, b) {
-                return a.orderIndex - b.orderIndex
-              })
+              if (categories.foodCategories && categories.foodCategories.length > 0) {
+                categories.foodCategories.sort(function (a, b) {
+                  return a.orderIndex - b.orderIndex
+                })
+              }
             }
 
             setTimeout(this.navToHash, 100)

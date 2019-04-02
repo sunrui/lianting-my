@@ -45,7 +45,7 @@
         <div class="food_group">
           <div class="food_group_anchor" :id="foodGroup.id"></div>
           <div class="food_group_name" @click="btnGroupEdit(foodGroup)">{{foodGroup.name}}</div>
-          <div class="food_group_count">({{foodGroup.foodCategories.length}})</div>
+          <div class="food_group_count">({{foodGroup.foodCategories ? foodGroup.foodCategories.length : 0}})</div>
           <div class="food_group_order">
             <div class="food_group_order_icon"></div>
             <div class="food_group_order_label" @click="btnOrder(foodGroup)">排序</div>
@@ -238,9 +238,13 @@
 
           for (let groupIndex in this.http.res.foodGroups.elements) {
             let categories = this.http.res.foodGroups.elements[groupIndex]
-            categories.foodCategories.sort(function (a, b) {
-              return a.orderIndex - b.orderIndex
-            })
+            if (categories.foodCategories && categories.foodCategories.length > 1) {
+              if (categories.foodCategories && categories.foodCategories.length > 0) {
+                categories.foodCategories.sort(function (a, b) {
+                  return a.orderIndex - b.orderIndex
+                })
+              }
+            }
           }
 
           setTimeout(this.navToHash, 100)
