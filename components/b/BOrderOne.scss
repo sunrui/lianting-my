@@ -192,6 +192,7 @@
   text-align: left;
 
   .return_food {
+    position: relative;
 
     .return_food_category_name {
       display: inline-block;
@@ -217,20 +218,21 @@
   }
 
   .return_count {
+    position: relative;
 
     .return_count_label {
       display: inline-block;
       font-size: px2rem(28);
+      line-height: px2rem(40);
       color: #333333;
     }
 
     .return_count_option {
-      position: relative;
       display: inline-block;
       color: #F52626;
-      float: right;
-      height: px2rem(200);
       overflow-y: auto;
+      height: px2rem(240);
+      float: right;
     }
   }
 

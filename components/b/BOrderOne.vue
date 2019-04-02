@@ -307,19 +307,21 @@
             </div>
           </div>
 
-          <div class="blank_30"></div>
+          <div class="blank_20"></div>
+          <div class="box_divide"></div>
+          <div class="blank_20"></div>
 
           <div class="return_remark">
             <div class="return_remark_label">退菜备注</div>
 
-            <div class="blank_20"></div>
+            <div class="blank_30"></div>
 
             <div class="return_remark_one" v-for="remark in ui.returnRemarks">
               <div class="return_remark_name" v-if="http.req.return.remark !== remark" @click="btnChooseReturnRemark(remark)">{{remark}}</div>
               <div class="return_remark_name_select" v-else>{{remark}}</div>
             </div>
 
-            <div class="blank_20"></div>
+            <div class="blank_30"></div>
 
             <div class="return_remark_text_area">
               <textarea class="return_remark_text_input" placeholder="您可以在此备注退菜原因。" v-model="http.req.return.remark"></textarea>

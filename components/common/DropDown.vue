@@ -62,12 +62,10 @@
 
 <style scoped lang="scss">
   .btn-group {
+    position: relative;
     min-width: px2rem(100);
     height: px2rem(40);
-    position: relative;
-    margin: px2rem(10) px2rem(1);
     display: inline-block;
-    vertical-align: middle;
   }
 
   .btn-group a:hover {
@@ -75,17 +73,17 @@
   }
 
   .dropdown-toggle {
-    color: #636b6f;
+    color: #333333;
     min-width: px2rem(100);
     padding: px2rem(10);
     text-transform: none;
     font-weight: 400;
     margin-bottom: px2rem(7);
-    border: 0;
-    transition: background 0s ease-out;
+    transition: background .3s ease-out;
     float: none;
     box-shadow: none;
     border-radius: 0;
+    text-align: center;
   }
 
   .dropdown-toggle:hover {
