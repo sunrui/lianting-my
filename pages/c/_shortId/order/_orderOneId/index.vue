@@ -298,9 +298,9 @@
         })
       },
       prepareWechatPay(jsPay) {
-        function onBridgeReady() {
-          alert('onBridgeReady')
+        let pThis = this
 
+        function onBridgeReady() {
           WeixinJSBridge.invoke(
             'getBrandWCPayRequest', {
               "appId": jsPay.appId,
@@ -311,10 +311,20 @@
               "paySign": jsPay.paySign
             },
             function (res) {
-              if (res.err_msg === "get_brand_wcpay_request:ok") {
-                alert('支付已成功，支付结果可能存在延迟，请稍候刷新等待服务器返回。')
-              } else if (res.err_msg === "get_brand_wcpay_request:cancel") {
-                alert('您已取消支付')
+              if (res.err_msg === 'get_brand_wcpay_request:ok') {
+                pThis.$msgBox.doModal({
+                  type: 'yes',
+                  title: '立即支付',
+                  content: '支付已成功，支付结果可能存在延迟，请稍候刷新等待服务器返回。'
+                }).then(async (val) => {
+                  pThis.httpShop()
+                })
+              } else if (res.err_msg === 'get_brand_wcpay_request:cancel') {
+                pThis.$msgBox.doModal({
+                  type: 'yes',
+                  title: '立即支付',
+                  content: '支付已取消。'
+                })
               }
             }
           )

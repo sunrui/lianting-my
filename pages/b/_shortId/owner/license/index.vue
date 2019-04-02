@@ -187,7 +187,7 @@
           shop_license_button_free: license.plan.licenseType === 'Free',
           shop_license_button_normal: license.plan.licenseType === 'Normal',
           shop_license_button_senior: license.plan.licenseType === 'Senior'
-          }" v-if="license.plan.licenseType === 'Free'">不限时免费
+          }" v-if="license.plan.licenseType === 'Free'">无需续费
         </div>
         <div class="shop_license_button" v-bind:class="{
           shop_license_button_free: license.plan.licenseType === 'Free',
@@ -231,6 +231,7 @@
   import {httpShopLicenseApi} from '../../../../../api/http/shop/httpShopLicenseApi'
   import TitleBar from '../../../../../components/common/TitleBar'
   import {scrollApi} from '../../../../../api/local/scrollApi'
+  import {stateApi as localStateApi} from "../../../../../api/local/stateApi"
 
   export default {
     metaInfo: {
@@ -297,6 +298,8 @@
         this.ui.year = year
       },
       prepareWechatPay(jsPay) {
+        let pThis = this
+
         function onBridgeReady() {
           WeixinJSBridge.invoke(
             'getBrandWCPayRequest', {
@@ -308,16 +311,20 @@
               'paySign': jsPay.paySign //微信签名
             },
             function (res) {
-              alert(JSON.stringify(res))
               if (res.err_msg === 'get_brand_wcpay_request:ok') {
-                this.$msgBox.doModal({
+                pThis.$msgBox.doModal({
                   type: 'yes',
                   title: '立即续费',
                   content: '支付已成功，支付结果可能存在延迟，请稍候刷新等待服务器返回。'
                 }).then(async (val) => {
-                  this.httpShop()
+                  pThis.httpShop()
                 })
               } else if (res.err_msg === 'get_brand_wcpay_request:cancel') {
+                pThis.$msgBox.doModal({
+                  type: 'yes',
+                  title: '立即续费',
+                  content: '支付已取消。'
+                })
               }
             }
           )
@@ -335,30 +342,16 @@
         }
       },
       btnChargeConfirm() {
-        let userAgent = navigator.userAgent.toLowerCase() || window.navigator.userAgent.toLowerCase()
-        let inWechat = userAgent.match(/MicroMessenger/i) || userAgent.match(/webdebugger/i)
-
-        if (inWechat) {
+        let wechatOpenId = localStateApi.user.getWechatOpenId()
+        if (!Boolean(wechatOpenId)) {
           this.$msgBox.doModal({
             type: 'yes',
-            title: '立即续费',
-            content: '请在微信中打开。'
+            title: '立即支付',
+            content: '请使用微信打开或退出登录后重试。'
           })
 
           return
         }
-
-        // httpShopLicenseApi.postOrderTest(this.$route.params.shortId, this.ui.licensePlan.id, this.ui.year, 'WECHAT_JSAPI').then(res => {
-        //   this.ui.vCoverMask = false
-        //   this.ui.vChargeYear = false
-        //   this.$msgBox.doModal({
-        //     type: 'yes',
-        //     title: '立即续费',
-        //     content: '测试续费成功。'
-        //   }).then(async (val) => {
-        //     this.httpShop()
-        //   })
-        // })
 
         httpShopLicenseApi.postOrder(this.$route.params.shortId, this.ui.licensePlan.id, this.ui.year, 'WECHAT_JSAPI').then(res => {
           this.ui.vCoverMask = false
