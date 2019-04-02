@@ -301,7 +301,7 @@
           })
         } else if (nav.tag === 'wall') {
           httpWallApi.getAll(this.$route.params.shortId, 0, 1).then(res => {
-            if (!res.elements || res.elements.length === 0) {
+            if (res.elements.length === 0) {
               this.$router.push(`/c/${this.$route.params.shortId}/wall/empty`)
             } else {
               this.$router.push(nav.url)

@@ -307,7 +307,7 @@
       },
       httpTableGroup() {
         httpTableApi.getGroupAll(this.$route.params.shortId).then(res => {
-          if (!res.elements || res.elements.length === 0) {
+          if (res.elements.length === 0) {
             this.$router.push(`/c/${this.$route.params.shortId}/queue/close`)
             return
           }

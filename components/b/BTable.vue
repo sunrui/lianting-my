@@ -1,5 +1,5 @@
 <template>
-  <div v-if="!ui.loading">
+  <div v-show="!ui.loading">
     <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
     <transition name="fade">
@@ -21,8 +21,8 @@
         <div class="menu">
           <div class="menu_item" v-for="(tableGroup, index) in http.res.tableGroups.elements">
             <div :id="'menu_' + tableGroup.id"
-               :class="{menu_item_href:!isSelectMenu(tableGroup.id), menu_item_href_select:isSelectMenu(tableGroup.id)}"
-               @click="selectMenu(index, tableGroup.id, false)">
+                 :class="{menu_item_href:!isSelectMenu(tableGroup.id), menu_item_href_select:isSelectMenu(tableGroup.id)}"
+                 @click="selectMenu(index, tableGroup.id, false)">
               <div class="menu_item_label">{{tableGroup.name}}</div>
               <div class="menu_item_select" v-if="isSelectMenu(tableGroup.id)">
                 <div class="menu_item_select_line"></div>
@@ -40,7 +40,7 @@
         <div class="menu_extend">
           <div class="menu_item menu_item_extend" v-for="(tableGroup, index) in http.res.tableGroups.elements">
             <div :class="{menu_item_href:!isSelectMenu(tableGroup.id), menu_item_href_select:isSelectMenu(tableGroup.id)}"
-               @click="selectMenu(index, tableGroup.id, true)">
+                 @click="selectMenu(index, tableGroup.id, true)">
               <div class="menu_item_label">{{tableGroup.name}}</div>
               <div class="menu_item_select" v-if="isSelectMenu(tableGroup.id)">
                 <div class="menu_item_select_line"></div>
@@ -244,23 +244,22 @@
       },
       httpTableGroup() {
         httpTableApi.getGroupAll(this.$route.params.shortId, 0, 99).then(res => {
-          this.http.res.tableGroups = res
-
-          if (this.http.res.tableGroups.elements.length > 0) {
-            this.ui.selectMenuId = this.http.res.tableGroups.elements[0].id
+          if (res.elements.length > 0) {
+            this.ui.selectMenuId = res.elements[0].id
           } else {
             this.$router.push(`/b/${this.$route.params.shortId}/${this.role}/table/empty`)
             return
           }
 
-          for (let index in this.http.res.tableGroups.elements) {
-            let tableGroup = this.http.res.tableGroups.elements[index]
+          for (let index in res.elements) {
+            let tableGroup = res.elements[index]
             if (tableGroup.tableOnes && tableGroup.tableOnes.length > 0)
-            tableGroup.tableOnes.sort(function (a, b) {
-              return a.number - b.number
-            })
+              tableGroup.tableOnes.sort(function (a, b) {
+                return a.number - b.number
+              })
           }
 
+          this.http.res.tableGroups = res
           this.ui.loading = false
           setTimeout(this.navToHash, 100)
         })

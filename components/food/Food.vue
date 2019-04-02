@@ -1,5 +1,5 @@
 <template>
-  <div v-if="!ui.loading">
+  <div v-show="!ui.loading">
     <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
     <transition name="fade">
