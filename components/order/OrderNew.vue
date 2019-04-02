@@ -313,7 +313,7 @@
           this.$msgBox.doModal({
             type: 'yes',
             title: '立即支付',
-            content: '请使用微信打开。'
+            content: '请使用微信打开或退出登录后重试。'
           })
 
           return

@@ -80,7 +80,7 @@
             <div class="time_select_item_one" v-if="ui.selectTime !== time" @click="btnChooseTime(time)">{{time}}</div>
           </div>
 
-          <div class="time_select_item_none" v-if="ui.dayTimes.length === 0">没有可预订时段</div>
+          <div class="time_select_item_none" v-if="!ui.dayTimes || ui.dayTimes.length === 0">没有可预订时段</div>
           <div class="blank_10"></div>
         </div>
       </div>
@@ -263,7 +263,7 @@
           this.ui.dayTimes = enableTimes
         }
 
-        if (this.ui.dayTimes.length > 0) {
+        if (this.ui.dayTimes && this.ui.dayTimes.length > 0) {
           this.ui.selectTime = this.ui.dayTimes[0]
         } else {
           this.ui.selectTime = null

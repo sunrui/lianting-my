@@ -365,7 +365,7 @@
               this.$msgBox.doModal({
                 type: 'yes',
                 title: '立即支付',
-                content: '商户尚未设置微信支付参数。'
+                content: '商家尚未设置微信支付参数。'
               })
               return
             }
@@ -383,7 +383,7 @@
               this.$msgBox.doModal({
                 type: 'yes',
                 title: '立即支付',
-                content: '尚未开通微信支付，您可线下付款。'
+                content: '商家尚未开通微信支付，您可线下付款。'
               })
               return
             }
@@ -409,7 +409,7 @@
           this.$msgBox.doModal({
             type: 'yes',
             title: '立即支付',
-            content: '请使用微信打开。'
+            content: '请使用微信打开或退出登录后重试。'
           })
 
           return
@@ -420,7 +420,7 @@
             this.$msgBox.doModal({
               type: 'yes',
               title: '立即支付',
-              content: '尚未开通微信支付，您可线下付款。'
+              content: '商家尚未开通微信支付，您可线下付款。'
             })
 
             return

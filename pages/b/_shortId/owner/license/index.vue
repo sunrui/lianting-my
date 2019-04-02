@@ -412,7 +412,7 @@
               this.$msgBox.doModal({
                 type: 'yes',
                 title: '立即续费',
-                content: '商户尚未设置微信支付参数。'
+                content: '商家尚未设置微信支付参数。'
               })
               return
             }
