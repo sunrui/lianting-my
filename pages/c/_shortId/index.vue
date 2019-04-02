@@ -246,7 +246,7 @@
       btnNav(nav) {
         if (nav.tag === 'food') {
           httpFoodApi.getGroupAll(this.$route.params.shortId, 0, 99).then(res => {
-            if (res.elements.length > 0) {
+            if (res.elements && res.elements.length > 0) {
 
               let haveFood = false
               for (let index in res.elements) {
@@ -271,7 +271,7 @@
           this.httpWifi()
         } else if (nav.tag === 'queue') {
           httpQueueApi.getState(this.$route.params.shortId).then(res => {
-            if (res.needQueues.length === 0) {
+            if (!res.needQueues || res.needQueues.length === 0) {
               this.$router.push(`/c/${this.$route.params.shortId}/queue/close`)
 
               return
@@ -288,7 +288,7 @@
             }
 
             httpReserveApi.getAll(this.$route.params.shortId, 'Wait, Accept, Refused', null, 0, 1).then(res => {
-              if (res.elements.length > 0) {
+              if (res.elements && res.elements.length > 0) {
                 this.$router.push(`/c/${this.$route.params.shortId}/reserve/${res.elements[0].id}`)
                 return
               }
@@ -298,7 +298,7 @@
           })
         } else if (nav.tag === 'wall') {
           httpWallApi.getAll(this.$route.params.shortId, 0, 1).then(res => {
-            if (res.elements.length === 0) {
+            if (!res.elements || res.elements.length === 0) {
               this.$router.push(`/c/${this.$route.params.shortId}/wall/empty`)
             } else {
               this.$router.push(nav.url)

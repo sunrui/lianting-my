@@ -296,29 +296,26 @@
         this.ui.vCoverMask = false
 
         httpQueueApi.getState(this.$route.params.shortId).then(res => {
-          this.http.res.state = res
-
-          if (this.http.res.state.needQueues.length === 0) {
+          if (!res.needQueues || res.needQueues.length === 0) {
             this.$router.push(`/c/${this.$route.params.shortId}/queue/close`)
             return
           }
 
+          this.http.res.state = res
           this.httpTableGroup()
         })
       },
       httpTableGroup() {
         httpTableApi.getGroupAll(this.$route.params.shortId).then(res => {
-          this.http.res.tableGroups = res
-
-          if (this.http.res.tableGroups.length === 0) {
+          if (!res.elements || res.elements.length === 0) {
             this.$router.push(`/c/${this.$route.params.shortId}/queue/close`)
             return
           }
 
           let haveNeedQueue = false
 
-          for (let index in this.http.res.tableGroups.elements) {
-            let tableGroup = this.http.res.tableGroups.elements[index]
+          for (let index in res.elements) {
+            let tableGroup = res.elements[index]
             tableGroup.needQueue = false
 
             for (let enableQueueIndex in this.http.res.state.needQueues) {
@@ -342,6 +339,7 @@
             return
           }
 
+          this.http.res.tableGroups = res
           this.httpNow()
         })
       },
