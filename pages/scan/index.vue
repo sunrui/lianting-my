@@ -35,9 +35,8 @@
 
         wx.ready(function () {
           wx.checkJsApi({
-            jsApiList: ['scanQRCode'],
+            jsApiList: ["qrCode", "barCode"],
             success: function (res) {
-
             }
           })
 
