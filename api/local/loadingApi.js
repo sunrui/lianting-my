@@ -2,9 +2,7 @@ export const loadingApi = {
   ref: 0,
   enable: true,
   show() {
-    this.ref++
-
-    if (this.enable && this.ref > 0) {
+    if (this.enable && ++this.ref > 0) {
       document.getElementById('http_loading').style.display = 'block'
     }
   },
