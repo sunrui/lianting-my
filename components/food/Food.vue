@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="!ui.loading">
     <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
     <transition name="fade">
@@ -281,6 +281,7 @@
           imageHeight: 300
         },
         ui: {
+          loading: true,
           vCoverMask: false,
           vCoverMaskCart: false,
           vCoverMaskLeaf: false,
@@ -468,6 +469,7 @@
           }
 
           this.computedCartSelect()
+          this.ui.loading = false
           setTimeout(this.navToHash, 100)
         })
       },

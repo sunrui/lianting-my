@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="!ui.loading">
     <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
     <div class="box" v-for="coupon in http.res.coupon.valid" @click="btnChooseCoupon(coupon)">
@@ -200,7 +200,9 @@
             }
           }
         },
-        coupons: []
+        ui: {
+          loading: true
+        }
       }
     },
     created() {
@@ -239,6 +241,8 @@
 
             this.http.res.coupon.valid.push(coupon)
           }
+
+          this.ui.loading = false
         })
       },
       btnChooseCoupon(coupon) {

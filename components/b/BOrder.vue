@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="!ui.loading">
     <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
     <div class="box" v-for="order in http.res.orders.elements">
@@ -69,11 +69,13 @@
           theme: 'image',
           imageHeight: 220
         },
-        ui: {},
         http: {
           res: {
             orders: {}
           }
+        },
+        ui: {
+          loading: true
         }
       }
     },
@@ -95,6 +97,7 @@
           })
 
           this.http.res.orders = res
+          this.ui.loading = false
         })
       } else {
         httpOrderAdminApi.getAll(this.$route.params.shortId, live, 0, 99).then(res => {
@@ -108,6 +111,7 @@
           })
 
           this.http.res.orders = res
+          this.ui.loading = false
         })
       }
     },

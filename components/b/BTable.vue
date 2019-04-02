@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="!ui.loading">
     <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
     <transition name="fade">
@@ -110,7 +110,7 @@
     <captcha v-if="ui.vCaptcha" @closeCaptcha="closeCaptcha()" :title="ui.captcha.title" :text="ui.captcha.text"></captcha>
 
     <transition name="toggle">
-      <div class="modal_bottom" v-if="ui.v_menu_table">
+      <div class="modal_bottom" v-if="ui.vMenuTable">
         <div class="modal_close_box" @click="btnCoverMask">
           <img class="modal_close" src="/img/common/close.png" alt="">
         </div>
@@ -127,7 +127,7 @@
       </div>
     </transition>
 
-    <div class="modal_center" v-if="ui.v_table_change">
+    <div class="modal_center" v-if="ui.vTableChange">
       <div class="modal_close_box" @click="btnCoverMask">
         <img class="modal_close" src="/img/common/close.png" alt="">
       </div>
@@ -193,11 +193,12 @@
           imageHeight: 300
         },
         ui: {
+          loading: true,
           vMenuExtend: false,
           vCoverMask: false,
           vCaptcha: false,
-          v_menu_table: false,
-          v_table_change: false,
+          vMenuTable: false,
+          vTableChange: false,
           selectMenuId: null,
           captcha: {
             title: '',
@@ -249,6 +250,7 @@
             this.ui.selectMenuId = this.http.res.tableGroups.elements[0].id
           } else {
             this.$router.push(`/b/${this.$route.params.shortId}/${this.role}/table/empty`)
+            return
           }
 
           for (let index in this.http.res.tableGroups.elements) {
@@ -259,6 +261,7 @@
             })
           }
 
+          this.ui.loading = false
           setTimeout(this.navToHash, 100)
         })
       },
@@ -318,8 +321,8 @@
       btnCoverMask() {
         this.ui.vMenuExtend = false
         this.ui.vCaptcha = false
-        this.ui.v_menu_table = false
-        this.ui.v_table_change = false
+        this.ui.vMenuTable = false
+        this.ui.vTableChange = false
         this.ui.vCoverMask = false
 
         scrollApi.enable(true)
@@ -439,7 +442,7 @@
         scrollApi.enable(false)
 
         this.ui.vCoverMask = true
-        this.ui.v_menu_table = true
+        this.ui.vMenuTable = true
         this.ui.selectTable = table
       },
       btnTableFood(table) {
@@ -496,8 +499,8 @@
       },
       btnTableChange(table) {
         this.ui.vCoverMask = true
-        this.ui.v_table_change = true
-        this.ui.v_menu_table = false
+        this.ui.vTableChange = true
+        this.ui.vMenuTable = false
         this.ui.selectTable = table
         this.ui.changeTable = {}
       },
@@ -506,7 +509,7 @@
           let order = this.http.res.orders.elements[index]
           if (order.orderTable && order.orderTable.tableOneId === this.ui.selectTable.id) {
             httpOrderAdminApi.putTable(this.$route.params.shortId, order.id, this.ui.changeTable.id).then(res => {
-              this.ui.v_table_change = false
+              this.ui.vTableChange = false
               this.ui.vCoverMask = false
 
               if (res.tableOneIdNotExists) {

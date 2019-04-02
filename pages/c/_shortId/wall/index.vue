@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="!ui.loading">
     <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
     <transition name="fade">
@@ -140,6 +140,7 @@
           imageHeight: 330
         },
         ui: {
+          loading: true,
           vCoverMask: false,
           vOrderMenu: false,
           infos: [],
@@ -174,6 +175,7 @@
             }
 
             this.http.res.walls = res
+            this.ui.loading = false
           })
         } else {
           httpWallApi.getAll(this.$route.params.shortId, 0, 20).then(res => {
@@ -183,6 +185,7 @@
             }
 
             this.http.res.walls = res
+            this.ui.loading = false
           })
         }
       },

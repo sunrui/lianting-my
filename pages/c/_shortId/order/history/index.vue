@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="!ui.loading">
     <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
     <div class="box" v-for="order in http.res.orders.elements">
@@ -58,6 +58,7 @@
           imageHeight: 220
         },
         ui: {
+          loading: true,
           title: ''
         },
         http: {
@@ -78,6 +79,7 @@
         }
 
         this.http.res.orders = res
+        this.ui.loading = false
       })
     },
     methods: {

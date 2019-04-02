@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="!ui.loading">
     <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
     <div class="box">
@@ -72,6 +72,9 @@
           res: {
             reserves: {}
           }
+        },
+        ui: {
+          loading: true
         }
       }
     },
@@ -119,6 +122,7 @@
           })
 
           this.http.res.reserves = res
+          this.ui.loading = false
         })
       },
       getReserveTitle() {

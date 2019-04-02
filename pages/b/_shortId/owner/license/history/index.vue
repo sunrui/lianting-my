@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="!ui.loading">
     <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
     <div class="box" v-for="shopLicense in http.res.shopLicenseRes.elements">
@@ -67,7 +67,9 @@
             }
           }
         },
-        ui: {}
+        ui: {
+          loading: true
+        }
       };
     },
     created() {
@@ -77,6 +79,7 @@
         }
 
         this.http.res.shopLicenseRes = res;
+        this.ui.loading = false
       });
     }
   };

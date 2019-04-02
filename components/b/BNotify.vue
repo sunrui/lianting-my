@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="!ui.loading">
     <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
     <div v-for="notifyOrder in http.res.notifyOrders.elements">
@@ -71,6 +71,9 @@
               elements: []
             }
           }
+        },
+        ui: {
+          loading: true
         }
       }
     },
@@ -105,6 +108,7 @@
           }
 
           this.http.res.notifyOrders = res
+          this.ui.loading = false
         })
       },
       btnOrder(orderOneId) {

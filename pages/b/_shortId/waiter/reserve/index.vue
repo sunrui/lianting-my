@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="!ui.loading">
     <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
     <div class="blank_20"></div>
@@ -78,6 +78,7 @@
           }
         },
         ui: {
+          loading: true,
           reserves: []
         }
       }
@@ -120,6 +121,7 @@
           }
 
           this.http.res.reserves = res
+          this.ui.loading = false
         })
       },
       getTodayReserves() {

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="!ui.loading">
     <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
     <div class="box" v-for="history in http.res.histories.elements">
@@ -56,6 +56,9 @@
           res: {
             histories: {}
           }
+        },
+        ui: {
+          loading: true
         }
       }
     },
@@ -71,6 +74,7 @@
           }
 
           this.http.res.histories = res
+          this.ui.loading = false
         })
       }
     }
