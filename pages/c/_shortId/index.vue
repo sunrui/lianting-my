@@ -38,7 +38,10 @@
                 <div class="shop_time_label">{{http.res.info.time ? http.res.info.time : '周一到周日 0:00-24:00'}}</div>
               </div>
             </div>
-            <a class="shop_extra_right" :href="btnPhone()">
+            <a class="shop_extra_right" v-if="http.res.info.phone" :href="btnPhone()">
+              <div class="shop_phone"></div>
+            </a>
+            <a class="shop_extra_right" v-else>
               <div class="shop_phone"></div>
             </a>
           </div>
