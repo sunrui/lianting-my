@@ -192,7 +192,7 @@
             this.$msgBox.doModal({
               type: 'yes',
               title: '立即预订',
-              content: '由于商家授权限制，无法接受更多排队了，请联系商家升级授权。'
+              content: '由于商家授权限制无法接受更多预订，请联系商家升级授权。'
             })
           } else if (res.reserveExists) {
             this.$msgBox.doModal({

@@ -409,7 +409,7 @@
             this.$msgBox.doModal({
               type: 'yes',
               title: '排队',
-              content: '由于商家授权限制，无法接受更多排队了，请联系商家升级授权。'
+              content: '由于商家授权限制无法接受更多排队，请联系商家升级授权。'
             })
             return
           } else if (res.tableGroupIdNotExists) {
