@@ -44,7 +44,8 @@
             needResult: 0,
             scanType: ["qrCode"],
             success: function (res) {
-            }
+              WeixinJSBridge.call('closeWindow')
+            },
           })
         })
       })
