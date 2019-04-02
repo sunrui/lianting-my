@@ -35,12 +35,13 @@
 
 .food_image_big_box {
   position: relative;
+  background: white;
   max-height: px2rem(600);
   min-height: px2rem(200);
   width: 100%;
   height: auto;
   border-radius: px2rem(10);
-  box-shadow: 0 0 px2rem(10) 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 px2rem(10) rgba(0, 0, 0, 0.2);
   overflow: hidden;
 }
 

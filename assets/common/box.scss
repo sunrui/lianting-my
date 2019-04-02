@@ -25,19 +25,19 @@
 
   .box_radius_header {
     border-radius: px2rem(10) px2rem(10) 0 0;
-    box-shadow: 0 0 px2rem(10) 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 px2rem(10) rgba(0, 0, 0, 0.2);
     z-index: 1;
   }
 
   .box_radius_footer {
     border-radius: 0 0 px2rem(10) px2rem(10);
-    box-shadow: 0 0 px2rem(10) 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 px2rem(10) rgba(0, 0, 0, 0.2);
   }
 }
 
 .box_radius {
   border-radius: px2rem(10);
-  box-shadow: 0 0 px2rem(10) 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 px2rem(10) rgba(0, 0, 0, 0.2);
 }
 
 .box_divide {
