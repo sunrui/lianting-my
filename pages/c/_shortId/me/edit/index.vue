@@ -68,7 +68,7 @@
 
     <div class="button_box">
       <div class="button_big" @click="btnUpdate">更新</div>
-      <div class="blank_50"></div>
+      <div class="blank_30"></div>
       <div class="sync_wechat" @click="btnSyncWechat">同步微信</div>
     </div>
   </div>
