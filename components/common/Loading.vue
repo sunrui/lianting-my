@@ -15,7 +15,8 @@
       }
     },
     mounted() {
-      setTimeout(this.showDelay, 1000)
+      this.ui.showDelay = false
+      setTimeout(this.showDelay, 2500)
     },
     methods: {
       showDelay() {

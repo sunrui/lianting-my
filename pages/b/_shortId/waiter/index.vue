@@ -23,7 +23,8 @@
 
           <div class="shop_menu">
             <img class="shop_menu_icon" src="/img/b/menu/b_menu_captcha.png" @click="btnCaptcha" alt="">
-            <img class="shop_menu_icon" src="/img/b/menu/b_menu_ring.png" @click="httpNotifyOrder" alt="">
+            <img class="shop_menu_icon" src="/img/b/menu/b_menu_wechat.png" @click="btnPush" alt="">
+            <img class="shop_menu_icon" src="/img/b/menu/b_menu_ring.png" @click="btnNotifyOrder" alt="">
           </div>
 
           <div class="blank_30"></div>
@@ -152,8 +153,11 @@
       closeCaptcha() {
         this.ui.vCaptcha = false
       },
-      httpNotifyOrder() {
+      btnNotifyOrder() {
         this.$router.push(`/b/${this.$route.params.shortId}/waiter/notify`)
+      },
+      btnPush() {
+        this.$router.push(`/b/${this.$route.params.shortId}/waiter/push`)
       }
     }
   }
