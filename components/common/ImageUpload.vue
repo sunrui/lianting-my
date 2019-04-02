@@ -5,7 +5,7 @@
       <div class="image_upload_image_box" v-if="ui.fileUrl || fileUrl">
         <img class="image_upload_image" :src="ui.fileUrl ? ui.fileUrl : fileUrl" alt="">
       </div>
-      <div class="image_upload_button" v-else></div>
+      <div class="image_upload_button"></div>
     </div>
   </div>
 </template>
@@ -23,7 +23,6 @@
         ui: {
           pickFileId: null,
           inWechat: false,
-          state: 'wait',
           percent: 0,
           fileUrl: null,
           fileName: null
@@ -147,7 +146,7 @@
             fetch(localData)
               .then(res => res.blob())
               .then(blob => {
-                pThis.initStreamUploader(res, blob)
+                pThis.initStreamUploader(res, blob, pThis)
               })
           } else {
             pThis.initFileUploader(res, pThis)
@@ -164,7 +163,18 @@
           })
         }
       },
-      initStreamUploader(sign, localData) {
+      onUploadSuccess(sign) {
+        this.ui.fileUrl = document.location.protocol + '//' + sign.endPoint + '/' + sign.key + this.getFileName()
+        this.$emit('uploadSuccess', this.ui.fileUrl)
+
+        let index = this.ui.fileUrl.lastIndexOf('?')
+        if (index !== -1) {
+          this.ui.fileUrl = this.ui.fileUrl.substr(0, index)
+        }
+        this.ui.fileUrl += '?r=' + Math.random()
+        this.$set(this.ui, 'fileUrl', this.ui.fileUrl)
+      },
+      initStreamUploader(sign, localData, pThis) {
         let param = {
           'key': sign.key + this.getFileName(),
           'policy': sign.policy,
@@ -188,19 +198,14 @@
           }
         }
 
+        xmlHttpRequest.onreadystatechange = function () {
+          if (xmlHttpRequest.readyState === 4 && xmlHttpRequest.status === 200) {
+            pThis.onUploadSuccess(sign)
+          }
+        }
+
         xmlHttpRequest.open('POST', document.location.protocol + '//' + sign.endPoint)
         xmlHttpRequest.send(formData)
-        this.ui.state = 'Uploaded'
-
-        this.ui.fileUrl = document.location.protocol + '//' + sign.endPoint + '/' + sign.key + this.getFileName()
-        this.$emit('uploadSuccess', this.ui.fileUrl)
-
-        let index = this.ui.fileUrl.lastIndexOf('?')
-        if (index !== -1) {
-          this.ui.fileUrl = this.ui.fileUrl.substr(0, index)
-        }
-        this.ui.fileUrl += '?r=' + Math.random()
-        this.$set(this.ui, 'fileUrl', this.ui.fileUrl)
       },
       initFileUploader(sign, pThis) {
         let uploader = new plupload.Uploader({
@@ -218,7 +223,6 @@
           },
           init: {
             PostInit() {
-              pThis.ui.state = 'wait'
             },
             FilesAdded(up, files) {
               plupload.each(files, function (file) {
@@ -245,17 +249,7 @@
               pThis.ui.percent = file.percent
             },
             FileUploaded(up, file, info) {
-              pThis.ui.state = 'Uploaded'
-
-              pThis.ui.fileUrl = document.location.protocol + '//' + sign.endPoint + '/' + sign.key + pThis.getFileName()
-              pThis.$emit('uploadSuccess', pThis.ui.fileUrl)
-
-              let index = pThis.ui.fileUrl.lastIndexOf('?')
-              if (index !== -1) {
-                pThis.ui.fileUrl = pThis.ui.fileUrl.substr(0, index)
-              }
-              pThis.ui.fileUrl += '?r=' + Math.random()
-              pThis.$set(pThis.ui, 'fileUrl', pThis.ui.fileUrl)
+              pThis.onUploadSuccess(sign)
             },
             Error(up, err) {
               if (err.code === -600) {

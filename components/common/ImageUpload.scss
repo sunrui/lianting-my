@@ -21,10 +21,11 @@
   width: px2rem(134);
   height: px2rem(80);
   overflow: hidden;
+  text-align: center;
 }
 
 .image_upload_image {
-  width: 100%;
-  height: auto;
-  min-height: 100%;
+  display: inline-block;
+  height: 100%;
+  width: auto;
 }
