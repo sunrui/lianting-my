@@ -21,7 +21,7 @@
     left: 0;
     text-align: center;
     z-index: 9999;
-    animation: fade_mask 0.5s 0s linear 1;
+    animation: fade_mask 0.2s 0s linear 1;
 
     .loading {
       animation: fade_image 1s 0s linear infinite;
