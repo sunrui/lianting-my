@@ -46,6 +46,7 @@
           </div>
         </div>
         <div class="no_role_user" v-if="role.roles.length === 0">没有{{getTypeName(role.type)}}角色</div>
+        <div class="blank_50"></div>
       </div>
     </div>
 
@@ -139,7 +140,6 @@
         this.ui.roles = []
 
         httpRoleAdminApi.getAll(this.$route.params.shortId).then(res => {
-          this.roles = res
           this.http.res.roles = res
 
           this.ui.roles.push({
@@ -239,7 +239,6 @@
               title: '添加' + this.getTypeName(this.http.req.role.type),
               content: '添加成功。'
             }).then(async (val) => {
-
               this.httpRole()
             })
           }
