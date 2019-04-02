@@ -9,12 +9,12 @@
     color: white;
     font-size: px2rem(32);
     line-height: px2rem(88);
-    text-shadow: #666666 0 0 1px;
+    text-shadow: 0 0 px2rem(1) #666666;
   }
 
   .title_bar_title_black {
     color: #666666 !important;
-    text-shadow: white 0 0 1px !important;
+    text-shadow: 0 0 px2rem(1) white !important;
   }
 
   .title_bar_back {
@@ -51,9 +51,6 @@
 .image {
   width: 100%;
   height: auto;
-
-  -webkit-filter: blur(1px);
-  filter: blur(1px);
 }
 
 .image_white {
