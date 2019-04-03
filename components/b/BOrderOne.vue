@@ -536,6 +536,16 @@
           return
         }
 
+        if (orderFood.status === status) {
+          this.$msgBox.doModal({
+            type: 'yes',
+            title: '更改状态',
+            content: '原状态无需更改。'
+          })
+
+          return
+        }
+
         if (status === 'Cooking' || status === 'Cooked') {
           if (this.role !== 'admin' && this.role !== 'cooker') {
             this.$msgBox.doModal({
@@ -589,7 +599,7 @@
                 this.$msgBox.doModal({
                   type: 'yes',
                   title: '更改状态',
-                  content: '已更新。'
+                  content: '状态已更新。'
                 }).then(async (val) => {
                   this.httpOrder()
                 })
