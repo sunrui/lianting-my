@@ -232,7 +232,7 @@
                 title: '创建品牌',
                 content: '手机号码已存在。'
               })
-            } else if (res.sendNeeded) {
+            } else if (res.sendSmsCodeNeeded) {
               this.$msgBox.doModal({
                 type: 'yes',
                 title: '创建品牌',

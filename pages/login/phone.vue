@@ -170,7 +170,13 @@
         }
 
         httpUserApi.postLoginPhone(shortId, this.http.req.bind.phone, this.http.req.bind.code).then(res => {
-          if (res.sendNeeded) {
+          if (res.bindWechatNeeded) {
+            this.$msgBox.doModal({
+              type: 'yes',
+              title: '手机登录',
+              content: `为了您日后方便的从恋厅公共号登录，请先扫描公共号后再使用手机登录。`
+            })
+          } else if (res.sendSmsCodeNeeded) {
             this.$msgBox.doModal({
               type: 'yes',
               title: '手机登录',
