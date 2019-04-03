@@ -174,7 +174,7 @@
             this.$msgBox.doModal({
               type: 'yes',
               title: '手机登录',
-              content: `为了您日后方便的从恋厅公共号登录，请先扫描公共号后再使用手机登录。`
+              content: `为了方便您日后的从恋厅公共号登录，请先扫描公共号后再使用手机登录。`
             })
           } else if (res.sendSmsCodeNeeded) {
             this.$msgBox.doModal({
