@@ -706,6 +706,8 @@
           return
         }
 
+        console.log(orderFood)
+
         if (this.role !== 'admin') {
           this.$msgBox.doModal({
             type: 'yes',
@@ -729,7 +731,7 @@
         this.$msgBox.doModal({
           type: 'yesOrNo',
           title: '重置状态',
-          content: '您确认要重置状态吗?'
+          content: `您确认要将${highlightApi.highlight(orderFood.foodCategoryName)}状态重置为${highlightApi.highlight(this.getStatusLabel(status))}吗?`
         }).then(async (val) => {
           if (val === 'Yes') {
             this.btnChangeStatus(orderFood, status)

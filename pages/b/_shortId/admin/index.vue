@@ -23,9 +23,9 @@
 
           <div class="shop_menu">
             <img class="shop_menu_icon" src="/img/b/menu/b_menu_captcha.png" @click="btnCaptcha" alt="">
-            <img class="shop_menu_icon" src="/img/b/menu/b_menu_ring.png" @click="btnNotifyOrder" alt="">
             <img class="shop_menu_icon" src="/img/b/menu/b_menu_shop_open.png" v-if="http.res.shop.open" @click="btnShopOpen" alt="">
             <img class="shop_menu_icon" src="/img/b/menu/b_menu_shop_close.png" v-else @click="btnShopOpen" alt="">
+            <img class="shop_menu_icon" src="/img/b/menu/b_menu_ring.png" @click="btnNotifyOrder" alt="">
           </div>
 
           <div class="blank_30"></div>
