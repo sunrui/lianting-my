@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-show="!ui.loading">
     <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
     <div class="top_blank"></div>
@@ -121,6 +121,7 @@
           }
         },
         ui: {
+          loading: true,
           roles: [
             { image: '/img/role/role_owner.png', name: '管理员', role: 'owner' },
             { image: '/img/role/role_admin.png', name: '店长', role: 'admin' },
@@ -143,6 +144,7 @@
           }
 
           this.http.res.shop = res
+          this.ui.loading = false
 
           for (let index in this.http.res.shop.shopGroups) {
             let shopGroup = this.http.res.shop.shopGroups[index]
