@@ -30,7 +30,7 @@
     background: white;
     width: px2rem(100);
     height: px2rem(100);
-    border-radius: 5px;
+    border-radius: px2rem(5);
     position: absolute;
     left: px2rem(35);
     top: 50%;
@@ -144,7 +144,7 @@
     font-size: px2rem(24);
     color: #B38F8F;
     background: #FAF2F2;
-    border-radius: 5px;
+    border-radius: px2rem(5);
     border: #F0E4E4 px2rem(1) solid;
     width: px2rem(100);
     height: px2rem(40);
@@ -202,7 +202,7 @@
     font-size: px2rem(24);
     background: #F7DBA0;
     color: #AA8635;
-    border-radius: 5px;
+    border-radius: px2rem(5);
     width: px2rem(100);
     height: px2rem(40);
     line-height: px2rem(40);
