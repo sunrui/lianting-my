@@ -19,7 +19,7 @@
   border-radius: px2rem(24);
 
   font-size: px2rem(26);
-  font-weight: 500;
+  font-weight: 400;;
   color: rgba(255, 255, 255, 1);
   line-height: px2rem(48);
 }
@@ -62,6 +62,8 @@
 
   .order_operator_status {
     position: relative;
+    height: px2rem(25);
+    text-align: center;
 
     .order_operator_line_left {
       position: absolute;
@@ -115,7 +117,7 @@
     }
 
     .order_operator_ball_dot {
-      display: inline-block;
+      position: absolute;
       width: px2rem(15);
       height: px2rem(15);
       background: rgba(204, 204, 204, 1);
@@ -148,6 +150,7 @@
 
   .order_operator_label {
     color: #999999;
+    font-weight: 400;;
   }
 
   .order_operator_label_time {
@@ -159,22 +162,18 @@
 
   .order_operator_label_wait {
     color: #666666;
-    font-weight: bold;
   }
 
   .order_operator_label_cooking {
     color: #37D28A;
-    font-weight: bold;
   }
 
   .order_operator_label_cooked {
     color: #D46FFE;
-    font-weight: bold;
   }
 
   .order_operator_label_finish {
     color: #F52626;
-    font-weight: bold;
   }
 }
 
@@ -289,7 +288,6 @@
 
 .change_price_input {
   display: inline-block;
-  //float: right;
   margin-right: px2rem(35);
   color: #666666;
   text-align: right;
