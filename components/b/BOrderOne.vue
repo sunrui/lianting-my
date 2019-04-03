@@ -650,26 +650,26 @@
           if (res.orderOneIdNotExists) {
             this.$msgBox.doModal({
               type: 'yes',
-              title: '订单',
+              title: '更改人数',
               content: '订单不存在。'
             })
           } else if (res.paid) {
             this.$msgBox.doModal({
               type: 'yes',
-              title: '订单',
-              content: '已支付。'
+              title: '更改人数',
+              content: '订单已支付。'
             })
           } else if (res.closed) {
             this.$msgBox.doModal({
               type: 'yes',
-              title: '订单',
-              content: '已关闭。'
+              title: '更改人数',
+              content: '订单已关闭。'
             })
           } else if (res.success) {
             this.$msgBox.doModal({
               type: 'yes',
-              title: '订单',
-              content: '已更新。'
+              title: '更改人数',
+              content: '人数已更新。'
             })
           }
 
@@ -881,7 +881,7 @@
             this.$msgBox.doModal({
               type: 'yes',
               title: '取消订单',
-              content: '已取消。'
+              content: '订单已取消。'
             }).then(async (val) => {
               this.httpOrder()
             })
