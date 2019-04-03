@@ -563,7 +563,7 @@
         this.$msgBox.doModal({
           type: 'yesOrNo',
           title: '更改状态',
-          content: `确认将${highlightApi.highlight(orderFood.foodCategoryName)}的状态更为${highlightApi.highlight(this.getStatusLabel(status))}</span>吗?`
+          content: `确认将${highlightApi.highlight(orderFood.foodCategoryName)}的状态更新为${highlightApi.highlight(this.getStatusLabel(status))}吗?`
         }).then(async (val) => {
           if (val === 'Yes') {
             httpOrderAdminApi.putFoodStatus(this.$route.params.shortId, this.$route.params.orderOneId, orderFood.id, status).then(res => {
@@ -711,7 +711,7 @@
         if (this.role !== 'admin') {
           this.$msgBox.doModal({
             type: 'yes',
-            title: '重置状态',
+            title: '更改状态',
             content: '仅允许店长可以操作，您只有查看权限。'
           })
 
@@ -721,22 +721,14 @@
         if (this.http.res.order.status === 'Finish' || this.http.res.order.status === 'Closed') {
           this.$msgBox.doModal({
             type: 'yes',
-            title: '重置状态',
+            title: '更改状态',
             content: '订单已关闭。'
           })
 
           return
         }
 
-        this.$msgBox.doModal({
-          type: 'yesOrNo',
-          title: '重置状态',
-          content: `您确认要将${highlightApi.highlight(orderFood.foodCategoryName)}状态重置为${highlightApi.highlight(this.getStatusLabel(status))}吗?`
-        }).then(async (val) => {
-          if (val === 'Yes') {
-            this.btnChangeStatus(orderFood, status)
-          }
-        })
+        this.btnChangeStatus(orderFood, status)
       },
       btnChangePrice() {
         this.ui.v_change_price = true
