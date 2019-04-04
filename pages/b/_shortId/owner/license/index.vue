@@ -342,12 +342,18 @@
         }
       },
       btnChargeConfirm() {
+        let userAgent = navigator.userAgent.toLowerCase() || window.navigator.userAgent.toLowerCase()
+        let inWechat = userAgent.match(/MicroMessenger/i) || userAgent.match(/webdebugger/i)
+
         let wechatOpenId = localStateApi.user.getWechatOpenId()
-        if (!Boolean(wechatOpenId)) {
+        if (!Boolean(wechatOpenId) || !inWechat) {
+          this.ui.vCoverMask = false
+          this.ui.vChargeYear = false
+          
           this.$msgBox.doModal({
             type: 'yes',
             title: '立即支付',
-            content: '请使用微信打开或退出登录后重试。'
+            content: '请在微信中使用。'
           })
 
           return
