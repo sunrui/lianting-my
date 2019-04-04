@@ -23,8 +23,7 @@
       image_height_330: imageHeight === 330,
       image_height_460: imageHeight === 460,
       image_height_900: imageHeight === 900
-      }" v-if="!ui.inWechat">
-        <img class="image" :src="ui.image" alt="">
+      }" :style="{'backgroundImage':'url('+ui.image+')'}" v-if="!ui.inWechat">
       </div>
       <div class="image_box" v-bind:class="{
       image_height_220_no_title_bar: imageHeight === 220,
@@ -32,8 +31,7 @@
       image_height_330_no_title_bar: imageHeight === 330,
       image_height_460_no_title_bar: imageHeight === 460,
       image_height_900_no_title_bar: imageHeight === 900
-    }" v-else>
-        <img class="image" :src="ui.image" alt="">
+    }" :style="{'backgroundImage':'url('+ui.image+')'}" v-else>
       </div>
     </div>
   </div>

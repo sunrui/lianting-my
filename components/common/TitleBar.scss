@@ -45,12 +45,8 @@
   top: 0;
   left: 0;
   z-index: -1;
-  overflow: hidden;
-}
-
-.image {
-  width: 100%;
-  height: auto;
+  background-size: 100% auto;
+  background-repeat: repeat-y;
 }
 
 .image_white {
