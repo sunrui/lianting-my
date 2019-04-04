@@ -1,13 +1,11 @@
 .container {
-  position: fixed;
-  height: 100%;
-  width: 100%;
+  text-align: center;
   background: white;
+  min-height: 100vh;
 }
 
 .lt {
   position: relative;
-  margin-top: px2rem(150);
   text-align: center;
 
   .lt_logo {
@@ -74,47 +72,45 @@
   }
 }
 
-.login_footer {
-  .login_third_title {
-    text-align: center;
+.login_third_title {
+  text-align: center;
 
-    .login_third_divide {
-      display: inline-block;
-      vertical-align: middle;
-      margin: px2rem(10) px2rem(20);
-      height: px2rem(1);
-      width: 15%;
-      background: rgba(230, 230, 230, 0.5);
-    }
-
-    .login_third_label {
-      display: inline-block;
-      vertical-align: middle;
-    }
+  .login_third_divide {
+    display: inline-block;
+    vertical-align: middle;
+    margin: px2rem(10) px2rem(20);
+    height: px2rem(1);
+    width: 15%;
+    background: rgba(230, 230, 230, 0.5);
   }
 
-  .login_third_icon {
-    text-align: center;
-    margin: px2rem(30);
+  .login_third_label {
+    display: inline-block;
+    vertical-align: middle;
+  }
+}
 
-    .login_third_icon_wechat {
-      display: inline-block;
-      margin: px2rem(0) px2rem(15);
+.login_third_icon {
+  text-align: center;
+  margin: px2rem(30);
 
-      background: url("/img/login/login_wechat.png") no-repeat;
-      background-size: 100% 100%;
-      width: px2rem(72);
-      height: px2rem(72);
-    }
+  .login_third_icon_wechat {
+    display: inline-block;
+    margin: px2rem(0) px2rem(15);
 
-    .login_third_icon_alipay {
-      display: inline-block;
-      margin: px2rem(0) px2rem(15);
+    background: url("/img/login/login_wechat.png") no-repeat;
+    background-size: 100% 100%;
+    width: px2rem(72);
+    height: px2rem(72);
+  }
 
-      background: url("/img/login/login_alipay.png") no-repeat;
-      background-size: 100% 100%;
-      width: px2rem(72);
-      height: px2rem(72);
-    }
+  .login_third_icon_alipay {
+    display: inline-block;
+    margin: px2rem(0) px2rem(15);
+
+    background: url("/img/login/login_alipay.png") no-repeat;
+    background-size: 100% 100%;
+    width: px2rem(72);
+    height: px2rem(72);
   }
 }

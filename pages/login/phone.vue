@@ -2,12 +2,16 @@
   <div class="container">
     <title-bar v-show="false" :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
+    <div class="blank_100"></div>
+    <div class="blank_50"></div>
+
     <div class="lt">
       <div class="lt_logo"></div>
       <div class="lt_label">恋厅</div>
     </div>
 
     <div class="blank_100"></div>
+    <div class="blank_50"></div>
 
     <div class="login">
       <div class="addition">
@@ -47,19 +51,19 @@
       <div class="button_big" @click="btnLogin">登录</div>
     </div>
 
-    <div class="blank_50"></div>
+    <div class="blank_100"></div>
 
-    <div class="login_footer">
-      <div class="login_third_title">
-        <div class="login_third_divide"></div>
-        <div class="login_third_label">第三方账号直接登录</div>
-        <div class="login_third_divide"></div>
-      </div>
-      <div class="login_third_icon">
-        <div class="login_third_icon_wechat" @click="btnWechat"></div>
-<!--        <div class="login_third_icon_alipay" @click="btnAlipay"></div>-->
-      </div>
+    <div class="login_third_title">
+      <div class="login_third_divide"></div>
+      <div class="login_third_label">第三方账号直接登录</div>
+      <div class="login_third_divide"></div>
     </div>
+    <div class="login_third_icon">
+      <div class="login_third_icon_wechat" @click="btnWechat"></div>
+      <!--        <div class="login_third_icon_alipay" @click="btnAlipay"></div>-->
+    </div>
+    <div class="blank_20"></div>
+
   </div>
 </template>
 
