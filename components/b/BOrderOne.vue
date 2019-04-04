@@ -423,7 +423,8 @@
           },
           res: {
             order: {
-              orderFoods: []
+              orderFoods: [],
+              createdAt: new Date()
             }
           }
         },
