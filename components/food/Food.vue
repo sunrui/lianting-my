@@ -148,7 +148,6 @@
       </div>
 
       <div class="blank_100"></div>
-      <div class="blank_50"></div>
     </div>
 
     <transition name="toggle">
