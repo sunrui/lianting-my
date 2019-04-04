@@ -3,7 +3,7 @@
     <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
     <div class="shop_nav">
-      <div class="shop_center shop_center_owner">
+      <div class="shop_center">
         <div class="shop_info">
           <div class="shop_info_logo">
             <div class="shop_logo_radius shop_logo_radius_center">
@@ -33,12 +33,14 @@
         </div>
       </div>
 
-      <div class="shop_nav_box shop_nav_box_owner">
+      <div class="shop_nav_box">
         <div class="shop_nav_blank"></div>
 
-        <div class="shop_nav_box_one shop_nav_box_one_owner" v-for="nav in ui.navs" @click="btnNav(nav)">
-          <img class="shop_nav_box_one_icon shop_nav_box_one_icon_owner" :src="nav.icon" :alt="nav.name">
-          <div class="shop_nav_box_one_label">{{nav.name}}</div>
+        <div class="shop_nav_box_one_box">
+          <div class="shop_nav_box_one shop_nav_box_one_owner" v-for="nav in ui.navs" @click="btnNav(nav)">
+            <img class="shop_nav_box_one_icon shop_nav_box_one_icon_owner" :src="nav.icon" :alt="nav.name">
+            <div class="shop_nav_box_one_label">{{nav.name}}</div>
+          </div>
         </div>
       </div>
     </div>

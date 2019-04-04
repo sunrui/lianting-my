@@ -16,21 +16,13 @@
   border: solid px2rem(1) #f52626;
 }
 
-.shop_center_owner {
-  bottom: px2rem(750);
-}
-
-.shop_nav_box_owner {
-  height: px2rem(900);
-}
-
 .shop_nav_box_one_owner {
-  width: 33.33%;
+  width: 33.33% !important;
   padding-bottom: px2rem(20);
 }
 
 .shop_nav_box_one_icon_owner {
-  width: px2rem(80);
-  height: px2rem(80);
+  width: px2rem(80) !important;
+  height: px2rem(80) !important;
 }
 
