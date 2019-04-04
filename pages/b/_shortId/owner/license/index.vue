@@ -349,7 +349,7 @@
         if (!Boolean(wechatOpenId) || !inWechat) {
           this.ui.vCoverMask = false
           this.ui.vChargeYear = false
-          
+
           this.$msgBox.doModal({
             type: 'yes',
             title: '立即支付',

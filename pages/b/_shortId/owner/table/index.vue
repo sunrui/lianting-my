@@ -64,8 +64,7 @@
         </div>
 
         <div class="box">
-          <div class="blank_20"></div>
-
+          <div class="blank_10"></div>
           <div class="food_add box_radius" @click="btnTableAdd(tableGroup)">
             <div class="food_add_icon"></div>
             <div class="food_add_label">添加餐桌</div>
