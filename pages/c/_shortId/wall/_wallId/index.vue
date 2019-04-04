@@ -357,10 +357,9 @@
               content: '留言成功。'
             }).then(async (val) => {
               this.ui.replyContent = ''
+              this.httpWall()
             })
           }
-
-          this.httpReply()
         })
       }
     }
