@@ -165,7 +165,9 @@
         },
         http: {
           res: {
-            order: {},
+            order: {
+              createdAt: new Date()
+            },
             coupon: {
               valid: []
             }

@@ -166,7 +166,9 @@
             }
           },
           res: {
-            order: {}
+            order: {
+              createdAt: new Date()
+            }
           }
         }
       }
