@@ -60,7 +60,7 @@
       },
       image: {
         type: String,
-        default: '/img/common/title_bar_bg.png'
+        default: null
       },
       imageHeight: {
         type: Number,
@@ -99,11 +99,16 @@
     methods: {
       httpInfo() {
         if (this.imageHeight === 0 || !Boolean(this.$route.params.shortId)) {
+          this.setImage('/img/common/title_bar_bg.png')
           return
         }
 
         httpInfoApi.get(this.$route.params.shortId).then(res => {
-          this.setImage(res.image)
+          if (Boolean(res.image)) {
+            this.setImage(res.image)
+          } else {
+            this.setImage('/img/common/title_bar_bg.png')
+          }
         })
       },
       setTitle() {
