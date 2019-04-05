@@ -167,7 +167,7 @@
           },
           res: {
             order: {
-              createdAt: new Date()
+              createdAt: new Date().getTime()
             }
           }
         }

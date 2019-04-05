@@ -166,7 +166,7 @@
         http: {
           res: {
             order: {
-              createdAt: new Date()
+              createdAt: new Date().getTime()
             },
             coupon: {
               valid: []

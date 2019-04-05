@@ -424,7 +424,7 @@
           res: {
             order: {
               orderFoods: [],
-              createdAt: new Date()
+              createdAt: new Date().getTime()
             }
           }
         },
