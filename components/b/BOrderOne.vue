@@ -382,7 +382,7 @@
 
         <div class="choose_box">
           <div class="choose_remark">
-            <div class="choose_remark_label">更改原因</div>
+            <div class="choose_remark_label">改价原因</div>
 
             <div class="blank_20"></div>
 
