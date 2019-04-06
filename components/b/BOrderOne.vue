@@ -162,7 +162,8 @@
           </div>
         </div>
 
-        <div class="blank_10"></div>
+        <div v-if="http.res.order.tasteNotes && http.res.order.tasteNotes.length > 0 ||
+          http.res.order.remarks && http.res.order.remarks.length > 0" class="blank_10"></div>
       </div>
     </div>
 
