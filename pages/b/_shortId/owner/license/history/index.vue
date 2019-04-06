@@ -42,7 +42,7 @@
 </template>
 
 <script>
-  import {httpShopLicenseApi} from '../../../../../../api/http/shop/httpShopLicenseApi';
+  import {httpLicenseApi} from '../../../../../../api/http/license/httpLicenseApi';
   import TitleBar from '../../../../../../components/common/TitleBar';
 
   export default {
@@ -73,7 +73,7 @@
       };
     },
     created() {
-      httpShopLicenseApi.getAll(this.$route.params.shortId).then(res => {
+      httpLicenseApi.getAll(this.$route.params.shortId).then(res => {
         if (res.elements.length === 0) {
           this.$router.push(`/b/${this.$route.params.shortId}/owner/license/history/empty`);
         }

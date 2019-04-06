@@ -228,7 +228,7 @@
 
 <script>
   import {httpShopApi} from '../../../../../api/http/shop/httpShopApi'
-  import {httpShopLicenseApi} from '../../../../../api/http/shop/httpShopLicenseApi'
+  import {httpLicenseApi} from '../../../../../api/http/license/httpLicenseApi'
   import TitleBar from '../../../../../components/common/TitleBar'
   import {scrollApi} from '../../../../../api/local/scrollApi'
   import {stateApi as localStateApi} from "../../../../../api/local/stateApi"
@@ -273,7 +273,7 @@
         })
       },
       httpLicensePlan() {
-        httpShopLicenseApi.getPlanAll(this.http.res.shop.type, 0, 20).then(res => {
+        httpLicenseApi.getPlanAll(this.http.res.shop.type, 0, 20).then(res => {
           this.http.res.shopLicensePlans = res
         })
       },
@@ -342,6 +342,20 @@
         }
       },
       btnChargeConfirm() {
+
+        httpLicenseApi.postOrderTest(this.$route.params.shortId, this.ui.licensePlan.id, this.ui.year, 'WECHAT_JSAPI').then(res => {
+          pThis.$msgBox.doModal({
+            type: 'yes',
+            title: '立即续费',
+            content: '支付已成功，支付结果可能存在延迟，请稍候刷新等待服务器返回。'
+          }).then(async (val) => {
+            this.httpShop()
+          })
+        })
+
+        return
+
+
         let userAgent = navigator.userAgent.toLowerCase() || window.navigator.userAgent.toLowerCase()
         let inWechat = userAgent.match(/MicroMessenger/i) || userAgent.match(/webdebugger/i)
 
@@ -359,7 +373,7 @@
           return
         }
 
-        httpShopLicenseApi.postOrder(this.$route.params.shortId, this.ui.licensePlan.id, this.ui.year, 'WECHAT_JSAPI').then(res => {
+        httpLicenseApi.postOrder(this.$route.params.shortId, this.ui.licensePlan.id, this.ui.year, 'WECHAT_JSAPI').then(res => {
           this.ui.vCoverMask = false
           this.ui.vChargeYear = false
 
