@@ -205,7 +205,7 @@
 
     <div class="button_box" v-if="http.res.order.status === 'NotPaid'">
       <div class="button_big" @click="btnFood" v-if="role === 'waiter'">加餐</div>
-      <div class="button_small" @click="btnChangePrice" v-if="role === 'cashier'">改价</div>
+      <div class="button_small" @click="btnChangePrice" v-if="role === 'cashier'">更改价格</div>
       <div class="button_small" @click="btnPayOffline" v-if="role === 'cashier'">线下支付</div>
       <div class="button_big" @click="btnCancel" v-if="role === 'admin'">取消订单</div>
     </div>
@@ -243,17 +243,23 @@
 
         <div class="modal_title">取消订单</div>
 
-        <div class="addition">
-          <div class="addition_item">
-            <div class="addition_item_label_text_area">备注</div>
-            <div class="addition_item_text_area">
-              <textarea class="addition_item_text_input" placeholder="您可以在此备注取消订单的原因。" v-model="http.req.cancel.remark"></textarea>
+        <div class="blank_20"></div>
+
+        <div class="choose_box">
+          <div class="choose_remark">
+            <div class="choose_remark_label">取消原因</div>
+
+            <div class="blank_20"></div>
+
+            <div class="choose_remark_text_area">
+              <textarea class="choose_remark_text_input" placeholder="请在此备注取消订单的原因。" v-model="http.req.cancel.remark"></textarea>
             </div>
           </div>
         </div>
 
         <div class="modal_button_box">
-          <div class="button_big" @click="btnCancelConfirm">确认</div>
+          <div class="button_big" v-if="http.req.cancel.remark" @click="btnCancelConfirm">确认</div>
+          <div class="button_big button_gray" v-else>确认</div>
         </div>
       </div>
     </transition>
@@ -266,17 +272,30 @@
 
         <div class="modal_title">线下支付</div>
 
-        <div class="addition">
-          <div class="addition_item">
-            <div class="addition_item_label_text_area">备注</div>
-            <div class="addition_item_text_area">
-              <textarea class="addition_item_text_input" placeholder="您可以在此备注离线支付情况。" v-model="http.req.payOffline.remark"></textarea>
+        <div class="blank_20"></div>
+
+        <div class="choose_box">
+          <div class="choose_remark">
+            <div class="choose_remark_label">支付方式</div>
+
+            <div class="blank_30"></div>
+
+            <div class="choose_remark_one" v-for="remark in ui.offlinePayRemarks">
+              <div class="choose_remark_name" v-if="http.req.payOffline.remark !== remark" @click="btnChooseOfflinePayRemark(remark)">{{remark}}</div>
+              <div class="choose_remark_name_select" v-else>{{remark}}</div>
+            </div>
+
+            <div class="blank_20"></div>
+
+            <div class="choose_remark_text_area">
+              <textarea class="choose_remark_text_input" placeholder="请在此备注线下支付方式。" v-model="http.req.payOffline.remark"></textarea>
             </div>
           </div>
         </div>
 
         <div class="modal_button_box">
-          <div class="button_big" @click="btnPayOfflineConfirm">确认</div>
+          <div class="button_big" v-if="http.req.payOffline.remark" @click="btnPayOfflineConfirm">确认</div>
+          <div class="button_big button_gray" v-else>确认</div>
         </div>
       </div>
     </transition>
@@ -291,7 +310,7 @@
 
         <div class="blank_20"></div>
 
-        <div class="return">
+        <div class="choose_box">
           <div class="return_food">
             <div class="return_food_category_name">{{ui.selectOrderFood.foodCategoryName}}</div>
             <div class="return_food_name">({{ui.selectOrderFood.foodName}})</div>
@@ -316,25 +335,26 @@
           <div class="box_divide"></div>
           <div class="blank_20"></div>
 
-          <div class="return_remark">
-            <div class="return_remark_label">退菜备注</div>
+          <div class="choose_remark">
+            <div class="choose_remark_label">退菜原因</div>
 
             <div class="blank_30"></div>
 
-            <div class="return_remark_one" v-for="remark in ui.returnRemarks">
-              <div class="return_remark_name" v-if="http.req.return.remark !== remark" @click="btnChooseReturnRemark(remark)">{{remark}}</div>
-              <div class="return_remark_name_select" v-else>{{remark}}</div>
+            <div class="choose_remark_one" v-for="remark in ui.returnRemarks">
+              <div class="choose_remark_name" v-if="http.req.return.remark !== remark" @click="btnChooseReturnRemark(remark)">{{remark}}</div>
+              <div class="choose_remark_name_select" v-else>{{remark}}</div>
             </div>
 
-            <div class="blank_30"></div>
+            <div class="blank_20"></div>
 
-            <div class="return_remark_text_area">
-              <textarea class="return_remark_text_input" placeholder="您可以在此备注退菜原因。" v-model="http.req.return.remark"></textarea>
+            <div class="choose_remark_text_area">
+              <textarea class="choose_remark_text_input" placeholder="请在此备注退菜的原因。" v-model="http.req.return.remark"></textarea>
             </div>
           </div>
 
           <div class="modal_button_box">
-            <div class="button_big" @click="btnFoodReturnConfirm">确认</div>
+            <div class="button_big" v-if="http.req.return.remark" @click="btnFoodReturnConfirm">确认</div>
+            <div class="button_big button_gray" v-else>确认</div>
           </div>
         </div>
       </div>
@@ -346,7 +366,9 @@
           <img class="modal_close" src="/img/common/close.png" alt="">
         </div>
 
-        <div class="modal_title">改价</div>
+        <div class="modal_title">更改价格</div>
+
+        <div class="blank_20"></div>
 
         <div class="change_price_label">请输入新价格 (原价: {{http.res.order.price}} 元)</div>
 
@@ -358,17 +380,21 @@
           </div>
         </div>
 
-        <div class="addition">
-          <div class="addition_item">
-            <div class="addition_item_label_text_area">备注</div>
-            <div class="addition_item_text_area">
-              <textarea class="addition_item_text_input" placeholder="您可以在此备注您的改价原因。" v-model="http.req.changePrice.remark"></textarea>
+        <div class="choose_box">
+          <div class="choose_remark">
+            <div class="choose_remark_label">更改原因</div>
+
+            <div class="blank_20"></div>
+
+            <div class="choose_remark_text_area">
+              <textarea class="choose_remark_text_input" placeholder="请在此备注更改价格的原因。" v-model="http.req.changePrice.remark"></textarea>
             </div>
           </div>
         </div>
 
         <div class="modal_button_box">
-          <div class="button_big" @click="btnChangePriceConfirm">确认</div>
+          <div class="button_big" v-if="http.req.changePrice.remark" @click="btnChangePriceConfirm">确认</div>
+          <div class="button_big button_gray" v-else>确认</div>
         </div>
       </div>
     </transition>
@@ -446,7 +472,10 @@
           returnRemarks: [
             '不想要了', '点错菜', '点重菜'
           ],
-          returnCounts: []
+          returnCounts: [],
+          offlinePayRemarks: [
+            '现金收银', '微信转账', '支付宝转账'
+          ]
         }
       }
     },
@@ -753,7 +782,7 @@
         if (this.role !== 'admin' && this.role !== 'cashier') {
           this.$msgBox.doModal({
             type: 'yes',
-            title: '改价',
+            title: '更改价格',
             content: '仅允许店长、收银可以操作，您只有查看权限。。'
           })
 
@@ -763,8 +792,8 @@
         if (this.http.req.changePrice.price <= 0) {
           this.$msgBox.doModal({
             type: 'yes',
-            title: '改价',
-            content: '更改价格不能为零，如您需取消订单请联系店长。'
+            title: '更改价格',
+            content: '更改价格不能为零，如您要取消订单请联系店长。'
           })
 
           return
@@ -774,26 +803,26 @@
           if (res.orderOneIdNotExists) {
             this.$msgBox.doModal({
               type: 'yes',
-              title: '改价',
+              title: '更改价格',
               content: '订单不存在。'
             })
           } else if (res.paid) {
             this.$msgBox.doModal({
               type: 'yes',
-              title: '改价',
-              content: '已支付，无法改价。'
+              title: '更改价格',
+              content: '已支付，无法更改价格。'
             })
           } else if (res.closed) {
             this.$msgBox.doModal({
               type: 'yes',
-              title: '改价',
+              title: '更改价格',
               content: '订单已关闭。'
             })
           } else if (res.success) {
             this.$msgBox.doModal({
               type: 'yes',
-              title: '改价',
-              content: '已改价。'
+              title: '更改价格',
+              content: '已更改价格。'
             }).then(async (val) => {
               this.httpOrder()
             })
@@ -890,6 +919,9 @@
       },
       btnChooseReturnRemark(remark) {
         this.http.req.return.remark = remark
+      },
+      btnChooseOfflinePayRemark(remark) {
+        this.http.req.payOffline.remark = remark
       },
       btnFoodReturn(orderFood) {
         if (this.http.res.order.status === 'Finish' || this.http.res.order.status === 'Closed') {
