@@ -104,6 +104,8 @@
           </div>
         </div>
 
+        <div class="box_divide"></div>
+
         <div class="addition_item" v-if="http.res.order.payMethod">
           <div class="addition_item_label">支付方式</div>
           <div class="addition_item_content">{{
