@@ -544,9 +544,9 @@
       }
 
       .cart_food_button {
-        margin-right: px2rem(30);
-        float: right;
-        margin-top: px2rem((90-40)/2);
+        position: absolute;
+        right: px2rem(30);
+        top: px2rem((90 - 40) / 2);
 
         .cart_food_button_count {
           color: #666666;
