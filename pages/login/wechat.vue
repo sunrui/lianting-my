@@ -6,7 +6,7 @@
 
   export default {
     metaInfo: {
-      title: '微信自动登录'
+      title: '微信登录'
     },
     mounted() {
       let code = this.$route.query.code
