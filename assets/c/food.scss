@@ -376,6 +376,7 @@
     .food_button_count {
       color: #333333;
       float: right;
+      line-height: px2rem(40);
       padding: 0 px2rem(20);
     }
 
@@ -550,7 +551,7 @@
         .cart_food_button_count {
           color: #666666;
           float: right;
-
+          line-height: px2rem(40);
           padding: 0 px2rem(20);
         }
 
