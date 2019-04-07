@@ -363,32 +363,6 @@
         }
       },
       btnChargeConfirm() {
-        let model = {
-          magicId: 'magicId',
-          shortId: 'live',
-          licenseType: 'Lite',
-          licenseChannel: 'Taobao',
-          upgradeDate: '30',
-          marketUserName: '张三',
-          marketOrderId: '2015',
-          remark: '淘宝特惠授权升级'
-        }
-
-        httpLicenseApi.postUpgrade(this.$route.params.shortId, model).then(res => {
-          this.ui.vCoverMask = false
-          this.ui.vChargeYear = false
-
-          this.$msgBox.doModal({
-            type: 'yes',
-            title: '立即续费',
-            content: JSON.parse(JSON.stringify(res))
-          }).then(async (val) => {
-            this.httpShop()
-          })
-        })
-        return
-
-
         let userAgent = navigator.userAgent.toLowerCase() || window.navigator.userAgent.toLowerCase()
         let inWechat = userAgent.match(/MicroMessenger/i) || userAgent.match(/webdebugger/i)
 
