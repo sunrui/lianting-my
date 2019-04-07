@@ -184,6 +184,16 @@
         })
       },
       httpCreate() {
+        if (!new RegExp(/[a-zA-Z0-9_]{2,20}$/).test(this.http.req.shop.shortId)) {
+          this.$msgBox.doModal({
+            type: 'yes',
+            title: '创建店铺',
+            content: '请输入正确的唯一标识。'
+          })
+
+          return
+        }
+
         httpShopApi.post(this.http.req.shop).then(res => {
           if (res.haveFree) {
             this.$msgBox.doModal({
