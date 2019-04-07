@@ -109,13 +109,13 @@
         http: {
           req: {
             upgrade: {
-              magicId: 'honeysense',
-              shortId: 'live',
+              magicId: '',
+              shortId: '',
               licenseType: 'Lite',
               licenseChannel: 'Taobao',
-              upgradeDate: '30',
-              marketUserName: '张三',
-              marketOrderId: '2015',
+              upgradeDate: '',
+              marketUserName: '',
+              marketOrderId: new Date().getTime(),
               remark: '淘宝特惠授权升级'
             }
           }

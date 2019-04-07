@@ -91,7 +91,7 @@
         http: {
           req: {
             downgrade: {
-              magicId: 'honeysense',
+              magicId: '',
               shortId: '',
               licenseType: 'Lite',
               downgradeDate: '',
