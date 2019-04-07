@@ -8,7 +8,7 @@
       <div class="empty" v-if="!ui.vReport">
         <img class="empty_image" src="/img/no/no_crash.png" alt="">
         <div v-if="!ui.reported">
-          <div class="empty_label">{{ui.error.notFound? '404 - 呃〜好像迷路了！' : '呃〜好像罢工了！'}}</div>
+          <div class="empty_label">{{ui.error.notFound? '404 - 呃〜好像迷路了！' : '呃〜服务器好像开小差了！'}}</div>
           <div class="empty_label_tip">您可将出错原因<span class="empty_label_tip_link" @click="btnReport">反馈</span>来帮助我们或返回重试。</div>
           <div class="blank_30"></div>
         </div>
