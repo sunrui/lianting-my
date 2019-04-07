@@ -2,8 +2,21 @@
   background: white;
 
   .license_label_one {
+    position: relative;
     height: px2rem(60);
-    margin-left: px2rem(35);
-    line-height: px2rem(60);
+    padding: 0 px2rem(35);
+
+    .license_label_one_name {
+      display: inline-block;
+      line-height: px2rem(60);
+      text-align: left;
+    }
+
+    .license_label_one_value {
+      display: inline-block;
+      float: right;
+      line-height: px2rem(60);
+      text-align: right;
+    }
   }
 }

@@ -158,7 +158,7 @@
       },
       httpShop() {
         httpShopApi.getOne(this.$route.params.shortId).then(res => {
-          if (res.licenseType === 'Free') {
+          if (res.licenseType !== 'Normal' && res.licenseType !== 'Senior') {
             this.ui.limit.demoView = true
           } else {
             this.ui.limit.demoView = res.licenseExpiredAt < new Date().getTime()

@@ -1,6 +1,6 @@
 import axios from 'axios/index'
 
-let base = '/api/license'
+let base = '/api/shop/license'
 
 export const httpLicenseApi = {
   getAll(shortId, page, size) {
@@ -20,13 +20,8 @@ export const httpLicenseApi = {
       unifiedPayWay: unifiedPayWay
     }).then(res => res.data)
   },
-  postOrderTest(shortId, shopLicensePlanId, year, unifiedPayWay) {
-    return axios.post(`${base}/order/test`, {
-      shortId: shortId,
-      shopLicensePlanId: shopLicensePlanId,
-      year: year,
-      unifiedPayWay: unifiedPayWay
-    }).then(res => res.data)
+  postUpgrade(shortId, model) {
+    return axios.post(`${base}/upgrade`, model).then(res => res.data)
   },
   getOrder(shopLicenseOrderId) {
     return axios.get(`${base}/order/${shopLicenseOrderId}`).then(res => res.data)

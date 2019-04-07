@@ -16,6 +16,7 @@
             <div class="shop_title_license_label">
               {{
               http.res.shop.licenseType === 'Free' ? '免费会员' :
+              http.res.shop.licenseType === 'Lite' ? '专享会员' :
               http.res.shop.licenseType === 'Normal' ? '标准会员' :
               http.res.shop.licenseType === 'Senior' ? '旗舰会员' : http.res.shop.licenseType
               }}
@@ -32,6 +33,7 @@
         <div class="shop_detail_one">
           <div class="shop_detail_left">店铺类型: {{
             http.res.shop.licenseType === 'Free' ? '免费会员' :
+            http.res.shop.licenseType === 'Lite' ? '专享会员' :
             http.res.shop.licenseType === 'Normal' ? '标准会员' :
             http.res.shop.licenseType === 'Senior' ? '旗舰会员' : http.res.shop.licenseType
             }}
@@ -49,7 +51,7 @@
 
     <div class="blank_50"></div>
 
-    <div class="shop_license_one" v-for="license in http.res.shopLicensePlans.elements">
+    <div class="shop_license_one" v-if="license.plan.licenseType !== 'Lite'" v-for="license in http.res.shopLicensePlans.elements">
       <div class="shop_license_plan box_radius">
         <div class="blank_30"></div>
 
@@ -73,7 +75,7 @@
           shop_license_label_normal: license.plan.licenseType === 'Normal',
           shop_license_label_senior: license.plan.licenseType === 'Senior',
           shop_license_price_free: license.plan.licenseType === 'Free',
-          }">{{'￥' + license.plan.price + '/年'}}
+          }">{{'￥' + license.plan.pricePerYear + '/年'}}
         </div>
 
         <div class="blank_10"></div>
@@ -89,6 +91,17 @@
           " alt="">
             <div class="shop_feature_one_label">在线支付渠道</div>
           </div>
+
+          <div class="shop_feature_one">
+            <img class="shop_feature_one_icon" :src="
+            license.plan.licenseType === 'Free' ? '/img/b/license/b_license_free_check.png' :
+          license.plan.licenseType === 'Normal' ? '/img/b/license/b_license_normal_check.png' :
+          license.plan.licenseType === 'Senior' ? '/img/b/license/b_license_senior_check.png' : '/img/b/license/b_license_free_check.png'
+          " alt="">
+            <div class="shop_feature_one_label">无限订单</div>
+          </div>
+
+          <div class="box_divide"></div>
 
           <div class="shop_feature_one">
             <img class="shop_feature_one_icon" :src="
@@ -171,13 +184,21 @@
             <div class="shop_feature_one_label">{{license.limit.maxCoupon}} 个营销活动</div>
           </div>
 
-          <div class="shop_feature_one">
+          <div class="shop_feature_one" v-if="license.plan.licenseType === 'Normal' || license.plan.licenseType === 'Senior'">
+            <div class="box_divide"></div>
             <img class="shop_feature_one_icon" :src="
-            license.plan.licenseType === 'Free' ? '/img/b/license/b_license_free_check.png' :
           license.plan.licenseType === 'Normal' ? '/img/b/license/b_license_normal_check.png' :
           license.plan.licenseType === 'Senior' ? '/img/b/license/b_license_senior_check.png' : '/img/b/license/b_license_free_check.png'
           " alt="">
-            <div class="shop_feature_one_label">无限订单</div>
+            <div class="shop_feature_one_label">专享播报展屏</div>
+          </div>
+
+          <div class="shop_feature_one" v-if="license.plan.licenseType === 'Normal' || license.plan.licenseType === 'Senior'">
+            <img class="shop_feature_one_icon" :src="
+          license.plan.licenseType === 'Normal' ? '/img/b/license/b_license_normal_check.png' :
+          license.plan.licenseType === 'Senior' ? '/img/b/license/b_license_senior_check.png' : '/img/b/license/b_license_free_check.png'
+          " alt="">
+            <div class="shop_feature_one_label">专享技术人员支持</div>
           </div>
         </div>
 
@@ -342,17 +363,29 @@
         }
       },
       btnChargeConfirm() {
+        let model = {
+          magicId: 'magicId',
+          shortId: 'live',
+          licenseType: 'Lite',
+          licenseChannel: 'Taobao',
+          upgradeDate: '30',
+          marketUserName: '张三',
+          marketOrderId: '2015',
+          remark: '淘宝特惠授权升级'
+        }
 
-        httpLicenseApi.postOrderTest(this.$route.params.shortId, this.ui.licensePlan.id, this.ui.year, 'WECHAT_JSAPI').then(res => {
-          pThis.$msgBox.doModal({
+        httpLicenseApi.postUpgrade(this.$route.params.shortId, model).then(res => {
+          this.ui.vCoverMask = false
+          this.ui.vChargeYear = false
+
+          this.$msgBox.doModal({
             type: 'yes',
             title: '立即续费',
-            content: '支付已成功，支付结果可能存在延迟，请稍候刷新等待服务器返回。'
+            content: JSON.parse(JSON.stringify(res))
           }).then(async (val) => {
             this.httpShop()
           })
         })
-
         return
 
 
