@@ -84,6 +84,20 @@
             <div class="license_label_one_value">{{shopLicense.shopLicenseUpgrade.remark}}</div>
           </div>
         </div>
+        <div v-if="shopLicense.shopLicenseDowngrade">
+          <div class="license_label_one">
+            <div class="license_label_one_name">降级订单号</div>
+            <div class="license_label_one_value">{{shopLicense.shopLicenseDowngrade.downgradeId}}</div>
+          </div>
+          <div class="license_label_one">
+            <div class="license_label_one_name">降级天数</div>
+            <div class="license_label_one_value">{{shopLicense.shopLicenseDowngrade.downgradeDate}}天</div>
+          </div>
+          <div class="license_label_one">
+            <div class="license_label_one_name">备注</div>
+            <div class="license_label_one_value">{{shopLicense.shopLicenseDowngrade.remark}}</div>
+          </div>
+        </div>
         <div class="blank_10"></div>
       </div>
     </div>
@@ -92,7 +106,7 @@
 </template>
 
 <script>
-  import {httpLicenseApi} from '../../../../../../api/http/license/httpLicenseApi';
+  import {httpLicenseApi} from '../../../../../../api/http/lt/httpLicenseApi';
   import TitleBar from '../../../../../../components/common/TitleBar';
 
   export default {

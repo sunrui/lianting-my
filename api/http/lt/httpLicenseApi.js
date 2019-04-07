@@ -23,6 +23,9 @@ export const httpLicenseApi = {
   postUpgrade(shortId, model) {
     return axios.post(`${base}/upgrade`, model).then(res => res.data)
   },
+  postDowngrade(shortId, model) {
+    return axios.post(`${base}/downgrade`, model).then(res => res.data)
+  },
   getOrder(shopLicenseOrderId) {
     return axios.get(`${base}/order/${shopLicenseOrderId}`).then(res => res.data)
   },

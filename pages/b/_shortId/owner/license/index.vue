@@ -249,7 +249,7 @@
 
 <script>
   import {httpShopApi} from '../../../../../api/http/shop/httpShopApi'
-  import {httpLicenseApi} from '../../../../../api/http/license/httpLicenseApi'
+  import {httpLicenseApi} from '../../../../../api/http/lt/httpLicenseApi'
   import TitleBar from '../../../../../components/common/TitleBar'
   import {scrollApi} from '../../../../../api/local/scrollApi'
   import {stateApi as localStateApi} from "../../../../../api/local/stateApi"
