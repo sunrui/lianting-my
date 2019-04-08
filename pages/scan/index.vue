@@ -23,11 +23,9 @@
     },
     mounted() {
       let userAgent = navigator.userAgent.toLowerCase() || window.navigator.userAgent.toLowerCase()
-      let inWechat = userAgent.match(/MicroMessenger/i) || userAgent.match(/webdebugger/i)
+      this.ui.inWechat = userAgent.match(/MicroMessenger/i) || userAgent.match(/webdebugger/i)
 
-      let wechatOpenId = localStateApi.user.getWechatOpenId()
-      if (!Boolean(wechatOpenId) || !inWechat) {
-        this.ui.inWechat = false
+      if (!inWechat) {
         return
       }
 
