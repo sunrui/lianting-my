@@ -1,0 +1,20 @@
+.charge {
+  position: relative;
+  margin-top: px2rem(30);
+  padding: 0 px2rem(35);
+
+  .charge_header {
+    height: px2rem(24);
+    border-radius: px2rem(12);
+    background: #b2b8c6;
+  }
+
+  .charge_body {
+    position: absolute;
+    background: white;
+    top: px2rem(12);
+    left: px2rem(35 + 15);
+    right: px2rem(35 + 15);
+    height: px2rem(300);
+  }
+}
