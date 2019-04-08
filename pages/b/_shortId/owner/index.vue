@@ -154,7 +154,9 @@
         },
         http: {
           res: {
-            shop: {},
+            shop: {
+              licenseExpiredAt: new Date().getTime()
+            },
             info: {}
           }
         }

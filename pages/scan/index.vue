@@ -1,54 +1,81 @@
 <template>
+  <div>
+    <empty v-if="!ui.inWechat" image="/img/no/no_crash.png" content="请在微信中使用。"></empty>
+  </div>
 </template>
 
 <script>
   import {httpWechatApi} from "../../api/http/lt/httpWechatApi"
+  import {stateApi as localStateApi} from "../../api/local/stateApi"
+  import Empty from "../../components/common/Empty"
 
   export default {
     metaInfo: {
       title: '扫码点餐'
     },
-    created() {
-      let pThis = this
+    components: {Empty},
+    data() {
+      return {
+        ui: {
+          inWechat: true
+        }
+      }
+    },
+    mounted() {
+      let userAgent = navigator.userAgent.toLowerCase() || window.navigator.userAgent.toLowerCase()
+      let inWechat = userAgent.match(/MicroMessenger/i) || userAgent.match(/webdebugger/i)
 
-      let url = location.href.split('#')[0]
-      httpWechatApi.getConfig(this.$route.params.shortId, url).then(res => {
-        let wx = require('weixin-js-sdk')
+      let wechatOpenId = localStateApi.user.getWechatOpenId()
+      if (!Boolean(wechatOpenId) || !inWechat) {
+        this.ui.inWechat = false
+        return
+      }
 
-        wx.config({
-          debug: false,
-          appId: res.appId,
-          timestamp: res.timestamp,
-          nonceStr: res.noncestr,
-          signature: res.signature,
-          jsApiList: [
-            'checkJsApi', 'scanQRCode']
-        })
+      this.openScan()
+    },
+    methods: {
+      openScan() {
+        let pThis = this
 
-        wx.error(function (res) {
-          pThis.$msgBox.doModal({
-            type: 'yes',
-            title: '扫码失败',
-            content: JSON.stringify(res)
+        let url = window.location.href.split("#")[0]
+        httpWechatApi.getConfig('ltcity', url).then(res => {
+          let wx = require('weixin-js-sdk')
+
+          wx.config({
+            debug: false,
+            appId: res.appId,
+            timestamp: res.timestamp,
+            nonceStr: res.noncestr,
+            signature: res.signature,
+            jsApiList: [
+              'checkJsApi', 'scanQRCode']
+          })
+
+          wx.error(function (res) {
+            pThis.$msgBox.doModal({
+              type: 'yes',
+              title: '扫码失败',
+              content: JSON.stringify(res)
+            })
+          })
+
+          wx.ready(function () {
+            wx.checkJsApi({
+              jsApiList: ["qrCode", "barCode"],
+              success: function (res) {
+              }
+            })
+
+            wx.scanQRCode({
+              needResult: 0,
+              scanType: ["qrCode"],
+              success: function (res) {
+                WeixinJSBridge.call('closeWindow')
+              },
+            })
           })
         })
-
-        wx.ready(function () {
-          wx.checkJsApi({
-            jsApiList: ["qrCode", "barCode"],
-            success: function (res) {
-            }
-          })
-
-          wx.scanQRCode({
-            needResult: 0,
-            scanType: ["qrCode"],
-            success: function (res) {
-              WeixinJSBridge.call('closeWindow')
-            },
-          })
-        })
-      })
+      }
     }
   }
 </script>
