@@ -25,7 +25,7 @@
       let userAgent = navigator.userAgent.toLowerCase() || window.navigator.userAgent.toLowerCase()
       this.ui.inWechat = userAgent.match(/MicroMessenger/i) || userAgent.match(/webdebugger/i)
 
-      if (!inWechat) {
+      if (!this.ui.inWechat) {
         return
       }
 
