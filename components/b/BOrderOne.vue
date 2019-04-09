@@ -770,12 +770,6 @@
         }
 
         if (this.role !== 'admin') {
-          this.$msgBox.doModal({
-            type: 'yes',
-            title: '烹饪餐食',
-            content: '仅允许店长可以操作，您只有查看权限。'
-          })
-
           return
         }
 
