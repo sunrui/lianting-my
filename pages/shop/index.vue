@@ -98,6 +98,7 @@
   import TitleBar from '../../components/common/TitleBar'
   import { httpShopApi } from '../../api/http/shop/httpShopApi'
   import { httpInfoApi } from '../../api/http/lt/httpInfoApi'
+  import {stateApi} from "../../api/local/stateApi"
 
   export default {
     metaInfo: {
@@ -141,6 +142,7 @@
       httpShop() {
         httpShopApi.getAll(0, 99).then(res => {
           if (!res.shops && !res.shopGroups) {
+            stateApi.clear()
             this.$router.push('/shop/create')
             return
           }
