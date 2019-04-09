@@ -181,7 +181,7 @@
 
   .order_tableware_price {
     position: absolute;
-    right: px2rem(30);
+    right: px2rem(35);
     text-align: right;
     top: 0;
     line-height: px2rem(100);
@@ -270,31 +270,59 @@
   height: px2rem(100);
 
   .order_price_food_count {
-    position: absolute;
-    left: px2rem(35);
+    display: inline-block;
+    vertical-align: bottom;
+    margin-left: px2rem(35);
+    font-size: px2rem(26);
     line-height: px2rem(100);
   }
 
   .order_price_total_label {
-    position: relative;
+    display: inline-block;
+    vertical-align: bottom;
     float: right;
+    font-size: px2rem(26);
     line-height: px2rem(100);
-    padding-right: px2rem(40);
+    padding-right: px2rem(20);
   }
 
   .order_price_total {
+    display: inline-block;
+    vertical-align: bottom;
     float: right;
-    position: relative;
     font-size: px2rem(50);
     color: #f52626;
-    right: px2rem(25);
+    margin-right: px2rem(35);
     line-height: px2rem(100);
   }
 
   .order_price_total:before {
+    display: inline-block;
+    vertical-align: bottom;
     content: "¥";
     font-size: px2rem(36);
     color: #f52626;
+    margin-right: px2rem(5);
+    line-height: px2rem(100);
+  }
+
+  .order_price_total_original {
+    display: inline-block;
+    vertical-align: bottom;
+    float: right;
+    font-size: px2rem(28);
+    color: #999999;
+    margin-right: px2rem(15);
+    line-height: px2rem(100);
+    text-decoration:line-through;
+  }
+
+  .order_price_total_original:before {
+    display: inline-block;
+    vertical-align: bottom;
+    content: "¥";
+    font-size: px2rem(28);
+    color: #999999;
     margin-right: px2rem(5);
     line-height: px2rem(100);
   }

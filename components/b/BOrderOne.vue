@@ -118,6 +118,7 @@
         <div class="order_price">
           <div class="order_price_food_count">共计 {{getTotalFood()}} 份</div>
           <div class="order_price_total">{{http.res.order.price}}</div>
+          <div class="order_price_total_original" v-if="http.res.order.price !== http.res.order.priceOriginal">{{http.res.order.priceOriginal}}</div>
           <div class="order_price_total_label">小计</div>
         </div>
       </div>

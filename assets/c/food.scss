@@ -329,14 +329,14 @@
 
       .food_price_now {
         display: inline-block;
-        font-size: px2rem(36);
-        line-height: px2rem(36);
+        font-size: px2rem(42);
         color: #f52626;
       }
 
       .food_price_now:before {
         content: "¥";
-        line-height: px2rem(36);
+        font-size: px2rem(26);
+        line-height: px2rem(42);
         color: #f52626;
         margin-right: px2rem(5);
       }
@@ -353,7 +353,6 @@
         content: "¥";
         font-size: px2rem(18);
         line-height: px2rem(24);
-        text-decoration: line-through;
         color: #999999;
         margin-right: px2rem(5);
       }

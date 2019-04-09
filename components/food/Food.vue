@@ -754,6 +754,8 @@
         }
       },
       btnOrder() {
+        scrollApi.enable(true)
+
         this.ui.vCategory = false
         this.ui.vCoverMaskCart = false
         this.ui.vCart = false

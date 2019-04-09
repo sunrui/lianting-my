@@ -90,16 +90,21 @@
   }
 
   .coupon_button {
-    position: absolute;
-    top: 0;
-    right: px2rem(35);
-    height: px2rem(48);
-    line-height: px2rem(48);
     color: white;
     background: linear-gradient(90deg, rgba(255, 51, 68, 1), rgba(255, 136, 51, 1));
-    border-radius: px2rem(20);
+    margin-right: px2rem(30);
+    line-height: px2rem(58);
     text-align: center;
-    padding: 0 px2rem(20);
+
+    width: px2rem(168);
+    height: px2rem(58);
+    border: px2rem(1) solid rgba(230, 230, 230, 0.5);
+    border-radius: px2rem(58/2);
+
+    right: 0;
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
   }
 }
 

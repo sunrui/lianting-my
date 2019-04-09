@@ -118,7 +118,7 @@
               title: '领取优惠券',
               content: '领取成功。'
             }).then(async (val) => {
-              this.$router.push(this.title.backUri)
+              this.httpFetch()
             })
           }
         })

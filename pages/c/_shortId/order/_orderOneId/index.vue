@@ -42,11 +42,10 @@
         </div>
 
         <div @click="btnChooseCoupon()">
-          <div class="order_coupon" v-if="http.res.order.couponDeductPrice &&
-        (!$route.query.deductPrice ? true : $route.query.deductPrice === http.res.order.couponDeductPrice)">
+          <div class="order_coupon" v-if="http.res.order.couponDeductPrice || $route.query.deductPrice">
             <div class="order_coupon_icon">优惠券</div>
             <div class="order_coupon_label">优惠</div>
-            <div class="order_coupon_content">{{http.res.order.couponDeductPrice}}</div>
+            <div class="order_coupon_content">{{http.res.order.couponDeductPrice ? http.res.order.couponDeductPrice : $route.query.deductPrice}}</div>
           </div>
           <div class="order_coupon" v-else-if="http.res.coupon.valid.length > 0">
             <div class="order_coupon_icon">优惠券</div>
@@ -61,6 +60,7 @@
         <div class="order_price">
           <div class="order_price_food_count">共计 {{getTotalFood()}} 份</div>
           <div class="order_price_total">{{http.res.order.price}}</div>
+          <div class="order_price_total_original" v-if="http.res.order.price !== http.res.order.priceOriginal">{{http.res.order.priceOriginal}}</div>
           <div class="order_price_total_label">小计</div>
         </div>
       </div>
@@ -108,7 +108,6 @@
 
         <div class="addition_item" v-if="http.res.order.payMethod">
           <div class="box_divide"></div>
-
           <div class="addition_item_label">支付方式</div>
           <div class="addition_item_content">{{
             http.res.order.payMethod === 'Wechat' ? '微信支付' :
@@ -126,12 +125,9 @@
             <div class="addition_item_content">{{new Date(parseInt(http.res.order.payPaidAt)).toLocaleString()}}</div>
           </div>
         </div>
-      </div>
-    </div>
 
-    <div class="box">
-      <div class="addition box_radius" @click="btnWall(http.res.order)">
-        <div class="addition_item">
+        <div class="addition_item" @click="btnWall(http.res.order)">
+          <div class="box_divide"></div>
           <div class="addition_item_label">留言墙</div>
           <div class="addition_item_link">{{ http.res.order.wallId ? '已留言' : '未留言' }}</div>
         </div>
@@ -181,11 +177,7 @@
       }
     },
     created() {
-      if (this.$route.query.deductPrice && this.$route.query.deductPrice !== this.http.res.order.couponDeductPrice) {
-        this.btnChooseCouponConfirm()
-      } else {
-        this.httpOrder()
-      }
+      this.httpOrder()
     },
     methods: {
       httpOrder() {
@@ -251,6 +243,16 @@
       },
       btnChooseCoupon() {
         if (this.http.res.coupon.valid.length > 0) {
+          if (Boolean(this.http.res.order.couponDeductPrice)) {
+            this.$msgBox.doModal({
+              type: 'yes',
+              title: '使用优惠券',
+              content: '您已使用一张优惠券。'
+            })
+
+            return
+          }
+
           this.$router.push({
             path: `/c/${this.$route.params.shortId}/coupon/choose`,
             query: {
@@ -267,6 +269,8 @@
               type: 'yes',
               title: '使用优惠券',
               content: '订单不存在。'
+            }).then(async (val) => {
+              this.$router.push(`/c/${this.$route.params.shortId}`)
             })
             return
           }
@@ -276,7 +280,10 @@
               type: 'yes',
               title: '使用优惠券',
               content: '订单已关闭。'
+            }).then(async (val) => {
+              this.$router.push(`/c/${this.$route.params.shortId}`)
             })
+
             return
           }
 
@@ -285,7 +292,10 @@
               type: 'yes',
               title: '使用优惠券',
               content: '订单已支付。'
+            }).then(async (val) => {
+              this.$router.push(`/c/${this.$route.params.shortId}`)
             })
+
             return
           }
 
@@ -294,12 +304,15 @@
               type: 'yes',
               title: '使用优惠券',
               content: '优惠券无效。'
+            }).then(async (val) => {
+              this.$router.push(`/c/${this.$route.params.shortId}`)
             })
+
             return
           }
 
           if (res.success) {
-            this.httpOrder()
+            this.payNow()
           }
         })
       },
@@ -445,7 +458,11 @@
             return
           }
 
-          this.payNow()
+          if (this.$route.query.deductPrice && !Boolean(this.http.res.order.couponDeductPrice)) {
+            this.btnChooseCouponConfirm()
+          } else {
+            this.payNow()
+          }
         })
       },
     }

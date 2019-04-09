@@ -58,7 +58,7 @@
 </template>
 
 <script>
-  import { httpCouponAdminApi } from '../../../../../api/http/lt/httpCouponAdminApi'
+  import {httpCouponAdminApi} from '../../../../../api/http/lt/httpCouponAdminApi'
   import TitleBar from '../../../../../components/common/TitleBar'
   import Empty from '../../../../../components/common/Empty'
 
@@ -67,7 +67,7 @@
       title: '优惠券'
     },
     middleware: 'auth',
-    components: { TitleBar, Empty },
+    components: {TitleBar, Empty},
     data() {
       return {
         title: {
@@ -117,13 +117,7 @@
                   content: '优惠券不存在。'
                 })
               } else if (res.success) {
-                this.$msgBox.doModal({
-                  type: 'yes',
-                  title: '删除优惠券',
-                  content: '删除成功。'
-                }).then(async (val) => {
-                  this.httpCoupon()
-                })
+                this.httpCoupon()
               }
             })
           }
