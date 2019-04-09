@@ -209,6 +209,9 @@
       <div class="button_small" @click="btnPayOffline" v-if="role === 'cashier'">线下支付</div>
       <div class="button_big" @click="btnCancel" v-if="role === 'admin'">取消订单</div>
     </div>
+    <div class="button_box" v-else-if="http.res.order.status !== 'Finish' && http.res.order.status !== 'Closed'">
+      <div class="button_big" @click="btnCancel" v-if="role === 'admin'">取消订单</div>
+    </div>
     <div class="blank_30" v-else></div>
 
     <transition name="toggle">
@@ -483,7 +486,7 @@
       this.httpOrder()
     },
     mounted() {
-      this.title.backUri = `/b/${this.$route.params.shortId}/${this.role}/order`
+      this.title.backUri = `/b/${this.$route.params.shortId}/${this.role}`
       this.$refs.titleBar_BOrderOne.setBackUri(this.title.backUri)
     },
     methods: {
