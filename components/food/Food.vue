@@ -417,7 +417,7 @@
           if (node != null) {
             const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
             let posY = node.getBoundingClientRect().top + scrollTop
-            window.scroll(0, posY)
+            scrollApi.scrollAnimation(0, posY)
           }
         }
       },

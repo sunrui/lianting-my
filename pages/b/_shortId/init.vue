@@ -21,6 +21,7 @@
 </template>
 
 <script>
+  import {scrollApi} from "../../../api/local/scrollApi"
 
   export default {
     metaInfo: {
@@ -42,10 +43,10 @@
     },
     methods: {
       updateInitNext() {
-        switch (this.ui.taskIndex++) {
+        switch (this.ui.taskIndex) {
           case 0: {
             this.ui.tasks.push({
-              label: '认证您的身份信息',
+              label: '检查手机绑定状态',
               finish: false
             })
             this.updateInit(0)
@@ -81,6 +82,8 @@
           }
         }
 
+        scrollApi.scrollAnimation(0, document.body.scrollHeight)
+        this.ui.taskIndex++
       },
       delayInit() {
         if (this.ui.tasks.length === 0) {
