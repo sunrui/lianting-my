@@ -66,8 +66,18 @@
   }
 }
 
+.charge_empty {
+  height: px2rem(200);
+  color: #999999;
+  text-align: center;
+  line-height: px2rem(200);
+  font-size: px2rem(28);
+}
+
 .charge_footer {
   position: relative;
+  border-radius: px2rem(10);
   background: #FAFAFA;
+  margin-top: px2rem(10);
   height: px2rem(20);
 }
