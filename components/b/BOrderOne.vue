@@ -582,7 +582,7 @@
           if (this.role !== 'admin' && this.role !== 'cooker') {
             this.$msgBox.doModal({
               type: 'yes',
-              title: '更新餐食',
+              title: '烹饪餐食',
               content: '仅允许店长、厨师可以操作，您只有查看权限。'
             })
 
@@ -594,7 +594,7 @@
           if (this.role !== 'admin' && this.role !== 'waiter') {
             this.$msgBox.doModal({
               type: 'yes',
-              title: '更新餐食',
+              title: '烹饪餐食',
               content: '仅允许店长、服务员可以操作，您只有查看权限。'
             })
 
@@ -602,39 +602,60 @@
           }
         }
 
+        let content
+
+        switch (status) {
+          case 'Wait':
+            content = `确认将${highlightApi.highlight(orderFood.foodCategoryName)}的状态重置为${highlightApi.highlight(this.getStatusLabel(status))}？`
+            break
+          case 'Cooking':
+            content = `即将为${highlightApi.highlight(orderFood.foodCategoryName)}烹饪计时，确定${highlightApi.highlight(this.getStatusLabel(status))}？`
+            break
+          case 'Cooked':
+            content = `确认${highlightApi.highlight(orderFood.foodCategoryName)}已经${highlightApi.highlight(this.getStatusLabel(status))}？`
+            break
+          case 'Finish':
+            content = `确认${highlightApi.highlight(orderFood.foodCategoryName)}已为顾客${highlightApi.highlight(this.getStatusLabel(status))}？`
+            break
+        }
+
         this.$msgBox.doModal({
           type: 'yesOrNo',
-          title: '更新餐食',
-          content: `确认将${highlightApi.highlight(orderFood.foodCategoryName)}的更新为${highlightApi.highlight(this.getStatusLabel(status))}吗?`
+          title: '烹饪餐食',
+          content: content
         }).then(async (val) => {
           if (val === 'Yes') {
             httpOrderAdminApi.putFoodStatus(this.$route.params.shortId, this.$route.params.orderOneId, orderFood.id, status).then(res => {
               if (res.orderOneIdNotExists) {
                 this.$msgBox.doModal({
                   type: 'yes',
-                  title: '更新餐食',
+                  title: '烹饪餐食',
                   content: '订单不存在。'
                 })
               } else if (res.orderFoodIdNotExists) {
                 this.$msgBox.doModal({
                   type: 'yes',
-                  title: '更新餐食',
+                  title: '烹饪餐食',
                   content: '餐食不存在。'
                 })
               } else if (res.closed) {
                 this.$msgBox.doModal({
                   type: 'yes',
-                  title: '更新餐食',
+                  title: '烹饪餐食',
                   content: '订单已关闭。'
                 })
               } else if (res.success) {
-                this.$msgBox.doModal({
-                  type: 'yes',
-                  title: '更新餐食',
-                  content: `${highlightApi.highlight(orderFood.foodCategoryName)}已更新为${highlightApi.highlight(this.getStatusLabel(status))}。`
-                }).then(async (val) => {
+                if (status === 'Cooked') {
+                  this.$msgBox.doModal({
+                    type: 'yes',
+                    title: '烹饪餐食',
+                    content: '服务员已收到上菜通知。如服务员已关闭推送，请联系服务员及时上菜。'
+                  }).then(async (val) => {
+                    this.httpOrder()
+                  })
+                } else {
                   this.httpOrder()
-                })
+                }
               }
             })
           }
@@ -748,12 +769,10 @@
           return
         }
 
-        console.log(orderFood)
-
         if (this.role !== 'admin') {
           this.$msgBox.doModal({
             type: 'yes',
-            title: '更新餐食',
+            title: '烹饪餐食',
             content: '仅允许店长可以操作，您只有查看权限。'
           })
 
@@ -763,7 +782,7 @@
         if (this.http.res.order.status === 'Finish' || this.http.res.order.status === 'Closed') {
           this.$msgBox.doModal({
             type: 'yes',
-            title: '更新餐食',
+            title: '烹饪餐食',
             content: '订单已关闭。'
           })
 
@@ -930,7 +949,7 @@
         if (this.http.res.order.status === 'Finish' || this.http.res.order.status === 'Closed') {
           this.$msgBox.doModal({
             type: 'yes',
-            title: '更新餐食',
+            title: '烹饪餐食',
             content: '订单已关闭。'
           })
 
