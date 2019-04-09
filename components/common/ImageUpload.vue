@@ -112,17 +112,6 @@
                 wx.getLocalImgData({
                   localId: res.localIds[0],
                   success(res) {
-                    var tempFilesSize = res.tempFiles[0].size;
-                    if(tempFilesSize > 1024 * 1024){
-                      pThis.$msgBox.doModal({
-                        type: 'yes',
-                        title: '上传图片失败',
-                        content: '最多允许上传的大小为 1M 的图片。'
-                      })
-
-                      return
-                    }
-
                     let localData = res.localData
                     if (localData.indexOf('data:image') !== 0) {
                       localData = 'data:image/jpeg;base64,' + localData
