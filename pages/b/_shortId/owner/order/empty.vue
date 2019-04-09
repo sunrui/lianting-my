@@ -21,7 +21,7 @@
         title: {
           canBack: true,
           title: '全部订单',
-          backUri: `/b/${this.$route.params.shortId}/admin`,
+          backUri: `/b/${this.$route.params.shortId}/owner`,
           theme: 'white',
           imageHeight: 0
         }

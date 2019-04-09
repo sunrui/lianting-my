@@ -55,6 +55,10 @@
     middleware: 'auth',
     components: {TitleBar},
     props: {
+      date: {
+        type: Number,
+        default: null
+      },
       role: {
         type: String,
         default: 'waiter'
@@ -87,6 +91,20 @@
 
       if (Boolean(tableOneId)) {
         httpOrderAdminApi.getAllByTableOneId(this.$route.params.shortId, tableOneId, live, 0, 99).then(res => {
+          if (res.elements.length === 0) {
+            this.$router.push(`/b/${this.$route.params.shortId}/${this.role}/order/empty`)
+            return
+          }
+
+          res.elements.sort(function (a, b) {
+            return b.createdAt - a.createdAt
+          })
+
+          this.http.res.orders = res
+          this.ui.loading = false
+        })
+      } else if (this.date) {
+        httpOrderAdminApi.getAllByDate(this.$route.params.shortId, this.date, 0, 99).then(res => {
           if (res.elements.length === 0) {
             this.$router.push(`/b/${this.$route.params.shortId}/${this.role}/order/empty`)
             return

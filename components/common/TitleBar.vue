@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="!ui.inWechat">
+    <div v-if="ui.vTitleBar">
       <div class="title_bar image_white" v-if="ui.theme === 'white'">
         <div class="title_bar_back" v-if="canBack" @click="btnBack">
           <div class="title_bar_back title_bar_back_black"></div>
@@ -23,7 +23,7 @@
       image_height_330: imageHeight === 330,
       image_height_460: imageHeight === 460,
       image_height_900: imageHeight === 900
-      }" :style="{'backgroundImage':'url('+ui.image+')'}" v-if="!ui.inWechat">
+      }" :style="{'backgroundImage':'url('+ui.image+')'}" v-if="ui.vTitleBar">
       </div>
       <div class="image_box" v-bind:class="{
       image_height_220_no_title_bar: imageHeight === 220,
@@ -78,7 +78,7 @@
           image: this.image,
           theme: this.theme,
           backUri: this.backUri,
-          inWechat: false
+          vTitleBar: true
         }
       }
     },
@@ -89,9 +89,6 @@
       window.addEventListener('popstate', this.popStateHandle)
       window.history.pushState('forward', null, null)
       window.history.forward()
-
-      let userAgent = navigator.userAgent.toLowerCase() || window.navigator.userAgent.toLowerCase()
-      this.ui.inWechat = userAgent.match(/MicroMessenger/i) || userAgent.match(/webdebugger/i)
     },
     beforeDestroy() {
       window.removeEventListener('popstate', this.popStateHandle)

@@ -19,7 +19,7 @@
 
           <div v-if="http.res.statOrder.elements.length > 0">
             <div v-for="statOrder in http.res.statOrder.elements">
-              <div class="charge_body_content">
+              <div class="charge_body_content" @click="btnOrder(statOrder.date)">
                 <div class="charge_body_content_one">{{getDate(statOrder.date)}}</div>
                 <div class="charge_body_content_one">{{statOrder.totalOrder}}</div>
                 <div class="charge_body_content_one">{{statOrder.totalPeople}}</div>
@@ -42,6 +42,7 @@
   import TitleBar from "../../../../../components/common/TitleBar"
   import {httpStatAdminApi} from "../../../../../api/http/lt/httpStatAdminApi"
   import {timeApi} from "../../../../../api/local/timeApi"
+  import {httpShopApi} from "../../../../../api/http/shop/httpShopApi"
 
   export default {
     metaInfo: {
@@ -64,6 +65,9 @@
               elements: []
             }
           }
+        },
+        ui: {
+          limitDetail: true
         }
       }
     },
@@ -74,9 +78,31 @@
       getDate(date) {
         return timeApi.dateFormat(new Date(parseInt(date)), 'yyyy/MM/dd')
       },
+      httpShop() {
+        httpShopApi.getOne(this.$route.params.shortId).then(res => {
+          if (res.licenseType !== 'Normal' && res.licenseType !== 'Senior') {
+            this.ui.limit.limitDetail = true
+          } else {
+            this.ui.limit.limitDetail = res.licenseExpiredAt < new Date().getTime()
+          }
+        })
+      },
       httpStatOrder() {
         httpStatAdminApi.getOrder(this.$route.params.shortId, 0, 30).then(res => {
           this.http.res.statOrder = res
+        })
+      },
+      btnOrder(date) {
+        if (this.ui.limitDetail) {
+          this.$router.push(`/b/${this.$route.params.shortId}/owner/limit`)
+          return
+        }
+
+        this.$router.push({
+          path: `/b/${this.$route.params.shortId}/owner/order`,
+          query: {
+            date: date
+          }
         })
       }
     }
