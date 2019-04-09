@@ -112,6 +112,17 @@
                 wx.getLocalImgData({
                   localId: res.localIds[0],
                   success(res) {
+                    var tempFilesSize = res.tempFiles[0].size;
+                    if(tempFilesSize > 1024 * 1024){
+                      pThis.$msgBox.doModal({
+                        type: 'yes',
+                        title: '上传图片失败',
+                        content: '最多允许上传的大小为 1M 的图片。'
+                      })
+
+                      return
+                    }
+
                     let localData = res.localData
                     if (localData.indexOf('data:image') !== 0) {
                       localData = 'data:image/jpeg;base64,' + localData
@@ -216,7 +227,7 @@
           container: document.getElementById('image-upload'),
           resize: {quality: 90},
           filters: {
-            max_file_size: '512kb',
+            max_file_size: '1M',
             mime_types: [
               {title: '图片', extensions: 'jpg,jpeg,gif,png'}
             ]
@@ -256,7 +267,7 @@
                 pThis.$msgBox.doModal({
                   type: 'yes',
                   title: '上传图片失败',
-                  content: '选择的文件最大不超过512kb。'
+                  content: '选择的文件最大不能超过1M。'
                 })
               } else if (err.code === -601) {
                 pThis.$msgBox.doModal({

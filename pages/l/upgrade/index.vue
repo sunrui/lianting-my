@@ -199,7 +199,7 @@
         this.$msgBox.doModal({
           type: 'yesOrNo',
           title: '授权升级',
-          content: `您确认要升级授权吗？<br><br>第三方订单号: ${highlightApi.highlight(this.http.req.upgrade.marketOrderId)}`
+          content: `您确认要升级授权吗？<br/><br/>第三方订单号: ${highlightApi.highlight(this.http.req.upgrade.marketOrderId)}`
         }).then(async (val) => {
           if (val === 'Yes') {
             httpLicenseApi.postUpgrade(this.$route.params.shortId, this.http.req.upgrade).then(res => {
