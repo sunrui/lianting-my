@@ -25,6 +25,15 @@ export const httpOrderAdminApi = {
       }
     }).then(res => res.data)
   },
+  getAllByDate(shortId, timeStamp, page, size) {
+    return axios.get(`${base}/${shortId}/order`, {
+      params: {
+        timeStamp: timeStamp,
+        page: page,
+        size: size
+      }
+    }).then(res => res.data)
+  },
   getAllByUserId(shortId, userId, live, page, size) {
     return axios.get(`${base}/${shortId}/order`, {
       params: {
