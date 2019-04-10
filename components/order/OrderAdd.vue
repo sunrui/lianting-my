@@ -285,7 +285,7 @@
               title: '加餐',
               content: '部分食品已下架，请重新下单。'
             }).then(async (val) => {
-              cartApi.clear()
+              cartApi.clearAll()
               if (this.roleWaiter) {
                 this.$router.push(`/b/${this.$route.params.shortId}/waiter/food`)
               } else {
@@ -300,7 +300,7 @@
               price += food.select * food.food.price
             }
 
-            cartApi.clear()
+            cartApi.clearAll()
 
             let path
 

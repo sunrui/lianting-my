@@ -19,7 +19,7 @@
         r = '/'
       }
 
-      cartApi.clear()
+      cartApi.clearAll()
 
       let userAgent = navigator.userAgent.toLowerCase() || window.navigator.userAgent.toLowerCase();
 

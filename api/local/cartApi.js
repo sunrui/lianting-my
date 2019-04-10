@@ -181,7 +181,7 @@ export const cartApi = {
   dump() {
     logApi.dump(this.cart)
   },
-  clear() {
+  clearAll() {
     this.cart = {
       select: 0,
       price: 0,
@@ -229,7 +229,7 @@ export const cartStoreApiTest = function () {
     }
   };
 
-  cartApi.clear();
+  cartApi.clearAll();
 
   cartApi.increase(food0.category, food0.food);
   cartApi.dump();

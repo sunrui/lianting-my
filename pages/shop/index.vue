@@ -99,6 +99,7 @@
   import { httpShopApi } from '../../api/http/shop/httpShopApi'
   import { httpInfoApi } from '../../api/http/lt/httpInfoApi'
   import {stateApi} from "../../api/local/stateApi"
+  import {storeApi} from "../../api/local/storeApi"
 
   export default {
     metaInfo: {
@@ -142,7 +143,8 @@
       httpShop() {
         httpShopApi.getAll(0, 99).then(res => {
           if (!res.shops && !res.shopGroups) {
-            stateApi.clear()
+            stateApi.clearAll()
+            storeApi.clearAll()
             this.$router.push('/shop/create')
             return
           }

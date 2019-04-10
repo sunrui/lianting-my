@@ -13,8 +13,8 @@
     },
     created() {
       httpUserApi.postLogout().then(res => {
-        stateApi.clear()
-        cartApi.clear()
+        stateApi.clearAll()
+        cartApi.clearAll()
         storeApi.clearAll()
         this.clearCookie()
 

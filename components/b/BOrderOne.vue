@@ -607,16 +607,16 @@
 
         switch (status) {
           case 'Wait':
-            content = `确认将${highlightApi.highlight(orderFood.foodCategoryName)}的状态重置为${highlightApi.highlight(this.getStatusLabel(status))}？`
+            content = `确认将${highlightApi.highlight(orderFood.foodCategoryName)}的状态重置为${highlightApi.highlight(this.getStatusLabel(status))}吗？`
             break
           case 'Cooking':
-            content = `即将为${highlightApi.highlight(orderFood.foodCategoryName)}烹饪计时，确定${highlightApi.highlight(this.getStatusLabel(status))}？`
+            content = `即将为${highlightApi.highlight(orderFood.foodCategoryName)}烹饪计时，确定${highlightApi.highlight(this.getStatusLabel(status))}了吗？`
             break
           case 'Cooked':
-            content = `确认${highlightApi.highlight(orderFood.foodCategoryName)}已经${highlightApi.highlight(this.getStatusLabel(status))}？`
+            content = `确认${highlightApi.highlight(orderFood.foodCategoryName)}已经${highlightApi.highlight(this.getStatusLabel(status))}吗？`
             break
           case 'Finish':
-            content = `确认${highlightApi.highlight(orderFood.foodCategoryName)}已为顾客${highlightApi.highlight(this.getStatusLabel(status))}？`
+            content = `确认${highlightApi.highlight(orderFood.foodCategoryName)}已为顾客${highlightApi.highlight(this.getStatusLabel(status))}了吗？`
             break
         }
 

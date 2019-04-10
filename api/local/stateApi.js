@@ -1,7 +1,7 @@
 import { storeApi } from './storeApi'
 
 export const stateApi = {
-  clear() {
+  clearAll() {
     storeApi.object.set(this.user._key, {})
   },
   user: {

@@ -24,7 +24,7 @@ axios.interceptors.response.use(function (response) {
 
   if (err && err.response) {
     if (err.response.data.error === 'HttpUnauthorized') {
-      stateApi.clear()
+      stateApi.clearAll()
       window.location.href = '/login?r=/&shortId=undefined'
       return
     }

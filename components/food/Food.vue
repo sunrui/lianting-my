@@ -714,7 +714,7 @@
         this.ui.vCoverMaskCart = false
         scrollApi.enable(true)
 
-        cartApi.clear()
+        cartApi.clearAll()
         this.$store.commit('cart/update', cartApi.getCart())
 
         this.computedFoodSelect()
