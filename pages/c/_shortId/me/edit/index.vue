@@ -77,7 +77,7 @@
 <script>
   import TitleBar from '../../../../../components/common/TitleBar'
   import {httpUserApi} from '../../../../../api/http/user/httpUserApi'
-  import {stateApi} from '../../../../../api/local/stateApi'
+  import {userApi} from '../../../../../api/local/userApi'
   import ImageUpload from '../../../../../components/common/ImageUpload'
 
   export default {
@@ -110,7 +110,7 @@
         this.$set(this.http.res.userInfo, 'headImgUrl', fileName)
       },
       httpUserInfo() {
-        httpUserApi.getInfo(stateApi.user.getId()).then(res => {
+        httpUserApi.getInfo(userApi.getUserId()).then(res => {
           if (res.userIdNotExists) {
             this.$msgBox.doModal({
               type: 'yes',

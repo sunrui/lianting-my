@@ -19,8 +19,6 @@
         r = '/'
       }
 
-      cartApi.clearAll()
-
       let userAgent = navigator.userAgent.toLowerCase() || window.navigator.userAgent.toLowerCase();
 
       let shortId = this.$route.query.shortId

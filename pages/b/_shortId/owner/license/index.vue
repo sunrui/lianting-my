@@ -252,7 +252,7 @@
   import {httpLicenseApi} from '../../../../../api/http/lt/httpLicenseApi'
   import TitleBar from '../../../../../components/common/TitleBar'
   import {scrollApi} from '../../../../../api/local/scrollApi'
-  import {stateApi as localStateApi} from "../../../../../api/local/stateApi"
+  import {userApi} from "../../../../../api/local/userApi"
 
   export default {
     metaInfo: {
@@ -366,7 +366,7 @@
         let userAgent = navigator.userAgent.toLowerCase() || window.navigator.userAgent.toLowerCase()
         let inWechat = userAgent.match(/MicroMessenger/i) || userAgent.match(/webdebugger/i)
 
-        let wechatOpenId = localStateApi.user.getWechatOpenId()
+        let wechatOpenId = userApi.getUserWechatOpenId()
         if (!Boolean(wechatOpenId) || !inWechat) {
           this.ui.vCoverMask = false
           this.ui.vChargeYear = false

@@ -201,6 +201,13 @@
           color: #f52626;
         }
       }
+
+      .table_empty {
+        text-align: center;
+        color: #999999;
+        border:px2rem(1) solid rgba(230, 230, 230, 0.5);
+        padding: px2rem(30) px2rem(0);
+      }
     }
   }
 

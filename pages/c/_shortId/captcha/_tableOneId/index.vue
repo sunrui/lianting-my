@@ -2,7 +2,7 @@
 </template>
 
 <script>
-  import {stateApi} from '../../../../../api/local/stateApi'
+  import {userApi} from '../../../../../api/local/userApi'
   import {httpTableApi} from '../../../../../api/http/lt/httpTableApi'
   import {httpCaptchaApi} from '../../../../../api/http/lt/httpCaptchaApi'
 
@@ -28,9 +28,9 @@
           content: '餐桌二维码已过期，请重新扫码或联系服务员。'
         })
 
-        stateApi.table.setCaptchaTableId(null)
-        stateApi.table.setTableName(null)
-        stateApi.table.setTableNumber(null)
+        userApi.setCaptchaTableId(null)
+        userApi.setTableName(null)
+        userApi.setTableNumber(null)
       },
       httpTable(tableOneId) {
         httpTableApi.getTable(this.$route.params.shortId, tableOneId).then(res => {
@@ -48,9 +48,10 @@
           if (res.tableOneNotExists) {
             this.invalidTable()
           } else {
-            stateApi.table.setCaptchaTableId(res.captchaTableId)
-            stateApi.table.setTableName(res.tableName)
-            stateApi.table.setTableNumber(res.tableNumber)
+            userApi.setCaptchaTableId(res.captchaTableId)
+            userApi.setTableName(res.tableName)
+            userApi.setTableNumber(res.tableNumber)
+
             this.$router.push(`/c/${this.$route.params.shortId}`)
           }
         })

@@ -113,7 +113,7 @@
   import TitleBar from '../common/TitleBar'
   import {cartApi} from '../../api/local/cartApi'
   import {httpOrderApi} from '../../api/http/lt/httpOrderApi'
-  import {stateApi as localStateApi, stateApi} from '../../api/local/stateApi'
+  import {userApi} from '../../api/local/userApi'
   import {scrollApi} from '../../api/local/scrollApi'
 
   export default {
@@ -179,9 +179,9 @@
         return
       }
 
-      this.ui.table.captchaTableId = stateApi.table.getCaptchaTableId()
-      this.ui.table.tableName = stateApi.table.getTableName()
-      this.ui.table.tableNumber = stateApi.table.getTableNumber()
+      this.ui.table.captchaTableId = userApi.getCaptchaTableId()
+      this.ui.table.tableName = userApi.getTableName()
+      this.ui.table.tableNumber = userApi.getTableNumber()
     },
     methods: {
       getTotalPrice() {
@@ -255,10 +255,9 @@
               title: '下单',
               content: '餐桌二维码已过期，请重新扫码。'
             }).then(async (val) => {
-              stateApi.table.setCaptchaTableId(null)
-              stateApi.table.setTableName(null)
-              stateApi.table.setTableNumber(null)
-
+              userApi.setCaptchaTableId(null)
+              userApi.setTableName(null)
+              userApi.setTableNumber(null)
               this.ui.table = {}
 
               if (this.roleWaiter) {
@@ -272,6 +271,7 @@
               content: '部分食品已下架，请重新下单。'
             }).then(async (val) => {
               cartApi.clearAll()
+              this.$store.commit('cart/update', cartApi.getCart())
 
               if (this.roleWaiter) {
                 this.$router.push(`/b/${this.$route.params.shortId}/waiter/food`)
@@ -288,6 +288,7 @@
             }
 
             cartApi.clearAll()
+            this.$store.commit('cart/update', cartApi.getCart())
 
             let path
 
@@ -308,7 +309,7 @@
         })
       },
       btnScanCaptcha() {
-        let wechatOpenId = localStateApi.user.getWechatOpenId()
+        let wechatOpenId = userApi.getUserWechatOpenId()
         if (!Boolean(wechatOpenId)) {
           this.$msgBox.doModal({
             type: 'yes',

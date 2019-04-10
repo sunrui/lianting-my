@@ -42,7 +42,7 @@
 <script>
   import { validatorApi } from '../../../../../api/local/validatorApi'
   import { httpSmsApi } from '../../../../../api/http/user/httpSmsApi'
-  import { stateApi } from '../../../../../api/local/stateApi'
+  import { userApi } from '../../../../../api/local/userApi'
   import TitleBar from '../../../../../components/common/TitleBar'
   import { httpUserApi } from '../../../../../api/http/user/httpUserApi'
   import { timeApi } from '../../../../../api/local/timeApi'
@@ -79,7 +79,7 @@
       }
     },
     created() {
-      let phone = stateApi.user.getPhone()
+      let phone = userApi.getUserPhone()
       if (Boolean(phone)) {
         this.$msgBox.doModal({
           type: 'yes',
@@ -186,10 +186,10 @@
               this.http.req.bind.code = ''
             })
           } else if (res.user) {
-            stateApi.user.setId(res.user.id)
-            stateApi.user.setPhone(res.user.phone)
-            stateApi.user.setWechatOpenId(res.user.wechatOpenId)
-            stateApi.user.setAlipayOpenId(res.user.alipayOpenId)
+            userApi.setUserId(res.user.id)
+            userApi.setUserPhone(res.user.phone)
+            userApi.setUserWechatOpenId(res.user.wechatOpenId)
+            userApi.setUserAlipayOpenId(res.user.alipayOpenId)
 
             this.$msgBox.doModal({
               type: 'yes',

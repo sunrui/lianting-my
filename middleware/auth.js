@@ -1,4 +1,4 @@
-import {stateApi} from '../api/local/stateApi'
+import {userApi} from '../api/local/userApi'
 
 export default function({route, redirect, req}) {
   let authed = false
@@ -30,7 +30,7 @@ export default function({route, redirect, req}) {
     let value = token.split('=')[1]
     authed = !!value
   } else {
-    authed = Boolean(stateApi.user.getId())
+    authed = Boolean(userApi.getUserId())
   }
 
   if (!authed) {

@@ -1,7 +1,7 @@
 <template>
 </template>
 <script>
-  import { stateApi } from '../../api/local/stateApi'
+  import { userApi } from '../../api/local/userApi'
   import { httpUserApi } from '../../api/http/user/httpUserApi'
 
   export default {
@@ -24,10 +24,10 @@
 
       httpUserApi.postLoginWechat(shortId, code, state).then(res => {
         if (res.user) {
-          stateApi.user.setId(res.user.id)
-          stateApi.user.setPhone(res.user.phone)
-          stateApi.user.setWechatOpenId(res.user.wechatOpenId)
-          stateApi.user.setAlipayOpenId(res.user.alipayOpenId)
+          userApi.setUserId(res.user.id)
+          userApi.setUserPhone(res.user.phone)
+          userApi.setUserWechatOpenId(res.user.wechatOpenId)
+          userApi.setUserAlipayOpenId(res.user.alipayOpenId)
 
           let r = this.$route.query.r
           if (!Boolean(r)) {

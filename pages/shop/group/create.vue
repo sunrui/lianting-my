@@ -58,7 +58,7 @@
 </template>
 
 <script>
-  import {stateApi} from '../../../api/local/stateApi'
+  import {userApi} from '../../../api/local/userApi'
   import {httpSmsApi} from '../../../api/http/user/httpSmsApi'
   import {validatorApi} from '../../../api/local/validatorApi'
   import {httpUserApi} from '../../../api/http/user/httpUserApi'
@@ -100,7 +100,7 @@
     },
     computed: {
       havePhone() {
-        let phone = stateApi.user.getPhone()
+        let phone = userApi.getUserPhone()
         return Boolean(phone)
       }
     },
@@ -253,10 +253,10 @@
                 this.http.req.bind.code = ''
               })
             } else if (res.user) {
-              stateApi.user.setId(res.user.id)
-              stateApi.user.setPhone(res.user.phone)
-              stateApi.user.setWechatOpenId(res.user.wechatOpenId)
-              stateApi.user.setAlipayOpenId(res.user.alipayOpenId)
+              userApi.setUserId(res.user.id)
+              userApi.setUserPhone(res.user.phone)
+              userApi.setUserWechatOpenId(res.user.wechatOpenId)
+              userApi.setUserAlipayOpenId(res.user.alipayOpenId)
 
               this.httpCreate()
             }

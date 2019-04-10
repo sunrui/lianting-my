@@ -146,7 +146,7 @@
   import TitleBar from '../../../../../components/common/TitleBar'
   import {httpOrderApi} from '../../../../../api/http/lt/httpOrderApi'
   import {httpCouponApi} from "../../../../../api/http/lt/httpCouponApi"
-  import {stateApi as localStateApi} from "../../../../../api/local/stateApi"
+  import {userApi} from "../../../../../api/local/userApi"
 
   export default {
     metaInfo: {
@@ -436,7 +436,7 @@
         let userAgent = navigator.userAgent.toLowerCase() || window.navigator.userAgent.toLowerCase()
         let inWechat = userAgent.match(/MicroMessenger/i) || userAgent.match(/webdebugger/i)
 
-        let wechatOpenId = localStateApi.user.getWechatOpenId()
+        let wechatOpenId = userApi.getUserWechatOpenId()
         if (!Boolean(wechatOpenId) || !inWechat) {
           this.$msgBox.doModal({
             type: 'yes',

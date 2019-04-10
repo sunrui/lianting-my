@@ -28,7 +28,7 @@
                  v-model="http.req.shop.shortId">
         </div>
 
-        <div v-show="!havePhone">
+        <div v-show="!ui.phone">
           <div class="box_divide"></div>
 
           <div class="addition_item">
@@ -87,7 +87,7 @@
 </template>
 
 <script>
-  import {stateApi} from '../../api/local/stateApi'
+  import {userApi} from '../../api/local/userApi'
   import {httpSmsApi} from '../../api/http/user/httpSmsApi'
   import {validatorApi} from '../../api/local/validatorApi'
   import {httpUserApi} from '../../api/http/user/httpUserApi'
@@ -95,6 +95,9 @@
   import {httpShopApi} from '../../api/http/shop/httpShopApi'
   import {timeApi} from '../../api/local/timeApi'
   import {highlightApi} from "../../api/local/highlightApi"
+  import {cartApi} from "../../api/local/cartApi"
+  import {storeApi} from "../../api/local/storeApi"
+  import {cookieApi} from "../../api/local/cookieApi"
 
   export default {
     metaInfo: {
@@ -132,13 +135,8 @@
         }
       }
     },
-    computed: {
-      havePhone() {
-        let phone = stateApi.user.getPhone()
-        return Boolean(phone)
-      }
-    },
-    mounted() {
+    created() {
+      this.ui.phone = userApi.getUserPhone()
       this.http.req.shop.shopGroupId = this.$route.query.shopGroupId
     },
     methods: {
@@ -220,7 +218,7 @@
         })
       },
       httpBindPhoneAndCreate() {
-        if (!this.havePhone) {
+        if (!this.ui.phone) {
           if (!validatorApi.phone(this.http.req.bind.phone)) {
             this.$msgBox.doModal({
               type: 'yes',
@@ -273,10 +271,10 @@
                 this.http.req.bind.code = ''
               })
             } else if (res.user) {
-              stateApi.user.setId(res.user.id)
-              stateApi.user.setPhone(res.user.phone)
-              stateApi.user.setWechatOpenId(res.user.wechatOpenId)
-              stateApi.user.setAlipayOpenId(res.user.alipayOpenId)
+              userApi.setUserId(res.user.id)
+              userApi.setUserPhone(res.user.phone)
+              userApi.setUserWechatOpenId(res.user.wechatOpenId)
+              userApi.setUserAlipayOpenId(res.user.alipayOpenId)
 
               this.httpCreate()
             }

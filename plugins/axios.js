@@ -2,7 +2,7 @@ import axios from 'axios'
 import {loadingApi} from '../api/local/loadingApi'
 import {logApi} from '../api/local/logApi'
 import {storeApi} from '../api/local/storeApi'
-import {stateApi} from '../api/local/stateApi'
+import {userApi} from '../api/local/userApi'
 
 axios.defaults.withCredentials = true
 axios.defaults.timeout = 10 * 1000
@@ -24,7 +24,7 @@ axios.interceptors.response.use(function (response) {
 
   if (err && err.response) {
     if (err.response.data.error === 'HttpUnauthorized') {
-      stateApi.clearAll()
+      userApi.clearAll()
       window.location.href = '/login?r=/&shortId=undefined'
       return
     }

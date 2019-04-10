@@ -412,7 +412,7 @@
   import {httpCaptchaApi} from '../../api/http/lt/httpCaptchaApi'
   import {scrollApi} from '../../api/local/scrollApi'
   import {timeApi} from '../../api/local/timeApi'
-  import {stateApi} from '../../api/local/stateApi'
+  import {userApi} from '../../api/local/userApi'
   import DropDown from '../common/DropDown'
   import CurrencyInput from '../common/CurrencyInput'
   import {highlightApi} from '../../api/local/highlightApi'
@@ -748,13 +748,13 @@
               content: '餐桌二维码已过期，请重新扫码或联系服务员。'
             })
 
-            stateApi.table.setCaptchaTableId(null)
-            stateApi.table.setTableName(null)
-            stateApi.table.setTableNumber(null)
+            userApi.setCaptchaTableId(null)
+            userApi.setTableName(null)
+            userApi.setTableNumber(null)
           } else {
-            stateApi.table.setCaptchaTableId(res.captchaTableId)
-            stateApi.table.setTableName(res.tableName)
-            stateApi.table.setTableNumber(res.tableNumber)
+            userApi.setCaptchaTableId(res.captchaTableId)
+            userApi.setTableName(res.tableName)
+            userApi.setTableNumber(res.tableNumber)
 
             this.$router.push({
               path: `/b/${this.$route.params.shortId}/waiter/food`,

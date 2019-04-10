@@ -93,7 +93,7 @@
 <script>
   import TitleBar from '../../../../components/common/TitleBar'
   import {timeApi} from '../../../../api/local/timeApi'
-  import {stateApi} from '../../../../api/local/stateApi'
+  import {userApi} from '../../../../api/local/userApi'
   import {httpReserveApi} from '../../../../api/http/lt/httpReserveApi'
 
   export default {
@@ -130,7 +130,7 @@
         return new Date(parseInt(this.$route.query.date))
       },
       phone() {
-        return stateApi.user.getPhone()
+        return userApi.getUserPhone()
       }
     },
     created() {

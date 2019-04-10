@@ -50,7 +50,7 @@
 <script>
   import TitleBar from '../../../../components/common/TitleBar'
   import {httpWallApi} from '../../../../api/http/lt/httpWallApi'
-  import {stateApi} from '../../../../api/local/stateApi'
+  import {userApi} from '../../../../api/local/userApi'
   import {httpUserApi} from '../../../../api/http/user/httpUserApi'
   import {stringApi} from '../../../../api/local/stringApi'
   import {httpOrderApi} from '../../../../api/http/lt/httpOrderApi'
@@ -98,7 +98,7 @@
     },
     methods: {
       httpUserInfo() {
-        httpUserApi.getInfo(stateApi.user.getId()).then(res => {
+        httpUserApi.getInfo(userApi.getUserId()).then(res => {
           if (res.userIdNotExists) {
             return
           }

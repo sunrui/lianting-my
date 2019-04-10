@@ -124,7 +124,7 @@
   import { httpWallApi } from '../../../../../api/http/lt/httpWallApi'
   import { timeApi } from '../../../../../api/local/timeApi'
   import { httpUserApi } from '../../../../../api/http/user/httpUserApi'
-  import { stateApi } from '../../../../../api/local/stateApi'
+  import { userApi } from '../../../../../api/local/userApi'
   import TitleBar from '../../../../../components/common/TitleBar'
   import { httpOrderApi } from '../../../../../api/http/lt/httpOrderApi'
   import { foodDetailApi } from '../../../../../api/local/foodDetail'
@@ -169,7 +169,7 @@
     },
     methods: {
       httpUserInfo() {
-        httpUserApi.getInfo(stateApi.user.getId()).then(res => {
+        httpUserApi.getInfo(userApi.getUserId()).then(res => {
           if (res.userIdNotExists) {
             this.$msgBox.doModal({
               type: 'yes',
@@ -311,7 +311,7 @@
         })
       },
       btnUser(userId) {
-        if (!Boolean(userId) || userId === stateApi.user.getId()) {
+        if (!Boolean(userId) || userId === userApi.getUserId()) {
           this.$router.push(`/c/${this.$route.params.shortId}/me/edit`)
         } else {
         this.$router.push(`/c/${this.$route.params.shortId}/user/${userId}`)

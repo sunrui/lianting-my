@@ -121,7 +121,7 @@
   import { foodDetailApi } from '../../../../api/local/foodDetail'
   import TitleBar from '../../../../components/common/TitleBar'
   import { httpUserApi } from '../../../../api/http/user/httpUserApi'
-  import { stateApi } from '../../../../api/local/stateApi'
+  import { userApi } from '../../../../api/local/userApi'
   import { scrollApi } from '../../../../api/local/scrollApi'
 
   export default {
@@ -308,7 +308,7 @@
         })
       },
       btnUser(userId) {
-        if (userId === stateApi.user.getId()) {
+        if (userId === userApi.getUserId()) {
           this.$router.push(`/c/${this.$route.params.shortId}/me/edit`)
         } else {
           this.$router.push(`/c/${this.$route.params.shortId}/user/${userId}`)

@@ -3,9 +3,10 @@
 
 <script>
   import {httpUserApi} from '../../api/http/user/httpUserApi'
-  import {stateApi} from '../../api/local/stateApi'
+  import {userApi} from '../../api/local/userApi'
   import {cartApi} from '../../api/local/cartApi'
   import {storeApi} from '../../api/local/storeApi'
+  import {cookieApi} from "../../api/local/cookieApi"
 
   export default {
     metaInfo: {
@@ -13,22 +14,14 @@
     },
     created() {
       httpUserApi.postLogout().then(res => {
-        stateApi.clearAll()
+        userApi.clearAll()
         cartApi.clearAll()
+        this.$store.commit('cart/update', cartApi.getCart())
         storeApi.clearAll()
-        this.clearCookie()
+        cookieApi.clearAll()
 
         this.$router.push('/')
       })
-    },
-    methods: {
-      clearCookie() {
-        let keys = document.cookie.match(/[^ =;]+(?==)/g)
-        if (keys) {
-          for (let i = keys.length; i--;)
-            document.cookie = keys[i] + '=0;expires=' + new Date(0).toUTCString()
-        }
-      }
     }
   }
 </script>

@@ -6,7 +6,7 @@
 
 <script>
   import {httpWechatApi} from "../../api/http/lt/httpWechatApi"
-  import {stateApi as localStateApi} from "../../api/local/stateApi"
+  import {userApi} from "../../api/local/userApi"
   import Empty from "../../components/common/Empty"
 
   export default {

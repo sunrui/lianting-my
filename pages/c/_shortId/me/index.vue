@@ -46,7 +46,7 @@
 
 <script>
   import TitleBar from '../../../../components/common/TitleBar'
-  import {stateApi} from '../../../../api/local/stateApi'
+  import {userApi} from '../../../../api/local/userApi'
   import {httpUserApi} from '../../../../api/http/user/httpUserApi'
   import {httpOrderApi} from '../../../../api/http/lt/httpOrderApi'
   import {httpQueueApi} from '../../../../api/http/lt/httpQueueApi'
@@ -89,7 +89,7 @@
       }
     },
     created() {
-      let phone = stateApi.user.getPhone()
+      let phone = userApi.getUserPhone()
       if (Boolean(phone)) {
         this.ui.phone = phone
       }
@@ -98,7 +98,7 @@
     },
     methods: {
       httpUserInfo() {
-        httpUserApi.getInfo(stateApi.user.getId()).then(res => {
+        httpUserApi.getInfo(userApi.getUserId()).then(res => {
           if (res.userIdNotExists) {
             this.$msgBox.doModal({
               type: 'yes',
@@ -125,7 +125,7 @@
 
           this.http.res.userInfo = res.info
 
-          stateApi.user.setPhone(res.phone)
+          userApi.setUserPhone(res.phone)
           this.ui.phone = res.phone
         })
       },

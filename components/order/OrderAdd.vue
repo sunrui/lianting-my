@@ -286,6 +286,7 @@
               content: '部分食品已下架，请重新下单。'
             }).then(async (val) => {
               cartApi.clearAll()
+              this.$store.commit('cart/update', cartApi.getCart())
               if (this.roleWaiter) {
                 this.$router.push(`/b/${this.$route.params.shortId}/waiter/food`)
               } else {
@@ -301,6 +302,7 @@
             }
 
             cartApi.clearAll()
+            this.$store.commit('cart/update', cartApi.getCart())
 
             let path
 

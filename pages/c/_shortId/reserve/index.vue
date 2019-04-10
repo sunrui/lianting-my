@@ -49,7 +49,7 @@
         <div class="table_select_label">餐桌类型</div>
 
         <div class="table">
-          <div class="table_list">
+          <div class="table_list" v-if="http.res.tableGroups.elements.length > 0">
             <div v-bind:class="{
             table_box_table_info: ui.selectTableGroup.id !== tableGroup.id,
             table_box_table_info_select: ui.selectTableGroup.id === tableGroup.id}"
@@ -68,6 +68,7 @@
               </div>
             </div>
           </div>
+          <div class="table_empty" v-else>没有餐桌类型，如您是管理员请先添加。</div>
         </div>
       </div>
 
@@ -135,7 +136,9 @@
           res: {
             shop: {},
             info: {},
-            tableGroups: {},
+            tableGroups: {
+              elements: []
+            },
             state: {}
           }
         }
@@ -185,7 +188,10 @@
             return
           }
 
-          this.ui.selectTableGroup = this.http.res.tableGroups.elements[0]
+          if (this.http.res.tableGroups.elements.length > 0) {
+            this.ui.selectTableGroup = this.http.res.tableGroups.elements[0]
+          }
+
           this.btnDate(0, new Date())
         })
       },
@@ -296,6 +302,16 @@
             type: 'yes',
             title: '预订',
             content: '没有可预订时段。'
+          })
+
+          return
+        }
+
+        if (!Boolean(this.ui.selectTableGroup.name)) {
+          this.$msgBox.doModal({
+            type: 'yes',
+            title: '预订',
+            content: '没有可选择餐桌类型。'
           })
 
           return
