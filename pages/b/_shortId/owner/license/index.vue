@@ -253,6 +253,7 @@
   import TitleBar from '../../../../../components/common/TitleBar'
   import {scrollApi} from '../../../../../api/local/scrollApi'
   import {userApi} from "../../../../../api/local/userApi"
+  import {wechatApi} from "../../../../../api/local/wechatApi"
 
   export default {
     metaInfo: {
@@ -363,11 +364,8 @@
         }
       },
       btnChargeConfirm() {
-        let userAgent = navigator.userAgent.toLowerCase() || window.navigator.userAgent.toLowerCase()
-        let inWechat = userAgent.match(/MicroMessenger/i) || userAgent.match(/webdebugger/i)
-
         let wechatOpenId = userApi.getUserWechatOpenId()
-        if (!Boolean(wechatOpenId) || !inWechat) {
+        if (!Boolean(wechatOpenId) || !wechatApi.inWechat()) {
           this.ui.vCoverMask = false
           this.ui.vChargeYear = false
 

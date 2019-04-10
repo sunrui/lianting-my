@@ -147,6 +147,7 @@
   import {httpOrderApi} from '../../../../../api/http/lt/httpOrderApi'
   import {httpCouponApi} from "../../../../../api/http/lt/httpCouponApi"
   import {userApi} from "../../../../../api/local/userApi"
+  import {wechatApi} from "../../../../../api/local/wechatApi"
 
   export default {
     metaInfo: {
@@ -433,11 +434,8 @@
         })
       },
       btnPay() {
-        let userAgent = navigator.userAgent.toLowerCase() || window.navigator.userAgent.toLowerCase()
-        let inWechat = userAgent.match(/MicroMessenger/i) || userAgent.match(/webdebugger/i)
-
         let wechatOpenId = userApi.getUserWechatOpenId()
-        if (!Boolean(wechatOpenId) || !inWechat) {
+        if (!Boolean(wechatOpenId) || !wechatApi.inWechat()) {
           this.$msgBox.doModal({
             type: 'yes',
             title: '立即支付',

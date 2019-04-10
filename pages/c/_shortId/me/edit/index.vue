@@ -69,7 +69,7 @@
     <div class="button_box">
       <div class="button_big" @click="btnUpdate">更新</div>
       <div class="blank_30"></div>
-      <div class="sync_wechat" @click="btnSyncWechat">同步微信</div>
+      <div class="sync_wechat" v-if="ui.inWechat" @click="btnSyncWechat">同步微信</div>
     </div>
   </div>
 </template>
@@ -79,6 +79,7 @@
   import {httpUserApi} from '../../../../../api/http/user/httpUserApi'
   import {userApi} from '../../../../../api/local/userApi'
   import ImageUpload from '../../../../../components/common/ImageUpload'
+  import {wechatApi} from "../../../../../api/local/wechatApi"
 
   export default {
     metaInfo: {
@@ -99,6 +100,9 @@
           res: {
             userInfo: {}
           }
+        },
+        ui: {
+          inWechat: wechatApi.inWechat()
         }
       }
     },
@@ -117,6 +121,7 @@
               title: '资料',
               content: '用户不存在。'
             }).then(async (val) => {
+              userApi.clearAll()
               this.$router.push('logout')
             })
 

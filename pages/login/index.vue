@@ -3,6 +3,7 @@
 
 <script>
   import { cartApi } from '../../api/local/cartApi'
+  import {wechatApi} from "../../api/local/wechatApi"
 
   export default {
     metaInfo: {
@@ -23,10 +24,8 @@
 
       let shortId = this.$route.query.shortId
       let scope = this.$route.query.scope
-      let inWechat = userAgent.match(/MicroMessenger/i)
-      let inWechatDebugger = userAgent.match(/webdebugger/i)
 
-      if (!inWechatDebugger && (inWechat || scope)) {
+      if (!wechatApi.inWechat() || scope) {
         r = document.location.protocol + '//' + window.location.host + `/login/wechat?r=${r}&shortId=${shortId}`
         if (!Boolean(scope)) {
           scope = 'snsapi_base'

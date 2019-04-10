@@ -39,7 +39,7 @@
       </div>
     </div>
 
-    <div class="copyright" @click="btnCopyright">恋厅©提供技术支持</div>
+    <div class="copyright">恋厅©提供技术支持</div>
     <div class="blank_30"></div>
   </div>
 </template>
@@ -181,9 +181,6 @@
       },
       btnInfoEdit() {
         this.$router.push(`/c/${this.$route.params.shortId}/me/edit`)
-      },
-      btnCopyright() {
-        window.location = 'https://lt.city/'
       }
     }
   }

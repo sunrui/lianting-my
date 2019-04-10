@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="queue">
     <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
     <div v-bind:class="{ cover_mask_9: ui.vCoverMask}" @click="btnCoverMask"></div>
@@ -141,22 +141,25 @@
       </div>
     </div>
 
+    <wechat-subscribe></wechat-subscribe>
   </div>
 </template>
 
 <script>
   import TitleBar from '../../../../components/common/TitleBar'
-  import { httpQueueApi } from '../../../../api/http/lt/httpQueueApi'
-  import { httpTableApi } from '../../../../api/http/lt/httpTableApi'
-  import { httpShopApi } from '../../../../api/http/shop/httpShopApi'
-  import { httpInfoApi } from '../../../../api/http/lt/httpInfoApi'
+  import {httpQueueApi} from '../../../../api/http/lt/httpQueueApi'
+  import {httpTableApi} from '../../../../api/http/lt/httpTableApi'
+  import {httpShopApi} from '../../../../api/http/shop/httpShopApi'
+  import {httpInfoApi} from '../../../../api/http/lt/httpInfoApi'
+  import {highlightApi} from "../../../../api/local/highlightApi"
+  import WechatSubscribe from "../../../../components/wechat/WechatSubscribe"
 
   export default {
     metaInfo: {
       title: '排队'
     },
     middleware: 'auth',
-    components: { TitleBar },
+    components: {TitleBar, WechatSubscribe},
     data() {
       return {
         title: {
@@ -409,7 +412,6 @@
               title: '排队',
               content: '由于商家授权限制无法接受更多排队，请联系商家升级授权。'
             })
-            return
           } else if (res.tableGroupIdNotExists) {
             this.$msgBox.doModal({
               type: 'yes',
@@ -432,11 +434,11 @@
             this.$msgBox.doModal({
               type: 'yes',
               title: '排队',
-              content: '您已取票成功。'
+              content: '恭喜，您已取票成功。'
+            }).then(async (val) => {
+              this.httpState()
             })
           }
-
-          this.httpState()
         })
       },
       btnQueueCancel(myTicket) {

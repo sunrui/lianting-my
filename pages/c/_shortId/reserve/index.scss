@@ -1,3 +1,10 @@
+.reserve {
+  position: relative;
+  min-height: 100vh;
+  padding-bottom: px2rem(30 + 24);
+  box-sizing: border-box;
+}
+
 .reserve_notice_box {
   position: relative;
   margin-left: px2rem(25);
@@ -205,7 +212,7 @@
       .table_empty {
         text-align: center;
         color: #999999;
-        border:px2rem(1) solid rgba(230, 230, 230, 0.5);
+        border: px2rem(1) solid rgba(230, 230, 230, 0.5);
         padding: px2rem(30) px2rem(0);
       }
     }
@@ -228,7 +235,7 @@
       .time_select_item_none {
         text-align: center;
         color: #999999;
-        border:px2rem(1) solid rgba(230, 230, 230, 0.5);
+        border: px2rem(1) solid rgba(230, 230, 230, 0.5);
         padding: px2rem(30) px2rem(0);
       }
 

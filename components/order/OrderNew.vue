@@ -115,6 +115,7 @@
   import {httpOrderApi} from '../../api/http/lt/httpOrderApi'
   import {userApi} from '../../api/local/userApi'
   import {scrollApi} from '../../api/local/scrollApi'
+  import {wechatApi} from "../../api/local/wechatApi"
 
   export default {
     metaInfo: {
@@ -310,11 +311,11 @@
       },
       btnScanCaptcha() {
         let wechatOpenId = userApi.getUserWechatOpenId()
-        if (!Boolean(wechatOpenId)) {
+        if (!Boolean(wechatOpenId) || !wechatApi.inWechat()) {
           this.$msgBox.doModal({
             type: 'yes',
             title: '立即支付',
-            content: '请使用微信打开或退出登录后重试。'
+            content: '请使用微信打开。'
           })
 
           return

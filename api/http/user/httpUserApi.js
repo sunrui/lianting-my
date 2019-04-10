@@ -52,6 +52,13 @@ export const httpUserApi = {
       code: code
     }).then(res => res.data)
   },
+  getWechatInfo(shortId) {
+    return axios.get(`${base}/wechat/info`, {
+      params: {
+        shortId: shortId
+      }
+    }).then(res => res.data)
+  },
   getLoginStatus() {
     return axios.get(`${base}/login/status`).then(res => res.data)
   },

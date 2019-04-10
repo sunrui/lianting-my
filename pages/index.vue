@@ -17,7 +17,7 @@
     </div>
 
     <div class="wechat">
-      <div class="wechat_title">- 微信公共号登录 -</div>
+      <div class="wechat_title">- 微信公众号登录 -</div>
       <div class="wechat_icon"></div>
     </div>
   </div>

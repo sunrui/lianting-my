@@ -1,0 +1,15 @@
+.wechat_subscribe {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  left: 0;
+  bottom: px2rem(30);
+  color: #999999;
+  font-size: px2rem(24);
+
+  .wechat_subscribe_link, .wechat_subscribe_link:visited, .wechat_subscribe_link:hover {
+    color: #F52626;
+    text-decoration: none;
+    cursor: pointer;
+  }
+}

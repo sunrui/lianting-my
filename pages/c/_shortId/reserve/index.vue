@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="reserve">
     <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
     <transition name="fade">
@@ -96,24 +96,27 @@
     <transition name="toggle">
       <calendar @chooseCalendar="chooseCalendar" v-if="ui.vCalendar"></calendar>
     </transition>
+
+    <wechat-subscribe></wechat-subscribe>
   </div>
 </template>
 
 <script>
   import TitleBar from '../../../../components/common/TitleBar'
   import Calendar from '../../../../components/common/Calendar'
-  import { timeApi } from '../../../../api/local/timeApi'
-  import { httpTableApi } from '../../../../api/http/lt/httpTableApi'
-  import { httpShopApi } from '../../../../api/http/shop/httpShopApi'
-  import { httpInfoApi } from '../../../../api/http/lt/httpInfoApi'
-  import { httpReserveApi } from '../../../../api/http/lt/httpReserveApi'
+  import {timeApi} from '../../../../api/local/timeApi'
+  import {httpTableApi} from '../../../../api/http/lt/httpTableApi'
+  import {httpShopApi} from '../../../../api/http/shop/httpShopApi'
+  import {httpInfoApi} from '../../../../api/http/lt/httpInfoApi'
+  import {httpReserveApi} from '../../../../api/http/lt/httpReserveApi'
+  import WechatSubscribe from "../../../../components/wechat/WechatSubscribe"
 
   export default {
     metaInfo: {
       title: '预订'
     },
     middleware: 'auth',
-    components: { TitleBar, Calendar },
+    components: {TitleBar, Calendar, WechatSubscribe},
     data() {
       return {
         title: {

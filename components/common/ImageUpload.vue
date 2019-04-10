@@ -16,13 +16,13 @@
   import plupload from 'plupload'
   import {uuidApi} from '../../api/local/uuidApi'
   import {httpUploadApi as httpUploadAdminApi} from '../../api/http/lt/httpUploadAdminApi'
+  import {wechatApi} from "../../api/local/wechatApi"
 
   export default {
     data() {
       return {
         ui: {
           pickFileId: null,
-          inWechat: false,
           percent: 0,
           fileUrl: null,
           fileName: null
@@ -48,8 +48,8 @@
     },
     mounted() {
       let userAgent = navigator.userAgent.toLowerCase() || window.navigator.userAgent.toLowerCase()
-      this.ui.inWechat = userAgent.match(/MicroMessenger/i) || userAgent.match(/webdebugger/i)
-      if (!this.ui.inWechat) {
+
+      if (!wechatApi.inWechat()) {
         this.initOssSign(null)
       }
     },
@@ -59,7 +59,7 @@
         this.$emit('uploadSuccess', this.ui.fileUrl)
       },
       btnUploadWechat() {
-        if (this.ui.inWechat) {
+        if (wechatApi.inWechat()) {
           this.initWxConfig(this)
         }
       },
@@ -142,7 +142,7 @@
       },
       initOssSign(localData) {
         function init(pThis, res) {
-          if (pThis.ui.inWechat) {
+          if (wechatApi.inWechat()) {
             fetch(localData)
               .then(res => res.blob())
               .then(blob => {

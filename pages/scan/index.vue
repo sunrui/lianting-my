@@ -6,8 +6,8 @@
 
 <script>
   import {httpWechatApi} from "../../api/http/lt/httpWechatApi"
-  import {userApi} from "../../api/local/userApi"
   import Empty from "../../components/common/Empty"
+  import {wechatApi} from "../../api/local/wechatApi"
 
   export default {
     metaInfo: {
@@ -17,14 +17,11 @@
     data() {
       return {
         ui: {
-          inWechat: true
+          inWechat: wechatApi.inWechat()
         }
       }
     },
-    mounted() {
-      let userAgent = navigator.userAgent.toLowerCase() || window.navigator.userAgent.toLowerCase()
-      this.ui.inWechat = userAgent.match(/MicroMessenger/i) || userAgent.match(/webdebugger/i)
-
+    created() {
       if (!this.ui.inWechat) {
         return
       }
@@ -79,5 +76,4 @@
 </script>
 
 <style scoped>
-
 </style>
