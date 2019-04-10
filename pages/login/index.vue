@@ -20,12 +20,10 @@
         r = '/'
       }
 
-      let userAgent = navigator.userAgent.toLowerCase() || window.navigator.userAgent.toLowerCase();
-
       let shortId = this.$route.query.shortId
       let scope = this.$route.query.scope
 
-      if (!wechatApi.inWechat() || scope) {
+      if (wechatApi.inWechat() || scope) {
         r = document.location.protocol + '//' + window.location.host + `/login/wechat?r=${r}&shortId=${shortId}`
         if (!Boolean(scope)) {
           scope = 'snsapi_base'
