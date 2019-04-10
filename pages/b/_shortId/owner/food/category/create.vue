@@ -130,7 +130,8 @@
       </div>
 
       <div class="modal_button_box">
-        <div class="button_big" @click="btnFoodAddConfirm">确定</div>
+        <div class="button_big" v-if="ui.food.name && ui.food.price" @click="btnFoodAddConfirm">确定</div>
+        <div class="button_big button_gray" v-else>确定</div>
       </div>
     </div>
   </div>
@@ -225,7 +226,10 @@
         }
       },
       btnFoodAddConfirm() {
-        if (!Boolean(this.ui.food.name)) {
+        this.ui.vPriceAdd = false
+        this.ui.vCoverMask = false
+
+        if (!this.ui.food.name) {
           this.$msgBox.doModal({
             type: 'yes',
             title: '添加价格',
@@ -264,9 +268,6 @@
         }
 
         this.ui.foods.push(this.ui.food)
-
-        this.ui.vPriceAdd = false
-        this.ui.vCoverMask = false
       },
       btnCreate() {
         if (!Boolean(this.http.req.category.image)) {
