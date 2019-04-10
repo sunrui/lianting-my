@@ -1,5 +1,5 @@
 <template>
-  <div class="wechat_subscribe" v-if="ui.inWechat && !this.http.res.wechatInfo.subscribe">不想错过提醒？请关注<a class="wechat_subscribe_link" :href="ui.link">恋厅</a>公众号。</div>
+  <div class="wechat_subscribe" v-if="!this.http.res.wechatInfo.subscribe">不想错过提醒？您可关注<a class="wechat_subscribe_link" @click="btnLink()">恋厅</a>公众号。</div>
 </template>
 
 <script>
@@ -31,6 +31,11 @@
         httpUserApi.getWechatInfo(this.$route.params.shortId).then(res => {
           this.http.res.wechatInfo = res
         })
+      },
+      btnLink() {
+        if (wechatApi.inWechat()) {
+          window.location.href = this.ui.link
+        }
       }
     }
   }
