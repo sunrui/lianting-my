@@ -12,6 +12,7 @@
   import Empty from "../../components/common/Empty"
   import {wechatApi} from "../../api/local/wechatApi"
   import TitleBar from "../../components/common/TitleBar"
+  import {urlApi} from "../../api/local/urlApi"
 
   export default {
     metaInfo: {
@@ -50,8 +51,7 @@
       btnScan() {
         let pThis = this
 
-        let url = window.location.href.split("#")[0]
-        httpWechatApi.getConfig('ltcity', url).then(res => {
+        httpWechatApi.getConfig('scan', urlApi.getCurrentUrl()).then(res => {
           let wx = require('weixin-js-sdk')
 
           wx.config({

@@ -17,6 +17,7 @@
   import {uuidApi} from '../../api/local/uuidApi'
   import {httpUploadApi as httpUploadAdminApi} from '../../api/http/lt/httpUploadAdminApi'
   import {wechatApi} from "../../api/local/wechatApi"
+  import {urlApi} from "../../api/local/urlApi"
 
   export default {
     data() {
@@ -45,9 +46,6 @@
       if (Boolean(this.fileUrl)) {
         this.ui.fileUrl = this.fileUrl
       }
-    },
-    mounted() {
-      let userAgent = navigator.userAgent.toLowerCase() || window.navigator.userAgent.toLowerCase()
 
       if (!wechatApi.inWechat()) {
         this.initOssSign(null)
@@ -85,8 +83,7 @@
         return this.ui.fileName
       },
       initWxConfig(pThis) {
-        let url = location.href.split('#')[0]
-        httpWechatApi.getConfig(this.$route.params.shortId, url).then(res => {
+        httpWechatApi.getConfig(this.$route.params.shortId, urlApi.getCurrentUrl()).then(res => {
           let wx = require('weixin-js-sdk')
 
           wx.config({

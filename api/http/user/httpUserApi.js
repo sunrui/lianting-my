@@ -59,9 +59,6 @@ export const httpUserApi = {
       }
     }).then(res => res.data)
   },
-  getLoginStatus() {
-    return axios.get(`${base}/login/status`).then(res => res.data)
-  },
   postLogout() {
     return axios.post(`${base}/logout`).then(res => res.data)
   }

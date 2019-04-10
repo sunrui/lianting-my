@@ -342,11 +342,6 @@
                   pThis.httpShop()
                 })
               } else if (res.err_msg === 'get_brand_wcpay_request:cancel') {
-                pThis.$msgBox.doModal({
-                  type: 'yes',
-                  title: '立即续费',
-                  content: '支付已取消。'
-                })
               }
             }
           )

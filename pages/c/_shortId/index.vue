@@ -100,7 +100,7 @@
         <div v-if="!http.res.wifi.name">
           <div class="blank_20"></div>
           <div class="wifi_empty">很抱歉，暂时没有提供无线。</div>
-          <div class="blank_10"></div>
+          <div class="blank_20"></div>
         </div>
         <div class="blank_10"></div>
       </div>

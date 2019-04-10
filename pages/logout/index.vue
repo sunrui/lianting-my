@@ -16,7 +16,6 @@
       httpUserApi.postLogout().then(res => {
         userApi.clearAll()
         cartApi.clearAll()
-        this.$store.commit('cart/update', cartApi.getCart())
         storeApi.clearAll()
         cookieApi.clearAll()
 
