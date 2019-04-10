@@ -54,7 +54,7 @@
           }
           case 1: {
             this.ui.tasks.push({
-              label: '确认您的店铺唯一标识',
+              label: '确认您的店铺标识',
               finish: false
             })
             this.updateInit(1)

@@ -31,7 +31,7 @@
             </div>
           </div>
 
-          <div class="shop_short_id">唯一标识 {{shop.shortId}}</div>
+          <div class="shop_short_id">店铺标识 {{shop.shortId}}</div>
 
           <div class="box_divide"></div>
 
@@ -71,7 +71,7 @@
           </div>
         </div>
 
-        <div class="shop_short_id">唯一标识 {{shop.shortId}}</div>
+        <div class="shop_short_id">店铺标识 {{shop.shortId}}</div>
 
         <div class="box_divide"></div>
 

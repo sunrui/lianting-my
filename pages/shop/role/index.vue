@@ -26,7 +26,7 @@
           </div>
         </div>
 
-        <div class="shop_short_id">唯一标识 {{role.shop.shortId}}</div>
+        <div class="shop_short_id">店铺标识 {{role.shop.shortId}}</div>
 
         <div class="box_divide"></div>
 

@@ -41,7 +41,7 @@
           <div class="shop_detail_expired_at">过期时间: {{new Date(parseInt(http.res.shop.licenseExpiredAt)).toLocaleDateString()}}</div>
         </div>
         <div class="shop_detail_one">
-          <div class="shop_detail_left">唯一标识: {{http.res.shop.shortId}}</div>
+          <div class="shop_detail_left">店铺标识: {{http.res.shop.shortId}}</div>
           <div class="shop_license_history" @click="btnChargeHistory">续费记录</div>
         </div>
 
