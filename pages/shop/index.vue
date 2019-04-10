@@ -102,6 +102,7 @@
   import {cartApi} from "../../api/local/cartApi"
   import {storeApi} from "../../api/local/storeApi"
   import {cookieApi} from "../../api/local/cookieApi"
+  import {httpUserApi} from "../../api/http/user/httpUserApi"
 
   export default {
     metaInfo: {
@@ -145,7 +146,17 @@
       httpShop() {
         httpShopApi.getAll(0, 99).then(res => {
           if (!res.shops && !res.shopGroups) {
-            this.$router.push('/shop/create')
+            httpUserApi.getInfo(userApi.getUserId()).then(res => {
+              if (res.userIdNotExists) {
+                userApi.clearAll()
+                cartApi.clearAll()
+                storeApi.clearAll()
+                cookieApi.clearAll()
+              }
+
+              this.$router.push('/shop/create')
+            })
+
             return
           }
 

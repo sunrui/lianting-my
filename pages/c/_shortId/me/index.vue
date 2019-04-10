@@ -125,8 +125,14 @@
 
           this.http.res.userInfo = res.info
 
-          userApi.setUserPhone(res.phone)
-          this.ui.phone = res.phone
+          if (res.user) {
+            userApi.setUserPhone(res.user.phone)
+            this.ui.phone = res.user.phone
+
+            userApi.setUserName(res.user.userName)
+            userApi.setUserWechatOpenId(res.user.wechatOpenId)
+            userApi.setUserAlipayOpenId(res.user.alipayOpenId)
+          }
         })
       },
       btnNav(url) {

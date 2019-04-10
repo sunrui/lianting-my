@@ -9,6 +9,7 @@ export const userApi = {
     if (!Boolean(this.user)) {
       this.user = {
         id: null,
+        userName: null,
         phone: null,
         wechatOpenId: null,
         alipayOpenId: null,
@@ -33,6 +34,15 @@ export const userApi = {
   getUserId() {
     this._verifyUser()
     return this.user.id
+  },
+  setUserName(userName) {
+    this._verifyUser()
+    this.user.userName = userName
+    this.saveUser()
+  },
+  getUserName() {
+    this._verifyUser()
+    return this.user.userName
   },
   setUserPhone(phone) {
     this._verifyUser()

@@ -214,7 +214,6 @@
             res.info.headImgUrl = '/img/default/default_user_avatar.png'
           }
 
-
           this.ui.infos.push({
             userId: userId,
             userInfo: res.info
