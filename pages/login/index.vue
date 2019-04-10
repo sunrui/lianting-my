@@ -2,7 +2,6 @@
 </template>
 
 <script>
-  import { cartApi } from '../../api/local/cartApi'
   import {wechatApi} from "../../api/local/wechatApi"
 
   export default {

@@ -1,0 +1,21 @@
+.scan {
+  position: relative;
+  text-align: center;
+  background: white;
+  height: 100vh;
+
+  .scan_image {
+    margin-top: 15%;
+    display: inline-block;
+    background-image: url("/img/scan/scan.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    width: px2rem(200);
+    height: px2rem(200);
+  }
+
+  .scan_label {
+    margin-top: px2rem(30);
+    font-size: px2rem(36);
+  }
+}

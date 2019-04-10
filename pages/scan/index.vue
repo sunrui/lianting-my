@@ -1,6 +1,9 @@
 <template>
-  <div>
+  <div class="scan">
+    <title-bar v-show="true" :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
     <empty v-if="!ui.inWechat" image="/img/no/no_crash.png" content="请在微信中使用。"></empty>
+    <div class="scan_image" @click="btnScan"></div>
+    <div class="scan_label">扫一扫</div>
   </div>
 </template>
 
@@ -8,16 +11,24 @@
   import {httpWechatApi} from "../../api/http/lt/httpWechatApi"
   import Empty from "../../components/common/Empty"
   import {wechatApi} from "../../api/local/wechatApi"
+  import TitleBar from "../../components/common/TitleBar"
 
   export default {
     metaInfo: {
       title: '扫码点餐'
     },
-    components: {Empty},
+    components: {Empty, TitleBar},
     data() {
       return {
+        title: {
+          canBack: true,
+          title: '扫码点餐',
+          backUri: ``,
+          theme: 'white',
+          imageHeight: 0
+        },
         ui: {
-          inWechat: wechatApi.inWechat()
+          inWechat: wechatApi.inWechat() || true
         }
       }
     },
@@ -26,10 +37,17 @@
         return
       }
 
-      this.openScan()
+      this.btnScan()
     },
     methods: {
-      openScan() {
+      closeWindow(res) {
+        setTimeout(function () {
+          WeixinJSBridge.call('closeWindow');
+        }, 1000)
+
+        WeixinJSBridge.call('closeWindow');
+      },
+      btnScan() {
         let pThis = this
 
         let url = window.location.href.split("#")[0]
@@ -65,8 +83,11 @@
               needResult: 0,
               scanType: ["qrCode"],
               success: function (res) {
-                WeixinJSBridge.call('closeWindow')
+                pThis.closeWindow(res)
               },
+              error: function (res) {
+                pThis.closeWindow(res)
+              }
             })
           })
         })
@@ -75,5 +96,6 @@
   }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+  @import "index";
 </style>
