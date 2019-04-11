@@ -42,8 +42,7 @@
       </div>
 
       <div class="button_box">
-        <div class="button_big" v-if="http.req.report.message" @click="btnReportConfirm">提交反馈</div>
-        <div class="button_big button_gray" v-else>提交反馈</div>
+        <div class="button_big" @click="btnReportConfirm">提交反馈</div>
 
         <div class="blank_30"></div>
         <div class="report_return" @click="btnReturn">返回</div>
@@ -148,6 +147,16 @@
             content: '由于您的操作过于繁频，您无需反馈请稍候重试。'
           })
 
+          return
+        }
+
+        if (!Boolean(this.http.req.report.message)) {
+          this.$msgBox.doModal({
+            type: 'yes',
+            title: '问题反馈',
+            content: '请描述您浮现的过程。'
+          })
+          
           return
         }
 
