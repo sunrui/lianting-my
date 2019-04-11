@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 find . -name ".idea" -exec rm -rf {} \;
+find . -name ".nuxt" -exec rm -rf {} \;
 find . -name "*.iml" -exec rm -rf {} \;
 find . -name "target" -exec rm -rf {} \;
 find . -name ".DS_Store" -exec rm -rf {} \;
