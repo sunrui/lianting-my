@@ -59,7 +59,7 @@
 
   export default {
     metaInfo: {
-      title: '捕获异常'
+      title: '访问异常'
     },
     components: {TitleBar},
     props: ['error'],
