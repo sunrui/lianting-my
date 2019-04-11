@@ -89,8 +89,10 @@
           license.plan.licenseType === 'Normal' ? '/img/b/license/b_license_normal_check.png' :
           license.plan.licenseType === 'Senior' ? '/img/b/license/b_license_senior_check.png' : '/img/b/license/b_license_free_check.png'
           " alt="">
-            <div class="shop_feature_one_label">在线支付渠道</div>
+            <div class="shop_feature_one_label">在线支付渠道<span class="shop_feature_one_label_star">专享</span></div>
           </div>
+
+          <div class="box_divide"></div>
 
           <div class="shop_feature_one">
             <img class="shop_feature_one_icon" :src="
@@ -98,7 +100,7 @@
           license.plan.licenseType === 'Normal' ? '/img/b/license/b_license_normal_check.png' :
           license.plan.licenseType === 'Senior' ? '/img/b/license/b_license_senior_check.png' : '/img/b/license/b_license_free_check.png'
           " alt="">
-            <div class="shop_feature_one_label">无限订单</div>
+            <div class="shop_feature_one_label">无限订单<span class="shop_feature_one_label_star">专享</span></div>
           </div>
 
           <div class="box_divide"></div>
@@ -112,6 +114,8 @@
             <div class="shop_feature_one_label">{{license.limit.maxFoods}} 个上架餐食</div>
           </div>
 
+          <div class="box_divide"></div>
+
           <div class="shop_feature_one">
             <img class="shop_feature_one_icon" :src="
             license.plan.licenseType === 'Free' ? '/img/b/license/b_license_free_check.png' :
@@ -120,6 +124,8 @@
           " alt="">
             <div class="shop_feature_one_label">{{license.limit.maxTables}} 个餐桌</div>
           </div>
+
+          <div class="box_divide"></div>
 
           <div class="shop_feature_one">
             <img class="shop_feature_one_icon" :src="
@@ -130,6 +136,8 @@
             <div class="shop_feature_one_label">{{license.limit.maxQueue}} 个排队用户</div>
           </div>
 
+          <div class="box_divide"></div>
+
           <div class="shop_feature_one">
             <img class="shop_feature_one_icon" :src="
             license.plan.licenseType === 'Free' ? '/img/b/license/b_license_free_check.png' :
@@ -138,6 +146,8 @@
           " alt="">
             <div class="shop_feature_one_label">{{license.limit.maxReserve}} 个预订人数/天</div>
           </div>
+
+          <div class="box_divide"></div>
 
           <div class="shop_feature_one">
             <img class="shop_feature_one_icon" :src="
@@ -148,6 +158,8 @@
             <div class="shop_feature_one_label">{{license.limit.maxWaiter}} 个服务员</div>
           </div>
 
+          <div class="box_divide"></div>
+
           <div class="shop_feature_one">
             <img class="shop_feature_one_icon" :src="
             license.plan.licenseType === 'Free' ? '/img/b/license/b_license_free_check.png' :
@@ -156,6 +168,8 @@
           " alt="">
             <div class="shop_feature_one_label">{{license.limit.maxCooker}} 个厨师</div>
           </div>
+
+          <div class="box_divide"></div>
 
           <div class="shop_feature_one">
             <img class="shop_feature_one_icon" :src="
@@ -166,6 +180,8 @@
             <div class="shop_feature_one_label">{{license.limit.maxCashier}} 个收银</div>
           </div>
 
+          <div class="box_divide"></div>
+
           <div class="shop_feature_one">
             <img class="shop_feature_one_icon" :src="
             license.plan.licenseType === 'Free' ? '/img/b/license/b_license_free_check.png' :
@@ -175,30 +191,57 @@
             <div class="shop_feature_one_label">{{license.limit.maxAdmin}} 个店长</div>
           </div>
 
-          <div class="shop_feature_one">
-            <img class="shop_feature_one_icon" :src="
+          <div v-if="license.plan.licenseType === 'Normal' || license.plan.licenseType === 'Senior'">
+            <div class="box_divide"></div>
+
+            <div class="shop_feature_one">
+              <img class="shop_feature_one_icon" :src="
             license.plan.licenseType === 'Free' ? '/img/b/license/b_license_free_check.png' :
           license.plan.licenseType === 'Normal' ? '/img/b/license/b_license_normal_check.png' :
           license.plan.licenseType === 'Senior' ? '/img/b/license/b_license_senior_check.png' : '/img/b/license/b_license_free_check.png'
           " alt="">
-            <div class="shop_feature_one_label">{{license.limit.maxCoupon}} 个营销活动</div>
-          </div>
+              <div class="shop_feature_one_label">{{license.limit.maxCoupon}} 个营销活动<span class="shop_feature_one_label_star addition_item_tag_color_1">专享</span></div>
+            </div>
 
-          <div class="shop_feature_one" v-if="license.plan.licenseType === 'Normal' || license.plan.licenseType === 'Senior'">
             <div class="box_divide"></div>
-            <img class="shop_feature_one_icon" :src="
-          license.plan.licenseType === 'Normal' ? '/img/b/license/b_license_normal_check.png' :
-          license.plan.licenseType === 'Senior' ? '/img/b/license/b_license_senior_check.png' : '/img/b/license/b_license_free_check.png'
-          " alt="">
-            <div class="shop_feature_one_label">专享播报展屏</div>
-          </div>
 
-          <div class="shop_feature_one" v-if="license.plan.licenseType === 'Normal' || license.plan.licenseType === 'Senior'">
-            <img class="shop_feature_one_icon" :src="
+            <div class="shop_feature_one">
+              <img class="shop_feature_one_icon" :src="
           license.plan.licenseType === 'Normal' ? '/img/b/license/b_license_normal_check.png' :
           license.plan.licenseType === 'Senior' ? '/img/b/license/b_license_senior_check.png' : '/img/b/license/b_license_free_check.png'
           " alt="">
-            <div class="shop_feature_one_label">专享技术人员支持</div>
+              <div class="shop_feature_one_label">餐食热门搜索<span class="shop_feature_one_label_star addition_item_tag_color_1">专享</span></div>
+            </div>
+
+            <div class="box_divide"></div>
+
+            <div class="shop_feature_one">
+              <img class="shop_feature_one_icon" :src="
+          license.plan.licenseType === 'Normal' ? '/img/b/license/b_license_normal_check.png' :
+          license.plan.licenseType === 'Senior' ? '/img/b/license/b_license_senior_check.png' : '/img/b/license/b_license_free_check.png'
+          " alt="">
+              <div class="shop_feature_one_label">迎宾台播报展屏<span class="shop_feature_one_label_star addition_item_tag_color_1">专享</span></div>
+            </div>
+
+            <div class="box_divide"></div>
+
+            <div class="shop_feature_one">
+              <img class="shop_feature_one_icon" :src="
+          license.plan.licenseType === 'Normal' ? '/img/b/license/b_license_normal_check.png' :
+          license.plan.licenseType === 'Senior' ? '/img/b/license/b_license_senior_check.png' : '/img/b/license/b_license_free_check.png'
+          " alt="">
+              <div class="shop_feature_one_label">订单收益财报<span class="shop_feature_one_label_star addition_item_tag_color_1">专享</span></div>
+            </div>
+
+            <div class="box_divide"></div>
+
+            <div class="shop_feature_one">
+              <img class="shop_feature_one_icon" :src="
+          license.plan.licenseType === 'Normal' ? '/img/b/license/b_license_normal_check.png' :
+          license.plan.licenseType === 'Senior' ? '/img/b/license/b_license_senior_check.png' : '/img/b/license/b_license_free_check.png'
+          " alt="">
+              <div class="shop_feature_one_label">专业技术人员贴心服务<span class="shop_feature_one_label_star">专享</span></div>
+            </div>
           </div>
         </div>
 
@@ -252,8 +295,8 @@
   import {httpLicenseApi} from '../../../../../api/http/lt/httpLicenseApi'
   import TitleBar from '../../../../../components/common/TitleBar'
   import {scrollApi} from '../../../../../api/local/scrollApi'
-  import {userApi} from "../../../../../api/local/userApi"
-  import {wechatApi} from "../../../../../api/local/wechatApi"
+  import {userApi} from '../../../../../api/local/userApi'
+  import {wechatApi} from '../../../../../api/local/wechatApi'
 
   export default {
     metaInfo: {
