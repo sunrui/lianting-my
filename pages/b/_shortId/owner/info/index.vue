@@ -57,15 +57,26 @@
           <div class="addition_item_label">营业时间</div>
           <input class="addition_item_input" placeholder="请输入营业时间" maxlength="64" v-model="http.req.info.time">
         </div>
+
+        <div class="box_divide"></div>
+
+        <div class="addition_item">
+          <div class="addition_item_label_text_area">公告</div>
+          <div class="addition_item_text_area">
+            <textarea class="addition_item_text_input" placeholder="请输入公告" v-model="http.req.info.notice"></textarea>
+          </div>
+        </div>
       </div>
     </div>
 
     <div class="box">
       <div class="addition box_radius">
         <div class="addition_item">
-          <div class="addition_item_label_text_area">公告</div>
-          <div class="addition_item_text_area">
-            <textarea class="addition_item_text_input" placeholder="请输入公告" v-model="http.req.info.notice"></textarea>
+          <div class="addition_item_label">热门搜索关键字</div>
+
+          <div class="addition_item_check">
+            <div class="addition_item_check_on" v-if="ui.searchWordEnable" @click="btnTag(false)"></div>
+            <div class="addition_item_check_off" v-else @click="btnTag(true)"></div>
           </div>
         </div>
       </div>
@@ -111,6 +122,9 @@
               image: null
             }
           }
+        },
+        ui: {
+          searchWordEnable: false
         }
       }
     },
