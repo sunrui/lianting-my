@@ -83,9 +83,9 @@
 </template>
 
 <script>
-  import { httpRoleAdminApi } from '../../../../../api/http/lt/httpRoleAdminApi'
+  import {httpRoleAdminApi} from '../../../../../api/http/lt/httpRoleAdminApi'
   import TitleBar from '../../../../../components/common/TitleBar'
-  import { validatorApi } from '../../../../../api/local/validatorApi'
+  import {validatorApi} from '../../../../../api/local/validatorApi'
   import {scrollApi} from "../../../../../api/local/scrollApi"
 
   export default {
@@ -93,7 +93,7 @@
       title: '人事'
     },
     middleware: 'auth',
-    components: { TitleBar },
+    components: {TitleBar},
     data() {
       return {
         title: {
@@ -180,6 +180,8 @@
       },
       btnCreateConfirm() {
         scrollApi.enable(true)
+        this.ui.vRoleAdd = false
+        this.ui.vCoverMask = false
 
         if (!Boolean(this.http.req.role.phone)) {
           this.$msgBox.doModal({
@@ -212,9 +214,6 @@
         }
 
         httpRoleAdminApi.postRole(this.$route.params.shortId, this.http.req.role).then(res => {
-          this.ui.vRoleAdd = false
-          this.ui.vCoverMask = false
-
           if (res.maxLimit) {
             this.$router.push(`/b/${this.$route.params.shortId}/owner/limit`)
             return
@@ -225,6 +224,8 @@
               type: 'yes',
               title: '添加' + this.getTypeName(this.http.req.role.type),
               content: '手机用户不存在。'
+            }).then(async (val) => {
+              this.httpRole()
             })
 
             return
@@ -235,6 +236,8 @@
               type: 'yes',
               title: '添加' + this.getTypeName(this.http.req.role.type),
               content: '用户已存在。'
+            }).then(async (val) => {
+              this.httpRole()
             })
 
             return
