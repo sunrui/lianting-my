@@ -21,8 +21,8 @@
         <div class="menu">
           <div class="menu_item" v-for="(foodGroup, index) in http.res.foodGroups.elements">
             <div :id="'menu_' + foodGroup.id"
-               :class="{menu_item_href:!isSelectMenu(foodGroup.id), menu_item_href_select:isSelectMenu(foodGroup.id)}"
-               @click="selectMenu(index, foodGroup.id, false)">
+                 :class="{menu_item_href:!isSelectMenu(foodGroup.id), menu_item_href_select:isSelectMenu(foodGroup.id)}"
+                 @click="selectMenu(index, foodGroup.id, false)">
               <div class="badge_delete menu_item_badge_delete" @click="btnGroupDelete(foodGroup)"></div>
               <div class="menu_item_label">{{foodGroup.name}}</div>
               <div class="menu_item_select" v-if="isSelectMenu(foodGroup.id)">
@@ -114,12 +114,13 @@
 
       <div class="modal_input_box">
         <div class="modal_input_area">
-          <input class="modal_input" placeholder="请输入餐食组名称" maxlength="10" v-model="http.req.group.name" autofocus>
+          <input class="modal_input" placeholder="请输入餐食组名称，如：热菜。" maxlength="10" v-model="http.req.group.name" autofocus>
         </div>
       </div>
 
       <div class="modal_button_box">
-        <div class="button_big" @click="btnGroupAddConfirm">确定</div>
+        <div class="button_big" v-if="http.req.group.name" @click="btnGroupAddConfirm">确定</div>
+        <div class="button_big button_gray" v-else>确定</div>
       </div>
     </div>
 
@@ -137,10 +138,10 @@
       </div>
 
       <div class="modal_button_box">
-        <div class="button_big" @click="btnGroupEditConfirm">确定</div>
+        <div class="button_big" v-if="http.req.group.name" @click="btnGroupEditConfirm">确定</div>
+        <div class="button_big button_gray" v-else>确定</div>
       </div>
     </div>
-
   </div>
 </template>
 

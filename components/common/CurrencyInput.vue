@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="currency_input_area">
     <label>
       <input
         class="currency_input"
@@ -67,7 +67,12 @@
 </script>
 
 <style scoped lang="scss">
+  .currency_input_area {
+    padding: 0 px2rem(15);
+  }
+
   .currency_input {
+    width: 100%;
     border: none;
     outline: medium;
     color: #666666;
