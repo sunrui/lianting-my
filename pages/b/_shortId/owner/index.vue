@@ -92,8 +92,8 @@
             },
             // {
             //   tag: 'order',
-            //   name: '订单',
-            //   icon: '/img/b/nav/owner/b_nav_owner_order.png',
+            //   name: '顾客',
+            //   icon: '/img/b/nav/owner/b_nav_owner_user.png',
             //   url: `/b/${this.$route.params.shortId}/owner/order`
             // },
             {
@@ -133,21 +133,21 @@
               url: `/b/${this.$route.params.shortId}/owner/role`
             },
             {
-              tag: 'tv',
-              name: '展屏',
-              icon: '/img/b/nav/owner/b_nav_owner_tv.png',
-              url: `/b/${this.$route.params.shortId}/tv`
-            },
-            {
               tag: 'captcha',
               name: '二维码',
               icon: '/img/b/nav/owner/b_nav_owner_captcha.png',
               url: `/b/${this.$route.params.shortId}/owner/captcha`
             },
             {
+              tag: 'tv',
+              name: '展屏',
+              icon: '/img/b/nav/owner/b_nav_owner_tv.png',
+              url: `/b/${this.$route.params.shortId}/tv`
+            },
+            {
               tag: 'charge',
               name: '收益',
-              icon: '/img/b/nav/owner/b_nav_owner_user.png',
+              icon: '/img/b/nav/owner/b_nav_owner_charge.png',
               url: `/b/${this.$route.params.shortId}/owner/charge`
             }
           ]
