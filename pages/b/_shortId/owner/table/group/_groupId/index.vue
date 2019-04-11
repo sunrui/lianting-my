@@ -6,7 +6,7 @@
       <div class="addition box_radius">
         <div class="addition_item">
           <div class="addition_item_label">名称</div>
-          <input class="addition_item_input" placeholder="请输入餐桌组名称" maxlength="20" v-model="http.req.group.name">
+          <input class="addition_item_input" placeholder="请输入编辑餐桌组名称" maxlength="20" v-model="http.req.group.name">
         </div>
 
         <div class="box_divide"></div>
@@ -71,7 +71,7 @@
 
   export default {
     metaInfo: {
-      title: '餐桌组'
+      title: '编辑餐桌组'
     },
     middleware: 'auth',
     components: { TitleBar },
@@ -115,8 +115,8 @@
         if (!Boolean(this.http.req.group.name)) {
           this.$msgBox.doModal({
             type: 'yes',
-            title: '餐桌组',
-            content: '请输入餐桌组名称'
+            title: '编辑餐桌组',
+            content: '请输入编辑餐桌组名称'
           })
 
           return
@@ -125,7 +125,7 @@
         if (!Boolean(this.http.req.group.minPeople)) {
           this.$msgBox.doModal({
             type: 'yes',
-            title: '餐桌组',
+            title: '编辑餐桌组',
             content: '请输入最小人数'
           })
 
@@ -135,7 +135,7 @@
         if (!Boolean(this.http.req.group.maxPeople)) {
           this.$msgBox.doModal({
             type: 'yes',
-            title: '餐桌组',
+            title: '编辑餐桌组',
             content: '请输入最大人数'
           })
 
@@ -145,7 +145,7 @@
         if (this.http.req.group.maxPeople < this.http.req.group.minPeople) {
           this.$msgBox.doModal({
             type: 'yes',
-            title: '餐桌组',
+            title: '编辑餐桌组',
             content: '最大人数须大于或等于最小人数'
           })
 
@@ -155,7 +155,7 @@
         if (!Boolean(this.http.req.group.numberPrefix)) {
           this.$msgBox.doModal({
             type: 'yes',
-            title: '餐桌组',
+            title: '编辑餐桌组',
             content: '请输入号码前缀，如 A'
           })
 
@@ -166,26 +166,26 @@
           if (res.tableGroupIdNotExists) {
             this.$msgBox.doModal({
               type: 'yes',
-              title: '餐桌组',
-              content: '餐桌组不存在。'
+              title: '编辑餐桌组',
+              content: '编辑餐桌组不存在。'
             })
           } else if (res.nameExists) {
             this.$msgBox.doModal({
               type: 'yes',
-              title: '餐桌组',
+              title: '编辑餐桌组',
               content: '名称已存在。'
             })
           } else if (res.numberPrefixExists) {
             this.$msgBox.doModal({
               type: 'yes',
-              title: '餐桌组',
+              title: '编辑餐桌组',
               content: '前缀已存在。'
             })
           } else if (res.success) {
             this.$msgBox.doModal({
               type: 'yes',
-              title: '餐桌组',
-              content: '成功。'
+              title: '编辑餐桌组',
+              content: '更新成功。'
             }).then(async (val) => {
               this.$router.push(this.title.backUri)
             })

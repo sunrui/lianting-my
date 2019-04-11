@@ -85,44 +85,44 @@
 
   left: 0;
   right: 0;
-  margin: auto;
+  margin: 0;
+  padding: 0;
 }
 
 .captcha_part_title_label {
-  position: relative;
   display: inline-block;
   vertical-align: top;
-  border-radius: px2rem(4);
-
+  text-align: center;
   background: #FFCD2E;
   color: white;
   height: px2rem(66);
-  font-size: px2rem(40);
-  font-weight: 400;;
-  line-height: px2rem(66);
+  font-size: px2rem(36);
+  line-height: px2rem(54);
+  font-weight: 400;
   padding: 0 px2rem(35);
-
-  z-index: 1;
+  border-radius: px2rem(4);
 }
 
 .captcha_part_title_left {
   display: inline-block;
-  margin-right: px2rem(-30);
+  vertical-align: top;
+  margin-right: px2rem(-10);
   margin-top: px2rem(10);
 
   background: url("/img/b/captcha/b_captcha_part_title_left.png") no-repeat;
-  background-size: 100% auto;
+  background-size: 100% 100%;
   width: px2rem(70);
   height: px2rem(66);
 }
 
 .captcha_part_title_right {
   display: inline-block;
-  margin-left: px2rem(-30);
+  vertical-align: top;
+  margin-left: px2rem(-10);
   margin-top: px2rem(10);
 
   background: url("/img/b/captcha/b_captcha_part_title_right.png") no-repeat;
-  background-size: 100% auto;
+  background-size: 100% 100%;
   width: px2rem(70);
   height: px2rem(66);
 }
@@ -142,7 +142,7 @@
 .captcha_part_copyright {
   position: absolute;
   bottom: px2rem(110);
-  color: #555555;
+  color: #666666;
 
   left: 0;
   right: 0;
