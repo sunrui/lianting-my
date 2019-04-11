@@ -6,7 +6,7 @@
       <div v-bind:class="{ cover_mask_9: ui.vCoverMask}" @click="btnCoverMask"></div>
     </transition>
 
-    <div class="wall">
+    <div class="wall wall_top">
       <div class="wall_user_info">
         <div class="wall_user_avatar_radius" @click="btnUser()">
           <img class="wall_user_avatar_radius_image" :src="http.res.userInfo.headImgUrl" :alt="http.res.userInfo.nickName">
