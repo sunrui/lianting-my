@@ -28,7 +28,7 @@
           <div class="box_divide_radius_line"></div>
         </div>
 
-        <div class="notify_detail">
+        <div class="notify_detail box_radius_footer">
           <div class="blank_20"></div>
 
           <div class="notify_message" v-if="notifyOrder.content">{{notifyOrder.content}}</div>

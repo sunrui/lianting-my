@@ -20,9 +20,9 @@
         <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
         <div class="box">
-          <div class="addition box_radius">
+          <div class="addition box_radius_header">
             <div class="addition_item" v-if="ui.error.message">
-              <div class="addition_item_label_text_area">错误</div>
+              <div class="addition_item_label_text_area">内容</div>
               <div class="addition_item_text_area">
                 <label>
                   <textarea class="addition_item_text_input" v-model="ui.error.message"></textarea>
@@ -30,21 +30,23 @@
               </div>
             </div>
           </div>
-        </div>
 
-        <div class="box">
-          <div class="report_input_area box_radius">
-            <textarea class="report_input" placeholder="请描述您出现问题的过程..." v-model="http.req.report.message" maxlength="256"></textarea>
+          <div class="box_divide_radius">
+            <div class="box_divide_radius_line"></div>
+          </div>
+
+          <div class="report_input_area box_radius_footer">
+            <textarea class="report_input" placeholder="请描述您浮现的过程，以帮助我们更好的改进产品。" v-model="http.req.report.message" maxlength="256"></textarea>
           </div>
         </div>
+      </div>
 
-        <div class="button_box">
-          <div class="button_big" v-if="http.req.report.message" @click="btnReportConfirm">提交反馈</div>
-          <div class="button_big button_gray" v-else>提交反馈</div>
+      <div class="button_box">
+        <div class="button_big" v-if="http.req.report.message" @click="btnReportConfirm">提交反馈</div>
+        <div class="button_big button_gray" v-else>提交反馈</div>
 
-          <div class="blank_30"></div>
-          <div class="report_return" @click="btnReturn">返回</div>
-        </div>
+        <div class="blank_30"></div>
+        <div class="report_return" @click="btnReturn">返回</div>
       </div>
     </div>
   </div>
@@ -78,7 +80,7 @@
           title: '问题反馈',
           backUri: null,
           theme: 'image',
-          imageHeight: 220
+          imageHeight: 460
         },
         ui: {
           vReport: false,
