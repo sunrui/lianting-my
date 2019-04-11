@@ -79,4 +79,6 @@ dist
 
 # IDE
 .idea
-package-lock.json
+
+# Service worker
+sw.*

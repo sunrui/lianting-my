@@ -1,5 +1,5 @@
 <template>
-  <loading v-if="loading"></loading>
+  <loading v-if="ui.loading"></loading>
 </template>
 
 <script>
@@ -8,14 +8,16 @@
   export default {
     components: {Loading},
     data: () => ({
-      loading: false
+      ui: {
+        loading: false
+      }
     }),
     methods: {
       start() {
-        this.loading = true
+        this.ui.loading = true
       },
       finish() {
-        this.loading = false
+        this.ui.loading = false
       }
     }
   }
