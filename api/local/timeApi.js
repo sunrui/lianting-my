@@ -33,7 +33,7 @@ export const timeApi = {
     return this.getWeekDesc(date)
   },
   elapsedTime(time) {
-    let seconds = time / 1000
+    let seconds = parseInt(time) / 1000
     let day = parseInt(seconds / 60 / 60 / 24)
     let hour = parseInt(seconds / 60 / 60 % 24)
     let minute = parseInt(seconds / 60 % 60)
@@ -54,7 +54,7 @@ export const timeApi = {
     return `${second}秒`
   },
   elapsedTimeDetail(time) {
-    let seconds = time / 1000
+    let seconds = parseInt(time) / 1000
     let day = parseInt(seconds / 60 / 60 / 24)
     let hour = parseInt(seconds / 60 / 60 % 24)
     let minute = parseInt(seconds / 60 % 60)

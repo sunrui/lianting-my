@@ -28,7 +28,7 @@
         </div>
         <div class="wall_order_one">
           <img class="wall_order_icon" src="/img/c/wall/wall_time.png" alt="">
-          <div class="wall_order_label">{{http.res.order.finishedAt ? elapsedTime(http.res.order.finishedAt) : '进行中'}}</div>
+          <div class="wall_order_label">{{http.res.order.finishedAt ? elapsedTime(http.res.order.finishedAt - http.res.order.createdAt) : '进行中'}}</div>
         </div>
       </div>
 

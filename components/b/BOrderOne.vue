@@ -584,7 +584,7 @@
             this.$msgBox.doModal({
               type: 'yes',
               title: '烹饪餐食',
-              content: '仅允许店长、厨师可以操作，您只有查看权限。'
+              content: `仅允许${highlightApi.highlight('店长')}、${highlightApi.highlight('厨师')}可以操作，您只有查看权限。`
             })
 
             return
@@ -596,7 +596,7 @@
             this.$msgBox.doModal({
               type: 'yes',
               title: '烹饪餐食',
-              content: '仅允许店长、服务员可以操作，您只有查看权限。'
+              content: `仅允许${highlightApi.highlight('店长')}、${highlightApi.highlight('服务员')}可以操作，您只有查看权限。`
             })
 
             return
