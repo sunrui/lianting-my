@@ -36,7 +36,7 @@
           </div>
 
           <div class="report_input_area box_radius_footer">
-            <textarea class="report_input" placeholder="请描述您浮现的过程，以帮助我们更好的改进产品。" v-model="http.req.report.message" maxlength="256"></textarea>
+            <textarea class="report_input" placeholder="请描述您重现的过程，以帮助我们更好的改进产品。" v-model="http.req.report.message" maxlength="256"></textarea>
           </div>
         </div>
       </div>
@@ -154,7 +154,7 @@
           this.$msgBox.doModal({
             type: 'yes',
             title: '问题反馈',
-            content: '请描述您浮现的过程。'
+            content: '请描述您重现的过程。'
           })
 
           return
