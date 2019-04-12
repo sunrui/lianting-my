@@ -444,7 +444,6 @@
 
               return
             }
-
           } else {
             if (this.roleWaiter) {
               this.$router.push(`/b/${this.$route.params.shortId}/waiter/food/empty`)
