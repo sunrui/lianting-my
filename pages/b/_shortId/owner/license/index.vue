@@ -38,7 +38,7 @@
             http.res.shop.licenseType === 'Senior' ? '旗舰会员' : http.res.shop.licenseType
             }}
           </div>
-          <div class="shop_detail_expired_at">过期时间: {{new Date(parseInt(http.res.shop.licenseExpiredAt)).toLocaleDateString()}}</div>
+          <div class="shop_detail_expired_at">{{getExpiredContent()}}</div>
         </div>
         <div class="shop_detail_one">
           <div class="shop_detail_left">店铺标识: {{http.res.shop.shortId}}</div>
@@ -399,6 +399,13 @@
           }
         } else {
           onBridgeReady()
+        }
+      },
+      getExpiredContent() {
+        if (this.http.res.shop.licenseType === 'Free') {
+          return '服务于: ' + new Date(parseInt(this.http.res.shop.createdAt)).toLocaleDateString()
+        } else {
+          return '过期时间：' + new Date(parseInt(this.http.res.shop.licenseExpiredAt)).toLocaleDateString()
         }
       },
       btnChargeConfirm() {
