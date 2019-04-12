@@ -27,7 +27,7 @@
             </div>
           </div>
 
-          <div class="shop_expired_date">{{new Date(parseInt(http.res.shop.licenseExpiredAt)).toLocaleDateString()}} 过期</div>
+          <div class="shop_expired_date">{{getExpiredContent()}}</div>
           <div class="shop_charge" @click="btnLicense">管理续费</div>
 
           <div class="blank_30"></div>
@@ -183,6 +183,13 @@
       },
       btnNav(nav) {
         this.$router.push(nav.url)
+      },
+      getExpiredContent() {
+        if (this.http.res.shop.licenseType === 'Free') {
+          return '服务于 ' + new Date(parseInt(this.http.res.shop.createdAt)).toLocaleDateString()
+        } else {
+          return new Date(parseInt(this.http.res.shop.licenseExpiredAt)).toLocaleDateString() + ' 过期'
+        }
       },
       btnLicense() {
         this.$router.push(`/b/${this.$route.params.shortId}/owner/license`)
