@@ -49,6 +49,7 @@
       margin-left: px2rem(15);
       line-height: px2rem(90);
       font-size: px2rem(26);
+      width: px2rem(500);
       color: #666666;
       border: none;
       outline: medium;
@@ -69,6 +70,9 @@
     margin-left: px2rem(7);
     font-size: px2rem(26);
     color: #666666;
+    background: red;
+    width: px2rem(300);
+    background: none;
   }
 }
 
