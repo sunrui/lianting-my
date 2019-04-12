@@ -3,6 +3,8 @@ import {loadingApi} from '../api/local/loadingApi'
 import {logApi} from '../api/local/logApi'
 import {storeApi} from '../api/local/storeApi'
 import {userApi} from '../api/local/userApi'
+import {cartApi} from '../api/local/cartApi'
+import {cookieApi} from '../api/local/cookieApi'
 
 axios.defaults.withCredentials = true
 axios.defaults.timeout = 15 * 1000
@@ -25,6 +27,9 @@ axios.interceptors.response.use(function (response) {
   if (err && err.response) {
     if (err.response.data.error === 'HttpUnauthorized') {
       userApi.clearAll()
+      cartApi.clearAll()
+      storeApi.clearAll()
+      cookieApi.clearAll()
       window.location.href = '/login?r=/&shortId=undefined'
       return
     }

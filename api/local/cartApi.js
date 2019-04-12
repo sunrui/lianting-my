@@ -202,7 +202,7 @@ export const cartStoreApiTest = function () {
       name: '土豆丝'
     },
     food: {
-      id: '土豆丝大份',
+      id: '土豆丝一盘',
       price: 10
     }
   };

@@ -80,6 +80,7 @@
   import {userApi} from '../../../../../api/local/userApi'
   import ImageUpload from '../../../../../components/common/ImageUpload'
   import {wechatApi} from "../../../../../api/local/wechatApi"
+  import {cookieApi} from '../../../../../api/local/cookieApi'
 
   export default {
     metaInfo: {
@@ -121,7 +122,6 @@
               title: '资料',
               content: '用户不存在。'
             }).then(async (val) => {
-              userApi.clearAll()
               this.$router.push('logout')
             })
 

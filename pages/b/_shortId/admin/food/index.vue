@@ -238,8 +238,6 @@
                 this.$router.push(`/b/${this.$route.params.shortId}/admin/food/empty`)
                 return
               }
-
-              return
             }
 
             for (let index in res.elements) {

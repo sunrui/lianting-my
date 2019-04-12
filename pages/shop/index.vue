@@ -148,10 +148,8 @@
           if (!res.shops && !res.shopGroups) {
             httpUserApi.getInfo(userApi.getUserId()).then(res => {
               if (res.userIdNotExists) {
-                userApi.clearAll()
-                cartApi.clearAll()
-                storeApi.clearAll()
-                cookieApi.clearAll()
+                this.$router.push('logout')
+                return
               }
 
               this.$router.push('/shop/create')

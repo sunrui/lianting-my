@@ -18,7 +18,6 @@
         cartApi.clearAll()
         storeApi.clearAll()
         cookieApi.clearAll()
-
         this.$router.push('/')
       })
     }

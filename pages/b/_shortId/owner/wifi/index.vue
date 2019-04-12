@@ -31,7 +31,7 @@
     </div>
 
     <div class="button_box">
-      <div class="button_big" @click="btnEdit">确认</div>
+      <div class="button_big" @click="btnEdit">更新</div>
     </div>
   </div>
 </template>

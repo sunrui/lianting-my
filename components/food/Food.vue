@@ -538,8 +538,8 @@
         }, 100)
       },
       setSelectByFoodCategoryId(foodCategory, select) {
-        for (let foodGroupIndex in res.elements) {
-          let foodGroup = res.elements[foodGroupIndex]
+        for (let foodGroupIndex in this.http.res.foodGroups.elements) {
+          let foodGroup = this.http.res.foodGroups.elements[foodGroupIndex]
 
           for (let foodCategoryIndex in foodGroup.foodCategories) {
             let one = foodGroup.foodCategories[foodCategoryIndex]
@@ -592,8 +592,8 @@
         }
       },
       computedFoodSelect() {
-        for (let foodGroupIndex in res.elements) {
-          let foodGroup = res.elements[foodGroupIndex]
+        for (let foodGroupIndex in this.http.res.foodGroups.elements) {
+          let foodGroup = this.http.res.foodGroups.elements[foodGroupIndex]
 
           for (let foodCategoryIndex in foodGroup.foodCategories) {
             let foodCategory = foodGroup.foodCategories[foodCategoryIndex]
