@@ -224,15 +224,11 @@
       },
       httpFoodGroup() {
         httpFoodAdminApi.getGroupAll(this.$route.params.shortId, 0, 99).then(res => {
-            this.http.res.foodGroups = res
-
-            if (this.http.res.foodGroups.elements.length > 0) {
-              this.ui.selectMenuId = this.http.res.foodGroups.elements[0].id
-
+            if (res.elements.length > 0) {
               let haveFood = false
-              for (let index in this.http.res.foodGroups.elements) {
-                let categories = this.http.res.foodGroups.elements[index].foodCategories
-                if (categories.length > 0) {
+              for (let index in res.elements) {
+                let categories = res.elements[index].foodCategories
+                if (categories && categories.length > 0) {
                   haveFood = true
                   break
                 }
@@ -242,19 +238,22 @@
                 this.$router.push(`/b/${this.$route.params.shortId}/admin/food/empty`)
                 return
               }
-            } else {
-              this.$router.push(`/b/${this.$route.params.shortId}/admin/food/empty`)
+
               return
             }
 
-            for (let groupIndex in this.http.res.foodGroups.elements) {
-              let categories = this.http.res.foodGroups.elements[groupIndex]
-              if (categories.foodCategories && categories.foodCategories.length > 0) {
-                categories.foodCategories.sort(function (a, b) {
+            for (let index in res.elements) {
+              let foodGroup = res.elements[index]
+              this.$set(foodGroup, 'groupMode', 'Small')
+              if (foodGroup.foodCategories && foodGroup.foodCategories.length > 0) {
+                foodGroup.foodCategories.sort(function (a, b) {
                   return a.orderIndex - b.orderIndex
                 })
               }
             }
+
+            this.ui.selectMenuId = res.elements[0].id
+            this.http.res.foodGroups = res
 
             this.ui.loading = false
             setTimeout(this.navToHash, 100)

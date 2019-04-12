@@ -93,6 +93,8 @@
       </div>
     </div>
 
+    <div class="blank_20"></div>
+
     <div class="box">
       <div class="food_price box_radius">
         <div class="food_price_title">

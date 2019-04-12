@@ -45,7 +45,7 @@
         <div class="food_group">
           <div class="food_group_anchor" :id="foodGroup.id"></div>
           <div class="food_group_name" @click="btnGroupEdit(foodGroup)">{{foodGroup.name}}</div>
-          <div class="food_group_count">({{foodGroup.foodCategories ? foodGroup.foodCategories.length : 0}})</div>
+          <div class="food_group_count">({{foodGroup.foodCategories.length}})</div>
           <div class="food_group_order">
             <div class="food_group_order_icon"></div>
             <div class="food_group_order_label" @click="btnOrder(foodGroup)">排序</div>
@@ -232,22 +232,22 @@
       },
       httpFoodGroup() {
         httpFoodAdminApi.getGroupAll(this.$route.params.shortId, 0, 99).then(res => {
-          this.http.res.foodGroups = res
+          if (res.elements.length > 0) {
+            this.ui.selectMenuId = res.elements[0].id
 
-          if (this.http.res.foodGroups.elements.length > 0) {
-            this.ui.selectMenuId = this.http.res.foodGroups.elements[0].id
-          }
-
-          for (let groupIndex in this.http.res.foodGroups.elements) {
-            let categories = this.http.res.foodGroups.elements[groupIndex]
-            if (categories.foodCategories && categories.foodCategories.length > 1) {
-              if (categories.foodCategories && categories.foodCategories.length > 0) {
-                categories.foodCategories.sort(function (a, b) {
-                  return a.orderIndex - b.orderIndex
-                })
+            for (let groupIndex in res.elements) {
+              let categories = res.elements[groupIndex]
+              if (!categories.foodCategories) {
+                res.elements[groupIndex].foodCategories = []
               }
+
+              res.elements[groupIndex].foodCategories.sort(function (a, b) {
+                return a.orderIndex - b.orderIndex
+              })
             }
           }
+
+          this.http.res.foodGroups = res
 
           setTimeout(this.navToHash, 100)
         })

@@ -5,7 +5,7 @@ import {storeApi} from '../api/local/storeApi'
 import {userApi} from '../api/local/userApi'
 
 axios.defaults.withCredentials = true
-axios.defaults.timeout = 10 * 1000
+axios.defaults.timeout = 15 * 1000
 
 axios.interceptors.request.use((config) => {
   loadingApi.show()

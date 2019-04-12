@@ -259,7 +259,7 @@
               for (let index in res.elements) {
                 let categories = res.elements[index].foodCategories
 
-                if (categories.length > 0) {
+                if (categories && categories.length > 0) {
                   haveFood = true
                   break
                 }
@@ -280,7 +280,6 @@
           httpQueueApi.getState(this.$route.params.shortId).then(res => {
             if (!res.needQueues || res.needQueues.length === 0) {
               this.$router.push(`/c/${this.$route.params.shortId}/queue/close`)
-
               return
             }
 
