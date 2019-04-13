@@ -1,6 +1,5 @@
 import axios from 'axios'
 import {loadingApi} from '../api/local/loadingApi'
-import {logApi} from '../api/local/logApi'
 import {storeApi} from '../api/local/storeApi'
 import {userApi} from '../api/local/userApi'
 import {cookieApi} from '../api/local/cookieApi'
@@ -10,14 +9,16 @@ axios.defaults.timeout = 15 * 1000
 
 axios.interceptors.request.use((config) => {
   loadingApi.show()
+
   return config
 }, (err) => {
   return Promise.reject(err)
 })
 
 axios.interceptors.response.use(function (response) {
-  logApi.log(response.status + ' ' + response.config.method + ' ' + response.config.url)
-  logApi.log(response.data)
+  console.log('%c' + response.config.method.toUpperCase() + '%c ' + response.config.url, 'background:#FF6958;color:white', 'color:#000')
+  console.log(response.data)
+
   loadingApi.hide()
 
   return response

@@ -18,7 +18,6 @@
 
 <script>
   import QRCode from 'qrcode'
-  import {logApi} from '../../api/local/logApi'
 
   export default {
     props: {
@@ -39,7 +38,8 @@
     mounted() {
       let canvas = document.getElementById('captcha_canvas')
       QRCode.toCanvas(canvas, this.text)
-      logApi.log(this.text)
+
+      console.log(this.text)
     },
     methods: {
       btnCancel() {

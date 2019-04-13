@@ -1,5 +1,4 @@
 import { storeApi } from './storeApi'
-import { logApi } from './logApi'
 
 export const cartApi = {
   _key: 'cart',
@@ -177,9 +176,6 @@ export const cartApi = {
     this._verifyCart()
 
     return this.cart.foods.length === 0
-  },
-  dump() {
-    logApi.dump(this.cart)
   },
   clearAll() {
     this.cart = {

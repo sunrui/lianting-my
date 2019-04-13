@@ -1,5 +1,3 @@
-import {logApi} from './logApi'
-
 let store = require('store')
 
 export const storeApi = {
@@ -9,7 +7,6 @@ export const storeApi = {
   pair: {
     set(key, name, value) {
       if (!Boolean(key)) {
-        logApi.error('[storeApi.pair.set] key undefined')
         return
       }
 
@@ -33,7 +30,6 @@ export const storeApi = {
   object: {
     set(key, object) {
       if (!Boolean(key)) {
-        logApi.error('[storeApi.pair.set] key undefined')
         return
       }
 
