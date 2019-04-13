@@ -3,7 +3,6 @@ import {loadingApi} from '../api/local/loadingApi'
 import {logApi} from '../api/local/logApi'
 import {storeApi} from '../api/local/storeApi'
 import {userApi} from '../api/local/userApi'
-import {cartApi} from '../api/local/cartApi'
 import {cookieApi} from '../api/local/cookieApi'
 
 axios.defaults.withCredentials = true
@@ -20,6 +19,7 @@ axios.interceptors.response.use(function (response) {
   logApi.log(response.status + ' ' + response.config.method + ' ' + response.config.url)
   logApi.log(response.data)
   loadingApi.hide()
+
   return response
 }, function (err) {
   loadingApi.hide()
@@ -27,10 +27,10 @@ axios.interceptors.response.use(function (response) {
   if (err && err.response) {
     if (err.response.data.error === 'HttpUnauthorized') {
       userApi.clearAll()
-      cartApi.clearAll()
-      storeApi.clearAll()
       cookieApi.clearAll()
-      window.location.href = '/login?r=/&shortId=undefined'
+
+      let r = window.routerUrl
+      window.location.href = `/login?r=${r}&shortId=undefined`
       return
     }
 

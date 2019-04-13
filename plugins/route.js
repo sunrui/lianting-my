@@ -5,5 +5,7 @@ export default ({app}) => {
         window.entryUrl = document.location.protocol + '//' + window.location.host + to.fullPath
       }
     }
+
+    window.routerUrl = to.fullPath
   })
 }

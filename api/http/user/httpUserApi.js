@@ -2,7 +2,7 @@ import axios from 'axios'
 
 let base = '/api/user'
 
-let maxAge = 30 * 24 * 60 * 60
+let sixHour = 6 * 60 * 60
 
 export const httpUserApi = {
   getInfo(userId) {
@@ -27,7 +27,7 @@ export const httpUserApi = {
       shortId: shortId,
       code: code,
       state: state,
-      maxAge: maxAge
+      maxAge: sixHour
     }).then(res => res.data)
   },
   postLoginPhone(shortId, phone, code) {
@@ -35,7 +35,7 @@ export const httpUserApi = {
       shortId: shortId,
       phone: phone,
       code: code,
-      maxAge: maxAge
+      maxAge: sixHour
     }).then(res => res.data)
   },
   postLoginPassword(shortId, userName, password) {
@@ -43,7 +43,7 @@ export const httpUserApi = {
       shortId: shortId,
       userName: userName,
       password: password,
-      maxAge: maxAge
+      maxAge: sixHour
     }).then(res => res.data)
   },
   postBindPhone(phone, code) {

@@ -29,7 +29,7 @@
           imageHeight: 0
         },
         ui: {
-          inWechat: wechatApi.inWechat() || true
+          inWechat: wechatApi.inWechat()
         }
       }
     },

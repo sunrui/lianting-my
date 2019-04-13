@@ -86,9 +86,9 @@
 </template>
 
 <script>
-  import TitleBar from '../../../../../../components/common/TitleBar';
-  import {httpReserveApi} from '../../../../../../api/http/lt/httpReserveApi';
-  import {httpReserveAdminApi} from '../../../../../../api/http/lt/httpReserveAdminApi';
+  import TitleBar from '../../../../../../components/common/TitleBar'
+  import {httpReserveApi} from '../../../../../../api/http/lt/httpReserveApi'
+  import {httpReserveAdminApi} from '../../../../../../api/http/lt/httpReserveAdminApi'
 
   export default {
     metaInfo: {
@@ -120,79 +120,83 @@
         ui: {
           vCoverMask: true
         }
-      };
+      }
     },
     created() {
-      this.httpReserve();
+      this.httpReserve()
     },
     methods: {
       getStatus(status) {
         switch (status) {
           case 'Wait':
-            return '等待确认';
+            return '等待确认'
           case 'Accept':
           case 'AcceptRead':
-            return '预订成功';
+            return '预订成功'
           case 'Refused':
           case 'RefusedRead':
-            return '预订失败';
+            return '预订失败'
           case 'Cancel':
-            return '预订取消';
+            return '预订取消'
           case 'Arrived':
-            return '已到店';
+            return '已到店'
           default:
-            return status;
+            return status
         }
       },
       getProcessName(status) {
         switch (status) {
           case 'Wait':
-            return '预约已提交，等待商家确认。';
+            return '预约已提交，等待商家确认。'
           case 'Accept':
           case 'AcceptRead':
-            return '您已预订成功，请及时到店。';
+            return '您已预订成功，请及时到店。'
           case 'Refused':
           case 'RefusedRead':
-            return '很抱歉，暂时无法接受您的预订。';
+            return '很抱歉，暂时无法接受您的预订。'
           case 'Cancel':
-            return '您的预订已取消。';
+            return '您的预订已取消。'
           case 'Arrived':
-            return '您已到店，祝您用餐愉快。';
+            return '您已到店，祝您用餐愉快。'
           default:
-            return status;
+            return status
         }
       },
       httpReserve() {
         httpReserveApi.getOne(this.$route.params.shortId, this.$route.params.reserveId).then(res => {
           res.progress.sort(function (a, b) {
-            return b.createdAt - a.createdAt;
-          });
+            return b.createdAt - a.createdAt
+          })
 
-          this.http.res.reserve = res;
-        });
+          this.http.res.reserve = res
+        })
       },
       btnReply() {
-        this.$router.push(`/b/${this.$route.params.shortId}/waiter/reserve/${this.$route.params.reserveId}/reply`);
+        this.$router.push(`/b/${this.$route.params.shortId}/waiter/reserve/${this.$route.params.reserveId}/reply`)
       },
       btnPhone(phone) {
         return 'tel:' + phone
       },
       btnArrived() {
-        this.http.req.reply.status = 'Arrived';
+        this.http.req.reply.status = 'Arrived'
 
         httpReserveAdminApi.putReply(this.$route.params.shortId, this.$route.params.reserveId, this.http.req.reply).then(res => {
           if (res.reserveIdNotExists) {
-            alert('预订不存在');
-            return;
+            this.$msgBox.doModal({
+              type: 'yes',
+              title: '回复预订',
+              content: '预订不存在。'
+            })
+            return
           }
 
           if (res.success) {
-            this.httpReserve();
+            this.httpReserve()
           }
-        });
+        })
       }
     }
-  };
+  }
 </script>
 
 <style scoped lang="scss">
