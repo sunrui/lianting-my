@@ -113,13 +113,13 @@
 
         <div class="modal_title">选择状态</div>
 
-        <div class="modal_menu" v-bind:class="{modal_menu_select: ui.status.selectStatus === 'ONLINE'}"
+        <div class="modal_menu" v-if="ui.status.foodCategory.status !== 'ONLINE'" v-bind:class="{modal_menu_select: ui.status.selectStatus === 'ONLINE'}"
              @click="btnChooseStatus('ONLINE')">上架中
         </div>
-        <div class="modal_menu" v-bind:class="{modal_menu_select: ui.status.selectStatus === 'OFFLINE'}"
+        <div class="modal_menu" v-if="ui.status.foodCategory.status !== 'OFFLINE'" v-bind:class="{modal_menu_select: ui.status.selectStatus === 'OFFLINE'}"
              @click="btnChooseStatus('OFFLINE')">下架中
         </div>
-        <div class="modal_menu" v-bind:class="{modal_menu_select: ui.status.selectStatus === 'SOLD_OUT'}"
+        <div class="modal_menu" v-if="ui.status.foodCategory.status !== 'SOLD_OUT'" v-bind:class="{modal_menu_select: ui.status.selectStatus === 'SOLD_OUT'}"
              @click="btnChooseStatus('SOLD_OUT')">已售罄
         </div>
 

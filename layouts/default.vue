@@ -18,7 +18,6 @@
   *,
   *:before,
   *:after {
-    vertical-align: middle;
     font-size: px2rem(26);
   }
 </style>
