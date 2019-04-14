@@ -115,7 +115,7 @@
     <!--        <div class="modal_input_box">-->
     <!--          <div class="modal_input_area">-->
     <!--            <input class="modal_input" placeholder="请输入类别，如：一盘。" maxlength="10" v-model="ui.searchWord.name"-->
-    <!--                   autofocus>-->
+    <!--                  >-->
     <!--          </div>-->
     <!--        </div>-->
 

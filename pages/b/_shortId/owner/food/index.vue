@@ -114,7 +114,7 @@
 
       <div class="modal_input_box">
         <div class="modal_input_area">
-          <input class="modal_input" placeholder="请输入餐食组名称，如：热菜。" maxlength="10" v-model="http.req.group.name" autofocus>
+          <input class="modal_input" placeholder="请输入餐食组名称，如：热菜。" maxlength="10" v-model="http.req.group.name">
         </div>
       </div>
 
@@ -133,7 +133,7 @@
 
       <div class="modal_input_box">
         <div class="modal_input_area">
-          <input class="modal_input" placeholder="请输入新餐食组名称" maxlength="10" v-model="http.req.group.name" autofocus>
+          <input class="modal_input" placeholder="请输入新餐食组名称" maxlength="10" v-model="http.req.group.name">
         </div>
       </div>
 
