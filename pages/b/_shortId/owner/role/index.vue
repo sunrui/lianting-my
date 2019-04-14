@@ -74,7 +74,8 @@
       </div>
 
       <div class="modal_button_box">
-        <div class="button_big" @click="btnCreateConfirm">确定</div>
+        <div class="button_big" v-if="http.req.role.phone && http.req.role.name" @click="btnCreateConfirm">确定</div>
+        <div class="button_big button_gray" v-else>确定</div>
       </div>
     </div>
 
@@ -183,31 +184,11 @@
         this.ui.vRoleAdd = false
         this.ui.vCoverMask = false
 
-        if (!Boolean(this.http.req.role.phone)) {
-          this.$msgBox.doModal({
-            type: 'yes',
-            title: '添加' + this.getTypeName(this.http.req.role.type),
-            content: '请输入手机号码。'
-          })
-
-          return
-        }
-
         if (!validatorApi.phone(this.http.req.role.phone)) {
           this.$msgBox.doModal({
             type: 'yes',
             title: '添加' + this.getTypeName(this.http.req.role.type),
             content: '请输入正确的手机号码。'
-          })
-
-          return
-        }
-
-        if (!Boolean(this.http.req.role.name)) {
-          this.$msgBox.doModal({
-            type: 'yes',
-            title: '添加' + this.getTypeName(this.http.req.role.type),
-            content: '请输入真实姓名。'
           })
 
           return

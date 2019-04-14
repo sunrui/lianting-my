@@ -31,7 +31,7 @@
         <div class="box_divide"></div>
 
         <div class="addition_item">
-          <div class="addition_item_label">有效时间</div>
+          <div class="addition_item_label">有效天数</div>
           <input type="number" class="addition_item_input" placeholder="请输入天数"
                  oninput="this.value=this.value.replace(/[^0-9]/g,'');
                           if (value.length > 3) value = value.slice(0, 3)"
