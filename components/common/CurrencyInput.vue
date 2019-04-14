@@ -1,14 +1,14 @@
 <template>
-  <div class="currency_input_area">
+  <div>
     <label>
       <input
-        class="currency_input"
-        v-bind:class="{right: right}"
-        ref="input"
-        type="number"
-        :placeholder="placeholder"
-        v-bind:value="value"
-        v-on:input="updateValue($event.target.value)"
+          class="currency_input"
+          v-bind:class="{right: right}"
+          ref="input"
+          type="number"
+          :placeholder="placeholder"
+          v-bind:value="value"
+          v-on:input="updateValue($event.target.value)"
       >
     </label>
   </div>
@@ -67,10 +67,6 @@
 </script>
 
 <style scoped lang="scss">
-  .currency_input_area {
-    padding: 0 px2rem(15);
-  }
-
   .currency_input {
     width: 100%;
     border: none;
@@ -81,6 +77,7 @@
   }
 
   .right {
-    text-align: right;
+    padding-right: 1px;
+    text-align: right !important;
   }
 </style>
