@@ -34,16 +34,20 @@
 
     .queue_table_group_name {
       display: inline-block;
+      vertical-align: middle;
       font-size: px2rem(28);
       color: #333333;
-      margin-top: px2rem(30);
       margin-left: px2rem(35);
+      line-height: px2rem(88);
     }
 
     .queue_table_group_people {
       display: inline-block;
+      vertical-align: middle;
+      margin-left: px2rem(5);
       font-size: px2rem(26);
       color: #666666;
+      line-height: px2rem(88);
     }
   }
 
