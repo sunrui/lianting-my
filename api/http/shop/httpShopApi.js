@@ -25,10 +25,12 @@ export const httpShopApi = {
     }).then(res => res.data)
   },
   putName(shopId, name) {
-    return axios.put(`${base}/${shopId}`, name).then(res => res.data)
+    return axios.put(`${base}/${shopId}/name`, {
+      name: name
+    }).then(res => res.data)
   },
   putOpen(shopId, open) {
-    return axios.put(`${base}/${shopId}`, {
+    return axios.put(`${base}/${shopId}/open`, {
       open: open
     }).then(res => res.data)
   }

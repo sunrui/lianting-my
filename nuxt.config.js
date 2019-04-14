@@ -44,7 +44,7 @@ module.exports = {
   plugins: [
     {src: '~plugins/axios', ssr: false},
     {src: '~plugins/console', ssr: false},
-    {src: '~plugins/development', ssr: false},
+    {src: '~plugins/log', ssr: false},
     {src: '~plugins/https', ssr: false},
     {src: '~plugins/message_box', ssr: false},
     {src: '~plugins/rem', ssr: false},

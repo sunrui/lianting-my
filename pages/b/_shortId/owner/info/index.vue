@@ -25,7 +25,7 @@
 
         <div class="addition_item">
           <div class="addition_item_label">店铺名称</div>
-          <input class="addition_item_input" placeholder="请输入店铺名称" maxlength="20" v-model="http.req.name.name">
+          <input class="addition_item_input" placeholder="请输入店铺名称" maxlength="20" v-model="http.req.shop.name">
         </div>
 
         <div class="box_divide"></div>
@@ -173,7 +173,7 @@
         },
         http: {
           req: {
-            name: {},
+            shop: {},
             info: {
               logo: null,
               address: null,
@@ -193,7 +193,7 @@
     },
     created() {
       httpShopApi.getOne(this.$route.params.shortId).then(res => {
-        this.http.req.name = res
+        this.http.req.shop = res
       })
 
       httpInfoApi.get(this.$route.params.shortId).then(res => {
@@ -202,7 +202,7 @@
     },
     methods: {
       btnUpdate() {
-        httpShopApi.putName(this.$route.params.shortId, this.http.req.name).then(res => {
+        httpShopApi.putName(this.$route.params.shortId, this.http.req.shop.name).then(res => {
           httpInfoAdminApi.put(this.$route.params.shortId, this.http.req.info).then(res => {
             this.$msgBox.doModal({
               type: 'yes',

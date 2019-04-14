@@ -47,7 +47,7 @@
           <div class="food_group_name" @click="btnGroupEdit(tableGroup)">{{tableGroup.name}}</div>
           <div class="food_group_private_room" v-if="tableGroup.privateRoom">包间</div>
           <div class="food_group_count">({{tableGroup.tableOnes.length}})</div>
-          <div class="food_group_remark">{{tableGroup.remark}} ({{tableGroup.minPeople + '-' + tableGroup.maxPeople + ' 人'}})</div>
+          <div class="food_group_right"><span class="food_group_right_remark">{{tableGroup.remark}}</span> <span class="food_group_right_people">({{tableGroup.minPeople + '-' + tableGroup.maxPeople + '人'}})</span></div>
         </div>
 
         <div class="box" v-for="(table, index) in tableGroup.tableOnes">

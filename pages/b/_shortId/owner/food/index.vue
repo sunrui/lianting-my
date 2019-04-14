@@ -366,7 +366,7 @@
         })
       },
       btnGroupEditConfirm() {
-        httpFoodAdminApi.putGroup(this.$route.params.shortId, this.http.req.group.id, this.http.req.group).then(res => {
+        httpFoodAdminApi.putGroup(this.$route.params.shortId, this.http.req.group.id, this.http.req.group.name, this.http.req.group.orderIndex).then(res => {
           this.ui.v_group_edit = false
           this.ui.vCoverMask = false
 

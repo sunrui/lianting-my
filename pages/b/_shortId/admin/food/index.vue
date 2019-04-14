@@ -343,9 +343,7 @@
         this.ui.status.selectStatus = foodCategory.status
       },
       btnChangeStatusConfirm() {
-        this.ui.status.foodCategory.status = this.ui.status.selectStatus
-
-        httpFoodAdminApi.putCategory(this.$route.params.shortId, this.ui.status.foodCategory).then(res => {
+        httpFoodAdminApi.putCategoryStatus(this.$route.params.shortId, this.ui.status.foodCategory.id, this.ui.status.selectStatus).then(res => {
           this.ui.vSelectStatus = false
           this.ui.vCoverMask = false
 

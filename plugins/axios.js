@@ -16,8 +16,11 @@ axios.interceptors.request.use((config) => {
 })
 
 axios.interceptors.response.use(function (response) {
-  console.group('%c' + response.config.method.toUpperCase() + '%c ' + response.config.url, 'background:#FF6958;color:white', 'color:#000')
-  console.log(response.data)
+  console.group('%c' + response.config.method.toUpperCase() + '%c ' + response.request.responseURL, 'background:#FF6958;color:white', 'color:#000')
+  if (response.config.data) {
+    console.log(JSON.parse(response.config.data))
+  }
+  console.log(response.data ? response.data : '<null>')
   console.groupEnd()
 
   loadingApi.hide()

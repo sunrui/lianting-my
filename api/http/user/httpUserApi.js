@@ -2,7 +2,11 @@ import axios from 'axios'
 
 let base = '/api/user'
 
-let sixHour = 6 * 60 * 60
+let maxAge = 6 * 60 * 60
+
+if (process.env.NODE_ENV === 'development') {
+  maxAge = 365 * 60 * 60
+}
 
 export const httpUserApi = {
   getInfo(userId) {
@@ -27,7 +31,7 @@ export const httpUserApi = {
       shortId: shortId,
       code: code,
       state: state,
-      maxAge: sixHour
+      maxAge: maxAge
     }).then(res => res.data)
   },
   postLoginPhone(shortId, phone, code) {
@@ -35,7 +39,7 @@ export const httpUserApi = {
       shortId: shortId,
       phone: phone,
       code: code,
-      maxAge: sixHour
+      maxAge: maxAge
     }).then(res => res.data)
   },
   postLoginPassword(shortId, userName, password) {
@@ -43,7 +47,7 @@ export const httpUserApi = {
       shortId: shortId,
       userName: userName,
       password: password,
-      maxAge: sixHour
+      maxAge: maxAge
     }).then(res => res.data)
   },
   postBindPhone(phone, code) {
