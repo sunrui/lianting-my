@@ -6,18 +6,31 @@
   left: px2rem(40);
 
   display: inline-block;
+  vertical-align: middle;
   color: white;
   font-size: px2rem(24);
   line-height: px2rem(32);
   text-align: center;
 }
 
-.food_group_remark {
+.food_group_right {
   display: inline-block;
+  vertical-align: middle;
   float: right;
-  color: #999999;
   line-height: px2rem(110);
   margin-right: px2rem(35);
+  font-size: px2rem(28);
+
+  .food_group_right_remark {
+    color: #999999;
+    line-height: px2rem(110);
+    margin-right: px2rem(5);
+  }
+
+  .food_group_right_people {
+    color: #666666;
+    line-height: px2rem(110);
+  }
 }
 
 .table {
