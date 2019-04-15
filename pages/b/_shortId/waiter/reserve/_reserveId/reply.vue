@@ -27,8 +27,7 @@
       <div class="reply_label">回复留言</div>
 
       <div class="reply_remark_area">
-        <textarea class="reply_remark_input" placeholder="请输入要回复给顾客的留言" maxlength="256"
-                  v-model="http.req.reply.remark"></textarea>
+        <textarea class="reply_remark_input" placeholder="请输入要回复给顾客的留言" maxlength="256" v-model="http.req.reply.remark"></textarea>
       </div>
 
       <div class="button_box">
