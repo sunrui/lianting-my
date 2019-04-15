@@ -6,16 +6,20 @@
       <div class="addition box_radius">
         <div class="addition_item">
           <div class="addition_item_label">品牌名称</div>
-          <input class="addition_item_input" placeholder="请输入品牌名称" minlength="1" maxlength="32"
-                 v-model="http.req.shopGroup.name">
+          <label>
+            <input class="addition_item_input" placeholder="请输入品牌名称" minlength="1" maxlength="32"
+                   v-model="http.req.shopGroup.name">
+          </label>
         </div>
 
         <div class="box_divide"></div>
 
         <div class="addition_item">
           <div class="addition_item_label">公司</div>
-          <input class="addition_item_input" placeholder="请输入公司" minlength="2" maxlength="20"
-                 v-model="http.req.shopGroup.corporation">
+          <label>
+            <input class="addition_item_input" placeholder="请输入公司" minlength="2" maxlength="20"
+                   v-model="http.req.shopGroup.corporation">
+          </label>
         </div>
 
         <div v-show="!havePhone">
@@ -23,20 +27,24 @@
 
           <div class="addition_item">
             <div class="addition_item_label">手机号</div>
-            <input type="number" class="addition_item_input" placeholder="请输入手机号"
-                   oninput="this.value=this.value.replace(/[^0-9]/g,'');
-                            if (value.length > 11) value = value.slice(0, 11)"
-                   v-model="http.req.bind.phone">
+            <label>
+              <input type="number" class="addition_item_input" placeholder="请输入手机号"
+                     oninput="this.value=this.value.replace(/[^0-9]/g,'');
+                              if (value.length > 11) value = value.slice(0, 11)"
+                     v-model="http.req.bind.phone">
+            </label>
           </div>
 
           <div class="box_divide"></div>
 
           <div class="addition_item">
             <div class="addition_item_label">
-              <input type="number" class="addition_item_code_input" placeholder="请输入验证码"
-                     oninput="this.value=this.value.replace(/[^0-9]/g,'');
-                              if (value.length > 6) value = value.slice(0, 6)"
-                     v-model="http.req.bind.code">
+              <label>
+                <input type="number" class="addition_item_code_input" placeholder="请输入验证码"
+                       oninput="this.value=this.value.replace(/[^0-9]/g,'');
+                                if (value.length > 6) value = value.slice(0, 6)"
+                       v-model="http.req.bind.code">
+              </label>
             </div>
 
             <div class="addition_item_code_send">

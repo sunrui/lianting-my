@@ -19,14 +19,18 @@
 
         <div class="addition_item">
           <div class="addition_item_label">餐食名称</div>
-          <input class="addition_item_input" placeholder="请输入餐食名称" maxlength="20" v-model="http.req.category.name">
+          <label>
+            <input class="addition_item_input" placeholder="请输入餐食名称" maxlength="20" v-model="http.req.category.name">
+          </label>
         </div>
 
         <div class="box_divide"></div>
 
         <div class="addition_item">
           <div class="addition_item_label">餐食描述</div>
-          <input class="addition_item_input" placeholder="请输入餐食描述" maxlength="64" v-model="http.req.category.detail">
+          <label>
+            <input class="addition_item_input" placeholder="请输入餐食描述" maxlength="64" v-model="http.req.category.detail">
+          </label>
         </div>
 
       </div>
@@ -45,7 +49,9 @@
           <div v-if="ui.tagEnable">
             <div class="addition_item">
               <div class="addition_item_label">名称</div>
-              <input class="addition_item_input" placeholder="请输入标签名称" maxlength="6" v-model="http.req.category.tagName">
+              <label>
+                <input class="addition_item_input" placeholder="请输入标签名称" maxlength="6" v-model="http.req.category.tagName">
+              </label>
             </div>
 
             <div class="box_divide"></div>
@@ -115,7 +121,9 @@
 
       <div class="modal_input_box">
         <div class="modal_input_area">
-          <input class="modal_input" placeholder="请输入类别，如：一盘。" maxlength="10" v-model="ui.food.name">
+          <label>
+            <input class="modal_input" placeholder="请输入类别，如：一盘。" maxlength="10" v-model="ui.food.name">
+          </label>
         </div>
       </div>
 

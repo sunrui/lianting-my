@@ -112,7 +112,9 @@
 
     <div class="wall_reply_footer">
       <div class="wall_reply_content">
-        <input class="wall_reply_input" placeholder="快来留下您的评论吧~" v-model="ui.replyContent">
+        <label>
+          <input class="wall_reply_input" placeholder="快来留下您的评论吧~" v-model="ui.replyContent">
+        </label>
       </div>
 
       <div class="wall_reply_button" @click="btnReply">发送</div>

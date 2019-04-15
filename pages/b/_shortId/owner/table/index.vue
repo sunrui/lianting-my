@@ -86,16 +86,20 @@
 
       <div class="modal_input_box">
         <div class="modal_input_area">
-          <input type="number" class="modal_input" placeholder="请输入餐桌号，如 10"
-                 oninput="this.value=this.value.replace(/[^0-9]/g,'');
-                          if (value.length > 4) value = value.slice(0, 4)"
-                 v-model=" http.req.table.number">
+          <label>
+            <input type="number" class="modal_input" placeholder="请输入餐桌号，如 10"
+                   oninput="this.value=this.value.replace(/[^0-9]/g,'');
+                            if (value.length > 4) value = value.slice(0, 4)"
+                   v-model=" http.req.table.number">
+          </label>
         </div>
       </div>
 
       <div class="modal_input_box">
         <div class="modal_input_area">
-          <input class="modal_input" placeholder="请输入备注" maxlength="20" v-model="http.req.table.remark">
+          <label>
+            <input class="modal_input" placeholder="请输入备注" maxlength="20" v-model="http.req.table.remark">
+          </label>
         </div>
       </div>
 

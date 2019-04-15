@@ -24,9 +24,11 @@
 
         <div class="addition_item">
           <div class="addition_item_label">支付商户号</div>
-          <input class="addition_item_input"
-                 oninput="this.value=this.value.replace(/[^0-9]/g,'');"
-                 placeholder="请输入支付商户号" maxlength="20" v-model="http.req.config.subMchId">
+          <label>
+            <input class="addition_item_input"
+                   oninput="this.value=this.value.replace(/[^0-9]/g,'');"
+                   placeholder="请输入支付商户号" maxlength="20" v-model="http.req.config.subMchId">
+          </label>
         </div>
 
         <div class="box_divide"></div>

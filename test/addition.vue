@@ -23,7 +23,9 @@
         <div class="box_divide"></div>
         <div class="addition_item">
           <div class="addition_item_label">姓名</div>
-          <input class="addition_item_input" placeholder="不可修改">
+          <label>
+            <input class="addition_item_input" placeholder="不可修改">
+          </label>
         </div>
         <div class="box_divide"></div>
         <div class="addition_item">
@@ -47,10 +49,12 @@
         <div class="box_divide"></div>
         <div class="addition_item">
           <div class="addition_item_label">
-            <input type="number" class="addition_item_code_input" placeholder="请输入验证码"
-                   oninput="this.value=this.value.replace(/[^0-9]/g,'');
-                            if (value.length > 6) value = value.slice(0, 6)"
-            >
+            <label>
+              <input type="number" class="addition_item_code_input" placeholder="请输入验证码"
+                     oninput="this.value=this.value.replace(/[^0-9]/g,'');
+                              if (value.length > 6) value = value.slice(0, 6)"
+              >
+            </label>
           </div>
           <div class="addition_item_code_send">
             <div class="addition_item_code_send_divide">
@@ -62,10 +66,12 @@
         <div class="box_divide"></div>
         <div class="addition_item">
           <div class="addition_item_label">
-            <input type="number" class="addition_item_code_input" placeholder="请输入验证码"
-                   oninput="this.value=this.value.replace(/[^0-9]/g,'');
-                            if (value.length > 6) value = value.slice(0, 6)"
-            >
+            <label>
+              <input type="number" class="addition_item_code_input" placeholder="请输入验证码"
+                     oninput="this.value=this.value.replace(/[^0-9]/g,'');
+                              if (value.length > 6) value = value.slice(0, 6)"
+              >
+            </label>
           </div>
           <div class="addition_item_code_send">
             <div class="addition_item_code_send_divide">

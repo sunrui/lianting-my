@@ -6,16 +6,20 @@
       <div class="addition box_radius">
         <div class="addition_item">
           <div class="addition_item_label">魔法串</div>
-          <input class="addition_item_input" placeholder="请输入魔法串" minlength="1" maxlength="32"
-                 v-model="http.req.downgrade.magicId">
+          <label>
+            <input class="addition_item_input" placeholder="请输入魔法串" minlength="1" maxlength="32"
+                   v-model="http.req.downgrade.magicId">
+          </label>
         </div>
         <div class="box_divide"></div>
 
         <div class="addition_item">
           <div class="addition_item_label">店铺标识</div>
-          <input class="addition_item_input" placeholder="请输入店铺标识" minlength="2" maxlength="32"
-                 onkeyup="value=value.replace(/[^\w.\/]/ig,'')"
-                 v-model="http.req.downgrade.shortId">
+          <label>
+            <input class="addition_item_input" placeholder="请输入店铺标识" minlength="2" maxlength="32"
+                   onkeyup="value=value.replace(/[^\w.\/]/ig,'')"
+                   v-model="http.req.downgrade.shortId">
+          </label>
         </div>
         <div class="box_divide"></div>
 
@@ -41,24 +45,30 @@
 
         <div class="addition_item">
           <div class="addition_item_label">降级天数</div>
-          <input type="number" class="addition_item_input" placeholder="请输入降级天数"
-                 oninput="this.value=this.value.replace(/[^0-9]/g,''); if (this.value === '0') this.value = '1'
-                          if (value.length > 3) value = value.slice(0, 3)"
-                 v-model="http.req.downgrade.downgradeDate">
+          <label>
+            <input type="number" class="addition_item_input" placeholder="请输入降级天数"
+                   oninput="this.value=this.value.replace(/[^0-9]/g,''); if (this.value === '0') this.value = '1'
+                            if (value.length > 3) value = value.slice(0, 3)"
+                   v-model="http.req.downgrade.downgradeDate">
+          </label>
         </div>
         <div class="box_divide"></div>
 
         <div class="addition_item">
           <div class="addition_item_label">降级订单号</div>
-          <input class="addition_item_input" placeholder="请输入降级订单号" minlength="1" maxlength="64"
-                 v-model="http.req.downgrade.downgradeId">
+          <label>
+            <input class="addition_item_input" placeholder="请输入降级订单号" minlength="1" maxlength="64"
+                   v-model="http.req.downgrade.downgradeId">
+          </label>
         </div>
         <div class="box_divide"></div>
 
         <div class="addition_item">
           <div class="addition_item_label">备注</div>
-          <input class="addition_item_input" placeholder="请输入备注" minlength="0" maxlength="256"
-                 v-model="http.req.downgrade.remark">
+          <label>
+            <input class="addition_item_input" placeholder="请输入备注" minlength="0" maxlength="256"
+                   v-model="http.req.downgrade.remark">
+          </label>
         </div>
       </div>
     </div>

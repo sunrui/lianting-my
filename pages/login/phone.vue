@@ -17,10 +17,12 @@
       <div class="addition">
         <div class="login_phone">
           <div class="login_phone_icon"></div>
-          <input type="number" class="login_phone_input" placeholder="请输入手机号"
-                 oninput="this.value=this.value.replace(/[^0-9]/g,'');
-                          if (value.length > 11) value = value.slice(0, 11)"
-                 v-model="http.req.bind.phone">
+          <label>
+            <input type="number" class="login_phone_input" placeholder="请输入手机号"
+                   oninput="this.value=this.value.replace(/[^0-9]/g,'');
+                            if (value.length > 11) value = value.slice(0, 11)"
+                   v-model="http.req.bind.phone">
+          </label>
         </div>
 
         <div class="box_divide"></div>
@@ -28,10 +30,12 @@
         <div class="addition_item">
           <div class="addition_item_label">
             <div class="login_sms_code_icon"></div>
-            <input type="number" class="login_sms_code_input addition_item_code_input" placeholder="验证码"
-                   oninput="this.value=this.value.replace(/[^0-9]/g,'');
-                            if (value.length > 6) value = value.slice(0, 6)"
-                   v-model="http.req.bind.code">
+            <label>
+              <input type="number" class="login_sms_code_input addition_item_code_input" placeholder="验证码"
+                     oninput="this.value=this.value.replace(/[^0-9]/g,'');
+                              if (value.length > 6) value = value.slice(0, 6)"
+                     v-model="http.req.bind.code">
+            </label>
           </div>
 
           <div class="addition_item_code_send">

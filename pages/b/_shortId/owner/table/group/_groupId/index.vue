@@ -6,16 +6,20 @@
       <div class="addition box_radius">
         <div class="addition_item">
           <div class="addition_item_label">名称</div>
-          <input class="addition_item_input" placeholder="请输入编辑餐桌组名称" maxlength="20" v-model="http.req.group.name">
+          <label>
+            <input class="addition_item_input" placeholder="请输入编辑餐桌组名称" maxlength="20" v-model="http.req.group.name">
+          </label>
         </div>
 
         <div class="box_divide"></div>
 
         <div class="addition_item">
           <div class="addition_item_label">最小人数</div>
-          <input class="addition_item_input"
-                 oninput="this.value=this.value.replace(/[^0-9]/g,''); if (this.value === '0') this.value = ''"
-                 placeholder="请输入最小人数" maxlength="2" v-model="http.req.group.minPeople">
+          <label>
+            <input class="addition_item_input"
+                   oninput="this.value=this.value.replace(/[^0-9]/g,''); if (this.value === '0') this.value = ''"
+                   placeholder="请输入最小人数" maxlength="2" v-model="http.req.group.minPeople">
+          </label>
         </div>
 
         <div class="box_divide"></div>
@@ -23,9 +27,11 @@
         <div class="addition_item">
           <div class="addition_item_label">最大人数</div>
 
-          <input class="addition_item_input"
-                 oninput="this.value=this.value.replace(/[^0-9]/g,''); if (this.value === '0') this.value = ''"
-                 placeholder="请输入最大人数" maxlength="2" v-model="http.req.group.maxPeople">
+          <label>
+            <input class="addition_item_input"
+                   oninput="this.value=this.value.replace(/[^0-9]/g,''); if (this.value === '0') this.value = ''"
+                   placeholder="请输入最大人数" maxlength="2" v-model="http.req.group.maxPeople">
+          </label>
         </div>
       </div>
     </div>
@@ -43,16 +49,20 @@
 
           <div class="addition_item">
             <div class="addition_item_label">号码前缀</div>
-            <input class="addition_item_input"
-                   type="text"
-                   placeholder="请输入号码前缀，如 A" minlength="1" maxlength="4" v-model="http.req.group.numberPrefix">
+            <label>
+              <input class="addition_item_input"
+                     type="text"
+                     placeholder="请输入号码前缀，如 A" minlength="1" maxlength="4" v-model="http.req.group.numberPrefix">
+            </label>
           </div>
 
           <div class="box_divide"></div>
 
           <div class="addition_item">
             <div class="addition_item_label">备注</div>
-            <input class="addition_item_input" placeholder="请输入备注" maxlength="64" v-model="http.req.group.remark">
+            <label>
+              <input class="addition_item_input" placeholder="请输入备注" maxlength="64" v-model="http.req.group.remark">
+            </label>
           </div>
         </div>
       </div>

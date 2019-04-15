@@ -16,16 +16,20 @@
 
         <div class="addition_item" v-if="ui.open">
           <div class="addition_item_label">名称</div>
-          <input class="addition_item_input" placeholder="请输入名称" maxlength="32"
-                 v-model="http.req.wifi.name">
+          <label>
+            <input class="addition_item_input" placeholder="请输入名称" maxlength="32"
+                   v-model="http.req.wifi.name">
+          </label>
         </div>
 
         <div class="box_divide" v-if="ui.open"></div>
 
         <div class="addition_item" v-if="ui.open">
           <div class="addition_item_label">密码</div>
-          <input class="addition_item_input" placeholder="请输入密码" maxlength="32"
-                 v-model="http.req.wifi.password">
+          <label>
+            <input class="addition_item_input" placeholder="请输入密码" maxlength="32"
+                   v-model="http.req.wifi.password">
+          </label>
         </div>
       </div>
     </div>

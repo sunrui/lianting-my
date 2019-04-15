@@ -25,14 +25,18 @@
 
         <div class="addition_item">
           <div class="addition_item_label">店铺名称</div>
-          <input class="addition_item_input" placeholder="请输入店铺名称" maxlength="20" v-model="http.req.shop.name">
+          <label>
+            <input class="addition_item_input" placeholder="请输入店铺名称" maxlength="20" v-model="http.req.shop.name">
+          </label>
         </div>
 
         <div class="box_divide"></div>
 
         <div class="addition_item">
           <div class="addition_item_label">地址</div>
-          <input class="addition_item_input" placeholder="请输入地址" maxlength="256" v-model="http.req.info.address">
+          <label>
+            <input class="addition_item_input" placeholder="请输入地址" maxlength="256" v-model="http.req.info.address">
+          </label>
         </div>
 
         <!--<div class="box_divide"></div>-->
@@ -46,18 +50,22 @@
 
         <div class="addition_item">
           <div class="addition_item_label">电话</div>
-          <input type="number" class="addition_item_input" placeholder="请输入电话"
-                 oninput="this.value=this.value.replace(/[^0-9]/g,'');
-                          if (value.length > 11) value = value.slice(0, 11)"
-                 v-model="http.req.info.phone">
+          <label>
+            <input type="number" class="addition_item_input" placeholder="请输入电话"
+                   oninput="this.value=this.value.replace(/[^0-9]/g,'');
+                            if (value.length > 11) value = value.slice(0, 11)"
+                   v-model="http.req.info.phone">
+          </label>
         </div>
 
         <div class="box_divide"></div>
 
         <div class="addition_item">
           <div class="addition_item_label">营业时间</div>
-          <input class="addition_item_input" placeholder="请输入营业时间" maxlength="64"
-                 v-model="http.req.info.time">
+          <label>
+            <input class="addition_item_input" placeholder="请输入营业时间" maxlength="64"
+                   v-model="http.req.info.time">
+          </label>
         </div>
 
         <div class="box_divide"></div>
@@ -65,83 +73,72 @@
         <div class="addition_item">
           <div class="addition_item_label_text_area">公告</div>
           <div class="addition_item_text_area">
-            <textarea class="addition_item_text_input" placeholder="请输入公告" v-model="http.req.info.notice"></textarea>
+            <label>
+              <textarea class="addition_item_text_input" placeholder="请输入公告" v-model="http.req.info.notice"></textarea>
+            </label>
           </div>
         </div>
       </div>
     </div>
 
-    <!--    <div class="box">-->
-    <!--      <div class="addition box_radius">-->
-    <!--        <div class="addition_item">-->
-    <!--          <div class="addition_item_label">热门搜索</div>-->
-    <!--          <div class="addition_item_check">-->
-    <!--            <div class="addition_item_check_on" v-if="ui.searchWordEnable"-->
-    <!--                 @click="btnSearchWord(false)"></div>-->
-    <!--            <div class="addition_item_check_off" v-else @click="btnSearchWord(true)"></div>-->
-    <!--          </div>-->
-    <!--        </div>-->
+        <div class="box">
+          <div class="addition box_radius">
+            <div class="addition_item">
+              <div class="addition_item_label">热门搜索</div>
+              <div class="addition_item_check">
+                <div class="addition_item_check_on" v-if="ui.searchWordEnable"
+                     @click="btnSearchWord(false)"></div>
+                <div class="addition_item_check_off" v-else @click="btnSearchWord(true)"></div>
+              </div>
+            </div>
 
-    <!--        <div class="food_price">-->
-    <!--          <div class="food_price_title">-->
-    <!--            <div class="food_price_title_label">关键字</div>-->
-    <!--            <div class="food_price_table_add" @click="btnSearchWordAdd"></div>-->
-    <!--          </div>-->
+            <div class="food_price">
+              <div class="food_price_title">
+                <div class="food_price_title_label">关键字</div>
+                <div class="food_price_table_add" @click="btnSearchWordAdd"></div>
+              </div>
 
-    <!--          <div v-for="searchWord in ui.searchWords">-->
-    <!--            <div class="food_price_one">-->
-    <!--              <div class="food_price_name">{{searchWord}}</div>-->
-    <!--              <div class="food_price_delete" @click="btnSearchWordDelete(searchWord)"></div>-->
-    <!--            </div>-->
+              <div v-for="searchWord in ui.searchWords">
+                <div class="food_price_one">
+                  <div class="food_price_name">{{searchWord}}</div>
+                  <div class="food_price_delete" @click="btnSearchWordDelete(searchWord)"></div>
+                </div>
 
-    <!--            <div class="box_divide"></div>-->
-    <!--          </div>-->
-    <!--          <div v-if="ui.searchWords.length === 0">-->
-    <!--            <div class="food_price_empty">-->
-    <!--              <div class="food_price_empty_image"></div>-->
-    <!--              <div class="food_price_empty_label">暂无价格</div>-->
-    <!--            </div>-->
-    <!--          </div>-->
-    <!--        </div>-->
-    <!--      </div>-->
+                <div class="box_divide"></div>
+              </div>
+              <div v-if="ui.searchWords.length === 0">
+                <div class="food_price_empty">
+                  <div class="food_price_empty_image"></div>
+                  <div class="food_price_empty_label">暂无价格</div>
+                </div>
+              </div>
+            </div>
+          </div>
 
-    <!--      <div class="modal_center" v-if="ui.vSearchWordAdd">-->
-    <!--        <div class="modal_close_box" @click="btnCoverMask">-->
-    <!--          <img class="modal_close" src="/img/common/close.png" alt="">-->
-    <!--        </div>-->
+          <div class="modal_center" v-if="ui.vSearchWordAdd">
+            <div class="modal_close_box" @click="btnCoverMask">
+              <img class="modal_close" src="/img/common/close.png" alt="">
+            </div>
 
-    <!--        <div class="modal_title">添加价格</div>-->
+            <div class="modal_title">添加关键字</div>
 
-    <!--        <div class="modal_input_box">-->
-    <!--          <div class="modal_input_area">-->
-    <!--            <input class="modal_input" placeholder="请输入类别，如：一盘。" maxlength="10" v-model="ui.searchWord.name"-->
-    <!--                  >-->
-    <!--          </div>-->
-    <!--        </div>-->
+            <div class="modal_input_box">
+              <div class="modal_input_area">
+                <label>
+                  <input class="modal_input" placeholder="请输入类别，如：一盘。" maxlength="10" v-model="ui.searchWord.name"
+                        >
+                </label>
+              </div>
+            </div>
 
-    <!--        <div class="modal_input_box">-->
-    <!--          <div class="modal_input_area">-->
-    <!--            <currency-input placeholder="请输入价格" v-model="ui.searchWord.price"></currency-input>-->
-    <!--          </div>-->
-    <!--        </div>-->
-
-    <!--        <div class="modal_input_box">-->
-    <!--          <div class="modal_input_area">-->
-    <!--            <currency-input placeholder="请输入原价格" maxlength="8"-->
-    <!--                            v-model="ui.searchWord.originalPrice"></currency-input>-->
-    <!--          </div>-->
-    <!--        </div>-->
-
-    <!--        <div class="modal_button_box">-->
-    <!--          <div class="button_big" v-if="ui.searchWord.name && ui.searchWord.price"-->
-    <!--               @click="btnSearchWordAddConfirm">确定-->
-    <!--          </div>-->
-    <!--          <div class="button_big button_gray" v-else>确定</div>-->
-    <!--        </div>-->
-    <!--      </div>-->
-
-
-    <!--    </div>-->
+            <div class="modal_button_box">
+              <div class="button_big" v-if="ui.searchWord.name && ui.searchWord.price"
+                   @click="btnSearchWordAddConfirm">确定
+              </div>
+              <div class="button_big button_gray" v-else>确定</div>
+            </div>
+          </div>
+        </div>
 
     <div class="button_box">
       <div class="button_big" @click="btnUpdate">更新</div>
@@ -227,6 +224,9 @@
 
       },
       btnSearchWordDelete(searchWord) {
+
+      },
+      btnSearchWordAddConfirm() {
 
       }
     }

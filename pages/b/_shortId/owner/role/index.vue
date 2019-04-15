@@ -60,16 +60,20 @@
 
       <div class="modal_input_box">
         <div class="modal_input_area">
-          <input type="number" class="modal_input"
-                 oninput="this.value=this.value.replace(/[^0-9]/g,'');
-                            if (value.length > 11) value = value.slice(0, 11)"
-                 placeholder="请输入手机号" v-model="http.req.role.phone">
+          <label>
+            <input type="number" class="modal_input"
+                   oninput="this.value=this.value.replace(/[^0-9]/g,'');
+                              if (value.length > 11) value = value.slice(0, 11)"
+                   placeholder="请输入手机号" v-model="http.req.role.phone">
+          </label>
         </div>
       </div>
 
       <div class="modal_input_box">
         <div class="modal_input_area">
-          <input class="modal_input" placeholder="请输入真实姓名" maxlength="10" v-model="http.req.role.name">
+          <label>
+            <input class="modal_input" placeholder="请输入真实姓名" maxlength="10" v-model="http.req.role.name">
+          </label>
         </div>
       </div>
 
