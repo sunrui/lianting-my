@@ -18,12 +18,12 @@
         <div class="search_btn" @click="btnSearch">搜索</div>
       </div>
 
-      <div class="search_hot" v-if="ui.vSearchHot">
+      <div class="search_hot" v-if="ui.vSearchHot && http.res.searchWords.length > 0">
         <div class="search_hot_label">热门搜索</div>
 
         <div class="search_hot_box">
-          <div class="search_hot_one" v-for="searchName in ui.hotSearchNames">
-            <div class="search_hot_name" @click="btnSearchHot(searchName)">{{searchName}}</div>
+          <div class="search_hot_one" v-for="searchWord in http.res.searchWords">
+            <div class="search_hot_name" @click="btnSearchHot(searchWord)">{{searchWord}}</div>
           </div>
         </div>
       </div>
@@ -47,15 +47,16 @@
 </template>
 
 <script>
-  import { httpFoodApi } from '../../api/http/lt/httpFoodApi'
+  import {httpFoodApi} from '../../api/http/lt/httpFoodApi'
   import TitleBar from '../common/TitleBar'
+  import {httpSearchApi} from '../../api/http/lt/httpSearchApi'
 
   export default {
     metaInfo: {
       title: '搜索'
     },
     middleware: 'auth',
-    components: { TitleBar },
+    components: {TitleBar},
     props: {
       roleWaiter: {
         type: Boolean,
@@ -86,12 +87,23 @@
             }
           },
           res: {
+            searchWords: ['酒', '米饭'],
             foodCategories: []
           }
         }
       }
     },
+    created() {
+      this.httpSearchWord()
+    },
     methods: {
+      httpSearchWord() {
+        httpSearchApi.getSearchWord(this.$route.params.shortId).then(res => {
+          if (res.length > 0) {
+            this.http.res.searchWords = res
+          }
+        })
+      },
       btnInput() {
         this.ui.vSearchResult = false
         this.ui.vSearchHot = true

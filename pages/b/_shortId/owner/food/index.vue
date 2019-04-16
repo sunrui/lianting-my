@@ -105,7 +105,7 @@
       <div class="blank_30"></div>
     </div>
 
-    <div class="modal_center" v-if="ui.v_group_add">
+    <div class="modal_center" v-if="ui.vGroupAdd">
       <div class="modal_close_box" @click="btnCoverMask">
         <img class="modal_close" src="/img/common/close.png" alt="">
       </div>
@@ -126,7 +126,7 @@
       </div>
     </div>
 
-    <div class="modal_center" v-if="ui.v_group_edit">
+    <div class="modal_center" v-if="ui.vGroupEdit">
       <div class="modal_close_box" @click="btnCoverMask">
         <img class="modal_close" src="/img/common/close.png" alt="">
       </div>
@@ -174,8 +174,8 @@
         },
         ui: {
           vCoverMask: false,
-          v_group_add: false,
-          v_group_edit: false,
+          vGroupAdd: false,
+          vGroupEdit: false,
           selectMenuId: null
         },
         http: {
@@ -217,8 +217,8 @@
         })
       },
       btnCoverMask() {
-        this.ui.v_group_add = false
-        this.ui.v_group_edit = false
+        this.ui.vGroupAdd = false
+        this.ui.vGroupEdit = false
         this.ui.vCoverMask = false
       },
       navToHash() {
@@ -329,19 +329,19 @@
       },
       btnGroupAdd() {
         this.ui.vCoverMask = true
-        this.ui.v_group_add = true
+        this.ui.vGroupAdd = true
         this.http.req.group.name = ''
       },
       btnGroupEdit(foodGroup) {
         this.ui.vCoverMask = true
-        this.ui.v_group_edit = true
+        this.ui.vGroupEdit = true
         this.http.req.group.id = foodGroup.id
         this.http.req.group.name = foodGroup.name
         this.http.req.group.orderIndex = foodGroup.orderIndex
       },
       btnGroupAddConfirm() {
         httpFoodAdminApi.postGroup(this.$route.params.shortId, this.http.req.group).then(res => {
-          this.ui.v_group_add = false
+          this.ui.vGroupAdd = false
           this.ui.vCoverMask = false
 
           if (res.maxLimit) {
@@ -371,7 +371,7 @@
       },
       btnGroupEditConfirm() {
         httpFoodAdminApi.putGroup(this.$route.params.shortId, this.http.req.group.id, this.http.req.group.name, this.http.req.group.orderIndex).then(res => {
-          this.ui.v_group_edit = false
+          this.ui.vGroupEdit = false
           this.ui.vCoverMask = false
 
           if (res.foodGroupIdNotExists) {

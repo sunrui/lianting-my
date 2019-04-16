@@ -3,6 +3,10 @@
     <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme"
                :imageHeight="title.imageHeight"></title-bar>
 
+    <transition name="fade">
+      <div :class="{ cover_mask_9: ui.vCoverMask}" @click="btnCoverMask"></div>
+    </transition>
+
     <div class="box">
       <div class="addition box_radius">
         <div class="addition_item">
@@ -81,64 +85,62 @@
       </div>
     </div>
 
-        <div class="box">
-          <div class="addition box_radius">
-            <div class="addition_item">
-              <div class="addition_item_label">热门搜索</div>
-              <div class="addition_item_check">
-                <div class="addition_item_check_on" v-if="ui.searchWordEnable"
-                     @click="btnSearchWord(false)"></div>
-                <div class="addition_item_check_off" v-else @click="btnSearchWord(true)"></div>
-              </div>
-            </div>
-
-            <div class="food_price">
-              <div class="food_price_title">
-                <div class="food_price_title_label">关键字</div>
-                <div class="food_price_table_add" @click="btnSearchWordAdd"></div>
-              </div>
-
-              <div v-for="searchWord in ui.searchWords">
-                <div class="food_price_one">
-                  <div class="food_price_name">{{searchWord}}</div>
-                  <div class="food_price_delete" @click="btnSearchWordDelete(searchWord)"></div>
-                </div>
-
-                <div class="box_divide"></div>
-              </div>
-              <div v-if="ui.searchWords.length === 0">
-                <div class="food_price_empty">
-                  <div class="food_price_empty_image"></div>
-                  <div class="food_price_empty_label">暂无价格</div>
-                </div>
-              </div>
-            </div>
+    <div class="box">
+      <div class="addition box_radius">
+        <div class="addition_item">
+          <div class="addition_item_label">热门搜索</div>
+          <div class="addition_item_check">
+            <div class="addition_item_check_on" v-if="ui.searchWordEnable"
+                 @click="btnSearchWord(false)"></div>
+            <div class="addition_item_check_off" v-else @click="btnSearchWord(true)"></div>
           </div>
+        </div>
 
-          <div class="modal_center" v-if="ui.vSearchWordAdd">
-            <div class="modal_close_box" @click="btnCoverMask">
-              <img class="modal_close" src="/img/common/close.png" alt="">
+        <div v-if="ui.searchWordEnable">
+          <div class="food_price">
+            <div class="food_price_title">
+              <div class="food_price_title_label"></div>
+              <div class="food_price_table_add" @click="btnSearchWordAdd"></div>
             </div>
 
-            <div class="modal_title">添加关键字</div>
-
-            <div class="modal_input_box">
-              <div class="modal_input_area">
-                <label>
-                  <input class="modal_input" placeholder="请输入类别，如：一盘。" maxlength="10" v-model="ui.searchWord.name"
-                        >
-                </label>
+            <div v-for="searchWord in ui.searchWords">
+              <div class="food_price_one">
+                <div class="food_price_name">{{searchWord}}</div>
+                <div class="food_price_delete" @click="btnSearchWordDelete(searchWord)"></div>
               </div>
+              <div class="box_divide"></div>
             </div>
-
-            <div class="modal_button_box">
-              <div class="button_big" v-if="ui.searchWord.name && ui.searchWord.price"
-                   @click="btnSearchWordAddConfirm">确定
+            <div v-if="ui.searchWords.length === 0">
+              <div class="food_price_empty">
+                <div class="food_price_empty_label">暂无搜索关键字。</div>
               </div>
-              <div class="button_big button_gray" v-else>确定</div>
             </div>
           </div>
         </div>
+      </div>
+
+      <div class="modal_center" v-if="ui.vSearchWordAdd">
+        <div class="modal_close_box" @click="btnCoverMask">
+          <img class="modal_close" src="/img/common/close.png" alt="">
+        </div>
+
+        <div class="modal_title">添加关键字</div>
+
+        <div class="modal_input_box">
+          <div class="modal_input_area">
+            <label>
+              <input class="modal_input" placeholder="请输入关键字，如：米饭。" maxlength="10" v-model="ui.searchWord"
+              >
+            </label>
+          </div>
+        </div>
+
+        <div class="modal_button_box">
+          <div class="button_big" v-if="ui.searchWord" @click="btnSearchWordAddConfirm">确定</div>
+          <div class="button_big button_gray" v-else>确定</div>
+        </div>
+      </div>
+    </div>
 
     <div class="button_box">
       <div class="button_big" @click="btnUpdate">更新</div>
@@ -152,6 +154,8 @@
   import {httpShopApi} from '../../../../../api/http/shop/httpShopApi'
   import TitleBar from '../../../../../components/common/TitleBar'
   import ImageUpload from '../../../../../components/common/ImageUpload'
+  import {httpSearchApi} from '../../../../../api/http/lt/httpSearchApi'
+  import {httpSearchAdminApi} from '../../../../../api/http/lt/httpSearchAdminApi'
 
   export default {
     metaInfo: {
@@ -182,8 +186,10 @@
           }
         },
         ui: {
+          vCoverMask: false,
           searchWordEnable: false,
           searchWords: ['米饭', '酒'],
+          searchWord: null,
           vSearchWordAdd: false
         }
       }
@@ -196,18 +202,47 @@
       httpInfoApi.get(this.$route.params.shortId).then(res => {
         this.http.req.info = res
       })
+
+      if (this.http.req.shop.licenseType !== 'Free') {
+        httpSearchApi.getSearchWord(this.$route.params.shortId).then(res => {
+          if (res.length > 0) {
+            this.ui.searchWords = res
+            this.ui.searchWordEnable = true
+          }
+        })
+      }
     },
     methods: {
       btnUpdate() {
         httpShopApi.putName(this.$route.params.shortId, this.http.req.shop.name).then(res => {
           httpInfoAdminApi.put(this.$route.params.shortId, this.http.req.info).then(res => {
-            this.$msgBox.doModal({
-              type: 'yes',
-              title: '资料',
-              content: '已更新。'
-            }).then(async (val) => {
-              this.$router.push(this.title.backUri)
-            })
+            if (this.http.req.shop.licenseType !== 'Free') {
+              if (!this.ui.searchWordEnable) {
+                this.ui.searchWords = []
+              }
+
+              httpSearchAdminApi.putSearchWord(this.$route.params.shortId, this.ui.searchWords).then(res => {
+                if (res.maxLimit) {
+                  this.$router.push(`/b/${this.$route.params.shortId}/owner/limit`)
+                } else if (res.success) {
+                  this.$msgBox.doModal({
+                    type: 'yes',
+                    title: '资料',
+                    content: '已更新。'
+                  }).then(async (val) => {
+                    this.$router.push(this.title.backUri)
+                  })
+                }
+              })
+            } else {
+              this.$msgBox.doModal({
+                type: 'yes',
+                title: '资料',
+                content: '已更新。'
+              }).then(async (val) => {
+                this.$router.push(this.title.backUri)
+              })
+            }
           })
         })
       },
@@ -217,17 +252,64 @@
       uploadImageSuccess(fileName) {
         this.$set(this.http.req.info, 'image', fileName)
       },
+      btnCoverMask() {
+        this.ui.vCoverMask = false
+        this.ui.vSearchWordAdd = false
+      },
       btnSearchWord(enable) {
+        if (enable) {
+          if (this.http.req.shop.licenseType === 'Free') {
+            this.$router.push(`/b/${this.$route.params.shortId}/owner/limit`)
+            return
+          }
+        }
+
         this.ui.searchWordEnable = enable
       },
-      btnSearchWordAdd(searchWord) {
+      btnSearchWordAdd() {
+        if (this.http.req.shop.licenseType === 'Free') {
+          this.$router.push(`/b/${this.$route.params.shortId}/owner/limit`)
+          return
+        }
 
+        this.ui.searchWord = ''
+        this.ui.vCoverMask = true
+        this.ui.vSearchWordAdd = true
       },
       btnSearchWordDelete(searchWord) {
+        for (let index in this.ui.searchWords) {
+          let one = this.ui.searchWords[index]
 
+          if (one === searchWord) {
+            this.ui.searchWords.splice(index, 1)
+            break
+          }
+        }
       },
       btnSearchWordAddConfirm() {
+        this.ui.vCoverMask = false
+        this.ui.vSearchWordAdd = false
 
+        let have = false
+
+        for (let index in this.ui.searchWords) {
+          let one = this.ui.searchWords[index]
+
+          if (one === this.ui.searchWord) {
+            have = true
+            break
+          }
+        }
+
+        if (have) {
+          this.$msgBox.doModal({
+            type: 'yes',
+            title: '添加关键字',
+            content: '关键字已存在。'
+          })
+        } else {
+          this.ui.searchWords.push(this.ui.searchWord)
+        }
       }
     }
   }

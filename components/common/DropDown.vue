@@ -5,7 +5,7 @@
       <span class="caret"></span>
     </li>
 
-    <ul class="dropdown-menu" v-if="v_menu">
+    <ul class="dropdown-menu" v-if="vMenu">
       <li v-for="option in options">
         <a href="javascript:void(0)" @click="updateOption(option)">
           {{ option.name }}
@@ -22,7 +22,7 @@
         selectedOption: {
           name: ''
         },
-        v_menu: false,
+        vMenu: false,
         placeholderText: ''
       }
     },
@@ -45,15 +45,15 @@
     methods: {
       updateOption(option) {
         this.selectedOption = option
-        this.v_menu = false
+        this.vMenu = false
         this.$emit('updateOption', this.selectedOption)
       },
       toggleMenu() {
-        this.v_menu = !this.v_menu
+        this.vMenu = !this.vMenu
       },
       hideMenu(e) {
         if (!this.$refs.dropDown || !this.$refs.dropDown.contains(e.target)) {
-          this.v_menu = false
+          this.vMenu = false
         }
       }
     }

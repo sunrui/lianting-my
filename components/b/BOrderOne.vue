@@ -216,7 +216,7 @@
     <div class="blank_30" v-else></div>
 
     <transition name="toggle">
-      <div class="modal_bottom" v-if="ui.v_people">
+      <div class="modal_bottom" v-if="ui.vPeople">
         <div class="modal_close_box" @click="btnCoverMask">
           <img class="modal_close" src="/img/common/close.png" alt="">
         </div>
@@ -240,7 +240,7 @@
     </transition>
 
     <transition name="toggle">
-      <div class="modal_bottom" v-if="ui.v_cancel">
+      <div class="modal_bottom" v-if="ui.vCancel">
         <div class="modal_close_box" @click="btnCoverMask">
           <img class="modal_close" src="/img/common/close.png" alt="">
         </div>
@@ -269,7 +269,7 @@
     </transition>
 
     <transition name="toggle">
-      <div class="modal_bottom" v-if="ui.v_pay_offline">
+      <div class="modal_bottom" v-if="ui.vPayOffline">
         <div class="modal_close_box" @click="btnCoverMask">
           <img class="modal_close" src="/img/common/close.png" alt="">
         </div>
@@ -305,7 +305,7 @@
     </transition>
 
     <transition name="toggle">
-      <div class="modal_bottom" v-if="ui.v_return">
+      <div class="modal_bottom" v-if="ui.vReturn">
         <div class="modal_close_box" @click="btnCoverMask">
           <img class="modal_close" src="/img/common/close.png" alt="">
         </div>
@@ -365,7 +365,7 @@
     </transition>
 
     <transition name="toggle">
-      <div class="modal_bottom" v-if="ui.v_change_price">
+      <div class="modal_bottom" v-if="ui.vChangePrice">
         <div class="modal_close_box" @click="btnCoverMask">
           <img class="modal_close" src="/img/common/close.png" alt="">
         </div>
@@ -464,15 +464,15 @@
           }
         },
         ui: {
-          v_people: false,
+          vPeople: false,
           vCoverMask: false,
-          v_pay_offline: false,
-          v_return: false,
-          v_change_price: false,
+          vPayOffline: false,
+          vReturn: false,
+          vChangePrice: false,
           selectPeople: null,
           selectOrderFood: {},
           peopleChoose: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
-          v_cancel: false,
+          vCancel: false,
           returnRemarks: [
             '不想要了', '点错菜', '点重菜'
           ],
@@ -663,11 +663,11 @@
         })
       },
       btnCoverMask() {
-        this.ui.v_people = false
-        this.ui.v_cancel = false
-        this.ui.v_pay_offline = false
-        this.ui.v_return = false
-        this.ui.v_change_price = false
+        this.ui.vPeople = false
+        this.ui.vCancel = false
+        this.ui.vPayOffline = false
+        this.ui.vReturn = false
+        this.ui.vChangePrice = false
         this.ui.vCoverMask = false
 
         scrollApi.enable(true)
@@ -688,7 +688,7 @@
         }
 
         this.ui.vCoverMask = true
-        this.ui.v_people = true
+        this.ui.vPeople = true
         this.ui.selectPeople = this.http.res.order.people
 
         scrollApi.enable(false)
@@ -698,7 +698,7 @@
       },
       btnPeopleConfirm() {
         httpOrderAdminApi.putPeople(this.$route.params.shortId, this.$route.params.orderOneId, this.ui.selectPeople).then(res => {
-          this.ui.v_people = false
+          this.ui.vPeople = false
           this.ui.vCoverMask = false
 
           if (res.orderOneIdNotExists) {
@@ -787,13 +787,13 @@
         this.btnChangeStatus(orderFood, status)
       },
       btnChangePrice() {
-        this.ui.v_change_price = true
+        this.ui.vChangePrice = true
         this.ui.vCoverMask = true
 
         this.http.req.changePrice.price = this.http.res.order.price
       },
       btnChangePriceConfirm() {
-        this.ui.v_change_price = false
+        this.ui.vChangePrice = false
         this.ui.vCoverMask = false
 
         if (this.role !== 'admin' && this.role !== 'cashier') {
@@ -847,7 +847,7 @@
         })
       },
       btnPayOffline() {
-        this.ui.v_pay_offline = true
+        this.ui.vPayOffline = true
         this.ui.vCoverMask = true
       },
       btnPayOfflineConfirm() {
@@ -862,7 +862,7 @@
         }
 
         httpOrderAdminApi.putPayOffline(this.$route.params.shortId, this.$route.params.orderOneId, this.http.req.payOffline.remark).then(res => {
-          this.ui.v_pay_offline = false
+          this.ui.vPayOffline = false
           this.ui.vCoverMask = false
 
           if (res.orderOneIdNotExists) {
@@ -900,7 +900,7 @@
         }
 
         this.ui.vCoverMask = true
-        this.ui.v_cancel = true
+        this.ui.vCancel = true
 
         scrollApi.enable(false)
       },
@@ -908,7 +908,7 @@
         scrollApi.enable(true)
 
         httpOrderAdminApi.putCancel(this.$route.params.shortId, this.$route.params.orderOneId, this.http.req.cancel.remark).then(res => {
-          this.ui.v_cancel = false
+          this.ui.vCancel = false
           this.ui.vCoverMask = false
 
           if (res.orderOneIdNotExists) {
@@ -961,12 +961,12 @@
         }
 
         this.ui.vCoverMask = true
-        this.ui.v_return = true
+        this.ui.vReturn = true
 
         scrollApi.enable(false)
       },
       btnFoodReturnConfirm() {
-        this.ui.v_return = false
+        this.ui.vReturn = false
         this.ui.vCoverMask = false
 
         scrollApi.enable(true)
