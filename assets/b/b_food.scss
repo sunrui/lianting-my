@@ -55,6 +55,7 @@
       white-space:nowrap;
 
       display: inline-block;
+      vertical-align: top;
       color: #333333;
       font-size: px2rem(28);
       margin-left: px2rem(35 + 10);
@@ -64,6 +65,7 @@
     .food_price_now {
       margin-left: px2rem(60);
       display: inline-block;
+      vertical-align: top;
       font-size: px2rem(36);
       color: #f52626;
       line-height: px2rem(90);
@@ -78,6 +80,7 @@
 
     .food_price_original {
       display: inline-block;
+      vertical-align: top;
       text-decoration: line-through;
       font-size: px2rem(24);
       line-height: px2rem(90);

@@ -50,7 +50,7 @@
             <div class="addition_item">
               <div class="addition_item_label">名称</div>
               <label>
-                <input class="addition_item_input" placeholder="请输入标签名称" maxlength="6" v-model="http.req.category.tagName">
+                <input class="addition_item_input" placeholder="请输入标签名称" maxlength="12" v-model="http.req.category.tagName">
               </label>
             </div>
 
@@ -218,6 +218,20 @@
       },
       btnChooseTagIndex(index) {
         this.http.req.category.tagIndex = index
+
+        if (!Boolean(this.http.req.category.tagName)) {
+          switch (index) {
+            case 1:
+              this.http.req.category.tagName = '店长推荐'
+              break;
+            case 2:
+              this.http.req.category.tagName = '最高人气'
+              break;
+            case 3:
+              this.http.req.category.tagName = '本地特色'
+              break;
+          }
+        }
       },
       btnFoodAdd() {
         this.ui.vPriceAdd = true
@@ -313,6 +327,17 @@
 
             return
           }
+
+          if (!Boolean(this.http.req.category.tagName)) {
+            this.$msgBox.doModal({
+              type: 'yes',
+              title: '添加餐食',
+              content: `请输入标签名称。`
+            })
+
+            return
+          }
+
         }
 
         if (this.ui.foods.length === 0) {
