@@ -136,7 +136,7 @@
         }
       },
       statePush() {
-        if (!Boolean(this.ui.backUri)) {
+        if (!this.canBack || !Boolean(this.ui.backUri)) {
           window.history.replaceState('forward', null, null)
         } else {
           window.history.pushState('forward', null, null)
