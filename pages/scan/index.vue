@@ -8,11 +8,11 @@
 </template>
 
 <script>
-  import {httpWechatApi} from "../../api/http/lt/httpWechatApi"
-  import Empty from "../../components/common/Empty"
-  import {wechatApi} from "../../api/local/wechatApi"
-  import TitleBar from "../../components/common/TitleBar"
-  import {urlApi} from "../../api/local/urlApi"
+  import {httpWechatApi} from '../../api/http/lt/httpWechatApi'
+  import Empty from '../../components/common/Empty'
+  import {wechatApi} from '../../api/local/wechatApi'
+  import TitleBar from '../../components/common/TitleBar'
+  import {urlApi} from '../../api/local/urlApi'
 
   export default {
     metaInfo: {
@@ -41,17 +41,6 @@
       this.btnScan()
     },
     methods: {
-      closeWindow(res) {
-        if (WeixinJSBridge !== 'undefined') {
-          WeixinJSBridge.call('closeWindow');
-        } else {
-          setTimeout(function () {
-            if (WeixinJSBridge !== 'undefined') {
-              WeixinJSBridge.call('closeWindow');
-            }
-          }, 500)
-        }
-      },
       btnScan() {
         let pThis = this
 
@@ -78,19 +67,19 @@
 
           wx.ready(function () {
             wx.checkJsApi({
-              jsApiList: ["qrCode", "barCode"],
+              jsApiList: ['qrCode', 'barCode'],
               success: function (res) {
               }
             })
 
             wx.scanQRCode({
               needResult: 0,
-              scanType: ["qrCode"],
+              scanType: ['qrCode'],
               success: function (res) {
-                pThis.closeWindow(res)
+                wechatApi.closeWindow()
               },
               error: function (res) {
-                pThis.closeWindow(res)
+                wechatApi.closeWindow()
               }
             })
           })

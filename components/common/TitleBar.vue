@@ -39,6 +39,7 @@
 
 <script>
   import {httpInfoApi} from '../../api/http/lt/httpInfoApi'
+  import {wechatApi} from '../../api/local/wechatApi'
 
   export default {
     props: {
@@ -146,15 +147,7 @@
         if (this.canBack && Boolean(this.ui.backUri)) {
           this.$router.push(this.ui.backUri)
         } else {
-          if (WeixinJSBridge !== 'undefined') {
-            WeixinJSBridge.call('closeWindow');
-          } else {
-            setTimeout(function () {
-              if (WeixinJSBridge !== 'undefined') {
-                WeixinJSBridge.call('closeWindow');
-              }
-            }, 500)
-          }
+          wechatApi.closeWindow()
         }
       }
     }
