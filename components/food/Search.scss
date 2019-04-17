@@ -78,6 +78,9 @@
 
         .search_hot_name {
           display: inline-block;
+          overflow:hidden;
+          text-overflow:ellipsis;
+          white-space:nowrap;
 
           background: #F5F5F5;
           color: #666666;

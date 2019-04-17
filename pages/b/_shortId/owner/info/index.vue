@@ -129,7 +129,7 @@
         <div class="modal_input_box">
           <div class="modal_input_area">
             <label>
-              <input class="modal_input" placeholder="请输入关键字，如：米饭。" maxlength="10" v-model="ui.searchWord"
+              <input class="modal_input" placeholder="请输入关键字，如：米饭。" maxlength="12" v-model="ui.searchWord"
               >
             </label>
           </div>
@@ -289,6 +289,16 @@
       btnSearchWordAddConfirm() {
         this.ui.vCoverMask = false
         this.ui.vSearchWordAdd = false
+
+        if (this.ui.searchWords.length > 20) {
+          this.$msgBox.doModal({
+            type: 'yes',
+            title: '添加关键字',
+            content: '最多允许 20 组关键字。'
+          })
+
+          return
+        }
 
         let have = false
 

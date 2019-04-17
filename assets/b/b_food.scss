@@ -50,6 +50,10 @@
     position: relative;
 
     .food_price_name {
+      overflow:hidden;
+      text-overflow:ellipsis;
+      white-space:nowrap;
+
       display: inline-block;
       color: #333333;
       font-size: px2rem(28);
