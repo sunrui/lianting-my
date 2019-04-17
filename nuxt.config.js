@@ -21,6 +21,8 @@ module.exports = {
     script: []
   },
 
+  resourceHints: false,
+
   /*
   ** Customize the progress-bar color
   */
