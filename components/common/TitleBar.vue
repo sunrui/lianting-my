@@ -88,8 +88,7 @@
     },
     mounted() {
       window.addEventListener('popstate', this.popStateHandle)
-      window.history.pushState('forward', null, null)
-      window.history.forward()
+      this.statePush()
     },
     beforeDestroy() {
       window.removeEventListener('popstate', this.popStateHandle)
@@ -136,9 +135,17 @@
           this.ui.image = image
         }
       },
-      popStateHandle(e) {
-        window.history.pushState('forward', null, null)
+      statePush() {
+        if (!Boolean(this.ui.backUri)) {
+          window.history.replaceState('forward', null, null)
+        } else {
+          window.history.pushState('forward', null, null)
+        }
+
         window.history.forward()
+      },
+      popStateHandle(e) {
+        this.statePush()
 
         this.setTitle()
         this.btnBack()
