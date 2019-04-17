@@ -56,7 +56,7 @@
           <div class="table box_radius">
             <div class="badge_delete" @click="btnTableDelete(table)"></div>
             <div class="table_captcha" @click="btnCaptcha(tableGroup, table)"></div>
-            <div class="table_number" @click="btnTable(table)">{{table.fullNumber}}</div>
+            <div class="table_number">{{table.fullNumber}}</div>
             <div class="table_remark">{{table.remark}}</div>
           </div>
 
@@ -328,9 +328,6 @@
             })
           }
         })
-      },
-      btnTable(table) {
-        this.$router.push(`/b/${this.$route.params.shortId}/owner/table/${table.id}`)
       },
       btnTableDelete(table) {
         this.$msgBox.doModal({
