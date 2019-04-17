@@ -96,6 +96,7 @@
       return {
         title: {
           canBack: false,
+          backUri: null,
           title: '展屏',
           theme: 'image',
           imageHeight: 300

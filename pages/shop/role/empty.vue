@@ -20,6 +20,7 @@
       return {
         title: {
           canBack: false,
+          backUri: '',
           title: '没有角色',
           theme: 'white',
           imageHeight: 0

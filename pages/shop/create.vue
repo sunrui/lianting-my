@@ -117,6 +117,7 @@
       return {
         title: {
           canBack: false,
+          backUri: '',
           title: '创建店铺',
           theme: 'image',
           imageHeight: 220

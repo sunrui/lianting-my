@@ -139,15 +139,21 @@
         window.history.pushState('forward', null, null)
         window.history.forward()
 
-        this.btnBack()
         this.setTitle()
+        this.btnBack()
       },
       btnBack() {
         if (this.canBack && Boolean(this.ui.backUri)) {
           this.$router.push(this.ui.backUri)
         } else {
-          if (typeof WeixinJSBridge != 'undefined') {
-            WeixinJSBridge.call('closeWindow')
+          if (WeixinJSBridge !== 'undefined') {
+            WeixinJSBridge.call('closeWindow');
+          } else {
+            setTimeout(function () {
+              if (WeixinJSBridge !== 'undefined') {
+                WeixinJSBridge.call('closeWindow');
+              }
+            }, 500)
           }
         }
       }

@@ -42,11 +42,15 @@
     },
     methods: {
       closeWindow(res) {
-        setTimeout(function () {
+        if (WeixinJSBridge !== 'undefined') {
           WeixinJSBridge.call('closeWindow');
-        }, 1000)
-
-        WeixinJSBridge.call('closeWindow');
+        } else {
+          setTimeout(function () {
+            if (WeixinJSBridge !== 'undefined') {
+              WeixinJSBridge.call('closeWindow');
+            }
+          }, 500)
+        }
       },
       btnScan() {
         let pThis = this

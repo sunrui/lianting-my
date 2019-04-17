@@ -84,6 +84,7 @@
       return {
         title: {
           canBack: false,
+          backUri: '',
           title: '创建品牌',
           theme: 'image',
           imageHeight: 220

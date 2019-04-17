@@ -94,8 +94,8 @@
       return {
         title: {
           canBack: false,
-          title: '授权降级',
           backUri: null,
+          title: '授权降级',
           theme: 'image',
           imageHeight: 300
         },

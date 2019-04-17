@@ -98,22 +98,23 @@
   import TitleBar from '../../components/common/TitleBar'
   import {httpShopApi} from '../../api/http/shop/httpShopApi'
   import {httpInfoApi} from '../../api/http/lt/httpInfoApi'
-  import {userApi} from "../../api/local/userApi"
-  import {cartApi} from "../../api/local/cartApi"
-  import {storeApi} from "../../api/local/storeApi"
-  import {cookieApi} from "../../api/local/cookieApi"
-  import {httpUserApi} from "../../api/http/user/httpUserApi"
+  import {userApi} from '../../api/local/userApi'
+  import {cartApi} from '../../api/local/cartApi'
+  import {storeApi} from '../../api/local/storeApi'
+  import {cookieApi} from '../../api/local/cookieApi'
+  import {httpUserApi} from '../../api/http/user/httpUserApi'
 
   export default {
     metaInfo: {
       title: '我的店铺'
     },
     middleware: 'auth',
-    components: { TitleBar },
+    components: {TitleBar},
     data() {
       return {
         title: {
           canBack: false,
+          backUri: '',
           title: '我的店铺',
           theme: 'image',
           imageHeight: 330
@@ -130,11 +131,11 @@
         ui: {
           loading: true,
           roles: [
-            { image: '/img/role/role_owner.png', name: '管理员', role: 'owner' },
-            { image: '/img/role/role_admin.png', name: '店长', role: 'admin' },
-            { image: '/img/role/role_waiter.png', name: '服务员', role: 'waiter' },
-            { image: '/img/role/role_cooker.png', name: '厨师', role: 'cooker' },
-            { image: '/img/role/role_cashier.png', name: '财务', role: 'cashier' }
+            {image: '/img/role/role_owner.png', name: '管理员', role: 'owner'},
+            {image: '/img/role/role_admin.png', name: '店长', role: 'admin'},
+            {image: '/img/role/role_waiter.png', name: '服务员', role: 'waiter'},
+            {image: '/img/role/role_cooker.png', name: '厨师', role: 'cooker'},
+            {image: '/img/role/role_cashier.png', name: '财务', role: 'cashier'}
           ]
         }
       }

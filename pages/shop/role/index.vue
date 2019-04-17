@@ -1,7 +1,6 @@
 <template>
   <div v-show="!ui.loading">
     <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
-
     <div class="top_blank"></div>
 
     <div class="box" v-for="(role, index) in http.res.roles">
@@ -50,7 +49,7 @@
 <script>
   import TitleBar from '../../../components/common/TitleBar'
   import {httpInfoApi} from '../../../api/http/lt/httpInfoApi'
-  import {httpRoleApi} from "../../../api/http/lt/httpRoleApi"
+  import {httpRoleApi} from '../../../api/http/lt/httpRoleApi'
 
   export default {
     metaInfo: {
@@ -62,6 +61,7 @@
       return {
         title: {
           canBack: false,
+          backUri: '',
           title: '工作台',
           theme: 'image',
           imageHeight: 330

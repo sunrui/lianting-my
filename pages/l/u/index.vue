@@ -114,8 +114,8 @@
       return {
         title: {
           canBack: false,
-          title: '授权升级',
           backUri: null,
+          title: '授权升级',
           theme: 'image',
           imageHeight: 300
         },

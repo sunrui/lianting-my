@@ -89,8 +89,8 @@
       return {
         title: {
           canBack: false,
+          backUri: '',
           title: '登录',
-          backUri: ``,
           theme: 'white',
           imageHeight: 0
         },

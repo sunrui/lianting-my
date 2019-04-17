@@ -35,6 +35,7 @@
       return {
         title: {
           canBack: false,
+          backUri: null,
           title: '恋厅移动入口',
           theme: 'image',
           imageHeight: 220

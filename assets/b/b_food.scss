@@ -72,6 +72,8 @@
     }
 
     .food_price_now:before {
+      display: inline-block;
+      vertical-align: bottom;
       content: "¥";
       line-height: px2rem(90);
       color: #f52626;
