@@ -224,39 +224,40 @@
       },
       httpFoodGroup() {
         httpFoodAdminApi.getGroupAll(this.$route.params.shortId, 0, 99).then(res => {
-            if (res.elements.length > 0) {
-              let haveFood = false
-              for (let index in res.elements) {
-                let categories = res.elements[index].foodCategories
-                if (categories && categories.length > 0) {
-                  haveFood = true
-                  break
-                }
-              }
+          let haveFood = false
 
-              if (!haveFood) {
-                this.$router.push(`/b/${this.$route.params.shortId}/admin/food/empty`)
-                return
-              }
-            }
-
+          if (res.elements.length > 0) {
             for (let index in res.elements) {
-              let foodGroup = res.elements[index]
-              this.$set(foodGroup, 'groupMode', 'Small')
-              if (foodGroup.foodCategories && foodGroup.foodCategories.length > 0) {
-                foodGroup.foodCategories.sort(function (a, b) {
-                  return a.orderIndex - b.orderIndex
-                })
+              let categories = res.elements[index].foodCategories
+              if (categories && categories.length > 0) {
+                haveFood = true
+                break
               }
             }
 
-            this.ui.selectMenuId = res.elements[0].id
-            this.http.res.foodGroups = res
-
-            this.ui.loading = false
-            setTimeout(this.navToHash, 100)
           }
-        )
+
+          if (!haveFood) {
+            this.$router.push(`/b/${this.$route.params.shortId}/admin/food/empty`)
+            return
+          }
+
+          for (let index in res.elements) {
+            let foodGroup = res.elements[index]
+            this.$set(foodGroup, 'groupMode', 'Small')
+            if (foodGroup.foodCategories && foodGroup.foodCategories.length > 0) {
+              foodGroup.foodCategories.sort(function (a, b) {
+                return a.orderIndex - b.orderIndex
+              })
+            }
+          }
+
+          this.ui.selectMenuId = res.elements[0].id
+          this.http.res.foodGroups = res
+
+          this.ui.loading = false
+          setTimeout(this.navToHash, 100)
+        })
       },
       onScroll() {
         let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop

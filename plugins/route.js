@@ -9,6 +9,6 @@ export default ({app}) => {
     window.routerUrl = to.fullPath
 
     console.groupEnd()
-    console.groupCollapsed('%c ' + to.fullPath, 'background:#FF6958;color:white')
+    console.group('%c ' + to.fullPath, 'background:#FF6958;color:white')
   })
 }

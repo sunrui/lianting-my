@@ -424,9 +424,9 @@
       httpFoodGroup() {
         httpFoodApi.getGroupAll(this.$route.params.shortId, 0, 99).then(res => {
           this.http.res.foodGroups = res
+          let haveFood = false
 
           if (res.elements.length > 0) {
-            let haveFood = false
             for (let index in res.elements) {
               let categories = res.elements[index].foodCategories
               if (categories && categories.length > 0) {
@@ -434,17 +434,9 @@
                 break
               }
             }
+          }
 
-            if (!haveFood) {
-              if (this.roleWaiter) {
-                this.$router.push(`/b/${this.$route.params.shortId}/waiter/food/empty`)
-              } else {
-                this.$router.push(`/c/${this.$route.params.shortId}/food/empty`)
-              }
-
-              return
-            }
-          } else {
+          if (!haveFood) {
             if (this.roleWaiter) {
               this.$router.push(`/b/${this.$route.params.shortId}/waiter/food/empty`)
             } else {

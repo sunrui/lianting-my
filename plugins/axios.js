@@ -16,7 +16,7 @@ axios.interceptors.request.use((config) => {
 })
 
 axios.interceptors.response.use(function (response) {
-  console.group('%c' + response.config.method.toUpperCase() + '%c ' + response.request.responseURL, 'background:#FF6958;color:white', 'color:#000')
+  console.groupCollapsed('%c' + response.config.method.toUpperCase() + '%c ' + response.request.responseURL, 'background:#FF6958;color:white', 'color:#000')
   console.log(response.config.data ? JSON.parse(response.config.data) : '<null>')
   console.log(response.data ? response.data : '<null>')
   console.groupEnd()
