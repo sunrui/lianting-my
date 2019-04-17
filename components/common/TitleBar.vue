@@ -86,9 +86,12 @@
     created() {
       this.httpInfo()
     },
+    beforeCreate() {
+      window.history.pushState('forward', null, null)
+      window.history.forward()
+    },
     mounted() {
       window.addEventListener('popstate', this.popStateHandle)
-      this.statePush()
     },
     beforeDestroy() {
       window.removeEventListener('popstate', this.popStateHandle)
@@ -136,18 +139,12 @@
         }
       },
       statePush() {
-        if (!this.canBack || !Boolean(this.ui.backUri)) {
-          window.history.replaceState('forward', null, null)
-        } else {
-          window.history.pushState('forward', null, null)
-        }
-
+        window.history.pushState('forward', null, null)
         window.history.forward()
       },
       popStateHandle(e) {
-        this.statePush()
-
         this.setTitle()
+        this.statePush()
         this.btnBack()
       },
       btnBack() {

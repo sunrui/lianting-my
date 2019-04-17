@@ -4,13 +4,14 @@ export const wechatApi = {
     return userAgent.match(/MicroMessenger/i) || userAgent.match(/webdebugger/i)
   },
   closeWindow() {
-    window.history.replaceState('forward', null, null)
-    window.history.forward()
-
-    WeixinJSBridge.call('closeWindow')
+    if (WeixinJSBridge !== 'undefined') {
+      WeixinJSBridge.call('closeWindow')
+    }
 
     setTimeout(function () {
-      WeixinJSBridge.call('closeWindow')
-    }, 200)
+      if (WeixinJSBridge !== 'undefined') {
+        WeixinJSBridge.call('closeWindow')
+      }
+    }, 100)
   }
 }
