@@ -325,7 +325,7 @@
         this.$msgBox.doModal({
           type: 'yes',
           title: '创建店铺',
-          content: `请您认真阅读以上开店教程，如您以后忘记可复看或联系客服咨询。<br/><br/>您的餐厅地址为：<br/>${url}${highlightApi.highlight(this.http.req.shop.shortId)} `
+          content: `请您认真阅读以上开店教程，如您在使用中遇到任何问题可联系客服咨询。<br/><br/>您的餐厅地址为：<br/>${url}${highlightApi.highlight(this.http.req.shop.shortId)} `
         }).then(async (val) => {
           if (val === 'Yes') {
             this.httpBindPhoneAndCreate()
