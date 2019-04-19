@@ -36,7 +36,9 @@
           </div>
 
           <div class="report_input_area box_radius_footer">
-            <textarea class="report_input" placeholder="请描述您重现的过程，以帮助我们更好的改进产品。" v-model="http.req.report.message" maxlength="256"></textarea>
+            <label>
+              <textarea class="report_input" placeholder="请描述您重现的过程，以帮助我们更好的改进产品。" v-model="http.req.report.message" maxlength="256"></textarea>
+            </label>
           </div>
         </div>
       </div>
