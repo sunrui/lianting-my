@@ -6,7 +6,7 @@ let base = '/api/user'
 let maxAge = 30 * 24 * 60 * 60
 
 if (process.env.NODE_ENV === 'development') {
-  maxAge = 365 * 60 * 60 * 60
+  maxAge = 365 * 24 * 60 * 60
 }
 
 export const httpUserApi = {
