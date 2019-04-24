@@ -16,7 +16,7 @@
       httpWall() {
         httpWallApi.getMyAll(this.$route.params.shortId, 0, 20).then(res => {
           if (res.elements.length === 0) {
-            this.$router.push(`/c/${this.$route.params.shortId}/wall/empty`)
+            this.$router.push(`/c/${this.$route.params.shortId}/wall/history/empty`)
             return
           }
 
