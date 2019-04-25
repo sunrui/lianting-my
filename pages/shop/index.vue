@@ -98,11 +98,6 @@
   import TitleBar from '../../components/common/TitleBar'
   import {httpShopApi} from '../../api/http/shop/httpShopApi'
   import {httpInfoApi} from '../../api/http/lt/httpInfoApi'
-  import {userApi} from '../../api/local/userApi'
-  import {cartApi} from '../../api/local/cartApi'
-  import {storeApi} from '../../api/local/storeApi'
-  import {cookieApi} from '../../api/local/cookieApi'
-  import {httpUserApi} from '../../api/http/user/httpUserApi'
 
   export default {
     metaInfo: {
@@ -147,15 +142,7 @@
       httpShop() {
         httpShopApi.getAll(0, 99).then(res => {
           if (!res.shops && !res.shopGroups) {
-            httpUserApi.getInfo(userApi.getUserId()).then(res => {
-              if (res.userIdNotExists) {
-                this.$router.push('logout')
-                return
-              }
-
-              this.$router.push('/shop/create')
-            })
-
+            this.$router.push('/shop/create')
             return
           }
 
