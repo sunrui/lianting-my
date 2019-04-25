@@ -45,6 +45,7 @@ module.exports = {
   */
   plugins: [
     {src: '~plugins/axios', ssr: false},
+    {src: '~plugins/bd', ssr: false},
     {src: '~plugins/console', ssr: false},
     {src: '~plugins/https', ssr: false},
     {src: '~plugins/message_box', ssr: false},

@@ -3,7 +3,7 @@ export const urlApi = {
     let url = null
 
     if (window.__wxjs_is_wkwebview) {
-      url = window.entryUrl
+      url = window.fullRouterUrl
     }
 
     if (!url) {
