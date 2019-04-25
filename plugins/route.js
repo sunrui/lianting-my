@@ -8,7 +8,9 @@ export default ({app}) => {
 
     window.routerUrl = to.fullPath
 
-    _hmt.push(['_trackPageview', to.fullPath])
+    if (typeof _hmt !== 'undefined') {
+      _hmt.push(['_trackPageview', to.fullPath])
+    }
 
     console.groupEnd()
     console.group('%c ' + to.fullPath, 'background:#FF6958;color:white')
