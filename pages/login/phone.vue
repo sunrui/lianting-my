@@ -83,7 +83,6 @@
     metaInfo: {
       title: '登录'
     },
-    middleware: 'auth',
     components: {TitleBar},
     data() {
       return {

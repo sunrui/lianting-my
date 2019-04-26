@@ -2,7 +2,7 @@
 </template>
 
 <script>
-  import {wechatApi} from "../../api/local/wechatApi"
+  import {wechatApi} from '../../api/local/wechatApi'
 
   export default {
     metaInfo: {
@@ -19,7 +19,7 @@
         r = '/'
       }
 
-      let shortId = this.$route.query.shortId
+      let shortId = this.$route.query.shortId || 'undefined'
       let scope = this.$route.query.scope
 
       if (wechatApi.inWechat() || scope) {
@@ -34,7 +34,13 @@
         r = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${this.appId}&redirect_uri=${r}&response_type=code&scope=${scope}&state=${state}&connect_redirect=1#wechat_redirect`
         window.location.href = r
       } else {
-        this.$router.push(`/login/phone?r=${r}&shortId=${shortId}`)
+        this.$router.push({
+          path: '/login/phone',
+          query: {
+            r: r,
+            shortId: shortId
+          }
+        })
       }
     },
     methods: {}

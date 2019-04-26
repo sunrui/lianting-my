@@ -9,6 +9,8 @@ export default function({route, redirect, req}) {
     if (path.length > 2) {
       if (path[1] === 'b' || path[1] === 'm') {
         redirect(`/login?r=${route.path}&shortId=${path[2]}`)
+      } else {
+        redirect('/login?r=' + route.path)
       }
     } else {
       redirect('/login?r=' + route.path)
