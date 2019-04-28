@@ -56,8 +56,8 @@
           <div class="addition_item_label">电话</div>
           <label>
             <input type="number" class="addition_item_input" placeholder="请输入电话"
-                   oninput="this.value=this.value.replace(/[^0-9]/g,'');
-                            if (value.length > 11) value = value.slice(0, 11)"
+                   oninput="value=value.replace(/[^0-9]/g,'');
+                            if (value.length > 12) value = value.slice(0, 12);"
                    v-model="http.req.info.phone">
           </label>
         </div>

@@ -24,7 +24,7 @@
           <div class="addition_item_label">多少天后可用</div>
           <label>
             <input type="number" class="addition_item_input" placeholder="请输入天数"
-                   oninput="this.value=this.value.replace(/[^0-9]/g,''); if (this.value === '') this.value = 0;
+                   oninput="value=value.replace(/[^0-9]/g,''); if (value === '') value = 0;
                             if (value.length > 3) value = value.slice(0, 3)"
                    v-model="http.req.coupon.validAfterDay">
           </label>
@@ -36,7 +36,7 @@
           <div class="addition_item_label">有效天数</div>
           <label>
             <input type="number" class="addition_item_input" placeholder="请输入天数"
-                   oninput="this.value=this.value.replace(/[^0-9]/g,'');
+                   oninput="value=value.replace(/[^0-9]/g,'');
                             if (value.length > 3) value = value.slice(0, 3)"
                    v-model="http.req.coupon.expiredDate">
           </label>
@@ -74,7 +74,7 @@
           <div class="addition_item_label">领取次数</div>
           <label>
             <input type="number" class="addition_item_input" placeholder="请输入次数"
-                   oninput="this.value=this.value.replace(/[^0-9]/g,'');
+                   oninput="value=value.replace(/[^0-9]/g,'');
                             if (value.length > 3) value = value.slice(0, 3)"
                    v-model="http.req.coupon.perLimit">
           </label>

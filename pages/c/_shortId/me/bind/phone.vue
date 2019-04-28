@@ -8,8 +8,9 @@
           <div class="addition_item_label">手机号</div>
           <label>
             <input type="number" class="addition_item_input" placeholder="请输入手机号"
-                   oninput="this.value=this.value.replace(/[^0-9]/g,'');
-                            if (value.length > 11) value = value.slice(0, 11)"
+                   oninput="value=value.replace(/[^0-9]/g,'');
+                            if (value.length > 11) value = value.slice(0, 11);
+                            if (value.length > 0 && value[0] !== '1') value=''"
                    v-model="http.req.bind.phone">
           </label>
         </div>
@@ -20,7 +21,7 @@
           <div class="addition_item_label">
             <label>
               <input type="number" class="addition_item_code_input" placeholder="请输入验证码"
-                     oninput="this.value=this.value.replace(/[^0-9]/g,'');
+                     oninput="value=value.replace(/[^0-9]/g,'');
                             if (value.length > 6) value = value.slice(0, 6)"
                      v-model="http.req.bind.code">
             </label>

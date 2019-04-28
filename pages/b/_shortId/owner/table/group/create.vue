@@ -17,7 +17,7 @@
           <div class="addition_item_label">最小人数</div>
           <label>
             <input type="number" class="addition_item_input"
-                   oninput="this.value=this.value.replace(/[^0-9]/g,''); if (this.value === '0') this.value = '1'
+                   oninput="value=value.replace(/[^0-9]/g,''); if (value === '0') value = '1'
                             if (value.length > 2) value = value.slice(0, 2)"
                    placeholder="请输入最小人数" v-model="http.req.group.minPeople">
           </label>
@@ -29,7 +29,7 @@
           <div class="addition_item_label">最大人数</div>
           <label>
             <input type="number" class="addition_item_input"
-                   oninput="this.value=this.value.replace(/[^0-9]/g,''); if (this.value === '0') this.value = '1'
+                   oninput="value=value.replace(/[^0-9]/g,''); if (value === '0') value = '1'
                             if (value.length > 2) value = value.slice(0, 2)"
                    placeholder="请输入最大人数" v-model="http.req.group.maxPeople">
           </label>
@@ -76,7 +76,7 @@
           <div class="addition_item_label">预生成多少桌</div>
           <label>
             <input type="number" class="addition_item_input"
-                   oninput="this.value=this.value.replace(/[^0-9]/g,'');
+                   oninput="value=value.replace(/[^0-9]/g,'');
                             if (value.length > 3) value = value.slice(0, 3)"
                    placeholder="请输入预生成多少桌" v-model="http.req.group.preGenTableCount">
           </label>

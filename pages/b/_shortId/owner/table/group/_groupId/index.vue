@@ -17,7 +17,7 @@
           <div class="addition_item_label">最小人数</div>
           <label>
             <input class="addition_item_input"
-                   oninput="this.value=this.value.replace(/[^0-9]/g,''); if (this.value === '0') this.value = ''"
+                   oninput="value=value.replace(/[^0-9]/g,''); if (value === '0') value = ''"
                    placeholder="请输入最小人数" maxlength="2" v-model="http.req.group.minPeople">
           </label>
         </div>
@@ -29,7 +29,7 @@
 
           <label>
             <input class="addition_item_input"
-                   oninput="this.value=this.value.replace(/[^0-9]/g,''); if (this.value === '0') this.value = ''"
+                   oninput="value=value.replace(/[^0-9]/g,''); if (value === '0') value = ''"
                    placeholder="请输入最大人数" maxlength="2" v-model="http.req.group.maxPeople">
           </label>
         </div>

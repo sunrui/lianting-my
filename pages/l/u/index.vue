@@ -58,7 +58,7 @@
           <div class="addition_item_label">授权天数</div>
           <label>
             <input class="addition_item_input" placeholder="请输入授权天数"
-                   oninput="this.value=this.value.replace(/[^0-9]/g,''); if (this.value === '0') this.value = '1'
+                   oninput="value=value.replace(/[^0-9]/g,''); if (value === '0') value = '1'
                             if (value.length > 3) value = value.slice(0, 3)"
                    v-model="http.req.upgrade.upgradeDate">
           </label>

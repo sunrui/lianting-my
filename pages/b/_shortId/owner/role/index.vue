@@ -62,8 +62,9 @@
         <div class="modal_input_area">
           <label>
             <input type="number" class="modal_input"
-                   oninput="this.value=this.value.replace(/[^0-9]/g,'');
-                              if (value.length > 11) value = value.slice(0, 11)"
+                   oninput="value=value.replace(/[^0-9]/g,'');
+                            if (value.length > 11) value = value.slice(0, 11);
+                            if (value.length > 0 && value[0] !== '1') value=''"
                    placeholder="请输入手机号" v-model="http.req.role.phone">
           </label>
         </div>
@@ -91,7 +92,7 @@
   import {httpRoleAdminApi} from '../../../../../api/http/lt/httpRoleAdminApi'
   import TitleBar from '../../../../../components/common/TitleBar'
   import {validatorApi} from '../../../../../api/local/validatorApi'
-  import {scrollApi} from "../../../../../api/local/scrollApi"
+  import {scrollApi} from '../../../../../api/local/scrollApi'
 
   export default {
     metaInfo: {
