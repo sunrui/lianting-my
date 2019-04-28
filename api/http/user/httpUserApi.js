@@ -54,7 +54,8 @@ export const httpUserApi = {
   postBindPhone(phone, code) {
     return axios.post(`${base}/bind/phone`, {
       phone: phone,
-      code: code
+      code: code,
+      maxAge: maxAge
     }).then(res => res.data)
   },
   getWechatInfo(shortId) {
