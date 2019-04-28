@@ -91,9 +91,9 @@
     <div class="box">
       <div class="addition box_radius">
         <div class="addition_item">
-          <div class="addition_item_label">来源渠道</div>
+          <div class="addition_item_label">来源</div>
           <label>
-            <input class="addition_item_input" placeholder="您从哪里了解到的恋厅" minlength="1" maxlength="32"
+            <input class="addition_item_input" placeholder="请输入您从哪里了解到的恋厅" minlength="1" maxlength="32"
                    v-model="http.req.shop.referrer">
           </label>
         </div>
