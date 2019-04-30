@@ -38,7 +38,7 @@
 
       <div class="menu_box">
         <div class="menu">
-          <div class="menu_item" v-if="foodGroup.foodCategories.length > 0" v-for="(foodGroup, index) in http.res.foodGroups.elements">
+          <div class="menu_item" v-if="foodGroup.foodCategories && foodGroup.foodCategories.length > 0" v-for="(foodGroup, index) in http.res.foodGroups.elements">
             <div :id="'menu_' + foodGroup.id"
                  :class="{menu_item_href:!isSelectMenu(foodGroup.id), menu_item_href_select:isSelectMenu(foodGroup.id)}"
                  @click="selectMenu(index, foodGroup.id, false)">
@@ -58,7 +58,7 @@
 
       <div class="menu_box_extend" v-if="ui.vMenuExtend">
         <div class="menu_extend">
-          <div class="menu_item menu_item_extend" v-if="foodGroup.foodCategories.length > 0" v-for="(foodGroup, index) in http.res.foodGroups.elements">
+          <div class="menu_item menu_item_extend" v-if="foodGroup.foodCategories && foodGroup.foodCategories.length > 0" v-for="(foodGroup, index) in http.res.foodGroups.elements">
             <div :class="{menu_item_href:!isSelectMenu(foodGroup.id), menu_item_href_select:isSelectMenu(foodGroup.id)}"
                  @click="selectMenu(index, foodGroup.id, true)">
               <div class="menu_item_badge" v-if="menuBadge(foodGroup.id) > 0">{{menuBadge(foodGroup.id)}}</div>
@@ -75,7 +75,7 @@
         </div>
       </div>
 
-      <div class="food_group_box" :id="'box_' + foodGroup.id" v-if="foodGroup.foodCategories.length > 0" v-for="foodGroup in http.res.foodGroups.elements">
+      <div class="food_group_box" :id="'box_' + foodGroup.id" v-if="foodGroup.foodCategories && foodGroup.foodCategories.length > 0" v-for="foodGroup in http.res.foodGroups.elements">
         <div class="food_group">
           <div class="food_group_anchor" :id="foodGroup.id"></div>
           <div class="food_group_name">{{foodGroup.name}}</div>
