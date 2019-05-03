@@ -159,7 +159,7 @@
           </div>
         </div>
 
-        <div class="addition_item" @click="btnWall(http.res.order)" v-if="http.res.order.status !== 'NotPaid'">
+        <div class="addition_item" @click="btnWall(http.res.order)" v-if="http.res.order.status === 'Finish'">
           <div class="box_divide"></div>
           <div class="addition_item_label">留言墙</div>
           <div class="addition_item_link">{{ http.res.order.wallId ? '已留言' : '未留言' }}</div>
@@ -482,7 +482,7 @@
               this.$msgBox.doModal({
                 type: 'yes',
                 title: '立即支付',
-                content: '商家尚未开通微信支付，您可线下付款。'
+                content: '商家尚未开通在线支付，您可线下付款。'
               })
               return
             }
@@ -519,7 +519,7 @@
             this.$msgBox.doModal({
               type: 'yes',
               title: '立即支付',
-              content: '商家尚未开通微信支付，您可线下付款。'
+              content: '商家尚未开通在线支付，您可线下付款。'
             })
 
             return

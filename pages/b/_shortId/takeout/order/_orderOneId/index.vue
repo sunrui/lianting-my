@@ -162,8 +162,8 @@
       </div>
     </div>
 
-    <div class="button_box" v-if="http.res.order.status === 'Paid'">
-      <div class="button_big" @click="btnReply">回复订单</div>
+    <div class="button_box" v-if="http.res.order.status === 'NotPaid' || http.res.order.status === 'Paid'">
+      <div class="button_big" @click="btnReply">确认订单</div>
     </div>
     <div class="blank_30" v-else></div>
 
@@ -173,7 +173,7 @@
           <img class="modal_close" src="/img/common/close.png" alt="">
         </div>
 
-        <div class="modal_title">回复订单</div>
+        <div class="modal_title">确认订单</div>
 
         <div class="blank_20"></div>
 
@@ -239,6 +239,7 @@
   import {httpOrderApi} from '../../../../../../api/http/lt/httpOrderApi'
   import {scrollApi} from '../../../../../../api/local/scrollApi'
   import {httpOrderAdminApi} from '../../../../../../api/http/lt/httpOrderAdminApi'
+  import {highlightApi} from '../../../../../../api/local/highlightApi'
 
   export default {
     metaInfo: {
@@ -270,7 +271,6 @@
             {status: 'Accept', label: '回复接单短信'},
             {status: 'Success', label: '派送完成'},
             {status: 'Cancel', label: '取消订单'},
-            {status: 'Refund', label: '取消订单并退款'},
           ],
           selectOrderStatus: 'Accept',
           smsSendEnable: true,
@@ -285,6 +285,10 @@
       httpOrder() {
         httpOrderApi.getOrder(this.$route.params.shortId, this.$route.params.orderOneId).then(res => {
           this.http.res.order = res
+
+          if (res.status === 'Paid' || res.status === 'Finish') {
+            this.ui.orderStatus.push({status: 'Refund', label: '取消订单并退款'})
+          }
         })
       },
       getTotalFood() {
@@ -300,15 +304,24 @@
       btnCoverMask() {
         this.ui.vReply = false
         this.ui.vCoverMask = false
+
+        scrollApi.enable(true)
       },
       btnChooseStatus(status) {
         this.ui.selectOrderStatus = status
       },
       btnReply() {
-        this.ui.vReply = true
-        this.ui.vCoverMask = true
-
-        scrollApi.enable(false)
+        if (this.http.res.order.status === 'NotPaid') {
+          this.$msgBox.doModal({
+            type: 'yes',
+            title: '订单提示',
+            content: `该订单${highlightApi.highlight('尚未支付完成')}，如您继续派送，请务必确认顾客已线下付款。`
+          }).then(async (val) => {
+            this.ui.vReply = true
+            this.ui.vCoverMask = true
+            scrollApi.enable(false)
+          })
+        }
       },
       btnSmsSendEnable(enable) {
         this.ui.smsSendEnable = enable
@@ -372,7 +385,7 @@
               this.$msgBox.doModal({
                 type: 'yes',
                 title: '取消订单',
-                content: '订单已完成。'
+                content: '订单已取消。'
               }).then(async (val) => {
                 this.httpOrder()
               })

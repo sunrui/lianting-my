@@ -4,6 +4,20 @@
                :imageHeight="title.imageHeight"></title-bar>
 
     <div class="box">
+      <div class="tip">
+        <ul class="tip_ul">
+          <li>应广大创业店主要求，恋厅开放了简易的外卖入口。</li>
+          <li>您可将您的店铺专属页打印或发送至朋友圈使用。</li>
+          <li>要启用外卖功能，您需要添加一名外卖人事人员。</li>
+          <li>外卖人员可在关注恋厅公众号后处理日常工作。</li>
+          <li>顾客下单时外卖人员会在公众号收到新订单推送。</li>
+          <li>外卖功能同样免费、无限订单、无中间商赚差价。</li>
+          <li>但当您发送接单短信时，需您付成本费 0.1 元/条。</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="box">
       <div class="addition box_radius">
         <div class="addition_item">
           <div class="addition_item_label">启用外卖</div>
