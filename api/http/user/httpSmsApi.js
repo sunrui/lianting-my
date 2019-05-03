@@ -3,10 +3,10 @@ import axios from 'axios'
 let base = '/api/sms'
 
 export const httpSmsApi = {
-  postSend(phone, smsType) {
+  postSend(phone, type) {
     return axios.post(`${base}/send`, {
       phone: phone,
-      smsType: smsType
+      type: type
     }).then(res => res.data)
   },
   postVerify(phone, code) {
