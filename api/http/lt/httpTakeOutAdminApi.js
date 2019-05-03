@@ -15,5 +15,8 @@ export const httpTakeoutAdminApi = {
       reason: reason,
       orderOneId: orderOneId
     }).then(res => res.data)
+  },
+  getSms(shortId) {
+    return axios.get(`${base}/${shortId}/takeout/sms`).then(res => res.data)
   }
 }

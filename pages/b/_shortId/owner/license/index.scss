@@ -28,8 +28,23 @@
 
   .shop_detail_left {
     display: inline-block;
+    vertical-align: middle;
     line-height: px2rem(70);
     margin-left: px2rem(35);
+  }
+
+  .shop_detail_sms {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: px2rem(10);
+    text-align: center;
+
+    width: px2rem(120);
+    height: px2rem(58);
+    line-height: px2rem(58);
+    border: px2rem(1) solid rgba(230, 230, 230, 0.5);
+    border-radius: px2rem(58/2);
   }
 
   .shop_detail_expired_at {

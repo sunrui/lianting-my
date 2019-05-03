@@ -8,7 +8,7 @@
 
     <div class="box">
       <div class="list_title box_radius_header">
-        <div class="shop_name">{{http.res.shop.name}}</div>
+        <div class="shop_name">{{http.res.shop.name}} ({{http.res.shop.shortId}})</div>
 
         <div class="shop_license">
           <div class="shop_title_license">
@@ -31,7 +31,7 @@
 
       <div class="shop_detail box_radius_footer">
         <div class="shop_detail_one">
-          <div class="shop_detail_left">店铺类型: {{
+          <div class="shop_detail_left">店铺类型：{{
             http.res.shop.licenseType === 'Free' ? '免费会员' :
             http.res.shop.licenseType === 'Lite' ? '专享会员' :
             http.res.shop.licenseType === 'Normal' ? '标准会员' :
@@ -41,7 +41,8 @@
           <div class="shop_detail_expired_at">{{getExpiredContent()}}</div>
         </div>
         <div class="shop_detail_one">
-          <div class="shop_detail_left">店铺标识: {{http.res.shop.shortId}}</div>
+          <div class="shop_detail_left">剩余短信数：{{this.http.res.takeOutSmsShop.leftCount}}</div>
+          <div class="shop_detail_sms" @click="btnSms">充值</div>
           <div class="shop_license_history" @click="btnChargeHistory">续费记录</div>
         </div>
 
@@ -297,6 +298,7 @@
   import {scrollApi} from '../../../../../api/local/scrollApi'
   import {userApi} from '../../../../../api/local/userApi'
   import {wechatApi} from '../../../../../api/local/wechatApi'
+  import {httpTakeoutAdminApi} from '../../../../../api/http/lt/httpTakeOutAdminApi'
 
   export default {
     metaInfo: {
@@ -316,7 +318,8 @@
         http: {
           res: {
             shop: {},
-            shopLicensePlans: {}
+            shopLicensePlans: {},
+            takeOutSmsShop: {}
           }
         },
         ui: {
@@ -330,6 +333,7 @@
     created() {
       this.httpShop()
       this.httpLicensePlan()
+      this.httpTakeOutSmsShop()
     },
     methods: {
       httpShop() {
@@ -340,6 +344,11 @@
       httpLicensePlan() {
         httpLicenseApi.getPlanAll(this.http.res.shop.type, 0, 20).then(res => {
           this.http.res.shopLicensePlans = res
+        })
+      },
+      httpTakeOutSmsShop() {
+        httpTakeoutAdminApi.getSms(this.$route.params.shortId).then(res => {
+          this.http.res.takeOutSmsShop = res
         })
       },
       btnCoverMask() {
@@ -403,7 +412,7 @@
       },
       getExpiredContent() {
         if (this.http.res.shop.licenseType === 'Free') {
-          return '服务于: ' + new Date(parseInt(this.http.res.shop.createdAt)).toLocaleDateString()
+          return '注册于：' + new Date(parseInt(this.http.res.shop.createdAt)).toLocaleDateString()
         } else {
           return '过期时间：' + new Date(parseInt(this.http.res.shop.licenseExpiredAt)).toLocaleDateString()
         }
@@ -489,6 +498,9 @@
             }
           }
         })
+      },
+      btnSms() {
+
       }
     }
   }
