@@ -16,7 +16,7 @@
       <div class="addition box_radius">
         <div class="addition_item">
           <div class="addition_item_label">餐具费</div>
-          <currency-input class="addition_item_input" right="true" placeholder="请输入餐具费" maxlength="20"
+          <currency-input class="addition_item_input" right="true" placeholder="请输入餐具费"
                           v-model="http.req.config.perTablewarePrice"></currency-input>
         </div>
 

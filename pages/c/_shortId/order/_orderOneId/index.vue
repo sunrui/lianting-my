@@ -41,6 +41,12 @@
           <div class="order_tableware_price">{{http.res.order.priceTableware}}</div>
         </div>
 
+        <div class="order_tableware" v-if="http.res.order.priceTakeOutFee > 0">
+          <div class="order_tableware_icon">配送费</div>
+          <div class="order_tableware_label">外卖配送费</div>
+          <div class="order_tableware_price">{{http.res.order.priceTakeOutFee}}</div>
+        </div>
+
         <div @click="btnChooseCoupon()">
           <div class="order_coupon" v-if="http.res.order.couponDeductPrice || $route.query.deductPrice">
             <div class="order_coupon_icon">优惠券</div>

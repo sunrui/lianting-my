@@ -4,10 +4,50 @@
 
     <div :class="{ cover_mask_9: ui.vCoverMask}" @click="btnCoverMask"></div>
 
-    <div class="box" v-show="ui.table.captchaTableId">
-      <div class="order_table box_radius">
+    <div class="box">
+      <div class="order_table box_radius" v-if="ui.table.captchaTableId">
         <div class="order_table_number">{{ui.table.tableNumber}}</div>
         <div class="order_table_name">{{ui.table.tableName}}</div>
+      </div>
+      <div class="addition box_radius" v-else-if="!roleWaiter && http.req.takeOutConfig.enable">
+        <div class="addition_item">
+          <div class="addition_item_label">外卖下单</div>
+          <div class="addition_item_check">
+            <div class="addition_item_check_on" v-if="ui.takeOutEnable"
+                 @click="btnTableOutEnable(false)"></div>
+            <div class="addition_item_check_off" v-else @click="btnTableOutEnable(true)"></div>
+          </div>
+        </div>
+
+        <div v-if="ui.takeOutEnable">
+          <div class="box_divide"></div>
+
+          <div class="addition_item">
+            <div class="addition_item_label_text_area">地址</div>
+            <div class="addition_item_text_area">
+              <label>
+                <textarea class="addition_item_text_input" placeholder="请输入您的配送地址" v-model="http.req.order.takeOut.address"></textarea>
+              </label>
+            </div>
+          </div>
+
+          <div class="box_divide"></div>
+
+          <div class="addition_item">
+            <div class="addition_item_label">您的称呼</div>
+            <label>
+              <input class="addition_item_input" placeholder="请输入您的称呼" maxlength="20" v-model="http.req.order.takeOut.name">
+            </label>
+          </div>
+
+          <div class="box_divide"></div>
+
+          <div class="addition_item">
+            <div class="addition_item_label">手机号</div>
+            <div class="addition_item_content" style="user-select: text;" v-if="phone">{{phone}}</div>
+            <div class="addition_item_link" v-else @click="btnBindPhone">未绑定</div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -46,6 +86,14 @@
 
         <div class="box_divide"></div>
 
+        <div class="order_tableware" v-if="ui.takeOutEnable">
+          <div class="order_tableware_icon">配送费</div>
+          <div class="order_tableware_label">外卖配送费</div>
+          <div class="order_tableware_price">{{http.req.takeOutConfig.takeOutFee}}</div>
+        </div>
+
+        <div class="box_divide"></div>
+
         <div class="order_price">
           <div class="order_price_food_count">共计 {{cart.select}} 份</div>
           <div class="order_price_total">{{getTotalPrice()}}</div>
@@ -77,7 +125,10 @@
       </div>
     </div>
 
-    <div class="button_box">
+    <div class="button_box" v-if="ui.takeOutEnable">
+      <div class="button_big" @click="btnOrder">立即支付</div>
+    </div>
+    <div class="button_box" v-else>
       <div class="button_big" v-if="ui.table.captchaTableId" @click="btnOrder">立即下单</div>
       <div class="button_big" v-else @click="btnScanCaptcha">扫码下单</div>
     </div>
@@ -115,7 +166,8 @@
   import {httpOrderApi} from '../../api/http/lt/httpOrderApi'
   import {userApi} from '../../api/local/userApi'
   import {scrollApi} from '../../api/local/scrollApi'
-  import {wechatApi} from "../../api/local/wechatApi"
+  import {wechatApi} from '../../api/local/wechatApi'
+  import {httpTakeoutApi} from '../../api/http/lt/httpTakeOutApi'
 
   export default {
     metaInfo: {
@@ -144,13 +196,23 @@
           selectPeople: null,
           peopleChoose: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
           tasteNote: '',
-          table: {}
+          table: {},
+          takeOutEnable: false
         },
         http: {
           req: {
+            takeOutConfig: {
+              enable: false,
+              takeOutFee: 0,
+            },
             order: {
               type: 'ForHere',
               captchaTableId: null,
+              takeOut: {
+                address: '',
+                phone: '',
+                name: ''
+              },
               foods: [],
               tasteNote: '',
               people: 0
@@ -164,6 +226,9 @@
       cart() {
         let cart = this.$store.state.cart
         return cart.cart
+      },
+      phone() {
+        return userApi.getUserPhone()
       }
     },
     created() {
@@ -183,8 +248,15 @@
       this.ui.table.captchaTableId = userApi.getCaptchaTableId()
       this.ui.table.tableName = userApi.getTableName()
       this.ui.table.tableNumber = userApi.getTableNumber()
+
+      this.httpTakeOutConfig()
     },
     methods: {
+      httpTakeOutConfig() {
+        httpTakeoutApi.getConfig(this.$route.params.shortId).then(res => {
+          this.http.req.takeOutConfig = res
+        })
+      },
       getTotalPrice() {
         let price = 0
 
@@ -194,6 +266,10 @@
         }
 
         price += this.cart.people && this.cart.perTablewarePrice ? this.cart.people * this.cart.perTablewarePrice : 0
+
+        if (this.ui.takeOutEnable) {
+          price += this.http.req.takeOutConfig.takeOutFee
+        }
 
         return price
       },
@@ -228,6 +304,42 @@
         if (!this.cart.people) {
           this.btnPeople()
           return
+        }
+
+        if (this.ui.takeOutEnable) {
+          if (!Boolean(this.http.req.order.takeOut.address)) {
+            this.$msgBox.doModal({
+              type: 'yes',
+              title: '下单',
+              content: '请输入您的配送地址。'
+            })
+
+            return
+          }
+
+          this.http.req.order.takeOut.phone = this.phone
+
+          if (!Boolean(this.http.req.order.takeOut.phone)) {
+            this.$msgBox.doModal({
+              type: 'yes',
+              title: '下单',
+              content: '为了配送员更好的联系您，请先绑定手机。'
+            })
+
+            return
+          }
+
+          if (!Boolean(this.http.req.order.takeOut.name)) {
+            this.$msgBox.doModal({
+              type: 'yes',
+              title: '下单',
+              content: '请输入您的称呼。'
+            })
+
+            return
+          }
+
+          this.http.req.order.type = 'TakeOut'
         }
 
         this.http.req.order.foods = []
@@ -288,9 +400,6 @@
               price += food.select * food.food.price
             }
 
-            cartApi.clearAll()
-            this.$store.commit('cart/update', cartApi.getCart())
-
             let path
 
             if (this.roleWaiter) {
@@ -303,9 +412,13 @@
               path: path,
               query: {
                 cartPrice: price,
-                cartSelect: this.cart.select
+                cartSelect: this.cart.select,
+                takeOutFee: this.http.req.takeOutConfig.takeOutFee
               }
             })
+
+            cartApi.clearAll()
+            this.$store.commit('cart/update', cartApi.getCart())
           }
         })
       },
@@ -322,6 +435,12 @@
         }
 
         this.$router.push('/scan')
+      },
+      btnTableOutEnable(enable) {
+        this.ui.takeOutEnable = enable
+      },
+      btnBindPhone() {
+        this.$router.push(`/c/${this.$route.params.shortId}/me/bind/phone`)
       }
     }
   }

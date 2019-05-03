@@ -88,7 +88,7 @@
     <div class="box">
       <div class="addition box_radius">
         <div class="addition_item">
-          <div class="addition_item_label">热门搜索</div>
+          <div class="addition_item_label">餐食热门搜索</div>
           <div class="addition_item_check">
             <div class="addition_item_check_on" v-if="ui.searchWordEnable"
                  @click="btnSearchWord(false)"></div>
@@ -328,5 +328,4 @@
 <style scoped lang="scss">
   @import '~assets/common';
   @import '~assets/b/b_food';
-  @import 'index';
 </style>

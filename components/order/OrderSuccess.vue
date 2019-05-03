@@ -25,8 +25,19 @@
           <div class="status_item_content">{{getTotalFood()}} 份</div>
         </div>
         <div class="status_item">
+          <div class="status_item_label">餐具费</div>
+          <div class="status_item_content">{{http.res.order.priceTableware}} 元</div>
+        </div>
+        <div class="status_item" v-if="http.res.order.priceTakeOutFee > 0">
+          <div class="status_item_label">配送费</div>
+          <div class="status_item_content">{{http.res.order.priceTakeOutFee}} 元</div>
+        </div>
+
+        <div class="box_divide"></div>
+
+        <div class="status_item">
           <div class="status_item_label">总价</div>
-          <div class="status_item_content">{{getTotalPrice()}} 元</div>
+          <div class="status_item_content">{{http.res.order.price}} 元</div>
         </div>
         <div class="status_item">
           <div class="status_item_label">支付方式</div>
@@ -130,18 +141,6 @@
         }
 
         return count
-      },
-      getTotalPrice() {
-        let price = 0
-
-        for (let index in this.http.res.order.orderFoods) {
-          let orderFood = this.http.res.order.orderFoods[index]
-          price += orderFood.count * orderFood.foodPrice
-        }
-
-        price += this.http.res.order.priceTableware
-
-        return price
       },
       btnFood() {
         if (this.roleWaiter) {
