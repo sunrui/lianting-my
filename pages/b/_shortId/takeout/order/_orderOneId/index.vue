@@ -191,17 +191,17 @@
             <div v-if="ui.smsSendEnable">
               <div class="tip" v-if="ui.selectOrderStatus === 'Accept'">
                 <ul class="tip_ul">
-                  <li>尊敬的${name}，您在${shop}的外卖订单已确认。我们将尽快送达到您的手中，请保持电话畅通。商家电话：${phone}。</li>
+                  <li>{{getOrderStatusLabel('Accept')}}</li>
                 </ul>
               </div>
               <div class="tip" v-else-if="ui.selectOrderStatus === 'Cancel' || ui.selectOrderStatus === 'Refund'">
                 <ul class="tip_ul">
-                  <li>尊敬的${name}，您在${shop}的外卖订单暂时无法受理。原因：${remark}。商家电话：${phone}。</li>
+                  <li>{{getOrderStatusLabel('Cancel')}}</li>
                 </ul>
               </div>
               <div class="tip" v-else-if="ui.selectOrderStatus === 'Success'">
                 <ul class="tip_ul">
-                  <li>尊敬的${name}，您在${shop}的外卖已由骑手为您派送，请留意接听。商家电话：${phone2}。</li>
+                  <li>{{getOrderStatusLabel('Success')}}</li>
                 </ul>
               </div>
             </div>
@@ -240,6 +240,8 @@
   import {scrollApi} from '../../../../../../api/local/scrollApi'
   import {httpOrderAdminApi} from '../../../../../../api/http/lt/httpOrderAdminApi'
   import {highlightApi} from '../../../../../../api/local/highlightApi'
+  import {httpShopApi} from '../../../../../../api/http/shop/httpShopApi'
+  import {httpInfoApi} from '../../../../../../api/http/lt/httpInfoApi'
 
   export default {
     metaInfo: {
@@ -258,6 +260,8 @@
         },
         http: {
           res: {
+            shop: {},
+            info: {},
             order: {
               orderTakeOut: {},
               createdAt: new Date().getTime()
@@ -279,9 +283,21 @@
       }
     },
     created() {
+      this.httpShop()
+      this.httpInfo()
       this.httpOrder()
     },
     methods: {
+      httpShop() {
+        httpShopApi.getOne(this.$route.params.shortId).then(res => {
+          this.http.res.shop = res
+        })
+      },
+      httpInfo() {
+        httpInfoApi.get(this.$route.params.shortId).then(res => {
+          this.http.res.info = res
+        })
+      },
       httpOrder() {
         httpOrderApi.getOrder(this.$route.params.shortId, this.$route.params.orderOneId).then(res => {
           this.http.res.order = res
@@ -301,6 +317,20 @@
 
         return count
       },
+      getOrderStatusLabel(status) {
+        let name = this.http.res.order.orderTakeOut.name || '匿名用户'
+        let shop = this.http.res.shop.name || '恋厅'
+        let phone = this.http.res.info.phone || ''
+        let reason = this.ui.orderRemark || '未在线说明'
+
+        if (status === 'Accept') {
+          return `尊敬的${name}，您在${shop}的外卖订单已确认。我们将尽快送达到您的手中，请保持电话畅通。商家电话：${phone}`
+        } else if (status === 'Cancel' || status === 'Refund') {
+          return `尊敬的${name}，您在${shop}的外卖订单暂时无法受理。原因：${reason}。商家电话：${phone}。`
+        } else if (status === 'Success') {
+          return `尊敬的${name}，您在${shop}的外卖已由骑手为您派送，请留意接听。如未收到请联系商家电话：${phone}。`
+        }
+      },
       btnCoverMask() {
         this.ui.vReply = false
         this.ui.vCoverMask = false
@@ -315,7 +345,7 @@
           this.$msgBox.doModal({
             type: 'yes',
             title: '订单提示',
-            content: `该订单${highlightApi.highlight('尚未支付完成')}，如您继续派送，请务必确认顾客已线下付款。`
+            content: `该订单${highlightApi.highlight('尚未支付完成')}，如您要继续派送，请务必确认顾客已线下付款。`
           }).then(async (val) => {
             this.ui.vReply = true
             this.ui.vCoverMask = true
