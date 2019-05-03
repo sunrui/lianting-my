@@ -109,7 +109,7 @@
 
         <div class="order_tableware" v-if="http.res.order.priceTakeOutFee > 0">
           <div class="order_tableware_icon">配送费</div>
-          <div class="order_tableware_label">外卖配送费</div>
+          <div class="order_tableware_label">外卖配送</div>
           <div class="order_tableware_price">{{http.res.order.priceTakeOutFee}}</div>
         </div>
 
@@ -170,7 +170,8 @@
         </div>
 
         <div v-if="http.res.order.tasteNotes && http.res.order.tasteNotes.length > 0 ||
-          http.res.order.remarks && http.res.order.remarks.length > 0" class="blank_10"></div>
+          http.res.order.remarks && http.res.order.remarks.length > 0" class="blank_10">
+        </div>
       </div>
     </div>
 
@@ -262,7 +263,9 @@
             <div class="blank_20"></div>
 
             <div class="choose_remark_text_area">
-              <textarea class="choose_remark_text_input" placeholder="请在此备注取消订单的原因。" v-model="http.req.cancel.remark"></textarea>
+              <label>
+                <textarea class="choose_remark_text_input" placeholder="请在此备注取消订单的原因。" v-model="http.req.cancel.remark"></textarea>
+              </label>
             </div>
           </div>
         </div>
@@ -298,7 +301,9 @@
             <div class="blank_20"></div>
 
             <div class="choose_remark_text_area">
-              <textarea class="choose_remark_text_input" placeholder="请在此备注线下支付方式。" v-model="http.req.payOffline.remark"></textarea>
+              <label>
+                <textarea class="choose_remark_text_input" placeholder="请在此备注线下支付方式。" v-model="http.req.payOffline.remark"></textarea>
+              </label>
             </div>
           </div>
         </div>
@@ -358,7 +363,9 @@
             <div class="blank_20"></div>
 
             <div class="choose_remark_text_area">
-              <textarea class="choose_remark_text_input" placeholder="请在此备注退菜的原因。" v-model="http.req.return.remark"></textarea>
+              <label>
+                <textarea class="choose_remark_text_input" placeholder="请在此备注退菜的原因。" v-model="http.req.return.remark"></textarea>
+              </label>
             </div>
           </div>
 
@@ -397,7 +404,9 @@
             <div class="blank_20"></div>
 
             <div class="choose_remark_text_area">
-              <textarea class="choose_remark_text_input" placeholder="请在此备注更改价格的原因。" v-model="http.req.changePrice.remark"></textarea>
+              <label>
+                <textarea class="choose_remark_text_input" placeholder="请在此备注更改价格的原因。" v-model="http.req.changePrice.remark"></textarea>
+              </label>
             </div>
           </div>
         </div>

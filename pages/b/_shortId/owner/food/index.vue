@@ -235,7 +235,7 @@
         }
       },
       httpFoodGroup() {
-        httpFoodAdminApi.getGroupAll(this.$route.params.shortId, 0, 99).then(res => {
+        httpFoodAdminApi.getGroupAll(this.$route.params.shortId, 0, 20).then(res => {
           if (res.elements.length > 0) {
             this.ui.selectMenuId = res.elements[0].id
 

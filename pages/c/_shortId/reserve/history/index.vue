@@ -101,7 +101,7 @@
         return timeApi.dateFormat(date, 'hh:mm')
       },
       httpReserves() {
-        httpReserveApi.getAll(this.$route.params.shortId, null, null, 0, 99).then(res => {
+        httpReserveApi.getAll(this.$route.params.shortId, null, null, 0, 20).then(res => {
           this.http.res.reserves = res
         })
       },

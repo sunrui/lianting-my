@@ -422,7 +422,7 @@
         }
       },
       httpFoodGroup() {
-        httpFoodApi.getGroupAll(this.$route.params.shortId, 0, 99).then(res => {
+        httpFoodApi.getGroupAll(this.$route.params.shortId, 0, 20).then(res => {
           this.http.res.foodGroups = res
           let haveFood = false
 
@@ -762,7 +762,7 @@
         }
 
         if (Boolean(this.$route.query.tableId)) {
-          httpOrderAdminApi.getAllByTableOneId(this.$route.params.shortId, this.$route.query.tableId, true, 0, 99).then(res => {
+          httpOrderAdminApi.getAllByTableOneId(this.$route.params.shortId, this.$route.query.tableId, true, 0, 20).then(res => {
             this.orderRouter(res)
           })
         } else {

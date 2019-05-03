@@ -243,7 +243,7 @@
         })
       },
       httpTableGroup() {
-        httpTableApi.getGroupAll(this.$route.params.shortId, 0, 99).then(res => {
+        httpTableApi.getGroupAll(this.$route.params.shortId, 0, 20).then(res => {
           if (res.elements.length > 0) {
             this.ui.selectMenuId = res.elements[0].id
           } else {
@@ -477,7 +477,7 @@
 
         let live = (this.role !== 'admin')
 
-        httpOrderAdminApi.getAllByTableOneId(this.$route.params.shortId, table.id, live, 0, 99).then(res => {
+        httpOrderAdminApi.getAllByTableOneId(this.$route.params.shortId, table.id, live, 0, 20).then(res => {
           if (res.elements.length === 0) {
             this.$router.push(`/b/${this.$route.params.shortId}/${this.role}/order/empty`)
             return

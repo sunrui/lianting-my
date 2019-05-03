@@ -87,7 +87,7 @@
     },
     methods: {
       httpReserveAll() {
-        httpReserveAdminApi.getAll(this.$route.params.shortId, null, null, 0, 99).then(res => {
+        httpReserveAdminApi.getAll(this.$route.params.shortId, null, null, 0, 20).then(res => {
           res.elements.sort(function(a, b) {
             return b.date - a.date
           })
@@ -119,7 +119,7 @@
       getTodayReserves() {
         if (!this.http.res.todayReserve) {
           let date = new Date(new Date().toLocaleDateString())
-          httpReserveAdminApi.getDay(this.$route.params.shortId, date.getTime(), 0, 99).then(res => {
+          httpReserveAdminApi.getDay(this.$route.params.shortId, date.getTime(), 0, 20).then(res => {
             res.elements.sort(function(a, b) {
               return a.date - b.date
             })

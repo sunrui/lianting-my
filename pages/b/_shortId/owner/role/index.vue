@@ -22,7 +22,7 @@
       <div class="list_title box_radius_header">
         <div class="list_role_icon" v-bind:class="{
         list_admin_icon: role.type === 'Admin',
-        list_waiter_icon: role.type === 'Waiter',
+        list_waiter_icon: role.type === 'Waiter' || role.type === 'TakeOut',
         list_cooker_icon: role.type === 'Cooker',
         list_cashier_icon: role.type === 'Cashier',
         }" @click="btnEnter(role)"></div>
@@ -139,6 +139,8 @@
           return '服务员'
         } else if (type === 'Cashier') {
           return '收银'
+        } else if (type === 'TakeOut') {
+          return '外卖'
         } else {
           return '未知'
         }
@@ -167,6 +169,11 @@
           this.ui.roles.push({
             type: 'Cashier',
             roles: res.cashiers ? res.cashiers : []
+          })
+
+          this.ui.roles.push({
+            type: 'TakeOut',
+            roles: res.takeouts ? res.takeouts : []
           })
         })
       },

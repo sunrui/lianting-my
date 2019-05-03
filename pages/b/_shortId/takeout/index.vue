@@ -24,14 +24,8 @@
         <div class="box_divide"></div>
 
         <div class="order_history_footer">
-          <div v-if="order.orderTable">
-            <div class="order_history_table_label">餐桌</div>
-            <div class="order_history_table_content">{{order.orderTable.tableFullNumber}}</div>
-          </div>
-          <div v-else>
-            <div class="order_history_price_label">总价</div>
-            <div class="order_history_price_content">{{order.price}}</div>
-          </div>
+          <div class="order_history_price_label">总价</div>
+          <div class="order_history_price_content">{{order.price}}</div>
           <div class="order_history_detail" @click="btnDetail(order)">查看详情</div>
         </div>
         <div class="blank_10"></div>
@@ -45,12 +39,12 @@
 </template>
 
 <script>
-  import TitleBar from '../common/TitleBar'
-  import {httpOrderAdminApi} from '../../api/http/lt/httpOrderAdminApi'
+  import TitleBar from '../../../../components/common/TitleBar'
+  import {httpOrderAdminApi} from '../../../../api/http/lt/httpOrderAdminApi'
 
   export default {
     metaInfo: {
-      title: '订单记录'
+      title: '外卖订单'
     },
     middleware: 'auth',
     components: {TitleBar},
@@ -67,9 +61,9 @@
     data() {
       return {
         title: {
-          canBack: true,
-          title: '订单记录',
-          backUri: `/b/${this.$route.params.shortId}/waiter`,
+          canBack: false,
+          title: '外卖订单',
+          backUri: `/b/${this.$route.params.shortId}/takeout`,
           theme: 'image',
           imageHeight: 220
         },
@@ -84,54 +78,19 @@
       }
     },
     created() {
-      this.title.backUri = `/b/${this.$route.params.shortId}/${this.role}`
+      httpOrderAdminApi.getTakeOut(this.$route.params.shortId, 0, 20).then(res => {
+        if (res.elements.length === 0) {
+          this.$router.push(`/b/${this.$route.params.shortId}/takeout/order/empty`)
+          return
+        }
 
-      let tableOneId = this.$route.query.tableOneId
-      let live = (this.role !== 'admin')
-
-      if (Boolean(tableOneId)) {
-        httpOrderAdminApi.getAllByTableOneId(this.$route.params.shortId, tableOneId, live, 0, 20).then(res => {
-          if (res.elements.length === 0) {
-            this.$router.push(`/b/${this.$route.params.shortId}/${this.role}/order/empty`)
-            return
-          }
-
-          res.elements.sort(function (a, b) {
-            return b.createdAt - a.createdAt
-          })
-
-          this.http.res.orders = res
-          this.ui.loading = false
+        res.elements.sort(function (a, b) {
+          return b.createdAt - a.createdAt
         })
-      } else if (this.date) {
-        httpOrderAdminApi.getAllByDate(this.$route.params.shortId, this.date, 0, 20).then(res => {
-          if (res.elements.length === 0) {
-            this.$router.push(`/b/${this.$route.params.shortId}/${this.role}/order/empty`)
-            return
-          }
 
-          res.elements.sort(function (a, b) {
-            return b.createdAt - a.createdAt
-          })
-
-          this.http.res.orders = res
-          this.ui.loading = false
-        })
-      } else {
-        httpOrderAdminApi.getAll(this.$route.params.shortId, live, 0, 20).then(res => {
-          if (res.elements.length === 0) {
-            this.$router.push(`/b/${this.$route.params.shortId}/${this.role}/order/empty`)
-            return
-          }
-
-          res.elements.sort(function (a, b) {
-            return b.createdAt - a.createdAt
-          })
-
-          this.http.res.orders = res
-          this.ui.loading = false
-        })
-      }
+        this.http.res.orders = res
+        this.ui.loading = false
+      })
     },
     methods: {
       getFoodContent(order) {
@@ -152,7 +111,7 @@
         return detail
       },
       btnDetail(order) {
-        this.$router.push(`/b/${this.$route.params.shortId}/${this.role}/order/${order.id}`)
+        this.$router.push(`/b/${this.$route.params.shortId}/takeout/order/${order.id}`)
       }
     }
   }

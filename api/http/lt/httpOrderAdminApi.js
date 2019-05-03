@@ -12,6 +12,14 @@ export const httpOrderAdminApi = {
       }
     }).then(res => res.data)
   },
+  getTakeOut(shortId, page, size) {
+    return axios.get(`${base}/${shortId}/order/takeout`, {
+      params: {
+        page: page,
+        size: size
+      }
+    }).then(res => res.data)
+  },
   putConfig(shortId, orderPay) {
     return axios.put(`${base}/${shortId}/order/config`, orderPay).then(res => res.data)
   },
@@ -59,6 +67,16 @@ export const httpOrderAdminApi = {
   },
   putCancel(shortId, orderOneId, remark) {
     return axios.put(`${base}/${shortId}/order/${orderOneId}/cancel`, {
+      remark: remark
+    }).then(res => res.data)
+  },
+  postRefund(shortId, orderOneId, remark) {
+    return axios.post(`${base}/${shortId}/order/${orderOneId}/refund`, {
+      remark: remark
+    }).then(res => res.data)
+  },
+  postSuccess(shortId, orderOneId, remark) {
+    return axios.post(`${base}/${shortId}/order/${orderOneId}/success`, {
       remark: remark
     }).then(res => res.data)
   },

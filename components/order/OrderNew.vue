@@ -88,7 +88,7 @@
 
         <div class="order_tableware" v-if="ui.takeOutEnable">
           <div class="order_tableware_icon">配送费</div>
-          <div class="order_tableware_label">外卖配送费</div>
+          <div class="order_tableware_label">外卖配送</div>
           <div class="order_tableware_price">{{http.req.takeOutConfig.takeOutFee}}</div>
         </div>
 
@@ -376,6 +376,12 @@
               if (this.roleWaiter) {
                 this.$router.push(`/b/${this.$route.params.shortId}/waiter/table`)
               }
+            })
+          } else if (res.takeOutNotExists) {
+            this.$msgBox.doModal({
+              type: 'yes',
+              title: '下单',
+              content: '没有外卖相关信息。'
             })
           } else if (res.foodNotExists) {
             this.$msgBox.doModal({

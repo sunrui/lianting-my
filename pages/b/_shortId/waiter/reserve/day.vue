@@ -111,7 +111,7 @@
         }
       },
       httpReserveDay() {
-        httpReserveAdminApi.getDay(this.$route.params.shortId, this.$route.query.timeStamp, 0, 99).then(res => {
+        httpReserveAdminApi.getDay(this.$route.params.shortId, this.$route.query.timeStamp, 0, 20).then(res => {
           if (res.elements.length === 0) {
             this.$router.push(`/b/${this.$route.params.shortId}/waiter/reserve/empty`)
             return

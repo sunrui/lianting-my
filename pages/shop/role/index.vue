@@ -79,7 +79,8 @@
             {image: '/img/role/role_admin.png', name: '店长', role: 'admin'},
             {image: '/img/role/role_waiter.png', name: '服务员', role: 'waiter'},
             {image: '/img/role/role_cooker.png', name: '厨师', role: 'cooker'},
-            {image: '/img/role/role_cashier.png', name: '财务', role: 'cashier'}
+            {image: '/img/role/role_cashier.png', name: '财务', role: 'cashier'},
+            {image: '/img/role/role_waiter.png', name: '外卖', role: 'takeout'}
           ],
           unActive: 0
         }
@@ -90,7 +91,7 @@
     },
     methods: {
       httpRole() {
-        httpRoleApi.getAll(0, 99).then(res => {
+        httpRoleApi.getAll(0, 20).then(res => {
           if (res.length === 0) {
             this.$router.push('/shop/role/empty')
             return

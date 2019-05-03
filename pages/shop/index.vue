@@ -140,7 +140,7 @@
     },
     methods: {
       httpShop() {
-        httpShopApi.getAll(0, 99).then(res => {
+        httpShopApi.getAll(0, 20).then(res => {
           if (!res.shops && !res.shopGroups) {
             this.$router.push('/shop/create')
             return

@@ -2,6 +2,35 @@
   <div>
     <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
+    <div :class="{ cover_mask_9: ui.vCoverMask}" @click="btnCoverMask"></div>
+
+    <div class="box" v-if="http.res.order.orderTakeOut">
+      <div class="addition box_radius">
+        <div class="addition_item">
+          <div class="addition_item_label_text_area">地址</div>
+          <div class="addition_item_text_area">
+            <label>
+              <textarea class="addition_item_text_input" placeholder="请输入您的配送地址" readonly v-model="http.res.order.orderTakeOut.address"></textarea>
+            </label>
+          </div>
+        </div>
+
+        <div class="box_divide"></div>
+
+        <div class="addition_item">
+          <div class="addition_item_label">订单人</div>
+          <div class="addition_item_content" style="user-select: text;">{{http.res.order.orderTakeOut.name}}</div>
+        </div>
+
+        <div class="box_divide"></div>
+
+        <div class="addition_item">
+          <div class="addition_item_label">手机号</div>
+          <div class="addition_item_content" style="user-select: text;">{{http.res.order.orderTakeOut.phone}}</div>
+        </div>
+      </div>
+    </div>
+
     <div class="box" v-if="http.res.order.orderTable">
       <div class="order_table box_radius">
         <div class="order_table_number">{{http.res.order.orderTable.tableFullNumber}}</div>
@@ -43,7 +72,7 @@
 
         <div class="order_tableware" v-if="http.res.order.priceTakeOutFee > 0">
           <div class="order_tableware_icon">配送费</div>
-          <div class="order_tableware_label">外卖配送费</div>
+          <div class="order_tableware_label">外卖配送</div>
           <div class="order_tableware_price">{{http.res.order.priceTakeOutFee}}</div>
         </div>
 
@@ -94,8 +123,6 @@
             </div>
           </div>
         </div>
-
-        <div v-if="http.res.order.tasteNotes && http.res.order.tasteNotes.length > 0" class="blank_10"></div>
       </div>
     </div>
 
@@ -132,7 +159,7 @@
           </div>
         </div>
 
-        <div class="addition_item" @click="btnWall(http.res.order)">
+        <div class="addition_item" @click="btnWall(http.res.order)" v-if="http.res.order.status !== 'NotPaid'">
           <div class="box_divide"></div>
           <div class="addition_item_label">留言墙</div>
           <div class="addition_item_link">{{ http.res.order.wallId ? '已留言' : '未留言' }}</div>
@@ -141,19 +168,52 @@
     </div>
 
     <div class="button_box" v-if="http.res.order.status === 'NotPaid'">
-      <div class="button_small" @click="btnFood">加餐</div>
-      <div class="button_small" @click="btnPay">立即支付</div>
+      <div class="button_small" @click="btnFood" v-if="http.res.order.type === 'ForHere'">加餐</div>
+      <div class="button_small" @click="btnPay" v-if="http.res.order.type === 'ForHere'">立即支付</div>
+      <div class="button_big" @click="btnPay" v-if="http.res.order.type === 'TakeOut'">立即支付</div>
+      <div class="button_big" @click="btnCancel" v-if="http.res.order.type === 'TakeOut'">取消订单</div>
     </div>
     <div class="blank_30" v-else></div>
+
+    <transition name="toggle">
+      <div class="modal_bottom" v-if="ui.vCancel">
+        <div class="modal_close_box" @click="btnCoverMask">
+          <img class="modal_close" src="/img/common/close.png" alt="">
+        </div>
+
+        <div class="modal_title">取消订单</div>
+
+        <div class="blank_20"></div>
+
+        <div class="choose_box">
+          <div class="choose_remark">
+            <div class="choose_remark_label">取消原因</div>
+
+            <div class="blank_20"></div>
+
+            <div class="choose_remark_text_area">
+              <label>
+                <textarea class="choose_remark_text_input" placeholder="请在此备注取消订单的原因。" v-model="http.req.cancel.remark"></textarea>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal_button_box">
+          <div class="button_big" v-if="http.req.cancel.remark" @click="btnCancelConfirm">确认</div>
+          <div class="button_big button_gray" v-else>确认</div>
+        </div>
+      </div>
+    </transition>
   </div>
 </template>
 
 <script>
   import TitleBar from '../../../../../components/common/TitleBar'
   import {httpOrderApi} from '../../../../../api/http/lt/httpOrderApi'
-  import {httpCouponApi} from "../../../../../api/http/lt/httpCouponApi"
-  import {userApi} from "../../../../../api/local/userApi"
-  import {wechatApi} from "../../../../../api/local/wechatApi"
+  import {httpCouponApi} from '../../../../../api/http/lt/httpCouponApi'
+  import {userApi} from '../../../../../api/local/userApi'
+  import {wechatApi} from '../../../../../api/local/wechatApi'
 
   export default {
     metaInfo: {
@@ -171,6 +231,11 @@
           imageHeight: 330
         },
         http: {
+          req: {
+            cancel: {
+              remark: null
+            }
+          },
           res: {
             order: {
               createdAt: new Date().getTime()
@@ -180,7 +245,10 @@
             }
           }
         },
-        ui: {}
+        ui: {
+          vCoverMask: false,
+          vCancel: false,
+        }
       }
     },
     created() {
@@ -195,7 +263,7 @@
         })
       },
       httpCoupon() {
-        httpCouponApi.getAll(this.$route.params.shortId, 0, 99).then(res => {
+        httpCouponApi.getAll(this.$route.params.shortId, 0, 20).then(res => {
           if (res.elements.length === 0) {
             return
           }
@@ -328,30 +396,30 @@
 
         function onBridgeReady() {
           WeixinJSBridge.invoke(
-            'getBrandWCPayRequest', {
-              "appId": jsPay.appId,
-              "timeStamp": jsPay.timeStamp,
-              "nonceStr": jsPay.nonceStr,
-              "package": jsPay.package,
-              "signType": jsPay.signType,
-              "paySign": jsPay.paySign
-            },
-            function (res) {
-              if (res.err_msg === 'get_brand_wcpay_request:ok') {
-                pThis.$msgBox.doModal({
-                  type: 'yes',
-                  title: '立即支付',
-                  content: '支付已成功，支付结果可能存在延迟，请稍候刷新等待服务器返回。'
-                }).then(async (val) => {
-                  pThis.httpShop()
-                })
-              } else if (res.err_msg === 'get_brand_wcpay_request:cancel') {
+              'getBrandWCPayRequest', {
+                'appId': jsPay.appId,
+                'timeStamp': jsPay.timeStamp,
+                'nonceStr': jsPay.nonceStr,
+                'package': jsPay.package,
+                'signType': jsPay.signType,
+                'paySign': jsPay.paySign
+              },
+              function (res) {
+                if (res.err_msg === 'get_brand_wcpay_request:ok') {
+                  pThis.$msgBox.doModal({
+                    type: 'yes',
+                    title: '立即支付',
+                    content: '支付已成功，支付结果可能存在延迟，请稍候刷新等待服务器返回。'
+                  }).then(async (val) => {
+                    pThis.httpShop()
+                  })
+                } else if (res.err_msg === 'get_brand_wcpay_request:cancel') {
+                }
               }
-            }
           )
         }
 
-        if (typeof WeixinJSBridge === "undefined") {
+        if (typeof WeixinJSBridge === 'undefined') {
           if (document.addEventListener) {
             document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false)
           } else if (document.attachEvent) {
@@ -464,6 +532,54 @@
           }
         })
       },
+      btnCoverMask() {
+        this.ui.vCancel = false
+        this.ui.vCoverMask = false
+      },
+      btnCancel() {
+        this.ui.vCoverMask = true
+        this.ui.vCancel = true
+      },
+      btnCancelConfirm() {
+        httpOrderApi.putCancel(this.$route.params.shortId, this.$route.params.orderOneId, this.http.req.cancel.remark).then(res => {
+          this.ui.vCancel = false
+          this.ui.vCoverMask = false
+
+          if (res.orderOneIdNotExists) {
+            this.$msgBox.doModal({
+              type: 'yes',
+              title: '取消订单',
+              content: '订单不存在。'
+            })
+          } else if (res.closed) {
+            this.$msgBox.doModal({
+              type: 'yes',
+              title: '取消订单',
+              content: '订单已关闭。'
+            })
+          } else if (res.paid) {
+            this.$msgBox.doModal({
+              type: 'yes',
+              title: '取消订单',
+              content: '订单已支付。'
+            })
+          } else if (res.notTakeOut) {
+            this.$msgBox.doModal({
+              type: 'yes',
+              title: '取消订单',
+              content: '仅允许取消外卖订单。'
+            })
+          } else if (res.success) {
+            this.$msgBox.doModal({
+              type: 'yes',
+              title: '取消订单',
+              content: '订单已取消。'
+            }).then(async (val) => {
+              this.httpOrder()
+            })
+          }
+        })
+      }
     }
   }
 </script>
@@ -471,5 +587,4 @@
 <style scoped lang="scss">
   @import '~assets/common';
   @import '~assets/c/order';
-  @import 'index';
 </style>

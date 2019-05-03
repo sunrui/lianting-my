@@ -33,5 +33,10 @@ export const httpOrderApi = {
     return axios.post(`${base}/${shortId}/order/${citusOrderId}/pay`, {
       unifiedPayWay: unifiedPayWay
     }).then(res => res.data)
-  }
+  },
+  putCancel(shortId, orderOneId, remark) {
+    return axios.put(`${base}/${shortId}/order/${orderOneId}/cancel`, {
+      remark: remark
+    }).then(res => res.data)
+  },
 }
