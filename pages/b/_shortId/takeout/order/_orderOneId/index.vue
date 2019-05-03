@@ -183,30 +183,30 @@
 
             <div class="blank_30"></div>
 
-            <div class="choose_remark_one" v-for="orderStatus in ui.orderStatus">
-              <div class="choose_remark_name" v-if="ui.selectOrderStatus !== orderStatus.status" @click="btnChooseStatus(orderStatus.status)">{{orderStatus.label}}</div>
-              <div class="choose_remark_name_select" v-else>{{orderStatus.label}}</div>
+            <div class="choose_remark_one" v-for="orderType in ui.orderType">
+              <div class="choose_remark_name" v-if="ui.selectOrderType !== orderType.status" @click="btnChooseStatus(orderType.status)">{{orderType.label}}</div>
+              <div class="choose_remark_name_select" v-else>{{orderType.label}}</div>
             </div>
 
             <div v-if="ui.smsSendEnable">
-              <div class="tip" v-if="ui.selectOrderStatus === 'Accept'">
+              <div class="tip" v-if="ui.selectOrderType === 'Accept'">
                 <ul class="tip_ul">
-                  <li>{{getOrderStatusLabel('Accept')}}</li>
+                  <li>{{getOrderTypeLabel('Accept')}}</li>
                 </ul>
               </div>
-              <div class="tip" v-else-if="ui.selectOrderStatus === 'Cancel' || ui.selectOrderStatus === 'Refund'">
+              <div class="tip" v-else-if="ui.selectOrderType === 'Cancel' || ui.selectOrderType === 'Refund'">
                 <ul class="tip_ul">
-                  <li>{{getOrderStatusLabel('Cancel')}}</li>
+                  <li>{{getOrderTypeLabel('Cancel')}}</li>
                 </ul>
               </div>
-              <div class="tip" v-else-if="ui.selectOrderStatus === 'Success'">
+              <div class="tip" v-else-if="ui.selectOrderType === 'Deliver'">
                 <ul class="tip_ul">
-                  <li>{{getOrderStatusLabel('Success')}}</li>
+                  <li>{{getOrderTypeLabel('Success')}}</li>
                 </ul>
               </div>
             </div>
 
-            <div v-if="ui.selectOrderStatus !== 'Accept'">
+            <div v-if="ui.selectOrderType !== 'Accept'">
               <div class="addition_item">
                 <div class="addition_item_label">发送短信</div>
                 <div class="addition_item_check">
@@ -217,17 +217,20 @@
               </div>
             </div>
 
-            <div class="choose_remark_text_area" v-if="ui.selectOrderStatus !== 'Accept'">
+            <div class="choose_remark_text_area" v-if="ui.selectOrderType !== 'Accept'">
               <div class="blank_20"></div>
               <label>
-                <textarea class="choose_remark_text_input" :placeholder="ui.selectOrderStatus === 'Success' ? '请输入您的订单备注' : '请输入您取消订单的原因'" v-model="ui.orderRemark"></textarea>
+                <textarea class="choose_remark_text_input" :placeholder="ui.selectOrderType === 'Deliver' ? '请输入您的订单备注' : '请输入您取消订单的原因'" v-model="ui.orderRemark"></textarea>
               </label>
             </div>
           </div>
         </div>
 
         <div class="modal_button_box">
-          <div class="button_big" @click="btnReplyConfirm">确认</div>
+          <div class="button_big" @click="btnReplyConfirm" v-if="ui.selectOrderType === 'Accept' || ui.selectOrderType === 'Deliver'">确认</div>
+          <div class="button_big button_gray" v-else-if="!ui.orderRemark">确认</div>
+          <div class="button_big" @click="btnReplyConfirm" v-else>确认</div>
+
         </div>
       </div>
     </transition>
@@ -242,6 +245,7 @@
   import {highlightApi} from '../../../../../../api/local/highlightApi'
   import {httpShopApi} from '../../../../../../api/http/shop/httpShopApi'
   import {httpInfoApi} from '../../../../../../api/http/lt/httpInfoApi'
+  import {httpTakeoutAdminApi} from '../../../../../../api/http/lt/httpTakeOutAdminApi'
 
   export default {
     metaInfo: {
@@ -271,12 +275,12 @@
         ui: {
           vReply: false,
           vCoverMask: false,
-          orderStatus: [
+          orderType: [
             {status: 'Accept', label: '回复接单短信'},
-            {status: 'Success', label: '派送完成'},
+            {status: 'Deliver', label: '派送完成'},
             {status: 'Cancel', label: '取消订单'},
           ],
-          selectOrderStatus: 'Accept',
+          selectOrderType: 'Accept',
           smsSendEnable: true,
           orderRemark: ''
         }
@@ -303,7 +307,7 @@
           this.http.res.order = res
 
           if (res.status === 'Paid' || res.status === 'Finish') {
-            this.ui.orderStatus.push({status: 'Refund', label: '取消订单并退款'})
+            this.ui.orderType.push({status: 'Refund', label: '取消订单并退款'})
           }
         })
       },
@@ -317,7 +321,7 @@
 
         return count
       },
-      getOrderStatusLabel(status) {
+      getOrderTypeLabel(status) {
         let name = this.http.res.order.orderTakeOut.name || '匿名用户'
         let shop = this.http.res.shop.name || '恋厅'
         let phone = this.http.res.info.phone || ''
@@ -338,7 +342,7 @@
         scrollApi.enable(true)
       },
       btnChooseStatus(status) {
-        this.ui.selectOrderStatus = status
+        this.ui.selectOrderType = status
       },
       btnReply() {
         if (this.http.res.order.status === 'NotPaid') {
@@ -351,6 +355,10 @@
             this.ui.vCoverMask = true
             scrollApi.enable(false)
           })
+        } else {
+          this.ui.vReply = true
+          this.ui.vCoverMask = true
+          scrollApi.enable(false)
         }
       },
       btnSmsSendEnable(enable) {
@@ -361,13 +369,57 @@
         this.ui.vReply = false
         this.ui.vCoverMask = false
 
-        if (this.ui.selectOrderStatus === 'Refund') {
+
+        if (this.ui.smsSendEnable) {
+          let reason
+
+          if (this.ui.selectOrderType === 'Refund' || this.ui.selectOrderType === 'Cancel') {
+            this.ui.selectOrderType = 'Cancel'
+            reason = this.ui.orderRemark
+          }
+
+          httpTakeoutAdminApi.postSms(this.$route.params.shortId, this.ui.selectOrderType, reason, this.$route.params.orderOneId).then(res => {
+            if (res.orderOneIdNotExists) {
+              this.$msgBox.doModal({
+                type: 'yes',
+                title: '发送短信',
+                content: '订单号不存在。'
+              })
+            } else if (res.notTakeOut) {
+              this.$msgBox.doModal({
+                type: 'yes',
+                title: '发送短信',
+                content: '非外卖订单。'
+              })
+            } else if (res.noShopPhone) {
+              this.$msgBox.doModal({
+                type: 'yes',
+                title: '发送短信',
+                content: '没有设置商家电话，请先在资料页设置商家电话。'
+              })
+            } else if (res.noLeft) {
+              this.$msgBox.doModal({
+                type: 'yes',
+                title: '发送短信',
+                content: '没有可剩余的短信数目，请开通短信包后使用。'
+              })
+            } else if (res.success) {
+              this.$msgBox.doModal({
+                type: 'yes',
+                title: '发送短信',
+                content: '短信已通知顾客。'
+              })
+            }
+          })
+        }
+
+        if (this.ui.selectOrderType === 'Refund') {
           httpOrderAdminApi.postRefund(this.$route.params.shortId, this.$route.params.orderOneId, this.ui.orderRemark).then(res => {
             if (res.orderOneIdNotExists) {
               this.$msgBox.doModal({
                 type: 'yes',
                 title: '取消订单并退款',
-                content: '订单不存在。'
+                content: '订单号不存在。'
               })
             } else if (res.paymentIdNotExists) {
               this.$msgBox.doModal({
@@ -397,7 +449,7 @@
               })
             }
           })
-        } else if (this.ui.selectOrderStatus === 'Cancel') {
+        } else if (this.ui.selectOrderType === 'Cancel') {
           httpOrderAdminApi.putCancel(this.$route.params.shortId, this.$route.params.orderOneId, this.ui.orderRemark).then(res => {
             if (res.orderOneIdNotExists) {
               this.$msgBox.doModal({
@@ -421,7 +473,7 @@
               })
             }
           })
-        } else if (this.ui.selectOrderStatus === 'Success') {
+        } else if (this.ui.selectOrderType === 'Deliver') {
           httpOrderAdminApi.postSuccess(this.$route.params.shortId, this.$route.params.orderOneId, this.ui.orderRemark).then(res => {
             if (res.orderOneIdNotExists) {
               this.$msgBox.doModal({

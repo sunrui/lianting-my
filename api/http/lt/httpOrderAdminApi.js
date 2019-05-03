@@ -65,14 +65,14 @@ export const httpOrderAdminApi = {
       remark: remark
     }).then(res => res.data)
   },
-  putCancel(shortId, orderOneId, remark) {
+  putCancel(shortId, orderOneId, reason) {
     return axios.put(`${base}/${shortId}/order/${orderOneId}/cancel`, {
-      remark: remark
+      reason: reason
     }).then(res => res.data)
   },
-  postRefund(shortId, orderOneId, remark) {
+  postRefund(shortId, orderOneId, reason) {
     return axios.post(`${base}/${shortId}/order/${orderOneId}/refund`, {
-      remark: remark
+      reason: reason
     }).then(res => res.data)
   },
   postSuccess(shortId, orderOneId, remark) {
