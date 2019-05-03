@@ -112,6 +112,17 @@
           license.plan.licenseType === 'Normal' ? '/img/b/license/b_license_normal_check.png' :
           license.plan.licenseType === 'Senior' ? '/img/b/license/b_license_senior_check.png' : '/img/b/license/b_license_free_check.png'
           " alt="">
+            <div class="shop_feature_one_label">外卖无抽成无限订单<span class="shop_feature_one_label_star">专享</span></div>
+          </div>
+
+          <div class="box_divide"></div>
+
+          <div class="shop_feature_one">
+            <img class="shop_feature_one_icon" :src="
+            license.plan.licenseType === 'Free' ? '/img/b/license/b_license_free_check.png' :
+          license.plan.licenseType === 'Normal' ? '/img/b/license/b_license_normal_check.png' :
+          license.plan.licenseType === 'Senior' ? '/img/b/license/b_license_senior_check.png' : '/img/b/license/b_license_free_check.png'
+          " alt="">
             <div class="shop_feature_one_label">{{license.limit.maxFoods}} 个上架餐食</div>
           </div>
 
@@ -266,6 +277,27 @@
     </div>
 
     <transition name="toggle">
+      <div class="modal_bottom" v-if="ui.vSms">
+        <div class="modal_close_box" @click="btnCoverMask">
+          <img class="modal_close" src="/img/common/close.png" alt="">
+        </div>
+
+        <div class="modal_title">选择套餐</div>
+
+        <div class="modal_menu" v-bind:class="{modal_menu_select: ui.sms === 50}"
+             @click="btnChooseSms(50)">50 元</div>
+        <div class="modal_menu" v-bind:class="{modal_menu_select: ui.sms === 100}"
+             @click="btnChooseSms(100)">100 元</div>
+        <div class="modal_menu" v-bind:class="{modal_menu_select: ui.sms === 500}"
+             @click="btnChooseSms(500)">500 元</div>
+
+        <div class="modal_button_box">
+          <div class="button_big" @click="btnSmsConfirm">立即续费</div>
+        </div>
+      </div>
+    </transition>
+
+    <transition name="toggle">
       <div class="modal_bottom" v-if="ui.vChargeYear">
         <div class="modal_close_box" @click="btnCoverMask">
           <img class="modal_close" src="/img/common/close.png" alt="">
@@ -325,8 +357,10 @@
         ui: {
           vCoverMask: false,
           vChargeYear: false,
+          vSms: false,
           licensePlan: null,
-          year: 1
+          year: 1,
+          sms: 100
         }
       }
     },
@@ -354,6 +388,7 @@
       btnCoverMask() {
         this.ui.vCoverMask = false
         this.ui.vChargeYear = false
+        this.ui.vSms = false
 
         scrollApi.enable(true)
       },
@@ -499,7 +534,18 @@
           }
         })
       },
+      btnChooseSms(sms) {
+        this.ui.sms = sms
+      },
       btnSms() {
+        this.ui.vSms = true
+        this.ui.vCoverMask = true
+        this.ui.sms = 50
+
+        scrollApi.enable(false)
+      },
+      btnSmsConfirm() {
+        scrollApi.enable(true)
 
       }
     }
