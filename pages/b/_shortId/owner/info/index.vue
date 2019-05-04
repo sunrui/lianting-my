@@ -156,6 +156,7 @@
   import ImageUpload from '../../../../../components/common/ImageUpload'
   import {httpSearchApi} from '../../../../../api/http/lt/httpSearchApi'
   import {httpSearchAdminApi} from '../../../../../api/http/lt/httpSearchAdminApi'
+  import {validatorApi} from '../../../../../api/local/validatorApi'
 
   export default {
     metaInfo: {
@@ -213,7 +214,7 @@
       }
     },
     methods: {
-      btnUpdate() {
+      updateInfo() {
         httpShopApi.putName(this.$route.params.shortId, this.http.req.shop.name).then(res => {
           httpInfoAdminApi.put(this.$route.params.shortId, this.http.req.info).then(res => {
             if (this.http.req.shop.licenseType !== 'Free') {
@@ -245,6 +246,25 @@
             }
           })
         })
+      },
+      btnUpdate() {
+        if (!validatorApi.phone(this.http.req.info.phone)) {
+          this.$msgBox.doModal({
+            type: 'yes',
+            title: '商家电话提醒',
+            content: '商家联系电话非手机号码，若为固定电话请务必确认填写正确。<br/><br/>如您任意填写可能顾客无法直接电话联系到您或在短信通知顾客时可能无法收到。'
+          }).then(async (val) => {
+            if (val !== 'Yes') {
+              return
+            }
+
+            this.updateInfo()
+          })
+
+          return
+        }
+
+        this.updateInfo()
       },
       uploadLogoSuccess(fileName) {
         this.$set(this.http.req.info, 'logo', fileName)

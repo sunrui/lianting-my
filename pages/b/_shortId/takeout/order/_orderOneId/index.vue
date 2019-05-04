@@ -245,7 +245,7 @@
   import {highlightApi} from '../../../../../../api/local/highlightApi'
   import {httpShopApi} from '../../../../../../api/http/shop/httpShopApi'
   import {httpInfoApi} from '../../../../../../api/http/lt/httpInfoApi'
-  import {httpTakeoutAdminApi} from '../../../../../../api/http/lt/httpTakeOutAdminApi'
+  import {httpSmsAdminApi} from '../../../../../../api/http/lt/httpSmsAdminApi'
 
   export default {
     metaInfo: {
@@ -364,57 +364,11 @@
       btnSmsSendEnable(enable) {
         this.ui.smsSendEnable = enable
       },
-      btnReplyConfirm() {
-        scrollApi.enable(true)
-        this.ui.vReply = false
-        this.ui.vCoverMask = false
-
-
-        if (this.ui.smsSendEnable) {
-          let reason
-
-          if (this.ui.selectOrderType === 'Refund' || this.ui.selectOrderType === 'Cancel') {
-            this.ui.selectOrderType = 'Cancel'
-            reason = this.ui.orderRemark
-          }
-
-          httpTakeoutAdminApi.postSms(this.$route.params.shortId, this.ui.selectOrderType, reason, this.$route.params.orderOneId).then(res => {
-            if (res.orderOneIdNotExists) {
-              this.$msgBox.doModal({
-                type: 'yes',
-                title: '发送短信',
-                content: '订单号不存在。'
-              })
-            } else if (res.notTakeOut) {
-              this.$msgBox.doModal({
-                type: 'yes',
-                title: '发送短信',
-                content: '非外卖订单。'
-              })
-            } else if (res.noShopPhone) {
-              this.$msgBox.doModal({
-                type: 'yes',
-                title: '发送短信',
-                content: '没有设置商家电话，请先在资料页设置商家电话。'
-              })
-            } else if (res.noLeft) {
-              this.$msgBox.doModal({
-                type: 'yes',
-                title: '发送短信',
-                content: '没有可剩余的短信数目，请开通短信包后使用。'
-              })
-            } else if (res.success) {
-              this.$msgBox.doModal({
-                type: 'yes',
-                title: '发送短信',
-                content: '短信已通知顾客。'
-              })
-            }
-          })
-        }
-
+      replyConfirm() {
         if (this.ui.selectOrderType === 'Refund') {
           httpOrderAdminApi.postRefund(this.$route.params.shortId, this.$route.params.orderOneId, this.ui.orderRemark).then(res => {
+            this.httpOrder()
+
             if (res.orderOneIdNotExists) {
               this.$msgBox.doModal({
                 type: 'yes',
@@ -444,13 +398,13 @@
                 type: 'yes',
                 title: '取消订单并退款',
                 content: '订单已取消。'
-              }).then(async (val) => {
-                this.httpOrder()
               })
             }
           })
         } else if (this.ui.selectOrderType === 'Cancel') {
           httpOrderAdminApi.putCancel(this.$route.params.shortId, this.$route.params.orderOneId, this.ui.orderRemark).then(res => {
+            this.httpOrder()
+
             if (res.orderOneIdNotExists) {
               this.$msgBox.doModal({
                 type: 'yes',
@@ -468,13 +422,13 @@
                 type: 'yes',
                 title: '取消订单',
                 content: '订单已取消。'
-              }).then(async (val) => {
-                this.httpOrder()
               })
             }
           })
         } else if (this.ui.selectOrderType === 'Deliver') {
           httpOrderAdminApi.postSuccess(this.$route.params.shortId, this.$route.params.orderOneId, this.ui.orderRemark).then(res => {
+            this.httpOrder()
+
             if (res.orderOneIdNotExists) {
               this.$msgBox.doModal({
                 type: 'yes',
@@ -492,8 +446,66 @@
                 type: 'yes',
                 title: '派送订单',
                 content: '订单已完成。'
+              })
+            }
+          })
+        }
+      },
+      btnReplyConfirm() {
+        scrollApi.enable(true)
+        this.ui.vReply = false
+        this.ui.vCoverMask = false
+
+        if (this.ui.smsSendEnable) {
+          if (!Boolean(this.http.res.info.phone)) {
+            this.$msgBox.doModal({
+              type: 'yes',
+              title: '发送短信',
+              content: '没有设置商家电话，请先在资料页设置。'
+            })
+
+            return
+          }
+
+          let reason
+
+          if (this.ui.selectOrderType === 'Refund' || this.ui.selectOrderType === 'Cancel') {
+            this.ui.selectOrderType = 'Cancel'
+            reason = this.ui.orderRemark
+          }
+
+          httpSmsAdminApi.postSms(this.$route.params.shortId, this.ui.selectOrderType, reason, this.$route.params.orderOneId).then(res => {
+            if (res.orderOneIdNotExists) {
+              this.$msgBox.doModal({
+                type: 'yes',
+                title: '发送短信',
+                content: '订单号不存在。'
+              })
+            } else if (res.notTakeOut) {
+              this.$msgBox.doModal({
+                type: 'yes',
+                title: '发送短信',
+                content: '非外卖订单。'
+              })
+            } else if (res.noShopPhone) {
+              this.$msgBox.doModal({
+                type: 'yes',
+                title: '发送短信',
+                content: '没有设置商家电话，请先在资料页设置。'
+              })
+            } else if (res.noLeft) {
+              this.$msgBox.doModal({
+                type: 'yes',
+                title: '发送短信',
+                content: '没有可剩余的短信数目，请续费短信包后使用。'
+              })
+            } else if (res.success) {
+              this.$msgBox.doModal({
+                type: 'yes',
+                title: '发送短信',
+                content: '短信已发送。'
               }).then(async (val) => {
-                this.httpOrder()
+                this.replyConfirm()
               })
             }
           })

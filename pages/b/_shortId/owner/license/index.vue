@@ -41,8 +41,8 @@
           <div class="shop_detail_expired_at">{{getExpiredContent()}}</div>
         </div>
         <div class="shop_detail_one">
-          <div class="shop_detail_left">剩余短信数：{{this.http.res.takeOutSmsShop.leftCount}}</div>
-          <div class="shop_detail_sms" @click="btnSms">充值</div>
+          <div class="shop_detail_left">剩余短信数：{{this.http.res.smsShop.leftCount}}</div>
+          <div class="shop_detail_sms" @click="btnSmsCharge">充值</div>
           <div class="shop_license_history" @click="btnChargeHistory">续费记录</div>
         </div>
 
@@ -277,22 +277,22 @@
     </div>
 
     <transition name="toggle">
-      <div class="modal_bottom" v-if="ui.vSms">
+      <div class="modal_bottom" v-if="ui.vSmsPrice">
         <div class="modal_close_box" @click="btnCoverMask">
           <img class="modal_close" src="/img/common/close.png" alt="">
         </div>
 
         <div class="modal_title">选择套餐</div>
 
-        <div class="modal_menu" v-bind:class="{modal_menu_select: ui.sms === 50}"
-             @click="btnChooseSms(50)">50 元</div>
-        <div class="modal_menu" v-bind:class="{modal_menu_select: ui.sms === 100}"
-             @click="btnChooseSms(100)">100 元</div>
-        <div class="modal_menu" v-bind:class="{modal_menu_select: ui.sms === 500}"
-             @click="btnChooseSms(500)">500 元</div>
+        <div class="modal_menu" v-bind:class="{modal_menu_select: ui.smsPrice === 50}"
+             @click="btnChooseSmsPrice(50)">50 元</div>
+        <div class="modal_menu" v-bind:class="{modal_menu_select: ui.smsPrice === 100}"
+             @click="btnChooseSmsPrice(100)">100 元</div>
+        <div class="modal_menu" v-bind:class="{modal_menu_select: ui.smsPrice === 500}"
+             @click="btnChooseSmsPrice(500)">500 元</div>
 
         <div class="modal_button_box">
-          <div class="button_big" @click="btnSmsConfirm">立即续费</div>
+          <div class="button_big" @click="btnSmsChargeConfirm">立即续费</div>
         </div>
       </div>
     </transition>
@@ -330,7 +330,7 @@
   import {scrollApi} from '../../../../../api/local/scrollApi'
   import {userApi} from '../../../../../api/local/userApi'
   import {wechatApi} from '../../../../../api/local/wechatApi'
-  import {httpTakeoutAdminApi} from '../../../../../api/http/lt/httpTakeOutAdminApi'
+  import {httpSmsAdminApi} from '../../../../../api/http/lt/httpSmsAdminApi'
 
   export default {
     metaInfo: {
@@ -351,16 +351,16 @@
           res: {
             shop: {},
             shopLicensePlans: {},
-            takeOutSmsShop: {}
+            smsShop: {}
           }
         },
         ui: {
           vCoverMask: false,
           vChargeYear: false,
-          vSms: false,
+          vSmsPrice: false,
           licensePlan: null,
           year: 1,
-          sms: 100
+          smsPrice: 100
         }
       }
     },
@@ -381,14 +381,14 @@
         })
       },
       httpTakeOutSmsShop() {
-        httpTakeoutAdminApi.getSms(this.$route.params.shortId).then(res => {
-          this.http.res.takeOutSmsShop = res
+        httpSmsAdminApi.getSms(this.$route.params.shortId).then(res => {
+          this.http.res.smsShop = res
         })
       },
       btnCoverMask() {
         this.ui.vCoverMask = false
         this.ui.vChargeYear = false
-        this.ui.vSms = false
+        this.ui.vSmsPrice = false
 
         scrollApi.enable(true)
       },
@@ -427,6 +427,8 @@
                   content: '支付已成功，支付结果可能存在延迟，请稍候刷新等待服务器返回。'
                 }).then(async (val) => {
                   pThis.httpShop()
+                  pThis.httpLicensePlan()
+                  pThis.httpTakeOutSmsShop()
                 })
               } else if (res.err_msg === 'get_brand_wcpay_request:cancel') {
               }
@@ -453,6 +455,8 @@
         }
       },
       btnChargeConfirm() {
+        scrollApi.enable(true)
+
         let wechatOpenId = userApi.getUserWechatOpenId()
         if (!Boolean(wechatOpenId) || !wechatApi.inWechat()) {
           this.ui.vCoverMask = false
@@ -534,19 +538,79 @@
           }
         })
       },
-      btnChooseSms(sms) {
-        this.ui.sms = sms
+      btnChooseSmsPrice(smsPrice) {
+        this.ui.smsPrice = smsPrice
       },
-      btnSms() {
-        this.ui.vSms = true
+      btnSmsCharge() {
+        this.ui.vSmsPrice = true
         this.ui.vCoverMask = true
-        this.ui.sms = 50
+        this.ui.smsPrice = 100
 
         scrollApi.enable(false)
       },
-      btnSmsConfirm() {
+      btnSmsChargeConfirm() {
         scrollApi.enable(true)
 
+        let wechatOpenId = userApi.getUserWechatOpenId()
+        if (!Boolean(wechatOpenId) || !wechatApi.inWechat()) {
+          this.ui.vCoverMask = false
+          this.ui.vSmsPrice = false
+
+          this.$msgBox.doModal({
+            type: 'yes',
+            title: '立即支付',
+            content: '请在微信中使用。'
+          })
+
+          return
+        }
+
+        httpSmsAdminApi.postOrder(this.$route.params.shortId, this.ui.smsPrice, 'WECHAT_JSAPI').then(res => {
+          this.ui.vCoverMask = false
+          this.ui.vSmsPrice = false
+
+          if (res.shortIdNotExists) {
+            this.$msgBox.doModal({
+              type: 'yes',
+              title: '立即续费',
+              content: '店铺不存在。'
+            })
+
+            return
+          }
+
+          if (res.pay) {
+            if (res.pay.wechat) {
+              this.prepareWechatPay(res.pay.wechat.jsPay)
+            }
+
+            if (res.pay.wechatOpenIdNotExists) {
+              this.$msgBox.doModal({
+                type: 'yes',
+                title: '立即续费',
+                content: '请先获得微信授权。'
+              })
+              return
+            }
+
+            if (res.pay.payConfigWechatNotExists) {
+              this.$msgBox.doModal({
+                type: 'yes',
+                title: '立即续费',
+                content: '商家尚未设置微信支付参数。'
+              })
+              return
+            }
+
+            if (res.pay.payWayNotSupport) {
+              this.$msgBox.doModal({
+                type: 'yes',
+                title: '立即续费',
+                content: '暂未支持此支付方式。'
+              })
+            }
+          }
+        })
       }
     }
   }

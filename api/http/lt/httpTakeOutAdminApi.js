@@ -8,15 +8,5 @@ export const httpTakeoutAdminApi = {
   },
   putConfig(shortId, takeoutConfig) {
     return axios.put(`${base}/${shortId}/takeout/config`, takeoutConfig).then(res => res.data)
-  },
-  postSms(shortId, type, reason, orderOneId) {
-    return axios.post(`${base}/${shortId}/takeout/sms`, {
-      type: type,
-      reason: reason,
-      orderOneId: orderOneId
-    }).then(res => res.data)
-  },
-  getSms(shortId) {
-    return axios.get(`${base}/${shortId}/takeout/sms`).then(res => res.data)
   }
 }

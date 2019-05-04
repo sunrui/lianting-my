@@ -105,6 +105,9 @@
 
           if (!Boolean(res.info)) {
             res.info = {}
+          }
+
+          if (!Boolean(res.info.nickName)) {
             res.info.nickName = '匿名用户'
           }
 
