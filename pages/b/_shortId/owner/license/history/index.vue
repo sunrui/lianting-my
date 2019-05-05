@@ -2,7 +2,7 @@
   <div v-show="!ui.loading">
     <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
-    <div class="box" v-for="shopLicense in http.res.shopLicenseRes.elements">
+    <div class="box" v-for="shopLicense in http.res.shopLicense.elements">
       <div class="list_title box_radius_header">
         <div class="list_time_icon"></div>
         <div class="list_time_label">{{new Date(parseInt(shopLicense.createdAt)).toLocaleString()}}</div>
@@ -29,8 +29,9 @@
             Date(parseInt(shopLicense.afterExpiredAt)).toLocaleDateString()}}
           </div>
         </div>
-        <div class="box_divide"></div>
         <div v-if="shopLicense.shopLicensePay">
+          <div class="box_divide"></div>
+
           <div class="license_label_one">
             <div class="license_label_one_name">支付订单号</div>
             <div class="license_label_one_value">{{shopLicense.shopLicensePay.paymentId}}</div>
@@ -41,11 +42,11 @@
           </div>
           <div class="license_label_one">
             <div class="license_label_one_name">价格</div>
-            <div class="license_label_one_value">{{shopLicense.shopLicensePay.pricePerYear}}元/年</div>
+            <div class="license_label_one_value">{{shopLicense.shopLicensePay.pricePerYear}} 元/年</div>
           </div>
           <div class="license_label_one">
             <div class="license_label_one_name">续费天数</div>
-            <div class="license_label_one_value">{{shopLicense.shopLicensePay.year * 365}}天</div>
+            <div class="license_label_one_value">{{shopLicense.shopLicensePay.year * 365}} 天</div>
           </div>
           <div class="license_label_one">
             <div class="license_label_one_name">支付方式</div>
@@ -63,6 +64,8 @@
           </div>
         </div>
         <div v-if="shopLicense.shopLicenseUpgrade">
+          <div class="box_divide"></div>
+
           <div class="license_label_one">
             <div class="license_label_one_name">第三方订单号</div>
             <div class="license_label_one_value">{{shopLicense.shopLicenseUpgrade.marketOrderId}}</div>
@@ -77,7 +80,7 @@
           </div>
           <div class="license_label_one">
             <div class="license_label_one_name">续费天数</div>
-            <div class="license_label_one_value">{{shopLicense.shopLicenseUpgrade.upgradeDate}}天</div>
+            <div class="license_label_one_value">{{shopLicense.shopLicenseUpgrade.upgradeDate}} 天</div>
           </div>
           <div class="license_label_one">
             <div class="license_label_one_name">备注</div>
@@ -91,7 +94,7 @@
           </div>
           <div class="license_label_one">
             <div class="license_label_one_name">降级天数</div>
-            <div class="license_label_one_value">{{shopLicense.shopLicenseDowngrade.downgradeDate}}天</div>
+            <div class="license_label_one_value">{{shopLicense.shopLicenseDowngrade.downgradeDate}} 天</div>
           </div>
           <div class="license_label_one">
             <div class="license_label_one_name">备注</div>
@@ -101,13 +104,51 @@
         <div class="blank_10"></div>
       </div>
     </div>
+
+    <div class="box" v-for="history in http.res.smsHistoryPay.elements">
+      <div class="list_title box_radius_header">
+        <div class="list_time_icon"></div>
+        <div class="list_time_label">{{new Date(parseInt(history.createdAt)).toLocaleString()}}</div>
+      </div>
+
+      <div class="box_divide_radius">
+        <div class="box_divide_radius_line"></div>
+      </div>
+
+      <div class="license_label box_radius_footer">
+        <div class="license_label_one">
+          <div class="license_label_one_name">支付订单号</div>
+          <div class="license_label_one_value">{{history.paymentId}}</div>
+        </div>
+        <div class="license_label_one">
+          <div class="license_label_one_name">支付金额</div>
+          <div class="license_label_one_value">{{history.price}} 元</div>
+        </div>
+        <div class="license_label_one">
+          <div class="license_label_one_name">续费短信</div>
+          <div class="license_label_one_value">{{history.count}} 条</div>
+        </div>
+
+        <div class="license_label_one">
+          <div class="license_label_one_name">续费前短信</div>
+          <div class="license_label_one_value">{{history.fromLeftCount}} 条</div>
+        </div>
+        <div class="license_label_one">
+          <div class="license_label_one_name">续费后短信</div>
+          <div class="license_label_one_value">{{history.toLeftCount}} 条</div>
+        </div>
+        <div class="blank_10"></div>
+      </div>
+    </div>
+
     <div class="blank_30"></div>
   </div>
 </template>
 
 <script>
-  import {httpLicenseApi} from '../../../../../../api/http/lt/httpLicenseApi';
-  import TitleBar from '../../../../../../components/common/TitleBar';
+  import {httpLicenseApi} from '../../../../../../api/http/lt/httpLicenseApi'
+  import TitleBar from '../../../../../../components/common/TitleBar'
+  import {httpSmsAdminApi} from '../../../../../../api/http/lt/httpSmsAdminApi'
 
   export default {
     metaInfo: {
@@ -126,7 +167,10 @@
         },
         http: {
           res: {
-            shopLicenseRes: {
+            shopLicense: {
+              elements: []
+            },
+            smsHistoryPay: {
               elements: []
             }
           }
@@ -134,19 +178,23 @@
         ui: {
           loading: true
         }
-      };
+      }
     },
     created() {
       httpLicenseApi.getAll(this.$route.params.shortId).then(res => {
-        if (res.elements.length === 0) {
-          this.$router.push(`/b/${this.$route.params.shortId}/owner/license/history/empty`);
-        }
+        this.http.res.shopLicense = res
 
-        this.http.res.shopLicenseRes = res;
-        this.ui.loading = false
-      });
+        httpSmsAdminApi.getHistoryPay(this.$route.params.shortId).then(res => {
+          this.http.res.smsHistoryPay = res
+          this.ui.loading = false
+
+          if (this.http.res.shopLicense.elements.length === 0 && res.elements.length === 0) {
+            this.$router.push(`/b/${this.$route.params.shortId}/owner/license/history/empty`)
+          }
+        })
+      })
     }
-  };
+  }
 </script>
 
 <style scoped lang="scss">

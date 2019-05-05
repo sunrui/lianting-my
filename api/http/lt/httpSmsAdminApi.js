@@ -18,5 +18,8 @@ export const httpSmsAdminApi = {
   },
   getSms(shortId) {
     return axios.get(`${base}/${shortId}/sms`).then(res => res.data)
+  },
+  getHistoryPay(shortId) {
+    return axios.get(`${base}/${shortId}/sms/history/pay`).then(res => res.data)
   }
 }
