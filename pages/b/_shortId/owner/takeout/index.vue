@@ -29,8 +29,8 @@
         <div class="box_divide"></div>
 
         <div class="addition_item">
-          <div class="addition_item_label">外卖费</div>
-          <currency-input class="addition_item_input" right="true" placeholder="请输入外卖费"
+          <div class="addition_item_label">外卖配送费</div>
+          <currency-input class="addition_item_input" right="true" placeholder="请输入外卖配送费"
                           v-model="http.req.tableOutConfig.takeOutFee"></currency-input>
         </div>
       </div>
