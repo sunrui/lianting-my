@@ -22,10 +22,6 @@
       right: String
     },
     mounted() {
-      if (!Boolean(this.$refs.input.value)) {
-        this.$refs.input.value = 0
-      }
-
       this.$refs.input.value = this.formatPrice(this.$refs.input.value)
     },
     methods: {
