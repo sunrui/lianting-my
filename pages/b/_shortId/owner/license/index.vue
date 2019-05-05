@@ -292,7 +292,7 @@
              @click="btnChooseSmsPrice(500)">500 元</div>
 
         <div class="modal_button_box">
-          <div class="button_big" @click="btnSmsChargeConfirm">立即续费</div>
+          <div class="button_big" @click="btnSmsChargeConfirm">立即充值</div>
         </div>
       </div>
     </transition>
