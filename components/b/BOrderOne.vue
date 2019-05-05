@@ -4,6 +4,41 @@
 
     <div :class="{ cover_mask_9: ui.vCoverMask}" @click="btnCoverMask"></div>
 
+    <div class="box" v-if="http.res.order.orderTakeOut">
+      <div class="list_title box_radius_header">
+        <div class="list_title_label">外卖配送详情</div>
+      </div>
+
+      <div class="box_divide_radius">
+        <div class="box_divide_radius_line"></div>
+      </div>
+
+      <div class="order_content box_radius_footer">
+        <div class="addition_item">
+          <div class="addition_item_label_text_area">地址</div>
+          <div class="addition_item_text_area">
+            <label>
+              <textarea class="addition_item_text_input" placeholder="请输入您的配送地址" readonly v-model="http.res.order.orderTakeOut.address"></textarea>
+            </label>
+          </div>
+        </div>
+
+        <div class="box_divide"></div>
+
+        <div class="addition_item">
+          <div class="addition_item_label">订单人</div>
+          <div class="addition_item_content" style="user-select: text;">{{http.res.order.orderTakeOut.name}}</div>
+        </div>
+
+        <div class="box_divide"></div>
+
+        <div class="addition_item">
+          <div class="addition_item_label">手机号</div>
+          <div class="addition_item_content" style="user-select: text;">{{http.res.order.orderTakeOut.phone}}</div>
+        </div>
+      </div>
+    </div>
+
     <div class="box" v-if="http.res.order.orderTable">
       <div class="order_table box_radius">
         <div class="order_table_number">{{http.res.order.orderTable.tableFullNumber}}</div>
