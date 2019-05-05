@@ -284,10 +284,10 @@
 
         <div class="modal_title">选择套餐</div>
 
-        <div class="modal_menu" v-bind:class="{modal_menu_select: ui.smsPrice === 50}"
-             @click="btnChooseSmsPrice(50)">50 元</div>
         <div class="modal_menu" v-bind:class="{modal_menu_select: ui.smsPrice === 100}"
              @click="btnChooseSmsPrice(100)">100 元</div>
+        <div class="modal_menu" v-bind:class="{modal_menu_select: ui.smsPrice === 200}"
+             @click="btnChooseSmsPrice(200)">200 元</div>
         <div class="modal_menu" v-bind:class="{modal_menu_select: ui.smsPrice === 500}"
              @click="btnChooseSmsPrice(500)">500 元</div>
 
