@@ -94,7 +94,7 @@
         <div class="addition_item">
           <div class="addition_item_label">来源</div>
           <label>
-            <input class="addition_item_input" placeholder="请输入您从哪里了解到的恋厅" minlength="1" maxlength="32"
+            <input class="addition_item_input" placeholder="请告之我们您从哪里了解到的恋厅?" minlength="1" maxlength="32"
                    v-model="http.req.shop.referrer">
           </label>
         </div>
@@ -324,6 +324,17 @@
           return
         }
 
+        let refererWarn = '信息乱取将由运营后期识别为机器刷垃圾店铺。'
+
+        if (!Boolean(this.http.req.shop.referrer)) {
+          this.$msgBox.doModal({
+            type: 'yes',
+            title: '创建店铺',
+            content: `请告之我们您从哪里了解到的恋厅?`
+          })
+          return
+        }
+
         if (this.http.req.shop.shortId.length < 2 || this.http.req.shop.shortId.length > 20) {
           this.$msgBox.doModal({
             type: 'yes',
@@ -335,7 +346,10 @@
 
         let url = 'https://m.lt.city/c/'
         let content = `请您认真阅读以上开店流程，如您在使用中遇到任何问题可联系我们客服。`
+        content += `<br/><br/>${highlightApi.highlight(refererWarn)}`
+        content += `<br/><br/>您的餐厅名称为：<br/>${highlightApi.highlight(this.http.req.shop.name)}`
         content += `<br/><br/>您的餐厅地址为：<br/>${url}${highlightApi.highlight(this.http.req.shop.shortId)}`
+        content += `<br/><br/>告之我们您从哪里了解到的恋厅?<br/>${highlightApi.highlight(this.http.req.shop.referrer)}`
 
         this.$msgBox.doModal({
           type: 'yes',
