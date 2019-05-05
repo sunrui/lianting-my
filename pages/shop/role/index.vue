@@ -5,7 +5,7 @@
 
     <div class="box" v-for="(role, index) in http.res.roles">
       <div class="shop_info">
-        <div class="shop_info_logo" @click="btnShop(role.shop)">
+        <div class="shop_info_logo">
           <div class="shop_logo_radius shop_logo_radius_center">
             <img class="shop_logo_radius_image" :src="getLogo(role.shop)" alt="">
           </div>
@@ -129,9 +129,6 @@
         }
 
         return ''
-      },
-      btnShop(shop) {
-        this.$router.push(`/c/${shop.shortId}`)
       },
       btnRole(shop, role) {
         this.$router.push(`/b/${shop.shortId}/${role}`)
