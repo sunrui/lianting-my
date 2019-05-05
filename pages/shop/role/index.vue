@@ -28,6 +28,7 @@
         <div class="shop_short_id">店铺标识 {{role.shop.shortId}}</div>
 
         <div class="box_divide"></div>
+        <div class="blank_20"></div>
 
         <div class="shop_role">
           <div class="shop_role_one" v-for="type in role.types">
@@ -38,7 +39,7 @@
           </div>
         </div>
 
-        <div class="shop_footer"></div>
+        <div class="blank_10"></div>
       </div>
 
       <div class="shop_divide" v-if="index !== http.res.roles.length - 1"></div>

@@ -34,6 +34,7 @@
           <div class="shop_short_id">店铺标识 {{shop.shortId}}</div>
 
           <div class="box_divide"></div>
+          <div class="blank_20"></div>
 
           <div class="shop_role">
             <div class="shop_role_one" v-for="role in ui.roles">
@@ -42,7 +43,7 @@
             </div>
           </div>
 
-          <div class="shop_footer"></div>
+          <div class="blank_10"></div>
         </div>
 
         <div class="shop_divide" v-if="index !== shopGroup.shops.length - 1"></div>
@@ -74,6 +75,7 @@
         <div class="shop_short_id">店铺标识 {{shop.shortId}}</div>
 
         <div class="box_divide"></div>
+        <div class="blank_20"></div>
 
         <div class="shop_role">
           <div class="shop_role_one" v-for="role in ui.roles" @click="btnRole(shop, role.role)">
@@ -82,7 +84,7 @@
           </div>
         </div>
 
-        <div class="shop_footer"></div>
+        <div class="blank_10"></div>
       </div>
 
       <div class="shop_divide" v-if="index !== http.res.shop.shops.length - 1"></div>
