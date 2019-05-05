@@ -110,12 +110,6 @@
             },
             {
               tag: 'coupon',
-              name: '外卖',
-              icon: '/img/b/nav/owner/b_nav_owner_take_out.png',
-              url: `/b/${this.$route.params.shortId}/owner/takeout`
-            },
-            {
-              tag: 'coupon',
               name: '优惠券',
               icon: '/img/b/nav/owner/b_nav_owner_coupon.png',
               url: `/b/${this.$route.params.shortId}/owner/coupon`
@@ -155,6 +149,12 @@
               name: '收益',
               icon: '/img/b/nav/owner/b_nav_owner_charge.png',
               url: `/b/${this.$route.params.shortId}/owner/charge`
+            },
+            {
+              tag: 'coupon',
+              name: '外卖',
+              icon: '/img/b/nav/owner/b_nav_owner_take_out.png',
+              url: `/b/${this.$route.params.shortId}/owner/takeout`
             }
           ]
         },
