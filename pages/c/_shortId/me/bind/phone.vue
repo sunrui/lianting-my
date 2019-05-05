@@ -63,7 +63,7 @@
         title: {
           canBack: true,
           title: '手机',
-          backUri: `/c/${this.$route.params.shortId}/me`,
+          backUri: `/c/${this.$route.params.shortId}`,
           theme: 'image',
           imageHeight: 220
         },
