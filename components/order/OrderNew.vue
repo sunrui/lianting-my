@@ -413,8 +413,12 @@
               path = `/b/${this.$route.params.shortId}/waiter/order/${res.orderOneId}/success`
             } else {
               if (this.ui.takeOutEnable) {
-                this.ui.orderOneId = res.orderOneId;
+                this.ui.orderOneId = res.orderOneId
                 this.payNow()
+
+                cartApi.clearAll()
+                this.$store.commit('cart/update', cartApi.getCart())
+                return
               } else {
                 path = `/c/${this.$route.params.shortId}/order/${res.orderOneId}/success`
               }
@@ -424,16 +428,14 @@
             cartApi.clearAll()
             this.$store.commit('cart/update', cartApi.getCart())
 
-            if (this.ui.takeOutEnable) {
-              this.$router.push({
-                path: path,
-                query: {
-                  cartPrice: price,
-                  cartSelect: cartSelect,
-                  takeOutFee: this.http.req.takeOutConfig.takeOutFee
-                }
-              })
-            }
+            this.$router.push({
+              path: path,
+              query: {
+                cartPrice: price,
+                cartSelect: cartSelect,
+                takeOutFee: this.http.req.takeOutConfig.takeOutFee
+              }
+            })
           }
         })
       },
