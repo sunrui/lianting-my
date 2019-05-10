@@ -324,15 +324,6 @@
           return
         }
 
-        if (!Boolean(this.http.req.shop.referrer)) {
-          this.$msgBox.doModal({
-            type: 'yes',
-            title: '创建店铺',
-            content: `请告之我们您从哪里了解到的恋厅?`
-          })
-          return
-        }
-
         if (this.http.req.shop.shortId.length < 2 || this.http.req.shop.shortId.length > 20) {
           this.$msgBox.doModal({
             type: 'yes',
