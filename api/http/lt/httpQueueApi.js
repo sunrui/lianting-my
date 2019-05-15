@@ -3,6 +3,14 @@ import axios from 'axios'
 let base = '/api/c'
 
 export const httpQueueApi = {
+  getLive(shortId, page, size) {
+    return axios.get(`${base}/${shortId}/queue/live`, {
+      params: {
+        page: page,
+        size: size
+      }
+    }).then(res => res.data)
+  },
   getAll(shortId, page, size) {
     return axios.get(`${base}/${shortId}/queue`, {
       params: {

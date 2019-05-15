@@ -354,7 +354,7 @@
         })
       },
       httpMyTickets() {
-        httpQueueApi.getAll(this.$route.params.shortId, 0, 1).then(res => {
+        httpQueueApi.getLive(this.$route.params.shortId, 0, 1).then(res => {
           this.http.res.myTickets = res
 
           if (this.http.res.myTickets.elements.length > 0) {
