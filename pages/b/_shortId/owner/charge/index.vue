@@ -67,12 +67,17 @@
           }
         },
         ui: {
-          limitDetail: true
+          limit: {
+            licenseType: true,
+            licenseExpiredAt: true,
+          }
         }
       }
     },
     created() {
+      this.httpShop()
       this.httpStatOrder()
+      this.httpShopLicenseExpiredAt()
     },
     methods: {
       getDate(date) {
@@ -80,11 +85,12 @@
       },
       httpShop() {
         httpShopApi.getOne(this.$route.params.shortId).then(res => {
-          if (res.licenseType !== 'Normal' && res.licenseType !== 'Senior') {
-            this.ui.limit.limitDetail = true
-          } else {
-            this.ui.limit.limitDetail = res.licenseExpiredAt < new Date().getTime()
-          }
+          this.ui.limit.licenseType = (res.licenseType !== 'Normal' && res.licenseType !== 'Senior');
+        })
+      },
+      httpShopLicenseExpiredAt() {
+        httpShopApi.getLicenseExpiredAt(this.$route.params.shortId).then(res => {
+          this.ui.limit.licenseExpiredAt = res.licenseExpiredAt < new Date().getTime()
         })
       },
       httpStatOrder() {
@@ -93,7 +99,7 @@
         })
       },
       btnOrder(date) {
-        if (this.ui.limitDetail) {
+        if (this.ui.limit.licenseType || this.ui.limit.licenseExpiredAt) {
           this.$router.push(`/b/${this.$route.params.shortId}/owner/limit`)
           return
         }

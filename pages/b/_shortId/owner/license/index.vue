@@ -285,11 +285,14 @@
         <div class="modal_title">选择套餐</div>
 
         <div class="modal_menu" v-bind:class="{modal_menu_select: ui.smsPrice === 100}"
-             @click="btnChooseSmsPrice(100)">100 元</div>
+             @click="btnChooseSmsPrice(100)">100 元
+        </div>
         <div class="modal_menu" v-bind:class="{modal_menu_select: ui.smsPrice === 200}"
-             @click="btnChooseSmsPrice(200)">200 元</div>
+             @click="btnChooseSmsPrice(200)">200 元
+        </div>
         <div class="modal_menu" v-bind:class="{modal_menu_select: ui.smsPrice === 500}"
-             @click="btnChooseSmsPrice(500)">500 元</div>
+             @click="btnChooseSmsPrice(500)">500 元
+        </div>
 
         <div class="modal_button_box">
           <div class="button_big" @click="btnSmsChargeConfirm">立即充值</div>
@@ -351,7 +354,8 @@
           res: {
             shop: {},
             shopLicensePlans: {},
-            smsShop: {}
+            smsShop: {},
+            licenseExpiredAt: new Date().getTime()
           }
         },
         ui: {
@@ -366,6 +370,7 @@
     },
     created() {
       this.httpShop()
+      this.httpShopLicenseExpiredAt()
       this.httpLicensePlan()
       this.httpTakeOutSmsShop()
     },
@@ -373,6 +378,11 @@
       httpShop() {
         httpShopApi.getOne(this.$route.params.shortId).then(res => {
           this.http.res.shop = res
+        })
+      },
+      httpShopLicenseExpiredAt() {
+        httpShopApi.getLicenseExpiredAt(this.$route.params.shortId).then(res => {
+          this.http.res.licenseExpiredAt = res
         })
       },
       httpLicensePlan() {
@@ -411,28 +421,28 @@
 
         function onBridgeReady() {
           WeixinJSBridge.invoke(
-            'getBrandWCPayRequest', {
-              'appId': jsPay.appId,     //公众号名称，由商户传入
-              'timeStamp': jsPay.timeStamp,         //时间戳，自1970年以来的秒数
-              'nonceStr': jsPay.nonceStr, //随机串
-              'package': jsPay.package,
-              'signType': jsPay.signType,   //微信签名方式：
-              'paySign': jsPay.paySign //微信签名
-            },
-            function (res) {
-              if (res.err_msg === 'get_brand_wcpay_request:ok') {
-                pThis.$msgBox.doModal({
-                  type: 'yes',
-                  title: '立即续费',
-                  content: '支付已成功，支付结果可能存在延迟，请稍候刷新等待服务器返回。'
-                }).then(async (val) => {
-                  pThis.httpShop()
-                  pThis.httpLicensePlan()
-                  pThis.httpTakeOutSmsShop()
-                })
-              } else if (res.err_msg === 'get_brand_wcpay_request:cancel') {
+              'getBrandWCPayRequest', {
+                'appId': jsPay.appId,     //公众号名称，由商户传入
+                'timeStamp': jsPay.timeStamp,         //时间戳，自1970年以来的秒数
+                'nonceStr': jsPay.nonceStr, //随机串
+                'package': jsPay.package,
+                'signType': jsPay.signType,   //微信签名方式：
+                'paySign': jsPay.paySign //微信签名
+              },
+              function (res) {
+                if (res.err_msg === 'get_brand_wcpay_request:ok') {
+                  pThis.$msgBox.doModal({
+                    type: 'yes',
+                    title: '立即续费',
+                    content: '支付已成功，支付结果可能存在延迟，请稍候刷新等待服务器返回。'
+                  }).then(async (val) => {
+                    pThis.httpShop()
+                    pThis.httpLicensePlan()
+                    pThis.httpTakeOutSmsShop()
+                  })
+                } else if (res.err_msg === 'get_brand_wcpay_request:cancel') {
+                }
               }
-            }
           )
         }
 
@@ -451,7 +461,7 @@
         if (this.http.res.shop.licenseType === 'Free') {
           return '注册于：' + new Date(parseInt(this.http.res.shop.createdAt)).toLocaleDateString()
         } else {
-          return '过期时间：' + new Date(parseInt(this.http.res.shop.licenseExpiredAt)).toLocaleDateString()
+          return '过期时间：' + new Date(parseInt(this.http.res.licenseExpiredAt)).toLocaleDateString()
         }
       },
       btnChargeConfirm() {

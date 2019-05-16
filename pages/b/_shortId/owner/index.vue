@@ -161,8 +161,8 @@
         http: {
           res: {
             shop: {
-              licenseExpiredAt: new Date().getTime()
             },
+            licenseExpiredAt: new Date().getTime(),
             info: {}
           }
         }
@@ -170,12 +170,18 @@
     },
     created() {
       this.httpShop()
+      this.httpShopLicenseExpiredAt()
       this.httpInfo()
     },
     methods: {
       httpShop() {
         httpShopApi.getOne(this.$route.params.shortId).then(res => {
           this.http.res.shop = res
+        })
+      },
+      httpShopLicenseExpiredAt() {
+        httpShopApi.getLicenseExpiredAt(this.$route.params.shortId).then(res => {
+          this.http.res.licenseExpiredAt = res
         })
       },
       httpInfo() {
@@ -194,7 +200,7 @@
         if (this.http.res.shop.licenseType === 'Free') {
           return '服务于 ' + new Date(parseInt(this.http.res.shop.createdAt)).toLocaleDateString()
         } else {
-          return new Date(parseInt(this.http.res.shop.licenseExpiredAt)).toLocaleDateString() + ' 过期'
+          return new Date(parseInt(this.http.res.licenseExpiredAt)).toLocaleDateString() + ' 过期'
         }
       },
       btnLicense() {

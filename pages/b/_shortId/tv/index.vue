@@ -124,7 +124,8 @@
           tables: [],
           radioFetchTimes: 0,
           limit: {
-            demoView: true,
+            licenseType: true,
+            licenseExpiredAt: true,
             times: 12 * 10
           }
         }
@@ -140,6 +141,7 @@
 
       this.httpState()
       this.httpShop()
+      this.httpShopLicenseExpiredAt()
       this.httpInfo()
 
       this.updateTime()
@@ -159,13 +161,13 @@
       },
       httpShop() {
         httpShopApi.getOne(this.$route.params.shortId).then(res => {
-          if (res.licenseType !== 'Normal' && res.licenseType !== 'Senior') {
-            this.ui.limit.demoView = true
-          } else {
-            this.ui.limit.demoView = res.licenseExpiredAt < new Date().getTime()
-          }
-
+          this.ui.limit.licenseType = (res.licenseType !== 'Normal' && res.licenseType !== 'Senior');
           this.http.res.shop = res
+        })
+      },
+      httpShopLicenseExpiredAt() {
+        httpShopApi.getLicenseExpiredAt(this.$route.params.shortId).then(res => {
+          this.ui.limit.licenseExpiredAt = res.licenseExpiredAt < new Date().getTime()
         })
       },
       httpInfo() {
@@ -261,7 +263,7 @@
           return
         }
 
-        if (this.ui.limit.demoView) {
+        if (this.ui.limit.licenseType || this.ui.limit.licenseExpiredAt) {
           if (this.ui.limit.times === 0) {
             this.ui.fullScreen = false
             return
@@ -342,7 +344,7 @@
               table.push('--')
             } else {
               table.push(this.getTime((new Date().getTime() - ticketNow.queueTicket.createdAt) / 1000) +
-                this.getTime2((new Date().getTime() - ticketNow.queueTicket.createdAt) / 1000))
+                  this.getTime2((new Date().getTime() - ticketNow.queueTicket.createdAt) / 1000))
             }
           } else {
             table.push('--')
@@ -423,13 +425,15 @@
           pThis.ui.fullScreen = true
         }
 
-        if (this.ui.limit.demoView) {
+        if (this.ui.limit.licenseType || this.ui.limit.licenseExpiredAt) {
           this.$msgBox.doModal({
             type: 'yes',
             title: '预览展屏',
             content: '展屏为普通、旗舰会员专享，您可继续预览此功能，展屏将在一定时间内自动关闭。'
           }).then(async (val) => {
-            fullScreen(this)
+            if (val === 'Yes') {
+              fullScreen(this)
+            }
           })
 
           return

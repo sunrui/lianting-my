@@ -16,6 +16,9 @@ export const httpShopApi = {
       }
     }).then(res => res.data)
   },
+  getLicenseExpiredAt(shortId) {
+    return axios.get(`${base}/${shortId}/licenseExpiredAt`).then(res => res.data)
+  },
   getAll(page, size) {
     return axios.get(`${base}`, {
       params: {
