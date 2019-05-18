@@ -117,7 +117,7 @@
               <div class="food_info">
                 <div class="food_name">{{foodCategory.name}}</div>
                 <div class="food_detail">{{foodCategory.detail}}</div>
-                <div v-if="foodCategory.foods.length > 0 && foodCategory.status === 'ONLINE'">
+                <div v-if="foodCategory.foods && foodCategory.foods.length > 0 && foodCategory.status === 'ONLINE'">
                   <div class="food_price_box">
                     <div class="food_price_now">{{foodCategory.foods[0].price}}</div>
                     <div class="food_price_original"
@@ -139,7 +139,7 @@
               </div>
             </div>
             <div class="food_status_offline" v-if="foodCategory.status === 'OFFLINE'"></div>
-            <div class="food_status_sold_out" v-if="foodCategory.foods.length === 0 || foodCategory.status === 'SOLD_OUT'"></div>
+            <div class="food_status_sold_out" v-if="!foodCategory.foods || foodCategory.foods.length === 0 || foodCategory.status === 'SOLD_OUT'"></div>
           </div>
 
           <div class="blank_20" v-if="index !== foodGroup.foodCategories.length - 1"></div>
@@ -611,7 +611,7 @@
         this.computedCartSelect()
       },
       btnFoodAdd(event, foodGroupId, foodCategory) {
-        if (foodCategory.foods.length === 1) {
+        if (foodCategory.foods && foodCategory.foods.length === 1) {
           this.btnCartFoodAdd(foodGroupId, foodCategory, foodCategory.foods[0])
         } else {
           this.ui.modalCategory.foodGroupId = foodGroupId
@@ -638,6 +638,10 @@
       },
       btnFoodMinus(foodCategory) {
         let selectCategoryCount = 0
+
+        if (!Boolean(foodCategory.foods)) {
+          foodCategory.foods = []
+        }
 
         for (let foodIndex in foodCategory.foods) {
           let food = foodCategory.foods[foodIndex]
