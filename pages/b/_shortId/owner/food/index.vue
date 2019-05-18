@@ -71,7 +71,7 @@
               <div class="food_info" @click="btnCategory(foodCategory)">
                 <div class="food_name">{{foodCategory.name}}</div>
                 <div class="food_detail">{{foodCategory.detail}}</div>
-                <div v-if="foodCategory.foods.length > 0">
+                <div v-if="foodCategory.foods && foodCategory.foods.length > 0">
                   <div class="food_price_box">
                     <div class="food_price_now">{{foodCategory.foods[0].price}}</div>
                     <div class="food_price_original"

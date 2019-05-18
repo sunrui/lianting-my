@@ -161,7 +161,7 @@
         </div>
 
         <div class="cart_box">
-          <div class="cart_food" v-for="cartFood in cart.foods">
+          <div class="cart_food" v-if="cart.foods" v-for="cartFood in cart.foods">
             <div class="box_divide" v-if="cartFood !== cart.foods[0]"></div>
 
             <div class="cart_food_info">
@@ -218,7 +218,7 @@
 
         <div class="category_label">规格</div>
         <div class="category_box">
-          <div class="category_one" v-for="food in ui.modalCategory.category.foods">
+          <div class="category_one" v-if="ui.modalCategory.category.foods" v-for="food in ui.modalCategory.category.foods">
             <div class="category_one_name_select" v-if="food.id === ui.modalCategory.selectFood.id">{{food.name}}</div>
             <div class="category_one_name" v-if="food.id !== ui.modalCategory.selectFood.id"
                  @click="btnCategoryChoose(food)">{{food.name}}
