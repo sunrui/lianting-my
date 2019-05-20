@@ -66,12 +66,13 @@
       </div>
     </div>
 
-    <div class="shop_footer">
+    <div class="shop_footer" v-if="ui.queue.waitPeople > 0 || !http.res.shop.open">
       <div class="shop_footer_queue_icon"></div>
       <div class="shop_footer_queue_label">前方正在等待</div>
       <div class="shop_footer_queue_content">{{ui.queue.waitPeople}}</div>
       <div class="shop_footer_closed" v-if="!http.res.shop.open">餐厅已打烊</div>
     </div>
+    <div class="shop_footer shop_footer_blank" v-else></div>
 
     <div class="modal_center" v-if="ui.vWifi">
       <div class="modal_title">无线</div>
@@ -182,7 +183,9 @@
         },
         http: {
           res: {
-            shop: {},
+            shop: {
+              open: true
+            },
             info: {},
             coupons: [],
             wifi: {}

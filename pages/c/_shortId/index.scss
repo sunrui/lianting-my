@@ -210,12 +210,17 @@
   }
 }
 
+.shop_footer_blank {
+  background: white !important;
+}
+
 .shop_footer {
   position: absolute;
   background: #EFF0F4;
   width: 100%;
   bottom: 0;
   left: 0;
+  height: px2rem(110);
 
   .shop_footer_queue_icon {
     background-image: url("/img/c/shop/shop_footer_queue.png");
