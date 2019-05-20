@@ -206,6 +206,8 @@
             return
           }
 
+          this.btnDownloadShop()
+
           for (let tableGroupIndex in this.http.res.tableGroups.elements) {
             let tableGroup = this.http.res.tableGroups.elements[tableGroupIndex]
 
