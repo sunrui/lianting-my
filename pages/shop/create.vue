@@ -7,7 +7,7 @@
         <ul class="tip_ul">
           <li>感谢您的信任和选择恋厅智慧餐饮解决方案。</li>
           <li>首先确保您的店铺是唯一的并且具有一定辨识度。</li>
-          <li>店铺标识便于您更好的记忆和展示餐厅的唯一地址。</li>
+          <li>恋厅号便于您更好的记忆和展示餐厅的唯一地址。</li>
           <li>确认无误后将会初始化您的店铺并进入管理员主页。</li>
           <li>您可以进行餐食、排队、预订、优惠券等功能设置。</li>
           <li>您还可以邀请店长、服务员、后厨、收银人员加入。</li>
@@ -43,9 +43,9 @@
         <div class="box_divide"></div>
 
         <div class="addition_item">
-          <div class="addition_item_label">店铺标识</div>
+          <div class="addition_item_label">恋厅号</div>
           <label>
-            <input class="addition_item_input" placeholder="请输入店铺标识，如：ltcity。" minlength="2" maxlength="20"
+            <input class="addition_item_input" placeholder="请输入恋厅号，如：ltcity。" minlength="2" maxlength="20"
                    onkeyup="value=value.replace(/[^\w.\/]/ig,'')"
                    v-model="http.req.shop.shortId">
           </label>
@@ -209,7 +209,7 @@
           this.$msgBox.doModal({
             type: 'yes',
             title: '创建店铺',
-            content: '请输入正确的店铺标识。'
+            content: '请输入正确的恋厅号。'
           })
 
           return
@@ -232,7 +232,7 @@
             this.$msgBox.doModal({
               type: 'yes',
               title: '创建店铺',
-              content: '店铺标识已存在。'
+              content: '恋厅号已存在。'
             })
           } else if (res.shopId) {
             this.$router.push(`/b/${this.http.req.shop.shortId}/init`)
@@ -319,7 +319,7 @@
           this.$msgBox.doModal({
             type: 'yes',
             title: '创建店铺',
-            content: '请输入店铺标识。'
+            content: '请输入恋厅号。'
           })
           return
         }
@@ -328,7 +328,7 @@
           this.$msgBox.doModal({
             type: 'yes',
             title: '创建店铺',
-            content: '店铺标识长度在2-20位之间。'
+            content: '恋厅号长度在2-20位之间。'
           })
           return
         }

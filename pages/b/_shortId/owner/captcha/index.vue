@@ -52,7 +52,7 @@
 
     <div v-if="ui.vRender" class="addition">
       <div class="addition_item">
-        <div class="addition_item_label">显示恋厅标识</div>
+        <div class="addition_item_label">显示恋厅品牌</div>
         <div class="addition_item_check">
           <div class="addition_item_check_on" v-if="ui.vCopyright" @click="btnCopyright(false)"></div>
           <div class="addition_item_check_off" v-else @click="btnCopyright(true)"></div>

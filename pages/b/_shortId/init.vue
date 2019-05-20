@@ -54,7 +54,7 @@
           }
           case 1: {
             this.ui.tasks.push({
-              label: '确认您的店铺标识',
+              label: '确认您的恋厅号',
               finish: false
             })
             this.updateInit(1)

@@ -31,7 +31,7 @@
             </div>
           </div>
 
-          <div class="shop_short_id">店铺标识 {{shop.shortId}}</div>
+          <div class="shop_short_id">恋厅号 {{shop.shortId}}</div>
 
           <div class="box_divide"></div>
           <div class="blank_20"></div>
@@ -72,7 +72,7 @@
           </div>
         </div>
 
-        <div class="shop_short_id">店铺标识 {{shop.shortId}}</div>
+        <div class="shop_short_id">恋厅号 {{shop.shortId}}</div>
 
         <div class="box_divide"></div>
         <div class="blank_20"></div>

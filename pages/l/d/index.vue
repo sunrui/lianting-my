@@ -14,9 +14,9 @@
         <div class="box_divide"></div>
 
         <div class="addition_item">
-          <div class="addition_item_label">店铺标识</div>
+          <div class="addition_item_label">恋厅号</div>
           <label>
-            <input class="addition_item_input" placeholder="请输入店铺标识" minlength="2" maxlength="32"
+            <input class="addition_item_input" placeholder="请输入恋厅号" minlength="2" maxlength="32"
                    onkeyup="value=value.replace(/[^\w.\/]/ig,'')"
                    v-model="http.req.downgrade.shortId">
           </label>
@@ -137,7 +137,7 @@
           this.$msgBox.doModal({
             type: 'yes',
             title: '授权降级',
-            content: '请输入店铺标识。'
+            content: '请输入恋厅号。'
           })
           return
         }

@@ -25,7 +25,7 @@
           </div>
         </div>
 
-        <div class="shop_short_id">店铺标识 {{role.shop.shortId}}</div>
+        <div class="shop_short_id">恋厅号 {{role.shop.shortId}}</div>
 
         <div class="box_divide"></div>
         <div class="blank_20"></div>
