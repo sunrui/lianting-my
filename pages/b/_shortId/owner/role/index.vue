@@ -289,6 +289,7 @@
         this.$router.push(`/b/${this.$route.params.shortId}/${role.type.toLowerCase()}`)
       },
       btnCreateCaptcha(role) {
+        scrollApi.enable(false)
         this.ui.captcha.title = '邀请"' + this.getTypeName(role.type) + '"扫码加入'
 
         httpRoleAdminApi.postRoleCaptcha(this.$route.params.shortId, role.type).then(res => {
@@ -298,6 +299,7 @@
         })
       },
       closeCaptcha() {
+        scrollApi.enable(true)
         this.ui.vCaptcha = false
       }
     }
