@@ -290,7 +290,7 @@
       },
       btnCreateCaptcha(role) {
         scrollApi.enable(false)
-        this.ui.captcha.title = '邀请"' + this.getTypeName(role.type) + '"扫码加入'
+        this.ui.captcha.title = '邀请' + this.getTypeName(role.type)
 
         httpRoleAdminApi.postRoleCaptcha(this.$route.params.shortId, role.type).then(res => {
           this.ui.captcha.text = document.location.protocol + '//' + window.location.host + `/c/${this.$route.params.shortId}/role/` + res.captchaId
