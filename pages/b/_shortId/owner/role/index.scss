@@ -49,6 +49,18 @@
   margin-right: px2rem(35);
 }
 
+.list_item_add_captcha {
+  background-image: url("/img/b/nav/role/b_nav_role_captcha.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  width: px2rem(44);
+  height: px2rem(44);
+  float: right;
+  margin-top: px2rem((88 - 44) / 2);
+  margin-right: px2rem(20);
+  opacity: 0.6;
+}
+
 .role_user {
   background: white;
 

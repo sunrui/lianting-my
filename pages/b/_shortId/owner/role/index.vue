@@ -9,14 +9,13 @@
     <div class="box">
       <div class="tip">
         <ul class="tip_ul">
-          <li>要添加人事角色，首先需相关人员登录并绑定手机。</li>
-          <li>您可将店铺二维码提供给相关人员扫描并登录。</li>
-          <li>相关人员可在店铺个人资料页中完成手机绑定。</li>
           <li>相关人员可在关注恋厅公众号后处理日常工作。</li>
           <li>您也可直接点击人事头像进入工作台。</li>
         </ul>
       </div>
     </div>
+
+    <captcha v-if="ui.vCaptcha" @closeCaptcha="closeCaptcha()" :title="ui.captcha.title" :text="ui.captcha.text"></captcha>
 
     <div class="box" v-for="role in ui.roles">
       <div class="list_title box_radius_header">
@@ -28,6 +27,7 @@
         }" @click="btnEnter(role)"></div>
         <div class="list_time_label" @click="btnEnter(role)">{{getTypeName(role.type)}}</div>
         <div class="list_item_add" @click="btnCreate(role)"></div>
+        <div class="list_item_add_captcha" @click="btnCreateCaptcha(role)"></div>
       </div>
 
       <div class="box_divide_radius">
@@ -73,7 +73,7 @@
       <div class="modal_input_box">
         <div class="modal_input_area">
           <label>
-            <input class="modal_input" placeholder="请输入真实姓名" maxlength="10" v-model="http.req.role.name">
+            <input class="modal_input" placeholder="请输入真实姓名" maxlength="16" v-model="http.req.role.name">
           </label>
         </div>
       </div>
@@ -93,13 +93,14 @@
   import TitleBar from '../../../../../components/common/TitleBar'
   import {validatorApi} from '../../../../../api/local/validatorApi'
   import {scrollApi} from '../../../../../api/local/scrollApi'
+  import Captcha from '../../../../../components/common/Captcha'
 
   export default {
     metaInfo: {
       title: '人事'
     },
     middleware: 'auth',
-    components: {TitleBar},
+    components: {TitleBar, Captcha},
     data() {
       return {
         title: {
@@ -118,9 +119,14 @@
           }
         },
         ui: {
+          vCaptcha: false,
           vRoleAdd: false,
           vCoverMask: false,
-          roles: []
+          roles: [],
+          captcha: {
+            title: null,
+            text: null
+          }
         }
       }
     },
@@ -281,6 +287,18 @@
       },
       btnEnter(role) {
         this.$router.push(`/b/${this.$route.params.shortId}/${role.type.toLowerCase()}`)
+      },
+      btnCreateCaptcha(role) {
+        this.ui.captcha.title = '邀请"' + this.getTypeName(role.type) + '"扫码加入'
+
+        httpRoleAdminApi.postRoleCaptcha(this.$route.params.shortId, role.type).then(res => {
+          this.ui.captcha.text = document.location.protocol + '//' + window.location.host + `/c/${this.$route.params.shortId}/role/` + res.captchaId
+          this.ui.captcha.text += '?roleType=' + role.type
+          this.ui.vCaptcha = true
+        })
+      },
+      closeCaptcha() {
+        this.ui.vCaptcha = false
       }
     }
   }

@@ -15,6 +15,10 @@ export const wechatApi = {
     }
   },
   closeWindow() {
+    if (!this.inWechat()) {
+      return
+    }
+
     this._tryCloseWindow(100)
   }
 }
