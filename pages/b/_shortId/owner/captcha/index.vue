@@ -25,6 +25,29 @@
       <div class="blank_50"></div>
     </div>
 
+    <div class="captcha" v-if="ui.vRender">
+      <div class="title">
+        <div class="title_table">{{http.res.shop.name}}</div>
+        <div class="title_download" @click="btnDownloadShop()">下载</div>
+      </div>
+
+      <div class="captcha_one" :id="'shop_' + http.res.shop.id">
+        <div class="captcha_part_cover"></div>
+        <div class="captcha_part_label"></div>
+        <div class="captcha_part_panel"></div>
+        <div class="captcha_part_desk">{{http.res.shop.name}}</div>
+        <div class="captcha_part_title">
+          <div class="captcha_part_title_left"></div>
+          <div class="captcha_part_title_label">店铺二维码</div>
+          <div class="captcha_part_title_right"></div>
+        </div>
+
+        <canvas :id="http.res.shop.id" class="captcha_part_image"></canvas>
+
+        <div class="captcha_part_copyright" v-if="ui.vCopyright">恋厅©提供技术支持</div>
+      </div>
+    </div>
+
     <div class="captcha" v-if="ui.vRender" v-for="tableGroup in http.res.tableGroups.elements">
       <div v-for="table in tableGroup.tableOnes">
         <div class="title">
@@ -111,6 +134,12 @@
     },
     methods: {
       renderCaptcha() {
+        let canvas = document.getElementById(this.http.res.shop.id)
+        if (canvas) {
+          let uri = document.location.protocol + '//' + window.location.host + `/c/${this.http.res.shop.shortId}`
+          QRCode.toCanvas(canvas, uri)
+        }
+
         for (let tableGroupIndex in this.http.res.tableGroups.elements) {
           let tableGroup = this.http.res.tableGroups.elements[tableGroupIndex]
 
@@ -146,6 +175,15 @@
       },
       btnCopyright(enable) {
         this.ui.vCopyright = enable
+      },
+      btnDownloadShop() {
+        html2canvas(document.getElementById('shop_' + this.http.res.shop.id), {
+          logging: false,
+          backgroundColor: null
+        }).then(canvas => {
+          let fileName = '恋厅_' + this.http.res.shop.name
+          downloadApi.download(canvas, fileName)
+        })
       },
       btnDownload(table) {
         let id = 'capture_' + table.id

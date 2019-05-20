@@ -1,17 +1,18 @@
 .title {
   padding: px2rem(0) px2rem(20);
+  height: px2rem(32);
 
   .title_table {
     display: inline-block;
     color: #555555;
-    font-size: px2rem(28);
+    font-size: px2rem(32);
   }
 
   .title_download {
     display: inline-block;
     float: right;
     color: #F52626;
-    font-size: px2rem(28);
+    font-size: px2rem(32);
   }
 }
 
@@ -72,7 +73,6 @@
   top: px2rem(540);
   font-size: px2rem(44);
   color: #E4394C;
-  font-weight: 400;
 
   left: 0;
   right: 0;
