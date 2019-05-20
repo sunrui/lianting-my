@@ -72,7 +72,6 @@
       <div class="shop_footer_queue_content">{{ui.queue.waitPeople}}</div>
       <div class="shop_footer_closed" v-if="!http.res.shop.open">餐厅已打烊</div>
     </div>
-    <div class="shop_footer shop_footer_blank" v-else></div>
 
     <div class="modal_center" v-if="ui.vWifi">
       <div class="modal_title">无线</div>
