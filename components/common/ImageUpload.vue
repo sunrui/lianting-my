@@ -1,5 +1,5 @@
 <template>
-  <div id="image-upload">
+  <div :id="ui.imageUploadId" class="image-upload">
     <div class="badge_delete" v-if="ui.fileUrl || fileUrl" @click="btnUploadDelete"></div>
     <div :id="ui.pickFileId" @click="btnUploadWechat">
       <div class="image_upload_image_box" v-if="ui.fileUrl || fileUrl">
@@ -23,6 +23,7 @@
     data() {
       return {
         ui: {
+          imageUploadId: null,
           pickFileId: null,
           percent: 0,
           fileUrl: null,
@@ -41,6 +42,7 @@
       }
     },
     created() {
+      this.ui.imageUploadId = uuidApi.uuid()
       this.ui.pickFileId = uuidApi.uuid()
 
       if (Boolean(this.fileUrl)) {
@@ -210,7 +212,7 @@
           browse_button: pThis.ui.pickFileId,
           unique_names: true,
           multi_selection: false,
-          container: document.getElementById('image-upload'),
+          container: document.getElementById(this.ui.imageUploadId),
           resize: {quality: 90},
           filters: {
             max_file_size: '512kb',
