@@ -133,8 +133,8 @@
       },
       btnNav(nav) {
         if (nav.tag === 'order') {
-          httpOrderAdminApi.getAll(this.$route.params.shortId, true, 0, 20).then(res => {
-            if (res.elements.length === 0) {
+          httpOrderAdminApi.getAll(this.$route.params.shortId, true, 0, 1).then(res => {
+            if (res.currentPageSize === 0) {
               this.$router.push(`/b/${this.$route.params.shortId}/waiter/order/empty`)
             } else {
               this.$router.push(nav.url)

@@ -279,7 +279,7 @@
           }
         }
 
-        httpWallApi.getReplyAll(this.$route.params.shortId, wallId, 0, 20).then(res => {
+        httpWallApi.getReplyAll(this.$route.params.shortId, wallId, 0, 99).then(res => {
           this.ui.wallReplyies.push({
             wallId: wallId,
             wallReplyies: res.elements
@@ -307,7 +307,7 @@
         })
       },
       httpReply() {
-        httpWallApi.getReplyAll(this.$route.params.shortId, this.$route.params.wallId, 0, 20).then(res => {
+        httpWallApi.getReplyAll(this.$route.params.shortId, this.$route.params.wallId, 0, 99).then(res => {
           this.http.res.replies = res
         })
       },

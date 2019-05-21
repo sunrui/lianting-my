@@ -386,7 +386,7 @@
         })
       },
       httpLicensePlan() {
-        httpLicenseApi.getPlanAll(this.http.res.shop.type, 0, 20).then(res => {
+        httpLicenseApi.getPlanAll(this.http.res.shop.type, 0, 99).then(res => {
           this.http.res.shopLicensePlans = res
         })
       },

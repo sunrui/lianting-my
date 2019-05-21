@@ -206,7 +206,7 @@
         }
       },
       httpTableGroup() {
-        httpTableApi.getGroupAll(this.$route.params.shortId, 0, 20).then(res => {
+        httpTableApi.getGroupAll(this.$route.params.shortId, 0, 99).then(res => {
           this.http.res.tableGroups = res
 
           if (this.http.res.tableGroups.elements.length > 0) {

@@ -254,7 +254,7 @@
       },
       btnNav(nav) {
         if (nav.tag === 'food') {
-          httpFoodApi.getGroupAll(this.$route.params.shortId, 0, 20).then(res => {
+          httpFoodApi.getGroupAll(this.$route.params.shortId, 0, 99).then(res => {
             if (res.elements && res.elements.length > 0) {
 
               let haveFood = false
@@ -306,7 +306,7 @@
           })
         } else if (nav.tag === 'wall') {
           httpWallApi.getAll(this.$route.params.shortId, 0, 1).then(res => {
-            if (res.elements.length === 0) {
+            if (res.currentPageSize === 0) {
               this.$router.push(`/c/${this.$route.params.shortId}/wall/empty`)
             } else {
               this.$router.push(nav.url)

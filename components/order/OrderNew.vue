@@ -412,16 +412,8 @@
             if (this.roleWaiter) {
               path = `/b/${this.$route.params.shortId}/waiter/order/${res.orderOneId}/success`
             } else {
-              if (this.ui.takeOutEnable) {
-                this.ui.orderOneId = res.orderOneId
-                this.payNow()
-
-                cartApi.clearAll()
-                this.$store.commit('cart/update', cartApi.getCart())
-                return
-              } else {
-                path = `/c/${this.$route.params.shortId}/order/${res.orderOneId}/success`
-              }
+              this.ui.orderOneId = res.orderOneId
+              path = `/c/${this.$route.params.shortId}/order/${res.orderOneId}/success`
             }
 
             let cartSelect = this.cart.select
@@ -431,6 +423,7 @@
             this.$router.push({
               path: path,
               query: {
+                takeOut: this.ui.takeOutEnable,
                 cartPrice: price,
                 cartSelect: cartSelect,
                 takeOutFee: this.http.req.takeOutConfig.takeOutFee
@@ -458,151 +451,7 @@
       },
       btnBindPhone() {
         this.$router.push(`/c/${this.$route.params.shortId}/me/bind/phone`)
-      },
-      prepareWechatPay(jsPay) {
-        let pThis = this
-
-        function onBridgeReady() {
-          WeixinJSBridge.invoke(
-              'getBrandWCPayRequest', {
-                'appId': jsPay.appId,
-                'timeStamp': jsPay.timeStamp,
-                'nonceStr': jsPay.nonceStr,
-                'package': jsPay.package,
-                'signType': jsPay.signType,
-                'paySign': jsPay.paySign
-              },
-              function (res) {
-                if (res.err_msg === 'get_brand_wcpay_request:ok') {
-                  pThis.$msgBox.doModal({
-                    type: 'yes',
-                    title: '立即支付',
-                    content: '支付已成功，支付结果可能存在延迟，请稍候刷新等待服务器返回。'
-                  }).then(async (val) => {
-                    pThis.httpShop()
-                  })
-                } else if (res.err_msg === 'get_brand_wcpay_request:cancel') {
-                  pThis.$msgBox.doModal({
-                    type: 'yes',
-                    title: '立即支付',
-                    content: '您的支付已取消，您可稍候在个人中心-我的订单继续完成支付。'
-                  }).then(async (val) => {
-                    pThis.httpShop()
-                  })
-                }
-              }
-          )
-        }
-
-        if (typeof WeixinJSBridge === 'undefined') {
-          if (document.addEventListener) {
-            document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false)
-          } else if (document.attachEvent) {
-            document.attachEvent('WeixinJSBridgeReady', onBridgeReady)
-            document.attachEvent('onWeixinJSBridgeReady', onBridgeReady)
-          }
-        } else {
-          onBridgeReady()
-        }
-      },
-      payNow() {
-        httpOrderApi.postPay(this.$route.params.shortId, this.ui.orderOneId, 'WECHAT_JSAPI', null).then(res => {
-          if (res.orderNotExists) {
-            this.$msgBox.doModal({
-              type: 'yes',
-              title: '立即支付',
-              content: '订单不存在。'
-            })
-            return
-          }
-
-          if (res.orderClosed) {
-            this.$msgBox.doModal({
-              type: 'yes',
-              title: '立即支付',
-              content: '订单已关闭。'
-            })
-            return
-          }
-
-          if (res.orderPaid) {
-            this.$msgBox.doModal({
-              type: 'yes',
-              title: '立即支付',
-              content: '订单已支付。'
-            })
-            return
-          }
-
-          if (res.pay) {
-            if (res.pay.subMchIdNotExists) {
-              this.$msgBox.doModal({
-                type: 'yes',
-                title: '立即支付',
-                content: '商家尚未设置微信支付参数。'
-              })
-              return
-            }
-
-            if (res.pay.wechatOpenIdNotExists) {
-              this.$msgBox.doModal({
-                type: 'yes',
-                title: '立即支付',
-                content: '请先获得微信授权。'
-              })
-              return
-            }
-
-            if (res.pay.payConfigWechatNotExists) {
-              this.$msgBox.doModal({
-                type: 'yes',
-                title: '立即支付',
-                content: '商家尚未开通在线支付，您可线下付款。'
-              })
-              return
-            }
-
-            if (res.pay.payWayNotSupport) {
-              this.$msgBox.doModal({
-                type: 'yes',
-                title: '立即支付',
-                content: '暂未支付此支付方式。'
-              })
-              return
-            }
-
-            if (res.pay.wechat) {
-              this.prepareWechatPay(this.pay.wechat.jsPay)
-            }
-          }
-        })
-      },
-      btnPay() {
-        let wechatOpenId = userApi.getUserWechatOpenId()
-        if (!Boolean(wechatOpenId) || !wechatApi.inWechat()) {
-          this.$msgBox.doModal({
-            type: 'yes',
-            title: '立即支付',
-            content: '请在微信中使用。'
-          })
-
-          return
-        }
-
-        httpOrderApi.getConfig(this.$route.params.shortId).then(res => {
-          if (!Boolean(res.subMchId)) {
-            this.$msgBox.doModal({
-              type: 'yes',
-              title: '立即支付',
-              content: '商家尚未开通在线支付，请您电话联系线下付款。'
-            })
-
-            return
-          }
-
-          this.payNow()
-        })
-      },
+      }
     }
   }
 </script>

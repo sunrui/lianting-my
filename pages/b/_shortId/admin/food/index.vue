@@ -223,7 +223,7 @@
         }
       },
       httpFoodGroup() {
-        httpFoodAdminApi.getGroupAll(this.$route.params.shortId, 0, 20).then(res => {
+        httpFoodAdminApi.getGroupAll(this.$route.params.shortId, 0, 99).then(res => {
           let haveFood = false
 
           if (res.elements.length > 0) {

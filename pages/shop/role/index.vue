@@ -92,7 +92,7 @@
     },
     methods: {
       httpRole() {
-        httpRoleApi.getAll(0, 20).then(res => {
+        httpRoleApi.getAll(0, 99).then(res => {
           if (res.length === 0) {
             this.$router.push('/shop/role/empty')
             return

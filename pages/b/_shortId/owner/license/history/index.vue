@@ -188,7 +188,7 @@
           this.http.res.smsHistoryPay = res
           this.ui.loading = false
 
-          if (this.http.res.shopLicense.elements.length === 0 && res.elements.length === 0) {
+          if (this.http.res.shopLicense.elements.length === 0 && res.currentPageSize === 0) {
             this.$router.push(`/b/${this.$route.params.shortId}/owner/license/history/empty`)
           }
         })

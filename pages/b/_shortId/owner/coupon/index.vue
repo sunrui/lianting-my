@@ -91,7 +91,7 @@
     },
     methods: {
       httpCoupon() {
-        httpCouponAdminApi.getCoupon(this.$route.params.shortId, 0, 20).then(res => {
+        httpCouponAdminApi.getCoupon(this.$route.params.shortId, 0, 99).then(res => {
           if (res.elements.length !== 0) {
             this.$refs.titleBar_Coupon.setTheme('image')
           }

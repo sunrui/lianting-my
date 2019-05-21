@@ -120,7 +120,7 @@
           return
         }
 
-        httpFoodApi.getCategoryByNameLike(this.$route.params.shortId, this.http.req.search.name, 0, 20).then(res => {
+        httpFoodApi.getCategoryByNameLike(this.$route.params.shortId, this.http.req.search.name, 0, 99).then(res => {
           let foodCategories = []
 
           for (let index = res.elements.length - 1; index >= 0; index--) {

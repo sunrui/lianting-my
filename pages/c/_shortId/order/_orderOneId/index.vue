@@ -271,8 +271,8 @@
         })
       },
       httpCoupon() {
-        httpCouponApi.getAll(this.$route.params.shortId, 0, 20).then(res => {
-          if (res.elements.length === 0) {
+        httpCouponApi.getAll(this.$route.params.shortId, 0, 99).then(res => {
+          if (res.currentPageSize === 0) {
             return
           }
 

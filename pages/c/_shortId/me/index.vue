@@ -137,32 +137,32 @@
       },
       btnNav(url) {
         if (url === 'order/history') {
-          httpOrderApi.getAll(this.$route.params.shortId, 0, 0, 20).then(res => {
-            if (res.elements.length === 0) {
+          httpOrderApi.getAll(this.$route.params.shortId, 0, 0, 1).then(res => {
+            if (res.currentPageSize === 0) {
               this.$router.push(`/c/${this.$route.params.shortId}/order/history/empty`)
             }
           })
         } else if (url === 'queue/history') {
-          httpQueueApi.getAll(this.$route.params.shortId, 0, 20).then(res => {
-            if (res.elements.length === 0) {
+          httpQueueApi.getAll(this.$route.params.shortId, 0, 1).then(res => {
+            if (res.currentPageSize === 0) {
               this.$router.push(`/c/${this.$route.params.shortId}/queue/history/empty`)
             }
           })
         } else if (url === 'reserve/history') {
-          httpReserveApi.getAll(this.$route.params.shortId, null, null, 0, 20).then(res => {
-            if (res.elements.length === 0) {
+          httpReserveApi.getAll(this.$route.params.shortId, null, null, 0, 1).then(res => {
+            if (res.currentPageSize === 0) {
               this.$router.push(`/c/${this.$route.params.shortId}/reserve/history/empty`)
             }
           })
         } else if (url === 'wall/history') {
-          httpWallApi.getMyAll(this.$route.params.shortId, 0, 20).then(res => {
-            if (res.elements.length === 0) {
+          httpWallApi.getMyAll(this.$route.params.shortId, 0, 1).then(res => {
+            if (res.currentPageSize === 0) {
               this.$router.push(`/c/${this.$route.params.shortId}/wall/history/empty`)
             }
           })
         } else if (url === 'coupon/history') {
-          httpCouponApi.getAll(this.$route.params.shortId, 0, 20).then(res => {
-            if (res.elements.length === 0) {
+          httpCouponApi.getAll(this.$route.params.shortId, 0, 1).then(res => {
+            if (res.currentPageSize === 0) {
               this.$router.push(`/c/${this.$route.params.shortId}/coupon/history/empty`)
             }
           })

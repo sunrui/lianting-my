@@ -1,46 +1,50 @@
 <template>
-  <div v-show="!ui.loading">
+  <div>
     <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
-    <div class="box" v-for="order in http.res.orders.elements">
-      <div class="list_title box_radius_header">
-        <div class="list_time_icon"></div>
-        <div class="list_time_label">{{new Date(parseInt(order.createdAt)).toLocaleString()}}</div>
-        <div class="order_history_status order_history_status_finish" v-if="order.status === 'Finish'">已完成</div>
-        <div class="order_history_status order_history_status_not_paid" v-if="order.status === 'NotPaid'">未支付</div>
-        <div class="order_history_status order_history_status_eating" v-if="order.status === 'Paid'">进行中</div>
-        <div class="order_history_status order_history_status_closed" v-if="order.status === 'Closed'">已取消</div>
-      </div>
-
-      <div class="box_divide_radius">
-        <div class="box_divide_radius_line"></div>
-      </div>
-
-      <div class="order_history box_radius_footer">
-        <div class="order_history_food">
-          <div class="order_history_food_content">{{getFoodContent(order)}}</div>
+    <scroller class="scroller"
+              ref="bOrder"
+              :on-infinite="onInfinite">
+      <div class="box" v-for="order in ui.scroller.elements">
+        <div class="list_title box_radius_header">
+          <div class="list_time_icon"></div>
+          <div class="list_time_label">{{new Date(parseInt(order.createdAt)).toLocaleString()}}</div>
+          <div class="order_history_status order_history_status_finish" v-if="order.status === 'Finish'">已完成</div>
+          <div class="order_history_status order_history_status_not_paid" v-if="order.status === 'NotPaid'">未支付</div>
+          <div class="order_history_status order_history_status_eating" v-if="order.status === 'Paid'">进行中</div>
+          <div class="order_history_status order_history_status_closed" v-if="order.status === 'Closed'">已取消</div>
         </div>
 
-        <div class="box_divide"></div>
-
-        <div class="order_history_footer">
-          <div v-if="order.orderTable">
-            <div class="order_history_table_label">餐桌</div>
-            <div class="order_history_table_content">{{order.orderTable.tableFullNumber}}</div>
-          </div>
-          <div v-else>
-            <div class="order_history_price_label">总价</div>
-            <div class="order_history_price_content">{{order.price}}</div>
-          </div>
-          <div class="order_history_detail" @click="btnDetail(order)">查看详情</div>
+        <div class="box_divide_radius">
+          <div class="box_divide_radius_line"></div>
         </div>
+
+        <div class="order_history box_radius_footer">
+          <div class="order_history_food">
+            <div class="order_history_food_content">{{getFoodContent(order)}}</div>
+          </div>
+
+          <div class="box_divide"></div>
+
+          <div class="order_history_footer">
+            <div v-if="order.orderTable">
+              <div class="order_history_table_label">餐桌</div>
+              <div class="order_history_table_content">{{order.orderTable.tableFullNumber}}</div>
+            </div>
+            <div v-else>
+              <div class="order_history_price_label">总价</div>
+              <div class="order_history_price_content">{{order.price}}</div>
+            </div>
+            <div class="order_history_detail" @click="btnDetail(order)">查看详情</div>
+          </div>
+          <div class="blank_10"></div>
+        </div>
+
         <div class="blank_10"></div>
       </div>
 
-      <div class="blank_10"></div>
-    </div>
-
-    <div class="blank_30"></div>
+      <div class="blank_30"></div>
+    </scroller>
   </div>
 </template>
 
@@ -73,67 +77,89 @@
           theme: 'image',
           imageHeight: 220
         },
-        http: {
-          res: {
-            orders: {}
-          }
-        },
         ui: {
-          loading: true
+          scroller: {
+            page: 0,
+            elements: [],
+            haveMore: true
+          }
         }
       }
     },
     created() {
       this.title.backUri = `/b/${this.$route.params.shortId}/${this.role}`
-
-      let tableOneId = this.$route.query.tableOneId
-      let live = (this.role !== 'admin')
-
-      if (Boolean(tableOneId)) {
-        httpOrderAdminApi.getAllByTableOneId(this.$route.params.shortId, tableOneId, live, 0, 20).then(res => {
-          if (res.elements.length === 0) {
-            this.$router.push(`/b/${this.$route.params.shortId}/${this.role}/order/empty`)
-            return
-          }
-
-          res.elements.sort(function (a, b) {
-            return b.createdAt - a.createdAt
-          })
-
-          this.http.res.orders = res
-          this.ui.loading = false
-        })
-      } else if (this.date) {
-        httpOrderAdminApi.getAllByDate(this.$route.params.shortId, this.date, 0, 20).then(res => {
-          if (res.elements.length === 0) {
-            this.$router.push(`/b/${this.$route.params.shortId}/${this.role}/order/empty`)
-            return
-          }
-
-          res.elements.sort(function (a, b) {
-            return b.createdAt - a.createdAt
-          })
-
-          this.http.res.orders = res
-          this.ui.loading = false
-        })
-      } else {
-        httpOrderAdminApi.getAll(this.$route.params.shortId, live, 0, 20).then(res => {
-          if (res.elements.length === 0) {
-            this.$router.push(`/b/${this.$route.params.shortId}/${this.role}/order/empty`)
-            return
-          }
-
-          res.elements.sort(function (a, b) {
-            return b.createdAt - a.createdAt
-          })
-
-          this.http.res.orders = res
-          this.ui.loading = false
-        })
-      }
+      this.httpOrder(null)
     },
     methods: {
+      httpOrder(done) {
+        let tableOneId = this.$route.query.tableOneId
+        let live = (this.role !== 'admin')
+
+        if (Boolean(tableOneId)) {
+          httpOrderAdminApi.getAllByTableOneId(this.$route.params.shortId, tableOneId, live, this.ui.scroller.page++, 5).then(res => {
+            if (done) {
+              done()
+            }
+
+            if (res.currentPageSize === 0) {
+              if (this.ui.scroller.page === 0) {
+                this.$router.push(`/b/${this.$route.params.shortId}/${this.role}/order/empty`)
+              } else {
+                this.ui.scroller.haveMore = false
+              }
+              return
+            }
+
+            this.ui.scroller.elements = this.ui.scroller.elements.concat(res.elements)
+
+            this.ui.scroller.elements.sort(function (a, b) {
+              return b.createdAt - a.createdAt
+            })
+          })
+        } else if (this.date) {
+          httpOrderAdminApi.getAllByDate(this.$route.params.shortId, this.date, this.ui.scroller.page++, 5).then(res => {
+            if (done) {
+              done()
+            }
+
+            if (res.currentPageSize === 0) {
+              if (this.ui.scroller.page === 0) {
+                this.$router.push(`/b/${this.$route.params.shortId}/${this.role}/order/empty`)
+              } else {
+                this.ui.scroller.haveMore = false
+              }
+              return
+            }
+
+            this.ui.scroller.elements = this.ui.scroller.elements.concat(res.elements)
+
+            this.ui.scroller.elements.sort(function (a, b) {
+              return b.createdAt - a.createdAt
+            })
+          })
+        } else {
+          httpOrderAdminApi.getAll(this.$route.params.shortId, live, this.ui.scroller.page++, 5).then(res => {
+            if (done) {
+              done()
+            }
+
+            if (res.currentPageSize === 0) {
+              if (this.ui.scroller.page === 0) {
+                this.$router.push(`/b/${this.$route.params.shortId}/${this.role}/order/empty`)
+              } else {
+                this.ui.scroller.haveMore = false
+              }
+              return
+            }
+
+            this.ui.scroller.elements = this.ui.scroller.elements.concat(res.elements)
+
+            this.ui.scroller.elements.sort(function (a, b) {
+              return b.createdAt - a.createdAt
+            })
+          })
+        }
+      },
       getFoodContent(order) {
         let detail = ''
 
@@ -153,6 +179,14 @@
       },
       btnDetail(order) {
         this.$router.push(`/b/${this.$route.params.shortId}/${this.role}/order/${order.id}`)
+      },
+      onInfinite(done) {
+        if (!this.ui.scroller.haveMore) {
+          this.$refs.bOrder.finishPullToRefresh();
+          this.$refs.bOrder.finishInfinite(true)
+        } else {
+          this.httpOrder(done)
+        }
       }
     }
   }

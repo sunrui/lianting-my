@@ -51,6 +51,7 @@ module.exports = {
     {src: '~plugins/message_box', ssr: false},
     {src: '~plugins/rem', ssr: false},
     {src: '~plugins/meta', ssr: false},
+    {src: '~plugins/scroller', ssr: false},
     {src: '~plugins/route', ssr: false}
   ],
 

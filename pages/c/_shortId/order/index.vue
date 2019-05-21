@@ -14,7 +14,7 @@
         return
       }
 
-      httpOrderApi.getAll(this.$route.params.shortId, 1, 0, 20).then(res => {
+      httpOrderApi.getAll(this.$route.params.shortId, 1, 0, 99).then(res => {
         if (res.currentPageSize > 0) {
           let notPaidCount = 0
           let notPaidOrder = null

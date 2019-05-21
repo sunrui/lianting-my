@@ -142,7 +142,7 @@
         httpTableApi.getGroupAll(this.$route.params.shortId).then(res => {
           this.http.res.tableGroups = res
 
-          if (res.elements.length === 0) {
+          if (res.currentPageSize === 0) {
             this.$router.push(`/b/${this.$route.params.shortId}/waiter/table/empty`)
             return
           }
