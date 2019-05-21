@@ -517,6 +517,8 @@
               })
             }
           })
+        } else {
+          this.replyConfirm()
         }
       }
     }

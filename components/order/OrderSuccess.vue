@@ -10,7 +10,7 @@
           <div class="status_logo_radius_image success_logo_radius_image"></div>
         </div>
 
-        <div class="status_title">{{ $route.query.takeOut === 'true' ? '外卖请求已发送给商家' : '订单已发送后厨'}}</div>
+        <div class="status_title">{{ getStatusTitle() }}</div>
 
         <div class="blank_40"></div>
 
@@ -59,7 +59,7 @@
       </div>
     </div>
 
-    <div v-if="$route.query.takeOut === 'true' && http.res.order.status === 'NotPaid'">
+    <div v-if="http.res.order.type === 'TakeOut' && http.res.order.status === 'NotPaid'">
       <div class="box">
         <div class="tip">
           <ul class="tip_ul">
@@ -134,28 +134,18 @@
     created() {
       this.httpOrder()
     },
-    watchQuery: true,
-    asyncData({query, app}) {
-      const {takeOut} = query
-      console.log('takeOut === ' + takeOut)
-    },
-    // watch: {
-    //   '$route': 'onRoute'
-    // },
-    watch: {
-      '$route'(to, from) {
-
-        this.onRoute()
-      }
-    },
-    onRoute() {
-      console.log('on route')
-    },
     methods: {
       httpOrder() {
         httpOrderApi.getOrder(this.$route.params.shortId, this.$route.params.orderOneId).then(res => {
           this.http.res.order = res
         })
+      },
+      getStatusTitle() {
+        if (!this.http.res.order.type) {
+          return ''
+        }
+
+        return this.http.res.order.type === 'TakeOut' ? '外卖请求已发送给商家' : '订单已发送后厨'
       },
       getTotalFood() {
         let count = 0

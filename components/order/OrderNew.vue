@@ -34,9 +34,9 @@
           <div class="box_divide"></div>
 
           <div class="addition_item">
-            <div class="addition_item_label">您的称呼</div>
+            <div class="addition_item_label">您的姓名</div>
             <label>
-              <input class="addition_item_input" placeholder="请输入您的称呼" maxlength="20" v-model="http.req.order.takeOut.name">
+              <input class="addition_item_input" placeholder="请输入您的姓名" maxlength="20" v-model="http.req.order.takeOut.name">
             </label>
           </div>
 
@@ -334,7 +334,7 @@
             this.$msgBox.doModal({
               type: 'yes',
               title: '下单',
-              content: '请输入您的称呼。'
+              content: '请输入您的姓名。'
             })
 
             return
@@ -423,10 +423,8 @@
             this.$router.push({
               path: path,
               query: {
-                takeOut: this.ui.takeOutEnable,
                 cartPrice: price,
-                cartSelect: cartSelect,
-                takeOutFee: this.http.req.takeOutConfig.takeOutFee
+                cartSelect: cartSelect
               }
             })
           }
