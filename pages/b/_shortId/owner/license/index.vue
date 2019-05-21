@@ -15,7 +15,7 @@
             <div class="shop_title_license_king"></div>
             <div class="shop_title_license_label">
               {{
-              http.res.shop.licenseType === 'Free' ? '免费会员' :
+              http.res.shop.licenseType === 'Free' ? '普通会员' :
               http.res.shop.licenseType === 'Lite' ? '专享会员' :
               http.res.shop.licenseType === 'Normal' ? '标准会员' :
               http.res.shop.licenseType === 'Senior' ? '旗舰会员' : http.res.shop.licenseType
@@ -32,7 +32,7 @@
       <div class="shop_detail box_radius_footer">
         <div class="shop_detail_one">
           <div class="shop_detail_left">店铺类型：{{
-            http.res.shop.licenseType === 'Free' ? '免费会员' :
+            http.res.shop.licenseType === 'Free' ? '普通会员' :
             http.res.shop.licenseType === 'Lite' ? '专享会员' :
             http.res.shop.licenseType === 'Normal' ? '标准会员' :
             http.res.shop.licenseType === 'Senior' ? '旗舰会员' : http.res.shop.licenseType
@@ -90,7 +90,7 @@
           license.plan.licenseType === 'Normal' ? '/img/b/license/b_license_normal_check.png' :
           license.plan.licenseType === 'Senior' ? '/img/b/license/b_license_senior_check.png' : '/img/b/license/b_license_free_check.png'
           " alt="">
-            <div class="shop_feature_one_label">在线支付渠道<span class="shop_feature_one_label_star">专享</span></div>
+            <div class="shop_feature_one_label">在线支付渠道<span class="shop_feature_one_label_star">{{ license.plan.licenseType === 'Free' ? '限时免费' : '专享'}}</span></div>
           </div>
 
           <div class="box_divide"></div>
@@ -101,7 +101,7 @@
           license.plan.licenseType === 'Normal' ? '/img/b/license/b_license_normal_check.png' :
           license.plan.licenseType === 'Senior' ? '/img/b/license/b_license_senior_check.png' : '/img/b/license/b_license_free_check.png'
           " alt="">
-            <div class="shop_feature_one_label">无限订单<span class="shop_feature_one_label_star">专享</span></div>
+            <div class="shop_feature_one_label">无限订单<span class="shop_feature_one_label_star">{{ license.plan.licenseType === 'Free' ? '限时免费' : '专享'}}</span></div>
           </div>
 
           <div class="box_divide"></div>
@@ -112,7 +112,7 @@
           license.plan.licenseType === 'Normal' ? '/img/b/license/b_license_normal_check.png' :
           license.plan.licenseType === 'Senior' ? '/img/b/license/b_license_senior_check.png' : '/img/b/license/b_license_free_check.png'
           " alt="">
-            <div class="shop_feature_one_label">外卖无抽成无限订单<span class="shop_feature_one_label_star">专享</span></div>
+            <div class="shop_feature_one_label">外卖无抽成无限订单<span class="shop_feature_one_label_star">{{ license.plan.licenseType === 'Free' ? '限时免费' : '专享'}}</span></div>
           </div>
 
           <div class="box_divide"></div>
