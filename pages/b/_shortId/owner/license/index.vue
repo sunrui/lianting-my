@@ -123,6 +123,39 @@
           license.plan.licenseType === 'Normal' ? '/img/b/license/b_license_normal_check.png' :
           license.plan.licenseType === 'Senior' ? '/img/b/license/b_license_senior_check.png' : '/img/b/license/b_license_free_check.png'
           " alt="">
+            <div class="shop_feature_one_label">不收服务器、带宽等费用<span class="shop_feature_one_label_star">{{ license.plan.licenseType === 'Free' ? '限时试用' : '专享'}}</span></div>
+          </div>
+
+          <div class="box_divide"></div>
+
+          <div class="shop_feature_one">
+            <img class="shop_feature_one_icon" :src="
+            license.plan.licenseType === 'Free' ? '/img/b/license/b_license_free_check.png' :
+          license.plan.licenseType === 'Normal' ? '/img/b/license/b_license_normal_check.png' :
+          license.plan.licenseType === 'Senior' ? '/img/b/license/b_license_senior_check.png' : '/img/b/license/b_license_free_check.png'
+          " alt="">
+            <div class="shop_feature_one_label">50 条外卖配送短信<span class="shop_feature_one_label_star">{{ license.plan.licenseType === 'Free' ? '限时试用' : '专享'}}</span></div>
+          </div>
+
+          <div class="box_divide"></div>
+
+          <div class="shop_feature_one">
+            <img class="shop_feature_one_icon" :src="
+            license.plan.licenseType === 'Free' ? '/img/b/license/b_license_free_check.png' :
+          license.plan.licenseType === 'Normal' ? '/img/b/license/b_license_normal_check.png' :
+          license.plan.licenseType === 'Senior' ? '/img/b/license/b_license_senior_check.png' : '/img/b/license/b_license_free_check.png'
+          " alt="">
+            <div class="shop_feature_one_label">超出短信 0.1 元/条<span class="shop_feature_one_label_star">{{ license.plan.licenseType === 'Free' ? '限时试用' : '专享'}}</span></div>
+          </div>
+
+          <div class="box_divide"></div>
+
+          <div class="shop_feature_one">
+            <img class="shop_feature_one_icon" :src="
+            license.plan.licenseType === 'Free' ? '/img/b/license/b_license_free_check.png' :
+          license.plan.licenseType === 'Normal' ? '/img/b/license/b_license_normal_check.png' :
+          license.plan.licenseType === 'Senior' ? '/img/b/license/b_license_senior_check.png' : '/img/b/license/b_license_free_check.png'
+          " alt="">
             <div class="shop_feature_one_label">{{license.limit.maxFoods}} 个上架餐食</div>
           </div>
 
