@@ -296,7 +296,7 @@
           shop_license_button_free: license.plan.licenseType === 'Free',
           shop_license_button_normal: license.plan.licenseType === 'Normal',
           shop_license_button_senior: license.plan.licenseType === 'Senior'
-          }" v-if="license.plan.licenseType === 'Free'">无需续费
+          }" v-if="license.plan.licenseType === 'Free'">限时试用
         </div>
         <div class="shop_license_button" v-bind:class="{
           shop_license_button_free: license.plan.licenseType === 'Free',
