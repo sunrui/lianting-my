@@ -32,7 +32,7 @@
             </div>
             <div class="addition_item_tag_one addition_item_tag_label addition_item_tag_color_1"
                  v-if="http.req.upgrade.licenseType === 'Normal'"
-                 @click="btnChooseLicenseType('Senior')">普通会员
+                 @click="btnChooseLicenseType('Senior')">基础会员
             </div>
             <div class="addition_item_tag_one addition_item_tag_label addition_item_tag_color_3"
                  v-if="http.req.upgrade.licenseType === 'Senior'"
