@@ -18,7 +18,7 @@
             <span class="shop_title_license_label">{{
                 role.shop.licenseType === 'Free' ? '基础会员' :
                 role.shop.licenseType === 'Lite' ? '专享会员' :
-                role.shop.licenseType === 'Normal' ? '标准会员' :
+                role.shop.licenseType === 'Normal' ? '高级会员' :
                 role.shop.licenseType === 'Senior' ? '旗舰会员' : role.shop.licenseType
                 }}
             </span>
