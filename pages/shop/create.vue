@@ -220,7 +220,7 @@
             this.$msgBox.doModal({
               type: 'yes',
               title: '创建店铺',
-              content: '您最多可拥有一个免费店铺。'
+              content: '您最多可拥有一个试用店铺。'
             })
           } else if (res.shopGroupIdNotExists) {
             this.$msgBox.doModal({

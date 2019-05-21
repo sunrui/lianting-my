@@ -163,7 +163,7 @@
             this.$msgBox.doModal({
               type: 'yes',
               title: '创建品牌',
-              content: '您最多仅允许创建一个免费店铺。'
+              content: '您最多仅允许创建一个试用店铺。'
             })
           } else if (res.limit3Group) {
             this.$msgBox.doModal({
