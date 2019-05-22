@@ -1,4 +1,4 @@
-# ltcity-m
+# ltcity-shop
 
 > My polished Nuxt.js project
 
@@ -19,7 +19,7 @@ $ npm start
 $ npm run generate
 
 # pm2 run daemon
-$ pm2 start npm --name "ltcity-m" -- run start
+$ pm2 start npm --name "ltcity-shop" -- run start
 
 # debug
 [].forEach.call($$("*"),function(a){a.style.outline="1px solid #"+(~~(Math.random()*(1<<24))).toString(16)});
