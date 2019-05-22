@@ -3,7 +3,7 @@ export const validatorApi = {
     return /^[1][34578][0-9]{9}$/.test(phone)
   },
   code(code) {
-    return code && code.length === 6
+    return Boolean(code)
   },
   password(password) {
     return /[a-zA-Z0-9_]{5,19}$/.test(password)
