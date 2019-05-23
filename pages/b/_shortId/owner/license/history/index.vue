@@ -17,7 +17,7 @@
           <div class="license_label_one_name">类型</div>
           <div class="license_label_one_value">{{
             shopLicense.licenseType === 'Free' ? '基础会员' :
-            shopLicense.licenseType === 'Lite' ? '专享会员' :
+            shopLicense.licenseType === 'Lite' ? '标准会员' :
             shopLicense.licenseType === 'Normal' ? '高级会员' :
             shopLicense.licenseType === 'Senior' ? '旗舰会员' : shopLicense.licenseType
             }}

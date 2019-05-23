@@ -429,7 +429,7 @@
           this.$msgBox.doModal({
             type: 'yes',
             title: '预览展屏',
-            content: '展屏为普通、旗舰会员专享，您可继续预览此功能，展屏将在一定时间内自动关闭。'
+            content: '展屏为高级会员、旗舰会员专享，您可继续预览此功能，展屏将在一定时间内自动关闭。'
           }).then(async (val) => {
             if (val === 'Yes') {
               fullScreen(this)

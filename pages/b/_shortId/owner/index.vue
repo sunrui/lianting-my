@@ -19,7 +19,7 @@
               <div class="shop_title_license_king"></div>
               <div class="shop_title_license_label">{{
                 http.res.shop.licenseType === 'Free' ? '基础会员' :
-                http.res.shop.licenseType === 'Lite' ? '专享会员' :
+                http.res.shop.licenseType === 'Lite' ? '标准会员' :
                 http.res.shop.licenseType === 'Normal' ? '高级会员' :
                 http.res.shop.licenseType === 'Senior' ? '旗舰会员' : http.res.shop.licenseType
                 }}

@@ -28,11 +28,11 @@
           <div class="addition_item_tag">
             <div class="addition_item_tag_one addition_item_tag_label addition_item_tag_color_2"
                  v-if="http.req.downgrade.licenseType === 'Lite'"
-                 @click="btnChooseLicenseType('Normal')">专享会员
+                 @click="btnChooseLicenseType('Normal')">标准会员
             </div>
             <div class="addition_item_tag_one addition_item_tag_label addition_item_tag_color_1"
                  v-if="http.req.downgrade.licenseType === 'Normal'"
-                 @click="btnChooseLicenseType('Senior')">基础会员
+                 @click="btnChooseLicenseType('Senior')">高级会员
             </div>
             <div class="addition_item_tag_one addition_item_tag_label addition_item_tag_color_3"
                  v-if="http.req.downgrade.licenseType === 'Senior'"

@@ -16,7 +16,7 @@
             <div class="shop_title_license_label">
               {{
               http.res.shop.licenseType === 'Free' ? '基础会员' :
-              http.res.shop.licenseType === 'Lite' ? '专享会员' :
+              http.res.shop.licenseType === 'Lite' ? '标准会员' :
               http.res.shop.licenseType === 'Normal' ? '高级会员' :
               http.res.shop.licenseType === 'Senior' ? '旗舰会员' : http.res.shop.licenseType
               }}
@@ -33,7 +33,7 @@
         <div class="shop_detail_one">
           <div class="shop_detail_left">店铺类型：{{
             http.res.shop.licenseType === 'Free' ? '基础会员' :
-            http.res.shop.licenseType === 'Lite' ? '专享会员' :
+            http.res.shop.licenseType === 'Lite' ? '标准会员' :
             http.res.shop.licenseType === 'Normal' ? '高级会员' :
             http.res.shop.licenseType === 'Senior' ? '旗舰会员' : http.res.shop.licenseType
             }}
@@ -52,19 +52,20 @@
 
     <div class="blank_50"></div>
 
-    <div class="shop_license_one" v-if="license.plan.licenseType !== 'Lite'" v-for="license in http.res.shopLicensePlans.elements">
+    <div class="shop_license_one" v-for="license in http.res.shopLicensePlans.elements">
       <div class="shop_license_plan box_radius">
         <div class="blank_30"></div>
 
         <div class="shop_license_type">
           <img class="shop_license_icon" :src="
           license.plan.licenseType === 'Free' ? '/img/b/license/b_license_free.png' :
+          license.plan.licenseType === 'Lite' ? '/img/b/license/b_license_normal.png' :
           license.plan.licenseType === 'Normal' ? '/img/b/license/b_license_normal.png' :
           license.plan.licenseType === 'Senior' ? '/img/b/license/b_license_senior.png' : '/img/b/license/b_license_free.png'
           " alt="">
           <div class="shop_license_label" v-bind:class="{
           shop_license_label_free: license.plan.licenseType === 'Free',
-          shop_license_label_normal: license.plan.licenseType === 'Normal',
+          shop_license_label_normal: license.plan.licenseType === 'Lite' || license.plan.licenseType === 'Normal',
           shop_license_label_senior: license.plan.licenseType === 'Senior'
           }">{{license.plan.name}}
           </div>
@@ -73,7 +74,7 @@
         <div class="blank_20"></div>
         <div class="shop_license_price" v-bind:class="{
           shop_license_label_free: license.plan.licenseType === 'Free',
-          shop_license_label_normal: license.plan.licenseType === 'Normal',
+          shop_license_label_normal: license.plan.licenseType === 'Lite' || license.plan.licenseType === 'Normal',
           shop_license_label_senior: license.plan.licenseType === 'Senior',
           shop_license_price_free: license.plan.licenseType === 'Free',
           }">{{'￥' + license.plan.pricePerYear + '/年'}}
@@ -87,10 +88,10 @@
           <div class="shop_feature_one">
             <img class="shop_feature_one_icon" :src="
             license.plan.licenseType === 'Free' ? '/img/b/license/b_license_free_check.png' :
-          license.plan.licenseType === 'Normal' ? '/img/b/license/b_license_normal_check.png' :
+          (license.plan.licenseType === 'Lite' || license.plan.licenseType === 'Normal') ? '/img/b/license/b_license_normal_check.png' :
           license.plan.licenseType === 'Senior' ? '/img/b/license/b_license_senior_check.png' : '/img/b/license/b_license_free_check.png'
           " alt="">
-            <div class="shop_feature_one_label">在线支付渠道<span class="shop_feature_one_label_star">{{ license.plan.licenseType === 'Free' ? '限时试用' : '专享'}}</span></div>
+            <div class="shop_feature_one_label">在线支付渠道<span class="shop_feature_one_label_star">{{ license.plan.licenseType === 'Free' ? '限时试用' : '赠送'}}</span></div>
           </div>
 
           <div class="box_divide"></div>
@@ -98,10 +99,10 @@
           <div class="shop_feature_one">
             <img class="shop_feature_one_icon" :src="
             license.plan.licenseType === 'Free' ? '/img/b/license/b_license_free_check.png' :
-          license.plan.licenseType === 'Normal' ? '/img/b/license/b_license_normal_check.png' :
+          (license.plan.licenseType === 'Lite' || license.plan.licenseType === 'Normal') ? '/img/b/license/b_license_normal_check.png' :
           license.plan.licenseType === 'Senior' ? '/img/b/license/b_license_senior_check.png' : '/img/b/license/b_license_free_check.png'
           " alt="">
-            <div class="shop_feature_one_label">无限订单<span class="shop_feature_one_label_star">{{ license.plan.licenseType === 'Free' ? '限时试用' : '专享'}}</span></div>
+            <div class="shop_feature_one_label">无限订单<span class="shop_feature_one_label_star">{{ license.plan.licenseType === 'Free' ? '限时试用' : '赠送'}}</span></div>
           </div>
 
           <div class="box_divide"></div>
@@ -109,10 +110,10 @@
           <div class="shop_feature_one">
             <img class="shop_feature_one_icon" :src="
             license.plan.licenseType === 'Free' ? '/img/b/license/b_license_free_check.png' :
-          license.plan.licenseType === 'Normal' ? '/img/b/license/b_license_normal_check.png' :
+          (license.plan.licenseType === 'Lite' || license.plan.licenseType === 'Normal') ? '/img/b/license/b_license_normal_check.png' :
           license.plan.licenseType === 'Senior' ? '/img/b/license/b_license_senior_check.png' : '/img/b/license/b_license_free_check.png'
           " alt="">
-            <div class="shop_feature_one_label">外卖无抽成无限订单<span class="shop_feature_one_label_star">{{ license.plan.licenseType === 'Free' ? '限时试用' : '专享'}}</span></div>
+            <div class="shop_feature_one_label">外卖无抽成无限订单<span class="shop_feature_one_label_star">{{ license.plan.licenseType === 'Free' ? '限时试用' : '赠送'}}</span></div>
           </div>
 
           <div class="box_divide"></div>
@@ -120,10 +121,10 @@
           <div class="shop_feature_one">
             <img class="shop_feature_one_icon" :src="
             license.plan.licenseType === 'Free' ? '/img/b/license/b_license_free_check.png' :
-          license.plan.licenseType === 'Normal' ? '/img/b/license/b_license_normal_check.png' :
+          (license.plan.licenseType === 'Lite' || license.plan.licenseType === 'Normal') ? '/img/b/license/b_license_normal_check.png' :
           license.plan.licenseType === 'Senior' ? '/img/b/license/b_license_senior_check.png' : '/img/b/license/b_license_free_check.png'
           " alt="">
-            <div class="shop_feature_one_label">不收服务器、带宽等费用<span class="shop_feature_one_label_star">{{ license.plan.licenseType === 'Free' ? '限时试用' : '专享'}}</span></div>
+            <div class="shop_feature_one_label">不收服务器、带宽等费用<span class="shop_feature_one_label_star">{{ license.plan.licenseType === 'Free' ? '限时试用' : '赠送'}}</span></div>
           </div>
 
           <div class="box_divide"></div>
@@ -131,10 +132,10 @@
           <div class="shop_feature_one">
             <img class="shop_feature_one_icon" :src="
             license.plan.licenseType === 'Free' ? '/img/b/license/b_license_free_check.png' :
-          license.plan.licenseType === 'Normal' ? '/img/b/license/b_license_normal_check.png' :
+          (license.plan.licenseType === 'Lite' || license.plan.licenseType === 'Normal') ? '/img/b/license/b_license_normal_check.png' :
           license.plan.licenseType === 'Senior' ? '/img/b/license/b_license_senior_check.png' : '/img/b/license/b_license_free_check.png'
           " alt="">
-            <div class="shop_feature_one_label">50 条外卖配送短信<span class="shop_feature_one_label_star">{{ license.plan.licenseType === 'Free' ? '限时试用' : '专享'}}</span></div>
+            <div class="shop_feature_one_label">50 条外卖配送短信<span class="shop_feature_one_label_star">{{ license.plan.licenseType === 'Free' ? '限时试用' : '赠送'}}</span></div>
           </div>
 
           <div class="box_divide"></div>
@@ -142,10 +143,10 @@
           <div class="shop_feature_one">
             <img class="shop_feature_one_icon" :src="
             license.plan.licenseType === 'Free' ? '/img/b/license/b_license_free_check.png' :
-          license.plan.licenseType === 'Normal' ? '/img/b/license/b_license_normal_check.png' :
+          (license.plan.licenseType === 'Lite' || license.plan.licenseType === 'Normal') ? '/img/b/license/b_license_normal_check.png' :
           license.plan.licenseType === 'Senior' ? '/img/b/license/b_license_senior_check.png' : '/img/b/license/b_license_free_check.png'
           " alt="">
-            <div class="shop_feature_one_label">超出短信 0.1 元/条<span class="shop_feature_one_label_star">{{ license.plan.licenseType === 'Free' ? '限时试用' : '专享'}}</span></div>
+            <div class="shop_feature_one_label">超出短信 0.1 元/条<span class="shop_feature_one_label_star">{{ license.plan.licenseType === 'Free' ? '限时试用' : '赠送'}}</span></div>
           </div>
 
           <div class="box_divide"></div>
@@ -153,7 +154,7 @@
           <div class="shop_feature_one">
             <img class="shop_feature_one_icon" :src="
             license.plan.licenseType === 'Free' ? '/img/b/license/b_license_free_check.png' :
-          license.plan.licenseType === 'Normal' ? '/img/b/license/b_license_normal_check.png' :
+          (license.plan.licenseType === 'Lite' || license.plan.licenseType === 'Normal') ? '/img/b/license/b_license_normal_check.png' :
           license.plan.licenseType === 'Senior' ? '/img/b/license/b_license_senior_check.png' : '/img/b/license/b_license_free_check.png'
           " alt="">
             <div class="shop_feature_one_label">{{license.limit.maxFoods}} 个上架餐食</div>
@@ -164,7 +165,7 @@
           <div class="shop_feature_one">
             <img class="shop_feature_one_icon" :src="
             license.plan.licenseType === 'Free' ? '/img/b/license/b_license_free_check.png' :
-          license.plan.licenseType === 'Normal' ? '/img/b/license/b_license_normal_check.png' :
+          (license.plan.licenseType === 'Lite' || license.plan.licenseType === 'Normal') ? '/img/b/license/b_license_normal_check.png' :
           license.plan.licenseType === 'Senior' ? '/img/b/license/b_license_senior_check.png' : '/img/b/license/b_license_free_check.png'
           " alt="">
             <div class="shop_feature_one_label">{{license.limit.maxTables}} 个餐桌</div>
@@ -175,7 +176,7 @@
           <div class="shop_feature_one">
             <img class="shop_feature_one_icon" :src="
             license.plan.licenseType === 'Free' ? '/img/b/license/b_license_free_check.png' :
-          license.plan.licenseType === 'Normal' ? '/img/b/license/b_license_normal_check.png' :
+          (license.plan.licenseType === 'Lite' || license.plan.licenseType === 'Normal') ? '/img/b/license/b_license_normal_check.png' :
           license.plan.licenseType === 'Senior' ? '/img/b/license/b_license_senior_check.png' : '/img/b/license/b_license_free_check.png'
           " alt="">
             <div class="shop_feature_one_label">{{license.limit.maxQueue}} 个排队用户</div>
@@ -186,7 +187,7 @@
           <div class="shop_feature_one">
             <img class="shop_feature_one_icon" :src="
             license.plan.licenseType === 'Free' ? '/img/b/license/b_license_free_check.png' :
-          license.plan.licenseType === 'Normal' ? '/img/b/license/b_license_normal_check.png' :
+          (license.plan.licenseType === 'Lite' || license.plan.licenseType === 'Normal') ? '/img/b/license/b_license_normal_check.png' :
           license.plan.licenseType === 'Senior' ? '/img/b/license/b_license_senior_check.png' : '/img/b/license/b_license_free_check.png'
           " alt="">
             <div class="shop_feature_one_label">{{license.limit.maxReserve}} 个预订人数/天</div>
@@ -197,7 +198,7 @@
           <div class="shop_feature_one">
             <img class="shop_feature_one_icon" :src="
             license.plan.licenseType === 'Free' ? '/img/b/license/b_license_free_check.png' :
-          license.plan.licenseType === 'Normal' ? '/img/b/license/b_license_normal_check.png' :
+          (license.plan.licenseType === 'Lite' || license.plan.licenseType === 'Normal') ? '/img/b/license/b_license_normal_check.png' :
           license.plan.licenseType === 'Senior' ? '/img/b/license/b_license_senior_check.png' : '/img/b/license/b_license_free_check.png'
           " alt="">
             <div class="shop_feature_one_label">{{license.limit.maxWaiter}} 个服务员</div>
@@ -208,7 +209,7 @@
           <div class="shop_feature_one">
             <img class="shop_feature_one_icon" :src="
             license.plan.licenseType === 'Free' ? '/img/b/license/b_license_free_check.png' :
-          license.plan.licenseType === 'Normal' ? '/img/b/license/b_license_normal_check.png' :
+          (license.plan.licenseType === 'Lite' || license.plan.licenseType === 'Normal') ? '/img/b/license/b_license_normal_check.png' :
           license.plan.licenseType === 'Senior' ? '/img/b/license/b_license_senior_check.png' : '/img/b/license/b_license_free_check.png'
           " alt="">
             <div class="shop_feature_one_label">{{license.limit.maxCooker}} 个厨师</div>
@@ -219,7 +220,7 @@
           <div class="shop_feature_one">
             <img class="shop_feature_one_icon" :src="
             license.plan.licenseType === 'Free' ? '/img/b/license/b_license_free_check.png' :
-          license.plan.licenseType === 'Normal' ? '/img/b/license/b_license_normal_check.png' :
+          (license.plan.licenseType === 'Lite' || license.plan.licenseType === 'Normal') ? '/img/b/license/b_license_normal_check.png' :
           license.plan.licenseType === 'Senior' ? '/img/b/license/b_license_senior_check.png' : '/img/b/license/b_license_free_check.png'
           " alt="">
             <div class="shop_feature_one_label">{{license.limit.maxCashier}} 个收银</div>
@@ -230,7 +231,7 @@
           <div class="shop_feature_one">
             <img class="shop_feature_one_icon" :src="
             license.plan.licenseType === 'Free' ? '/img/b/license/b_license_free_check.png' :
-          license.plan.licenseType === 'Normal' ? '/img/b/license/b_license_normal_check.png' :
+          (license.plan.licenseType === 'Lite' || license.plan.licenseType === 'Normal') ? '/img/b/license/b_license_normal_check.png' :
           license.plan.licenseType === 'Senior' ? '/img/b/license/b_license_senior_check.png' : '/img/b/license/b_license_free_check.png'
           " alt="">
             <div class="shop_feature_one_label">{{license.limit.maxAdmin}} 个店长</div>
@@ -245,7 +246,7 @@
           license.plan.licenseType === 'Normal' ? '/img/b/license/b_license_normal_check.png' :
           license.plan.licenseType === 'Senior' ? '/img/b/license/b_license_senior_check.png' : '/img/b/license/b_license_free_check.png'
           " alt="">
-              <div class="shop_feature_one_label">{{license.limit.maxCoupon}} 个营销活动<span class="shop_feature_one_label_star addition_item_tag_color_1">专享</span></div>
+              <div class="shop_feature_one_label">{{license.limit.maxCoupon}} 个营销活动<span class="shop_feature_one_label_star addition_item_tag_color_1">赠送</span></div>
             </div>
 
             <div class="box_divide"></div>
@@ -255,7 +256,7 @@
           license.plan.licenseType === 'Normal' ? '/img/b/license/b_license_normal_check.png' :
           license.plan.licenseType === 'Senior' ? '/img/b/license/b_license_senior_check.png' : '/img/b/license/b_license_free_check.png'
           " alt="">
-              <div class="shop_feature_one_label">餐食热门搜索<span class="shop_feature_one_label_star addition_item_tag_color_1">专享</span></div>
+              <div class="shop_feature_one_label">餐食热门搜索<span class="shop_feature_one_label_star addition_item_tag_color_1">赠送</span></div>
             </div>
 
             <div class="box_divide"></div>
@@ -265,7 +266,7 @@
           license.plan.licenseType === 'Normal' ? '/img/b/license/b_license_normal_check.png' :
           license.plan.licenseType === 'Senior' ? '/img/b/license/b_license_senior_check.png' : '/img/b/license/b_license_free_check.png'
           " alt="">
-              <div class="shop_feature_one_label">迎宾台播报展屏<span class="shop_feature_one_label_star addition_item_tag_color_1">专享</span></div>
+              <div class="shop_feature_one_label">迎宾台播报展屏<span class="shop_feature_one_label_star addition_item_tag_color_1">赠送</span></div>
             </div>
 
             <div class="box_divide"></div>
@@ -275,18 +276,7 @@
           license.plan.licenseType === 'Normal' ? '/img/b/license/b_license_normal_check.png' :
           license.plan.licenseType === 'Senior' ? '/img/b/license/b_license_senior_check.png' : '/img/b/license/b_license_free_check.png'
           " alt="">
-              <div class="shop_feature_one_label">订单收益财报<span class="shop_feature_one_label_star addition_item_tag_color_1">专享</span></div>
-            </div>
-
-            <div class="box_divide"></div>
-
-            <div class="shop_feature_one">
-              <img class="shop_feature_one_icon" :src="
-            license.plan.licenseType === 'Free' ? '/img/b/license/b_license_free_check.png' :
-          license.plan.licenseType === 'Normal' ? '/img/b/license/b_license_normal_check.png' :
-          license.plan.licenseType === 'Senior' ? '/img/b/license/b_license_senior_check.png' : '/img/b/license/b_license_free_check.png'
-          " alt="">
-              <div class="shop_feature_one_label">专属云计算服务器集群<span class="shop_feature_one_label_star addition_item_tag_color_1">专享</span></div>
+              <div class="shop_feature_one_label">订单收益财报<span class="shop_feature_one_label_star addition_item_tag_color_1">赠送</span></div>
             </div>
 
             <div class="box_divide"></div>
@@ -297,7 +287,7 @@
           license.plan.licenseType === 'Normal' ? '/img/b/license/b_license_normal_check.png' :
           license.plan.licenseType === 'Senior' ? '/img/b/license/b_license_senior_check.png' : '/img/b/license/b_license_free_check.png'
           " alt="">
-              <div class="shop_feature_one_label">交易账单永久存储<span class="shop_feature_one_label_star addition_item_tag_color_1">专享</span></div>
+              <div class="shop_feature_one_label">专属云计算服务器集群<span class="shop_feature_one_label_star addition_item_tag_color_1">赠送</span></div>
             </div>
 
             <div class="box_divide"></div>
@@ -308,7 +298,18 @@
           license.plan.licenseType === 'Normal' ? '/img/b/license/b_license_normal_check.png' :
           license.plan.licenseType === 'Senior' ? '/img/b/license/b_license_senior_check.png' : '/img/b/license/b_license_free_check.png'
           " alt="">
-              <div class="shop_feature_one_label">店铺数据多重备份<span class="shop_feature_one_label_star addition_item_tag_color_1">专享</span></div>
+              <div class="shop_feature_one_label">交易账单永久存储<span class="shop_feature_one_label_star addition_item_tag_color_1">赠送</span></div>
+            </div>
+
+            <div class="box_divide"></div>
+
+            <div class="shop_feature_one">
+              <img class="shop_feature_one_icon" :src="
+            license.plan.licenseType === 'Free' ? '/img/b/license/b_license_free_check.png' :
+          license.plan.licenseType === 'Normal' ? '/img/b/license/b_license_normal_check.png' :
+          license.plan.licenseType === 'Senior' ? '/img/b/license/b_license_senior_check.png' : '/img/b/license/b_license_free_check.png'
+          " alt="">
+              <div class="shop_feature_one_label">店铺数据多重备份<span class="shop_feature_one_label_star addition_item_tag_color_1">赠送</span></div>
             </div>
 
             <div class="box_divide"></div>
@@ -318,7 +319,7 @@
           license.plan.licenseType === 'Normal' ? '/img/b/license/b_license_normal_check.png' :
           license.plan.licenseType === 'Senior' ? '/img/b/license/b_license_senior_check.png' : '/img/b/license/b_license_free_check.png'
           " alt="">
-              <div class="shop_feature_one_label">专业技术人员贴心服务<span class="shop_feature_one_label_star">专享</span></div>
+              <div class="shop_feature_one_label">专业技术人员贴心服务<span class="shop_feature_one_label_star">赠送</span></div>
             </div>
           </div>
         </div>
@@ -327,13 +328,13 @@
 
         <div class="shop_license_button" v-bind:class="{
           shop_license_button_free: license.plan.licenseType === 'Free',
-          shop_license_button_normal: license.plan.licenseType === 'Normal',
+          shop_license_button_normal: license.plan.licenseType === 'Lite' || license.plan.licenseType === 'Normal',
           shop_license_button_senior: license.plan.licenseType === 'Senior'
           }" v-if="license.plan.licenseType === 'Free'">限时试用
         </div>
         <div class="shop_license_button" v-bind:class="{
           shop_license_button_free: license.plan.licenseType === 'Free',
-          shop_license_button_normal: license.plan.licenseType === 'Normal',
+          shop_license_button_normal: license.plan.licenseType === 'Lite' || license.plan.licenseType === 'Normal',
           shop_license_button_senior: license.plan.licenseType === 'Senior'
           }" v-else @click="btnYearSelect(license.plan)">立即续费
         </div>
@@ -454,6 +455,15 @@
       httpLicensePlan() {
         httpLicenseApi.getPlanAll(this.http.res.shop.type, 0, 99).then(res => {
           this.http.res.shopLicensePlans = res
+
+          this.http.res.shopLicensePlans.elements.sort(function (a, b) {
+            let r = a.plan.pricePerYear - b.plan.pricePerYear
+            if (r !== 0) {
+              return r
+            } else {
+              return a.plan.licenseType === 'Free' ? -1 : 1
+            }
+          })
         })
       },
       httpTakeOutSmsShop() {
