@@ -30,11 +30,11 @@
                  v-if="http.req.upgrade.licenseType === 'Lite'"
                  @click="btnChooseLicenseType('Normal')">标准会员
             </div>
-            <div class="addition_item_tag_one addition_item_tag_label addition_item_tag_color_1"
+            <div class="addition_item_tag_one addition_item_tag_label addition_item_tag_color_3"
                  v-if="http.req.upgrade.licenseType === 'Normal'"
                  @click="btnChooseLicenseType('Senior')">高级会员
             </div>
-            <div class="addition_item_tag_one addition_item_tag_label addition_item_tag_color_3"
+            <div class="addition_item_tag_one addition_item_tag_label addition_item_tag_color_1"
                  v-if="http.req.upgrade.licenseType === 'Senior'"
                  @click="btnChooseLicenseType('Lite')">旗舰会员
             </div>
@@ -45,11 +45,10 @@
 
         <div class="addition_item">
           <div class="addition_item_label">授权渠道</div>
-          <div class="addition_item_tag">
-            <div class="addition_item_tag_one addition_item_tag_label addition_item_tag_color_1"
-                 v-if="http.req.upgrade.licenseChannel === 'Taobao'">淘宝
-            </div>
-          </div>
+          <label>
+            <input class="addition_item_input" placeholder="请输入授权渠道"
+                   v-model="http.req.upgrade.licenseChannel">
+          </label>
         </div>
 
         <div class="box_divide"></div>
@@ -125,11 +124,11 @@
               magicId: '',
               shortId: '',
               licenseType: 'Lite',
-              licenseChannel: 'Taobao',
+              licenseChannel: '',
               upgradeDate: '',
               marketUserName: '',
               marketOrderId: new Date().getTime(),
-              remark: '淘宝特惠授权升级'
+              remark: '市场授权升级'
             }
           }
         },
