@@ -85,7 +85,7 @@
       },
       httpShop() {
         httpShopApi.getOne(this.$route.params.shortId).then(res => {
-          this.ui.limit.licenseType = (res.licenseType !== 'Normal' && res.licenseType !== 'Senior');
+          this.ui.limit.licenseType = (res.licenseType !== 'Lite' && res.licenseType !== 'Normal' && res.licenseType !== 'Senior');
         })
       },
       httpShopLicenseExpiredAt() {
