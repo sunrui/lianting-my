@@ -113,7 +113,7 @@
           (license.plan.licenseType === 'Lite' || license.plan.licenseType === 'Normal') ? '/img/b/license/b_license_normal_check.png' :
           license.plan.licenseType === 'Senior' ? '/img/b/license/b_license_senior_check.png' : '/img/b/license/b_license_free_check.png'
           " alt="">
-            <div class="shop_feature_one_label">外卖无抽成无限订单<span class="shop_feature_one_label_star">{{ license.plan.licenseType === 'Free' ? '限时试用' : '专享'}}</span></div>
+            <div class="shop_feature_one_label">无限订单无任何抽成<span class="shop_feature_one_label_star">{{ license.plan.licenseType === 'Free' ? '限时试用' : '专享'}}</span></div>
           </div>
 
           <div class="box_divide"></div>
