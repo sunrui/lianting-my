@@ -64,8 +64,8 @@
     components: {TitleBar},
     props: {
       date: {
-        type: String,
-        default: null
+        type: Number,
+        default: new Date().getTime()
       },
       role: {
         type: String,
