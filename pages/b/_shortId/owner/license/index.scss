@@ -125,6 +125,7 @@
 
   .shop_feature {
     display: inline-block;
+    vertical-align: middle;
   }
 
   .shop_feature_one {
@@ -155,13 +156,15 @@
     }
 
     .shop_feature_one_label_star {
+      display: inline-block;
+      vertical-align: middle;
       height: px2rem(26);
       color: white;
       border-radius: px2rem(4);
       font-size: px2rem(20);
       line-height: px2rem(26);
       margin-left: px2rem(5);
-      padding: 0 px2rem(10);
+      padding: px2rem(2) px2rem(10);
       background: linear-gradient(90deg, rgba(255, 207, 76, 1), rgba(255, 166, 102, 1));
     }
   }
