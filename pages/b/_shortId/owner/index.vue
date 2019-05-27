@@ -197,11 +197,11 @@
         this.$router.push(nav.url)
       },
       getExpiredContent() {
-        if (this.http.res.shop.licenseType === 'Free') {
+        // if (this.http.res.shop.licenseType === 'Free') {
           return '服务于 ' + new Date(parseInt(this.http.res.shop.createdAt)).toLocaleDateString()
-        } else {
-          return new Date(parseInt(this.http.res.licenseExpiredAt)).toLocaleDateString() + ' 过期'
-        }
+        // } else {
+        //   return new Date(parseInt(this.http.res.licenseExpiredAt)).toLocaleDateString() + ' 过期'
+        // }
       },
       btnLicense() {
         this.$router.push(`/b/${this.$route.params.shortId}/owner/license`)

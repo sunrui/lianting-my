@@ -23,12 +23,12 @@
             }}
           </div>
         </div>
-        <div class="license_label_one">
-          <div class="license_label_one_name">续费记录</div>
-          <div class="license_label_one_value">{{new Date(parseInt(shopLicense.beforeExpiredAt)).toLocaleDateString()}} - {{new
-            Date(parseInt(shopLicense.afterExpiredAt)).toLocaleDateString()}}
-          </div>
-        </div>
+<!--        <div class="license_label_one">-->
+          <!--          <div class="license_label_one_name">续费记录</div>-->
+          <!--          <div class="license_label_one_value">{{new Date(parseInt(shopLicense.beforeExpiredAt)).toLocaleDateString()}} - {{new-->
+          <!--            Date(parseInt(shopLicense.afterExpiredAt)).toLocaleDateString()}}-->
+          <!--          </div>-->
+<!--        </div>-->
         <div v-if="shopLicense.shopLicensePay">
           <div class="box_divide"></div>
 
@@ -42,12 +42,12 @@
           </div>
           <div class="license_label_one">
             <div class="license_label_one_name">价格</div>
-            <div class="license_label_one_value">{{shopLicense.shopLicensePay.pricePerYear}} 元/年</div>
+            <div class="license_label_one_value">{{shopLicense.shopLicensePay.pricePerYear}} 元/永久使用</div>
           </div>
-          <div class="license_label_one">
-            <div class="license_label_one_name">续费天数</div>
-            <div class="license_label_one_value">{{shopLicense.shopLicensePay.year * 365}} 天</div>
-          </div>
+          <!--          <div class="license_label_one">-->
+          <!--            <div class="license_label_one_name">续费天数</div>-->
+          <!--            <div class="license_label_one_value">{{shopLicense.shopLicensePay.year * 365}} 天</div>-->
+          <!--          </div>-->
           <div class="license_label_one">
             <div class="license_label_one_name">支付方式</div>
             <div class="license_label_one_value">{{
@@ -72,7 +72,7 @@
           </div>
           <div class="license_label_one">
             <div class="license_label_one_name">续费渠道</div>
-            <div class="license_label_one_value">{{shopLicense.shopLicenseUpgrade.licenseChannel === 'Taobao' ? '淘宝' : shopLicense.shopLicensePay.licenseChannel}}</div>
+            <div class="license_label_one_value">{{shopLicense.shopLicenseUpgrade.licenseChannel}}</div>
           </div>
           <div class="license_label_one">
             <div class="license_label_one_name">续费用户</div>
