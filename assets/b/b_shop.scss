@@ -8,7 +8,7 @@
 
   .shop_title_license_king {
     display: inline-block;
-    vertical-align: top;
+    vertical-align: middle;
 
     background-image: url("/img/b/nav/owner/b_nav_owner_king.png");
     background-repeat: no-repeat;
@@ -20,8 +20,9 @@
 
   .shop_title_license_label {
     display: inline-block;
-    vertical-align: top;
+    vertical-align: middle;
     font-size: px2rem(18);
+    height: px2rem(30);
     color: #FFFCF0;
     line-height: px2rem(30);
   }
