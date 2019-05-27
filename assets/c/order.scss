@@ -414,40 +414,55 @@
   position: relative;
   height: px2rem(70);
 
-  .order_history_table_label {
+  .order_history_label {
+    position: relative;
     display: inline-block;
-    color: #333333;
+    vertical-align: middle;
     margin-left: px2rem(30);
-    line-height: px2rem(70);
-  }
+    height: px2rem(70);
 
-  .order_history_table_content {
-    display: inline-block;
-    margin-left: px2rem(10);
-    line-height: px2rem(70);
-    color: #f52626;
-    font-size: px2rem(36);
-  }
+    .order_history_table_label {
+      display: inline-block;
+      vertical-align: middle;
+      color: #333333;
+      line-height: px2rem(70);
+    }
 
-  .order_history_price_label {
-    display: inline-block;
-    color: #333333;
-    margin-left: px2rem(30);
-    line-height: px2rem(70);
-  }
+    .order_history_table_content {
+      display: inline-block;
+      vertical-align: middle;
+      margin-left: px2rem(5);
+      margin-right: px2rem(5);
+      line-height: px2rem(70);
+      color: #f52626;
+      font-size: px2rem(36);
+    }
 
-  .order_history_price_content {
-    display: inline-block;
-    margin-left: px2rem(10);
-    line-height: px2rem(70);
-    color: #f52626;
-    font-size: px2rem(36);
-  }
+    .order_history_price_label {
+      display: inline-block;
+      vertical-align: middle;
+      color: #333333;
+      line-height: px2rem(70);
+    }
 
-  .order_history_price_content:after {
-    content: "元";
-    margin-left: px2rem(10);
-    color: #333333;
+    .order_history_price_content {
+      display: inline-block;
+      vertical-align: middle;
+      margin-left: px2rem(5);
+      margin-right: px2rem(5);
+      line-height: px2rem(70);
+      color: #f52626;
+      font-size: px2rem(36);
+    }
+
+    .order_history_price_content:after {
+      display: inline-block;
+      vertical-align: middle;
+      content: "元";
+      margin-left: px2rem(5);
+      margin-right: px2rem(5);
+      color: #333333;
+    }
   }
 
   .order_history_detail {

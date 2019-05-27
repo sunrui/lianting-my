@@ -27,13 +27,17 @@
           <div class="box_divide"></div>
 
           <div class="order_history_footer">
-            <div v-if="order.orderTable">
+            <div class="order_history_label">
+              <div class="order_history_price_label">总价</div>
+              <div class="order_history_price_content">{{order.price}}</div>
+            </div>
+            <div class="order_history_label" v-if="order.orderTable">
               <div class="order_history_table_label">餐桌</div>
               <div class="order_history_table_content">{{order.orderTable.tableFullNumber}}</div>
             </div>
-            <div v-else>
-              <div class="order_history_price_label">总价</div>
-              <div class="order_history_price_content">{{order.price}}</div>
+            <div class="order_history_label" v-else-if="order.orderTakeOut">
+              <div class="order_history_table_label">外卖</div>
+              <div class="order_history_table_content">{{order.orderTakeOut.name}}</div>
             </div>
             <div class="order_history_detail" @click="btnDetail(order)">查看详情</div>
           </div>
@@ -60,7 +64,7 @@
     components: {TitleBar},
     props: {
       date: {
-        type: Number,
+        type: String,
         default: null
       },
       role: {
@@ -182,7 +186,7 @@
       },
       onInfinite(done) {
         if (!this.ui.scroller.haveMore) {
-          this.$refs.bOrder.finishPullToRefresh();
+          this.$refs.bOrder.finishPullToRefresh()
           this.$refs.bOrder.finishInfinite(true)
         } else {
           this.httpOrder(done)
