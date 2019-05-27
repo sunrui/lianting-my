@@ -189,7 +189,12 @@
 }
 
 .charge_year_tip {
+  display: inline-block;
+  vertical-align: middle;
   color: white;
+  background: linear-gradient(90deg, rgba(255, 51, 68, 1), rgba(255, 136, 51, 1));
   border-radius: px2rem(5);
+  height: px2rem(40);
+  line-height: px2rem(40);
   padding: 0 px2rem(10);
 }
