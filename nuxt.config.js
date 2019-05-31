@@ -3,6 +3,10 @@ const pkg = require('./package')
 module.exports = {
   mode: 'spa',
 
+  htmlAttrs: {
+    lang: 'zh-cmn-Hans',
+  },
+
   /*
   ** Headers of the page
   */
