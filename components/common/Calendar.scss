@@ -103,6 +103,7 @@
   .calendar_week {
     text-align: center;
     margin-top: px2rem(40);
+    padding: 0 px2rem(10);
 
     .calendar_week_one {
       display: inline-block;
@@ -115,9 +116,10 @@
     text-align: center;
     margin-top: px2rem(30);
     margin-bottom: px2rem(30);
+    padding: 0 px2rem(10);
 
     .calendar_day_one {
-      padding: px2rem(2);
+      margin-top: px2rem(8);
       display: inline-block;
       vertical-align: top;
       width: 14.28%;
