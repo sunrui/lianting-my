@@ -33,7 +33,7 @@
               <div class="queue_box_table_name">{{tableGroup.name}}</div>
               <div class="queue_box_table_private" v-if="tableGroup.privateRoom">包间</div>
             </div>
-            <div class="queue_box_table_people">{{tableGroup.minPeople}}-{{tableGroup.maxPeople}}人</div>
+            <div class="queue_box_table_people">{{tableGroup.minPeople}}-{{tableGroup.maxPeople}}</div>
           </div>
           <div class="queue_box_table_wait_people">{{getWaitPeople(tableGroup.id)}}</div>
           <div class="queue_box_table_wait_guess">

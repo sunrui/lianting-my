@@ -115,7 +115,6 @@
         border-radius: px2rem(5);
         height: px2rem(32);
         line-height: px2rem(32);
-        left: px2rem(40);
         padding: 0 px2rem(10);
 
         color: white;
@@ -127,6 +126,14 @@
     .queue_box_table_people {
       margin-top: px2rem(5);
       color: #666666;
+      font-size: px2rem(24);
+    }
+
+    .queue_box_table_people:after {
+      content: "人";
+      margin-left: px2rem(2);
+      color: #666666;
+      font-size: px2rem(24);
     }
   }
 
