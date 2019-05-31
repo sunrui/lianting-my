@@ -672,8 +672,10 @@
       },
       btnCategoryChoose(food) {
         this.ui.modalCategory.selectFood = food
+        scrollApi.enable(false)
       },
       btnCategoryConfirm() {
+        scrollApi.enable(true)
         this.btnCartFoodAdd(this.ui.modalCategory.foodGroupId, this.ui.modalCategory.category, this.ui.modalCategory.selectFood)
         this.ui.vCategory = false
         this.ui.vCoverMaskCart = false
