@@ -21,6 +21,7 @@
         <div class="box_divide"></div>
 
         <div class="coupon_footer">
+          <div class="blank_10"></div>
           <div class="coupon_expired_time">自领取{{coupon.validAfterDay > 0 ? (coupon.validAfterDay + '天后') : '当日'}}可用, {{
             coupon.expiredDate }}天后过期。
           </div>
