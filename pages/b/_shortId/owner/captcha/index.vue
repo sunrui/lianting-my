@@ -178,7 +178,6 @@
       },
       btnDownloadShop() {
         html2canvas(document.getElementById('shop_' + this.http.res.shop.id), {
-          scale: window.devicePixelRatio * 2,
           logging: false,
         }).then(canvas => {
           let fileName = '恋厅_' + this.http.res.shop.name
@@ -187,7 +186,6 @@
       },
       btnDownload(table) {
         html2canvas(document.getElementById('table_' + table.id), {
-          scale: window.devicePixelRatio * 2,
           logging: false,
         }).then(canvas => {
           let fileName = '恋厅_餐桌二维码_' + table.tableGroup_name + '_' + table.fullNumber
