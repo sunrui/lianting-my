@@ -22,7 +22,7 @@
     <div v-if="ui.vRender">
       <div class="blank_30"></div>
       <div class="box_divide"></div>
-      <div class="blank_50"></div>
+      <div class="blank_30"></div>
     </div>
 
     <div class="captcha" v-if="ui.vRender">
@@ -55,7 +55,7 @@
           <div class="title_download" @click="btnDownload(table)">下载</div>
         </div>
 
-        <div class="captcha_one" :id="'capture_' + table.id">
+        <div class="captcha_one" :id="'table_' + table.id">
           <div class="captcha_part_cover"></div>
           <div class="captcha_part_label"></div>
           <div class="captcha_part_panel"></div>
@@ -134,10 +134,10 @@
     },
     methods: {
       renderCaptcha() {
-        let canvas = document.getElementById(this.http.res.shop.id)
-        if (canvas) {
+        let canvasShop = document.getElementById(this.http.res.shop.id)
+        if (canvasShop) {
           let uri = document.location.protocol + '//' + window.location.host + `/c/${this.http.res.shop.shortId}`
-          QRCode.toCanvas(canvas, uri)
+          QRCode.toCanvas(canvasShop, uri)
         }
 
         for (let tableGroupIndex in this.http.res.tableGroups.elements) {
@@ -146,10 +146,10 @@
           for (let tableIndex in tableGroup.tableOnes) {
             let tableOne = tableGroup.tableOnes[tableIndex]
 
-            let canvas = document.getElementById(tableOne.id)
-            if (canvas) {
+            let canvasTable = document.getElementById(tableOne.id)
+            if (canvasTable) {
               let uri = document.location.protocol + '//' + window.location.host + `/c/${this.http.res.shop.shortId}/captcha/${tableOne.id}`
-              QRCode.toCanvas(canvas, uri)
+              QRCode.toCanvas(canvasTable, uri)
             }
           }
         }
@@ -171,25 +171,25 @@
 
         this.ui.vRender = true
 
-        setTimeout(this.renderCaptcha, 0)
+        setTimeout(this.renderCaptcha, 1)
       },
       btnCopyright(enable) {
         this.ui.vCopyright = enable
       },
       btnDownloadShop() {
         html2canvas(document.getElementById('shop_' + this.http.res.shop.id), {
-          logging: false,
-          backgroundColor: null
+          logging: true,
+          backgroundColor: null,
         }).then(canvas => {
           let fileName = '恋厅_' + this.http.res.shop.name
           downloadApi.download(canvas, fileName)
         })
       },
       btnDownload(table) {
-        let id = 'capture_' + table.id
+        let id = 'table_' + table.id
 
         html2canvas(document.getElementById(id), {
-          logging: false,
+          logging: true,
           backgroundColor: null
         }).then(canvas => {
           let fileName = '恋厅_餐桌二维码_' + table.tableGroup_name + '_' + table.fullNumber
