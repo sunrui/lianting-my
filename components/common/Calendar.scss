@@ -125,16 +125,16 @@
       display: inline-block;
       text-align: center;
       color: #333333;
-      line-height: px2rem(72);
-      width: px2rem(72);
+      height: px2rem(70);
+      line-height: px2rem(70);
     }
 
     .calendar_day_one_label_disable {
       display: inline-block;
       text-align: center;
       color: #BBBBBB;
-      line-height: px2rem(72);
-      width: px2rem(72);
+      height: px2rem(70);
+      line-height: px2rem(70);
     }
 
     .calendar_day_one_label_select {
@@ -147,6 +147,7 @@
       text-align: center;
       color: white;
       line-height: px2rem(70);
+      z-index: 1;
     }
   }
 }
