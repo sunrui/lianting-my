@@ -178,19 +178,17 @@
       },
       btnDownloadShop() {
         html2canvas(document.getElementById('shop_' + this.http.res.shop.id), {
-          logging: true,
-          backgroundColor: null,
+          scale: window.devicePixelRatio * 2,
+          logging: false,
         }).then(canvas => {
           let fileName = '恋厅_' + this.http.res.shop.name
           downloadApi.download(canvas, fileName)
         })
       },
       btnDownload(table) {
-        let id = 'table_' + table.id
-
-        html2canvas(document.getElementById(id), {
-          logging: true,
-          backgroundColor: null
+        html2canvas(document.getElementById('table_' + table.id), {
+          scale: window.devicePixelRatio * 2,
+          logging: false,
         }).then(canvas => {
           let fileName = '恋厅_餐桌二维码_' + table.tableGroup_name + '_' + table.fullNumber
           downloadApi.download(canvas, fileName)
