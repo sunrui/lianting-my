@@ -73,7 +73,7 @@ module.exports = {
       '/api',
       {
         target: 'http://localhost:8080',
-        // target: 'http://m.lt.city/api',
+        // target: 'http://shop.lt.city/api',
         pathRewrite: {'^/api': '/'}
       }
     ]

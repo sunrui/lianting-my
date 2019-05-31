@@ -63,10 +63,12 @@
             <div class="order_food_name_detail_name">{{orderFood.foodCategoryName}}</div>
             <div class="order_food_name_detail_name_category">{{orderFood.foodName}}</div>
           </div>
-          <div class="order_food_status order_food_status_wait" v-if="orderFood.status === 'Wait'">已下单</div>
-          <div class="order_food_status order_food_status_cooking" v-if="orderFood.status === 'Cooking'">正在做</div>
-          <div class="order_food_status order_food_status_cooked" v-if="orderFood.status === 'Cooked'">做好了</div>
-          <div class="order_food_status order_food_status_finish" v-if="orderFood.status === 'Finish'">已上菜</div>
+          <div v-if="http.res.order.status !== 'Finish' && http.res.order.status !== 'Cancel'">
+            <div class="order_food_status order_food_status_wait" v-if="orderFood.status === 'Wait'">已下单</div>
+            <div class="order_food_status order_food_status_cooking" v-if="orderFood.status === 'Cooking'">正在做</div>
+            <div class="order_food_status order_food_status_cooked" v-if="orderFood.status === 'Cooked'">做好了</div>
+            <div class="order_food_status order_food_status_finish" v-if="orderFood.status === 'Finish'">已上菜</div>
+          </div>
           <div class="order_food_count">{{orderFood.count}}</div>
           <div class="order_food_price">{{orderFood.count * orderFood.foodPrice}}</div>
         </div>
@@ -84,7 +86,7 @@
           <div class="order_tableware_price">{{http.res.order.priceTakeOutFee}}</div>
         </div>
 
-        <div @click="btnChooseCoupon()">
+        <div @click="btnChooseCoupon()" v-if="http.res.order.status === 'NotPaid'">
           <div class="order_coupon" v-if="http.res.order.couponDeductPrice || $route.query.deductPrice">
             <div class="order_coupon_icon">优惠券</div>
             <div class="order_coupon_label">优惠</div>

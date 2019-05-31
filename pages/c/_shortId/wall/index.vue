@@ -20,10 +20,10 @@
                 <div class="wall_user_info_nick" @click="btnUser(wall.userId)">{{getWechatNick(wall.userId)}}</div>
                 <div class="wall_order_time">{{new Date(parseInt(wall.createdAt)).toLocaleString()}}</div>
               </div>
-              <div class="wall_order_menu" @click="btnOrder(wall)">
-                <div class="wall_order_menu_icon"></div>
-                <div class="wall_order_menu_label">分享菜谱</div>
-              </div>
+<!--              <div class="wall_order_menu" @click="btnOrder(wall)">-->
+<!--                <div class="wall_order_menu_icon"></div>-->
+<!--                <div class="wall_order_menu_label">分享菜谱</div>-->
+<!--              </div>-->
             </div>
 
             <!--<div class="wall_picture">-->
@@ -80,41 +80,43 @@
             </div>
           </div>
 
-          <div class="box" v-if="ui.vOrderMenu">
-            <div class="modal_center box_radius">
-              <div class="modal_header">
-                <div class="modal_title">分享菜谱</div>
-
-                <div class="modal_close_box" @click="btnCoverMask">
-                  <img class="modal_close" src="/img/common/close.png" alt="">
-                </div>
-              </div>
-
-              <div class="box_divide"></div>
-
-              <div class="menu_food_list">
-                <div class="menu_food" v-for="orderFood in http.res.order.orderFoods">
-                  <div class="menu_food_category">{{orderFood.foodCategoryName}}</div>
-                  <div class="menu_food_name">({{orderFood.foodName}})</div>
-                  <div class="menu_food_count">{{orderFood.count}}</div>
-                </div>
-              </div>
-
-              <div class="box_divide"></div>
-
-              <div class="menu_food_footer">
-                <div class="menu_food_total">({{countFood(http.res.order)}})</div>
-                <div class="menu_food_price">{{http.res.order.price}}</div>
-              </div>
-
-              <div class="blank_20"></div>
-            </div>
-          </div>
         </div>
       </div>
 
       <div class="blank_30"></div>
     </scroller>
+
+    <div class="box" v-if="ui.vOrderMenu">
+      <div class="modal_center box_radius">
+        <div class="modal_header">
+          <div class="modal_title">分享菜谱</div>
+
+          <div class="modal_close_box" @click="btnCoverMask">
+            <img class="modal_close" src="/img/common/close.png" alt="">
+          </div>
+        </div>
+
+        <div class="box_divide"></div>
+
+        <div class="menu_food_list">
+          <div class="menu_food" v-for="orderFood in http.res.order.orderFoods">
+            <div class="menu_food_category">{{orderFood.foodCategoryName}}</div>
+            <div class="menu_food_name">({{orderFood.foodName}})</div>
+            <div class="menu_food_count">{{orderFood.count}}</div>
+          </div>
+        </div>
+
+        <div class="box_divide"></div>
+
+        <div class="menu_food_footer">
+          <div class="menu_food_total">({{countFood(http.res.order)}})</div>
+          <div class="menu_food_price">{{http.res.order.price}}</div>
+        </div>
+
+        <div class="blank_20"></div>
+      </div>
+    </div>
+
   </div>
 </template>
 

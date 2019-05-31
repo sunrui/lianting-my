@@ -569,14 +569,6 @@
           for (let index in this.http.res.order.orderFoods) {
             let orderFood = this.http.res.order.orderFoods[index]
 
-            if (Boolean(orderFood.finishAt)) {
-              addFood(orderFood)
-            }
-          }
-
-          for (let index in this.http.res.order.orderFoods) {
-            let orderFood = this.http.res.order.orderFoods[index]
-
             if (Boolean(orderFood.cookedAt)) {
               addFood(orderFood)
             }
@@ -586,6 +578,14 @@
             let orderFood = this.http.res.order.orderFoods[index]
 
             if (Boolean(orderFood.cookingAt)) {
+              addFood(orderFood)
+            }
+          }
+
+          for (let index in this.http.res.order.orderFoods) {
+            let orderFood = this.http.res.order.orderFoods[index]
+
+            if (Boolean(orderFood.finishAt)) {
               addFood(orderFood)
             }
           }
