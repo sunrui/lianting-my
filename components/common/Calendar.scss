@@ -113,16 +113,21 @@
 
   .calendar_day {
     text-align: center;
-    margin-top: px2rem(40);
+    margin-top: px2rem(30);
+    margin-bottom: px2rem(30);
 
     .calendar_day_one {
-      margin-bottom: px2rem(5);
+      padding: px2rem(2);
       display: inline-block;
+      vertical-align: top;
       width: 14.28%;
+      height: px2rem(70);
+      line-height: px2rem(70);
     }
 
     .calendar_day_one_label {
       display: inline-block;
+      vertical-align: top;
       text-align: center;
       color: #333333;
       height: px2rem(70);
@@ -131,6 +136,7 @@
 
     .calendar_day_one_label_disable {
       display: inline-block;
+      vertical-align: top;
       text-align: center;
       color: #BBBBBB;
       height: px2rem(70);
@@ -139,6 +145,7 @@
 
     .calendar_day_one_label_select {
       display: inline-block;
+      vertical-align: top;
       background: linear-gradient(90deg, rgba(255, 51, 68, 1), rgba(255, 136, 51, 1));
       width: px2rem(70);
       height: px2rem(70);
@@ -147,7 +154,6 @@
       text-align: center;
       color: white;
       line-height: px2rem(70);
-      z-index: 1;
     }
   }
 }
