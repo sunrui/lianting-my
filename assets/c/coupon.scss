@@ -1,6 +1,6 @@
 .coupon {
   margin-top: px2rem(20);
-  height: px2rem(230);
+  height: px2rem(240);
   background: #FFF8ED;
 }
 
@@ -86,26 +86,25 @@
 
   .coupon_expired_time {
     display: inline-block;
+    vertical-align: middle;
     color: #999999;
     font-size: px2rem(24);
+    line-height: px2rem(58);
   }
 
   .coupon_button {
+    float: right;
+    display: inline-block;
+    vertical-align: middle;
     color: white;
     background: linear-gradient(90deg, rgba(255, 51, 68, 1), rgba(255, 136, 51, 1));
-    margin-right: px2rem(30);
     line-height: px2rem(58);
     text-align: center;
 
     width: px2rem(168);
     height: px2rem(58);
     border: px2rem(1) solid rgba(230, 230, 230, 0.5);
-    border-radius: px2rem(58/2);
-
-    right: 0;
-    position: absolute;
-    top: 50%;
-    transform: translate(0, -50%);
+    border-radius: px2rem(58 / 2);
   }
 }
 
