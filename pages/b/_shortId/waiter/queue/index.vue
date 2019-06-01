@@ -191,7 +191,7 @@
       },
       getQueueWaitTime(queueTicket) {
         if (queueTicket.status === 'Now' || queueTicket.status === 'Wait') {
-          return '已等待 ' + elapsedTime(new Date().getTime() - queueTicket.createdAt)
+          return '已等待 ' + this.elapsedTime(new Date().getTime() - queueTicket.createdAt)
         }
       },
       btnRadio(tableFullNumber) {

@@ -19,7 +19,8 @@ $ npm start
 $ npm run generate
 
 # pm2 run daemon
-$ pm2 start npm --name "ltcity-shop" -- run start
+$ pm2 start -i 0 npm --name "ltcity-shop" -- run start 
+$ pm2 start npm --name "ltcity-shop" -- run start --watch
 
 # debug
 [].forEach.call($$("*"),function(a){a.style.outline="1px solid #"+(~~(Math.random()*(1<<24))).toString(16)});
