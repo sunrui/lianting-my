@@ -10,5 +10,13 @@ export const httpStatAdminApi = {
         size: size
       }
     }).then(res => res.data)
+  },
+  getUser(shortId, page, size) {
+    return axios.get(`${base}/${shortId}/stat/user`,{
+      params: {
+        page: page,
+        size: size
+      }
+    }).then(res => res.data)
   }
 }

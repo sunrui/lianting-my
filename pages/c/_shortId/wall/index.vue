@@ -263,6 +263,7 @@
 
         this.ui.infoLoads.push(userId)
         this.httpGetInfo(userId)
+
         return ''
       },
       getWechatNick(userId) {

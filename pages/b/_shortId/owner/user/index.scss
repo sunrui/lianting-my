@@ -1,15 +1,15 @@
-.charge {
+.user {
   position: relative;
   margin-top: px2rem(30);
 }
 
-.charge_header {
+.user_header {
   height: px2rem(24);
   border-radius: px2rem(12);
   background: #b2b8c6;
 }
 
-.charge_body {
+.user_body {
   background: white;
   margin-top: px2rem(-12);
   margin-left: px2rem(15);
@@ -17,10 +17,10 @@
   padding: 0 px2rem(20);
 }
 
-.charge_body_title {
+.user_body_title {
   height: px2rem(50);
 
-  .charge_body_title_one {
+  .user_body_title_one {
     display: inline-block;
     vertical-align: middle;
     float: left;
@@ -28,14 +28,22 @@
     font-size: px2rem(28);
     color: #333333;
     font-weight: 400;
-    width: 25%;
+    width: 20%;
+  }
+
+  .user_body_title_one_width_15 {
+    width: 15% !important;
+  }
+
+  .user_body_title_one_width_25 {
+    width: 25% !important;
   }
 }
 
-.charge_body_content {
+.user_body_content {
   height: px2rem(50);
 
-  .charge_body_content_one {
+  .user_body_content_one {
     display: inline-block;
     vertical-align: middle;
     float: left;
@@ -43,15 +51,30 @@
     font-size: px2rem(24);
     color: #666666;
     font-weight: 400;
-    width: 25%;
+    width: 20%;
     line-height: px2rem(50);
+  }
 
+  .user_body_content_one_phone {
+    color: #243342;
+    text-decoration: none;
+  }
+
+  .user_body_content_one_nick {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
 
-  .charge_body_content_price {
+  .user_body_content_one_width_15 {
+    width: 15% !important;
+  }
+
+  .user_body_content_one_width_25 {
+    width: 25% !important;
+  }
+
+  .user_body_content_price {
     display: inline-block;
     vertical-align: middle;
     font-size: px2rem(24);
@@ -59,7 +82,7 @@
     line-height: px2rem(50);
   }
 
-  .charge_body_content_price:before {
+  .user_body_content_price:before {
     display: inline-block;
     vertical-align: middle;
     content: "¥";
@@ -70,7 +93,7 @@
   }
 }
 
-.charge_empty {
+.user_empty {
   height: px2rem(200);
   color: #999999;
   text-align: center;
@@ -78,6 +101,6 @@
   font-size: px2rem(28);
 }
 
-.charge_footer {
+.user_footer {
   height: px2rem(10);
 }

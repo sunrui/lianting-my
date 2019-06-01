@@ -90,12 +90,6 @@
               icon: '/img/b/nav/owner/b_nav_owner_table.png',
               url: `/b/${this.$route.params.shortId}/owner/table`
             },
-            // {
-            //   tag: 'order',
-            //   name: '顾客',
-            //   icon: '/img/b/nav/owner/b_nav_owner_user.png',
-            //   url: `/b/${this.$route.params.shortId}/owner/order`
-            // },
             {
               tag: 'queue',
               name: '排队',
@@ -107,6 +101,18 @@
               name: '预订',
               icon: '/img/b/nav/owner/b_nav_owner_reserve.png',
               url: `/b/${this.$route.params.shortId}/owner/reserve`
+            },
+            {
+              tag: 'wifi',
+              name: '无线',
+              icon: '/img/b/nav/owner/b_nav_owner_wifi.png',
+              url: `/b/${this.$route.params.shortId}/owner/wifi`
+            },
+            {
+              tag: 'coupon',
+              name: '外卖',
+              icon: '/img/b/nav/owner/b_nav_owner_take_out.png',
+              url: `/b/${this.$route.params.shortId}/owner/takeout`
             },
             {
               tag: 'coupon',
@@ -121,16 +127,22 @@
               url: `/b/${this.$route.params.shortId}/owner/pay`
             },
             {
-              tag: 'wifi',
-              name: '无线',
-              icon: '/img/b/nav/owner/b_nav_owner_wifi.png',
-              url: `/b/${this.$route.params.shortId}/owner/wifi`
-            },
-            {
               tag: 'role',
               name: '人事',
               icon: '/img/b/nav/owner/b_nav_owner_role.png',
               url: `/b/${this.$route.params.shortId}/owner/role`
+            },
+            {
+              tag: 'user',
+              name: '顾客',
+              icon: '/img/b/nav/owner/b_nav_owner_user.png',
+              url: `/b/${this.$route.params.shortId}/owner/user`
+            },
+            {
+              tag: 'charge',
+              name: '收益',
+              icon: '/img/b/nav/owner/b_nav_owner_charge.png',
+              url: `/b/${this.$route.params.shortId}/owner/charge`
             },
             {
               tag: 'captcha',
@@ -143,18 +155,6 @@
               name: '展屏',
               icon: '/img/b/nav/owner/b_nav_owner_tv.png',
               url: `/b/${this.$route.params.shortId}/tv`
-            },
-            {
-              tag: 'charge',
-              name: '收益',
-              icon: '/img/b/nav/owner/b_nav_owner_charge.png',
-              url: `/b/${this.$route.params.shortId}/owner/charge`
-            },
-            {
-              tag: 'coupon',
-              name: '外卖',
-              icon: '/img/b/nav/owner/b_nav_owner_take_out.png',
-              url: `/b/${this.$route.params.shortId}/owner/takeout`
             }
           ]
         },
