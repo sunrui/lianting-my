@@ -169,7 +169,7 @@
     created() {
       if (Boolean(this.$route.query.my)) {
         this.title.title = '我的留言墙'
-        this.title.backUri = `/c/${this.$route.params.shortId}/wall/history`
+        this.title.backUri = `/c/${this.$route.params.shortId}/me`
       } else {
         this.title.title = '留言墙'
       }
