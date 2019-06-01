@@ -77,7 +77,7 @@
           shop_license_label_normal: license.plan.licenseType === 'Lite' || license.plan.licenseType === 'Normal',
           shop_license_label_senior: license.plan.licenseType === 'Senior',
           shop_license_price_free: license.plan.licenseType === 'Free',
-          }">{{'￥' + license.plan.pricePerYear + '/没有年费'}}
+          }">{{'￥' + license.plan.pricePerYear + '/永久使用'}}
         </div>
 
         <div class="blank_10"></div>
