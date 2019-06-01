@@ -5,7 +5,7 @@ import {userApi} from '../api/local/userApi'
 import {cookieApi} from '../api/local/cookieApi'
 
 axios.defaults.withCredentials = true
-axios.defaults.timeout = 15 * 1000
+axios.defaults.timeout = 30 * 1000
 
 axios.interceptors.request.use((config) => {
   loadingApi.show()

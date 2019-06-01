@@ -44,7 +44,9 @@
                 getQueueNow(tableGroup).queueTicket.status === 'Wait' ? '排队中' : getQueueNow(tableGroup).queueTicket.status
                 }}
               </div>
-              <div class="queue_table_status_time">已等待{{elapsedTime(new Date().getTime() - getQueueNow(tableGroup).queueTicket.createdAt)}}</div>
+              <div class="queue_table_status_time">
+                {{getQueueWaitTime(getQueueNow(tableGroup).queueTicket)}}
+              </div>
             </div>
           </div>
 
@@ -92,7 +94,7 @@
   import {httpQueueAdminApi} from '../../../../../api/http/lt/httpQueueAdminApi'
   import {timeApi} from '../../../../../api/local/timeApi'
   import TitleBar from '../../../../../components/common/TitleBar'
-  import {httpNotifyAdminApi} from "../../../../../api/http/lt/httpNotifyAdminApi"
+  import {httpNotifyAdminApi} from '../../../../../api/http/lt/httpNotifyAdminApi'
 
   export default {
     metaInfo: {
@@ -186,6 +188,11 @@
         }
 
         return null
+      },
+      getQueueWaitTime(queueTicket) {
+        if (queueTicket.status === 'Now' || queueTicket.status === 'Wait') {
+          return '已等待 ' + elapsedTime(new Date().getTime() - queueTicket.createdAt)
+        }
       },
       btnRadio(tableFullNumber) {
         httpNotifyAdminApi.postRadio(this.$route.params.shortId, tableFullNumber, null).then(res => {
