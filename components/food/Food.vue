@@ -619,6 +619,7 @@
           this.ui.modalCategory.selectFood = foodCategory.foods[0]
           this.ui.modalCategory.selectEvent = event
 
+          scrollApi.enable(false)
           this.ui.vCart = false
           this.ui.vCoverMaskCart = true
           this.ui.vCategory = true
@@ -672,7 +673,6 @@
       },
       btnCategoryChoose(food) {
         this.ui.modalCategory.selectFood = food
-        scrollApi.enable(false)
       },
       btnCategoryConfirm() {
         scrollApi.enable(true)
