@@ -99,10 +99,10 @@
         })
       },
       btnOrder(date) {
-        if (this.ui.limit.licenseType || this.ui.limit.licenseExpiredAt) {
-          this.$router.push(`/b/${this.$route.params.shortId}/owner/limit`)
-          return
-        }
+        // if (this.ui.limit.licenseType || this.ui.limit.licenseExpiredAt) {
+          // this.$router.push(`/b/${this.$route.params.shortId}/owner/limit`)
+          // return
+        // }
 
         this.$router.push({
           path: `/b/${this.$route.params.shortId}/owner/order`,

@@ -148,8 +148,6 @@
           </div>
         </div>
 
-        <div class="blank_20"></div>
-
         <div class="modal_button_box">
           <div class="button_big" v-if="ui.selectPeople" @click="btnPeopleConfirm">选好了</div>
           <div class="button_big button_gray" v-else>选好了</div>
