@@ -37,7 +37,7 @@
         </div>
       </div>
 
-      <div class="empty_center" v-if="http.res.tableGroups.elements.length === 0">
+      <div class="empty_center" v-if="http.res.tableGroups.elements && http.res.tableGroups.elements.length === 0">
         <img class="empty_image" src="/img/no/no_table.png" alt="餐桌">
         <div class="empty_label">要添加餐桌组，请点击右上角 + 号。</div>
       </div>
@@ -46,7 +46,7 @@
           <div class="food_group_anchor" :id="tableGroup.id"></div>
           <div class="food_group_name" @click="btnGroupEdit(tableGroup)">{{tableGroup.name}}</div>
           <div class="food_group_private_room" v-if="tableGroup.privateRoom">包间</div>
-          <div class="food_group_count">({{tableGroup.tableOnes.length}})</div>
+          <div class="food_group_count">({{tableGroup.tableOnes ? tableGroup.tableOnes.length : 0}})</div>
           <div class="food_group_right"><span class="food_group_right_remark">{{tableGroup.remark}}</span> <span class="food_group_right_people">({{tableGroup.minPeople + '-' + tableGroup.maxPeople + '人'}})</span></div>
         </div>
 
@@ -60,7 +60,7 @@
             <div class="table_remark">{{table.remark}}</div>
           </div>
 
-          <div class="blank_10" v-if="index !== tableGroup.tableOnes.length - 1"></div>
+          <div class="blank_10" v-if="index !== tableGroup.tableOnes ? tableGroup.tableOnes.length - 1 : 0"></div>
         </div>
 
         <div class="box">

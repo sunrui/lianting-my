@@ -19,7 +19,7 @@
 
       <div class="menu_box">
         <div class="menu">
-          <div class="menu_item" v-if="foodGroup.foodCategories.length > 0" v-for="(foodGroup, index) in http.res.foodGroups.elements">
+          <div class="menu_item" v-if="foodGroup.foodCategories && foodGroup.foodCategories.length > 0" v-for="(foodGroup, index) in http.res.foodGroups.elements">
             <div :id="'menu_' + foodGroup.id"
                  :class="{menu_item_href:!isSelectMenu(foodGroup.id), menu_item_href_select:isSelectMenu(foodGroup.id)}"
                  @click="selectMenu(index, foodGroup.id, false)">

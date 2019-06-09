@@ -59,7 +59,7 @@
           <div class="food_group_anchor" :id="tableGroup.id"></div>
           <div class="food_group_name">{{tableGroup.name}}</div>
           <div class="food_group_private_room" v-if="tableGroup.privateRoom">包间</div>
-          <div class="food_group_count">({{tableGroup.tableOnes.length}})</div>
+          <div class="food_group_count">({{tableGroup.tableOnes ? tableGroup.tableOnes.length : 0}})</div>
           <div class="food_group_right"><span class="food_group_right_remark">{{tableGroup.remark}}</span> <span class="food_group_right_people">({{tableGroup.minPeople + '-' + tableGroup.maxPeople + '人'}})</span></div>
         </div>
 
@@ -71,7 +71,7 @@
 
             <div @click="btnTable(table)">
               <div class="table_number">{{table.fullNumber}}</div>
-              <div class="table_idle" v-if="getTableOrder(table).length === 0"></div>
+              <div class="table_idle" v-if="getTableOrder(table) && getTableOrder(table).length === 0"></div>
               <div class="table_busy" v-else>
                 <div class="table_time">
                   <div class="table_one">
@@ -100,7 +100,7 @@
               </div>
             </div>
           </div>
-          <div class="blank_10" v-if="index !== tableGroup.tableOnes.length - 1"></div>
+          <div class="blank_10" v-if="index !== tableGroup.tableOnes ? tableGroup.tableOnes.length - 1 : 0"></div>
         </div>
       </div>
 
@@ -244,7 +244,7 @@
       },
       httpTableGroup() {
         httpTableApi.getGroupAll(this.$route.params.shortId, 0, 99).then(res => {
-          if (res.elements.length > 0) {
+          if (res.elements && res.elements.length > 0) {
             this.ui.selectMenuId = res.elements[0].id
           } else {
             this.$router.push(`/b/${this.$route.params.shortId}/${this.role}/table/empty`)
@@ -425,7 +425,7 @@
       },
       btnTable(table) {
         if (this.role !== 'waiter') {
-          if (this.getTableOrder(table).length > 0) {
+          if (this.getTableOrder(table) && this.getTableOrder(table).length > 0) {
             this.btnTableOrder(table)
           } else {
             this.$msgBox.doModal({
@@ -483,7 +483,7 @@
             return
           }
 
-          if (res.elements.length === 1) {
+          if (res.elements && res.elements.length === 1) {
             this.$router.push(`/b/${this.$route.params.shortId}/${this.role}/order/${res.elements[0].id}`)
             return
           }
