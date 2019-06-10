@@ -567,7 +567,7 @@
           for (let index in this.http.res.order.orderFoods) {
             let orderFood = this.http.res.order.orderFoods[index]
 
-            if (Boolean(orderFood.cookedAt)) {
+            if (orderFood.status === 'Cooked') {
               addFood(orderFood)
             }
           }
@@ -575,7 +575,7 @@
           for (let index in this.http.res.order.orderFoods) {
             let orderFood = this.http.res.order.orderFoods[index]
 
-            if (Boolean(orderFood.cookingAt)) {
+            if (orderFood.status === 'Cooking') {
               addFood(orderFood)
             }
           }
@@ -583,7 +583,15 @@
           for (let index in this.http.res.order.orderFoods) {
             let orderFood = this.http.res.order.orderFoods[index]
 
-            if (Boolean(orderFood.finishAt)) {
+            if (orderFood.status === 'Wait') {
+              addFood(orderFood)
+            }
+          }
+
+          for (let index in this.http.res.order.orderFoods) {
+            let orderFood = this.http.res.order.orderFoods[index]
+
+            if (orderFood.status === 'Finish') {
               addFood(orderFood)
             }
           }

@@ -65,7 +65,7 @@
     props: {
       date: {
         type: Number,
-        default: new Date().getTime()
+        default: null
       },
       role: {
         type: String,
