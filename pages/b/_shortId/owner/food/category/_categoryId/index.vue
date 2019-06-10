@@ -159,7 +159,8 @@
       </div>
 
       <div class="modal_button_box">
-        <div class="button_big" @click="btnFoodAddConfirm">确定</div>
+        <div class="button_big" v-if="ui.food.name && ui.food.price !== undefined && ui.food.price !== null" @click="btnFoodAddConfirm">确定</div>
+        <div class="button_big button_gray" v-else>确定</div>
       </div>
     </div>
   </div>
@@ -290,7 +291,8 @@
           return
         }
 
-        if (!Boolean(this.ui.food.price)) {
+
+        if (this.ui.food.price === null || this.ui.food.price === undefined) {
           this.$msgBox.doModal({
             type: 'yes',
             title: '添加价格',
@@ -314,7 +316,7 @@
           }
         }
 
-        if (!Boolean(this.ui.food.originalPrice)) {
+        if (this.ui.food.originalPrice === null || this.ui.food.originalPrice === undefined) {
           this.ui.food.originalPrice = this.ui.food.price
         }
 
