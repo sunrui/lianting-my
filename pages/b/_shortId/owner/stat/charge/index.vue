@@ -94,7 +94,7 @@
         })
       },
       httpStatOrder() {
-        httpStatAdminApi.getOrder(this.$route.params.shortId, 0, 90).then(res => {
+        httpStatAdminApi.getOrder(this.$route.params.shortId, 0, 200).then(res => {
           this.http.res.statOrder = res
         })
       },

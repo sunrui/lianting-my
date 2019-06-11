@@ -80,7 +80,7 @@
         })
       },
       httpStatFood() {
-        httpStatAdminApi.getFood(this.$route.params.shortId, 0, 90).then(res => {
+        httpStatAdminApi.getFood(this.$route.params.shortId, 0, 200).then(res => {
           this.http.res.statFood = res
         })
       }
