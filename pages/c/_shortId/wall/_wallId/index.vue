@@ -67,7 +67,7 @@
             </div>
             <div class="wall_user_info_title">
               <div class="wall_user_info_nick" @click="btnUser(reply.userId)">{{getWechatNick(reply.userId)}}</div>
-              <div class="wall_order_time">{{new Date(parseInt(http.res.wall.createdAt)).toLocaleString()}}</div>
+              <div class="wall_order_time">{{new Date(parseInt(reply.createdAt)).toLocaleString()}}</div>
             </div>
             <div class="wall_user_reply_content">{{reply.message}}</div>
           </div>
