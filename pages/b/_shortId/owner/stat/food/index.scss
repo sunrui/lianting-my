@@ -51,22 +51,8 @@
     text-overflow: ellipsis;
   }
 
-  .charge_body_content_price {
-    display: inline-block;
-    vertical-align: middle;
-    font-size: px2rem(24);
-    color: #f52626;
-    line-height: px2rem(50);
-  }
-
-  .charge_body_content_price:before {
-    display: inline-block;
-    vertical-align: middle;
-    content: "¥";
-    font-size: px2rem(24);
-    color: #f52626;
-    margin-right: px2rem(5);
-    line-height: px2rem(50);
+  .charge_body_content_one_select {
+    color: #f52626 !important;
   }
 }
 

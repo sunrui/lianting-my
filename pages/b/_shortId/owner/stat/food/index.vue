@@ -8,22 +8,36 @@
         <div class="charge_body box_radius_footer">
           <div class="blank_40"></div>
 
+          <div v-show="ui.statFoodCategories.length > 0">
+            <canvas id="foodCategoryChart"></canvas>
+            <div class="blank_40"></div>
+          </div>
+
           <div class="charge_body_title">
             <div class="charge_body_title_one">交易日期</div>
-            <div class="charge_body_title_one">餐食名称</div>
+            <div class="charge_body_title_one">餐食种类</div>
             <div class="charge_body_title_one">售卖份数</div>
           </div>
 
           <div class="box_divide"></div>
 
-          <div v-if="http.res.statFood.elements.length > 0">
-            <div v-for="statFood in http.res.statFood.elements">
-              <div class="charge_body_content">
-                <div class="charge_body_content_one">{{getDate(statFood.date)}}</div>
-                <div class="charge_body_content_one">{{statFood.foodCategoryName}}</div>
-                <div class="charge_body_content_one">{{statFood.totalFoodCategory}}</div>
+          <div v-if="ui.statFoodCategories.length > 0">
+            <div v-for="statFoodCategory in ui.statFoodCategories">
+              <div class="charge_body_content" @click="btnChooseStatFoodCategory(statFoodCategory)">
+                <div class="charge_body_content_one" v-bind:class="{
+                charge_body_content_one_select: ui.selectStatFoodCategory === statFoodCategory
+                }">{{getDate(statFoodCategory.date)}}
+                </div>
+                <div class="charge_body_content_one" v-bind:class="{
+                     charge_body_content_one_select: ui.selectStatFoodCategory === statFoodCategory
+                     }">{{statFoodCategory.foodCategories.length}}
+                </div>
+                <div class="charge_body_content_one" v-bind:class="{
+                     charge_body_content_one_select: ui.selectStatFoodCategory === statFoodCategory
+                     }">{{statFoodCategory.totalFoodCategory}}
+                </div>
               </div>
-              <div class="box_divide" v-if="statFood !== http.res.statFood.elements[http.res.statFood.elements.length - 1]"></div>
+              <div class="box_divide" v-if="statFoodCategory !== ui.statFoodCategories[ui.statFoodCategories.length - 1]"></div>
             </div>
             <div class="charge_footer"></div>
           </div>
@@ -33,6 +47,7 @@
     </div>
 
     <div class="blank_30"></div>
+
   </div>
 </template>
 
@@ -40,7 +55,6 @@
   import TitleBar from '../../../../../../components/common/TitleBar'
   import {httpStatAdminApi} from '../../../../../../api/http/lt/httpStatAdminApi'
   import {timeApi} from '../../../../../../api/local/timeApi'
-  import {httpShopApi} from '../../../../../../api/http/shop/httpShopApi'
 
   export default {
     metaInfo: {
@@ -58,31 +72,112 @@
           imageHeight: 300
         },
         http: {
-          res: {
-            statFood: {
-              elements: []
-            }
+          res: {}
+        },
+        ui: {
+          statFoodCategories: [],
+          selectStatFoodCategory: {},
+          chart: {
+            'type': 'line',
+            'data': {
+              'labels': [],
+              'datasets': [{
+                'label': '',
+                'data': [],
+                'fill': false,
+                'backgroundColor': [
+                  'rgba(255, 99, 132, 0.2)', 'rgba(255, 159, 64, 0.2)', 'rgba(255, 205, 86, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(153, 102, 255, 0.2)', 'rgba(201, 203, 207, 0.2)',
+                  'rgba(255, 99, 132, 0.2)', 'rgba(255, 159, 64, 0.2)', 'rgba(255, 205, 86, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(153, 102, 255, 0.2)', 'rgba(201, 203, 207, 0.2)',
+                  'rgba(255, 99, 132, 0.2)', 'rgba(255, 159, 64, 0.2)', 'rgba(255, 205, 86, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(153, 102, 255, 0.2)', 'rgba(201, 203, 207, 0.2)',
+                  'rgba(255, 99, 132, 0.2)', 'rgba(255, 159, 64, 0.2)', 'rgba(255, 205, 86, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(153, 102, 255, 0.2)', 'rgba(201, 203, 207, 0.2)'],
+                'borderColor': ['rgb(255, 99, 132)', 'rgb(255, 159, 64)', 'rgb(255, 205, 86)', 'rgb(75, 192, 192)', 'rgb(54, 162, 235)', 'rgb(153, 102, 255)', 'rgb(201, 203, 207)',
+                  'rgb(255, 99, 132)', 'rgb(255, 159, 64)', 'rgb(255, 205, 86)', 'rgb(75, 192, 192)', 'rgb(54, 162, 235)', 'rgb(153, 102, 255)', 'rgb(201, 203, 207)',
+                  'rgb(255, 99, 132)', 'rgb(255, 159, 64)', 'rgb(255, 205, 86)', 'rgb(75, 192, 192)', 'rgb(54, 162, 235)', 'rgb(153, 102, 255)', 'rgb(201, 203, 207)',
+                  'rgb(255, 99, 132)', 'rgb(255, 159, 64)', 'rgb(255, 205, 86)', 'rgb(75, 192, 192)', 'rgb(54, 162, 235)', 'rgb(153, 102, 255)', 'rgb(201, 203, 207)',
+                  'rgb(255, 99, 132)', 'rgb(255, 159, 64)', 'rgb(255, 205, 86)', 'rgb(75, 192, 192)', 'rgb(54, 162, 235)', 'rgb(153, 102, 255)', 'rgb(201, 203, 207)'],
+                'borderWidth': 1
+              }]
+            },
+            'options': {'scales': {'yAxes': [{'ticks': {'beginAtZero': true}}]}}
           }
         }
       }
     },
     created() {
-      this.httpShop()
-      this.httpStatFood()
+      this.httpStatFoodCategory(0)
+    },
+    mounted() {
+      this.refreshCharts()
     },
     methods: {
       getDate(date) {
         return timeApi.dateFormat(new Date(parseInt(date)), 'yyyy/MM/dd')
       },
-      httpShop() {
-        httpShopApi.getOne(this.$route.params.shortId).then(res => {
-          this.ui.limit.licenseType = (res.licenseType !== 'Lite' && res.licenseType !== 'Normal' && res.licenseType !== 'Senior')
+      refreshCharts() {
+        let Chart = require('chart.js')
+        new Chart(document.getElementById('foodCategoryChart'), this.ui.chart)
+      },
+      addFoodCategory(foodCategory) {
+        let statFoodCategoryOne = null
+
+        for (let foodCategoryIndex in this.ui.statFoodCategories) {
+          let statFoodCategory = this.ui.statFoodCategories[foodCategoryIndex]
+
+          if (statFoodCategory.date === foodCategory.date) {
+            statFoodCategoryOne = statFoodCategory
+            break
+          }
+        }
+
+        if (statFoodCategoryOne === null) {
+          statFoodCategoryOne = {
+            date: foodCategory.date,
+            foodCategories: [],
+            totalFoodCategory: 0
+          }
+
+          this.ui.statFoodCategories.push(statFoodCategoryOne)
+        }
+
+        statFoodCategoryOne.foodCategories.push(foodCategory)
+
+        let totalFoodCategory = 0
+        for (let foodCategoryIndex in statFoodCategoryOne.foodCategories) {
+          let foodCategory = statFoodCategoryOne.foodCategories[foodCategoryIndex]
+          totalFoodCategory += foodCategory.totalFoodCategory
+        }
+        statFoodCategoryOne.totalFoodCategory = totalFoodCategory
+      },
+      httpStatFoodCategory(page) {
+        httpStatAdminApi.getFood(this.$route.params.shortId, page, 99).then(res => {
+          for (let foodCategoryIndex in res.elements) {
+            let foodCategory = res.elements[foodCategoryIndex]
+            this.addFoodCategory(foodCategory)
+          }
+
+          if (res.currentPageSize > 0) {
+            this.httpStatFoodCategory(page + 1)
+          } else {
+            if (this.ui.statFoodCategories.length > 0) {
+              this.btnChooseStatFoodCategory(this.ui.statFoodCategories[0])
+            }
+          }
         })
       },
-      httpStatFood() {
-        httpStatAdminApi.getFood(this.$route.params.shortId, 0, 200).then(res => {
-          this.http.res.statFood = res
-        })
+      btnChooseStatFoodCategory(statFoodCategory) {
+        this.ui.selectStatFoodCategory = statFoodCategory
+        this.ui.chart.data.datasets[0].label = this.getDate(statFoodCategory.date)
+        this.ui.chart.data.datasets[0].data = []
+        this.ui.chart.data.labels = []
+
+        for (let foodCategoryIndex in this.ui.selectStatFoodCategory.foodCategories) {
+          let foodCategory = this.ui.selectStatFoodCategory.foodCategories[foodCategoryIndex]
+
+          this.ui.chart.data.labels.push(foodCategory.foodCategoryName)
+          this.ui.chart.data.datasets[0].data.push(foodCategory.totalFoodCategory)
+        }
+
+        this.refreshCharts()
       }
     }
   }

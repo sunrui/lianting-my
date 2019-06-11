@@ -8,6 +8,11 @@
         <div class="charge_body box_radius_footer">
           <div class="blank_40"></div>
 
+          <div v-show="http.res.statOrder.elements.length > 0">
+            <canvas id="chargeChart"></canvas>
+            <div class="blank_40"></div>
+          </div>
+
           <div class="charge_body_title">
             <div class="charge_body_title_one">交易日期</div>
             <div class="charge_body_title_one">成交订单</div>
@@ -39,10 +44,10 @@
 </template>
 
 <script>
-  import TitleBar from "../../../../../../components/common/TitleBar"
-  import {httpStatAdminApi} from "../../../../../../api/http/lt/httpStatAdminApi"
-  import {timeApi} from "../../../../../../api/local/timeApi"
-  import {httpShopApi} from "../../../../../../api/http/shop/httpShopApi"
+  import TitleBar from '../../../../../../components/common/TitleBar'
+  import {httpStatAdminApi} from '../../../../../../api/http/lt/httpStatAdminApi'
+  import {timeApi} from '../../../../../../api/local/timeApi'
+  import {httpShopApi} from '../../../../../../api/http/shop/httpShopApi'
 
   export default {
     metaInfo: {
@@ -70,6 +75,44 @@
           limit: {
             licenseType: true,
             licenseExpiredAt: true,
+          },
+          chart: {
+            'type': 'line',
+            'data': {
+              'labels': [],
+              'datasets': [{
+                'label': '',
+                'data': [],
+                'fill': false,
+                'backgroundColor': [
+                  'rgba(255, 99, 132, 0.2)', 'rgba(255, 159, 64, 0.2)', 'rgba(255, 205, 86, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(153, 102, 255, 0.2)', 'rgba(201, 203, 207, 0.2)',
+                  'rgba(255, 99, 132, 0.2)', 'rgba(255, 159, 64, 0.2)', 'rgba(255, 205, 86, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(153, 102, 255, 0.2)', 'rgba(201, 203, 207, 0.2)',
+                  'rgba(255, 99, 132, 0.2)', 'rgba(255, 159, 64, 0.2)', 'rgba(255, 205, 86, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(153, 102, 255, 0.2)', 'rgba(201, 203, 207, 0.2)',
+                  'rgba(255, 99, 132, 0.2)', 'rgba(255, 159, 64, 0.2)', 'rgba(255, 205, 86, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(153, 102, 255, 0.2)', 'rgba(201, 203, 207, 0.2)'],
+                'borderColor': ['rgb(255, 99, 132)', 'rgb(255, 159, 64)', 'rgb(255, 205, 86)', 'rgb(75, 192, 192)', 'rgb(54, 162, 235)', 'rgb(153, 102, 255)', 'rgb(201, 203, 207)',
+                  'rgb(255, 99, 132)', 'rgb(255, 159, 64)', 'rgb(255, 205, 86)', 'rgb(75, 192, 192)', 'rgb(54, 162, 235)', 'rgb(153, 102, 255)', 'rgb(201, 203, 207)',
+                  'rgb(255, 99, 132)', 'rgb(255, 159, 64)', 'rgb(255, 205, 86)', 'rgb(75, 192, 192)', 'rgb(54, 162, 235)', 'rgb(153, 102, 255)', 'rgb(201, 203, 207)',
+                  'rgb(255, 99, 132)', 'rgb(255, 159, 64)', 'rgb(255, 205, 86)', 'rgb(75, 192, 192)', 'rgb(54, 162, 235)', 'rgb(153, 102, 255)', 'rgb(201, 203, 207)',
+                  'rgb(255, 99, 132)', 'rgb(255, 159, 64)', 'rgb(255, 205, 86)', 'rgb(75, 192, 192)', 'rgb(54, 162, 235)', 'rgb(153, 102, 255)', 'rgb(201, 203, 207)'],
+                'borderWidth': 1
+              }, {
+                'label': '',
+                'data': [],
+                'fill': false,
+                'backgroundColor': [
+                  'rgba(255, 99, 132, 0.2)', 'rgba(255, 159, 64, 0.2)', 'rgba(255, 205, 86, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(153, 102, 255, 0.2)', 'rgba(201, 203, 207, 0.2)',
+                  'rgba(255, 99, 132, 0.2)', 'rgba(255, 159, 64, 0.2)', 'rgba(255, 205, 86, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(153, 102, 255, 0.2)', 'rgba(201, 203, 207, 0.2)',
+                  'rgba(255, 99, 132, 0.2)', 'rgba(255, 159, 64, 0.2)', 'rgba(255, 205, 86, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(153, 102, 255, 0.2)', 'rgba(201, 203, 207, 0.2)',
+                  'rgba(255, 99, 132, 0.2)', 'rgba(255, 159, 64, 0.2)', 'rgba(255, 205, 86, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(153, 102, 255, 0.2)', 'rgba(201, 203, 207, 0.2)'],
+                'borderColor': ['rgb(255, 99, 132)', 'rgb(255, 159, 64)', 'rgb(255, 205, 86)', 'rgb(75, 192, 192)', 'rgb(54, 162, 235)', 'rgb(153, 102, 255)', 'rgb(201, 203, 207)',
+                  'rgb(255, 99, 132)', 'rgb(255, 159, 64)', 'rgb(255, 205, 86)', 'rgb(75, 192, 192)', 'rgb(54, 162, 235)', 'rgb(153, 102, 255)', 'rgb(201, 203, 207)',
+                  'rgb(255, 99, 132)', 'rgb(255, 159, 64)', 'rgb(255, 205, 86)', 'rgb(75, 192, 192)', 'rgb(54, 162, 235)', 'rgb(153, 102, 255)', 'rgb(201, 203, 207)',
+                  'rgb(255, 99, 132)', 'rgb(255, 159, 64)', 'rgb(255, 205, 86)', 'rgb(75, 192, 192)', 'rgb(54, 162, 235)', 'rgb(153, 102, 255)', 'rgb(201, 203, 207)',
+                  'rgb(255, 99, 132)', 'rgb(255, 159, 64)', 'rgb(255, 205, 86)', 'rgb(75, 192, 192)', 'rgb(54, 162, 235)', 'rgb(153, 102, 255)', 'rgb(201, 203, 207)'],
+                'borderWidth': 1
+              }]
+            },
+            'options': {'scales': {'yAxes': [{'ticks': {'beginAtZero': true}}]}}
           }
         }
       }
@@ -85,7 +128,7 @@
       },
       httpShop() {
         httpShopApi.getOne(this.$route.params.shortId).then(res => {
-          this.ui.limit.licenseType = (res.licenseType !== 'Lite' && res.licenseType !== 'Normal' && res.licenseType !== 'Senior');
+          this.ui.limit.licenseType = (res.licenseType !== 'Lite' && res.licenseType !== 'Normal' && res.licenseType !== 'Senior')
         })
       },
       httpShopLicenseExpiredAt() {
@@ -93,15 +136,41 @@
           this.ui.limit.licenseExpiredAt = res.licenseExpiredAt < new Date().getTime()
         })
       },
+      refreshCharts() {
+        let Chart = require('chart.js')
+        new Chart(document.getElementById('chargeChart'), this.ui.chart)
+      },
       httpStatOrder() {
         httpStatAdminApi.getOrder(this.$route.params.shortId, 0, 200).then(res => {
+          this.ui.chart.data.datasets[0].label = '订单'
+          this.ui.chart.data.datasets[0].data = []
+          this.ui.chart.data.labels = []
+
+          for (let statChargeIndex in res.elements) {
+            let statCharge = res.elements[statChargeIndex]
+
+            this.ui.chart.data.labels.push(this.getDate(statCharge.date))
+            this.ui.chart.data.datasets[0].data.push(statCharge.totalOrder)
+          }
+
+          this.ui.chart.data.datasets[1].label = '人数'
+          this.ui.chart.data.datasets[1].data = []
+
+          for (let statChargeIndex in res.elements) {
+            let statCharge = res.elements[statChargeIndex]
+
+            this.ui.chart.data.datasets[1].data.push(statCharge.totalPeople)
+          }
+
+          this.refreshCharts()
+
           this.http.res.statOrder = res
         })
       },
       btnOrder(date) {
         // if (this.ui.limit.licenseType || this.ui.limit.licenseExpiredAt) {
-          // this.$router.push(`/b/${this.$route.params.shortId}/owner/limit`)
-          // return
+        // this.$router.push(`/b/${this.$route.params.shortId}/owner/limit`)
+        // return
         // }
 
         this.$router.push({
