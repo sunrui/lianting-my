@@ -4,6 +4,7 @@
 
     <scroller class="scroller"
               ref="order"
+              noDataText=""
               :on-infinite="onInfinite">
       <div class="box" v-for="order in ui.scroller.elements">
         <div class="list_title box_radius_header">
@@ -108,8 +109,9 @@
           }
 
           this.ui.scroller.elements = this.ui.scroller.elements.concat(res.elements)
-          this.ui.scroller.page++
         })
+
+        this.ui.scroller.page++
       },
       getFoodContent(order) {
         let detail = ''

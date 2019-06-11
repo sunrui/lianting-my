@@ -3,6 +3,7 @@
     <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
     <scroller class="scroller"
+              noDataText=""
               ref="queue"
               :on-infinite="onInfinite">
       <div class="box" v-for="history in ui.scroller.elements">
@@ -89,8 +90,9 @@
           }
 
           this.ui.scroller.elements = this.ui.scroller.elements.concat(res.elements)
-          this.ui.scroller.page++
         })
+
+        this.ui.scroller.page++
       },
       onInfinite(done) {
         if (!this.ui.scroller.haveMore) {

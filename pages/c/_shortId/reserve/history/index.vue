@@ -3,6 +3,7 @@
     <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
     <scroller class="scroller"
+              noDataText=""
               ref="reserve"
               :on-infinite="onInfinite">
       <div class="box" v-for="reserve in ui.scroller.elements">
@@ -126,8 +127,9 @@
           }
 
           this.ui.scroller.elements = this.ui.scroller.elements.concat(res.elements)
-          this.ui.scroller.page++
         })
+
+        this.ui.scroller.page++
       },
       btnReserve(reserve) {
         this.$router.push(`/c/${this.$route.params.shortId}/reserve/${reserve.id}`)

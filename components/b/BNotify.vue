@@ -3,6 +3,7 @@
     <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
     <scroller class="scroller"
+              noDataText=""
               ref="bNotifyScroller"
               :on-infinite="onInfinite">
       <div v-for="notifyOrder in ui.scroller.elements">
@@ -119,8 +120,9 @@
           }
 
           this.ui.scroller.elements = this.ui.scroller.elements.concat(res.elements)
-          this.ui.scroller.page++
         })
+
+        this.ui.scroller.page++
       },
       btnOrder(orderOneId) {
         this.$router.push(`/b/${this.$route.params.shortId}/${this.role}/order/${orderOneId}`)
