@@ -18,5 +18,13 @@ export const httpStatAdminApi = {
         size: size
       }
     }).then(res => res.data)
+  },
+  getFood(shortId, page, size) {
+    return axios.get(`${base}/${shortId}/stat/food`,{
+      params: {
+        page: page,
+        size: size
+      }
+    }).then(res => res.data)
   }
 }

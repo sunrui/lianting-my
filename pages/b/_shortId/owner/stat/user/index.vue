@@ -43,15 +43,15 @@
 </template>
 
 <script>
-  import TitleBar from '../../../../../components/common/TitleBar'
-  import {httpStatAdminApi} from '../../../../../api/http/lt/httpStatAdminApi'
-  import {timeApi} from '../../../../../api/local/timeApi'
-  import {httpShopApi} from '../../../../../api/http/shop/httpShopApi'
-  import {httpUserApi} from '../../../../../api/http/user/httpUserApi'
+  import TitleBar from '../../../../../../components/common/TitleBar'
+  import {httpStatAdminApi} from '../../../../../../api/http/lt/httpStatAdminApi'
+  import {timeApi} from '../../../../../../api/local/timeApi'
+  import {httpShopApi} from '../../../../../../api/http/shop/httpShopApi'
+  import {httpUserApi} from '../../../../../../api/http/user/httpUserApi'
 
   export default {
     metaInfo: {
-      title: '顾客'
+      title: '顾客统计'
     },
     middleware: 'auth',
     components: {TitleBar},
@@ -59,8 +59,8 @@
       return {
         title: {
           canBack: true,
-          title: '顾客',
-          backUri: `/b/${this.$route.params.shortId}/owner`,
+          title: '顾客统计',
+          backUri: `/b/${this.$route.params.shortId}/owner/stat`,
           theme: 'image',
           imageHeight: 300
         },

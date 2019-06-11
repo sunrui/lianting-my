@@ -1,0 +1,83 @@
+.charge {
+  position: relative;
+  margin-top: px2rem(30);
+}
+
+.charge_header {
+  height: px2rem(24);
+  border-radius: px2rem(12);
+  background: #b2b8c6;
+}
+
+.charge_body {
+  background: white;
+  margin-top: px2rem(-12);
+  margin-left: px2rem(15);
+  margin-right: px2rem(15);
+  padding: 0 px2rem(20);
+}
+
+.charge_body_title {
+  height: px2rem(50);
+
+  .charge_body_title_one {
+    display: inline-block;
+    vertical-align: middle;
+    float: left;
+    text-align: center;
+    font-size: px2rem(28);
+    color: #333333;
+    font-weight: 400;
+    width: 33.33%;
+  }
+}
+
+.charge_body_content {
+  height: px2rem(50);
+
+  .charge_body_content_one {
+    display: inline-block;
+    vertical-align: middle;
+    float: left;
+    text-align: center;
+    font-size: px2rem(24);
+    color: #666666;
+    font-weight: 400;
+    width: 33.33%;
+    line-height: px2rem(50);
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .charge_body_content_price {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: px2rem(24);
+    color: #f52626;
+    line-height: px2rem(50);
+  }
+
+  .charge_body_content_price:before {
+    display: inline-block;
+    vertical-align: middle;
+    content: "¥";
+    font-size: px2rem(24);
+    color: #f52626;
+    margin-right: px2rem(5);
+    line-height: px2rem(50);
+  }
+}
+
+.charge_empty {
+  height: px2rem(200);
+  color: #999999;
+  text-align: center;
+  line-height: px2rem(200);
+  font-size: px2rem(28);
+}
+
+.charge_footer {
+  height: px2rem(10);
+}

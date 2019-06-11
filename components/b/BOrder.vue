@@ -100,7 +100,7 @@
         let live = (this.role !== 'admin')
 
         if (Boolean(tableOneId)) {
-          httpOrderAdminApi.getAllByTableOneId(this.$route.params.shortId, tableOneId, live, this.ui.scroller.page++, 5).then(res => {
+          httpOrderAdminApi.getAllByTableOneId(this.$route.params.shortId, tableOneId, live, this.ui.scroller.page, 5).then(res => {
             if (done) {
               done()
             }
@@ -115,13 +115,14 @@
             }
 
             this.ui.scroller.elements = this.ui.scroller.elements.concat(res.elements)
+            this.ui.scroller.page++
 
             this.ui.scroller.elements.sort(function (a, b) {
               return b.createdAt - a.createdAt
             })
           })
         } else if (this.date) {
-          httpOrderAdminApi.getAllByDate(this.$route.params.shortId, this.date, this.ui.scroller.page++, 5).then(res => {
+          httpOrderAdminApi.getAllByDate(this.$route.params.shortId, this.date, this.ui.scroller.page, 5).then(res => {
             if (done) {
               done()
             }
@@ -136,13 +137,14 @@
             }
 
             this.ui.scroller.elements = this.ui.scroller.elements.concat(res.elements)
+            this.ui.scroller.page++
 
             this.ui.scroller.elements.sort(function (a, b) {
               return b.createdAt - a.createdAt
             })
           })
         } else {
-          httpOrderAdminApi.getAll(this.$route.params.shortId, live, this.ui.scroller.page++, 5).then(res => {
+          httpOrderAdminApi.getAll(this.$route.params.shortId, live, this.ui.scroller.page, 5).then(res => {
             if (done) {
               done()
             }
@@ -157,6 +159,7 @@
             }
 
             this.ui.scroller.elements = this.ui.scroller.elements.concat(res.elements)
+            this.ui.scroller.page++
 
             this.ui.scroller.elements.sort(function (a, b) {
               return b.createdAt - a.createdAt

@@ -98,7 +98,7 @@
     },
     methods: {
       httpOrder(done) {
-        httpOrderAdminApi.getTakeOut(this.$route.params.shortId, this.ui.scroller.page++, 5).then(res => {
+        httpOrderAdminApi.getTakeOut(this.$route.params.shortId, this.ui.scroller.page, 5).then(res => {
           if (done) {
             done()
           }
@@ -114,6 +114,7 @@
           }
 
           this.ui.scroller.elements = this.ui.scroller.elements.concat(res.elements)
+          this.ui.scroller.page++
 
           this.ui.scroller.elements.sort(function (a, b) {
             return b.createdAt - a.createdAt

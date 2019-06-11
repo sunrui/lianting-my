@@ -117,7 +117,7 @@
         }
       },
       httpReserveDay(done) {
-        httpReserveAdminApi.getDay(this.$route.params.shortId, this.$route.query.timeStamp, this.ui.scroller.page++, 5).then(res => {
+        httpReserveAdminApi.getDay(this.$route.params.shortId, this.$route.query.timeStamp, this.ui.scroller.page, 5).then(res => {
           if (done) {
             done()
           }
@@ -133,6 +133,7 @@
           }
 
           this.ui.scroller.elements = this.ui.scroller.elements.concat(res.elements)
+          this.ui.scroller.page++
 
           this.ui.scroller.elements.sort(function (a, b) {
             return a.date - b.date

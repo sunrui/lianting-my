@@ -92,7 +92,7 @@
         let live = this.$route.query.live
         this.title.title = live ? '实时订单' : '我的订单'
 
-        httpOrderApi.getAll(this.$route.params.shortId, live, this.ui.scroller.page++, 5).then(res => {
+        httpOrderApi.getAll(this.$route.params.shortId, live, this.ui.scroller.page, 5).then(res => {
           if (done) {
             done()
           }
@@ -108,6 +108,7 @@
           }
 
           this.ui.scroller.elements = this.ui.scroller.elements.concat(res.elements)
+          this.ui.scroller.page++
         })
       },
       getFoodContent(order) {

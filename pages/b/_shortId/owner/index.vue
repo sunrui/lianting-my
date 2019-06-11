@@ -132,18 +132,12 @@
               icon: '/img/b/nav/owner/b_nav_owner_role.png',
               url: `/b/${this.$route.params.shortId}/owner/role`
             },
-            {
-              tag: 'user',
-              name: '顾客',
-              icon: '/img/b/nav/owner/b_nav_owner_user.png',
-              url: `/b/${this.$route.params.shortId}/owner/user`
-            },
-            {
-              tag: 'charge',
-              name: '收益',
-              icon: '/img/b/nav/owner/b_nav_owner_charge.png',
-              url: `/b/${this.$route.params.shortId}/owner/charge`
-            },
+            // {
+            //   tag: 'user',
+            //   name: '顾客',
+            //   icon: '/img/b/nav/owner/b_nav_owner_user.png',
+            //   url: `/b/${this.$route.params.shortId}/owner/user`
+            // },
             {
               tag: 'captcha',
               name: '二维码',
@@ -151,17 +145,22 @@
               url: `/b/${this.$route.params.shortId}/owner/captcha`
             },
             {
+              tag: 'stat',
+              name: '统计',
+              icon: '/img/b/nav/owner/b_nav_owner_stat.png',
+              url: `/b/${this.$route.params.shortId}/owner/stat`
+            },
+            {
               tag: 'tv',
               name: '展屏',
               icon: '/img/b/nav/owner/b_nav_owner_tv.png',
               url: `/b/${this.$route.params.shortId}/tv`
-            }
+            },
           ]
         },
         http: {
           res: {
-            shop: {
-            },
+            shop: {},
             licenseExpiredAt: new Date().getTime(),
             info: {}
           }
@@ -198,7 +197,7 @@
       },
       getExpiredContent() {
         // if (this.http.res.shop.licenseType === 'Free') {
-          return '服务于 ' + new Date(parseInt(this.http.res.shop.createdAt)).toLocaleDateString()
+        return '服务于 ' + new Date(parseInt(this.http.res.shop.createdAt)).toLocaleDateString()
         // } else {
         //   return new Date(parseInt(this.http.res.licenseExpiredAt)).toLocaleDateString() + ' 过期'
         // }

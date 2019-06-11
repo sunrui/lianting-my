@@ -103,7 +103,7 @@
           }
         }
 
-        httpNotifyAdminApi.getOrder(this.$route.params.shortId, types, this.ui.scroller.page++, 5).then(res => {
+        httpNotifyAdminApi.getOrder(this.$route.params.shortId, types, this.ui.scroller.page, 5).then(res => {
           if (done) {
             done()
           }
@@ -119,6 +119,7 @@
           }
 
           this.ui.scroller.elements = this.ui.scroller.elements.concat(res.elements)
+          this.ui.scroller.page++
         })
       },
       btnOrder(orderOneId) {

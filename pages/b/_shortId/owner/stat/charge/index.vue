@@ -39,14 +39,14 @@
 </template>
 
 <script>
-  import TitleBar from "../../../../../components/common/TitleBar"
-  import {httpStatAdminApi} from "../../../../../api/http/lt/httpStatAdminApi"
-  import {timeApi} from "../../../../../api/local/timeApi"
-  import {httpShopApi} from "../../../../../api/http/shop/httpShopApi"
+  import TitleBar from "../../../../../../components/common/TitleBar"
+  import {httpStatAdminApi} from "../../../../../../api/http/lt/httpStatAdminApi"
+  import {timeApi} from "../../../../../../api/local/timeApi"
+  import {httpShopApi} from "../../../../../../api/http/shop/httpShopApi"
 
   export default {
     metaInfo: {
-      title: '收益'
+      title: '订单统计'
     },
     middleware: 'auth',
     components: {TitleBar},
@@ -54,8 +54,8 @@
       return {
         title: {
           canBack: true,
-          title: '收益',
-          backUri: `/b/${this.$route.params.shortId}/owner`,
+          title: '订单统计',
+          backUri: `/b/${this.$route.params.shortId}/owner/stat`,
           theme: 'image',
           imageHeight: 300
         },
