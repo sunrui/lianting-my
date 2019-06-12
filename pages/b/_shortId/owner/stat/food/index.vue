@@ -106,9 +106,6 @@
     created() {
       this.httpStatFoodCategory(0)
     },
-    mounted() {
-      this.refreshCharts()
-    },
     methods: {
       getDate(date) {
         return timeApi.dateFormat(new Date(parseInt(date)), 'yyyy/MM/dd')
@@ -140,6 +137,9 @@
         }
 
         statFoodCategoryOne.foodCategories.push(foodCategory)
+        statFoodCategoryOne.foodCategories.sort(function (a, b) {
+          return b.totalFoodCategory - a.totalFoodCategory
+        })
 
         let totalFoodCategory = 0
         for (let foodCategoryIndex in statFoodCategoryOne.foodCategories) {

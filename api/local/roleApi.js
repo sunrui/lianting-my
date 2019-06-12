@@ -14,6 +14,8 @@ export const roleApi = {
       return '收银'
     } else if (type === 'takeOut') {
       return '外卖'
+    } else if (type === 'owner') {
+      return '管理员'
     } else {
       return type
     }
