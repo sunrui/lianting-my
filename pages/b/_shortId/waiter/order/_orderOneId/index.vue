@@ -1,5 +1,5 @@
 <template>
-  <b-order-one role="waiter"></b-order-one>
+  <b-order-one roleType="waiter"></b-order-one>
 </template>
 
 <script>

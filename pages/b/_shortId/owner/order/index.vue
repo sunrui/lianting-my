@@ -1,5 +1,5 @@
 <template>
-  <b-order :date="ui.date" role="owner"></b-order>
+  <b-order :date="ui.date" roleType="owner"></b-order>
 </template>
 
 <script>

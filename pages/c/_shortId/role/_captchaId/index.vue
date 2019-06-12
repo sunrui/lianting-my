@@ -5,7 +5,7 @@
     <div class="box">
       <div class="tip">
         <ul class="tip_ul">
-          <li>您好，您被<span class="tip_highlight">{{http.res.shop.name}}</span>店铺邀请成为<span class="tip_highlight">{{getTypeName($route.query.roleType)}}</span>。</li>
+          <li>您好，您被<span class="tip_highlight">{{http.res.shop.name}}</span>店铺邀请成为<span class="tip_highlight">{{getRoleTypeName($route.query.roleType)}}</span>。</li>
         </ul>
       </div>
     </div>
@@ -35,6 +35,7 @@
   import {httpShopApi} from '../../../../../api/http/shop/httpShopApi'
   import {httpRoleApi} from '../../../../../api/http/lt/httpRoleApi'
   import {wechatApi} from '../../../../../api/local/wechatApi'
+  import {roleApi} from '../../../../../api/local/roleApi'
 
   export default {
     metaInfo: {
@@ -71,22 +72,8 @@
           this.http.res.shop = res
         })
       },
-      getTypeName(type) {
-        if (type === 'Admin') {
-          return '店长'
-        } else if (type === 'Waiter') {
-          return '服务员'
-        } else if (type === 'Cooker') {
-          return '厨师'
-        } else if (type === 'Waiter') {
-          return '服务员'
-        } else if (type === 'Cashier') {
-          return '收银'
-        } else if (type === 'TakeOut') {
-          return '外卖'
-        } else {
-          return '未知'
-        }
+      getRoleTypeName(type) {
+        return roleApi.getRoleTypeName(type)
       },
       btnCreate() {
         if (!Boolean(this.http.req.role.name)) {

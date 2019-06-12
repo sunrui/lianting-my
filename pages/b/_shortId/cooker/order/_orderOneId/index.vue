@@ -1,5 +1,5 @@
 <template>
-  <b-order-one role="cooker"></b-order-one>
+  <b-order-one roleType="cooker"></b-order-one>
 </template>
 
 <script>

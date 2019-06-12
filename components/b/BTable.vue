@@ -170,6 +170,7 @@
   import {timeApi} from '../../api/local/timeApi'
   import {userApi} from '../../api/local/userApi'
   import {httpCaptchaApi} from '../../api/http/lt/httpCaptchaApi'
+  import {roleApi} from '../../api/local/roleApi'
 
   export default {
     metaInfo: {
@@ -178,7 +179,7 @@
     middleware: 'auth',
     components: {TitleBar, Captcha},
     props: {
-      role: {
+      roleType: {
         type: String,
         default: 'waiter'
       }
@@ -218,14 +219,15 @@
       }
     },
     created() {
-      this.title.backUri = `/b/${this.$route.params.shortId}/${this.role}`
-
       this.httpShop()
       this.httpInfo()
       this.httpTableGroup()
       this.httpOrder()
     },
     mounted() {
+      this.title.backUri = `/b/${this.$route.params.shortId}/${this.roleType}`
+      this.title.title = '餐桌 - ' + roleApi.getRoleTypeName(this.roleType)
+
       window.addEventListener('scroll', this.onScroll)
     },
     beforeDestroy() {
@@ -247,7 +249,7 @@
           if (res.elements && res.elements.length > 0) {
             this.ui.selectMenuId = res.elements[0].id
           } else {
-            this.$router.push(`/b/${this.$route.params.shortId}/${this.role}/table/empty`)
+            this.$router.push(`/b/${this.$route.params.shortId}/${this.roleType}/table/empty`)
             return
           }
 
@@ -424,7 +426,7 @@
         scrollApi.enable(true)
       },
       btnTable(table) {
-        if (this.role !== 'waiter') {
+        if (this.roleType !== 'waiter') {
           if (this.getTableOrder(table) && this.getTableOrder(table).length > 0) {
             this.btnTableOrder(table)
           } else {
@@ -464,7 +466,7 @@
             userApi.setTableNumber(res.tableNumber)
 
             this.$router.push({
-              path: `/b/${this.$route.params.shortId}/${this.role}/food`,
+              path: `/b/${this.$route.params.shortId}/${this.roleType}/food`,
               query: {
                 tableId: table.id
               }
@@ -475,21 +477,21 @@
       btnTableOrder(table) {
         scrollApi.enable(true)
 
-        let live = (this.role !== 'admin')
+        let live = (this.roleType !== 'admin')
 
         httpOrderAdminApi.getAllByTableOneId(this.$route.params.shortId, table.id, live, 0, 2).then(res => {
           if (res.currentPageSize === 0) {
-            this.$router.push(`/b/${this.$route.params.shortId}/${this.role}/order/empty`)
+            this.$router.push(`/b/${this.$route.params.shortId}/${this.roleType}/order/empty`)
             return
           }
 
           if (res.elements && res.elements.length === 1) {
-            this.$router.push(`/b/${this.$route.params.shortId}/${this.role}/order/${res.elements[0].id}`)
+            this.$router.push(`/b/${this.$route.params.shortId}/${this.roleType}/order/${res.elements[0].id}`)
             return
           }
 
           this.$router.push({
-            path: `/b/${this.$route.params.shortId}/${this.role}/order`,
+            path: `/b/${this.$route.params.shortId}/${this.roleType}/order`,
             query: {
               tableOneId: table.id
             }

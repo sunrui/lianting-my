@@ -67,10 +67,6 @@
       date: {
         type: Number,
         default: null
-      },
-      role: {
-        type: String,
-        default: 'waiter'
       }
     },
     data() {

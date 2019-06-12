@@ -48,6 +48,7 @@
 <script>
   import TitleBar from "../common/TitleBar"
   import {httpPushAdminApi} from "../../api/http/lt/httpPushAdminApi"
+  import {roleApi} from '../../api/local/roleApi'
 
   export default {
     components: {TitleBar},
@@ -81,6 +82,9 @@
     },
     created() {
       this.httpPush()
+    },
+    mounted() {
+      this.title.title = '微信推送 - ' + roleApi.getRoleTypeName(this.roleType)
     },
     methods: {
       httpPush() {

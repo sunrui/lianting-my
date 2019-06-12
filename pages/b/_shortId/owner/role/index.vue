@@ -25,7 +25,7 @@
         list_cooker_icon: role.type === 'Cooker',
         list_cashier_icon: role.type === 'Cashier',
         }" @click="btnEnter(role)"></div>
-        <div class="list_time_label" @click="btnEnter(role)">{{getTypeName(role.type)}}</div>
+        <div class="list_time_label" @click="btnEnter(role)">{{getRoleTypeName(role.type)}}</div>
         <div class="list_item_add" @click="btnCreate(role)"></div>
         <div class="list_item_add_captcha" @click="btnCreateCaptcha(role)"></div>
       </div>
@@ -45,7 +45,7 @@
             <div class="blank_30"></div>
           </div>
         </div>
-        <div class="no_role_user" v-if="role.roles.length === 0">没有{{getTypeName(role.type)}}角色</div>
+        <div class="no_role_user" v-if="role.roles.length === 0">没有{{getRoleTypeName(role.type)}}角色</div>
         <div class="blank_50"></div>
       </div>
     </div>
@@ -55,7 +55,7 @@
         <img class="modal_close" src="/img/common/close.png" alt="">
       </div>
 
-      <div class="modal_title">添加{{getTypeName(http.req.role.type)}}
+      <div class="modal_title">添加{{getRoleTypeName(http.req.role.type)}}
       </div>
 
       <div class="modal_input_box">
@@ -94,6 +94,7 @@
   import {validatorApi} from '../../../../../api/local/validatorApi'
   import {scrollApi} from '../../../../../api/local/scrollApi'
   import Captcha from '../../../../../components/common/Captcha'
+  import {roleApi} from '../../../../../api/local/roleApi'
 
   export default {
     metaInfo: {
@@ -134,22 +135,8 @@
       this.httpRole()
     },
     methods: {
-      getTypeName(type) {
-        if (type === 'Admin') {
-          return '店长'
-        } else if (type === 'Waiter') {
-          return '服务员'
-        } else if (type === 'Cooker') {
-          return '厨师'
-        } else if (type === 'Waiter') {
-          return '服务员'
-        } else if (type === 'Cashier') {
-          return '收银'
-        } else if (type === 'TakeOut') {
-          return '外卖'
-        } else {
-          return '未知'
-        }
+      getRoleTypeName(type) {
+        return roleApi.getRoleTypeName(type)
       },
       httpRole() {
         this.ui.roles = []

@@ -54,6 +54,7 @@
 <script>
   import {httpNotifyAdminApi} from '../../api/http/lt/httpNotifyAdminApi'
   import TitleBar from '../common/TitleBar'
+  import {roleApi} from '../../api/local/roleApi'
 
   export default {
     metaInfo: {
@@ -66,7 +67,7 @@
         title: {
           canBack: true,
           title: '最新消息',
-          backUri: `/b/${this.$route.params.shortId}/${this.role}`,
+          backUri: `/b/${this.$route.params.shortId}/${this.roleType}`,
           theme: 'image',
           imageHeight: 220
         },
@@ -80,15 +81,23 @@
         }
       }
     },
-    props: ['role'],
+    props: {
+      roleType: {
+        type: String,
+        default: 'waiter'
+      }
+    },
     created() {
       this.httpNotifyOrder(null)
+    },
+    mounted() {
+      this.title.title = '最新消息 - ' + roleApi.getRoleTypeName(this.roleType)
     },
     methods: {
       httpNotifyOrder(done) {
         let types
 
-        switch (this.role) {
+        switch (this.roleType) {
           case 'admin':
           case 'waiter': {
             types = 'New, FoodAdd, FoodCooked, FoodReturn, Paid'
@@ -111,7 +120,7 @@
 
           if (res.currentPageSize === 0) {
             if (this.ui.scroller.page === 0) {
-              this.$router.push(`/b/${this.$route.params.shortId}/${this.role}/notify/empty`)
+              this.$router.push(`/b/${this.$route.params.shortId}/${this.roleType}/notify/empty`)
             } else {
               this.ui.scroller.haveMore = false
             }
@@ -125,11 +134,11 @@
         this.ui.scroller.page++
       },
       btnOrder(orderOneId) {
-        this.$router.push(`/b/${this.$route.params.shortId}/${this.role}/order/${orderOneId}`)
+        this.$router.push(`/b/${this.$route.params.shortId}/${this.roleType}/order/${orderOneId}`)
       },
       onInfinite(done) {
         if (!this.ui.scroller.haveMore) {
-          this.$refs.bNotifyScroller.finishPullToRefresh();
+          this.$refs.bNotifyScroller.finishPullToRefresh()
           this.$refs.bNotifyScroller.finishInfinite(true)
         } else {
           this.httpNotifyOrder(done)

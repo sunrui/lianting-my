@@ -71,7 +71,7 @@
           <div class="order_food_count order_food_count_2">{{orderFood.count}}</div>
           <div class="order_food_price order_food_price_2">{{orderFood.count * orderFood.foodPrice}}</div>
           <div class="order_food_button button_gray" v-if="orderFood.status === 'Cancel'">已取消</div>
-          <div class="order_food_button order_food_button_return" v-else-if="role === 'admin'" @click="btnFoodReturn(orderFood)">退菜</div>
+          <div class="order_food_button order_food_button_return" v-else-if="roleType === 'admin'" @click="btnFoodReturn(orderFood)">退菜</div>
           <div v-else>
             <div class="order_food_button order_food_button_finish" v-if="orderFood.status === 'Cooked'" @click="btnChangeStatus(orderFood, 'Finish')">上菜</div>
             <div class="order_food_button order_food_button_cooking" v-if="orderFood.status === 'Wait'" @click="btnChangeStatus(orderFood, 'Cooking')">开始做</div>
@@ -247,13 +247,13 @@
     </div>
 
     <div class="button_box" v-if="http.res.order.status === 'NotPaid'">
-      <div class="button_big" @click="btnFood" v-if="role === 'waiter'">加餐</div>
-      <div class="button_small" @click="btnChangePrice" v-if="role === 'cashier'">更改价格</div>
-      <div class="button_small" @click="btnPayOffline" v-if="role === 'cashier'">线下支付</div>
-      <div class="button_big" @click="btnCancel" v-if="role === 'admin'">取消订单</div>
+      <div class="button_big" @click="btnFood" v-if="roleType === 'waiter'">加餐</div>
+      <div class="button_small" @click="btnChangePrice" v-if="roleType === 'cashier'">更改价格</div>
+      <div class="button_small" @click="btnPayOffline" v-if="roleType === 'cashier'">线下支付</div>
+      <div class="button_big" @click="btnCancel" v-if="roleType === 'admin'">取消订单</div>
     </div>
     <div class="button_box" v-else-if="http.res.order.status !== 'Finish' && http.res.order.status !== 'Closed'">
-      <div class="button_big" @click="btnCancel" v-if="role === 'admin'">取消订单</div>
+      <div class="button_big" @click="btnCancel" v-if="roleType === 'admin'">取消订单</div>
     </div>
     <div class="blank_30" v-else></div>
 
@@ -464,6 +464,7 @@
   import DropDown from '../common/DropDown'
   import CurrencyInput from '../common/CurrencyInput'
   import {highlightApi} from '../../api/local/highlightApi'
+  import {roleApi} from '../../api/local/roleApi'
 
   export default {
     metaInfo: {
@@ -472,7 +473,7 @@
     middleware: 'auth',
     components: {CurrencyInput, TitleBar, DropDown},
     props: {
-      role: {
+      roleType: {
         type: String,
         default: 'waiter'
       }
@@ -535,8 +536,9 @@
       this.httpOrder()
     },
     mounted() {
-      this.title.backUri = `/b/${this.$route.params.shortId}/${this.role}`
+      this.title.backUri = `/b/${this.$route.params.shortId}/${this.roleType}`
       this.$refs.titleBar_BOrderOne.setBackUri(this.title.backUri)
+      this.title.title = '订单详情 - ' + roleApi.getRoleTypeName(this.roleType)
     },
     methods: {
       btnChooseReturnCount(payload) {
@@ -636,7 +638,7 @@
         }
 
         if (status === 'Cooking' || status === 'Cooked') {
-          if (this.role !== 'admin' && this.role !== 'cooker') {
+          if (this.roleType !== 'admin' && this.roleType !== 'cooker') {
             this.$msgBox.doModal({
               type: 'yes',
               title: '烹饪餐食',
@@ -648,7 +650,7 @@
         }
 
         if (status === 'Finish') {
-          if (this.role !== 'admin' && this.role !== 'waiter') {
+          if (this.roleType !== 'admin' && this.roleType !== 'waiter') {
             this.$msgBox.doModal({
               type: 'yes',
               title: '烹饪餐食',
@@ -733,7 +735,7 @@
           return
         }
 
-        if (this.role === 'cooker') {
+        if (this.roleType === 'cooker') {
           this.$msgBox.doModal({
             type: 'yes',
             title: '更改人数',
@@ -826,7 +828,7 @@
           return
         }
 
-        if (this.role !== 'admin') {
+        if (this.roleType !== 'admin') {
           return
         }
 
@@ -852,7 +854,7 @@
         this.ui.vChangePrice = false
         this.ui.vCoverMask = false
 
-        if (this.role !== 'admin' && this.role !== 'cashier') {
+        if (this.roleType !== 'admin' && this.roleType !== 'cashier') {
           this.$msgBox.doModal({
             type: 'yes',
             title: '更改价格',
@@ -907,7 +909,7 @@
         this.ui.vCoverMask = true
       },
       btnPayOfflineConfirm() {
-        if (this.role !== 'admin' && this.role !== 'cashier') {
+        if (this.roleType !== 'admin' && this.roleType !== 'cashier') {
           this.$msgBox.doModal({
             type: 'yes',
             title: '离线支付',
@@ -945,7 +947,7 @@
         })
       },
       btnCancel() {
-        if (this.role !== 'admin') {
+        if (this.roleType !== 'admin') {
           this.$msgBox.doModal({
             type: 'yes',
             title: '离线支付',

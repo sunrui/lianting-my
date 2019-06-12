@@ -56,6 +56,7 @@
 <script>
   import TitleBar from '../common/TitleBar'
   import {httpOrderAdminApi} from '../../api/http/lt/httpOrderAdminApi'
+  import {roleApi} from '../../api/local/roleApi'
 
   export default {
     metaInfo: {
@@ -68,7 +69,7 @@
         type: Number | String,
         default: null
       },
-      role: {
+      roleType: {
         type: String,
         default: 'waiter'
       }
@@ -92,13 +93,16 @@
       }
     },
     created() {
-      this.title.backUri = `/b/${this.$route.params.shortId}/${this.role}`
       this.httpOrder(null)
+    },
+    mounted() {
+      this.title.backUri = `/b/${this.$route.params.shortId}/${this.roleType}`
+      this.title.title = '订单记录 - ' + roleApi.getRoleTypeName(this.roleType)
     },
     methods: {
       httpOrder(done) {
         let tableOneId = this.$route.query.tableOneId
-        let live = (this.role !== 'admin')
+        let live = (this.roleType !== 'admin')
 
         if (Boolean(tableOneId)) {
           httpOrderAdminApi.getAllByTableOneId(this.$route.params.shortId, tableOneId, live, this.ui.scroller.page, 5).then(res => {
@@ -108,7 +112,7 @@
 
             if (res.currentPageSize === 0) {
               if (this.ui.scroller.page === 0) {
-                this.$router.push(`/b/${this.$route.params.shortId}/${this.role}/order/empty`)
+                this.$router.push(`/b/${this.$route.params.shortId}/${this.roleType}/order/empty`)
               } else {
                 this.ui.scroller.haveMore = false
               }
@@ -129,7 +133,7 @@
 
             if (res.currentPageSize === 0) {
               if (this.ui.scroller.page === 0) {
-                this.$router.push(`/b/${this.$route.params.shortId}/${this.role}/order/empty`)
+                this.$router.push(`/b/${this.$route.params.shortId}/${this.roleType}/order/empty`)
               } else {
                 this.ui.scroller.haveMore = false
               }
@@ -150,7 +154,7 @@
 
             if (res.currentPageSize === 0) {
               if (this.ui.scroller.page === 0) {
-                this.$router.push(`/b/${this.$route.params.shortId}/${this.role}/order/empty`)
+                this.$router.push(`/b/${this.$route.params.shortId}/${this.roleType}/order/empty`)
               } else {
                 this.ui.scroller.haveMore = false
               }
@@ -185,7 +189,7 @@
         return detail
       },
       btnDetail(order) {
-        this.$router.push(`/b/${this.$route.params.shortId}/${this.role}/order/${order.id}`)
+        this.$router.push(`/b/${this.$route.params.shortId}/${this.roleType}/order/${order.id}`)
       },
       onInfinite(done) {
         if (!this.ui.scroller.haveMore) {

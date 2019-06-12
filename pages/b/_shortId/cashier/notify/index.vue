@@ -1,5 +1,5 @@
 <template>
-  <b-notify role="cashier"></b-notify>
+  <b-notify roleType="cashier"></b-notify>
 </template>
 
 <script>

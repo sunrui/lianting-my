@@ -1,5 +1,5 @@
 <template>
-  <b-order-one role="owner"></b-order-one>
+  <b-order-one roleType="owner"></b-order-one>
 </template>
 
 <script>

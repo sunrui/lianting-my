@@ -1,5 +1,5 @@
 <template>
-  <b-table role="cooker"></b-table>
+  <b-table roleType="cooker"></b-table>
 </template>
 
 <script>

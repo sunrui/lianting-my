@@ -1,5 +1,5 @@
 <template>
-  <b-notify role="waiter"></b-notify>
+  <b-notify roleType="waiter"></b-notify>
 </template>
 
 <script>

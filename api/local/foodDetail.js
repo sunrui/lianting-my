@@ -50,7 +50,7 @@ export const foodDetailApi = {
     for (let index in order.orderFoods) {
       let orderFood = order.orderFoods[index]
 
-      if (orderFood.status !== 'Cooked') {
+      if (orderFood.status !== 'Finish') {
         count += orderFood.count
       }
     }

@@ -1,5 +1,5 @@
 <template>
-  <b-notify role="admin"></b-notify>
+  <b-notify roleType="admin"></b-notify>
 </template>
 
 <script>

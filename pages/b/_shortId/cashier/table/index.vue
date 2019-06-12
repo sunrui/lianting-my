@@ -1,5 +1,5 @@
 <template>
-  <b-table role="cashier"></b-table>
+  <b-table roleType="cashier"></b-table>
 </template>
 
 <script>

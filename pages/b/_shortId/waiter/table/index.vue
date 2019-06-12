@@ -1,5 +1,5 @@
 <template>
-  <b-table role="waiter"></b-table>
+  <b-table roleType="waiter"></b-table>
 </template>
 
 <script>

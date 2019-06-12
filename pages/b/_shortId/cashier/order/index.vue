@@ -1,5 +1,5 @@
 <template>
-  <b-order role="cashier"></b-order>
+  <b-order roleType="cashier"></b-order>
 </template>
 
 <script>

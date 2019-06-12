@@ -1,5 +1,5 @@
 <template>
-  <b-table role="admin"></b-table>
+  <b-table roleType="admin"></b-table>
 </template>
 
 <script>
