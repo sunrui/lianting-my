@@ -16,8 +16,8 @@
   import plupload from 'plupload'
   import {uuidApi} from '../../api/local/uuidApi'
   import {httpUploadApi as httpUploadAdminApi} from '../../api/http/lt/httpUploadAdminApi'
-  import {wechatApi} from "../../api/local/wechatApi"
-  import {urlApi} from "../../api/local/urlApi"
+  import {wechatApi} from '../../api/local/wechatApi'
+  import {urlApi} from '../../api/local/urlApi'
 
   export default {
     data() {
@@ -143,10 +143,10 @@
         function init(pThis, res) {
           if (wechatApi.inWechat()) {
             fetch(localData)
-              .then(res => res.blob())
-              .then(blob => {
-                pThis.initStreamUploader(res, blob, pThis)
-              })
+                .then(res => res.blob())
+                .then(blob => {
+                  pThis.initStreamUploader(res, blob, pThis)
+                })
           } else {
             pThis.initFileUploader(res, pThis)
           }
@@ -274,6 +274,8 @@
                   type: 'yes',
                   title: '上传图片失败',
                   content: err.response
+                }).then(async (val) => {
+                  location.reload()
                 })
               }
             }
