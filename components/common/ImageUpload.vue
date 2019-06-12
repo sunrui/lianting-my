@@ -135,6 +135,8 @@
               type: 'yes',
               title: '上传图片失败',
               content: res
+            }).then(async (val) => {
+              location.reload()
             })
           })
         })
@@ -274,8 +276,6 @@
                   type: 'yes',
                   title: '上传图片失败',
                   content: err.response
-                }).then(async (val) => {
-                  location.reload()
                 })
               }
             }
