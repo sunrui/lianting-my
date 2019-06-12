@@ -4,13 +4,13 @@
 
     <div class="box">
       <div class="addition box_radius">
-        <div class="addition_item" @click="btnNav('shop/role')">
-          <div class="addition_item_label">工作台</div>
+        <div class="addition_item" @click="btnNav('shop')">
+          <div class="addition_item_label">我的店铺</div>
           <div class="addition_item_link"></div>
         </div>
         <div class="box_divide"></div>
-        <div class="addition_item" @click="btnNav('shop')">
-          <div class="addition_item_label">我的店铺</div>
+        <div class="addition_item" @click="btnNav('shop/role')">
+          <div class="addition_item_label">工作台</div>
           <div class="addition_item_link"></div>
         </div>
       </div>
