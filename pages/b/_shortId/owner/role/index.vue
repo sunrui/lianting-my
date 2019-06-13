@@ -192,7 +192,7 @@
         if (!validatorApi.phone(this.http.req.role.phone)) {
           this.$msgBox.doModal({
             type: 'yes',
-            title: '添加' + this.getTypeName(this.http.req.role.type),
+            title: '添加' + this.getRoleTypeName(this.http.req.role.type),
             content: '请输入正确的手机号码。'
           })
 
@@ -208,7 +208,7 @@
           if (res.phoneNotExists) {
             this.$msgBox.doModal({
               type: 'yes',
-              title: '添加' + this.getTypeName(this.http.req.role.type),
+              title: '添加' + this.getRoleTypeName(this.http.req.role.type),
               content: '手机用户不存在。'
             }).then(async (val) => {
               this.httpRole()
@@ -220,7 +220,7 @@
           if (res.userExists) {
             this.$msgBox.doModal({
               type: 'yes',
-              title: '添加' + this.getTypeName(this.http.req.role.type),
+              title: '添加' + this.getRoleTypeName(this.http.req.role.type),
               content: '用户已存在。'
             }).then(async (val) => {
               this.httpRole()
@@ -232,7 +232,7 @@
           if (res.roleId) {
             this.$msgBox.doModal({
               type: 'yes',
-              title: '添加' + this.getTypeName(this.http.req.role.type),
+              title: '添加' + this.getRoleTypeName(this.http.req.role.type),
               content: '添加成功。'
             }).then(async (val) => {
               this.httpRole()
@@ -251,7 +251,7 @@
               if (res.roleIdNotExists) {
                 this.$msgBox.doModal({
                   type: 'yes',
-                  title: '删除' + this.getTypeName(this.http.req.role.type),
+                  title: '删除' + this.getRoleTypeName(this.http.req.role.type),
                   content: '人事不存在。'
                 }).then(async (val) => {
                   this.httpRole()
@@ -262,7 +262,7 @@
 
                 this.$msgBox.doModal({
                   type: 'yes',
-                  title: '删除' + this.getTypeName(this.http.req.role.type),
+                  title: '删除' + this.getRoleTypeName(this.http.req.role.type),
                   content: '删除成功。'
                 }).then(async (val) => {
                   this.httpRole()
@@ -277,7 +277,7 @@
       },
       btnCreateCaptcha(role) {
         scrollApi.enable(false)
-        this.ui.captcha.title = '邀请' + this.getTypeName(role.type)
+        this.ui.captcha.title = '邀请' + this.getRoleTypeName(role.type)
 
         httpRoleAdminApi.postRoleCaptcha(this.$route.params.shortId, role.type).then(res => {
           this.ui.captcha.text = document.location.protocol + '//' + window.location.host + `/c/${this.$route.params.shortId}/role/` + res.captchaId

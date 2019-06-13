@@ -79,7 +79,7 @@
         if (!Boolean(this.http.req.role.name)) {
           this.$msgBox.doModal({
             type: 'yes',
-            title: '加入' + this.getTypeName(this.http.req.role.type),
+            title: '加入' + this.getRoleTypeName(this.http.req.role.type),
             content: '请输入您的真实姓名。'
           })
 

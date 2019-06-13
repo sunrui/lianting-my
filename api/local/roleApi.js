@@ -12,7 +12,7 @@ export const roleApi = {
       return '服务员'
     } else if (type === 'cashier') {
       return '收银'
-    } else if (type === 'takeOut') {
+    } else if (type === 'takeout') {
       return '外卖'
     } else if (type === 'owner') {
       return '管理员'
