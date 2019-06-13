@@ -39,7 +39,7 @@
 
   export default {
     metaInfo: {
-      title: '人事邀请'
+      title: '恋厅 - 人事邀请'
     },
     middleware: 'auth',
     components: {TitleBar, Captcha},
@@ -47,7 +47,7 @@
       return {
         title: {
           canBack: false,
-          title: '人事邀请',
+          title: '恋厅 - 人事邀请',
           backUri: `/c/${this.$route.params.shortId}/`,
           theme: 'image',
           imageHeight: 300
@@ -60,7 +60,10 @@
             shop: {}
           }
         },
-        ui: {}
+        ui: {
+          link: 'https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzU5MTQzNzQxNA==#wechat_redirect',
+          inWechat: wechatApi.inWechat() || 1
+        }
       }
     },
     mounted() {
@@ -99,7 +102,7 @@
             this.$msgBox.doModal({
               type: 'yes',
               title: '人事邀请',
-              content: '您已经被邀请过了。'
+              content: '您已经是本店铺的一员了。'
             }).then(async (val) => {
               wechatApi.closeWindow()
             })
@@ -117,7 +120,19 @@
               title: '人事邀请',
               content: '恭喜您，您已成为本餐厅的一员。'
             }).then(async (val) => {
-              this.$router.push('/shop/role')
+              if (this.ui.inWechat) {
+                this.$msgBox.doModal({
+                  type: 'yesOrNo',
+                  title: '关注恋厅',
+                  content: '为了方便您日后工作，现在就关注恋厅公众号吗？'
+                }).then(async (val) => {
+                  if (val === 'Yes') {
+                    window.location.href = this.ui.link
+                  } else {
+                    this.$router.push('/shop/role')
+                  }
+                })
+              }
             })
           }
         })
