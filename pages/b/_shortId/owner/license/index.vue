@@ -516,14 +516,33 @@
                 if (res.err_msg === 'get_brand_wcpay_request:ok') {
                   pThis.$msgBox.doModal({
                     type: 'yes',
-                    title: '立即续费',
-                    content: '支付已成功，支付结果可能存在延迟，请稍候刷新等待服务器返回。'
+                    title: '续费成功',
+                    content: '续费已成功，支付结果可能存在延迟，请稍候刷新等待服务器返回。'
                   }).then(async (val) => {
                     pThis.httpShop()
                     pThis.httpLicensePlan()
                     pThis.httpTakeOutSmsShop()
                   })
                 } else if (res.err_msg === 'get_brand_wcpay_request:cancel') {
+                  pThis.$msgBox.doModal({
+                    type: 'yes',
+                    title: '续费取消',
+                    content: '续费已取消。'
+                  }).then(async (val) => {
+                    pThis.httpShop()
+                    pThis.httpLicensePlan()
+                    pThis.httpTakeOutSmsShop()
+                  })
+                } else if (res.err_msg) {
+                  pThis.$msgBox.doModal({
+                    type: 'yes',
+                    title: '续费取消',
+                    content: res.err_msg
+                  }).then(async (val) => {
+                    pThis.httpShop()
+                    pThis.httpLicensePlan()
+                    pThis.httpTakeOutSmsShop()
+                  })
                 }
               }
           )
