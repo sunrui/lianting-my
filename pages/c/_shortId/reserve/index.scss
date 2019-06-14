@@ -143,27 +143,27 @@
     .table {
       padding: px2rem(20) px2rem(30);
 
-      .table_list::-webkit-scrollbar {
-        background-color: transparent;
-      }
-
       .table_list {
-        display: -webkit-box;
-        overflow-x: scroll;
-        -webkit-overflow-scrolling: touch;
+        position: relative;
 
         .table_box_table_info_select {
+          display: inline-block;
+          vertical-align: middle;
           background: #FFEBEB;
           text-align: center;
           margin-right: px2rem(20);
           padding: px2rem(20) px2rem(30);
+          margin-bottom: px2rem(20);
         }
 
         .table_box_table_info {
+          display: inline-block;
+          vertical-align: middle;
           background: #F5F5F5;
           text-align: center;
           margin-right: px2rem(20);
           padding: px2rem(20) px2rem(30);
+          margin-bottom: px2rem(20);
         }
 
         .table_box_table_title {
