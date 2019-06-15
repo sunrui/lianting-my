@@ -93,6 +93,8 @@
   import QRCode from 'qrcode'
   import html2canvas from 'html2canvas'
   import {downloadApi} from '../../../../../api/local/downloadApi'
+  import {wechatApi} from '../../../../../api/local/wechatApi'
+  import {highlightApi} from '../../../../../api/local/highlightApi'
 
   export default {
     metaInfo: {
@@ -177,6 +179,16 @@
         this.ui.vCopyright = enable
       },
       btnDownloadShop() {
+        if (wechatApi.inWechat()) {
+          this.$msgBox.doModal({
+            type: 'yes',
+            title: '微信限制',
+            content: `请在右上角选择${highlightApi.highlight('在浏览器打开')}后再下载。`
+          })
+
+          return
+        }
+
         html2canvas(document.getElementById('shop_' + this.http.res.shop.id), {
           logging: false,
         }).then(canvas => {
@@ -185,6 +197,16 @@
         })
       },
       btnDownload(table) {
+        if (wechatApi.inWechat()) {
+          this.$msgBox.doModal({
+            type: 'yes',
+            title: '微信限制',
+            content: `请在右上角选择${highlightApi.highlight('在浏览器打开')}后再下载。`
+          })
+
+          return
+        }
+
         html2canvas(document.getElementById('table_' + table.id), {
           logging: false,
         }).then(canvas => {
@@ -193,6 +215,16 @@
         })
       },
       btnDownloadAll() {
+        if (wechatApi.inWechat()) {
+          this.$msgBox.doModal({
+            type: 'yes',
+            title: '微信限制',
+            content: `请在右上角选择${highlightApi.highlight('在浏览器打开')}后再下载。`
+          })
+
+          return
+        }
+
         this.$msgBox.doModal({
           type: 'yesOrNo',
           title: '下载二维码',
