@@ -127,9 +127,8 @@
           }
 
           this.ui.scroller.elements = this.ui.scroller.elements.concat(res.elements)
+          this.ui.scroller.page++
         })
-
-        this.ui.scroller.page++
       },
       btnReserve(reserve) {
         this.$router.push(`/c/${this.$route.params.shortId}/reserve/${reserve.id}`)

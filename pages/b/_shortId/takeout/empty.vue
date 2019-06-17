@@ -2,7 +2,7 @@
   <div>
     <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
-    <empty image="/img/no/no_order.png" content="没有订单记录。"></empty>
+    <empty image="/img/no/no_order.png" content="没有外卖订单。"></empty>
   </div>
 </template>
 
@@ -12,15 +12,15 @@
 
   export default {
     metaInfo: {
-      title: '实时订单'
+      title: '外卖订单'
     },
     middleware: 'auth',
     components: { TitleBar, Empty },
     data() {
       return {
         title: {
-          canBack: true,
-          title: '实时订单',
+          canBack: false,
+          title: '外卖订单',
           backUri: `/b/${this.$route.params.shortId}/takeout`,
           theme: 'white',
           imageHeight: 0

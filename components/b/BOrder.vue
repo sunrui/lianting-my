@@ -120,6 +120,7 @@
             }
 
             this.ui.scroller.elements = this.ui.scroller.elements.concat(res.elements)
+            this.ui.scroller.page++
 
             this.ui.scroller.elements.sort(function (a, b) {
               return b.createdAt - a.createdAt
@@ -141,6 +142,7 @@
             }
 
             this.ui.scroller.elements = this.ui.scroller.elements.concat(res.elements)
+            this.ui.scroller.page++
 
             this.ui.scroller.elements.sort(function (a, b) {
               return b.createdAt - a.createdAt
@@ -162,14 +164,13 @@
             }
 
             this.ui.scroller.elements = this.ui.scroller.elements.concat(res.elements)
+            this.ui.scroller.page++
 
             this.ui.scroller.elements.sort(function (a, b) {
               return b.createdAt - a.createdAt
             })
           })
         }
-
-        this.ui.scroller.page++
       },
       getFoodContent(order) {
         let detail = ''

@@ -102,7 +102,7 @@
 
           if (res.currentPageSize === 0) {
             if (this.ui.scroller.page === 0) {
-              this.$router.push(`/b/${this.$route.params.shortId}/takeout/order/empty`)
+              this.$router.push(`/b/${this.$route.params.shortId}/takeout/empty`)
             } else {
               this.ui.scroller.haveMore = false
             }
@@ -111,13 +111,12 @@
           }
 
           this.ui.scroller.elements = this.ui.scroller.elements.concat(res.elements)
+          this.ui.scroller.page++
 
           this.ui.scroller.elements.sort(function (a, b) {
             return b.createdAt - a.createdAt
           })
         })
-
-        this.ui.scroller.page++
       },
       getFoodContent(order) {
         let detail = ''

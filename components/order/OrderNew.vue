@@ -11,7 +11,7 @@
       </div>
       <div class="addition box_radius" v-else-if="!roleWaiter && http.req.takeOutConfig.enable">
         <div class="addition_item">
-          <div class="addition_item_label">外卖下单</div>
+          <div class="addition_item_label">外卖配送</div>
           <div class="addition_item_check">
             <div class="addition_item_check_on" v-if="ui.takeOutEnable"
                  @click="btnTableOutEnable(false)"></div>

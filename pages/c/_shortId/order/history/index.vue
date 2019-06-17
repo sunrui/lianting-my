@@ -109,9 +109,8 @@
           }
 
           this.ui.scroller.elements = this.ui.scroller.elements.concat(res.elements)
+          this.ui.scroller.page++
         })
-
-        this.ui.scroller.page++
       },
       getFoodContent(order) {
         let detail = ''

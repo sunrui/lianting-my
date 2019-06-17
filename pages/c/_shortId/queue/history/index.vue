@@ -90,9 +90,8 @@
           }
 
           this.ui.scroller.elements = this.ui.scroller.elements.concat(res.elements)
+          this.ui.scroller.page++
         })
-
-        this.ui.scroller.page++
       },
       onInfinite(done) {
         if (!this.ui.scroller.haveMore) {

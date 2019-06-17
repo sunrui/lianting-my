@@ -196,6 +196,7 @@
             }
 
             this.ui.scroller.elements = this.ui.scroller.elements.concat(res.elements)
+            this.ui.scroller.page++
           })
         } else {
           httpWallApi.getAll(this.$route.params.shortId, this.ui.scroller.page, 5).then(res => {
@@ -214,10 +215,9 @@
             }
 
             this.ui.scroller.elements = this.ui.scroller.elements.concat(res.elements)
+            this.ui.scroller.page++
           })
         }
-
-        this.ui.scroller.page++
       },
       httpGetInfo(userId) {
         httpUserApi.getInfo(userId).then(res => {

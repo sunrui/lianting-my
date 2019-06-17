@@ -134,13 +134,13 @@
           }
 
           this.ui.scroller.elements = this.ui.scroller.elements.concat(res.elements)
+          this.ui.scroller.page++
 
           this.ui.scroller.elements.sort(function (a, b) {
             return a.date - b.date
           })
         })
 
-        this.ui.scroller.page++
       },
       getReserveTitle() {
         let date = new Date(parseInt(this.$route.query.timeStamp))

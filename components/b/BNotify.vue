@@ -129,9 +129,8 @@
           }
 
           this.ui.scroller.elements = this.ui.scroller.elements.concat(res.elements)
+          this.ui.scroller.page++
         })
-
-        this.ui.scroller.page++
       },
       btnOrder(orderOneId) {
         this.$router.push(`/b/${this.$route.params.shortId}/${this.roleType}/order/${orderOneId}`)

@@ -6,7 +6,7 @@
 
     <div class="box" v-if="http.res.order.orderTakeOut">
       <div class="list_title box_radius_header">
-        <div class="list_title_label">外卖配送详情</div>
+        <div class="list_title_label">配送详情</div>
       </div>
 
       <div class="box_divide_radius">
