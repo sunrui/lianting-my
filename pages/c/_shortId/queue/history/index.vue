@@ -74,13 +74,17 @@
     },
     methods: {
       httpHistory(done) {
-        httpQueueApi.getHistory(this.$route.params.shortId, this.ui.scroller.page, 5).then(res => {
+        httpQueueApi.getHistory(this.$route.params.shortId, this.ui.scroller.page++, 5).then(res => {
           if (done) {
             done()
           }
 
+          if (this.ui.scroller.page === 1) {
+            this.ui.scroller.elements = []
+          }
+
           if (res.currentPageSize === 0) {
-            if (this.ui.scroller.page === 0) {
+            if (this.ui.scroller.page === 1) {
               this.$router.push(`/c/${this.$route.params.shortId}/queue/history/empty`)
             } else {
               this.ui.scroller.haveMore = false
@@ -90,7 +94,6 @@
           }
 
           this.ui.scroller.elements = this.ui.scroller.elements.concat(res.elements)
-          this.ui.scroller.page++
         })
       },
       onInfinite(done) {

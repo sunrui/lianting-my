@@ -93,13 +93,17 @@
         let live = this.$route.query.live
         this.title.title = live ? '实时订单' : '我的订单'
 
-        httpOrderApi.getAll(this.$route.params.shortId, live, this.ui.scroller.page, 5).then(res => {
+        httpOrderApi.getAll(this.$route.params.shortId, live, this.ui.scroller.page++, 5).then(res => {
           if (done) {
             done()
           }
 
+          if (this.ui.scroller.page === 1) {
+            this.ui.scroller.elements = []
+          }
+
           if (res.currentPageSize === 0) {
-            if (this.ui.scroller.page === 0) {
+            if (this.ui.scroller.page === 1) {
               this.$router.push(`/c/${this.$route.params.shortId}/order/history/empty`)
             } else {
               this.ui.scroller.haveMore = false
@@ -109,7 +113,6 @@
           }
 
           this.ui.scroller.elements = this.ui.scroller.elements.concat(res.elements)
-          this.ui.scroller.page++
         })
       },
       getFoodContent(order) {

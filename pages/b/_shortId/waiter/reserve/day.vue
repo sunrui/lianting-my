@@ -96,7 +96,7 @@
         })
       }
 
-      this.httpReserveDay()
+      this.httpReserveDay(null)
     },
     methods: {
       getStatus(status) {
@@ -118,13 +118,17 @@
         }
       },
       httpReserveDay(done) {
-        httpReserveAdminApi.getDay(this.$route.params.shortId, this.$route.query.timeStamp, this.ui.scroller.page, 5).then(res => {
+        httpReserveAdminApi.getDay(this.$route.params.shortId, this.$route.query.timeStamp, this.ui.scroller.page++, 5).then(res => {
           if (done) {
             done()
           }
 
+          if (this.ui.scroller.page === 1) {
+            this.ui.scroller.elements = []
+          }
+
           if (res.currentPageSize === 0) {
-            if (this.ui.scroller.page === 0) {
+            if (this.ui.scroller.page === 1) {
               this.$router.push(`/b/${this.$route.params.shortId}/waiter/reserve/empty`)
             } else {
               this.ui.scroller.haveMore = false
@@ -134,8 +138,6 @@
           }
 
           this.ui.scroller.elements = this.ui.scroller.elements.concat(res.elements)
-          this.ui.scroller.page++
-
           this.ui.scroller.elements.sort(function (a, b) {
             return a.date - b.date
           })

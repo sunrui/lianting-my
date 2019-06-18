@@ -113,13 +113,17 @@
           }
         }
 
-        httpNotifyAdminApi.getOrder(this.$route.params.shortId, types, this.ui.scroller.page, 5).then(res => {
+        httpNotifyAdminApi.getOrder(this.$route.params.shortId, types, this.ui.scroller.page++, 5).then(res => {
           if (done) {
             done()
           }
 
+          if (this.ui.scroller.page === 1) {
+            this.ui.scroller.elements = []
+          }
+
           if (res.currentPageSize === 0) {
-            if (this.ui.scroller.page === 0) {
+            if (this.ui.scroller.page === 1) {
               this.$router.push(`/b/${this.$route.params.shortId}/${this.roleType}/notify/empty`)
             } else {
               this.ui.scroller.haveMore = false
@@ -129,7 +133,6 @@
           }
 
           this.ui.scroller.elements = this.ui.scroller.elements.concat(res.elements)
-          this.ui.scroller.page++
         })
       },
       btnOrder(orderOneId) {

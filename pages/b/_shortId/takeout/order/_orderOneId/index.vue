@@ -199,17 +199,17 @@
             <div v-if="ui.smsSendEnable">
               <div class="tip" v-if="ui.selectOrderType === 'Accept'">
                 <ul class="tip_ul">
-                  <li>{{getOrderTypeLabel('Accept')}}</li>
+                  <li>{{getSmsTypeLabel('Accept')}}</li>
                 </ul>
               </div>
               <div class="tip" v-else-if="ui.selectOrderType === 'Cancel' || ui.selectOrderType === 'Refund'">
                 <ul class="tip_ul">
-                  <li>{{getOrderTypeLabel('Cancel')}}</li>
+                  <li>{{getSmsTypeLabel('Cancel')}}</li>
                 </ul>
               </div>
               <div class="tip" v-else-if="ui.selectOrderType === 'Deliver'">
                 <ul class="tip_ul">
-                  <li>{{getOrderTypeLabel('Success')}}</li>
+                  <li>{{getSmsTypeLabel('Success')}}</li>
                 </ul>
               </div>
             </div>
@@ -238,7 +238,6 @@
           <div class="button_big" @click="btnReplyConfirm" v-if="ui.selectOrderType === 'Accept' || ui.selectOrderType === 'Deliver'">确认</div>
           <div class="button_big button_gray" v-else-if="!ui.orderRemark">确认</div>
           <div class="button_big" @click="btnReplyConfirm" v-else>确认</div>
-
         </div>
       </div>
     </transition>
@@ -329,7 +328,7 @@
 
         return count
       },
-      getOrderTypeLabel(status) {
+      getSmsTypeLabel(status) {
         let name = this.http.res.order.orderTakeOut.name || '匿名用户'
         let shop = this.http.res.shop.name || '恋厅'
         let phone = this.http.res.info.phone || ''
@@ -482,7 +481,7 @@
             reason = this.ui.orderRemark
           }
 
-          httpSmsAdminApi.postSms(this.$route.params.shortId, this.ui.selectOrderType, reason, this.$route.params.orderOneId).then(res => {
+          httpSmsAdminApi.postSendTakeout(this.$route.params.shortId, this.ui.selectOrderType, reason, this.$route.params.orderOneId).then(res => {
             if (res.orderOneIdNotExists) {
               this.$msgBox.doModal({
                 type: 'yes',

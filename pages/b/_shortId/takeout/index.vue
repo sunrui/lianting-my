@@ -37,7 +37,7 @@
               <div class="order_history_table_content">{{order.orderTable.tableFullNumber}}</div>
             </div>
             <div class="order_history_label" v-else-if="order.orderTakeOut">
-              <div class="order_history_table_label">外卖</div>
+              <div class="order_history_table_label">订单人</div>
               <div class="order_history_table_content">{{order.orderTakeOut.name}}</div>
             </div>
             <div class="order_history_detail" @click="btnDetail(order)">查看详情</div>
@@ -95,13 +95,17 @@
     },
     methods: {
       httpOrder(done) {
-        httpOrderAdminApi.getTakeOut(this.$route.params.shortId, this.ui.scroller.page, 5).then(res => {
+        httpOrderAdminApi.getTakeOut(this.$route.params.shortId, this.ui.scroller.page++, 5).then(res => {
           if (done) {
             done()
           }
 
+          if (this.ui.scroller.page === 1) {
+            this.ui.scroller.elements = []
+          }
+
           if (res.currentPageSize === 0) {
-            if (this.ui.scroller.page === 0) {
+            if (this.ui.scroller.page === 1) {
               this.$router.push(`/b/${this.$route.params.shortId}/takeout/empty`)
             } else {
               this.ui.scroller.haveMore = false
@@ -111,8 +115,6 @@
           }
 
           this.ui.scroller.elements = this.ui.scroller.elements.concat(res.elements)
-          this.ui.scroller.page++
-
           this.ui.scroller.elements.sort(function (a, b) {
             return b.createdAt - a.createdAt
           })

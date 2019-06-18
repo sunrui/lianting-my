@@ -677,7 +677,7 @@
           return
         }
 
-        httpSmsAdminApi.postOrder(this.$route.params.shortId, this.ui.smsPrice, 'WECHAT_JSAPI').then(res => {
+        httpSmsAdminApi.postPay(this.$route.params.shortId, this.ui.smsPrice, 'WECHAT_JSAPI').then(res => {
           this.ui.vCoverMask = false
           this.ui.vSmsPrice = false
 

@@ -3,14 +3,14 @@ import axios from 'axios'
 let base = '/api/b'
 
 export const httpSmsAdminApi = {
-  postOrder(shortId, price, unifiedPayWay) {
-    return axios.post(`${base}/${shortId}/sms/order`, {
+  postPay(shortId, price, unifiedPayWay) {
+    return axios.post(`${base}/${shortId}/sms/pay`, {
       price: price,
       unifiedPayWay: unifiedPayWay
     }).then(res => res.data)
   },
-  postSms(shortId, type, reason, orderOneId) {
-    return axios.post(`${base}/${shortId}/sms/send`, {
+  postSendTakeout(shortId, type, reason, orderOneId) {
+    return axios.post(`${base}/${shortId}/sms/send/takeout`, {
       type: type,
       reason: reason,
       orderOneId: orderOneId

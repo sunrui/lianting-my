@@ -180,13 +180,17 @@
     methods: {
       httpWall(done) {
         if (Boolean(this.$route.query.my)) {
-          httpWallApi.getMyAll(this.$route.params.shortId, this.ui.scroller.page, 5).then(res => {
+          httpWallApi.getMyAll(this.$route.params.shortId, this.ui.scroller.page++, 5).then(res => {
             if (done) {
               done()
             }
 
+            if (this.ui.scroller.page === 1) {
+              this.ui.scroller.elements = []
+            }
+
             if (res.currentPageSize === 0) {
-              if (this.ui.scroller.page === 0) {
+              if (this.ui.scroller.page === 1) {
                 this.$router.push(`/c/${this.$route.params.shortId}/wall/empty`)
               } else {
                 this.ui.scroller.haveMore = false
@@ -196,16 +200,19 @@
             }
 
             this.ui.scroller.elements = this.ui.scroller.elements.concat(res.elements)
-            this.ui.scroller.page++
           })
         } else {
-          httpWallApi.getAll(this.$route.params.shortId, this.ui.scroller.page, 5).then(res => {
+          httpWallApi.getAll(this.$route.params.shortId, this.ui.scroller.page++, 5).then(res => {
             if (done) {
               done()
             }
 
+            if (this.ui.scroller.page === 1) {
+              this.ui.scroller.elements = []
+            }
+
             if (res.currentPageSize === 0) {
-              if (this.ui.scroller.page === 0) {
+              if (this.ui.scroller.page === 1) {
                 this.$router.push(`/c/${this.$route.params.shortId}/wall/empty`)
               } else {
                 this.ui.scroller.haveMore = false
@@ -215,7 +222,6 @@
             }
 
             this.ui.scroller.elements = this.ui.scroller.elements.concat(res.elements)
-            this.ui.scroller.page++
           })
         }
       },

@@ -19,17 +19,34 @@
         <div class="reply_label">安排餐桌号</div>
         <div class="reply_device_area">
           <label>
-            <input class="reply_device_input" maxlength="6" v-model="http.req.reply.tableNumber">
+            <input class="reply_device_input" maxlength="8" v-model="http.req.reply.tableNumber">
           </label>
         </div>
       </div>
 
-      <div class="reply_label">回复留言</div>
+      <div class="reply_label">回复内容</div>
 
       <div class="reply_remark_area">
         <label>
-          <textarea class="reply_remark_input" placeholder="请输入要回复给顾客的留言" maxlength="256" v-model="http.req.reply.remark"></textarea>
+          <textarea class="reply_remark_input" placeholder="请输入回复内容" maxlength="256" v-model="http.req.reply.remark"></textarea>
         </label>
+      </div>
+
+      <div class="box" v-if="ui.smsSendEnable">
+        <div class="tip">
+          <ul class="tip_ul">
+            <li>{{getSmsTypeLabel()}}</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="addition_item">
+        <div class="addition_item_label">发送短信</div>
+        <div class="addition_item_check">
+          <div class="addition_item_check_on" v-if="ui.smsSendEnable"
+               @click="btnSmsSendEnable(false)"></div>
+          <div class="addition_item_check_off" v-else @click="btnSmsSendEnable(true)"></div>
+        </div>
       </div>
 
       <div class="button_box">
@@ -42,6 +59,9 @@
 <script>
   import TitleBar from '../../../../../../components/common/TitleBar'
   import {httpReserveAdminApi} from '../../../../../../api/http/lt/httpReserveAdminApi'
+  import {httpInfoApi} from '../../../../../../api/http/lt/httpInfoApi'
+  import {httpShopApi} from '../../../../../../api/http/shop/httpShopApi'
+  import {httpReserveApi} from '../../../../../../api/http/lt/httpReserveApi'
 
   export default {
     metaInfo: {
@@ -62,7 +82,8 @@
           status: [
             {label: '预订成功', data: 'Accept'},
             {label: '预订失败', data: 'Refused'}
-          ]
+          ],
+          smsSendEnable: true
         },
         http: {
           req: {
@@ -71,16 +92,62 @@
               tableNumber: null,
               remark: null
             }
+          },
+          res: {
+            shop: {},
+            info: {},
+            reserve: {}
           }
         }
       }
     },
     created() {
+      this.httpShop()
+      this.httpInfo()
+      this.httpReserve()
       this.btnChooseStatus(this.ui.status[0])
     },
     methods: {
+      httpShop() {
+        httpShopApi.getOne(this.$route.params.shortId).then(res => {
+          this.http.res.shop = res
+        })
+      },
+      httpInfo() {
+        httpInfoApi.get(this.$route.params.shortId).then(res => {
+          this.http.res.info = res
+        })
+      },
       btnChooseStatus(status) {
         this.http.req.reply.status = status.data
+      },
+      btnSmsSendEnable(enable) {
+        this.ui.smsSendEnable = enable
+      },
+      httpReserve() {
+        httpReserveApi.getOne(this.$route.params.shortId, this.$route.params.reserveId).then(res => {
+          res.progress.sort(function (a, b) {
+            return b.createdAt - a.createdAt
+          })
+
+          this.http.res.reserve = res
+        })
+      },
+      getSmsTypeLabel() {
+        let name = this.http.res.reserve.name || '匿名用户'
+        let shop = this.http.res.shop.name || '恋厅'
+        let desk = this.http.req.reply.tableNumber || '--'
+        let phone = this.http.res.info.phone || '--'
+
+        let status = this.http.req.reply.status
+        if (status === 'Accept') {
+          return `尊敬的${name}，您在${shop}的预订已成功，安排桌号${desk}。商家电话：${phone}。`
+        } else if (status === 'Refused') {
+          return `尊敬的${name}，您在${shop}的预订未成功，请在预订页查看详情。商家电话：${phone}。`
+        }
+      },
+      sendNotifySms() {
+
       },
       btnReply() {
         if (!Boolean(this.http.req.reply.status)) {
@@ -98,7 +165,7 @@
             this.$msgBox.doModal({
               type: 'yes',
               title: '回复预订',
-              content: '请输入安排的餐桌号。'
+              content: '请输入安排餐桌号。'
             })
 
             return
@@ -115,6 +182,10 @@
               this.$router.push(`/b/${this.$route.params.shortId}/waiter/reserve`)
             })
           } else if (res.success) {
+            if (this.ui.smsSendEnable) {
+              this.sendNotifySms()
+            }
+
             this.$msgBox.doModal({
               type: 'yes',
               title: '回复预订',
