@@ -372,43 +372,7 @@
         this.ui.smsSendEnable = enable
       },
       replyConfirm() {
-        if (this.ui.selectOrderType === 'Refund') {
-          httpOrderAdminApi.postRefund(this.$route.params.shortId, this.$route.params.orderOneId, this.ui.orderRemark).then(res => {
-            this.httpOrder()
-
-            if (res.orderOneIdNotExists) {
-              this.$msgBox.doModal({
-                type: 'yes',
-                title: '取消订单并退款',
-                content: '订单号不存在。'
-              })
-            } else if (res.paymentIdNotExists) {
-              this.$msgBox.doModal({
-                type: 'yes',
-                title: '取消订单并退款',
-                content: '支付订单号不存在。'
-              })
-            } else if (res.payConfigWechatNotExists) {
-              this.$msgBox.doModal({
-                type: 'yes',
-                title: '取消订单并退款',
-                content: '微信支付配置不正确。'
-              })
-            } else if (res.failReason) {
-              this.$msgBox.doModal({
-                type: 'yes',
-                title: '取消订单并退款',
-                content: res.failReason
-              })
-            } else if (res.success) {
-              this.$msgBox.doModal({
-                type: 'yes',
-                title: '取消订单并退款',
-                content: '订单已取消。'
-              })
-            }
-          })
-        } else if (this.ui.selectOrderType === 'Cancel') {
+        if (this.ui.selectOrderType === 'TakeoutCancel') {
           httpOrderAdminApi.putCancel(this.$route.params.shortId, this.$route.params.orderOneId, this.ui.orderRemark).then(res => {
             this.httpOrder()
 
@@ -432,7 +396,7 @@
               })
             }
           })
-        } else if (this.ui.selectOrderType === 'Deliver') {
+        } else if (this.ui.selectOrderType === 'TakeoutDeliver') {
           httpOrderAdminApi.postSuccess(this.$route.params.shortId, this.$route.params.orderOneId, this.ui.orderRemark).then(res => {
             this.httpOrder()
 
@@ -476,8 +440,7 @@
 
           let reason
 
-          if (this.ui.selectOrderType === 'Refund' || this.ui.selectOrderType === 'Cancel') {
-            this.ui.selectOrderType = 'Cancel'
+          if (this.ui.selectOrderType === 'TakeoutCancel') {
             reason = this.ui.orderRemark
           }
 
