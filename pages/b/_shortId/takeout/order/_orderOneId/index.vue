@@ -197,24 +197,24 @@
             </div>
 
             <div v-if="ui.smsSendEnable">
-              <div class="tip" v-if="ui.selectOrderType === 'Accept'">
+              <div class="tip" v-if="ui.selectOrderType === 'TakeoutAccept'">
                 <ul class="tip_ul">
-                  <li>{{getSmsTypeLabel('Accept')}}</li>
+                  <li>{{getSmsTypeLabel('TakeoutAccept')}}</li>
                 </ul>
               </div>
-              <div class="tip" v-else-if="ui.selectOrderType === 'Cancel' || ui.selectOrderType === 'Refund'">
+              <div class="tip" v-else-if="ui.selectOrderType === 'TakeoutCancel'">
                 <ul class="tip_ul">
-                  <li>{{getSmsTypeLabel('Cancel')}}</li>
+                  <li>{{getSmsTypeLabel('TakeoutCancel')}}</li>
                 </ul>
               </div>
-              <div class="tip" v-else-if="ui.selectOrderType === 'Deliver'">
+              <div class="tip" v-else-if="ui.selectOrderType === 'TakeoutDeliver'">
                 <ul class="tip_ul">
-                  <li>{{getSmsTypeLabel('Success')}}</li>
+                  <li>{{getSmsTypeLabel('TakeoutSuccess')}}</li>
                 </ul>
               </div>
             </div>
 
-            <div v-if="ui.selectOrderType !== 'Accept'">
+            <div v-if="ui.selectOrderType !== 'TakeoutAccept'">
               <div class="addition_item">
                 <div class="addition_item_label">发送短信</div>
                 <div class="addition_item_check">
@@ -225,17 +225,17 @@
               </div>
             </div>
 
-            <div class="choose_remark_text_area" v-if="ui.selectOrderType !== 'Accept'">
+            <div class="choose_remark_text_area" v-if="ui.selectOrderType !== 'TakeoutAccept'">
               <div class="blank_20"></div>
               <label>
-                <textarea class="choose_remark_text_input" :placeholder="ui.selectOrderType === 'Deliver' ? '请输入您的订单备注' : '请输入您取消订单的原因'" v-model="ui.orderRemark"></textarea>
+                <textarea class="choose_remark_text_input" :placeholder="ui.selectOrderType === 'TakeoutDeliver' ? '请输入您的订单备注' : '请输入您取消订单的原因'" v-model="ui.orderRemark"></textarea>
               </label>
             </div>
           </div>
         </div>
 
         <div class="modal_button_box">
-          <div class="button_big" @click="btnReplyConfirm" v-if="ui.selectOrderType === 'Accept' || ui.selectOrderType === 'Deliver'">确认</div>
+          <div class="button_big" @click="btnReplyConfirm" v-if="ui.selectOrderType === 'TakeoutAccept' || ui.selectOrderType === 'TakeoutDeliver'">确认</div>
           <div class="button_big button_gray" v-else-if="!ui.orderRemark">确认</div>
           <div class="button_big" @click="btnReplyConfirm" v-else>确认</div>
         </div>
@@ -283,11 +283,11 @@
           vReply: false,
           vCoverMask: false,
           orderType: [
-            {status: 'Accept', label: '回复接单短信'},
-            {status: 'Deliver', label: '派送完成'},
-            {status: 'Cancel', label: '取消订单'},
+            {status: 'TakeoutAccept', label: '回复接单短信'},
+            {status: 'TakeoutDeliver', label: '派送完成'},
+            {status: 'TakeoutCancel', label: '取消订单'},
           ],
-          selectOrderType: 'Accept',
+          selectOrderType: 'TakeoutAccept',
           smsSendEnable: true,
           orderRemark: ''
         }
@@ -334,11 +334,11 @@
         let phone = this.http.res.info.phone || ''
         let reason = this.ui.orderRemark || '未在线说明'
 
-        if (status === 'Accept') {
+        if (status === 'TakeoutAccept') {
           return `尊敬的${name}，您在${shop}的外卖订单已确认。我们将尽快送达到您的手中，请保持电话畅通。商家电话：${phone}`
-        } else if (status === 'Cancel' || status === 'Refund') {
+        } else if (status === 'TakeoutCancel') {
           return `尊敬的${name}，您在${shop}的外卖订单暂时无法受理。原因：${reason}。商家电话：${phone}。`
-        } else if (status === 'Success') {
+        } else if (status === 'TakeoutSuccess') {
           return `尊敬的${name}，您在${shop}的外卖已由骑手为您派送，请留意接听。如未收到请联系商家电话：${phone}。`
         }
       },
