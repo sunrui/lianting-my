@@ -32,7 +32,7 @@
         </label>
       </div>
 
-      <div class="box" v-if="ui.smsSendEnable">
+      <div class="box" v-if="http.req.reply.smsSendEnable">
         <div class="tip">
           <ul class="tip_ul">
             <li>{{getSmsTypeLabel()}}</li>
@@ -43,7 +43,7 @@
       <div class="addition_item">
         <div class="addition_item_label">发送短信</div>
         <div class="addition_item_check">
-          <div class="addition_item_check_on" v-if="ui.smsSendEnable"
+          <div class="addition_item_check_on" v-if="http.req.reply.smsSendEnable"
                @click="btnSmsSendEnable(false)"></div>
           <div class="addition_item_check_off" v-else @click="btnSmsSendEnable(true)"></div>
         </div>
@@ -82,14 +82,14 @@
           status: [
             {label: '预订成功', data: 'Accept'},
             {label: '预订失败', data: 'Refused'}
-          ],
-          smsSendEnable: true
+          ]
         },
         http: {
           req: {
             reply: {
               status: null,
               tableNumber: null,
+              smsSendEnable: true,
               remark: null
             }
           },
@@ -122,7 +122,7 @@
         this.http.req.reply.status = status.data
       },
       btnSmsSendEnable(enable) {
-        this.ui.smsSendEnable = enable
+        this.http.req.reply.smsSendEnable = enable
       },
       httpReserve() {
         httpReserveApi.getOne(this.$route.params.shortId, this.$route.params.reserveId).then(res => {
@@ -182,7 +182,7 @@
               this.$router.push(`/b/${this.$route.params.shortId}/waiter/reserve`)
             })
           } else if (res.success) {
-            if (this.ui.smsSendEnable) {
+            if (this.http.req.reply.smsSendEnable) {
               this.sendNotifySms()
             }
 

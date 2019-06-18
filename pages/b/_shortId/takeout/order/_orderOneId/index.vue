@@ -507,13 +507,7 @@
                 content: '没有可剩余的短信数目，请续费短信包后使用。'
               })
             } else if (res.success) {
-              this.$msgBox.doModal({
-                type: 'yes',
-                title: '发送短信',
-                content: '短信已发送。'
-              }).then(async (val) => {
-                this.replyConfirm()
-              })
+              this.replyConfirm()
             }
           })
         } else {
