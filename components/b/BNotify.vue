@@ -79,7 +79,8 @@
             page: 0,
             elements: [],
             haveMore: true
-          }
+          },
+          interval: null
         }
       }
     },
@@ -89,22 +90,27 @@
         default: 'waiter'
       }
     },
-    created() {
-      this.autoRefresh()
+    beforeDestroy() {
+      if (this.ui.interval) {
+        clearInterval(this.ui.interval)
+        this.ui.interval = null
+      }
     },
     mounted() {
       this.title.backUri = `/b/${this.$route.params.shortId}/${this.roleType}`
       this.$refs.titleBar_BNotify.setBackUri(this.title.backUri)
       this.title.title = '最新消息 - ' + roleApi.getRoleTypeName(this.roleType)
+
+      this.autoRefresh()
+      this.ui.interval = setInterval(this.autoRefresh, 10 * 1000)
     },
     methods: {
       autoRefresh() {
-        this.ui.scroller.page = 0
-        this.httpNotifyOrder(null)
-        setTimeout(this.autoRefresh, 10 * 1000)
+        this.onRefresh(null)
       },
       onRefresh(done) {
         this.ui.scroller.page = 0
+        this.ui.scroller.haveMore = true
         this.httpNotifyOrder(done)
       },
       httpNotifyOrder(done) {
@@ -126,7 +132,7 @@
           }
         }
 
-        httpNotifyAdminApi.getOrder(this.$route.params.shortId, types, this.ui.scroller.page++, 5).then(res => {
+        httpNotifyAdminApi.getOrder(this.$route.params.shortId, types, this.ui.scroller.page++, 20).then(res => {
           if (done) {
             done()
           }

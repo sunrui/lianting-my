@@ -185,7 +185,7 @@
       },
       httpWall(done) {
         if (Boolean(this.$route.query.my)) {
-          httpWallApi.getMyAll(this.$route.params.shortId, this.ui.scroller.page++, 5).then(res => {
+          httpWallApi.getMyAll(this.$route.params.shortId, this.ui.scroller.page++, 20).then(res => {
             if (done) {
               done()
             }
@@ -207,7 +207,7 @@
             this.ui.scroller.elements = this.ui.scroller.elements.concat(res.elements)
           })
         } else {
-          httpWallApi.getAll(this.$route.params.shortId, this.ui.scroller.page++, 5).then(res => {
+          httpWallApi.getAll(this.$route.params.shortId, this.ui.scroller.page++, 20).then(res => {
             if (done) {
               done()
             }

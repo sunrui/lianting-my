@@ -90,26 +90,32 @@
             page: 0,
             elements: [],
             haveMore: true
-          }
+          },
+          interval: null
         }
       }
     },
-    created() {
-      this.autoRefresh()
+    beforeDestroy() {
+      if (this.ui.interval) {
+        clearInterval(this.ui.interval)
+        this.ui.interval = null
+      }
     },
     mounted() {
       this.title.backUri = `/b/${this.$route.params.shortId}/${this.roleType}`
       this.$refs.titleBar_BOrder.setBackUri(this.title.backUri)
       this.title.title = '订单记录 - ' + roleApi.getRoleTypeName(this.roleType)
+
+      this.autoRefresh()
+      this.ui.interval = setInterval(this.autoRefresh, 10 * 1000)
     },
     methods: {
       autoRefresh() {
-        this.ui.scroller.page = 0
-        this.httpOrder(null)
-        setTimeout(this.autoRefresh, 10 * 1000)
+        this.onRefresh(null)
       },
       onRefresh(done) {
         this.ui.scroller.page = 0
+        this.ui.scroller.haveMore = true
         this.httpOrder(done)
       },
       httpOrder(done) {
@@ -117,7 +123,7 @@
         let live = (this.roleType !== 'admin')
 
         if (Boolean(tableOneId)) {
-          httpOrderAdminApi.getAllByTableOneId(this.$route.params.shortId, tableOneId, live, this.ui.scroller.page++, 5).then(res => {
+          httpOrderAdminApi.getAllByTableOneId(this.$route.params.shortId, tableOneId, live, this.ui.scroller.page++, 20).then(res => {
             if (done) {
               done()
             }
@@ -141,7 +147,7 @@
             })
           })
         } else if (this.date) {
-          httpOrderAdminApi.getAllByDate(this.$route.params.shortId, this.date, this.ui.scroller.page++, 5).then(res => {
+          httpOrderAdminApi.getAllByDate(this.$route.params.shortId, this.date, this.ui.scroller.page++, 20).then(res => {
             if (done) {
               done()
             }
@@ -165,7 +171,7 @@
             })
           })
         } else {
-          httpOrderAdminApi.getAll(this.$route.params.shortId, live, this.ui.scroller.page++, 5).then(res => {
+          httpOrderAdminApi.getAll(this.$route.params.shortId, live, this.ui.scroller.page++, 20).then(res => {
             if (done) {
               done()
             }

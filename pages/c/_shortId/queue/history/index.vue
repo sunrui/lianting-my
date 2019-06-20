@@ -79,7 +79,7 @@
         this.httpHistory(done)
       },
       httpHistory(done) {
-        httpQueueApi.getHistory(this.$route.params.shortId, this.ui.scroller.page++, 5).then(res => {
+        httpQueueApi.getHistory(this.$route.params.shortId, this.ui.scroller.page++, 20).then(res => {
           if (done) {
             done()
           }

@@ -206,7 +206,8 @@
             text: ''
           },
           selectTable: {},
-          changeTable: {}
+          changeTable: {},
+          interval: null
         },
         http: {
           res: {
@@ -224,6 +225,7 @@
       this.httpTableGroup()
 
       this.autoRefresh()
+      this.ui.interval = setInterval(this.autoRefresh, 10 * 1000)
     },
     mounted() {
       this.title.backUri = `/b/${this.$route.params.shortId}/${this.roleType}`
@@ -234,11 +236,14 @@
     },
     beforeDestroy() {
       window.removeEventListener('scroll', this.onScroll)
+      if (this.ui.interval) {
+        clearInterval(this.ui.interval)
+        this.ui.interval = null
+      }
     },
     methods: {
       autoRefresh() {
         this.httpOrder()
-        setTimeout(this.autoRefresh, 10 * 1000)
       },
       httpShop() {
         httpShopApi.getOne(this.$route.params.shortId).then(res => {

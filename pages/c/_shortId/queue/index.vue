@@ -173,7 +173,8 @@
           vCoverMaskCart: false,
           vQueueNumber: false,
           vTableSelect: false,
-          selectTableGroupId: null
+          selectTableGroupId: null,
+          interval: null
         },
         http: {
           res: {
@@ -193,11 +194,17 @@
       this.httpInfo()
 
       this.autoRefresh()
+      this.ui.interval = setInterval(this.autoRefresh, 10 * 1000)
+    },
+    beforeDestroy() {
+      if (this.ui.interval) {
+        clearInterval(this.ui.interval)
+        this.ui.interval = null
+      }
     },
     methods: {
       autoRefresh() {
         this.httpState()
-        setTimeout(this.autoRefresh, 10 * 1000)
       },
       httpShop() {
         httpShopApi.getOne(this.$route.params.shortId).then(res => {

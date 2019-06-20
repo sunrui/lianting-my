@@ -123,7 +123,7 @@
         }
       },
       httpReserveDay(done) {
-        httpReserveAdminApi.getDay(this.$route.params.shortId, this.$route.query.timeStamp, this.ui.scroller.page++, 5).then(res => {
+        httpReserveAdminApi.getDay(this.$route.params.shortId, this.$route.query.timeStamp, this.ui.scroller.page++, 20).then(res => {
           if (done) {
             done()
           }

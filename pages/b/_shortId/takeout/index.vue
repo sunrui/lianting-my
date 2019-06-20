@@ -88,24 +88,32 @@
             page: 0,
             elements: [],
             haveMore: true
-          }
+          },
+          interval: null
         }
       }
     },
-    created() {
+    mounted() {
       this.autoRefresh()
+      this.ui.interval = setInterval(this.autoRefresh, 10 * 1000)
+    },
+    beforeDestroy() {
+      if (this.ui.interval) {
+        clearInterval(this.ui.interval)
+        this.ui.interval = null
+      }
     },
     methods: {
       autoRefresh() {
-        this.ui.scroller.page = 0
-        this.httpOrder(null)
-        setTimeout(this.autoRefresh, 10 * 1000)
+        this.onRefresh(null)
       },
       onRefresh(done) {
+        this.ui.scroller.page = 0
+        this.ui.scroller.haveMore = true
         this.httpOrder(done)
       },
       httpOrder(done) {
-        httpOrderAdminApi.getTakeOut(this.$route.params.shortId, this.ui.scroller.page++, 5).then(res => {
+        httpOrderAdminApi.getTakeOut(this.$route.params.shortId, this.ui.scroller.page++, 20).then(res => {
           if (done) {
             done()
           }
