@@ -1,6 +1,6 @@
 <template>
   <div>
-    <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
+    <title-bar ref="titleBar_BRolePush" :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
     <div class="box">
       <div class="addition box_radius">
@@ -84,6 +84,8 @@
       this.httpPush()
     },
     mounted() {
+      this.title.backUri = `/b/${this.$route.params.shortId}/${this.roleType}`
+      this.$refs.titleBar_BRolePush.setBackUri(this.title.backUri)
       this.title.title = '微信推送 - ' + roleApi.getRoleTypeName(this.roleType)
     },
     methods: {

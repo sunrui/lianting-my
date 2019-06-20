@@ -151,8 +151,8 @@
   import {httpTableApi} from '../../../../api/http/lt/httpTableApi'
   import {httpShopApi} from '../../../../api/http/shop/httpShopApi'
   import {httpInfoApi} from '../../../../api/http/lt/httpInfoApi'
-  import {highlightApi} from "../../../../api/local/highlightApi"
-  import WechatSubscribe from "../../../../components/wechat/WechatSubscribe"
+  import {highlightApi} from '../../../../api/local/highlightApi'
+  import WechatSubscribe from '../../../../components/wechat/WechatSubscribe'
 
   export default {
     metaInfo: {
@@ -189,11 +189,16 @@
       }
     },
     created() {
-      this.httpState()
       this.httpShop()
       this.httpInfo()
+
+      this.autoRefresh()
     },
     methods: {
+      autoRefresh() {
+        this.httpState()
+        setTimeout(this.autoRefresh, 10 * 1000)
+      },
       httpShop() {
         httpShopApi.getOne(this.$route.params.shortId).then(res => {
           this.http.res.shop = res
@@ -290,13 +295,7 @@
         return '分钟'
       },
       httpState() {
-        this.http.res.state = {}
-        this.http.res.tableGroups = {}
-        this.http.res.myTickets = {}
-
-        this.ui.vQueueNumber = false
-        this.ui.vTableSelect = false
-        this.ui.vCoverMask = false
+        this.btnCoverMask()
 
         httpQueueApi.getState(this.$route.params.shortId).then(res => {
           if (!res.needQueues || res.needQueues.length === 0) {
@@ -363,6 +362,7 @@
         })
       },
       btnCoverMask() {
+        this.ui.vQueueNumber = false
         this.ui.vTableSelect = false
         this.ui.vCoverMask = false
       },

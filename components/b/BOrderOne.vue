@@ -541,6 +541,10 @@
       this.title.title = '订单详情 - ' + roleApi.getRoleTypeName(this.roleType)
     },
     methods: {
+      autoRefresh() {
+        this.httpOrder()
+        setTimeout(this.autoRefresh, 10 * 1000)
+      },
       btnChooseReturnCount(payload) {
         this.http.req.return.count = payload.name
       },

@@ -5,6 +5,8 @@
     <scroller class="scroller"
               noDataText=""
               ref="reserve"
+              :on-refresh="onRefresh"
+              refresh-text=""
               :on-infinite="onInfinite">
       <div class="box" v-for="reserve in ui.scroller.elements">
         <div class="list_title box_radius_header" @click="btnReserve(reserve)">
@@ -85,6 +87,9 @@
       this.httpReserves(null)
     },
     methods: {
+      onRefresh(done) {
+        this.httpReserves(done)
+      },
       getStatus(status) {
         switch (status) {
           case 'Wait':

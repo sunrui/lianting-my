@@ -1,10 +1,12 @@
 <template>
   <div>
-    <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
+    <title-bar ref="titleBar_BOrder" :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
     <scroller class="scroller"
               noDataText=""
               ref="bOrder"
+              :on-refresh="onRefresh"
+              refresh-text=""
               :on-infinite="onInfinite">
       <div class="box" v-for="order in ui.scroller.elements">
         <div class="list_title box_radius_header">
@@ -93,13 +95,23 @@
       }
     },
     created() {
-      this.httpOrder(null)
+      this.autoRefresh()
     },
     mounted() {
       this.title.backUri = `/b/${this.$route.params.shortId}/${this.roleType}`
+      this.$refs.titleBar_BOrder.setBackUri(this.title.backUri)
       this.title.title = '订单记录 - ' + roleApi.getRoleTypeName(this.roleType)
     },
     methods: {
+      autoRefresh() {
+        this.ui.scroller.page = 0
+        this.httpOrder(null)
+        setTimeout(this.autoRefresh, 10 * 1000)
+      },
+      onRefresh(done) {
+        this.ui.scroller.page = 0
+        this.httpOrder(done)
+      },
       httpOrder(done) {
         let tableOneId = this.$route.query.tableOneId
         let live = (this.roleType !== 'admin')

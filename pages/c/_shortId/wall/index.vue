@@ -9,6 +9,8 @@
     <scroller class="scroller"
               noDataText=""
               ref="wall"
+              :on-refresh="onRefresh"
+              refresh-text=""
               :on-infinite="onInfinite">
       <div v-for="wall in ui.scroller.elements">
         <div class="box">
@@ -178,6 +180,9 @@
       this.httpWall(null)
     },
     methods: {
+      onRefresh(done) {
+        this.httpWall(done)
+      },
       httpWall(done) {
         if (Boolean(this.$route.query.my)) {
           httpWallApi.getMyAll(this.$route.params.shortId, this.ui.scroller.page++, 5).then(res => {

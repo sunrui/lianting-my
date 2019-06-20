@@ -2,8 +2,8 @@ import axios from 'axios'
 
 let base = '/api/user'
 
-// 30 day
-let maxAge = 30 * 24 * 60 * 60
+// 1 day
+let maxAge = 24 * 60 * 60
 
 if (process.env.NODE_ENV === 'development') {
   maxAge = 365 * 24 * 60 * 60
@@ -20,13 +20,13 @@ export const httpUserApi = {
   putInfo(model) {
     return axios.put(`${base}/info`, model).then(res => res.data)
   },
-  postRegister(shortId, userName, password) {
-    return axios.post(`${base}/register`, {
-      shortId: shortId,
-      userName: userName,
-      password: passwords
-    }).then(res => res.data)
-  },
+  // postRegister(shortId, userName, password) {
+  //   return axios.post(`${base}/register`, {
+  //     shortId: shortId,
+  //     userName: userName,
+  //     password: passwords
+  //   }).then(res => res.data)
+  // },
   postLoginWechat(shortId, code, state) {
     return axios.post(`${base}/login/wechat`, {
       shortId: shortId,

@@ -5,6 +5,8 @@
     <scroller class="scroller"
               noDataText=""
               ref="queue"
+              :on-refresh="onRefresh"
+              refresh-text=""
               :on-infinite="onInfinite">
       <div class="box" v-for="history in ui.scroller.elements">
         <div class="list_title box_radius_header">
@@ -73,6 +75,9 @@
       this.httpHistory(null)
     },
     methods: {
+      onRefresh(done) {
+        this.httpHistory(done)
+      },
       httpHistory(done) {
         httpQueueApi.getHistory(this.$route.params.shortId, this.ui.scroller.page++, 5).then(res => {
           if (done) {

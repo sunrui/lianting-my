@@ -1,6 +1,6 @@
 <template>
   <div v-show="!ui.loading">
-    <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
+    <title-bar ref="titleBar_BTable" :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
     <transition name="fade">
       <div :class="{ cover_mask_9: ui.vCoverMask}" @click="btnCoverMask"></div>
@@ -222,10 +222,12 @@
       this.httpShop()
       this.httpInfo()
       this.httpTableGroup()
-      this.httpOrder()
+
+      this.autoRefresh()
     },
     mounted() {
       this.title.backUri = `/b/${this.$route.params.shortId}/${this.roleType}`
+      this.$refs.titleBar_BTable.setBackUri(this.title.backUri)
       this.title.title = '餐桌 - ' + roleApi.getRoleTypeName(this.roleType)
 
       window.addEventListener('scroll', this.onScroll)
@@ -234,6 +236,10 @@
       window.removeEventListener('scroll', this.onScroll)
     },
     methods: {
+      autoRefresh() {
+        this.httpOrder()
+        setTimeout(this.autoRefresh, 10 * 1000)
+      },
       httpShop() {
         httpShopApi.getOne(this.$route.params.shortId).then(res => {
           this.http.res.shop = res

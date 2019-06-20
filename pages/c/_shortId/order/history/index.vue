@@ -5,6 +5,8 @@
     <scroller class="scroller"
               ref="order"
               noDataText=""
+              :on-refresh="onRefresh"
+              refresh-text=""
               :on-infinite="onInfinite">
       <div class="box" v-for="order in ui.scroller.elements">
         <div class="list_title box_radius_header">
@@ -89,6 +91,9 @@
       this.httpOrder(null)
     },
     methods: {
+      onRefresh(done) {
+        this.httpOrder(done)
+      },
       httpOrder(done) {
         let live = this.$route.query.live
         this.title.title = live ? '实时订单' : '我的订单'

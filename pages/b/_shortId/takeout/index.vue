@@ -5,6 +5,8 @@
     <scroller class="scroller"
               noDataText=""
               ref="takeOut"
+              :on-refresh="onRefresh"
+              refresh-text=""
               :on-infinite="onInfinite">
       <div class="box" v-for="order in ui.scroller.elements">
         <div class="list_title box_radius_header">
@@ -91,9 +93,17 @@
       }
     },
     created() {
-      this.httpOrder(null)
+      this.autoRefresh()
     },
     methods: {
+      autoRefresh() {
+        this.ui.scroller.page = 0
+        this.httpOrder(null)
+        setTimeout(this.autoRefresh, 10 * 1000)
+      },
+      onRefresh(done) {
+        this.httpOrder(done)
+      },
       httpOrder(done) {
         httpOrderAdminApi.getTakeOut(this.$route.params.shortId, this.ui.scroller.page++, 5).then(res => {
           if (done) {
