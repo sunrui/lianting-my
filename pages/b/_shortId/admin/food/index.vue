@@ -342,6 +342,8 @@
 
         this.ui.status.foodCategory = foodCategory
         this.ui.status.selectStatus = foodCategory.status
+        
+        scrollApi.enable(false)
       },
       btnChangeStatusConfirm() {
         httpFoodAdminApi.putCategoryStatus(this.$route.params.shortId, this.ui.status.foodCategory.id, this.ui.status.selectStatus).then(res => {
