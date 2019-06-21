@@ -8,7 +8,7 @@
 
     <div class="shop_title_box">
       <div class="shop_title_name">{{http.res.shop.name}}</div>
-      <div class="shop_title_detail">{{http.res.info.notice ? http.res.info.notice : '欢迎光临本餐厅!'}}</div>
+      <div class="shop_title_detail">{{http.res.info.notice ? http.res.info.notice : '欢迎您的光临。'}}</div>
     </div>
 
     <div class="reserve_notice_box">
