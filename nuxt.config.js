@@ -48,6 +48,7 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
+    // {src: '~plugins/down', ssr: false},
     {src: '~plugins/axios', ssr: false},
     {src: '~plugins/stat', ssr: false},
     {src: '~plugins/console', ssr: false},
