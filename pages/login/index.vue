@@ -3,6 +3,7 @@
 
 <script>
   import {wechatApi} from '../../api/local/wechatApi'
+  import {alipayApi} from '../../api/local/alipayApi'
 
   export default {
     metaInfo: {
@@ -33,6 +34,16 @@
         r = encodeURIComponent(r)
         r = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${this.appId}&redirect_uri=${r}&response_type=code&scope=${scope}&state=${state}&connect_redirect=1#wechat_redirect`
         window.location.href = r
+      // } else if (alipayApi.inAlipay()) {
+      //   r = document.location.protocol + '//' + window.location.host + `/login/alipay?r=${r}&shortId=${shortId}`
+      //   if (!Boolean(scope)) {
+      //     scope = 'auth_base'
+      //   }
+      //
+      //   let state = 'csrf_uncheck'
+      //
+      //   r = encodeURIComponent(r)
+      //   r = `https://openauth.alipay.com/oauth2/appToAppAuth.htm?app_id=2018010501607494&redirect_uri=${r}&scope=${scope}&state=${state}`
       } else {
         this.$router.push({
           path: '/login/phone',

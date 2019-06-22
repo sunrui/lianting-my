@@ -68,7 +68,6 @@
       <!--        <div class="login_third_icon_alipay" @click="btnAlipay"></div>-->
 <!--    </div>-->
     <div class="blank_20"></div>
-
   </div>
 </template>
 
