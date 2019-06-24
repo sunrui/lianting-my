@@ -5,9 +5,9 @@
     <div class="box">
       <div class="tip">
         <ul class="tip_ul">
-          <li>请自行购买飞鹅打印机，官网: <a class="tip_link" :href="getFeieUrl()">www.feieyun.com</a></li>
+          <li>请自行购买飞鹅打印机，官网: <a class="tip_link" :href="getFeieUrl()">www.feieyun.com</a>。</li>
           <li>您无需电脑仅需要将打印机配置成WIFI或GPRS即可。</li>
-          <li>配置请联系飞鹅客服，并把以下信息填入到恋厅中。</li>
+          <li>配置请联系飞鹅客服并把以下信息填入到恋厅中。</li>
           <li>接下来订单就可以支持云打印了。</li>
         </ul>
       </div>

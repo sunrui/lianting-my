@@ -107,7 +107,7 @@
     },
     mounted() {
       this.httpPrinterFeie()
-      this.ui.interval = setInterval(this.httpPrinterFeie, 10 * 1000)
+      this.ui.interval = setInterval(this.httpPrinterFeie, 30 * 1000)
     },
     beforeDestroy() {
       if (this.ui.interval) {
