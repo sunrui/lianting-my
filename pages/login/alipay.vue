@@ -3,6 +3,8 @@
 </template>
 
 <script>
+  import {httpUserApi} from '../../api/http/user/httpUserApi'
+
   export default {
     metaInfo: {
       title: '支付宝登录'

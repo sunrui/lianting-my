@@ -24,7 +24,7 @@
             <div class="printer_type_name">{{printer.remark ? printer.remark : printer.sn}}</div>
           </div>
           <div class="printer_box_right">
-            <div class="printer_online_status">在线</div>
+            <div class="printer_online_status">{{getPrinterFeieOneStatus(printer)}}</div>
           </div>
         </div>
       </div>
@@ -99,12 +99,21 @@
         ui: {
           vCoverMask: false,
           vPrinter: false,
-          choosePrinter: 'feie'
+          choosePrinter: 'feie',
+          feiePrinterStatus: [],
+          interval: null
         }
       }
     },
     mounted() {
       this.httpPrinterFeie()
+      this.ui.interval = setInterval(this.httpPrinterFeie, 10 * 1000)
+    },
+    beforeDestroy() {
+      if (this.ui.interval) {
+        clearInterval(this.ui.interval)
+        this.ui.interval = null
+      }
     },
     methods: {
       btnChoosePrinter(printer) {
@@ -124,6 +133,8 @@
         this.$router.push(`/b/${this.$route.params.shortId}/owner/printer/create/${this.ui.choosePrinter}`)
       },
       httpPrinterFeie() {
+        this.ui.feiePrinterStatus = []
+
         httpPrinterAdminApi.getPrinterFeie(this.$route.params.shortId, 0, 99).then(res => {
           if (res.elements.length !== 0) {
             this.$refs.titleBar_Printer.setTheme('image')
@@ -132,6 +143,45 @@
           }
 
           this.http.res.printerFeie = res
+
+          for (let index in res.elements) {
+            let printer = res.elements[index]
+            this.getPrinterFeieOneStatus(printer)
+          }
+        })
+      },
+      getPrinterFeieOneStatus(printer) {
+        for (let index in this.ui.feiePrinterStatus) {
+          let statusOne = this.ui.feiePrinterStatus[index]
+          if (statusOne.id === printer.id) {
+            return statusOne.status
+          }
+        }
+
+        httpPrinterAdminApi.getPrinterFeieOneStatus(this.$route.params.shortId, printer.id).then(res => {
+          let status
+
+          if (res.notExists) {
+            status = '不存在'
+          } else if (res.offline) {
+            status = '离线'
+          } else if (res.onlineNoPaper) {
+            status = '缺纸异常'
+          } else if (res.online) {
+            status = '在线'
+          }
+
+          for (let index in this.ui.feiePrinterStatus) {
+            let statusOne = this.ui.feiePrinterStatus[index]
+            if (statusOne.id === printer.id) {
+              return
+            }
+          }
+
+          this.ui.feiePrinterStatus.push({
+            id: printer.id,
+            status: status
+          })
         })
       },
       btnCreate() {

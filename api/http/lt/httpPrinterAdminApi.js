@@ -14,6 +14,12 @@ export const httpPrinterAdminApi = {
   putPrinterFeie(shortId, printer) {
     return axios.put(`${base}/${shortId}/printer/feie`, printer).then(res => res.data)
   },
+  getPrinterFeieStatus(shortId, printer) {
+    return axios.put(`${base}/${shortId}/printer/feie/status`, printer).then(res => res.data)
+  },
+  getPrinterFeieOneStatus(shortId, printerFeieId) {
+    return axios.put(`${base}/${shortId}/printer/feie/${printerFeieId}/status`).then(res => res.data)
+  },
   deletePrinterFeie(shortId, printerFeieId) {
     return axios.delete(`${base}/${shortId}/printer/feie/${printerFeieId}`).then(res => res.data)
   },

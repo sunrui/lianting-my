@@ -120,19 +120,53 @@
           return
         }
 
-        httpPrinterAdminApi.putPrinterFeie(this.$route.params.shortId, this.http.req.printer).then(res => {
-          if (res.maxLimit) {
-            this.$router.push(`/b/${this.$route.params.shortId}/owner/limit`)
-            return
-          }
-
-          if (res.printerFeieId) {
+        httpPrinterAdminApi.getPrinterFeieStatus(this.$route.params.shortId, this.http.req.printer).then(res => {
+          if (res.notExists) {
             this.$msgBox.doModal({
               type: 'yes',
               title: '添加飞鹅打印机',
-              content: '添加成功。'
+              content: '打印机不存在，请检查配置是否正确。'
+            })
+          } else if (res.offline) {
+            this.$msgBox.doModal({
+              type: 'yes',
+              title: '添加飞鹅打印机',
+              content: '打印机已离线，请确认打印机在线且可用。'
+            })
+          } else if (res.onlineNoPaper) {
+            this.$msgBox.doModal({
+              type: 'yes',
+              title: '添加飞鹅打印机',
+              content: '打印机在线，但可能已缺纸或其它异常。'
+            })
+          } else if (res.online) {
+            this.$msgBox.doModal({
+              type: 'yes',
+              title: '添加飞鹅打印机',
+              content: '恭喜，打印机在线。'
             }).then(async (val) => {
-              this.$router.push(`/b/${this.$route.params.shortId}/owner/printer`)
+              httpPrinterAdminApi.putPrinterFeie(this.$route.params.shortId, this.http.req.printer).then(res => {
+                if (res.maxLimit) {
+                  this.$router.push(`/b/${this.$route.params.shortId}/owner/limit`)
+                  return
+                }
+
+                if (res.printerFeieId) {
+                  this.$msgBox.doModal({
+                    type: 'yes',
+                    title: '添加飞鹅打印机',
+                    content: '添加成功。'
+                  }).then(async (val) => {
+                    this.$router.push(`/b/${this.$route.params.shortId}/owner/printer`)
+                  })
+                }
+              })
+            })
+          } else {
+            this.$msgBox.doModal({
+              type: 'yes',
+              title: '添加飞鹅打印机',
+              content: res
             })
           }
         })
