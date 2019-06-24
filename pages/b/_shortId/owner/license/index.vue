@@ -524,19 +524,13 @@
                     pThis.httpTakeOutSmsShop()
                   })
                 } else if (res.err_msg === 'get_brand_wcpay_request:cancel') {
-                  pThis.$msgBox.doModal({
-                    type: 'yes',
-                    title: '续费取消',
-                    content: '续费已取消。'
-                  }).then(async (val) => {
-                    pThis.httpShop()
-                    pThis.httpLicensePlan()
-                    pThis.httpTakeOutSmsShop()
-                  })
+                  pThis.httpShop()
+                  pThis.httpLicensePlan()
+                  pThis.httpTakeOutSmsShop()
                 } else if (res.err_msg) {
                   pThis.$msgBox.doModal({
                     type: 'yes',
-                    title: '续费取消',
+                    title: '续费错误',
                     content: res.err_msg
                   }).then(async (val) => {
                     pThis.httpShop()
@@ -561,7 +555,7 @@
       },
       getExpiredContent() {
         // if (this.http.res.shop.licenseType === 'Free') {
-          return '服务于：' + new Date(parseInt(this.http.res.shop.createdAt)).toLocaleDateString()
+        return '服务于：' + new Date(parseInt(this.http.res.shop.createdAt)).toLocaleDateString()
         // } else {
         //   return '过期时间：' + new Date(parseInt(this.http.res.licenseExpiredAt)).toLocaleDateString()
         // }
