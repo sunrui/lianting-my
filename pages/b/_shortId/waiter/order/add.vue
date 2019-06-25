@@ -3,7 +3,7 @@
 </template>
 
 <script>
-  import OrderAdd from '../../../../../../components/order/OrderAdd'
+  import OrderAdd from '../../../../../components/order/OrderAdd'
 
   export default {
     middleware: 'auth',

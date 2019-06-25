@@ -75,7 +75,8 @@
         </div>
       </div>
 
-      <div class="food_group_box" :id="'box_' + foodGroup.id" v-if="foodGroup.foodCategories && foodGroup.foodCategories.length > 0" v-for="foodGroup in http.res.foodGroups.elements">
+      <div class="food_group_box" :id="'box_' + foodGroup.id" v-if="foodGroup.foodCategories && foodGroup.foodCategories.length > 0"
+           v-for="foodGroup in http.res.foodGroups.elements">
         <div class="food_group">
           <div class="food_group_anchor" :id="foodGroup.id"></div>
           <div class="food_group_name">{{foodGroup.name}}</div>
@@ -719,28 +720,12 @@
       },
       orderRouter(res) {
         if (res.currentPageSize > 0) {
-          let notPaidCount = 0
-          let notPaidOrder = null
-
-          for (let index in res.elements) {
-            let order = res.elements[index]
-            if (order.status === 'NotPaid') {
-              notPaidCount += 1
-
-              if (notPaidOrder == null) {
-                notPaidOrder = order
-              }
-            }
-          }
-
-          if (notPaidCount === 1) {
-            if (this.roleWaiter) {
-              this.$router.push(`/b/${this.$route.params.shortId}/waiter/order/${notPaidOrder.id}/add`)
-              return
-            } else {
-              this.$router.push(`/c/${this.$route.params.shortId}/order/${notPaidOrder.id}/add`)
-              return
-            }
+          if (this.roleWaiter) {
+            this.$router.push(`/b/${this.$route.params.shortId}/waiter/order/add`)
+            return
+          } else {
+            this.$router.push(`/c/${this.$route.params.shortId}/order/add`)
+            return
           }
         }
 

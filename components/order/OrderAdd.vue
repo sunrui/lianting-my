@@ -2,13 +2,13 @@
   <div>
     <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
-    <div class="box" v-if="http.res.order.orderTakeOut">
+    <div class="box" v-if="ui.orderAnyOne.orderTakeOut">
       <div class="addition box_radius">
         <div class="addition_item">
           <div class="addition_item_label_text_area">地址</div>
           <div class="addition_item_text_area">
             <label>
-              <textarea class="addition_item_text_input" placeholder="请输入您的配送地址" readonly v-model="http.res.order.orderTakeOut.address"></textarea>
+              <textarea class="addition_item_text_input" placeholder="请输入您的配送地址" readonly v-model="ui.orderAnyOne.orderTakeOut.address"></textarea>
             </label>
           </div>
         </div>
@@ -17,22 +17,22 @@
 
         <div class="addition_item">
           <div class="addition_item_label">订单人</div>
-          <div class="addition_item_content" style="user-select: text;">{{http.res.order.orderTakeOut.name}}</div>
+          <div class="addition_item_content" style="user-select: text;">{{ui.orderAnyOne.orderTakeOut.name}}</div>
         </div>
 
         <div class="box_divide"></div>
 
         <div class="addition_item">
           <div class="addition_item_label">手机号</div>
-          <div class="addition_item_content" style="user-select: text;">{{http.res.order.orderTakeOut.phone}}</div>
+          <div class="addition_item_content" style="user-select: text;">{{ui.orderAnyOne.orderTakeOut.phone}}</div>
         </div>
       </div>
     </div>
 
-    <div class="box" v-if="http.res.order.orderTable">
+    <div class="box" v-if="ui.orderAnyOne.orderTable">
       <div class="order_table box_radius">
-        <div class="order_table_number">{{http.res.order.orderTable.tableFullNumber}}</div>
-        <div class="order_table_name">{{http.res.order.orderTable.tableGroupName}}</div>
+        <div class="order_table_number">{{ui.orderAnyOne.orderTable.tableFullNumber}}</div>
+        <div class="order_table_name">{{ui.orderAnyOne.orderTable.tableGroupName}}</div>
       </div>
     </div>
 
@@ -65,7 +65,7 @@
     <div class="box">
       <div class="list_title box_radius_header">
         <div class="list_time_icon"></div>
-        <div class="list_time_label">{{new Date(parseInt(http.res.order.createdAt)).toLocaleString()}}</div>
+        <div class="list_time_label">{{new Date(parseInt(ui.orderAnyOne.createdAt)).toLocaleString()}}</div>
       </div>
 
       <div class="box_divide_radius">
@@ -74,13 +74,13 @@
 
       <div class="order_content box_radius_footer">
         <div>
-          <div class="order_food" v-for="orderFood in http.res.order.orderFoods">
+          <div class="order_food" v-for="orderFood in ui.orderedFoods">
             <img class="order_food_image" :src="orderFood.foodCategoryImage" :alt="orderFood.foodCategoryName">
             <div class="order_food_name_detail">
               <div class="order_food_name_detail_name">{{orderFood.foodCategoryName}}</div>
               <div class="order_food_name_detail_name_category">{{orderFood.foodName}}</div>
             </div>
-            <div v-if="http.res.order.status !== 'Finish' && http.res.order.status !== 'Cancel'">
+            <div v-if="ui.orderAnyOne.status !== 'Finish' && ui.orderAnyOne.status !== 'Cancel'">
               <div class="order_food_status order_food_status_wait" v-if="orderFood.status === 'Wait'">已下单</div>
               <div class="order_food_status order_food_status_cooking" v-if="orderFood.status === 'Cooking'">正在做</div>
               <div class="order_food_status order_food_status_cooked" v-if="orderFood.status === 'Cooked'">做好了</div>
@@ -96,8 +96,8 @@
         <div class="order_tableware">
           <div class="order_tableware_icon">餐位费</div>
           <div class="order_tableware_label">餐具</div>
-          <div class="order_tableware_count">{{http.res.order.people}}</div>
-          <div class="order_tableware_price">{{http.res.order.priceTableware}}</div>
+          <div class="order_tableware_count">{{ui.orderAnyOne.people}}</div>
+          <div class="order_tableware_price">{{ui.orderAnyOne.priceTableware}}</div>
         </div>
 
         <div class="box_divide"></div>
@@ -114,36 +114,7 @@
       <div class="addition box_radius">
         <div class="addition_item">
           <div class="addition_item_label">就餐人数</div>
-          <div class="addition_item_content">{{http.res.order.people}} 人</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="box">
-      <div class="addition"
-           v-bind:class="{box_radius_header: http.res.order.tasteNotes && http.res.order.tasteNotes.length > 0,
-              box_radius: !http.res.order.tasteNotes || http.res.order.tasteNotes.length === 0}">
-        <div class="addition_item">
-          <div class="addition_item_label_text_area">口味</div>
-          <div class="addition_item_text_area">
-            <label>
-              <textarea class="addition_item_text_input" :placeholder="roleWaiter ? '请输入顾客的口味要求。' : '请输入您的口味要求，我们会尽量安排。'" v-model="ui.tasteNote"></textarea>
-            </label>
-          </div>
-        </div>
-      </div>
-
-      <div v-if="http.res.order.tasteNotes && http.res.order.tasteNotes.length > 0">
-        <div class="box_divide_radius">
-          <div class="box_divide_radius_line"></div>
-        </div>
-
-        <div class="order_taste_note_history box_radius_footer">
-          <div class="order_taste_note_history_item" v-for="taskNote in http.res.order.tasteNotes">
-            <div class="order_taste_note_history_icon_ball"></div>
-            <div class="order_taste_note_history_icon_line"></div>
-            <div class="order_taste_note_history_content">{{taskNote}}</div>
-          </div>
+          <div class="addition_item_content">{{ui.orderAnyOne.people}} 人</div>
         </div>
       </div>
     </div>
@@ -159,6 +130,7 @@
   import TitleBar from '../common/TitleBar'
   import {cartApi} from '../../api/local/cartApi'
   import {httpOrderApi} from '../../api/http/lt/httpOrderApi'
+  import {userApi} from '../../api/local/userApi'
 
   export default {
     metaInfo: {
@@ -182,7 +154,9 @@
           imageHeight: 330
         },
         ui: {
-          tasteNote: ''
+          tasteNote: '',
+          orderedFoods: [],
+          orderAnyOne: {}
         },
         http: {
           req: {
@@ -220,19 +194,32 @@
         return
       }
 
-      this.httpOrder()
+      this.httpOrderAll()
     },
     methods: {
-      httpOrder() {
-        httpOrderApi.getOrder(this.$route.params.shortId, this.$route.params.orderOneId).then(res => {
-          this.http.res.order = res
+      httpOrderAll() {
+        httpOrderApi.getAll(this.$route.params.shortId, true, 0, 99).then(res => {
+          for (let index in res.elements) {
+            let orderOne = res.elements[index]
+
+            this.ui.orderAnyOne = orderOne
+
+            if (orderOne.type !== 'ForHere') {
+              continue;
+            }
+
+            for (let foodIndex in orderOne.orderFoods) {
+              let orderFood = orderOne.orderFoods[foodIndex]
+              this.ui.orderedFoods.push(orderFood)
+            }
+          }
         })
       },
       getTotalFood() {
         let count = 0
 
-        for (let index in this.http.res.order.orderFoods) {
-          let orderFood = this.http.res.order.orderFoods[index]
+        for (let index in this.ui.orderedFoods) {
+          let orderFood = this.ui.orderedFoods[index]
           count += orderFood.count
         }
 
@@ -246,8 +233,8 @@
       getTotalPrice() {
         let price = 0
 
-        for (let index in this.http.res.order.orderFoods) {
-          let orderFood = this.http.res.order.orderFoods[index]
+        for (let index in this.ui.orderedFoods) {
+          let orderFood = this.ui.orderedFoods[index]
           price += orderFood.count * orderFood.foodPrice
         }
 
@@ -256,7 +243,7 @@
           price += food.select * food.food.price
         }
 
-        price += this.http.res.order.priceTableware
+        price += this.ui.orderAnyOne.priceTableware
 
         return price
       },
@@ -272,12 +259,15 @@
           })
         }
 
-        let model = {
-          foods: foods,
-          tasteNote: this.ui.tasteNote
-        }
+        let order = {}
 
-        httpOrderApi.postOrderFood(this.$route.params.shortId, this.http.res.order.id, model).then(res => {
+        order.type = 'ForHere'
+        order.foods = foods
+        order.tasteNote = this.ui.tasteNote
+        order.people = this.cart.people
+        order.captchaTableId = userApi.getCaptchaTableId()
+
+        httpOrderApi.postOrder(this.$route.params.shortId, order).then(res => {
           if (res.shopClosed) {
             this.$msgBox.doModal({
               type: 'yes',
@@ -322,7 +312,7 @@
                 this.$router.push(`/c/${this.$route.params.shortId}/food`)
               }
             })
-          } else if (res.success) {
+          } else if (res.orderOneId) {
             let price = 0
 
             for (let index in this.cart.foods) {
@@ -336,9 +326,9 @@
             let path
 
             if (this.roleWaiter) {
-              path = `/b/${this.$route.params.shortId}/waiter/order/${this.http.res.order.id}/success`
+              path = `/b/${this.$route.params.shortId}/waiter/order/${this.ui.orderAnyOne.id}/success`
             } else {
-              path = `/c/${this.$route.params.shortId}/order/${this.http.res.order.id}/success`
+              path = `/c/${this.$route.params.shortId}/order/${this.ui.orderAnyOne.id}/success`
             }
 
             this.$router.push({

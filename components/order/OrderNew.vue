@@ -84,9 +84,10 @@
           <div class="order_tableware_price">{{cart.people && cart.perTablewarePrice ? cart.people * cart.perTablewarePrice : 0 }}</div>
         </div>
 
-        <div class="box_divide"></div>
 
         <div class="order_tableware" v-if="ui.takeOutEnable">
+          <div class="box_divide"></div>
+
           <div class="order_tableware_icon">配送费</div>
           <div class="order_tableware_label">外卖配送</div>
           <div class="order_tableware_price">{{http.req.takeOutConfig.takeOutFee}}</div>
