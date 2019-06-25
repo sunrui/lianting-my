@@ -5,7 +5,7 @@
     <div class="box">
       <div class="tip">
         <ul class="tip_ul">
-          <li>请自行购买飞鹅打印机，官网: <a class="tip_link" :href="getFeieUrl()">www.feieyun.com</a>。</li>
+          <li>请自行购买飞鹅云打印机，官网: <a class="tip_link" :href="getFeieUrl()">www.feieyun.com</a>。</li>
           <li>您无需电脑仅需要将打印机配置成WIFI或GPRS即可。</li>
           <li>配置请联系飞鹅客服并把以下信息填入到恋厅中。</li>
           <li>接下来订单就可以支持云打印了。</li>
@@ -59,7 +59,7 @@
 
   export default {
     metaInfo: {
-      title: '添加飞鹅打印机'
+      title: '添加飞鹅云打印机'
     },
     middleware: 'auth',
     components: {TitleBar, CurrencyInput},
@@ -67,7 +67,7 @@
       return {
         title: {
           canBack: true,
-          title: '添加飞鹅打印机',
+          title: '添加飞鹅云打印机',
           backUri: `/b/${this.$route.params.shortId}/owner/printer`,
           theme: 'image',
           imageHeight: 300
@@ -93,7 +93,7 @@
         if (!Boolean(this.http.req.printer.user)) {
           this.$msgBox.doModal({
             type: 'yes',
-            title: '添加飞鹅打印机',
+            title: '添加飞鹅云打印机',
             content: '请输入飞鹅 USER。'
           })
 
@@ -103,7 +103,7 @@
         if (!Boolean(this.http.req.printer.ukey)) {
           this.$msgBox.doModal({
             type: 'yes',
-            title: '添加飞鹅打印机',
+            title: '添加飞鹅云打印机',
             content: '请输入飞鹅 UKEY。'
           })
 
@@ -113,7 +113,7 @@
         if (!Boolean(this.http.req.printer.sn)) {
           this.$msgBox.doModal({
             type: 'yes',
-            title: '添加飞鹅打印机',
+            title: '添加飞鹅云打印机',
             content: '请输入飞鹅 SN。'
           })
 
@@ -124,25 +124,25 @@
           if (res.notExists) {
             this.$msgBox.doModal({
               type: 'yes',
-              title: '添加飞鹅打印机',
+              title: '添加飞鹅云打印机',
               content: '打印机不存在，请检查配置是否正确。'
             })
           } else if (res.offline) {
             this.$msgBox.doModal({
               type: 'yes',
-              title: '添加飞鹅打印机',
+              title: '添加飞鹅云打印机',
               content: '打印机已离线，请确认打印机在线且可用。'
             })
           } else if (res.onlineNoPaper) {
             this.$msgBox.doModal({
               type: 'yes',
-              title: '添加飞鹅打印机',
+              title: '添加飞鹅云打印机',
               content: '打印机在线，但可能已缺纸或其它异常。'
             })
           } else if (res.online) {
             this.$msgBox.doModal({
               type: 'yes',
-              title: '添加飞鹅打印机',
+              title: '添加飞鹅云打印机',
               content: '恭喜，打印机在线。'
             }).then(async (val) => {
               httpPrinterAdminApi.putPrinterFeie(this.$route.params.shortId, this.http.req.printer).then(res => {
@@ -154,7 +154,7 @@
                 if (res.printerFeieId) {
                   this.$msgBox.doModal({
                     type: 'yes',
-                    title: '添加飞鹅打印机',
+                    title: '添加飞鹅云打印机',
                     content: '添加成功。'
                   }).then(async (val) => {
                     this.$router.push(`/b/${this.$route.params.shortId}/owner/printer`)
@@ -165,7 +165,7 @@
           } else {
             this.$msgBox.doModal({
               type: 'yes',
-              title: '添加飞鹅打印机',
+              title: '添加飞鹅云打印机',
               content: res
             })
           }

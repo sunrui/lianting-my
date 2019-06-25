@@ -20,8 +20,8 @@
         <div class="badge_delete" @click="btnDelete(printer)"></div>
         <div class="printer_box">
           <div class="printer_box_left">
-            <div class="printer_type_title">飞鹅打印机</div>
-            <div class="printer_type_name">{{printer.remark ? printer.remark : printer.sn}}</div>
+            <div class="printer_type_title">飞鹅云打印机</div>
+            <div class="printer_type_name">{{printer.remark ? '名称：' + printer.remark : '序列号：' + printer.sn}}</div>
           </div>
           <div class="printer_box_right">
             <div class="printer_online_status">{{getPrinterFeieOneStatus(printer)}}</div>
