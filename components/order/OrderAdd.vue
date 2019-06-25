@@ -157,6 +157,7 @@
           tasteNote: '',
           orderedFoods: [],
           orderAnyOne: {},
+          captchaTableId: null
         },
         http: {
           req: {
@@ -189,14 +190,27 @@
         return
       }
 
+      this.ui.captchaTableId = userApi.getCaptchaTableId()
+      if (!Boolean(this.ui.captchaTableId)) {
+        if (this.roleWaiter) {
+          this.$router.push(`/b/${this.$route.params.shortId}/order/new`)
+        } else {
+          this.$router.push(`/c/${this.$route.params.shortId}/order/new`)
+        }
+
+        return
+      }
+
       this.httpOrderAllByCaptchaTableId()
     },
     methods: {
       httpOrderAllByCaptchaTableId() {
-        httpOrderApi.getAllByCaptchaTableId(this.$route.params.shortId, userApi.getCaptchaTableId(), 0, 99).then(res => {
+        httpOrderApi.getAllByCaptchaTableId(this.$route.params.shortId, this.ui.captchaTableId, 0, 99).then(res => {
           for (let index in res.elements) {
             let orderOne = res.elements[index]
-
+            if (orderOne.type !== 'ForHere') {
+              continue
+            }
 
             for (let foodIndex in orderOne.orderFoods) {
               let orderFood = orderOne.orderFoods[foodIndex]
@@ -204,6 +218,14 @@
             }
 
             this.ui.orderAnyOne = orderOne
+          }
+
+          if (this.ui.orderedFoods.length === 0) {
+            if (this.roleWaiter) {
+              this.$router.push(`/b/${this.$route.params.shortId}/order/new`)
+            } else {
+              this.$router.push(`/c/${this.$route.params.shortId}/order/new`)
+            }
           }
         })
       },

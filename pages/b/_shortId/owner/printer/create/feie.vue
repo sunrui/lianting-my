@@ -75,9 +75,9 @@
         http: {
           req: {
             printer: {
-              user: 'honeysense@outlook.com',
-              ukey: 'UQIP3eJCQDSUQ8aS',
-              sn: '930508336',
+              user: null,
+              ukey: null,
+              sn: null,
               enable: true,
               remark: null
             }
