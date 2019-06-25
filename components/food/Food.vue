@@ -757,7 +757,7 @@
             this.orderRouter(res)
           })
         } else {
-          httpOrderApi.getAll(this.$route.params.shortId, 1, 0, 99).then(res => {
+          httpOrderApi.getAllByLive(this.$route.params.shortId, 0, 99).then(res => {
             this.orderRouter(res)
           })
         }

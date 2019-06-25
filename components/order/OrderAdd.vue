@@ -156,7 +156,7 @@
         ui: {
           tasteNote: '',
           orderedFoods: [],
-          orderAnyOne: {}
+          orderAnyOne: {},
         },
         http: {
           req: {
@@ -166,11 +166,6 @@
               foods: [],
               tasteNote: '',
               people: 0
-            }
-          },
-          res: {
-            order: {
-              createdAt: new Date().getTime()
             }
           }
         }
@@ -194,24 +189,21 @@
         return
       }
 
-      this.httpOrderAll()
+      this.httpOrderAllByCaptchaTableId()
     },
     methods: {
-      httpOrderAll() {
-        httpOrderApi.getAll(this.$route.params.shortId, true, 0, 99).then(res => {
+      httpOrderAllByCaptchaTableId() {
+        httpOrderApi.getAllByCaptchaTableId(this.$route.params.shortId, userApi.getCaptchaTableId(), 0, 99).then(res => {
           for (let index in res.elements) {
             let orderOne = res.elements[index]
 
-            this.ui.orderAnyOne = orderOne
-
-            if (orderOne.type !== 'ForHere') {
-              continue;
-            }
 
             for (let foodIndex in orderOne.orderFoods) {
               let orderFood = orderOne.orderFoods[foodIndex]
               this.ui.orderedFoods.push(orderFood)
             }
+
+            this.ui.orderAnyOne = orderOne
           }
         })
       },

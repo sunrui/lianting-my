@@ -14,27 +14,10 @@
         return
       }
 
-      httpOrderApi.getAll(this.$route.params.shortId, 1, 0, 99).then(res => {
+      httpOrderApi.getAllByLive(this.$route.params.shortId, 0, 99).then(res => {
         if (res.currentPageSize > 0) {
-          let notPaidCount = 0
-          let notPaidOrder = null
-
-          for (let index in res.elements) {
-            let order = res.elements[index]
-            if (order.status === 'NotPaid') {
-              notPaidCount += 1
-
-              if (notPaidOrder == null) {
-                notPaidOrder = order
-              }
-            }
-          }
-
-          if (notPaidCount === 1) {
-            this.$router.push(`/c/${this.$route.params.shortId}/order/${notPaidOrder.id}/add`)
-            return
-          }
-
+          this.$router.push(`/c/${this.$route.params.shortId}/order/add`)
+        } else {
           this.$router.push({
             path: `/c/${this.$route.params.shortId}/order/history`,
             query: {
@@ -44,7 +27,6 @@
           return
         }
 
-        this.$router.push(`/c/${this.$route.params.shortId}/order/new`)
       })
     }
   }

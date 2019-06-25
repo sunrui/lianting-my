@@ -3,10 +3,27 @@ import axios from 'axios'
 let base = '/api/c'
 
 export const httpOrderApi = {
-  getAll(shortId, live, page, size) {
+  getAllByLive(shortId, page, size) {
     return axios.get(`${base}/${shortId}/order`, {
       params: {
-        live: live,
+        live: true,
+        page: page,
+        size: size
+      }
+    }).then(res => res.data)
+  },
+  getAllByCaptchaTableId(shortId, captchaTableId, page, size) {
+    return axios.get(`${base}/${shortId}/order`, {
+      params: {
+        captchaTableId: captchaTableId,
+        page: page,
+        size: size
+      }
+    }).then(res => res.data)
+  },
+  getAll(shortId, page, size) {
+    return axios.get(`${base}/${shortId}/order`, {
+      params: {
         page: page,
         size: size
       }
