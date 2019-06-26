@@ -465,7 +465,7 @@
             this.$msgBox.doModal({
               type: 'yes',
               title: '无效餐桌',
-              content: '餐桌二维码已过期，请重新扫码或联系服务员。'
+              content: '餐桌二维码已过期，请联系管理员。'
             })
 
             userApi.setCaptchaTableId(null)

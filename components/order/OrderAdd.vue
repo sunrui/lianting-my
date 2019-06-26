@@ -29,10 +29,10 @@
       </div>
     </div>
 
-    <div class="box" v-if="ui.orderAnyOne.orderTable">
+    <div class="box" v-if="ui.table.captchaTableId">
       <div class="order_table box_radius">
-        <div class="order_table_number">{{ui.orderAnyOne.orderTable.tableFullNumber}}</div>
-        <div class="order_table_name">{{ui.orderAnyOne.orderTable.tableGroupName}}</div>
+        <div class="order_table_number">{{ui.table.tableNumber}}</div>
+        <div class="order_table_name">{{ui.table.tableName}}</div>
       </div>
     </div>
 
@@ -65,7 +65,7 @@
     <div class="box">
       <div class="list_title box_radius_header">
         <div class="list_time_icon"></div>
-        <div class="list_time_label">{{new Date(parseInt(ui.orderAnyOne.createdAt)).toLocaleString()}}</div>
+        <div class="list_time_label">{{new Date().toLocaleString()}}</div>
       </div>
 
       <div class="box_divide_radius">
@@ -80,24 +80,24 @@
               <div class="order_food_name_detail_name">{{orderFood.foodCategoryName}}</div>
               <div class="order_food_name_detail_name_category">{{orderFood.foodName}}</div>
             </div>
-            <div v-if="ui.orderAnyOne.status !== 'Finish' && ui.orderAnyOne.status !== 'Cancel'">
-              <div class="order_food_status order_food_status_wait" v-if="orderFood.status === 'Wait'">已下单</div>
-              <div class="order_food_status order_food_status_cooking" v-if="orderFood.status === 'Cooking'">正在做</div>
-              <div class="order_food_status order_food_status_cooked" v-if="orderFood.status === 'Cooked'">做好了</div>
-              <div class="order_food_status order_food_status_finish" v-if="orderFood.status === 'Finish'">已上菜</div>
-            </div>
+            <div class="order_food_status order_food_status_wait" v-if="orderFood.status === 'Wait'">已下单</div>
+            <div class="order_food_status order_food_status_cooking" v-if="orderFood.status === 'Cooking'">正在做</div>
+            <div class="order_food_status order_food_status_cooked" v-if="orderFood.status === 'Cooked'">做好了</div>
+            <div class="order_food_status order_food_status_finish" v-if="orderFood.status === 'Finish'">已上菜</div>
             <div class="order_food_count">{{orderFood.count}}</div>
             <div class="order_food_price">{{orderFood.count * orderFood.foodPrice}}</div>
           </div>
         </div>
 
-        <div class="box_divide"></div>
+        <div v-if="ui.orderAnyOne.people">
+          <div class="box_divide"></div>
 
-        <div class="order_tableware">
-          <div class="order_tableware_icon">餐位费</div>
-          <div class="order_tableware_label">餐具</div>
-          <div class="order_tableware_count">{{ui.orderAnyOne.people}}</div>
-          <div class="order_tableware_price">{{ui.orderAnyOne.priceTableware}}</div>
+          <div class="order_tableware">
+            <div class="order_tableware_icon">餐位费</div>
+            <div class="order_tableware_label">餐具</div>
+            <div class="order_tableware_count">{{ui.orderAnyOne.people}}</div>
+            <div class="order_tableware_price">{{ui.orderAnyOne.priceTableware}}</div>
+          </div>
         </div>
 
         <div class="box_divide"></div>
@@ -120,9 +120,9 @@
     </div>
 
     <div class="button_box">
-      <div class="button_big" @click="btnOrder">立即下单</div>
+      <div class="button_big" v-if="ui.table.captchaTableId" @click="btnOrder">立即下单</div>
+      <div class="button_big" v-else @click="btnScanCaptcha">扫码下单</div>
     </div>
-
   </div>
 </template>
 
@@ -131,6 +131,7 @@
   import {cartApi} from '../../api/local/cartApi'
   import {httpOrderApi} from '../../api/http/lt/httpOrderApi'
   import {userApi} from '../../api/local/userApi'
+  import {wechatApi} from '../../api/local/wechatApi'
 
   export default {
     metaInfo: {
@@ -157,7 +158,11 @@
           tasteNote: '',
           orderedFoods: [],
           orderAnyOne: {},
-          captchaTableId: null
+          table: {
+            captchaTableId: null,
+            tableNumber: null,
+            tableName: null
+          }
         },
         http: {
           req: {
@@ -190,10 +195,13 @@
         return
       }
 
-      this.ui.captchaTableId = userApi.getCaptchaTableId()
-      if (!Boolean(this.ui.captchaTableId)) {
+      this.ui.table.captchaTableId = userApi.getCaptchaTableId()
+      this.ui.table.tableNumber = userApi.getTableNumber()
+      this.ui.table.tableName = userApi.getTableName()
+
+      if (!Boolean(this.ui.table.captchaTableId)) {
         if (this.roleWaiter) {
-          this.$router.push(`/b/${this.$route.params.shortId}/order/new`)
+          this.$router.push(`/b/${this.$route.params.shortId}/waiter/table`)
         } else {
           this.$router.push(`/c/${this.$route.params.shortId}/order/new`)
         }
@@ -204,29 +212,49 @@
       this.httpOrderAllByCaptchaTableId()
     },
     methods: {
+      checkOrderFood(res) {
+        for (let index in res.elements) {
+          let orderOne = res.elements[index]
+          if (orderOne.type !== 'ForHere') {
+            continue
+          }
+
+          for (let foodIndex in orderOne.orderFoods) {
+            let orderFood = orderOne.orderFoods[foodIndex]
+            this.ui.orderedFoods.push(orderFood)
+          }
+
+          this.ui.orderAnyOne = orderOne
+        }
+
+        if (this.ui.orderedFoods.length === 0) {
+          if (this.roleWaiter) {
+            this.$router.push(`/b/${this.$route.params.shortId}/waiter/order/new`)
+          } else {
+            this.$router.push(`/c/${this.$route.params.shortId}/order/new`)
+          }
+        }
+      },
+      httpOrderLive() {
+        httpOrderApi.getAllByLive(this.$route.params.shortId, 0, 99).then(res => {
+          this.checkOrderFood(res)
+        })
+      },
       httpOrderAllByCaptchaTableId() {
-        httpOrderApi.getAllByCaptchaTableId(this.$route.params.shortId, this.ui.captchaTableId, 0, 99).then(res => {
-          for (let index in res.elements) {
-            let orderOne = res.elements[index]
-            if (orderOne.type !== 'ForHere') {
-              continue
-            }
+        httpOrderApi.getAllByCaptchaTableId(this.$route.params.shortId, this.ui.table.captchaTableId, 0, 99).then(res => {
+          if (res.expired) {
+            userApi.setCaptchaTableId(null)
+            userApi.setTableName(null)
+            userApi.setTableNumber(null)
+            this.ui.table = {}
 
-            for (let foodIndex in orderOne.orderFoods) {
-              let orderFood = orderOne.orderFoods[foodIndex]
-              this.ui.orderedFoods.push(orderFood)
+            if (!this.roleWaiter) {
+              this.httpOrderLive()
             }
-
-            this.ui.orderAnyOne = orderOne
+            return
           }
 
-          if (this.ui.orderedFoods.length === 0) {
-            if (this.roleWaiter) {
-              this.$router.push(`/b/${this.$route.params.shortId}/order/new`)
-            } else {
-              this.$router.push(`/c/${this.$route.params.shortId}/order/new`)
-            }
-          }
+          this.checkOrderFood(res.orderOnes)
         })
       },
       getTotalFood() {
@@ -261,6 +289,20 @@
 
         return price
       },
+      btnScanCaptcha() {
+        let wechatOpenId = userApi.getUserWechatOpenId()
+        if (!Boolean(wechatOpenId) || !wechatApi.inWechat()) {
+          this.$msgBox.doModal({
+            type: 'yes',
+            title: '立即支付',
+            content: '请使用微信打开。'
+          })
+
+          return
+        }
+
+        this.$router.push('/scan')
+      },
       btnOrder() {
         let cart = cartApi.getCart()
 
@@ -280,6 +322,7 @@
         order.tasteNote = this.ui.tasteNote
         order.people = this.cart.people
         order.captchaTableId = userApi.getCaptchaTableId()
+        order.roleWaiter = this.roleWaiter
 
         httpOrderApi.postOrder(this.$route.params.shortId, order).then(res => {
           if (res.shopClosed) {
@@ -288,31 +331,37 @@
               title: '加餐',
               content: '店铺已打烊。'
             })
-          } else if (res.orderNotExists) {
+          } else if (res.tableNotExists) {
             this.$msgBox.doModal({
               type: 'yes',
               title: '加餐',
-              content: '订单不存在。'
-            })
-          } else if (res.orderClosed) {
-            this.$msgBox.doModal({
-              type: 'yes',
-              title: '加餐',
-              content: '订单已关闭。'
-            })
-          } else if (res.orderPaid) {
-            this.$msgBox.doModal({
-              type: 'yes',
-              title: '加餐',
-              content: '订单已支付，请重新下单。'
+              content: '餐桌二维码已过期，请重新扫码。'
             }).then(async (val) => {
+              userApi.setCaptchaTableId(null)
+              userApi.setTableName(null)
+              userApi.setTableNumber(null)
+              this.ui.table = {}
+
               if (this.roleWaiter) {
-                this.$router.push(`/b/${this.$route.params.shortId}/waiter/food`)
-              } else {
-                this.$router.push(`/c/${this.$route.params.shortId}/food`)
+                this.$router.push(`/b/${this.$route.params.shortId}/waiter/table`)
               }
             })
-          } else if (res.foodNotExists) {
+          } else if (res.otherTableOngoing) {
+            this.$msgBox.doModal({
+              type: 'yes',
+              title: '加餐',
+              content: '同时只能在一个餐桌下单，请重新扫码。'
+            }).then(async (val) => {
+              userApi.setCaptchaTableId(null)
+              userApi.setTableName(null)
+              userApi.setTableNumber(null)
+              this.ui.table = {}
+
+              if (this.roleWaiter) {
+                this.$router.push(`/b/${this.$route.params.shortId}/waiter/table`)
+              }
+            })
+          }  else if (res.foodNotExists) {
             this.$msgBox.doModal({
               type: 'yes',
               title: '加餐',

@@ -75,15 +75,16 @@
           </div>
         </div>
 
-        <div class="box_divide"></div>
+        <div v-if="cart.people">
+          <div class="box_divide"></div>
 
-        <div class="order_tableware">
-          <div class="order_tableware_icon">餐位费</div>
-          <div class="order_tableware_label">餐具</div>
-          <div class="order_tableware_count">{{cart.people ? cart.people : 0}}</div>
-          <div class="order_tableware_price">{{cart.people && cart.perTablewarePrice ? cart.people * cart.perTablewarePrice : 0 }}</div>
+          <div class="order_tableware">
+            <div class="order_tableware_icon">餐位费</div>
+            <div class="order_tableware_label">餐具</div>
+            <div class="order_tableware_count">{{cart.people }}</div>
+            <div class="order_tableware_price">{{cart.people * cart.perTablewarePrice}}</div>
+          </div>
         </div>
-
 
         <div class="order_tableware" v-if="ui.takeOutEnable">
           <div class="box_divide"></div>
@@ -216,7 +217,11 @@
           selectPeople: null,
           peopleChoose: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
           tasteNote: '',
-          table: {},
+          table: {
+            captchaTableId: null,
+            tableNumber: null,
+            tableName: null
+          },
           takeOutEnable: false,
           orderOneId: null
         },
@@ -354,6 +359,7 @@
         this.http.req.order.tasteNote = this.ui.tasteNote
         this.http.req.order.people = this.cart.people
         this.http.req.order.captchaTableId = this.ui.table.captchaTableId
+        this.http.req.order.roleWaiter = this.roleWaiter
 
         httpOrderApi.postOrder(this.$route.params.shortId, this.http.req.order).then(res => {
           if (res.shopClosed) {
@@ -396,6 +402,21 @@
                 this.$router.push(`/b/${this.$route.params.shortId}/waiter/food`)
               } else {
                 this.$router.push(`/c/${this.$route.params.shortId}/food`)
+              }
+            })
+          } else if (res.otherTableOngoing) {
+            this.$msgBox.doModal({
+              type: 'yes',
+              title: '加餐',
+              content: '同时只能在一个餐桌下单，请重新扫码。'
+            }).then(async (val) => {
+              userApi.setCaptchaTableId(null)
+              userApi.setTableName(null)
+              userApi.setTableNumber(null)
+              this.ui.table = {}
+
+              if (this.roleWaiter) {
+                this.$router.push(`/b/${this.$route.params.shortId}/waiter/table`)
               }
             })
           } else if (res.orderOneId) {

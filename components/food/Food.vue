@@ -258,6 +258,7 @@
   import {httpOrderApi} from '../../api/http/lt/httpOrderApi'
   import {httpOrderAdminApi} from '../../api/http/lt/httpOrderAdminApi'
   import {highlightApi} from '../../api/local/highlightApi'
+  import {userApi} from '../../api/local/userApi'
 
   export default {
     metaInfo: {
@@ -718,23 +719,6 @@
         this.computedFoodSelect()
         this.computedCartSelect()
       },
-      orderRouter(res) {
-        if (res.currentPageSize > 0) {
-          if (this.roleWaiter) {
-            this.$router.push(`/b/${this.$route.params.shortId}/waiter/order/add`)
-            return
-          } else {
-            this.$router.push(`/c/${this.$route.params.shortId}/order/add`)
-            return
-          }
-        }
-
-        if (this.roleWaiter) {
-          this.$router.push(`/b/${this.$route.params.shortId}/waiter/order/new`)
-        } else {
-          this.$router.push(`/c/${this.$route.params.shortId}/order/new`)
-        }
-      },
       btnOrder() {
         scrollApi.enable(true)
 
@@ -754,12 +738,39 @@
 
         if (Boolean(this.$route.query.tableId)) {
           httpOrderAdminApi.getAllByTableOneId(this.$route.params.shortId, this.$route.query.tableId, true, 0, 99).then(res => {
-            this.orderRouter(res)
+            if (res.currentPageSize > 0) {
+              if (this.roleWaiter) {
+                this.$router.push(`/b/${this.$route.params.shortId}/waiter/order/add`)
+              } else {
+                this.$router.push(`/c/${this.$route.params.shortId}/order/add`)
+              }
+
+              return
+            }
+
+            if (this.roleWaiter) {
+              this.$router.push(`/b/${this.$route.params.shortId}/waiter/order/new`)
+            } else {
+              this.$router.push(`/c/${this.$route.params.shortId}/order/new`)
+            }
           })
         } else {
-          httpOrderApi.getAllByLive(this.$route.params.shortId, 0, 99).then(res => {
-            this.orderRouter(res)
-          })
+          let captchaTableId = userApi.getCaptchaTableId()
+          if (!Boolean(captchaTableId)) {
+            if (this.roleWaiter) {
+              this.$router.push(`/b/${this.$route.params.shortId}/waiter/order/new`)
+            } else {
+              this.$router.push(`/c/${this.$route.params.shortId}/order/new`)
+            }
+
+            return
+          }
+
+          if (this.roleWaiter) {
+            this.$router.push(`/b/${this.$route.params.shortId}/waiter/order/add`)
+          } else {
+            this.$router.push(`/c/${this.$route.params.shortId}/order/add`)
+          }
         }
       },
       btnSearch() {
