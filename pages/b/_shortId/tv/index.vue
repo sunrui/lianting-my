@@ -85,6 +85,7 @@
   import {loadingApi} from '../../../../api/local/loadingApi'
   import {httpNotifyAdminApi} from '../../../../api/http/lt/httpNotifyAdminApi'
   import QRCode from 'qrcode'
+  import {httpSpeechAdminApi} from '../../../../api/http/lt/httpSpeechAdminApi'
 
   export default {
     metaInfo: {
@@ -161,7 +162,7 @@
       },
       httpShop() {
         httpShopApi.getOne(this.$route.params.shortId).then(res => {
-          this.ui.limit.licenseType = (res.licenseType !== 'Normal' && res.licenseType !== 'Senior');
+          this.ui.limit.licenseType = (res.licenseType !== 'Normal' && res.licenseType !== 'Senior')
           this.http.res.shop = res
         })
       },
@@ -388,10 +389,14 @@
               radioText = res.notifyRadio.content
             }
 
-            let utterThis = new window.SpeechSynthesisUtterance(radioText)
-            window.speechSynthesis.speak(utterThis)
+            this.speech(radioText)
           }
         })
+      },
+      speech(radioText) {
+        let url = httpSpeechAdminApi.getSpeechUrl(this.$route.params.shortId, radioText)
+        let audio = new Audio(url)
+        audio.play()
       },
       drawCaptcha() {
         let canvas = document.getElementById('tvCaptcha')

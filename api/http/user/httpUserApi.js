@@ -2,12 +2,7 @@ import axios from 'axios'
 
 let base = '/api/user'
 
-// 1 day
-let maxAge = 24 * 60 * 60
-
-if (process.env.NODE_ENV === 'development') {
-  maxAge = 365 * 24 * 60 * 60
-}
+let maxAge = 365 * 24 * 60 * 60
 
 export const httpUserApi = {
   getInfo(userId) {
