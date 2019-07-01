@@ -14,7 +14,7 @@
           </div>
 
           <div class="charge_body_title">
-            <div class="charge_body_title_one">交易日期</div>
+            <div class="charge_body_title_one">日期</div>
             <div class="charge_body_title_one">餐食种类</div>
             <div class="charge_body_title_one">售卖份数</div>
           </div>
@@ -26,7 +26,7 @@
               <div class="charge_body_content" @click="btnChooseStatFoodCategory(statFoodCategory)">
                 <div class="charge_body_content_one" v-bind:class="{
                 charge_body_content_one_select: ui.selectStatFoodCategory === statFoodCategory
-                }">{{getDate(statFoodCategory.date)}}
+                }">{{getDate(statFoodCategory.dateTime)}}
                 </div>
                 <div class="charge_body_content_one" v-bind:class="{
                      charge_body_content_one_select: ui.selectStatFoodCategory === statFoodCategory
@@ -41,7 +41,7 @@
             </div>
             <div class="charge_footer"></div>
           </div>
-          <div class="charge_empty" v-else>暂时没有售卖餐食。</div>
+          <div class="charge_empty" v-else>没有餐食记录。</div>
         </div>
       </div>
     </div>
@@ -120,7 +120,7 @@
         for (let foodCategoryIndex in this.ui.statFoodCategories) {
           let statFoodCategory = this.ui.statFoodCategories[foodCategoryIndex]
 
-          if (statFoodCategory.date === foodCategory.date) {
+          if (statFoodCategory.dateTime === foodCategory.dateTime) {
             statFoodCategoryOne = statFoodCategory
             break
           }
@@ -128,7 +128,7 @@
 
         if (statFoodCategoryOne === null) {
           statFoodCategoryOne = {
-            date: foodCategory.date,
+            dateTime: foodCategory.dateTime,
             foodCategories: [],
             totalFoodCategory: 0
           }
@@ -166,7 +166,7 @@
       },
       btnChooseStatFoodCategory(statFoodCategory) {
         this.ui.selectStatFoodCategory = statFoodCategory
-        this.ui.chart.data.datasets[0].label = this.getDate(statFoodCategory.date)
+        this.ui.chart.data.datasets[0].label = this.getDate(statFoodCategory.dateTime)
         this.ui.chart.data.datasets[0].data = []
         this.ui.chart.data.labels = []
 

@@ -3,38 +3,36 @@
     <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
     <div class="box">
-      <div class="charge">
-        <div class="charge_header"></div>
-        <div class="charge_body box_radius_footer">
+      <div class="order">
+        <div class="order_header"></div>
+        <div class="order_body box_radius_footer">
           <div class="blank_40"></div>
 
           <div v-show="http.res.statOrder.elements.length > 0">
-            <canvas id="chargeChart"></canvas>
+            <canvas id="orderChart"></canvas>
             <div class="blank_40"></div>
           </div>
 
-          <div class="charge_body_title">
-            <div class="charge_body_title_one">日期</div>
-            <div class="charge_body_title_one">成交订单</div>
-            <div class="charge_body_title_one">就餐人数</div>
-            <div class="charge_body_title_one">总计金额</div>
+          <div class="order_body_title">
+            <div class="order_body_title_one">日期</div>
+            <div class="order_body_title_one">当日订单</div>
+            <div class="order_body_title_one order_body_title_one2">最后订单时间</div>
           </div>
 
           <div class="box_divide"></div>
 
           <div v-if="http.res.statOrder.elements.length > 0">
             <div v-for="statOrder in http.res.statOrder.elements">
-              <div class="charge_body_content" @click="btnOrder(statOrder.dateTime)">
-                <div class="charge_body_content_one">{{getDate(statOrder.dateTime)}}</div>
-                <div class="charge_body_content_one">{{statOrder.totalOrder}}</div>
-                <div class="charge_body_content_one">{{statOrder.totalPeople}}</div>
-                <div class="charge_body_content_one charge_body_content_price">{{statOrder.totalRevenue}}</div>
+              <div class="order_body_content" @click="btnOrder(statOrder.dateTime)">
+                <div class="order_body_content_one">{{getDate(statOrder.dateTime)}}</div>
+                <div class="order_body_content_one">{{statOrder.totalOrder}}</div>
+                <div class="order_body_content_one order_body_content_one2">{{new Date(parseInt(statOrder.lastDateTime)).toLocaleTimeString()}}</div>
               </div>
               <div class="box_divide" v-if="statOrder !== http.res.statOrder.elements[http.res.statOrder.elements.length - 1]"></div>
             </div>
-            <div class="charge_footer"></div>
+            <div class="order_footer"></div>
           </div>
-          <div class="charge_empty" v-else>没有收益记录。</div>
+          <div class="order_empty" v-else>没有订单记录。</div>
         </div>
       </div>
     </div>
@@ -51,7 +49,7 @@
 
   export default {
     metaInfo: {
-      title: '收益统计'
+      title: '订单统计'
     },
     middleware: 'auth',
     components: {TitleBar},
@@ -59,7 +57,7 @@
       return {
         title: {
           canBack: true,
-          title: '收益统计',
+          title: '订单统计',
           backUri: `/b/${this.$route.params.shortId}/owner/stat`,
           theme: 'image',
           imageHeight: 300
@@ -81,21 +79,6 @@
             'data': {
               'labels': [],
               'datasets': [{
-                'label': '',
-                'data': [],
-                'fill': false,
-                'backgroundColor': [
-                  'rgba(255, 99, 132, 0.2)', 'rgba(255, 159, 64, 0.2)', 'rgba(255, 205, 86, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(153, 102, 255, 0.2)', 'rgba(201, 203, 207, 0.2)',
-                  'rgba(255, 99, 132, 0.2)', 'rgba(255, 159, 64, 0.2)', 'rgba(255, 205, 86, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(153, 102, 255, 0.2)', 'rgba(201, 203, 207, 0.2)',
-                  'rgba(255, 99, 132, 0.2)', 'rgba(255, 159, 64, 0.2)', 'rgba(255, 205, 86, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(153, 102, 255, 0.2)', 'rgba(201, 203, 207, 0.2)',
-                  'rgba(255, 99, 132, 0.2)', 'rgba(255, 159, 64, 0.2)', 'rgba(255, 205, 86, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(153, 102, 255, 0.2)', 'rgba(201, 203, 207, 0.2)'],
-                'borderColor': ['rgb(255, 99, 132)', 'rgb(255, 159, 64)', 'rgb(255, 205, 86)', 'rgb(75, 192, 192)', 'rgb(54, 162, 235)', 'rgb(153, 102, 255)', 'rgb(201, 203, 207)',
-                  'rgb(255, 99, 132)', 'rgb(255, 159, 64)', 'rgb(255, 205, 86)', 'rgb(75, 192, 192)', 'rgb(54, 162, 235)', 'rgb(153, 102, 255)', 'rgb(201, 203, 207)',
-                  'rgb(255, 99, 132)', 'rgb(255, 159, 64)', 'rgb(255, 205, 86)', 'rgb(75, 192, 192)', 'rgb(54, 162, 235)', 'rgb(153, 102, 255)', 'rgb(201, 203, 207)',
-                  'rgb(255, 99, 132)', 'rgb(255, 159, 64)', 'rgb(255, 205, 86)', 'rgb(75, 192, 192)', 'rgb(54, 162, 235)', 'rgb(153, 102, 255)', 'rgb(201, 203, 207)',
-                  'rgb(255, 99, 132)', 'rgb(255, 159, 64)', 'rgb(255, 205, 86)', 'rgb(75, 192, 192)', 'rgb(54, 162, 235)', 'rgb(153, 102, 255)', 'rgb(201, 203, 207)'],
-                'borderWidth': 1
-              }, {
                 'label': '',
                 'data': [],
                 'fill': false,
@@ -138,28 +121,19 @@
       },
       refreshCharts() {
         let Chart = require('chart.js')
-        new Chart(document.getElementById('chargeChart'), this.ui.chart)
+        new Chart(document.getElementById('orderChart'), this.ui.chart)
       },
       httpStatOrder() {
-        httpStatAdminApi.getCharge(this.$route.params.shortId, 0, 200).then(res => {
+        httpStatAdminApi.getOrder(this.$route.params.shortId, 0, 200).then(res => {
           this.ui.chart.data.datasets[0].label = '订单'
           this.ui.chart.data.datasets[0].data = []
           this.ui.chart.data.labels = []
 
-          for (let statChargeIndex in res.elements) {
-            let statCharge = res.elements[statChargeIndex]
+          for (let statOrderIndex in res.elements) {
+            let statOrder = res.elements[statOrderIndex]
 
-            this.ui.chart.data.labels.push(this.getDate(statCharge.dateTime))
-            this.ui.chart.data.datasets[0].data.push(statCharge.totalOrder)
-          }
-
-          this.ui.chart.data.datasets[1].label = '人数'
-          this.ui.chart.data.datasets[1].data = []
-
-          for (let statChargeIndex in res.elements) {
-            let statCharge = res.elements[statChargeIndex]
-
-            this.ui.chart.data.datasets[1].data.push(statCharge.totalPeople)
+            this.ui.chart.data.labels.push(this.getDate(statOrder.dateTime))
+            this.ui.chart.data.datasets[0].data.push(statOrder.totalOrder)
           }
 
           this.refreshCharts()

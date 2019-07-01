@@ -5,6 +5,11 @@
     <div class="box">
       <div class="addition box_radius">
         <div class="addition_item" @click="btnNav('charge')">
+          <div class="addition_item_label">收益统计</div>
+          <div class="addition_item_link"></div>
+        </div>
+        <div class="box_divide"></div>
+        <div class="addition_item" @click="btnNav('order')">
           <div class="addition_item_label">订单统计</div>
           <div class="addition_item_link"></div>
         </div>
@@ -13,7 +18,25 @@
           <div class="addition_item_label">餐食统计</div>
           <div class="addition_item_link"></div>
         </div>
+      </div>
+    </div>
+
+    <div class="box">
+      <div class="addition box_radius">
+        <div class="addition_item" @click="btnNav('queue')">
+          <div class="addition_item_label">排队统计</div>
+          <div class="addition_item_link"></div>
+        </div>
         <div class="box_divide"></div>
+        <div class="addition_item" @click="btnNav('reserve')">
+          <div class="addition_item_label">预订统计</div>
+          <div class="addition_item_link"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="box">
+      <div class="addition box_radius">
         <div class="addition_item" @click="btnNav('user')">
           <div class="addition_item_label">顾客统计</div>
           <div class="addition_item_link"></div>

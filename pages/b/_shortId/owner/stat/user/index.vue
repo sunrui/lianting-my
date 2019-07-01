@@ -33,7 +33,7 @@
             </div>
             <div class="user_footer"></div>
           </div>
-          <div class="user_empty" v-else>暂时没有顾客。</div>
+          <div class="user_empty" v-else>没有顾客记录。</div>
         </div>
       </div>
     </div>
@@ -192,7 +192,7 @@
         // }
 
         // this.$router.push({
-        //   path: `/b/${this.$route.params.shortId}/owner/User`,
+        //   path: `/b/${this.$route.params.shortId}/owner/user`,
         //   query: {
         //     date: date
         //   }
