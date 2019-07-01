@@ -24,7 +24,7 @@
       let scope = this.$route.query.scope
 
       if (wechatApi.inWechat() || scope) {
-        r = `https://shop.honeysense.com/login/wechat?r=${r}&shortId=${shortId}`
+        r = `https://shop.lt.city/login/wechat?r=${r}&shortId=${shortId}`
         if (!Boolean(scope)) {
           scope = 'snsapi_base'
         }
