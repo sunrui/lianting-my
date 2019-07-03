@@ -11,7 +11,8 @@
     },
     data() {
       return {
-        appId: 'wxdd2ac18f974e8e70'
+        wechatAppId: 'wxdd2ac18f974e8e70',
+        alipayAppId: '2018010501607494'
       }
     },
     mounted() {
@@ -23,8 +24,8 @@
       let shortId = this.$route.query.shortId || 'undefined'
       let scope = this.$route.query.scope
 
-      if (wechatApi.inWechat() || scope) {
-        r = `https://shop.lt.city/login/wechat?r=${r}&shortId=${shortId}`
+      if (wechatApi.inWechat()) {
+        r = document.location.protocol + '//' + window.location.host + `/login/wechat?r=${r}&shortId=${shortId}`
         if (!Boolean(scope)) {
           scope = 'snsapi_base'
         }
@@ -32,18 +33,19 @@
         let state = 'csrf_uncheck'
 
         r = encodeURIComponent(r)
-        r = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${this.appId}&redirect_uri=${r}&response_type=code&scope=${scope}&state=${state}&connect_redirect=1#wechat_redirect`
+        r = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${this.wechatAppId}&redirect_uri=${r}&response_type=code&scope=${scope}&state=${state}&connect_redirect=1#wechat_redirect`
         window.location.href = r
-      // } else if (alipayApi.inAlipay()) {
-      //   r = document.location.protocol + '//' + window.location.host + `/login/alipay?r=${r}&shortId=${shortId}`
-      //   if (!Boolean(scope)) {
-      //     scope = 'auth_base'
-      //   }
-      //
-      //   let state = 'csrf_uncheck'
-      //
-      //   r = encodeURIComponent(r)
-      //   r = `https://openauth.alipay.com/oauth2/appToAppAuth.htm?app_id=2018010501607494&redirect_uri=${r}&scope=${scope}&state=${state}`
+      } else if (alipayApi.inAlipay()) {
+        r = document.location.protocol + '//' + window.location.host + `/login/alipay?r=${r}&shortId=${shortId}`
+        if (!Boolean(scope)) {
+          scope = 'auth_base'
+        }
+
+        let state = 'csrf_uncheck'
+
+        r = encodeURIComponent(r)
+        r = `https://openauth.alipay.com/oauth2/publicAppAuthorize.htm?app_id=${this.alipayAppId}&scope=${scope}&redirect_uri=${r}&state=${state}`
+        window.location.href = r
       } else {
         this.$router.push({
           path: '/login/phone',

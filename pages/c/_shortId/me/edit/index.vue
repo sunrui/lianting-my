@@ -70,6 +70,7 @@
       <div class="button_big" @click="btnUpdate">更新</div>
       <div class="blank_30"></div>
       <div class="sync_wechat" v-if="ui.inWechat" @click="btnSyncWechat">同步微信</div>
+      <div class="sync_wechat" v-if="ui.inAlipay" @click="btnSyncAlipay">同步支付宝</div>
     </div>
   </div>
 </template>
@@ -81,6 +82,7 @@
   import ImageUpload from '../../../../../components/common/ImageUpload'
   import {wechatApi} from "../../../../../api/local/wechatApi"
   import {cookieApi} from '../../../../../api/local/cookieApi'
+  import {alipayApi} from '../../../../../api/local/alipayApi'
 
   export default {
     metaInfo: {
@@ -103,7 +105,8 @@
           }
         },
         ui: {
-          inWechat: wechatApi.inWechat()
+          inWechat: wechatApi.inWechat(),
+          inAlipay: alipayApi.inAlipay()
         }
       }
     },
@@ -138,6 +141,9 @@
       },
       btnSyncWechat() {
         this.$router.push('/login?scope=snsapi_userinfo&r=' + this.$route.path)
+      },
+      btnSyncAlipay() {
+        this.$router.push('/login?scope=auth_user&r=' + this.$route.path)
       },
       btnUpdate() {
         httpUserApi.putInfo(this.http.res.userInfo).then(res => {

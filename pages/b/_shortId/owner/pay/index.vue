@@ -5,9 +5,12 @@
     <div class="box">
       <div class="tip">
         <ul class="tip_ul">
-          <li>开通在线支付功能，现在您无需拥有企业微信公众号。</li>
-          <li>根据微信要求您只需提交相关开通资料至微信审核。</li>
-          <li>您可加入恋厅客户QQ群联系客服代为您提交。</li>
+          <li>要开通微信在线支付功能，首先要申请微信支付商务号。请查阅<a class="tip_link" :href="getWechatPayUrl()">微信支付商户接入指引</a>。</li>
+          <li>您需要准备：姓名、手机号、邮箱、身份证、营业执照、食品安全许可证、餐食类型、银行卡。</li>
+          <li>恋厅作为微信官方签约的合作服务商，您无需公众号也无需年费即可使用在线支付功能。</li>
+          <li>审核资料可由恋厅客服代为您提交，微信会在1-5个工作日以邮件和短信的方式通知您确认签约。</li>
+          <li>签约完成后将微信支付商务号填入下方即可以开通微信在线支付了，顾客支付将实时打入到您的收款账户。</li>
+          <li>恋厅作为国内为数不多的的匠心餐饮方案供应商，恋厅没有任何订单抽成，共勉餐饮行业。</li>
         </ul>
       </div>
     </div>
@@ -23,7 +26,7 @@
         <div class="box_divide"></div>
 
         <div class="addition_item">
-          <div class="addition_item_label">支付商户号</div>
+          <div class="addition_item_label">微信支付商户号</div>
           <label>
             <input type="number" class="addition_item_input"
                    oninput="value=value.replace(/[^0-9]/g,'');"
@@ -85,6 +88,9 @@
       this.loadConfig()
     },
     methods: {
+      getWechatPayUrl() {
+        return 'http://kf.qq.com/faq/180910jimEvQ180910Zj6jQV.html'
+      },
       loadConfig() {
         httpOrderApi.getConfig(this.$route.params.shortId).then(res => {
           this.http.req.config = res

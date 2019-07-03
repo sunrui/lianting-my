@@ -9,7 +9,7 @@
     <div class="box">
       <div class="tip">
         <ul class="tip_ul">
-          <li>相关人员可在关注恋厅公众号后处理日常工作。</li>
+          <li>您的店铺人员可在关注恋厅公众号后处理日常工作。</li>
           <li>您也可直接点击人事头像进入工作台。</li>
         </ul>
       </div>

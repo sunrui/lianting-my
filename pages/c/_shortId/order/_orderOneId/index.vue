@@ -179,8 +179,8 @@
 
     <div class="button_box" v-if="http.res.order.status === 'NotPaid'">
       <div class="button_small" @click="btnFood" v-if="http.res.order.type === 'ForHere'">加餐</div>
-      <div class="button_small" @click="btnPay" v-if="http.res.order.type === 'ForHere'">立即支付</div>
-      <div class="button_big" @click="btnPay" v-if="http.res.order.type === 'TakeOut'">立即支付</div>
+      <div class="button_small" @click="btnPay" v-if="ui.inWechat && http.res.order.type === 'ForHere'">立即支付</div>
+      <div class="button_big" @click="btnPay" v-if="ui.inWechat && http.res.order.type === 'TakeOut'">立即支付</div>
       <div class="button_big" @click="btnCancel" v-if="http.res.order.type === 'TakeOut'">取消订单</div>
     </div>
     <div class="blank_30" v-else></div>
@@ -224,6 +224,7 @@
   import {httpCouponApi} from '../../../../../api/http/lt/httpCouponApi'
   import {userApi} from '../../../../../api/local/userApi'
   import {wechatApi} from '../../../../../api/local/wechatApi'
+  import {alipayApi} from '../../../../../api/local/alipayApi'
 
   export default {
     metaInfo: {
@@ -258,6 +259,8 @@
         ui: {
           vCoverMask: false,
           vCancel: false,
+          inWechat: wechatApi.inWechat(),
+          inAlipay: alipayApi.inAlipay()
         }
       }
     },

@@ -22,6 +22,14 @@ export const httpUserApi = {
   //     password: passwords
   //   }).then(res => res.data)
   // },
+  postLoginAlipay(shortId, code, state) {
+    return axios.post(`${base}/login/alipay`, {
+      shortId: shortId,
+      code: code,
+      state: state,
+      maxAge: maxAge
+    }).then(res => res.data)
+  },
   postLoginWechat(shortId, code, state) {
     return axios.post(`${base}/login/wechat`, {
       shortId: shortId,

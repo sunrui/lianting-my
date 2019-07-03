@@ -55,18 +55,17 @@
     <div class="button_box">
       <div class="button_big" @click="btnLogin">登录</div>
     </div>
-
-<!--    <div class="blank_100"></div>-->
-<!---->
-<!--    <div class="login_third_title">-->
-<!--      <div class="login_third_divide"></div>-->
-<!--      <div class="login_third_label">第三方账号直接登录</div>-->
-<!--      <div class="login_third_divide"></div>-->
-<!--    </div>-->
-<!--    <div class="login_third_icon">-->
-<!--      <div class="login_third_icon_wechat" @click="btnWechat"></div>-->
-      <!--        <div class="login_third_icon_alipay" @click="btnAlipay"></div>-->
-<!--    </div>-->
+    <!--    <div class="blank_100"></div>-->
+    <!---->
+    <!--    <div class="login_third_title">-->
+    <!--      <div class="login_third_divide"></div>-->
+    <!--      <div class="login_third_label">第三方账号直接登录</div>-->
+    <!--      <div class="login_third_divide"></div>-->
+    <!--    </div>-->
+    <!--    <div class="login_third_icon">-->
+    <!--      <div class="login_third_icon_wechat" @click="btnWechat"></div>-->
+    <!--        <div class="login_third_icon_alipay" @click="btnAlipay"></div>-->
+    <!--    </div>-->
     <div class="blank_20"></div>
   </div>
 </template>
@@ -215,16 +214,6 @@
             }
             this.$router.push(r)
           }
-        })
-      },
-      btnWechat() {
-        this.$router.push('/login?scope=snsapi_base')
-      },
-      btnAlipay() {
-        this.$msgBox.doModal({
-          type: 'yes',
-          title: '支付宝登录',
-          content: `很抱歉暂不支持支付宝登录，我们将会在后续为您支持。`
         })
       }
     }

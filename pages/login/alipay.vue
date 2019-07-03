@@ -4,17 +4,17 @@
 
 <script>
   import {httpUserApi} from '../../api/http/user/httpUserApi'
+  import {userApi} from '../../api/local/userApi'
 
   export default {
     metaInfo: {
       title: '支付宝登录'
     },
     mounted() {
-      let app_id = this.$route.query.app_id
-      let source = this.$route.query.source
-      let app_auth_code = this.$route.query.app_auth_code
+      let code = this.$route.query.auth_code
+      let state = this.$route.query.state
 
-      if (!Boolean(app_auth_code)) {
+      if (!Boolean(code)) {
         this.$router.push('/login')
         return
       }
@@ -24,7 +24,7 @@
         shortId = 'undefined'
       }
 
-      httpUserApi.postLoginWechat(shortId, code, state).then(res => {
+      httpUserApi.postLoginAlipay(shortId, code, state).then(res => {
         if (res.user) {
           userApi.setUserId(res.user.id)
           userApi.setUserPhone(res.user.phone)
