@@ -182,7 +182,7 @@
         html2canvas(shopId, {
           logging: false
         }).then(canvas => {
-          canvas.setAttribute('id', 'shop_' + this.http.res.shop.id)
+          canvas.setAttribute('id', 'shop_' + this.http.res.shop.id + '_canvas')
           shopId.parentNode.appendChild(canvas)
           shopId.parentNode.removeChild(shopId)
         })
@@ -204,7 +204,7 @@
             html2canvas(tableId, {
               logging: false
             }).then(canvas => {
-              canvas.setAttribute('id', 'table_' + tableOne.id)
+              canvas.setAttribute('id', 'table_' + tableOne.id + '_canvas')
               tableId.parentNode.appendChild(canvas)
               tableId.parentNode.removeChild(tableId)
             })
@@ -249,7 +249,7 @@
         }
 
         let fileName = '恋厅_' + this.http.res.shop.name
-        let shopId = document.getElementById('shop_' + this.http.res.shop.id)
+        let shopId = document.getElementById('shop_' + this.http.res.shop.id + '_canvas')
         downloadApi.download(shopId, fileName)
       },
       btnDownload(table) {
@@ -264,7 +264,7 @@
         }
 
         let fileName = '恋厅_餐桌二维码_' + table.tableGroup_name + '_' + table.fullNumber
-        let tableId = document.getElementById('table_' + table.id)
+        let tableId = document.getElementById('table_' + table.id + '_canvas')
         downloadApi.download(tableId, fileName)
       },
       btnDownloadAll() {
