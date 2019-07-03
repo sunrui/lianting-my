@@ -13,6 +13,7 @@
   import {wechatApi} from '../../api/local/wechatApi'
   import TitleBar from '../../components/common/TitleBar'
   import {urlApi} from '../../api/local/urlApi'
+  import {alipayApi} from '../../api/local/alipayApi'
 
   export default {
     metaInfo: {
@@ -27,21 +28,23 @@
           backUri: ``,
           theme: 'white',
           imageHeight: 0
-        },
-        ui: {
-          inWechat: wechatApi.inWechat()
         }
       }
     },
     created() {
-      if (!this.ui.inWechat) {
-        return
+      if (alipayApi.inAlipay()) {
+        this.scanAlipay()
       }
 
-      this.btnScan()
+      if (wechatApi.inWechat()) {
+        this.scanWechat()
+      }
     },
     methods: {
-      btnScan() {
+      scanAlipay() {
+        alipayApi.scan()
+      },
+      scanWechat() {
         let pThis = this
 
         httpWechatApi.getConfig('scan', urlApi.getCurrentUrl()).then(res => {

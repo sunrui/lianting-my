@@ -133,6 +133,7 @@
   import {userApi} from '../../api/local/userApi'
   import {wechatApi} from '../../api/local/wechatApi'
   import {timeApi} from '../../api/local/timeApi'
+  import {alipayApi} from '../../api/local/alipayApi'
 
   export default {
     metaInfo: {
@@ -294,12 +295,11 @@
         return price
       },
       btnScanCaptcha() {
-        let wechatOpenId = userApi.getUserWechatOpenId()
-        if (!Boolean(wechatOpenId) || !wechatApi.inWechat()) {
+        if (!wechatApi.inWechat() && !alipayApi.inAlipay()) {
           this.$msgBox.doModal({
             type: 'yes',
-            title: '立即支付',
-            content: '请使用微信打开。'
+            title: '扫码下单',
+            content: '请使用微信或支付宝打开。'
           })
 
           return
