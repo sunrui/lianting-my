@@ -87,7 +87,7 @@ export const timeApi = {
     }
 
     if (!fmt) {
-      fmt = 'yyyy-MM-dd HH:mm:ss'
+      fmt = 'yyyy/MM/dd HH:mm:ss'
     }
 
     if (/(y+)/.test(fmt)) {

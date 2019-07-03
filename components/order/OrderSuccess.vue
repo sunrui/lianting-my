@@ -52,7 +52,7 @@
         </div>
         <div class="status_item">
           <div class="status_item_label">下单时间</div>
-          <div class="status_item_content">{{new Date(parseInt(http.res.order.createdAt)).toLocaleString()}}</div>
+          <div class="status_item_content">{{dateFormat(new Date(parseInt(http.res.order.createdAt)))}}</div>
         </div>
 
         <div class="blank_20"></div>
@@ -101,6 +101,7 @@
   import {httpOrderApi} from '../../api/http/lt/httpOrderApi'
   import {userApi} from '../../api/local/userApi'
   import {wechatApi} from '../../api/local/wechatApi'
+  import {timeApi} from '../../api/local/timeApi'
 
   export default {
     metaInfo: {
@@ -135,6 +136,9 @@
       this.httpOrder()
     },
     methods: {
+      dateFormat(date) {
+        return timeApi.dateFormat(date)
+      },
       httpOrder() {
         httpOrderApi.getOrder(this.$route.params.shortId, this.$route.params.orderOneId).then(res => {
           this.http.res.order = res

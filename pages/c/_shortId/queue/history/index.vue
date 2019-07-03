@@ -11,7 +11,7 @@
       <div class="box" v-for="history in ui.scroller.elements">
         <div class="list_title box_radius_header">
           <div class="list_time_icon"></div>
-          <div class="list_time_label">取号时间 {{new Date(parseInt(history.createdAt)).toLocaleString()}}</div>
+          <div class="list_time_label">取号时间 {{dateFormat(new Date(parseInt(history.createdAt)))}}</div>
           <div v-if="history.status === 'Now'" class="queue_history_status queue_history_status_now">前往就餐</div>
           <div v-if="history.status === 'Wait'" class="queue_history_status queue_history_status_wait">正在排队</div>
           <div v-if="history.status === 'Expired'" class="queue_history_status queue_history_status_expired">已过号</div>
@@ -43,6 +43,7 @@
 <script>
   import TitleBar from '../../../../../components/common/TitleBar'
   import {httpQueueApi} from '../../../../../api/http/lt/httpQueueApi'
+  import {timeApi} from '../../../../../api/local/timeApi'
 
   export default {
     metaInfo: {
@@ -75,6 +76,9 @@
       this.httpHistory(null)
     },
     methods: {
+      dateFormat(date) {
+        return timeApi.dateFormat(date)
+      },
       onRefresh(done) {
         this.httpHistory(done)
       },

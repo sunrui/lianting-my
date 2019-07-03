@@ -24,7 +24,7 @@
 
         <div class="status_item">
           <div class="status_item_label">预约时间</div>
-          <div class="status_item_content">{{new Date(parseInt(http.res.reserve.date)).toLocaleString()}}</div>
+          <div class="status_item_content">{{dateFormat(new Date(parseInt(http.res.reserve.date)))}}</div>
         </div>
         <div class="status_item">
           <div class="status_item_label">餐桌类型</div>
@@ -62,8 +62,8 @@
           <div class="reserve_process_icon_ball" v-if="index !== 0"></div>
           <div class="reserve_process_icon_line"></div>
           <div class="reserve_process_content">
-            <div class="reserve_process_content_time_new" v-if="index === 0">{{new Date(parseInt(process.createdAt)).toLocaleString()}}</div>
-            <div class="reserve_process_content_time" v-if="index !== 0">{{new Date(parseInt(process.createdAt)).toLocaleString()}}</div>
+            <div class="reserve_process_content_time_new" v-if="index === 0">{{dateFormat(new Date(parseInt(process.createdAt)))}}</div>
+            <div class="reserve_process_content_time" v-if="index !== 0">{{dateFormat(new Date(parseInt(process.createdAt)))}}</div>
             <div class="reserve_process_content_name">{{getProcessName(process.status)}}</div>
 
             <div v-if="process.status === 'Wait'">
@@ -89,6 +89,7 @@
   import TitleBar from '../../../../../../components/common/TitleBar'
   import {httpReserveApi} from '../../../../../../api/http/lt/httpReserveApi'
   import {httpReserveAdminApi} from '../../../../../../api/http/lt/httpReserveAdminApi'
+  import {timeApi} from '../../../../../../api/local/timeApi'
 
   export default {
     metaInfo: {
@@ -126,6 +127,9 @@
       this.httpReserve()
     },
     methods: {
+      dateFormat(date) {
+        return timeApi.dateFormat(date)
+      },
       getStatus(status) {
         switch (status) {
           case 'Wait':

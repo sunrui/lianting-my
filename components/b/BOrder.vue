@@ -11,7 +11,7 @@
       <div class="box" v-for="order in ui.scroller.elements">
         <div class="list_title box_radius_header">
           <div class="list_time_icon"></div>
-          <div class="list_time_label">{{new Date(parseInt(order.createdAt)).toLocaleString()}}</div>
+          <div class="list_time_label">{{dateFormat(new Date(parseInt(order.createdAt)))}}</div>
           <div class="order_history_status order_history_status_finish" v-if="order.status === 'Finish'">已完成</div>
           <div class="order_history_status order_history_status_not_paid" v-if="order.status === 'NotPaid'">未支付</div>
           <div class="order_history_status order_history_status_eating" v-if="order.status === 'Paid'">进行中</div>
@@ -59,6 +59,7 @@
   import TitleBar from '../common/TitleBar'
   import {httpOrderAdminApi} from '../../api/http/lt/httpOrderAdminApi'
   import {roleApi} from '../../api/local/roleApi'
+  import {timeApi} from '../../api/local/timeApi'
 
   export default {
     metaInfo: {
@@ -110,6 +111,9 @@
       this.ui.interval = setInterval(this.autoRefresh, 10 * 1000)
     },
     methods: {
+      dateFormat(date) {
+        return timeApi.dateFormat(date)
+      },
       autoRefresh() {
         this.onRefresh(null)
       },

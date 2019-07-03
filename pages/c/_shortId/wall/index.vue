@@ -21,7 +21,7 @@
               </div>
               <div class="wall_user_info_title">
                 <div class="wall_user_info_nick" @click="btnUser(wall.userId)">{{getWechatNick(wall.userId)}}</div>
-                <div class="wall_order_time">{{new Date(parseInt(wall.createdAt)).toLocaleString()}}</div>
+                <div class="wall_order_time">{{dateFormat(new Date(parseInt(wall.createdAt)))}}</div>
               </div>
 <!--              <div class="wall_order_menu" @click="btnOrder(wall)">-->
 <!--                <div class="wall_order_menu_icon"></div>-->
@@ -180,6 +180,9 @@
       this.httpWall(null)
     },
     methods: {
+      dateFormat(date) {
+        return timeApi.dateFormat(date)
+      },
       onRefresh(done) {
         this.httpWall(done)
       },

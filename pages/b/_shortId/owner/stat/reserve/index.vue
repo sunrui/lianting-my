@@ -26,7 +26,7 @@
               <div class="reserve_body_content" @click="btnReserve(statReserve.dateTime)">
                 <div class="reserve_body_content_one">{{getDate(statReserve.dateTime)}}</div>
                 <div class="reserve_body_content_one">{{statReserve.totalReserve}}</div>
-                <div class="reserve_body_content_one reserve_body_content_one2">{{new Date(parseInt(statReserve.lastDateTime)).toLocaleTimeString()}}</div>
+                <div class="reserve_body_content_one reserve_body_content_one2">{{dateFormat(new Date(parseInt(statReserve.lastDateTime)))}}</div>
               </div>
               <div class="box_divide" v-if="statReserve !== http.res.statReserve.elements[http.res.statReserve.elements.length - 1]"></div>
             </div>
@@ -106,6 +106,9 @@
       this.httpShopLicenseExpiredAt()
     },
     methods: {
+      dateFormat(date) {
+        return timeApi.dateFormat(date)
+      },
       getDate(date) {
         return timeApi.dateFormat(new Date(parseInt(date)), 'yyyy/MM/dd')
       },

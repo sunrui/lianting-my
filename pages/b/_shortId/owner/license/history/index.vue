@@ -5,7 +5,7 @@
     <div class="box" v-for="shopLicense in http.res.shopLicense.elements">
       <div class="list_title box_radius_header">
         <div class="list_time_icon"></div>
-        <div class="list_time_label">{{new Date(parseInt(shopLicense.createdAt)).toLocaleString()}}</div>
+        <div class="list_time_label">{{dateFormat(new Date(parseInt(shopLicense.createdAt)))}}</div>
       </div>
 
       <div class="box_divide_radius">
@@ -108,7 +108,7 @@
     <div class="box" v-for="history in http.res.smsHistoryPay.elements">
       <div class="list_title box_radius_header">
         <div class="list_time_icon"></div>
-        <div class="list_time_label">{{new Date(parseInt(history.createdAt)).toLocaleString()}}</div>
+        <div class="list_time_label">{{dateFormat(new Date(parseInt(history.createdAt)))}}</div>
       </div>
 
       <div class="box_divide_radius">
@@ -149,6 +149,7 @@
   import {httpLicenseApi} from '../../../../../../api/http/lt/httpLicenseApi'
   import TitleBar from '../../../../../../components/common/TitleBar'
   import {httpSmsAdminApi} from '../../../../../../api/http/lt/httpSmsAdminApi'
+  import {timeApi} from '../../../../../../api/local/timeApi'
 
   export default {
     metaInfo: {
@@ -193,6 +194,11 @@
           }
         })
       })
+    },
+    methods: {
+      dateFormat(date) {
+        return timeApi.dateFormat(date)
+      }
     }
   }
 </script>

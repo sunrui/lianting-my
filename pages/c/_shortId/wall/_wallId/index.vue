@@ -13,7 +13,7 @@
         </div>
         <div class="wall_user_info_title">
           <div class="wall_user_info_nick" @click="btnUser()">{{http.res.userInfo.nickName}}</div>
-          <div class="wall_order_time">{{new Date(parseInt(http.res.wall.createdAt)).toLocaleString()}}</div>
+          <div class="wall_order_time">{{dateFormat(new Date(parseInt(http.res.wall.createdAt)))}}</div>
         </div>
       </div>
 
@@ -67,7 +67,7 @@
             </div>
             <div class="wall_user_info_title">
               <div class="wall_user_info_nick" @click="btnUser(reply.userId)">{{getWechatNick(reply.userId)}}</div>
-              <div class="wall_order_time">{{new Date(parseInt(reply.createdAt)).toLocaleString()}}</div>
+              <div class="wall_order_time">{{dateFormat(new Date(parseInt(reply.createdAt)))}}</div>
             </div>
             <div class="wall_user_reply_content">{{reply.message}}</div>
           </div>
@@ -170,6 +170,9 @@
       this.httpWall()
     },
     methods: {
+      dateFormat(date) {
+        return timeApi.dateFormat(date)
+      },
       httpUserInfo() {
         httpUserApi.getInfo(userApi.getUserId()).then(res => {
           if (res.userIdNotExists) {

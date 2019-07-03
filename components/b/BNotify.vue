@@ -12,7 +12,7 @@
         <div class="box">
           <div class="list_title box_radius_header">
             <div class="list_time_icon"></div>
-            <div class="list_time_label">{{new Date(parseInt(notifyOrder.createdAt)).toLocaleString()}}</div>
+            <div class="list_time_label">{{dateFormat(new Date(parseInt(notifyOrder.createdAt)))}}</div>
             <div class="notify_type">
               <div class="notify_type_status" v-bind:class="{
           order_food_button_cooking: notifyOrder.type === 'New' || notifyOrder.type === 'FoodAdd',
@@ -57,6 +57,7 @@
   import {httpNotifyAdminApi} from '../../api/http/lt/httpNotifyAdminApi'
   import TitleBar from '../common/TitleBar'
   import {roleApi} from '../../api/local/roleApi'
+  import {timeApi} from '../../api/local/timeApi'
 
   export default {
     metaInfo: {
@@ -105,6 +106,9 @@
       this.ui.interval = setInterval(this.autoRefresh, 10 * 1000)
     },
     methods: {
+      dateFormat(date) {
+        return timeApi.dateFormat(date)
+      },
       autoRefresh() {
         this.onRefresh(null)
       },

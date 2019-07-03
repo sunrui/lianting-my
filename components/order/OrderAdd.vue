@@ -65,7 +65,7 @@
     <div class="box">
       <div class="list_title box_radius_header">
         <div class="list_time_icon"></div>
-        <div class="list_time_label">{{new Date().toLocaleString()}}</div>
+        <div class="list_time_label">{{dateFormat(new Date())}}</div>
       </div>
 
       <div class="box_divide_radius">
@@ -132,6 +132,7 @@
   import {httpOrderApi} from '../../api/http/lt/httpOrderApi'
   import {userApi} from '../../api/local/userApi'
   import {wechatApi} from '../../api/local/wechatApi'
+  import {timeApi} from '../../api/local/timeApi'
 
   export default {
     metaInfo: {
@@ -212,6 +213,9 @@
       this.httpOrderAllByCaptchaTableId()
     },
     methods: {
+      dateFormat(date) {
+        return timeApi.dateFormat(date)
+      },
       checkOrderFood(res) {
         for (let index in res.elements) {
           let orderOne = res.elements[index]

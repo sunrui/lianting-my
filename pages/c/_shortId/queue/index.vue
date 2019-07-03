@@ -71,7 +71,7 @@
               <div class="queue_number_desk_detail">{{myTicket.tableGroupName}}</div>
             </div>
 
-            <div class="queue_number_time">取号时间: {{new Date(parseInt(myTicket.createdAt)).toLocaleString()}}</div>
+            <div class="queue_number_time">取号时间: {{dateFormat(new Date(parseInt(myTicket.createdAt)))}}</div>
 
             <div class="box_divide"></div>
 
@@ -153,6 +153,7 @@
   import {httpInfoApi} from '../../../../api/http/lt/httpInfoApi'
   import {highlightApi} from '../../../../api/local/highlightApi'
   import WechatSubscribe from '../../../../components/wechat/WechatSubscribe'
+  import {timeApi} from '../../../../api/local/timeApi'
 
   export default {
     metaInfo: {
@@ -203,6 +204,9 @@
       }
     },
     methods: {
+      dateFormat(date) {
+        return timeApi.dateFormat(date)
+      },
       autoRefresh() {
         this.httpState()
       },

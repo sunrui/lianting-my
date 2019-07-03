@@ -26,7 +26,7 @@
               <div class="queue_body_content" @click="btnQueue(statQueue.dateTime)">
                 <div class="queue_body_content_one">{{getDate(statQueue.dateTime)}}</div>
                 <div class="queue_body_content_one">{{statQueue.totalQueue}}</div>
-                <div class="queue_body_content_one queue_body_content_one2">{{new Date(parseInt(statQueue.lastDateTime)).toLocaleTimeString()}}</div>
+                <div class="queue_body_content_one queue_body_content_one2">{{dateFormat(new Date(parseInt(statQueue.lastDateTime)))}}</div>
               </div>
               <div class="box_divide" v-if="statQueue !== http.res.statQueue.elements[http.res.statQueue.elements.length - 1]"></div>
             </div>
@@ -106,6 +106,9 @@
       this.httpShopLicenseExpiredAt()
     },
     methods: {
+      dateFormat(date) {
+        return timeApi.dateFormat(date)
+      },
       getDate(date) {
         return timeApi.dateFormat(new Date(parseInt(date)), 'yyyy/MM/dd')
       },

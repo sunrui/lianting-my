@@ -9,7 +9,7 @@
         </div>
         <div class="wall_user_info_title">
           <div class="wall_user_info_nick" @click="btnUser">{{http.res.info.nickName}}</div>
-          <div class="wall_order_time">{{new Date().toLocaleString()}}</div>
+          <div class="wall_order_time">{{dateFormat(new Date())}}</div>
         </div>
       </div>
 
@@ -97,6 +97,9 @@
       this.httpOrder()
     },
     methods: {
+      dateFormat(date) {
+        return timeApi.dateFormat(date)
+      },
       httpUserInfo() {
         httpUserApi.getInfo(userApi.getUserId()).then(res => {
           if (res.userIdNotExists) {

@@ -54,7 +54,7 @@
     <div class="box">
       <div class="list_title box_radius_header">
         <div class="list_time_icon"></div>
-        <div class="list_time_label">{{new Date().toLocaleString()}}</div>
+        <div class="list_time_label">{{dateFormat(new Date())}}</div>
       </div>
 
       <div class="box_divide_radius">
@@ -168,6 +168,7 @@
   import {scrollApi} from '../../api/local/scrollApi'
   import {wechatApi} from '../../api/local/wechatApi'
   import {httpTakeoutApi} from '../../api/http/lt/httpTakeOutApi'
+  import {timeApi} from '../../api/local/timeApi'
 
   export default {
     metaInfo: {
@@ -257,6 +258,9 @@
       this.httpTakeOutConfig()
     },
     methods: {
+      dateFormat(date) {
+        return timeApi.dateFormat(date)
+      },
       httpTakeOutConfig() {
         httpTakeoutApi.getConfig(this.$route.params.shortId).then(res => {
           this.http.req.takeOutConfig = res

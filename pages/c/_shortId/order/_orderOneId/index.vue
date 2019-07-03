@@ -49,7 +49,7 @@
     <div class="box">
       <div class="list_title box_radius_header">
         <div class="list_time_icon"></div>
-        <div class="list_time_label">{{new Date(parseInt(http.res.order.createdAt)).toLocaleString()}}</div>
+        <div class="list_time_label">{{dateFormat(new Date(parseInt(http.res.order.createdAt)))}}</div>
       </div>
 
       <div class="box_divide_radius">
@@ -165,7 +165,7 @@
           <div class="box_divide"></div>
           <div class="addition_item">
             <div class="addition_item_label">支付时间</div>
-            <div class="addition_item_content">{{new Date(parseInt(http.res.order.payPaidAt)).toLocaleString()}}</div>
+            <div class="addition_item_content">{{dateFormat(new Date(parseInt(http.res.order.payPaidAt)))}}</div>
           </div>
         </div>
 
@@ -225,6 +225,7 @@
   import {userApi} from '../../../../../api/local/userApi'
   import {wechatApi} from '../../../../../api/local/wechatApi'
   import {alipayApi} from '../../../../../api/local/alipayApi'
+  import {timeApi} from '../../../../../api/local/timeApi'
 
   export default {
     metaInfo: {
@@ -268,6 +269,9 @@
       this.httpOrder()
     },
     methods: {
+      dateFormat(date) {
+        return timeApi.dateFormat(date)
+      },
       httpOrder() {
         httpOrderApi.getOrder(this.$route.params.shortId, this.$route.params.orderOneId).then(res => {
           this.http.res.order = res

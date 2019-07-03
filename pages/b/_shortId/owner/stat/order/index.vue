@@ -26,7 +26,7 @@
               <div class="order_body_content" @click="btnOrder(statOrder.dateTime)">
                 <div class="order_body_content_one">{{getDate(statOrder.dateTime)}}</div>
                 <div class="order_body_content_one">{{statOrder.totalOrder}}</div>
-                <div class="order_body_content_one order_body_content_one2">{{new Date(parseInt(statOrder.lastDateTime)).toLocaleTimeString()}}</div>
+                <div class="order_body_content_one order_body_content_one2">{{dateFormat(new Date(parseInt(statOrder.lastDateTime)))}}</div>
               </div>
               <div class="box_divide" v-if="statOrder !== http.res.statOrder.elements[http.res.statOrder.elements.length - 1]"></div>
             </div>
@@ -106,6 +106,9 @@
       this.httpShopLicenseExpiredAt()
     },
     methods: {
+      dateFormat(date) {
+        return timeApi.dateFormat(date)
+      },
       getDate(date) {
         return timeApi.dateFormat(new Date(parseInt(date)), 'yyyy/MM/dd')
       },
