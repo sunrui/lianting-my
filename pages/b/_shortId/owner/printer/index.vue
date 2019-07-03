@@ -53,8 +53,22 @@
         <div class="modal_title">选择品牌</div>
 
         <div class="modal_menu" v-bind:class="{modal_menu_select: ui.choosePrinter === 'feie'}"
-             @click="btnChoosePrinter('feie')">飞鹅云打印机
+             @click="btnChoosePrinter('feie')">飞鹅云
         </div>
+
+        <div class="modal_menu" v-bind:class="{modal_menu_select: ui.choosePrinter === 'jiabo'}"
+             @click="btnChoosePrinter('jiabo')">佳博云 (支持中)
+        </div>
+
+        <div class="modal_menu" v-bind:class="{modal_menu_select: ui.choosePrinter === 'yilian'}"
+             @click="btnChoosePrinter('yilian')">易联云 (支持中)
+        </div>
+
+        <div class="modal_menu" v-bind:class="{modal_menu_select: ui.choosePrinter === 'zhongwuyun'}"
+             @click="btnChoosePrinter('zhongwuyun')">中午云 (支持中)
+        </div>
+
+        <div class="modal_menu modal_menu_disable">更多品牌请联系我们</div>
 
         <div class="modal_button_box">
           <div class="button_big" @click="btnChooseConfirm">确认</div>
@@ -127,6 +141,21 @@
       },
       btnChooseConfirm() {
         if (!Boolean(this.ui.choosePrinter)) {
+          return
+        }
+
+        this.ui.vCoverMask = false
+        this.ui.vPrinter = false
+
+        scrollApi.enable(true)
+
+        if (this.ui.choosePrinter !== 'feie') {
+          this.$msgBox.doModal({
+            type: 'yes',
+            title: '品牌对接中',
+            content: '很抱歉暂未支持，我们会在第一时间内支持。'
+          })
+
           return
         }
 
