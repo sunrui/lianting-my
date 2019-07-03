@@ -177,6 +177,16 @@
           QRCode.toCanvas(canvasShop, uri)
         }
 
+        let shopId = document.getElementById('shop_' + this.http.res.shop.id)
+
+        html2canvas(shopId, {
+          logging: false
+        }).then(canvas => {
+          canvas.setAttribute('id', 'shop_' + this.http.res.shop.id)
+          shopId.parentNode.appendChild(canvas)
+          shopId.parentNode.removeChild(shopId)
+        })
+
         for (let tableGroupIndex in this.http.res.tableGroups.elements) {
           let tableGroup = this.http.res.tableGroups.elements[tableGroupIndex]
 
@@ -188,6 +198,16 @@
               let uri = document.location.protocol + '//' + window.location.host + `/c/${this.http.res.shop.shortId}/captcha/${tableOne.id}`
               QRCode.toCanvas(canvasTable, uri)
             }
+
+            let tableId = document.getElementById('table_' + tableOne.id)
+
+            html2canvas(tableId, {
+              logging: false
+            }).then(canvas => {
+              canvas.setAttribute('id', 'table_' + tableOne.id)
+              tableId.parentNode.appendChild(canvas)
+              tableId.parentNode.removeChild(tableId)
+            })
           }
         }
       },
@@ -229,12 +249,8 @@
         }
 
         let fileName = '恋厅_' + this.http.res.shop.name
-
-        html2canvas(document.getElementById('shop_' + this.http.res.shop.id), {
-          logging: false
-        }).then(canvas => {
-          downloadApi.download(canvas, fileName)
-        })
+        let shopId = document.getElementById('shop_' + this.http.res.shop.id)
+        downloadApi.download(shopId, fileName)
       },
       btnDownload(table) {
         if (wechatApi.inWechat()) {
@@ -248,12 +264,8 @@
         }
 
         let fileName = '恋厅_餐桌二维码_' + table.tableGroup_name + '_' + table.fullNumber
-
-        html2canvas(document.getElementById('table_' + table.id), {
-          logging: false
-        }).then(canvas => {
-          downloadApi.download(canvas, fileName)
-        })
+        let tableId = document.getElementById('table_' + table.id)
+        downloadApi.download(tableId, fileName)
       },
       btnDownloadAll() {
         if (wechatApi.inWechat()) {
