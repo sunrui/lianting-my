@@ -118,16 +118,11 @@
 
         switch (this.roleType) {
           case 'admin':
-          case 'waiter': {
+          case 'cooker':
+          case 'cashier':
+          case 'waiter':
+          default: {
             types = 'New, FoodAdd, FoodCooked, FoodReturn, Paid'
-            break
-          }
-          case 'cooker': {
-            types = 'New, FoodAdd, FoodReturn'
-            break
-          }
-          case 'cashier': {
-            types = 'New, Paid'
             break
           }
         }
