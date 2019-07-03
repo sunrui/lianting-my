@@ -131,12 +131,17 @@
         }
       }
     },
-    created() {
+    mounted() {
       httpShopApi.getOne(this.$route.params.shortId).then(res => {
         this.http.res.shop = res
 
         httpTableApi.getGroupAll(this.$route.params.shortId).then(res => {
           this.http.res.tableGroups = res
+
+          if (this.$route.query.vCopyright) {
+            this.ui.vCopyright = this.$route.query.vCopyright !== 'false'
+            this.btnRender('captcha')
+          }
         })
       })
     },
@@ -182,7 +187,8 @@
         html2canvas(shopId, {
           logging: false
         }).then(canvas => {
-          canvas.setAttribute('id', 'shop_' + this.http.res.shop.id + '_canvas')
+          let canvasIdText = 'shop_' + this.http.res.shop.id + '_canvas'
+          canvas.setAttribute('id', canvasIdText)
           shopId.parentNode.appendChild(canvas)
           shopId.parentNode.removeChild(shopId)
         })
@@ -204,7 +210,9 @@
             html2canvas(tableId, {
               logging: false
             }).then(canvas => {
-              canvas.setAttribute('id', 'table_' + tableOne.id + '_canvas')
+              let canvasIdText = 'table_' + tableOne.id + '_canvas'
+
+              canvas.setAttribute('id', canvasIdText)
               tableId.parentNode.appendChild(canvas)
               tableId.parentNode.removeChild(tableId)
             })
@@ -235,7 +243,7 @@
         }
       },
       btnCopyright(enable) {
-        this.ui.vCopyright = enable
+        window.location.href = `/b/${this.$route.params.shortId}/owner/captcha?vCopyright=${enable}`
       },
       btnDownloadShop() {
         if (wechatApi.inWechat()) {
