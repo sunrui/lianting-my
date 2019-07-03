@@ -14,18 +14,23 @@
       </div>
     </div>
 
-    <div class="button_box">
-      <div class="button_big" v-if="!ui.vRender" @click="btnRender">在线生成</div>
-      <div class="button_big" v-else @click="btnDownloadAll">全部下载</div>
+    <div class="button_box" v-if="ui.vRenderType === ''">
+      <div class="button_big" @click="btnRender('text')">餐桌文本生成</div>
+      <div class="button_big" @click="btnRender('captcha')">餐桌贴生成</div>
     </div>
 
-    <div v-if="ui.vRender">
-      <div class="blank_30"></div>
-      <div class="box_divide"></div>
-      <div class="blank_30"></div>
+    <div class="captcha_text_box" v-if="ui.vRenderType === 'text'">
+      <div class="captcha_title">请手动复制文本</div>
+      <label>
+        <textarea class="captcha_text" v-model="ui.tableText" onclick="this.select()"></textarea>
+      </label>
     </div>
 
-    <div class="captcha" v-if="ui.vRender">
+    <div class="captcha" v-if="ui.vRenderType === 'captcha'">
+      <div class="blank_100"></div>
+      <div class="button_big" @click="btnDownloadAll">图片全部下载</div>
+      <div class="blank_50"></div>
+
       <div class="title">
         <div class="title_table">{{http.res.shop.name}}</div>
         <div class="title_download" @click="btnDownloadShop()">下载</div>
@@ -48,7 +53,7 @@
       </div>
     </div>
 
-    <div class="captcha" v-if="ui.vRender" v-for="tableGroup in http.res.tableGroups.elements">
+    <div class="captcha" v-if="ui.vRenderType === 'captcha'" v-for="tableGroup in http.res.tableGroups.elements">
       <div v-for="table in tableGroup.tableOnes">
         <div class="title">
           <div class="title_table">{{tableGroup.name}} - {{table.tableGroup_Name}}{{table.fullNumber}}</div>
@@ -73,7 +78,7 @@
       </div>
     </div>
 
-    <div v-if="ui.vRender" class="addition">
+    <div v-if="ui.vRenderType === 'captcha'" class="addition">
       <div class="addition_item">
         <div class="addition_item_label">显示恋厅品牌</div>
         <div class="addition_item_check">
@@ -120,8 +125,9 @@
           }
         },
         ui: {
-          vRender: false,
-          vCopyright: true
+          vRenderType: '',
+          vCopyright: true,
+          tableText: ''
         }
       }
     },
@@ -135,6 +141,35 @@
       })
     },
     methods: {
+      renderTableText() {
+        let divide = '------------------------------------------\n'
+
+        this.ui.tableText = ''
+        this.ui.tableText += divide
+        this.ui.tableText += '店铺二维码 (适用于外卖、远程排队等宣传店铺需求)'
+        this.ui.tableText += '\n\n'
+        this.ui.tableText += `${this.http.res.shop.name}`
+        this.ui.tableText += '\n'
+        this.ui.tableText += document.location.protocol + '//' + window.location.host + `/c/${this.http.res.shop.shortId}`
+        this.ui.tableText += '\n\n'
+
+        this.ui.tableText += divide
+        this.ui.tableText += '餐桌二维码 (适用于餐桌堂食扫码点餐)'
+        this.ui.tableText += '\n\n'
+
+        for (let tableGroupIndex in this.http.res.tableGroups.elements) {
+          let tableGroup = this.http.res.tableGroups.elements[tableGroupIndex]
+
+          for (let tableIndex in tableGroup.tableOnes) {
+            let tableOne = tableGroup.tableOnes[tableIndex]
+
+            this.ui.tableText += `${this.http.res.shop.name}, ${tableOne.tableGroup_name}, ${tableOne.fullNumber}`
+            this.ui.tableText += '\n'
+            this.ui.tableText += document.location.protocol + '//' + window.location.host + `/c/${this.http.res.shop.shortId}/captcha/${tableOne.id}`
+            this.ui.tableText += '\n\n'
+          }
+        }
+      },
       renderCaptcha() {
         let canvasShop = document.getElementById(this.http.res.shop.id)
         if (canvasShop) {
@@ -156,7 +191,7 @@
           }
         }
       },
-      btnRender() {
+      btnRender(type) {
         if (this.http.res.tableGroups.elements.length === 0) {
           this.$msgBox.doModal({
             type: 'yes',
@@ -171,9 +206,13 @@
           return
         }
 
-        this.ui.vRender = true
+        this.ui.vRenderType = type
 
-        setTimeout(this.renderCaptcha, 1)
+        if (this.ui.vRenderType === 'text') {
+          this.renderTableText()
+        } else if (this.ui.vRenderType === 'captcha') {
+          setTimeout(this.renderCaptcha, 1)
+        }
       },
       btnCopyright(enable) {
         this.ui.vCopyright = enable
@@ -189,10 +228,11 @@
           return
         }
 
+        let fileName = '恋厅_' + this.http.res.shop.name
+
         html2canvas(document.getElementById('shop_' + this.http.res.shop.id), {
-          logging: false,
+          logging: false
         }).then(canvas => {
-          let fileName = '恋厅_' + this.http.res.shop.name
           downloadApi.download(canvas, fileName)
         })
       },
@@ -207,10 +247,11 @@
           return
         }
 
+        let fileName = '恋厅_餐桌二维码_' + table.tableGroup_name + '_' + table.fullNumber
+
         html2canvas(document.getElementById('table_' + table.id), {
-          logging: false,
+          logging: false
         }).then(canvas => {
-          let fileName = '恋厅_餐桌二维码_' + table.tableGroup_name + '_' + table.fullNumber
           downloadApi.download(canvas, fileName)
         })
       },
@@ -219,7 +260,7 @@
           this.$msgBox.doModal({
             type: 'yes',
             title: '微信限制',
-            content: `请在右上角选择${highlightApi.highlight('在浏览器打开')}后再下载。`
+            content: `请在右上角选择${highlightApi.highlight('在浏览器打开')}后下载。`
           })
 
           return

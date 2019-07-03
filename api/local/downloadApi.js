@@ -1,30 +1,21 @@
 export const downloadApi = {
   download(canvas, fileName) {
-    let type = 'png'
-    let imgData = canvas.toDataURL(type)
-
-    let _fixType = function(type) {
-      type = type.toLowerCase().replace(/jpg/i, 'jpeg')
-      let r = type.match(/png|jpeg|bmp|gif/)[0]
-      return 'image/' + r
+    let url = canvas.toDataURL('image/png').replace('image/png', 'image/octet-stream')
+    if (window.navigator.msSaveOrOpenBlob) {
+      let bstr = atob(this.url.split(',')[1])
+      let n = bstr.length
+      let u8arr = new Uint8Array(n)
+      while (n--) {
+        u8arr[n] = bstr.charCodeAt(n)
+      }
+      let blob = new Blob([u8arr])
+      window.navigator.msSaveOrOpenBlob(blob, fileName)
+    } else {
+      let a = document.createElement('a')
+      a.href = url
+      a.download = fileName
+      a.click()
+      a.remove()
     }
-
-    imgData = imgData.replace(_fixType(type), 'image/octet-stream')
-
-    let saveFile = function(data, filename) {
-      let save_link = document.createElementNS('http://www.w3.org/1999/xhtml', 'a')
-      save_link.href = data
-      save_link.download = filename
-
-      let event = document.createEvent('MouseEvents')
-      event.initMouseEvent('click', true, false, window,
-        0, 0, 0, 0, 0,
-        false, false, false, false,
-        0, null)
-      save_link.dispatchEvent(event)
-    }
-
-    let filename = fileName + '.' + type
-    saveFile(imgData, filename)
   }
 }
