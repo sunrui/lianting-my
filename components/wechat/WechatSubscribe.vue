@@ -1,5 +1,5 @@
 <template>
-  <div class="wechat_subscribe" v-if="!this.http.res.wechatInfo.subscribe">担心错过提醒？您可关注<a class="wechat_subscribe_link" @click="btnLink()">恋厅</a>公众号。</div>
+  <div class="wechat_subscribe" v-if="ui.inWechat && !http.res.wechatInfo.subscribe">担心错过提醒？您可关注<a class="wechat_subscribe_link" @click="btnLink()">恋厅</a>公众号。</div>
 </template>
 
 <script>
