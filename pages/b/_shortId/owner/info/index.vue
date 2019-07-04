@@ -277,21 +277,9 @@
         this.ui.vSearchWordAdd = false
       },
       btnSearchWord(enable) {
-        if (enable) {
-          if (this.http.req.shop.licenseType === 'Free') {
-            this.$router.push(`/b/${this.$route.params.shortId}/owner/limit`)
-            return
-          }
-        }
-
         this.ui.searchWordEnable = enable
       },
       btnSearchWordAdd() {
-        if (this.http.req.shop.licenseType === 'Free') {
-          this.$router.push(`/b/${this.$route.params.shortId}/owner/limit`)
-          return
-        }
-
         this.ui.searchWord = ''
         this.ui.vCoverMask = true
         this.ui.vSearchWordAdd = true
@@ -310,11 +298,18 @@
         this.ui.vCoverMask = false
         this.ui.vSearchWordAdd = false
 
-        if (this.ui.searchWords.length > 20) {
+        let limit = 20
+
+        if (this.http.req.shop.licenseType === 'Free') {
+          limit = 5
+          return
+        }
+
+        if (this.ui.searchWords.length > limit) {
           this.$msgBox.doModal({
             type: 'yes',
             title: '添加关键字',
-            content: '最多允许 20 组关键字。'
+            content: `最多允许 ${limit} 组关键字。`
           })
 
           return
