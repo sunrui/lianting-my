@@ -179,8 +179,8 @@
 
     <div class="button_box" v-if="http.res.order.status === 'NotPaid'">
       <div class="button_small" @click="btnFood" v-if="http.res.order.type === 'ForHere'">加餐</div>
-      <div class="button_small" @click="btnPay" v-if="ui.inWechat && http.res.order.type === 'ForHere'">立即支付</div>
-      <div class="button_big" @click="btnPay" v-if="ui.inWechat && http.res.order.type === 'TakeOut'">立即支付</div>
+      <div class="button_small" @click="btnPay" v-if="http.res.order.type === 'ForHere'">立即支付</div>
+      <div class="button_big" @click="btnPay" v-if="http.res.order.type === 'TakeOut'">立即支付</div>
       <div class="button_big" @click="btnCancel" v-if="http.res.order.type === 'TakeOut'">取消订单</div>
     </div>
     <div class="blank_30" v-else></div>
@@ -520,6 +520,16 @@
         })
       },
       btnPay() {
+        if (alipayApi.inAlipay()) {
+          this.$msgBox.doModal({
+            type: 'yes',
+            title: '立即支付',
+            content: '请您线下付款。'
+          })
+
+          return
+        }
+
         let wechatOpenId = userApi.getUserWechatOpenId()
         if (!Boolean(wechatOpenId) || !wechatApi.inWechat()) {
           this.$msgBox.doModal({

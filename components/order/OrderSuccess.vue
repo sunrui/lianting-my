@@ -102,6 +102,7 @@
   import {userApi} from '../../api/local/userApi'
   import {wechatApi} from '../../api/local/wechatApi'
   import {timeApi} from '../../api/local/timeApi'
+  import {alipayApi} from '../../api/local/alipayApi'
 
   export default {
     metaInfo: {
@@ -287,6 +288,16 @@
         })
       },
       btnPay() {
+        if (alipayApi.inAlipay()) {
+          this.$msgBox.doModal({
+            type: 'yes',
+            title: '立即支付',
+            content: '请您线下付款。'
+          })
+
+          return
+        }
+
         let wechatOpenId = userApi.getUserWechatOpenId()
         if (!Boolean(wechatOpenId) || !wechatApi.inWechat()) {
           this.$msgBox.doModal({
