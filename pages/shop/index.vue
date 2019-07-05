@@ -192,30 +192,30 @@
         return ''
       },
       btnShop(shop) {
-        this.$msgBox.doModal({
-          type: 'yes',
-          title: '我的店铺',
-          content: `当前入口仅供管理员${highlightApi.highlight('快速进入餐厅')}使用。若要顾客扫码访问，请在设置中将二维码线下打印。`
-        }).then(async (val) => {
-          if (val === 'Yes') {
+        // this.$msgBox.doModal({
+        //   type: 'yes',
+        //   title: '我的店铺',
+        //   content: `当前入口仅供管理员${highlightApi.highlight('快速进入餐厅')}使用。若要顾客扫码访问，请在设置中将二维码线下打印。`
+        // }).then(async (val) => {
+        //   if (val === 'Yes') {
             this.$router.push(`/c/${shop.shortId}`)
-          }
-        })
+          // }
+        // })
       },
       btnRole(shop, role) {
-        if (role !== 'owner') {
-          this.$msgBox.doModal({
-            type: 'yes',
-            title: '我的店铺',
-            content: `当前入口仅供管理员${highlightApi.highlight('快速进入角色')}使用。请在人事中添加人员。工作人员将由工作台处理日常工作。`
-          }).then(async (val) => {
-            if (val === 'Yes') {
-              this.$router.push(`/b/${shop.shortId}/${role}`)
-            }
-          })
-        } else {
+        // if (role !== 'owner') {
+        //   this.$msgBox.doModal({
+        //     type: 'yes',
+        //     title: '我的店铺',
+        //     content: `当前入口仅供管理员${highlightApi.highlight('快速进入角色')}使用。请在人事中添加人员。工作人员将由工作台处理日常工作。`
+        //   }).then(async (val) => {
+        //     if (val === 'Yes') {
+        //       this.$router.push(`/b/${shop.shortId}/${role}`)
+        //     }
+        //   })
+        // } else {
           this.$router.push(`/b/${shop.shortId}/${role}`)
-        }
+        // }
       },
       btnCreate() {
         this.$router.push(`/shop/create`)

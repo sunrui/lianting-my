@@ -246,14 +246,16 @@
       </div>
     </div>
 
-    <div class="button_box" v-if="http.res.order.status === 'NotPaid'">
+    <div class="blank_30" v-if="http.res.order.status === 'Finish' && http.res.order.status === 'Closed'"></div>
+    <div class="button_box" v-else-if="http.res.order.status === 'NotPaid' && roleType !== 'admin'">
       <div class="button_big" @click="btnFood" v-if="roleType === 'waiter'">加餐</div>
       <div class="button_small" @click="btnChangePrice" v-if="roleType === 'cashier'">更改价格</div>
       <div class="button_small" @click="btnPayOffline" v-if="roleType === 'cashier'">线下支付</div>
-      <div class="button_big" @click="btnCancel" v-if="roleType === 'admin'">取消订单</div>
     </div>
-    <div class="button_box" v-else-if="http.res.order.status !== 'Finish' && http.res.order.status !== 'Closed'">
-      <div class="button_big" @click="btnCancel" v-if="roleType === 'admin'">取消订单</div>
+    <div class="button_box" v-else-if="roleType === 'admin'">
+      <div class="button_big" @click="btnChangePrice">更改价格</div>
+      <div class="button_big" @click="btnPayOffline">线下支付</div>
+      <div class="button_big" @click="btnCancel">取消订单</div>
     </div>
     <div class="blank_30" v-else></div>
 
