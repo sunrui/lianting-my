@@ -1,13 +1,16 @@
 <template>
+  <loading></loading>
 </template>
 <script>
   import { userApi } from '../../api/local/userApi'
   import { httpUserApi } from '../../api/http/user/httpUserApi'
+  import Loading from '../../components/common/Loading'
 
   export default {
     metaInfo: {
       title: '微信登录'
     },
+    components: {Loading},
     mounted() {
       let code = this.$route.query.code
       let state = this.$route.query.state

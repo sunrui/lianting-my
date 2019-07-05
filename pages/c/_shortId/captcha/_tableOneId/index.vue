@@ -1,13 +1,16 @@
 <template>
+  <loading></loading>
 </template>
 
 <script>
   import {userApi} from '../../../../../api/local/userApi'
   import {httpTableApi} from '../../../../../api/http/lt/httpTableApi'
   import {httpCaptchaApi} from '../../../../../api/http/lt/httpCaptchaApi'
+  import Loading from '../../../../../components/common/Loading'
 
   export default {
     middleware: 'auth',
+    components: {Loading},
     data() {
       return {}
     },

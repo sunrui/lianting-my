@@ -1,4 +1,5 @@
 <template>
+  <loading></loading>
 </template>
 
 <script>
@@ -6,12 +7,14 @@
   import {userApi} from '../../api/local/userApi'
   import {cartApi} from '../../api/local/cartApi'
   import {storeApi} from '../../api/local/storeApi'
-  import {cookieApi} from "../../api/local/cookieApi"
+  import {cookieApi} from '../../api/local/cookieApi'
+  import Loading from '../../components/common/Loading'
 
   export default {
     metaInfo: {
       title: '退出登录'
     },
+    components: {Loading},
     created() {
       httpUserApi.postLogout().then(res => {
         userApi.clearAll()

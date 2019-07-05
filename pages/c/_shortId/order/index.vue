@@ -1,12 +1,15 @@
 <template>
+  <Loading></Loading>
 </template>
 
 <script>
-  import { cartApi } from '../../../../api/local/cartApi'
-  import { httpOrderApi } from '../../../../api/http/lt/httpOrderApi'
+  import {cartApi} from '../../../../api/local/cartApi'
+  import {httpOrderApi} from '../../../../api/http/lt/httpOrderApi'
+  import Loading from '../../../../components/common/Loading'
 
   export default {
     middleware: 'auth',
+    components: {Loading},
     created() {
       let cart = cartApi.getCart()
       if (cart.select === 0) {

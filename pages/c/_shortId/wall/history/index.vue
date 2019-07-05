@@ -1,14 +1,17 @@
 <template>
+  <Loading></Loading>
 </template>
 
 <script>
   import { httpWallApi } from '../../../../../api/http/lt/httpWallApi'
+  import Loading from '../../../../../components/common/Loading'
 
   export default {
     metaInfo: {
       title: '我的留言墙'
     },
     middleware: 'auth',
+    components: {Loading},
     created() {
       this.httpWall()
     },

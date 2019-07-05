@@ -1,14 +1,17 @@
 <template>
+  <loading></loading>
 </template>
 
 <script>
   import {wechatApi} from '../../api/local/wechatApi'
   import {alipayApi} from '../../api/local/alipayApi'
+  import Loading from '../../components/common/Loading'
 
   export default {
     metaInfo: {
       title: '用户登录'
     },
+    components: {Loading},
     data() {
       return {
         wechatAppId: 'wxdd2ac18f974e8e70',
