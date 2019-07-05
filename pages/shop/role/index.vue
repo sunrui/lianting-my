@@ -77,11 +77,12 @@
           loading: true,
           roles: [
             {image: '/img/role/role_owner.png', name: '管理员', role: 'owner'},
+            {image: '/img/role/role_waiter.png', name: '外卖员', role: 'takeout'},
+            {image: '/img/role/role_cashier.png', name: '零售员', role: 'retailer'},
             {image: '/img/role/role_admin.png', name: '店长', role: 'admin'},
             {image: '/img/role/role_waiter.png', name: '服务员', role: 'waiter'},
             {image: '/img/role/role_cooker.png', name: '厨师', role: 'cooker'},
-            {image: '/img/role/role_cashier.png', name: '财务', role: 'cashier'},
-            {image: '/img/role/role_waiter.png', name: '外卖', role: 'takeout'}
+            {image: '/img/role/role_cashier.png', name: '财务', role: 'cashier'}
           ],
           unActive: 0
         }

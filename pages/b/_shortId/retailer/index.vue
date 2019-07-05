@@ -56,7 +56,7 @@
 
   export default {
     metaInfo: {
-      title: '收银员'
+      title: '零售员'
     },
     middleware: 'auth',
     components: {TitleBar, Captcha},
@@ -64,8 +64,8 @@
       return {
         title: {
           canBack: false,
-          title: '收银员',
-          backUri: `/b/${this.$route.params.shortId}/cashier`,
+          title: '零售员',
+          backUri: `/b/${this.$route.params.shortId}/retailer`,
           theme: 'image',
           imageHeight: 460
         },
@@ -82,13 +82,13 @@
               tag: 'table',
               name: '餐桌',
               icon: '/img/b/nav/role/b_nav_role_table.png',
-              url: `/b/${this.$route.params.shortId}/cashier/table`
+              url: `/b/${this.$route.params.shortId}/retailer/table`
             },
             {
               tag: 'order',
               name: '订单',
               icon: '/img/b/nav/role/b_nav_role_order.png',
-              url: `/b/${this.$route.params.shortId}/cashier/order`
+              url: `/b/${this.$route.params.shortId}/retailer/order`
             }
           ]
         },
@@ -123,7 +123,7 @@
         if (nav.tag === 'order') {
           httpOrderAdminApi.getAll(this.$route.params.shortId, true, 0, 1).then(res => {
             if (res.currentPageSize === 0) {
-              this.$router.push(`/b/${this.$route.params.shortId}/cooker/order/empty`)
+              this.$router.push(`/b/${this.$route.params.shortId}/retailer/order/empty`)
             } else {
               this.$router.push(nav.url)
             }
@@ -143,10 +143,10 @@
         this.ui.vCaptcha = false
       },
       btnNotifyOrder() {
-        this.$router.push(`/b/${this.$route.params.shortId}/cashier/notify`)
+        this.$router.push(`/b/${this.$route.params.shortId}/retailer/notify`)
       },
       btnPush() {
-        this.$router.push(`/b/${this.$route.params.shortId}/cashier/push`)
+        this.$router.push(`/b/${this.$route.params.shortId}/retailer/push`)
       }
     }
   }

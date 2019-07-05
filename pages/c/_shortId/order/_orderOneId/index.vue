@@ -67,7 +67,7 @@
             <div class="order_food_status order_food_status_wait" v-if="orderFood.status === 'Wait'">已下单</div>
             <div class="order_food_status order_food_status_cooking" v-if="orderFood.status === 'Cooking'">正在做</div>
             <div class="order_food_status order_food_status_cooked" v-if="orderFood.status === 'Cooked'">做好了</div>
-            <div class="order_food_status order_food_status_finish" v-if="orderFood.status === 'Finish'">已上菜</div>
+            <div class="order_food_status order_food_status_finish" v-if="orderFood.status === 'Finish'">已传菜</div>
           </div>
           <div class="order_food_count">{{orderFood.count}}</div>
           <div class="order_food_price">{{orderFood.count * orderFood.foodPrice}}</div>
@@ -155,7 +155,7 @@
           <div class="addition_item_content">{{
             http.res.order.payMethod === 'Wechat' ? '微信支付' :
             http.res.order.payMethod === 'Alipay' ? '支付宝支付' :
-            http.res.order.payMethod === 'Offline' ? '线下支付' :
+            http.res.order.payMethod === 'Offline' ? '线下结算' :
             http.res.order.payMethod === 'Cancel' ? '取消支付' : http.res.order.payMethod
             }}
           </div>

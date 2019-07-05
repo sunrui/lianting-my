@@ -1,16 +1,25 @@
 <template>
   <div>
-    <title-bar ref="titleBar_BRolePush" :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
+    <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
     <div class="box">
       <div class="addition box_radius">
-        <div v-if="roleType === 'Waiter' || roleType === 'Cooker'">
+        <div v-if="roleType === 'Waiter' || roleType === 'Cooker' || roleType === 'Retailer'">
           <div class="addition_item">
             <div class="addition_item_label">接收点餐通知</div>
             <div class="addition_item_check">
               <div class="addition_item_check_on" v-if="http.req.rolePush.pushOrder" @click="btnPushOrder(false)"></div>
               <div class="addition_item_check_off" v-else @click="btnPushOrder(true)"></div>
             </div>
+          </div>
+        </div>
+
+        <div v-if="roleType === 'Waiter' || roleType === 'Cooker' || roleType === 'Retailer'">
+          <div class="box_divide"></div>
+          <div class="addition_item_label">接收支付通知</div>
+          <div class="addition_item_check">
+            <div class="addition_item_check_on" v-if="http.req.rolePush.pushPay" @click="btnPushPay(false)"></div>
+            <div class="addition_item_check_off" v-else @click="btnPushPay(true)"></div>
           </div>
         </div>
 
@@ -29,15 +38,6 @@
           <div class="addition_item_check">
             <div class="addition_item_check_on" v-if="http.req.rolePush.pushReserve" @click="btnPushReserve(false)"></div>
             <div class="addition_item_check_off" v-else @click="btnPushReserve(true)"></div>
-          </div>
-        </div>
-
-        <div v-if="roleType === 'Waiter' || roleType === 'Cashier'">
-          <div class="box_divide"></div>
-          <div class="addition_item_label">接收支付通知</div>
-          <div class="addition_item_check">
-            <div class="addition_item_check_on" v-if="http.req.rolePush.pushPay" @click="btnPushPay(false)"></div>
-            <div class="addition_item_check_off" v-else @click="btnPushPay(true)"></div>
           </div>
         </div>
       </div>
@@ -84,8 +84,6 @@
       this.httpPush()
     },
     mounted() {
-      this.title.backUri = `/b/${this.$route.params.shortId}/${this.roleType}`
-      this.$refs.titleBar_BRolePush.setBackUri(this.title.backUri)
       this.title.title = '微信推送 - ' + roleApi.getRoleTypeName(this.roleType)
     },
     methods: {

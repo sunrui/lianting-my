@@ -154,7 +154,7 @@
           <div class="addition_item_content">{{
             http.res.order.payMethod === 'Wechat' ? '微信支付' :
             http.res.order.payMethod === 'Alipay' ? '支付宝支付' :
-            http.res.order.payMethod === 'Offline' ? '线下支付' :
+            http.res.order.payMethod === 'Offline' ? '线下结算' :
             http.res.order.payMethod === 'Cancel' ? '取消支付' : http.res.order.payMethod
             }}
           </div>

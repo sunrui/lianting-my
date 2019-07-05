@@ -93,7 +93,7 @@
           }
 
           if (res.currentPageSize === 0) {
-            if (this.ui.scroller.page === 1) {
+            if (!this.ui.scroller.haveMore && this.ui.scroller.elements.length === 0) {
               this.$router.push(`/c/${this.$route.params.shortId}/queue/history/empty`)
             } else {
               this.ui.scroller.haveMore = false

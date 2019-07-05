@@ -1,5 +1,5 @@
 <template>
-  <order-success :role-waiter="false"></order-success>
+  <order-success role-type="c"></order-success>
 </template>
 
 <script>

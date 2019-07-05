@@ -10,7 +10,7 @@
       <div class="tip">
         <ul class="tip_ul">
           <li>您的店铺人员可在关注恋厅公众号后处理日常工作。</li>
-          <li>您也可直接点击人事头像进入工作台。</li>
+          <li>您可点击人事头像直接进入相关工作台。</li>
         </ul>
       </div>
     </div>
@@ -23,7 +23,7 @@
         list_admin_icon: role.type === 'Admin',
         list_waiter_icon: role.type === 'Waiter' || role.type === 'TakeOut',
         list_cooker_icon: role.type === 'Cooker',
-        list_cashier_icon: role.type === 'Cashier',
+        list_cashier_icon: role.type === 'Cashier' || role.type === 'Retailer',
         }" @click="btnEnter(role)"></div>
         <div class="list_time_label" @click="btnEnter(role)">{{getRoleTypeName(role.type)}}</div>
         <div class="list_item_add" @click="btnCreate(role)"></div>
@@ -145,6 +145,16 @@
           this.http.res.roles = res
 
           this.ui.roles.push({
+            type: 'Retailer',
+            roles: res.retailers ? res.retailers : []
+          })
+
+          this.ui.roles.push({
+            type: 'TakeOut',
+            roles: res.takeouts ? res.takeouts : []
+          })
+
+          this.ui.roles.push({
             type: 'Admin',
             roles: res.admins ? res.admins : []
           })
@@ -164,10 +174,6 @@
             roles: res.cashiers ? res.cashiers : []
           })
 
-          this.ui.roles.push({
-            type: 'TakeOut',
-            roles: res.takeouts ? res.takeouts : []
-          })
         })
       },
       btnCoverMask() {

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <title-bar ref="titleBar_BNotify" :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
+    <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
     <scroller class="scroller"
               noDataText=""
@@ -98,8 +98,6 @@
       }
     },
     mounted() {
-      this.title.backUri = `/b/${this.$route.params.shortId}/${this.roleType}`
-      this.$refs.titleBar_BNotify.setBackUri(this.title.backUri)
       this.title.title = '最新消息 - ' + roleApi.getRoleTypeName(this.roleType)
 
       this.autoRefresh()
@@ -141,7 +139,7 @@
           }
 
           if (res.currentPageSize === 0) {
-            if (this.ui.scroller.page === 1) {
+            if (!this.ui.scroller.haveMore && this.ui.scroller.elements.length === 0) {
               this.$router.push(`/b/${this.$route.params.shortId}/${this.roleType}/notify/empty`)
             } else {
               this.ui.scroller.haveMore = false

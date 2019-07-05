@@ -1,9 +1,9 @@
 <template>
-  <search role-type="c"></search>
+  <search role-type="retailer"></search>
 </template>
 
 <script>
-  import Search from '../../../../components/food/Search'
+  import Search from '../../../../../components/food/Search'
 
   export default {
     middleware: 'auth',

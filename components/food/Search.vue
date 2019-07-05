@@ -58,9 +58,9 @@
     middleware: 'auth',
     components: {TitleBar},
     props: {
-      roleWaiter: {
-        type: Boolean,
-        default: false
+      roleType: {
+        type: String,
+        default: 'c'
       }
     },
     data() {
@@ -68,7 +68,7 @@
         title: {
           canBack: true,
           title: '搜索',
-          backUri: this.roleWaiter ? `/b/${this.$route.params.shortId}/waiter/food` : `/c/${this.$route.params.shortId}`,
+          backUri: `/c/${this.$route.params.shortId}`,
           theme: 'white',
           imageHeight: 0
         },
@@ -91,6 +91,13 @@
             foodCategories: []
           }
         }
+      }
+    },
+    mounted() {
+      if (this.roleType === 'c') {
+        this.title.backUri = `/c/${this.$route.params.shortId}/food`
+      } else {
+        this.title.backUri = `/b/${this.$route.params.shortId}/${this.roleType}/food`
       }
     },
     created() {

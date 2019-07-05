@@ -1,5 +1,5 @@
 <template>
-  <b-role-push roleType="Cooker"></b-role-push>
+  <b-role-push roleType="Retailer"></b-role-push>
 </template>
 
 <script>

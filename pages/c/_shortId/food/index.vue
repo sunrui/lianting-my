@@ -1,5 +1,5 @@
 <template>
-  <food :role-waiter="false"></food>
+  <food role-type="c"></food>
 </template>
 
 <script>

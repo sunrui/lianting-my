@@ -1,9 +1,9 @@
 <template>
-  <order-add role-type="c"></order-add>
+  <order-add role-type="retailer"></order-add>
 </template>
 
 <script>
-  import OrderAdd from '../../../../components/order/OrderAdd'
+  import OrderAdd from '../../../../../components/order/OrderAdd'
 
   export default {
     middleware: 'auth',

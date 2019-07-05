@@ -1,9 +1,9 @@
 <template>
-  <order-new role-type="c"></order-new>
+  <order-new role-type="retailer"></order-new>
 </template>
 
 <script>
-  import OrderNew from '../../../../components/order/OrderNew'
+  import OrderNew from '../../../../../components/order/OrderNew'
 
   export default {
     middleware: 'auth',

@@ -83,7 +83,7 @@
             <div class="order_food_status order_food_status_wait" v-if="orderFood.status === 'Wait'">已下单</div>
             <div class="order_food_status order_food_status_cooking" v-if="orderFood.status === 'Cooking'">正在做</div>
             <div class="order_food_status order_food_status_cooked" v-if="orderFood.status === 'Cooked'">做好了</div>
-            <div class="order_food_status order_food_status_finish" v-if="orderFood.status === 'Finish'">已上菜</div>
+            <div class="order_food_status order_food_status_finish" v-if="orderFood.status === 'Finish'">已传菜</div>
             <div class="order_food_count">{{orderFood.count}}</div>
             <div class="order_food_price">{{orderFood.count * orderFood.foodPrice}}</div>
           </div>
@@ -142,9 +142,9 @@
     middleware: 'auth',
     components: {TitleBar},
     props: {
-      roleWaiter: {
-        type: Boolean,
-        default: false
+      roleType: {
+        type: String,
+        default: 'c'
       }
     },
     data() {
@@ -152,7 +152,7 @@
         title: {
           canBack: true,
           title: '加餐',
-          backUri: this.roleWaiter ? `/b/${this.$route.params.shortId}/waiter` : `/c/${this.$route.params.shortId}`,
+          backUri: `/c/${this.$route.params.shortId}`,
           theme: 'image',
           imageHeight: 330
         },
@@ -185,15 +185,23 @@
         return cart.cart
       }
     },
+    mounted() {
+      if (this.roleType === 'c') {
+        this.title.backUri = `/c/${this.$route.params.shortId}/food`
+      } else {
+        this.title.backUri = `/b/${this.$route.params.shortId}/${this.roleType}/food`
+      }
+    },
     created() {
       this.$store.commit('cart/update', cartApi.getCart())
 
       if (!this.cart.select || this.cart.select === 0) {
-        if (this.roleWaiter) {
-          this.$router.push(`/b/${this.$route.params.shortId}/waiter/food`)
-        } else {
+        if (this.roleType === 'c') {
           this.$router.push(`/c/${this.$route.params.shortId}/food`)
+        } else {
+          this.$router.push(`/b/${this.$route.params.shortId}/${this.roleType}/food`)
         }
+
         return
       }
 
@@ -202,10 +210,10 @@
       this.ui.table.tableName = userApi.getTableName()
 
       if (!Boolean(this.ui.table.captchaTableId)) {
-        if (this.roleWaiter) {
-          this.$router.push(`/b/${this.$route.params.shortId}/waiter/table`)
-        } else {
+        if (this.roleType === 'c') {
           this.$router.push(`/c/${this.$route.params.shortId}/order/new`)
+        } else {
+          this.$router.push(`/b/${this.$route.params.shortId}/${this.roleType}/table`)
         }
 
         return
@@ -233,10 +241,10 @@
         }
 
         if (this.ui.orderedFoods.length === 0) {
-          if (this.roleWaiter) {
-            this.$router.push(`/b/${this.$route.params.shortId}/waiter/order/new`)
-          } else {
+          if (this.roleType === 'c') {
             this.$router.push(`/c/${this.$route.params.shortId}/order/new`)
+          } else {
+            this.$router.push(`/b/${this.$route.params.shortId}/${this.roleType}/order/new`)
           }
         }
       },
@@ -253,7 +261,7 @@
             userApi.setTableNumber(null)
             this.ui.table = {}
 
-            if (!this.roleWaiter) {
+            if (this.roleType === 'c') {
               this.httpOrderLive()
             }
             return
@@ -326,7 +334,7 @@
         order.tasteNote = this.ui.tasteNote
         order.people = this.cart.people
         order.captchaTableId = userApi.getCaptchaTableId()
-        order.roleWaiter = this.roleWaiter
+        order.roleWaiter = this.roleType !== 'c'
 
         httpOrderApi.postOrder(this.$route.params.shortId, order).then(res => {
           if (res.shopClosed) {
@@ -346,8 +354,8 @@
               userApi.setTableNumber(null)
               this.ui.table = {}
 
-              if (this.roleWaiter) {
-                this.$router.push(`/b/${this.$route.params.shortId}/waiter/table`)
+              if (this.roleType !== 'c') {
+                this.$router.push(`/b/${this.$route.params.shortId}/${this.roleType}/table`)
               }
             })
           } else if (res.otherTableOngoing) {
@@ -361,11 +369,11 @@
               userApi.setTableNumber(null)
               this.ui.table = {}
 
-              if (this.roleWaiter) {
-                this.$router.push(`/b/${this.$route.params.shortId}/waiter/table`)
+              if (this.roleType !== 'c') {
+                this.$router.push(`/b/${this.$route.params.shortId}/${this.roleType}/table`)
               }
             })
-          }  else if (res.foodNotExists) {
+          } else if (res.foodNotExists) {
             this.$msgBox.doModal({
               type: 'yes',
               title: '加餐',
@@ -373,10 +381,11 @@
             }).then(async (val) => {
               cartApi.clearAll()
               this.$store.commit('cart/update', cartApi.getCart())
-              if (this.roleWaiter) {
-                this.$router.push(`/b/${this.$route.params.shortId}/waiter/food`)
-              } else {
+
+              if (this.roleType === 'c') {
                 this.$router.push(`/c/${this.$route.params.shortId}/food`)
+              } else {
+                this.$router.push(`/b/${this.$route.params.shortId}/${this.roleType}/food`)
               }
             })
           } else if (res.orderOneId) {
@@ -395,10 +404,10 @@
 
             let path
 
-            if (this.roleWaiter) {
-              path = `/b/${this.$route.params.shortId}/waiter/order/${this.ui.orderAnyOne.id}/success`
-            } else {
+            if (this.roleType === 'c') {
               path = `/c/${this.$route.params.shortId}/order/${this.ui.orderAnyOne.id}/success`
+            } else {
+              path = `/b/${this.$route.params.shortId}/${this.roleType}/order/${this.ui.orderAnyOne.id}/success`
             }
 
             this.$router.push({

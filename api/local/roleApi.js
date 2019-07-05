@@ -11,11 +11,13 @@ export const roleApi = {
     } else if (type === 'waiter') {
       return '服务员'
     } else if (type === 'cashier') {
-      return '收银'
+      return '收银员'
     } else if (type === 'takeout') {
-      return '外卖'
+      return '外卖员'
     } else if (type === 'owner') {
       return '管理员'
+    } else if (type === 'retailer') {
+      return '零售员'
     } else {
       return type
     }

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <title-bar ref="titleBar_BOrderOne" :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
+    <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
     <div :class="{ cover_mask_9: ui.vCoverMask}" @click="btnCoverMask"></div>
 
@@ -72,8 +72,11 @@
           <div class="order_food_price order_food_price_2">{{orderFood.count * orderFood.foodPrice}}</div>
           <div class="order_food_button button_gray" v-if="orderFood.status === 'Cancel'">已取消</div>
           <div class="order_food_button order_food_button_return" v-else-if="roleType === 'admin'" @click="btnFoodReturn(orderFood)">退菜</div>
+          <div class="order_food_button order_food_button_return" v-else-if="roleType === 'retailer' && orderFood.status !== 'Finish'"
+               @click="btnChangeStatus(orderFood, 'Finish')">传菜
+          </div>
           <div v-else>
-            <div class="order_food_button order_food_button_finish" v-if="orderFood.status === 'Cooked'" @click="btnChangeStatus(orderFood, 'Finish')">上菜</div>
+            <div class="order_food_button order_food_button_finish" v-if="orderFood.status === 'Cooked'" @click="btnChangeStatus(orderFood, 'Finish')">传菜</div>
             <div class="order_food_button order_food_button_cooking" v-if="orderFood.status === 'Wait'" @click="btnChangeStatus(orderFood, 'Cooking')">开始做</div>
             <div class="order_food_button order_food_button_cooked" v-if="orderFood.status === 'Cooking'" @click="btnChangeStatus(orderFood, 'Cooked')">做好了</div>
           </div>
@@ -125,7 +128,7 @@
               </div>
             </div>
             <div class="blank_30"></div>
-            <div class="order_operator_label" v-bind:class="{order_operator_label_finish: orderFood.status === 'Finish'}">上菜</div>
+            <div class="order_operator_label" v-bind:class="{order_operator_label_finish: orderFood.status === 'Finish'}">传菜</div>
             <div class="order_operator_label_time" v-bind:class="{order_operator_label_finish: orderFood.status === 'Finish'}">{{getTime(orderFood.finishAt)}}</div>
           </div>
         </div>
@@ -212,7 +215,7 @@
 
     <div class="box">
       <div class="addition box_radius">
-        <div class="addition_item">
+        <div class="addition_item" @click="btnOrderStatus">
           <div class="addition_item_label">订单状态</div>
           <div class="addition_item_content">{{
             http.res.order.status === 'Paid' ? '已支付' :
@@ -230,7 +233,7 @@
           <div class="addition_item_content">{{
             http.res.order.payMethod === 'Wechat' ? '微信支付' :
             http.res.order.payMethod === 'Alipay' ? '支付宝支付' :
-            http.res.order.payMethod === 'Offline' ? '线下支付' :
+            http.res.order.payMethod === 'Offline' ? '线下结算' :
             http.res.order.payMethod === 'Cancel' ? '取消支付' : http.res.order.payMethod
             }}
           </div>
@@ -246,18 +249,17 @@
       </div>
     </div>
 
-    <div class="blank_30" v-if="http.res.order.status === 'Finish' && http.res.order.status === 'Closed'"></div>
-    <div class="button_box" v-else-if="http.res.order.status === 'NotPaid' && roleType !== 'admin'">
+    <div class="blank_30" v-if="http.res.order.status === 'Finish' || http.res.order.status === 'Closed'"></div>
+    <div class="button_box" v-else-if="http.res.order.status === 'NotPaid' && roleType !== 'admin' && roleType !== 'retailer'">
       <div class="button_big" @click="btnFood" v-if="roleType === 'waiter'">加餐</div>
       <div class="button_small" @click="btnChangePrice" v-if="roleType === 'cashier'">更改价格</div>
-      <div class="button_small" @click="btnPayOffline" v-if="roleType === 'cashier'">线下支付</div>
+      <div class="button_small" @click="btnPayOffline" v-if="roleType === 'cashier'">线下结算</div>
     </div>
-    <div class="button_box" v-else-if="roleType === 'admin'">
+    <div class="button_box" v-else-if="roleType === 'admin' || roleType === 'retailer'">
       <div class="button_big" @click="btnChangePrice">更改价格</div>
-      <div class="button_big" @click="btnPayOffline">线下支付</div>
+      <div class="button_big" @click="btnPayOffline">线下结算</div>
       <div class="button_big" @click="btnCancel">取消订单</div>
     </div>
-    <div class="blank_30" v-else></div>
 
     <transition name="toggle">
       <div class="modal_bottom" v-if="ui.vPeople">
@@ -318,7 +320,7 @@
           <img class="modal_close" src="/img/common/close.png" alt="">
         </div>
 
-        <div class="modal_title">线下支付</div>
+        <div class="modal_title">线下结算</div>
 
         <div class="blank_20"></div>
 
@@ -337,7 +339,7 @@
 
             <div class="choose_remark_text_area">
               <label>
-                <textarea class="choose_remark_text_input" placeholder="请在此备注线下支付方式。" v-model="http.req.payOffline.remark"></textarea>
+                <textarea class="choose_remark_text_input" placeholder="请在此备注线下结算方式。" v-model="http.req.payOffline.remark"></textarea>
               </label>
             </div>
           </div>
@@ -485,7 +487,7 @@
         title: {
           canBack: true,
           title: '订单详情',
-          backUri: `/b/${this.$route.params.shortId}/waiter`,
+          backUri: `/b/${this.$route.params.shortId}/${this.roleType}`,
           theme: 'image',
           imageHeight: 330
         },
@@ -546,8 +548,6 @@
       }
     },
     mounted() {
-      this.title.backUri = `/b/${this.$route.params.shortId}/${this.roleType}`
-      this.$refs.titleBar_BOrderOne.setBackUri(this.title.backUri)
       this.title.title = '订单详情 - ' + roleApi.getRoleTypeName(this.roleType)
     },
     methods: {
@@ -641,7 +641,7 @@
           case 'Cooked':
             return '做好了'
           case 'Finish':
-            return '上菜'
+            return '传菜'
         }
       },
       btnChangeStatus(orderFood, status) {
@@ -666,11 +666,11 @@
         }
 
         if (status === 'Finish') {
-          if (this.roleType !== 'admin' && this.roleType !== 'waiter') {
+          if (this.roleType !== 'admin' && this.roleType !== 'waiter' && this.roleType !== 'retailer') {
             this.$msgBox.doModal({
               type: 'yes',
-              title: '烹饪餐食',
-              content: `仅允许${highlightApi.highlight('店长')}、${highlightApi.highlight('服务员')}可以操作，您只有查看权限。`
+              title: '传菜',
+              content: `仅允许${highlightApi.highlight('店长')}、${highlightApi.highlight('服务员')}、${highlightApi.highlight('零售员')}可以操作，您只有查看权限。`
             })
 
             return
@@ -684,19 +684,22 @@
             content = `确认将${highlightApi.highlight(orderFood.foodCategoryName)}的状态重置为${highlightApi.highlight(this.getStatusLabel(status))}吗？`
             break
           case 'Cooking':
-            content = `即将为${highlightApi.highlight(orderFood.foodCategoryName)}烹饪计时，确定${highlightApi.highlight(this.getStatusLabel(status))}了吗？`
+            content = `即将为${highlightApi.highlight(orderFood.foodCategoryName)}烹饪计时，确定${highlightApi.highlight(this.getStatusLabel(status))}吗？`
             break
           case 'Cooked':
             content = `确认${highlightApi.highlight(orderFood.foodCategoryName)}已经${highlightApi.highlight(this.getStatusLabel(status))}吗？`
             break
           case 'Finish':
-            content = `确认${highlightApi.highlight(orderFood.foodCategoryName)}已为顾客${highlightApi.highlight(this.getStatusLabel(status))}了吗？`
+            content = `确认${highlightApi.highlight(orderFood.foodCategoryName)}已为顾客${highlightApi.highlight(this.getStatusLabel(status))}？`
             break
         }
 
+        let title = status === 'Wait' ? '状态重置' :
+            status === 'Finish' ? '传菜' : '烹饪餐食'
+
         this.$msgBox.doModal({
           type: 'yesOrNo',
-          title: '烹饪餐食',
+          title: title,
           content: content
         }).then(async (val) => {
           if (val === 'Yes') {
@@ -724,7 +727,7 @@
                   this.$msgBox.doModal({
                     type: 'yes',
                     title: '烹饪餐食',
-                    content: '服务员已收到上菜通知。如服务员已关闭推送，请联系服务员及时上菜。'
+                    content: '已推送服务员传菜通知。'
                   }).then(async (val) => {
                     this.httpOrder()
                   })
@@ -755,7 +758,7 @@
           this.$msgBox.doModal({
             type: 'yes',
             title: '更改人数',
-            content: '仅允许店长、服务员、收银可以更改，您只有查看权限。'
+            content: `仅允许${highlightApi.highlight('店长')}、${highlightApi.highlight('服务员')}、${highlightApi.highlight('收银员')}、${highlightApi.highlight('零售员')}可以操作，您只有查看权限。`
           })
 
           return
@@ -797,7 +800,7 @@
             this.$msgBox.doModal({
               type: 'yes',
               title: '更改人数',
-              content: '人数已更新。'
+              content: '人数已更改。'
             })
           }
 
@@ -870,11 +873,11 @@
         this.ui.vChangePrice = false
         this.ui.vCoverMask = false
 
-        if (this.roleType !== 'admin' && this.roleType !== 'cashier') {
+        if (this.roleType !== 'admin' && this.roleType !== 'cashier' && this.roleType !== 'retailer') {
           this.$msgBox.doModal({
             type: 'yes',
             title: '更改价格',
-            content: '仅允许店长、收银可以操作，您只有查看权限。。'
+            content: `仅允许${highlightApi.highlight('店长')}、${highlightApi.highlight('收银员')}、${highlightApi.highlight('零售员')}可以操作，您只有查看权限。`
           })
 
           return
@@ -884,7 +887,17 @@
           this.$msgBox.doModal({
             type: 'yes',
             title: '更改价格',
-            content: '更改价格不能为零，如您要取消订单请联系店长。'
+            content: `更改价格不能为零，如您要取消订单请联系${highlightApi.highlight('店长')}或${highlightApi.highlight('零售员')}。`
+          })
+
+          return
+        }
+
+        if (this.http.req.changePrice.price === this.http.res.order.price) {
+          this.$msgBox.doModal({
+            type: 'yes',
+            title: '更改价格',
+            content: `由于两次价格相同，已忽略更改。`
           })
 
           return
@@ -920,15 +933,31 @@
           }
         })
       },
+      btnOrderStatus() {
+        if (this.roleType !== 'admin' && this.roleType !== 'cashier' && this.roleType !== 'retailer') {
+          this.$msgBox.doModal({
+            type: 'yes',
+            title: '线下结算',
+            content: '没有权限。'
+          })
+
+          return
+        }
+
+        this.btnPayOffline()
+      },
       btnPayOffline() {
         this.ui.vPayOffline = true
         this.ui.vCoverMask = true
       },
       btnPayOfflineConfirm() {
-        if (this.roleType !== 'admin' && this.roleType !== 'cashier') {
+        this.ui.vPayOffline = false
+        this.ui.vCoverMask = false
+
+        if (this.roleType !== 'admin' && this.roleType !== 'cashier' && this.roleType !== 'retailer') {
           this.$msgBox.doModal({
             type: 'yes',
-            title: '离线支付',
+            title: '线下结算',
             content: '没有权限。'
           })
 
@@ -936,26 +965,23 @@
         }
 
         httpOrderAdminApi.putPayOffline(this.$route.params.shortId, this.$route.params.orderOneId, this.http.req.payOffline.remark).then(res => {
-          this.ui.vPayOffline = false
-          this.ui.vCoverMask = false
-
           if (res.orderOneIdNotExists) {
             this.$msgBox.doModal({
               type: 'yes',
-              title: '离线支付',
+              title: '线下结算',
               content: '订单不存在。'
             })
           } else if (res.closed) {
             this.$msgBox.doModal({
               type: 'yes',
-              title: '离线支付',
+              title: '线下结算',
               content: '订单已关闭。'
             })
           } else if (res.success) {
             this.$msgBox.doModal({
               type: 'yes',
-              title: '离线支付',
-              content: '已离线支付。'
+              title: '线下结算',
+              content: '线下结算已完成。'
             }).then(async (val) => {
               this.httpOrder()
             })
@@ -963,10 +989,10 @@
         })
       },
       btnCancel() {
-        if (this.roleType !== 'admin') {
+        if (this.roleType !== 'admin' && this.roleType !== 'retailer') {
           this.$msgBox.doModal({
             type: 'yes',
-            title: '离线支付',
+            title: '线下结算',
             content: '仅允许店长可以操作，您只有查看权限。。'
           })
 
@@ -1074,7 +1100,7 @@
             this.$msgBox.doModal({
               type: 'yes',
               title: '退菜',
-              content: '已退菜。'
+              content: '已退菜完成。'
             }).then(async (val) => {
               this.httpOrder()
             })

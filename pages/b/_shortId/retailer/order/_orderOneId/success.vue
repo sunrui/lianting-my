@@ -1,5 +1,5 @@
 <template>
-  <order-success role-type="waiter"></order-success>
+  <order-success roleType="retailer"></order-success>
 </template>
 
 <script>

@@ -267,9 +267,9 @@
     middleware: 'auth',
     components: {TitleBar},
     props: {
-      roleWaiter: {
-        type: Boolean,
-        default: false
+      roleType: {
+        type: String,
+        default: 'c'
       }
     },
     data() {
@@ -277,7 +277,7 @@
         title: {
           canBack: true,
           title: '点餐',
-          backUri: this.roleWaiter ? `/b/${this.$route.params.shortId}/waiter` : `/c/${this.$route.params.shortId}`,
+          backUri: `/c/${this.$route.params.shortId}`,
           theme: 'image',
           imageHeight: 300
         },
@@ -321,6 +321,12 @@
       this.httpFoodGroup()
     },
     mounted() {
+      if (this.roleType === 'c') {
+        this.title.backUri = `/c/${this.$route.params.shortId}`
+      } else {
+        this.title.backUri = `/b/${this.$route.params.shortId}/${this.roleType}`
+      }
+
       window.addEventListener('scroll', this.onScroll)
     },
     beforeDestroy() {
@@ -439,10 +445,10 @@
           }
 
           if (!haveFood) {
-            if (this.roleWaiter) {
-              this.$router.push(`/b/${this.$route.params.shortId}/waiter/food/empty`)
-            } else {
+            if (this.roleType === 'c') {
               this.$router.push(`/c/${this.$route.params.shortId}/food/empty`)
+            } else {
+              this.$router.push(`/b/${this.$route.params.shortId}/${this.roleType}/food/empty`)
             }
 
             return
@@ -739,45 +745,45 @@
         if (Boolean(this.$route.query.tableId)) {
           httpOrderAdminApi.getAllByTableOneId(this.$route.params.shortId, this.$route.query.tableId, true, 0, 99).then(res => {
             if (res.currentPageSize > 0) {
-              if (this.roleWaiter) {
-                this.$router.push(`/b/${this.$route.params.shortId}/waiter/order/add`)
-              } else {
+              if (this.roleType === 'c') {
                 this.$router.push(`/c/${this.$route.params.shortId}/order/add`)
+              } else {
+                this.$router.push(`/b/${this.$route.params.shortId}/${this.roleType}/order/add`)
               }
 
               return
             }
 
-            if (this.roleWaiter) {
-              this.$router.push(`/b/${this.$route.params.shortId}/waiter/order/new`)
-            } else {
+            if (this.roleType === 'c') {
               this.$router.push(`/c/${this.$route.params.shortId}/order/new`)
+            } else {
+              this.$router.push(`/b/${this.$route.params.shortId}/${this.roleType}/order/new`)
             }
           })
         } else {
           let captchaTableId = userApi.getCaptchaTableId()
           if (!Boolean(captchaTableId)) {
-            if (this.roleWaiter) {
-              this.$router.push(`/b/${this.$route.params.shortId}/waiter/order/new`)
-            } else {
+            if (this.roleType === 'c') {
               this.$router.push(`/c/${this.$route.params.shortId}/order/new`)
+            } else {
+              this.$router.push(`/b/${this.$route.params.shortId}/${this.roleType}/order/new`)
             }
 
             return
           }
 
-          if (this.roleWaiter) {
-            this.$router.push(`/b/${this.$route.params.shortId}/waiter/order/add`)
-          } else {
+          if (this.roleType === 'c') {
             this.$router.push(`/c/${this.$route.params.shortId}/order/add`)
+          } else {
+            this.$router.push(`/b/${this.$route.params.shortId}/${this.roleType}/order/add`)
           }
         }
       },
       btnSearch() {
-        if (this.roleWaiter) {
-          this.$router.push(`/b/${this.$route.params.shortId}/waiter/food/search`)
-        } else {
+        if (this.roleType === 'c') {
           this.$router.push(`/c/${this.$route.params.shortId}/food/search`)
+        } else {
+          this.$router.push(`/b/${this.$route.params.shortId}/${this.roleType}/food/search`)
         }
       },
       btnLeaf(extend) {

@@ -1,5 +1,5 @@
 <template>
-  <order-add :role-waiter="true"></order-add>
+  <order-add role-type="waiter"></order-add>
 </template>
 
 <script>

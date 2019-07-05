@@ -1,13 +1,13 @@
 <template>
-  <search role-type="c"></search>
+  <food role-type="retailer"></food>
 </template>
 
 <script>
-  import Search from '../../../../components/food/Search'
+  import Food from '../../../../../components/food/Food'
 
   export default {
     middleware: 'auth',
-    components: { Search }
+    components: { Food }
   }
 </script>
 

@@ -1,13 +1,13 @@
 <template>
-  <search role-type="c"></search>
+  <b-order roleType="retailer"></b-order>
 </template>
 
 <script>
-  import Search from '../../../../components/food/Search'
+  import BOrder from '../../../../../components/b/BOrder'
 
   export default {
     middleware: 'auth',
-    components: { Search }
+    components: { BOrder }
   }
 </script>
 

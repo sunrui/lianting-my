@@ -11,7 +11,7 @@
 
       <div class="box" v-for="(shop, index) in shopGroup.shops">
         <div class="shop_info">
-          <div class="shop_info_logo" @click="btnShop(shop)">
+          <div class="shop_info_logo">
             <div class="shop_logo_radius shop_logo_radius_center">
               <img class="shop_logo_radius_image" :src="getLogo(shop)" alt="">
             </div>
@@ -52,7 +52,7 @@
 
     <div class="box" v-for="(shop, index) in http.res.shop.shops">
       <div class="shop_info">
-        <div class="shop_info_logo" @click="btnShop(shop)">
+        <div class="shop_info_logo">
           <div class="shop_logo_radius shop_logo_radius_center">
             <img class="shop_logo_radius_image" :src="getLogo(shop)" alt="">
           </div>
@@ -129,11 +129,7 @@
         ui: {
           loading: true,
           roles: [
-            {image: '/img/role/role_owner.png', name: '管理员', role: 'owner'},
-            {image: '/img/role/role_admin.png', name: '店长', role: 'admin'},
-            {image: '/img/role/role_waiter.png', name: '服务员', role: 'waiter'},
-            {image: '/img/role/role_cooker.png', name: '厨师', role: 'cooker'},
-            {image: '/img/role/role_cashier.png', name: '财务', role: 'cashier'}
+            {image: '/img/role/role_owner.png', name: '管理员', role: 'owner'}
           ]
         }
       }
@@ -191,31 +187,8 @@
 
         return ''
       },
-      btnShop(shop) {
-        // this.$msgBox.doModal({
-        //   type: 'yes',
-        //   title: '我的店铺',
-        //   content: `当前入口仅供管理员${highlightApi.highlight('快速进入餐厅')}使用。若要顾客扫码访问，请在设置中将二维码线下打印。`
-        // }).then(async (val) => {
-        //   if (val === 'Yes') {
-            this.$router.push(`/c/${shop.shortId}`)
-          // }
-        // })
-      },
       btnRole(shop, role) {
-        // if (role !== 'owner') {
-        //   this.$msgBox.doModal({
-        //     type: 'yes',
-        //     title: '我的店铺',
-        //     content: `当前入口仅供管理员${highlightApi.highlight('快速进入角色')}使用。请在人事中添加人员。工作人员将由工作台处理日常工作。`
-        //   }).then(async (val) => {
-        //     if (val === 'Yes') {
-        //       this.$router.push(`/b/${shop.shortId}/${role}`)
-        //     }
-        //   })
-        // } else {
-          this.$router.push(`/b/${shop.shortId}/${role}`)
-        // }
+        this.$router.push(`/b/${shop.shortId}/${role}`)
       },
       btnCreate() {
         this.$router.push(`/shop/create`)

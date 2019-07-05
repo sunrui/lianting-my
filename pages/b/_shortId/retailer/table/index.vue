@@ -1,13 +1,13 @@
 <template>
-  <search role-type="c"></search>
+  <b-table roleType="retailer"></b-table>
 </template>
 
 <script>
-  import Search from '../../../../components/food/Search'
+  import BTable from '../../../../../components/b/BTable'
 
   export default {
     middleware: 'auth',
-    components: { Search }
+    components: { BTable }
   }
 </script>
 

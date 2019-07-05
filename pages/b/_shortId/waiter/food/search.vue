@@ -1,5 +1,5 @@
 <template>
-  <search :role-waiter="true"></search>
+  <search role-type="waiter"></search>
 </template>
 
 <script>

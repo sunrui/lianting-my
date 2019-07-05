@@ -78,7 +78,6 @@
         ui: {
           image: this.image,
           theme: this.theme,
-          backUri: this.backUri,
           vTitleBar: true
         }
       }
@@ -111,7 +110,7 @@
           }
         })
       },
-      setTitle() {
+      setAppleTitle() {
         document.title = this.title
 
         if (/ip(hone|od|ad)/i.test(navigator.userAgent)) {
@@ -127,9 +126,6 @@
           document.body.appendChild(i)
         }
       },
-      setBackUri(backUri) {
-        this.ui.backUri = backUri
-      },
       setTheme(theme) {
         this.ui.theme = theme
       },
@@ -143,13 +139,13 @@
         window.history.forward()
       },
       popStateHandle(e) {
-        this.setTitle()
+        this.setAppleTitle()
         this.statePush()
         this.btnBack()
       },
       btnBack() {
-        if (this.canBack && Boolean(this.ui.backUri)) {
-          this.$router.push(this.ui.backUri)
+        if (this.canBack && Boolean(this.backUri)) {
+          this.$router.push(this.backUri)
         } else {
           wechatApi.closeWindow()
           window.history.back()

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <title-bar ref="titleBar_BOrder" :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
+    <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
     <scroller class="scroller"
               noDataText=""
@@ -70,7 +70,7 @@
     props: {
       date: {
         type: Number | String,
-        default: null
+        default: new Date().getTime()
       },
       roleType: {
         type: String,
@@ -82,7 +82,7 @@
         title: {
           canBack: true,
           title: '订单记录',
-          backUri: `/b/${this.$route.params.shortId}/waiter`,
+          backUri: `/b/${this.$route.params.shortId}/${this.roleType}`,
           theme: 'image',
           imageHeight: 220
         },
@@ -103,8 +103,6 @@
       }
     },
     mounted() {
-      this.title.backUri = `/b/${this.$route.params.shortId}/${this.roleType}`
-      this.$refs.titleBar_BOrder.setBackUri(this.title.backUri)
       this.title.title = '订单记录 - ' + roleApi.getRoleTypeName(this.roleType)
 
       this.autoRefresh()
@@ -137,7 +135,7 @@
             }
 
             if (res.currentPageSize === 0) {
-              if (this.ui.scroller.page === 1) {
+              if (!this.ui.scroller.haveMore && this.ui.scroller.elements.length === 0) {
                 this.$router.push(`/b/${this.$route.params.shortId}/${this.roleType}/order/empty`)
               } else {
                 this.ui.scroller.haveMore = false
@@ -161,7 +159,7 @@
             }
 
             if (res.currentPageSize === 0) {
-              if (this.ui.scroller.page === 1) {
+              if (!this.ui.scroller.haveMore && this.ui.scroller.elements.length === 0) {
                 this.$router.push(`/b/${this.$route.params.shortId}/${this.roleType}/order/empty`)
               } else {
                 this.ui.scroller.haveMore = false
@@ -185,7 +183,7 @@
             }
 
             if (res.currentPageSize === 0) {
-              if (this.ui.scroller.page === 1) {
+              if (!this.ui.scroller.haveMore && this.ui.scroller.elements.length === 0) {
                 this.$router.push(`/b/${this.$route.params.shortId}/${this.roleType}/order/empty`)
               } else {
                 this.ui.scroller.haveMore = false

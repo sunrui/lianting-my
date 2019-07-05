@@ -54,7 +54,7 @@
               shopLicense.payMethod === 'Wechat' ? '微信支付' :
               shopLicense.payMethod === 'AliPay' ? '支付宝支付' :
               shopLicense.payMethod === 'Bank' ? '银行转账' :
-              shopLicense.payMethod === 'OffLine' ? '线下支付' : shopLicense.payMethod
+              shopLicense.payMethod === 'OffLine' ? '线下结算' : shopLicense.payMethod
               }}
             </div>
           </div>

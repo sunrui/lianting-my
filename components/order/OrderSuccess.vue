@@ -111,9 +111,9 @@
     middleware: 'auth',
     components: {TitleBar},
     props: {
-      roleWaiter: {
-        type: Boolean,
-        default: false
+      roleType: {
+        type: String,
+        default: 'c'
       }
     },
     data() {
@@ -121,7 +121,7 @@
         title: {
           canBack: true,
           title: '下单成功',
-          backUri: this.roleWaiter ? `/b/${this.$route.params.shortId}/waiter` : `/c/${this.$route.params.shortId}`,
+          backUri: `/c/${this.$route.params.shortId}`,
           theme: 'image',
           imageHeight: 220
         },
@@ -131,6 +131,13 @@
             order: {}
           }
         }
+      }
+    },
+    mounted() {
+      if (this.roleType === 'c') {
+        this.title.backUri = `/c/${this.$route.params.shortId}`
+      } else {
+        this.title.backUri = `/b/${this.$route.params.shortId}/${this.roleType}`
       }
     },
     created() {
@@ -163,10 +170,10 @@
         return count
       },
       btnFood() {
-        if (this.roleWaiter) {
-          this.$router.push(`/b/${this.$route.params.shortId}/waiter/table`)
-        } else {
+        if (this.roleType === 'c') {
           this.$router.push(`/c/${this.$route.params.shortId}/food`)
+        } else {
+          this.$router.push(`/b/${this.$route.params.shortId}/${this.roleType}/table`)
         }
       },
       prepareWechatPay(jsPay) {

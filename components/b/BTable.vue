@@ -1,6 +1,6 @@
 <template>
   <div v-show="!ui.loading">
-    <title-bar ref="titleBar_BTable" :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
+    <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
     <transition name="fade">
       <div :class="{ cover_mask_9: ui.vCoverMask}" @click="btnCoverMask"></div>
@@ -60,7 +60,8 @@
           <div class="food_group_name">{{tableGroup.name}}</div>
           <div class="food_group_private_room" v-if="tableGroup.privateRoom">包间</div>
           <div class="food_group_count">({{tableGroup.tableOnes ? tableGroup.tableOnes.length : 0}})</div>
-          <div class="food_group_right"><span class="food_group_right_remark">{{tableGroup.remark}}</span> <span class="food_group_right_people">({{tableGroup.minPeople + '-' + tableGroup.maxPeople + '人'}})</span></div>
+          <div class="food_group_right"><span class="food_group_right_remark">{{tableGroup.remark}}</span> <span class="food_group_right_people">({{tableGroup.minPeople + '-' + tableGroup.maxPeople + '人'}})</span>
+          </div>
         </div>
 
         <div class="box" v-for="(table, index) in tableGroup.tableOnes">
@@ -189,7 +190,7 @@
         title: {
           canBack: true,
           title: '餐桌',
-          backUri: `/b/${this.$route.params.shortId}/waiter`,
+          backUri: `/b/${this.$route.params.shortId}/${this.roleType}`,
           theme: 'image',
           imageHeight: 300
         },
@@ -228,8 +229,6 @@
       this.ui.interval = setInterval(this.autoRefresh, 10 * 1000)
     },
     mounted() {
-      this.title.backUri = `/b/${this.$route.params.shortId}/${this.roleType}`
-      this.$refs.titleBar_BTable.setBackUri(this.title.backUri)
       this.title.title = '餐桌 - ' + roleApi.getRoleTypeName(this.roleType)
 
       window.addEventListener('scroll', this.onScroll)
@@ -437,7 +436,13 @@
         scrollApi.enable(true)
       },
       btnTable(table) {
-        if (this.roleType !== 'waiter') {
+        if (this.roleType === 'waiter' || this.roleType === 'retailer') {
+          this.ui.vCoverMask = true
+          this.ui.vMenuTable = true
+          this.ui.selectTable = table
+
+          scrollApi.enable(false)
+        } else {
           if (this.getTableOrder(table) && this.getTableOrder(table).length > 0) {
             this.btnTableOrder(table)
           } else {
@@ -447,15 +452,7 @@
               content: '当前餐桌没有订单。'
             })
           }
-
-          return
         }
-
-        scrollApi.enable(false)
-
-        this.ui.vCoverMask = true
-        this.ui.vMenuTable = true
-        this.ui.selectTable = table
       },
       btnTableFood(table) {
         scrollApi.enable(true)
@@ -488,7 +485,7 @@
       btnTableOrder(table) {
         scrollApi.enable(true)
 
-        let live = (this.roleType !== 'admin')
+        let live = (this.roleType !== 'admin' && this.roleType !== 'retailer')
 
         httpOrderAdminApi.getAllByTableOneId(this.$route.params.shortId, table.id, live, 0, 2).then(res => {
           if (res.currentPageSize === 0) {
