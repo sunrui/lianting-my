@@ -9,7 +9,7 @@
         <img class="empty_image" src="/img/no/no_crash.png" alt="">
         <div v-if="!ui.reported">
           <div class="empty_label">{{ui.error.notFound? '404 - 好像迷路了！' : '服务器访问异常！'}}</div>
-          <div class="empty_label_tip">您可<span class="empty_label_tip_link" @click="btnReport">提交反馈</span>来帮助我们或返回重试。</div>
+          <div class="empty_label_tip">您可以点击<span class="empty_label_tip_link" @click="btnReport">查看详情</span>或返回重试。</div>
           <div class="blank_30"></div>
         </div>
         <div v-else>
