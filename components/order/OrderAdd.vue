@@ -381,7 +381,7 @@
             })
           } else if (res.orderOneId) {
             let price = 0
-            let select = 0
+            let select
 
             for (let index in this.cart.foods) {
               let food = this.cart.foods[index]

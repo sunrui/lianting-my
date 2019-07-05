@@ -426,6 +426,7 @@
             })
           } else if (res.orderOneId) {
             let price = 0
+            let select
 
             for (let index in this.cart.foods) {
               let food = this.cart.foods[index]
@@ -441,7 +442,8 @@
               path = `/c/${this.$route.params.shortId}/order/${res.orderOneId}/success`
             }
 
-            let cartSelect = this.cart.select
+            select = this.cart.select
+
             cartApi.clearAll()
             this.$store.commit('cart/update', cartApi.getCart())
 
@@ -449,7 +451,7 @@
               path: path,
               query: {
                 cartPrice: price,
-                cartSelect: cartSelect
+                cartSelect: select
               }
             })
           }
