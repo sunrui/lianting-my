@@ -381,11 +381,14 @@
             })
           } else if (res.orderOneId) {
             let price = 0
+            let select = 0
 
             for (let index in this.cart.foods) {
               let food = this.cart.foods[index]
               price += food.select * food.food.price
             }
+
+            select = this.cart.select
 
             cartApi.clearAll()
             this.$store.commit('cart/update', cartApi.getCart())
@@ -402,7 +405,7 @@
               path: path,
               query: {
                 cartPrice: price,
-                cartSelect: this.cart.select
+                cartSelect: select
               }
             })
           }
