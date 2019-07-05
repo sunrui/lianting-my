@@ -70,7 +70,7 @@
     props: {
       date: {
         type: Number | String,
-        default: new Date().getTime()
+        default: null
       },
       roleType: {
         type: String,
