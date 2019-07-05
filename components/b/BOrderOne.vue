@@ -935,12 +935,6 @@
       },
       btnOrderStatus() {
         if (this.roleType !== 'admin' && this.roleType !== 'cashier' && this.roleType !== 'retailer') {
-          this.$msgBox.doModal({
-            type: 'yes',
-            title: '线下结算',
-            content: '没有权限。'
-          })
-
           return
         }
 
@@ -951,20 +945,10 @@
         this.ui.vCoverMask = true
       },
       btnPayOfflineConfirm() {
-        this.ui.vPayOffline = false
-        this.ui.vCoverMask = false
-
-        if (this.roleType !== 'admin' && this.roleType !== 'cashier' && this.roleType !== 'retailer') {
-          this.$msgBox.doModal({
-            type: 'yes',
-            title: '线下结算',
-            content: '没有权限。'
-          })
-
-          return
-        }
-
         httpOrderAdminApi.putPayOffline(this.$route.params.shortId, this.$route.params.orderOneId, this.http.req.payOffline.remark).then(res => {
+          this.ui.vPayOffline = false
+          this.ui.vCoverMask = false
+
           if (res.orderOneIdNotExists) {
             this.$msgBox.doModal({
               type: 'yes',
