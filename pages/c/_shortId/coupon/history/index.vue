@@ -61,7 +61,7 @@
         </div>
       </div>
       <div class="coupon_limit box_radius_footer">
-        <div class="coupon_limit_title">已失效原因</div>
+        <div class="coupon_limit_title">失效原因</div>
         <div class="coupon_limit_label">· 已过期</div>
       </div>
     </div>
