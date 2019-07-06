@@ -173,6 +173,7 @@
   import {httpFoodApi} from '../../../../../../../api/http/lt/httpFoodApi'
   import {highlightApi} from '../../../../../../../api/local/highlightApi'
   import ImageUpload from "../../../../../../../components/common/ImageUpload"
+  import {scrollApi} from '../../../../../../../api/local/scrollApi'
 
   export default {
     metaInfo: {
@@ -230,6 +231,7 @@
       btnCoverMask() {
         this.ui.vPriceAdd = false
         this.ui.vCoverMask = false
+        scrollApi.enable(true)
       },
       btnTag(enable) {
         this.ui.tagEnable = enable
@@ -247,8 +249,10 @@
         }
       },
       btnFoodAdd() {
-        this.ui.vPriceAdd = true
         this.ui.vCoverMask = true
+        scrollApi.enable(false)
+
+        this.ui.vPriceAdd = true
         this.ui.food = {}
       },
       btnFoodDelete(food) {
@@ -351,6 +355,7 @@
 
         this.ui.vPriceAdd = false
         this.ui.vCoverMask = false
+        scrollApi.enable(true)
       },
       btnUpdate() {
         if (!Boolean(this.http.req.category.image)) {

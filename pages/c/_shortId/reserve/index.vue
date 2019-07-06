@@ -110,6 +110,7 @@
   import {httpInfoApi} from '../../../../api/http/lt/httpInfoApi'
   import {httpReserveApi} from '../../../../api/http/lt/httpReserveApi'
   import WechatSubscribe from "../../../../components/wechat/WechatSubscribe"
+  import {scrollApi} from '../../../../api/local/scrollApi'
 
   export default {
     metaInfo: {
@@ -206,6 +207,8 @@
       },
       btnCalendar() {
         this.ui.vCoverMask = true
+        scrollApi.enable(false)
+
         this.ui.vCalendar = true
       },
       btnDate(index, date) {
@@ -280,6 +283,7 @@
 
         this.ui.vCalendar = false
         this.ui.vCoverMask = false
+        scrollApi.enable(true)
       },
       btnTableGroup(tableGroup) {
         this.ui.selectTableGroup = tableGroup
@@ -290,6 +294,7 @@
         } else {
           this.ui.vCalendar = false
           this.ui.vCoverMask = false
+          scrollApi.enable(true)
         }
       },
       btnChooseTime(time) {
@@ -298,6 +303,7 @@
       btnCoverMask() {
         this.ui.vCalendar = false
         this.ui.vCoverMask = false
+        scrollApi.enable(true)
       },
       btnReserve() {
         if (!this.ui.selectTime) {

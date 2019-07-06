@@ -119,6 +119,7 @@
   import {httpWallApi} from '../../../api/http/lt/httpWallApi'
   import {httpFoodApi} from '../../../api/http/lt/httpFoodApi'
   import TitleBar from '../../../components/common/TitleBar'
+  import {scrollApi} from '../../../api/local/scrollApi'
 
   export default {
     metaInfo: {
@@ -319,11 +320,13 @@
       btnCoverMask() {
         this.ui.vWifi = false
         this.ui.vCoverMask = false
+        scrollApi.enable(true)
       },
       httpWifi() {
         httpWifiApi.getWifi(this.$route.params.shortId).then(res => {
           this.http.res.wifi = res
           this.ui.vCoverMask = true
+          scrollApi.enable(false)
           this.ui.vWifi = true
         })
       },

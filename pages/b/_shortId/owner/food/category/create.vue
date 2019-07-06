@@ -153,6 +153,7 @@
   import CurrencyInput from '../../../../../../components/common/CurrencyInput'
   import {highlightApi} from '../../../../../../api/local/highlightApi'
   import ImageUpload from "../../../../../../components/common/ImageUpload"
+  import {scrollApi} from '../../../../../../api/local/scrollApi'
 
   export default {
     metaInfo: {
@@ -212,6 +213,7 @@
       btnCoverMask() {
         this.ui.vPriceAdd = false
         this.ui.vCoverMask = false
+        scrollApi.enable(true)
       },
       btnTag(enable) {
         this.ui.tagEnable = enable
@@ -234,8 +236,10 @@
         }
       },
       btnFoodAdd() {
-        this.ui.vPriceAdd = true
         this.ui.vCoverMask = true
+        scrollApi.enable(false)
+
+        this.ui.vPriceAdd = true
         this.ui.food = {}
       },
       btnFoodDelete(food) {
@@ -252,6 +256,7 @@
       btnFoodAddConfirm() {
         this.ui.vPriceAdd = false
         this.ui.vCoverMask = false
+        scrollApi.enable(true)
 
         if (!this.ui.food.name) {
           this.$msgBox.doModal({

@@ -157,6 +157,7 @@
   import {httpSearchApi} from '../../../../../api/http/lt/httpSearchApi'
   import {httpSearchAdminApi} from '../../../../../api/http/lt/httpSearchAdminApi'
   import {validatorApi} from '../../../../../api/local/validatorApi'
+  import {scrollApi} from '../../../../../api/local/scrollApi'
 
   export default {
     metaInfo: {
@@ -275,13 +276,16 @@
       btnCoverMask() {
         this.ui.vCoverMask = false
         this.ui.vSearchWordAdd = false
+        scrollApi.enable(true)
       },
       btnSearchWord(enable) {
         this.ui.searchWordEnable = enable
       },
       btnSearchWordAdd() {
-        this.ui.searchWord = ''
         this.ui.vCoverMask = true
+        scrollApi.enable(false)
+
+        this.ui.searchWord = ''
         this.ui.vSearchWordAdd = true
       },
       btnSearchWordDelete(searchWord) {
@@ -297,6 +301,7 @@
       btnSearchWordAddConfirm() {
         this.ui.vCoverMask = false
         this.ui.vSearchWordAdd = false
+        scrollApi.enable(true)
 
         let limit = 20
 

@@ -215,9 +215,9 @@
       },
       btnCreate() {
         this.ui.vCoverMask = true
-        this.ui.vPrinter = true
-
         scrollApi.enable(false)
+
+        this.ui.vPrinter = true
       },
       btnDelete(printer) {
         this.$msgBox.doModal({

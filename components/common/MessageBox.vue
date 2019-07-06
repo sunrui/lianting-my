@@ -50,8 +50,9 @@
         this.remove()
       },
       doModal() {
-        scrollApi.enable(false)
         this.ui.vCoverMask = true
+        scrollApi.enable(false)
+
         this.promise = new Promise((resolve, reject) => {
           this.resolve = resolve
         })
@@ -59,6 +60,7 @@
       },
       remove() {
         scrollApi.enable(true)
+
         setTimeout(() => {
           this.destroy()
         }, 100)

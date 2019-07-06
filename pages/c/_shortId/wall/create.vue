@@ -56,6 +56,7 @@
   import {httpOrderApi} from '../../../../api/http/lt/httpOrderApi'
   import {timeApi} from '../../../../api/local/timeApi'
   import {foodDetailApi} from '../../../../api/local/foodDetail'
+  import {scrollApi} from '../../../../api/local/scrollApi'
 
   export default {
     metaInfo: {
@@ -125,8 +126,10 @@
         httpOrderApi.getOrder(this.$route.params.shortId, this.$route.query.orderOneId).then(res => {
           this.http.res.order = res
 
-          this.ui.vOrderMenu = true
           this.ui.vCoverMask = true
+          scrollApi.enable(false)
+
+          this.ui.vOrderMenu = true
         })
       },
       elapsedTime(time) {

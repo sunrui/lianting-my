@@ -338,17 +338,18 @@
       },
       btnChangeStatus(foodCategory) {
         this.ui.vCoverMask = true
+        scrollApi.enable(false)
+
         this.ui.vSelectStatus = true
 
         this.ui.status.foodCategory = foodCategory
         this.ui.status.selectStatus = foodCategory.status
-
-        scrollApi.enable(false)
       },
       btnChangeStatusConfirm() {
         httpFoodAdminApi.putCategoryStatus(this.$route.params.shortId, this.ui.status.foodCategory.id, this.ui.status.selectStatus).then(res => {
           this.ui.vSelectStatus = false
           this.ui.vCoverMask = false
+          scrollApi.enable(true)
 
           if (res.foodCategoryIdNotExists) {
             this.$msgBox.doModal({

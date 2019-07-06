@@ -801,11 +801,12 @@
           return
         }
 
+        this.ui.vCoverMask = true
+        scrollApi.enable(false)
+
         this.ui.modalPreview.foodGroup = foodGroup
         this.ui.modalPreview.foodCategory = foodCategory
         this.ui.vPreview = true
-        this.ui.vCoverMask = true
-        scrollApi.enable(false)
       }
     }
   }

@@ -349,7 +349,6 @@
       btnCoverMask() {
         this.ui.vReply = false
         this.ui.vCoverMask = false
-
         scrollApi.enable(true)
       },
       btnChooseStatus(status) {
@@ -362,14 +361,16 @@
             title: '订单提示',
             content: `该订单${highlightApi.highlight('尚未支付完成')}，如您要继续派送，请务必确认顾客已线下付款。`
           }).then(async (val) => {
-            this.ui.vReply = true
             this.ui.vCoverMask = true
             scrollApi.enable(false)
+
+            this.ui.vReply = true
           })
         } else {
-          this.ui.vReply = true
           this.ui.vCoverMask = true
           scrollApi.enable(false)
+
+          this.ui.vReply = true
         }
       },
       btnSmsSendEnable(enable) {
@@ -427,9 +428,9 @@
         }
       },
       btnReplyConfirm() {
-        scrollApi.enable(true)
         this.ui.vReply = false
         this.ui.vCoverMask = false
+        scrollApi.enable(true)
 
         if (this.ui.smsSendEnable) {
           if (!Boolean(this.http.res.info.phone)) {

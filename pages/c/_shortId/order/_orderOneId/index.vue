@@ -226,6 +226,7 @@
   import {wechatApi} from '../../../../../api/local/wechatApi'
   import {alipayApi} from '../../../../../api/local/alipayApi'
   import {timeApi} from '../../../../../api/local/timeApi'
+  import {scrollApi} from '../../../../../api/local/scrollApi'
 
   export default {
     metaInfo: {
@@ -562,15 +563,19 @@
       btnCoverMask() {
         this.ui.vCancel = false
         this.ui.vCoverMask = false
+        scrollApi.enable(true)
       },
       btnCancel() {
         this.ui.vCoverMask = true
+        scrollApi.enable(false)
+
         this.ui.vCancel = true
       },
       btnCancelConfirm() {
         httpOrderApi.putCancel(this.$route.params.shortId, this.$route.params.orderOneId, this.http.req.cancel.remark).then(res => {
           this.ui.vCancel = false
           this.ui.vCoverMask = false
+          scrollApi.enable(true)
 
           if (res.orderOneIdNotExists) {
             this.$msgBox.doModal({

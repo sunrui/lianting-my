@@ -765,10 +765,10 @@
         }
 
         this.ui.vCoverMask = true
+        scrollApi.enable(false)
+
         this.ui.vPeople = true
         this.ui.selectPeople = this.http.res.order.people
-
-        scrollApi.enable(false)
       },
       btnPeopleChoose(one) {
         this.ui.selectPeople = one
@@ -777,6 +777,7 @@
         httpOrderAdminApi.putPeople(this.$route.params.shortId, this.$route.params.orderOneId, this.ui.selectPeople).then(res => {
           this.ui.vPeople = false
           this.ui.vCoverMask = false
+          scrollApi.enable(true)
 
           if (res.orderOneIdNotExists) {
             this.$msgBox.doModal({
@@ -864,14 +865,16 @@
         this.btnChangeStatus(orderFood, status)
       },
       btnChangePrice() {
-        this.ui.vChangePrice = true
         this.ui.vCoverMask = true
+        scrollApi.enable(false)
 
+        this.ui.vChangePrice = true
         this.http.req.changePrice.price = this.http.res.order.price
       },
       btnChangePriceConfirm() {
         this.ui.vChangePrice = false
         this.ui.vCoverMask = false
+        scrollApi.enable(true)
 
         if (this.roleType !== 'admin' && this.roleType !== 'cashier' && this.roleType !== 'retailer') {
           this.$msgBox.doModal({
@@ -941,13 +944,16 @@
         this.btnPayOffline()
       },
       btnPayOffline() {
-        this.ui.vPayOffline = true
         this.ui.vCoverMask = true
+        scrollApi.enable(false)
+
+        this.ui.vPayOffline = true
       },
       btnPayOfflineConfirm() {
         httpOrderAdminApi.putPayOffline(this.$route.params.shortId, this.$route.params.orderOneId, this.http.req.payOffline.remark).then(res => {
           this.ui.vPayOffline = false
           this.ui.vCoverMask = false
+          scrollApi.enable(true)
 
           if (res.orderOneIdNotExists) {
             this.$msgBox.doModal({
@@ -984,9 +990,9 @@
         }
 
         this.ui.vCoverMask = true
-        this.ui.vCancel = true
-
         scrollApi.enable(false)
+
+        this.ui.vCancel = true
       },
       btnCancelConfirm() {
         scrollApi.enable(true)
@@ -994,6 +1000,7 @@
         httpOrderAdminApi.putCancel(this.$route.params.shortId, this.$route.params.orderOneId, this.http.req.cancel.remark).then(res => {
           this.ui.vCancel = false
           this.ui.vCoverMask = false
+          scrollApi.enable(true)
 
           if (res.orderOneIdNotExists) {
             this.$msgBox.doModal({
@@ -1045,14 +1052,13 @@
         }
 
         this.ui.vCoverMask = true
-        this.ui.vReturn = true
-
         scrollApi.enable(false)
+
+        this.ui.vReturn = true
       },
       btnFoodReturnConfirm() {
         this.ui.vReturn = false
         this.ui.vCoverMask = false
-
         scrollApi.enable(true)
 
         httpOrderAdminApi.putReturn(this.$route.params.shortId, this.$route.params.orderOneId, this.http.req.return).then(res => {

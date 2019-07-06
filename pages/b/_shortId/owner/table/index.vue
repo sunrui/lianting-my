@@ -191,6 +191,7 @@
       btnCoverMask() {
         this.ui.vTableAdd = false
         this.ui.vCoverMask = false
+        scrollApi.enable(true)
       },
       navToHash() {
         let hash = window.location.hash
@@ -352,6 +353,8 @@
       },
       btnTableAdd(tableGroup) {
         this.ui.vCoverMask = true
+        scrollApi.enable(false)
+
         this.ui.vTableAdd = true
         this.http.req.table = {}
         this.http.req.table.tableGroupId = tableGroup.id
@@ -359,6 +362,7 @@
       btnTableAddConfirm() {
         this.ui.vTableAdd = false
         this.ui.vCoverMask = false
+        scrollApi.enable(true)
 
         httpTableAdminApi.postTable(this.$route.params.shortId, this.http.req.table).then(res => {
           if (res.maxLimit) {

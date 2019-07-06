@@ -292,9 +292,10 @@
       },
       btnPeople() {
         this.ui.vCoverMask = true
+        scrollApi.enable(false)
+
         this.ui.vPeople = true
         this.ui.selectPeople = this.cart.people
-        scrollApi.enable(false)
       },
       btnCoverMask() {
         this.ui.vPeople = false

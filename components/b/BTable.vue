@@ -438,10 +438,10 @@
       btnTable(table) {
         if (this.roleType === 'waiter' || this.roleType === 'retailer') {
           this.ui.vCoverMask = true
+          scrollApi.enable(false)
+
           this.ui.vMenuTable = true
           this.ui.selectTable = table
-
-          scrollApi.enable(false)
         } else {
           if (this.getTableOrder(table) && this.getTableOrder(table).length > 0) {
             this.btnTableOrder(table)
@@ -508,6 +508,8 @@
       },
       btnTableChange(table) {
         this.ui.vCoverMask = true
+        scrollApi.enable(false)
+
         this.ui.vTableChange = true
         this.ui.vMenuTable = false
         this.ui.selectTable = table
@@ -520,6 +522,7 @@
             httpOrderAdminApi.putTable(this.$route.params.shortId, order.id, this.ui.changeTable.id).then(res => {
               this.ui.vTableChange = false
               this.ui.vCoverMask = false
+              scrollApi.enable(true)
 
               if (res.tableOneIdNotExists) {
                 this.$msgBox.doModal({

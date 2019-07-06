@@ -154,6 +154,7 @@
   import {highlightApi} from '../../../../api/local/highlightApi'
   import WechatSubscribe from '../../../../components/wechat/WechatSubscribe'
   import {timeApi} from '../../../../api/local/timeApi'
+  import {scrollApi} from '../../../../api/local/scrollApi'
 
   export default {
     metaInfo: {
@@ -376,6 +377,7 @@
         this.ui.vQueueNumber = false
         this.ui.vTableSelect = false
         this.ui.vCoverMask = false
+        scrollApi.enable(true)
       },
       btnQueue() {
         if (!this.http.res.shop.open) {
@@ -388,13 +390,16 @@
           return
         }
 
-        this.ui.vTableSelect = true
         this.ui.vCoverMask = true
+        scrollApi.enable(false)
+
+        this.ui.vTableSelect = true
       },
       btnQueueConfirm() {
         if (!Boolean(this.ui.selectTableGroupId)) {
           this.ui.vTableSelect = false
           this.ui.vCoverMask = false
+          scrollApi.enable(true)
 
           this.$msgBox.doModal({
             type: 'yes',
@@ -410,6 +415,7 @@
         }).then(res => {
           this.ui.vTableSelect = false
           this.ui.vCoverMask = false
+          scrollApi.enable(true)
 
           if (res.shopClosed) {
             this.$msgBox.doModal({

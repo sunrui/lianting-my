@@ -490,11 +490,10 @@
       },
       btnYearSelect(licensePlan) {
         this.ui.vCoverMask = true
-        this.ui.vChargeYear = true
-
-        this.ui.licensePlan = licensePlan
-
         scrollApi.enable(false)
+
+        this.ui.vChargeYear = true
+        this.ui.licensePlan = licensePlan
       },
       btnChooseYear(year) {
         this.ui.year = year
@@ -567,6 +566,7 @@
         if (!Boolean(wechatOpenId) || !wechatApi.inWechat()) {
           this.ui.vCoverMask = false
           this.ui.vChargeYear = false
+          scrollApi.enable(true)
 
           this.$msgBox.doModal({
             type: 'yes',
@@ -580,6 +580,7 @@
         httpLicenseApi.postOrder(this.$route.params.shortId, this.ui.licensePlan.id, this.ui.year, 'WECHAT_JSAPI').then(res => {
           this.ui.vCoverMask = false
           this.ui.vChargeYear = false
+          scrollApi.enable(true)
 
           if (res.shortIdNotExists) {
             this.$msgBox.doModal({
@@ -648,11 +649,11 @@
         this.ui.smsPrice = smsPrice
       },
       btnSmsCharge() {
-        this.ui.vSmsPrice = true
         this.ui.vCoverMask = true
-        this.ui.smsPrice = 100
-
         scrollApi.enable(false)
+
+        this.ui.vSmsPrice = true
+        this.ui.smsPrice = 100
       },
       btnSmsChargeConfirm() {
         scrollApi.enable(true)
@@ -661,6 +662,7 @@
         if (!Boolean(wechatOpenId) || !wechatApi.inWechat()) {
           this.ui.vCoverMask = false
           this.ui.vSmsPrice = false
+          scrollApi.enable(true)
 
           this.$msgBox.doModal({
             type: 'yes',
@@ -674,6 +676,7 @@
         httpSmsAdminApi.postPay(this.$route.params.shortId, this.ui.smsPrice, 'WECHAT_JSAPI').then(res => {
           this.ui.vCoverMask = false
           this.ui.vSmsPrice = false
+          scrollApi.enable(true)
 
           if (res.shortIdNotExists) {
             this.$msgBox.doModal({

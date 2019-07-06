@@ -184,16 +184,16 @@
       },
       btnCreate(role) {
         this.ui.vCoverMask = true
+        scrollApi.enable(false)
+
         this.ui.vRoleAdd = true
         this.http.req.role = {}
         this.http.req.role.type = role.type
-
-        scrollApi.enable(false)
       },
       btnCreateConfirm() {
-        scrollApi.enable(true)
         this.ui.vRoleAdd = false
         this.ui.vCoverMask = false
+        scrollApi.enable(true)
 
         if (!validatorApi.phone(this.http.req.role.phone)) {
           this.$msgBox.doModal({
@@ -265,6 +265,7 @@
               } else if (res.success) {
                 this.ui.vRoleAdd = false
                 this.ui.vCoverMask = false
+                scrollApi.enable(true)
 
                 this.$msgBox.doModal({
                   type: 'yes',

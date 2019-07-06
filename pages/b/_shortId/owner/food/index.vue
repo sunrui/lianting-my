@@ -220,6 +220,7 @@
         this.ui.vGroupAdd = false
         this.ui.vGroupEdit = false
         this.ui.vCoverMask = false
+        scrollApi.enable(true)
       },
       navToHash() {
         let hash = window.location.hash
@@ -329,11 +330,15 @@
       },
       btnGroupAdd() {
         this.ui.vCoverMask = true
+        scrollApi.enable(false)
+
         this.ui.vGroupAdd = true
         this.http.req.group.name = ''
       },
       btnGroupEdit(foodGroup) {
         this.ui.vCoverMask = true
+        scrollApi.enable(false)
+
         this.ui.vGroupEdit = true
         this.http.req.group.id = foodGroup.id
         this.http.req.group.name = foodGroup.name
@@ -343,6 +348,7 @@
         httpFoodAdminApi.postGroup(this.$route.params.shortId, this.http.req.group).then(res => {
           this.ui.vGroupAdd = false
           this.ui.vCoverMask = false
+          scrollApi.enable(true)
 
           if (res.maxLimit) {
             this.$router.push(`/b/${this.$route.params.shortId}/owner/limit`)
@@ -373,6 +379,7 @@
         httpFoodAdminApi.putGroup(this.$route.params.shortId, this.http.req.group.id, this.http.req.group.name, this.http.req.group.orderIndex).then(res => {
           this.ui.vGroupEdit = false
           this.ui.vCoverMask = false
+          scrollApi.enable(true)
 
           if (res.foodGroupIdNotExists) {
             this.$msgBox.doModal({
