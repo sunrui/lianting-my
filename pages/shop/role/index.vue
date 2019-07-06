@@ -102,6 +102,28 @@
           for (let index in res) {
             let role = res[index]
             this.httpShopInfo(role.shop)
+
+            let types = []
+
+            function add(type) {
+              for (let index in role.types) {
+                let one = role.types[index]
+
+                if (one === type) {
+                  types.push(type)
+                  break;
+                }
+              }
+            }
+
+            add('Retailer')
+            add('TakeOut')
+            add('Admin')
+            add('Waiter')
+            add('Cooker')
+            add('Cashier')
+
+            role.types = types
           }
 
           this.http.res.roles = res
