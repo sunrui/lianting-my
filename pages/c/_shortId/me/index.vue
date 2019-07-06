@@ -18,7 +18,7 @@
         </div>
 
         <div class="user_phone">
-          <div class="user_phone_label" style="user-select: text;" v-if="ui.phone">绑定手机 {{ui.phone}}</div>
+          <div class="user_phone_label" style="user-select: text;" v-if="ui.phone">已绑定手机 {{ui.phone}}</div>
           <div class="user_phone_label" v-else>未绑定手机</div>
           <div class="user_phone_unbind" v-show="!ui.phone" @click="btnBindPhone">(绑定手机)</div>
         </div>
