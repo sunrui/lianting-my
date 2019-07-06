@@ -66,7 +66,7 @@
       </div>
     </div>
 
-    <div class="shop_footer" v-if="ui.queue.waitPeople > 0 || !http.res.shop.open">
+    <div class="shop_footer">
       <div class="shop_footer_queue_icon" v-if="http.res.shop.open"></div>
       <div class="shop_footer_queue_label" v-if="http.res.shop.open">前方正在等待</div>
       <div class="shop_footer_queue_content" v-if="http.res.shop.open">{{ui.queue.waitPeople}}</div>

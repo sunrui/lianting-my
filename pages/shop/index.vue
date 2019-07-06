@@ -129,7 +129,8 @@
         ui: {
           loading: true,
           roles: [
-            {image: '/img/role/role_owner.png', name: '管理员', role: 'owner'}
+            {image: '/img/role/role_owner.png', name: '管理员', role: 'owner'},
+            {image: '/img/role/role_cashier.png', name: '顾客', role: 'c'}
           ]
         }
       }
@@ -188,6 +189,12 @@
         return ''
       },
       btnRole(shop, role) {
+        if (role === 'c') {
+          this.$router.push(`/c/${shop.shortId}`)
+
+          return
+        }
+
         this.$router.push(`/b/${shop.shortId}/${role}`)
       },
       btnCreate() {
