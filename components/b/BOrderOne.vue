@@ -755,12 +755,6 @@
         }
 
         if (this.roleType === 'cooker') {
-          this.$msgBox.doModal({
-            type: 'yes',
-            title: '更改人数',
-            content: `仅允许${highlightApi.highlight('店长')}、${highlightApi.highlight('服务员')}、${highlightApi.highlight('收银员')}、${highlightApi.highlight('零售员')}可以操作，您只有查看权限。`
-          })
-
           return
         }
 
