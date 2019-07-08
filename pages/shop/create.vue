@@ -3,25 +3,6 @@
     <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
     <div class="box">
-      <div class="tip">
-        <ul class="tip_ul">
-          <li>感谢您的信任和选择恋厅智慧餐饮解决方案。</li>
-          <li>首先确保您的店铺是唯一的并且具有一定辨识度。</li>
-          <li>恋厅号便于您更好的记忆和展示餐厅的唯一地址。</li>
-          <li>确认无误后将会初始化您的店铺并进入管理员主页。</li>
-          <li>您可以进行餐食、排队、预订、优惠券等功能设置。</li>
-          <li>您还可以邀请店长、服务员、后厨、收银人员加入。</li>
-          <li>然后还需下载并线下打印顾客所用的点餐二维码。</li>
-          <li>接下来顾客就可以扫描二维码点餐、排队等活动了。</li>
-          <li>店铺内部人员可由公众号中的工作台进入日常工作。</li>
-          <li>要收到排队、预订、加餐等消息推送还需关注公众号。</li>
-          <li>要使用迎宾台展屏您还需外设一台电视或显示设备。</li>
-          <li>更多功能还期待您亲自体验和发现。</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="box">
       <div class="addition box_radius">
         <div v-show="$route.query.shopGroupName">
           <div class="addition_item">
