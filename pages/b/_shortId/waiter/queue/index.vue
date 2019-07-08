@@ -38,7 +38,7 @@
               queue_table_status_now: getQueueNow(tableGroup).queueTicket.status === 'Now',
               queue_table_status_wait: getQueueNow(tableGroup).queueTicket.status !== 'Now'
               }">{{
-                getQueueNow(tableGroup).queueTicket.status === 'Now' ? '前往就餐' :
+                getQueueNow(tableGroup).queueTicket.status === 'Now' ? '立即前往' :
                 getQueueNow(tableGroup).queueTicket.status === 'Cancel' ? '已取消' :
                 getQueueNow(tableGroup).queueTicket.status === 'Expired' ? '已过号' :
                 getQueueNow(tableGroup).queueTicket.status === 'Wait' ? '排队中' : getQueueNow(tableGroup).queueTicket.status

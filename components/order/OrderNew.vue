@@ -107,7 +107,7 @@
     <div class="box">
       <div class="addition box_radius">
         <div class="addition_item" @click="btnPeople">
-          <div class="addition_item_label">就餐人数</div>
+          <div class="addition_item_label">人数</div>
           <div class="addition_item_content" v-show="cart.people">{{cart.people}} 人</div>
           <div class="addition_item_link" v-show="!cart.people">请选择人数</div>
         </div>
@@ -141,7 +141,7 @@
           <img class="modal_close" src="/img/common/close.png" alt="">
         </div>
 
-        <div class="modal_title">请选择就餐人数</div>
+        <div class="modal_title">请选择人数</div>
 
         <div class="people_box">
           <div class="people_one" v-for="one in ui.peopleChoose">

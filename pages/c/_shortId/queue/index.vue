@@ -61,7 +61,7 @@
             <div class="queue_number_title">
               <div class="queue_number_title_icon"></div>
               <div class="queue_number_title_label">排队号码</div>
-              <div class="queue_number_title_status queue_number_title_status_now" v-if="myTicket.status === 'Now'">前往就餐</div>
+              <div class="queue_number_title_status queue_number_title_status_now" v-if="myTicket.status === 'Now'">立即前往</div>
               <div class="queue_number_title_status queue_number_title_status_wait" v-if="myTicket.status === 'Wait'">正在排队</div>
               <div class="queue_number_title_cancel" v-if="myTicket.status === 'Wait'" @click="btnQueueCancel(myTicket)"></div>
             </div>

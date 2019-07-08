@@ -12,7 +12,7 @@
         <div class="list_title box_radius_header">
           <div class="list_time_icon"></div>
           <div class="list_time_label">取号时间 {{dateFormat(new Date(parseInt(history.createdAt)))}}</div>
-          <div v-if="history.status === 'Now'" class="queue_history_status queue_history_status_now">前往就餐</div>
+          <div v-if="history.status === 'Now'" class="queue_history_status queue_history_status_now">立即前往</div>
           <div v-if="history.status === 'Wait'" class="queue_history_status queue_history_status_wait">正在排队</div>
           <div v-if="history.status === 'Expired'" class="queue_history_status queue_history_status_expired">已过号</div>
           <div v-if="history.status === 'Cancel'" class="queue_history_status queue_history_status_cancel">已取消</div>

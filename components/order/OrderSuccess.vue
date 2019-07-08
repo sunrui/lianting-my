@@ -29,7 +29,7 @@
           <div class="status_item_content">{{http.res.order.priceTakeOutFee}} 元</div>
         </div>
         <div class="status_item">
-          <div class="status_item_label">就餐人数</div>
+          <div class="status_item_label">人数</div>
           <div class="status_item_content">{{http.res.order.people}} 人</div>
         </div>
 

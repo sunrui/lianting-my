@@ -93,7 +93,7 @@
     <div class="box">
       <div class="addition box_radius">
         <div class="addition_item">
-          <div class="addition_item_label">就餐人数</div>
+          <div class="addition_item_label">人数</div>
           <div class="addition_item_content">{{http.res.order.people}} 人</div>
         </div>
 

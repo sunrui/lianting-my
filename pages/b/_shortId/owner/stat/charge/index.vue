@@ -16,7 +16,7 @@
           <div class="charge_body_title">
             <div class="charge_body_title_one">日期</div>
             <div class="charge_body_title_one">成交订单</div>
-            <div class="charge_body_title_one">就餐人数</div>
+            <div class="charge_body_title_one">人数</div>
             <div class="charge_body_title_one">总计金额</div>
           </div>
 
