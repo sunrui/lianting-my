@@ -115,16 +115,16 @@
               url: `/b/${this.$route.params.shortId}/owner/coupon`
             },
             {
-              tag: 'pay',
-              name: '支付',
-              icon: '/img/b/nav/owner/b_nav_owner_pay.png',
-              url: `/b/${this.$route.params.shortId}/owner/pay`
-            },
-            {
               tag: 'role',
               name: '人事',
               icon: '/img/b/nav/owner/b_nav_owner_role.png',
               url: `/b/${this.$route.params.shortId}/owner/role`
+            },
+            {
+              tag: 'pay',
+              name: '支付',
+              icon: '/img/b/nav/owner/b_nav_owner_pay.png',
+              url: `/b/${this.$route.params.shortId}/owner/pay`
             },
             {
               tag: 'captcha',

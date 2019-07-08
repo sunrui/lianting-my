@@ -22,15 +22,36 @@
           <currency-input class="addition_item_input" right="true" placeholder="请输入餐具费"
                           v-model="http.req.config.perTablewarePrice"></currency-input>
         </div>
+      </div>
+    </div>
+
+    <div class="box">
+      <div class="addition box_radius">
+        <div class="addition_item">
+          <div class="addition_item_label">微信appId</div>
+          <label>
+            <input type="text" class="addition_item_input"
+                   placeholder="请输入支付商户号" maxlength="20" v-model="http.req.config.appId">
+          </label>
+        </div>
 
         <div class="box_divide"></div>
 
         <div class="addition_item">
-          <div class="addition_item_label">微信支付商户号</div>
+          <div class="addition_item_label">子商户号</div>
           <label>
-            <input type="number" class="addition_item_input"
-                   oninput="value=value.replace(/[^0-9]/g,'');"
+            <input type="text" class="addition_item_input"
                    placeholder="请输入支付商户号" maxlength="20" v-model="http.req.config.subMchId">
+          </label>
+        </div>
+
+        <div class="box_divide"></div>
+
+        <div class="addition_item">
+          <div class="addition_item_label">支付密钥</div>
+          <label>
+            <input type="text" class="addition_item_input"
+                   placeholder="请输入支付密钥" maxlength="32" v-model="http.req.config.secretKey">
           </label>
         </div>
 
@@ -76,8 +97,10 @@
         http: {
           req: {
             config: {
+              appId: null,
               perTablewarePrice: null,
               subMchId: null,
+              secretKey: null,
               supportCredit: true
             }
           }
@@ -100,6 +123,43 @@
         this.http.req.config.supportCredit = enable
       },
       btnUpdate() {
+        if (Boolean(this.http.req.config.appId)) {
+          if (!Boolean(this.http.req.config.subMchId) || !Boolean(this.http.req.config.secretKey)) {
+            this.$msgBox.doModal({
+              type: 'yes',
+              title: '支付',
+              content: '微信支付字段需配对设置。'
+            })
+
+            return
+          }
+        }
+
+        if (Boolean(this.http.req.config.subMchId)) {
+          if (!Boolean(this.http.req.config.appId) || !Boolean(this.http.req.config.secretKey)) {
+            this.$msgBox.doModal({
+              type: 'yes',
+              title: '支付',
+              content: '微信支付字段需配对设置。'
+            })
+
+            return
+
+          }
+        }
+
+        if (Boolean(this.http.req.config.secretKey)) {
+          if (!Boolean(this.http.req.config.subMchId) || !Boolean(this.http.req.config.appId)) {
+            this.$msgBox.doModal({
+              type: 'yes',
+              title: '支付',
+              content: '微信支付字段需配对设置。'
+            })
+
+            return
+          }
+        }
+
         httpOrderAdminApi.putConfig(this.$route.params.shortId, this.http.req.config).then(res => {
           this.$msgBox.doModal({
             type: 'yes',
