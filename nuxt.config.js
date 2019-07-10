@@ -25,8 +25,6 @@ module.exports = {
     script: []
   },
 
-  resourceHints: false,
-
   /*
   ** Customize the progress-bar color
   */
@@ -94,11 +92,35 @@ module.exports = {
   ** Build configuration
   */
   build: {
+    extractCSS: true,
+    optimization: {
+      splitChunks: {
+        name: true
+      }
+    },
     /*
     ** You can extend webpack config here
     */
     extend(config, ctx) {
 
     }
+  },
+
+  render: {
+    resourceHints: false,
+    bundleRenderer: {
+      shouldPrefetch: (file, type) => {
+        // if (type === 'script') {
+        //   if (/login/.test(file)) {
+        //     return true
+        //   }
+        // }
+
+        return false
+      }
+    }
+  },
+  generate: {
+    subFolders: false
   }
 }
