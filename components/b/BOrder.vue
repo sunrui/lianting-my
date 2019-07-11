@@ -122,7 +122,7 @@
       },
       httpOrder(done) {
         let tableOneId = this.$route.query.tableOneId
-        let live = (this.roleType !== 'admin')
+        let live = (this.roleType !== 'admin' && this.roleType !== 'retailer')
 
         if (Boolean(tableOneId)) {
           httpOrderAdminApi.getAllByTableOneId(this.$route.params.shortId, tableOneId, live, this.ui.scroller.page++, 20).then(res => {

@@ -560,28 +560,22 @@
         // }
       },
       btnChargeConfirm() {
+        this.ui.vCoverMask = false
+        this.ui.vChargeYear = false
         scrollApi.enable(true)
 
         let wechatOpenId = userApi.getUserWechatOpenId()
         if (!Boolean(wechatOpenId) || !wechatApi.inWechat()) {
-          this.ui.vCoverMask = false
-          this.ui.vChargeYear = false
-          scrollApi.enable(true)
-
           this.$msgBox.doModal({
             type: 'yes',
             title: '立即支付',
-            content: '请在微信中使用。'
+            content: '请在微信中使用或联系我们线下汇款。'
           })
 
           return
         }
 
         httpLicenseApi.postOrder(this.$route.params.shortId, this.ui.licensePlan.id, this.ui.year, 'WECHAT_JSAPI').then(res => {
-          this.ui.vCoverMask = false
-          this.ui.vChargeYear = false
-          scrollApi.enable(true)
-
           if (res.shortIdNotExists) {
             this.$msgBox.doModal({
               type: 'yes',
@@ -656,28 +650,22 @@
         this.ui.smsPrice = 100
       },
       btnSmsChargeConfirm() {
+        this.ui.vCoverMask = false
+        this.ui.vSmsPrice = false
         scrollApi.enable(true)
 
         let wechatOpenId = userApi.getUserWechatOpenId()
         if (!Boolean(wechatOpenId) || !wechatApi.inWechat()) {
-          this.ui.vCoverMask = false
-          this.ui.vSmsPrice = false
-          scrollApi.enable(true)
-
           this.$msgBox.doModal({
             type: 'yes',
             title: '立即支付',
-            content: '请在微信中使用。'
+            content: '请在微信中使用或联系我们线下汇款。'
           })
 
           return
         }
 
         httpSmsAdminApi.postPay(this.$route.params.shortId, this.ui.smsPrice, 'WECHAT_JSAPI').then(res => {
-          this.ui.vCoverMask = false
-          this.ui.vSmsPrice = false
-          scrollApi.enable(true)
-
           if (res.shortIdNotExists) {
             this.$msgBox.doModal({
               type: 'yes',

@@ -3,12 +3,32 @@
     <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
     <div class="box">
+      <div class="addition box_radius">
+        <div class="addition_item">
+          <div class="addition_item_label">餐具费</div>
+          <currency-input class="addition_item_input" right="true" placeholder="请输入餐具费"
+                          v-model="http.req.config.perTablewarePrice"></currency-input>
+        </div>
+
+        <div class="box_divide"></div>
+
+        <div class="addition_item">
+          <div class="addition_item_label">饭前买单</div>
+          <div class="addition_item_check">
+            <div class="addition_item_check_on" v-if="http.req.config.prepayment" @click="btnPrepayment(false)"></div>
+            <div class="addition_item_check_off" v-else @click="btnPrepayment(true)"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="box" v-if="http.req.config.openWechat">
       <div class="tip">
         <ul class="tip_ul">
-          <li>要开通微信在线支付功能，首先要申请微信支付商务号。请查阅<a class="tip_link" :href="getWechatPayUrl()">微信支付商户接入指引</a>。</li>
-          <li>您需要准备姓名、手机号、邮箱、身份证、营业执照、食品安全许可证、餐食类型、银行卡以上资料。</li>
-          <li>审核资料可由恋厅客服代为您提交，微信会在1-5个工作日以邮件和短信的方式通知您确认签约。</li>
-          <li>签约完成后将微信支付商务号填入下方即可以开通微信在线支付了，顾客支付将实时打入到您的收款账户。</li>
+          <li>要开通微信在线支付功能，您需拥有认证微信公众号。请查阅<a class="tip_link" :href="getWechatPayUrl()">微信支付商户接入指引</a>。</li>
+          <li>您需要准备姓名、手机号、邮箱、身份证、营业执照、食品安全许可证、餐食类型、银行卡信息等资料。</li>
+          <li>签约完成后即可以开通微信在线支付了，顾客支付将实时打入到您的收款账户。</li>
         </ul>
       </div>
     </div>
@@ -16,54 +36,66 @@
     <div class="box">
       <div class="addition box_radius">
         <div class="addition_item">
-          <div class="addition_item_label">餐具费</div>
-          <currency-input class="addition_item_input" right="true" placeholder="请输入餐具费"
-                          v-model="http.req.config.perTablewarePrice"></currency-input>
-        </div>
-      </div>
-    </div>
-
-    <div class="box">
-      <div class="addition box_radius">
-        <div class="addition_item">
-          <div class="addition_item_label">微信appId</div>
-          <label>
-            <input type="text" class="addition_item_input"
-                   placeholder="请输入支付商户号" maxlength="20" v-model="http.req.config.appId">
-          </label>
-        </div>
-
-        <div class="box_divide"></div>
-
-        <div class="addition_item">
-          <div class="addition_item_label">子商户号</div>
-          <label>
-            <input type="text" class="addition_item_input"
-                   placeholder="请输入支付商户号" maxlength="20" v-model="http.req.config.subMchId">
-          </label>
-        </div>
-
-        <div class="box_divide"></div>
-
-        <div class="addition_item">
-          <div class="addition_item_label">支付密钥</div>
-          <label>
-            <input type="text" class="addition_item_input"
-                   placeholder="请输入支付密钥" maxlength="32" v-model="http.req.config.secretKey">
-          </label>
-        </div>
-
-        <div class="box_divide"></div>
-
-        <div class="addition_item">
-          <div class="addition_item_label">支持信用卡</div>
+          <div class="addition_item_label">微信支付</div>
           <div class="addition_item_check">
-            <div class="addition_item_check_on" v-if="http.req.config.supportCredit" @click="btnSupportCredit(false)"></div>
-            <div class="addition_item_check_off" v-else @click="btnSupportCredit(true)"></div>
+            <div class="addition_item_check_on" v-if="http.req.config.openWechat" @click="btnOpenWechat(false)"></div>
+            <div class="addition_item_check_off" v-else @click="btnOpenWechat(true)"></div>
+          </div>
+        </div>
+
+        <div class="box_divide"></div>
+
+        <div class="addition_item">
+          <div class="addition_item_label">支付宝支付</div>
+          <div class="addition_item_check">
+            <div class="addition_item_check_on" v-if="http.req.config.openAlipay" @click="btnOpenAlipay(false)"></div>
+            <div class="addition_item_check_off" v-else @click="btnOpenAlipay(true)"></div>
           </div>
         </div>
       </div>
     </div>
+
+    <!--    <div class="box">-->
+    <!--      <div class="addition box_radius">-->
+    <!--        <div class="addition_item">-->
+    <!--          <div class="addition_item_label">微信appId</div>-->
+    <!--          <label>-->
+    <!--            <input type="text" class="addition_item_input"-->
+    <!--                   placeholder="请输入支付商户号" maxlength="20" v-model="http.req.config.wechatPayAppId">-->
+    <!--          </label>-->
+    <!--        </div>-->
+
+    <!--        <div class="box_divide"></div>-->
+
+    <!--        <div class="addition_item">-->
+    <!--          <div class="addition_item_label">子商户号</div>-->
+    <!--          <label>-->
+    <!--            <input type="text" class="addition_item_input"-->
+    <!--                   placeholder="请输入支付商户号" maxlength="20" v-model="http.req.config.wechatPaySubMchId">-->
+    <!--          </label>-->
+    <!--        </div>-->
+
+    <!--        <div class="box_divide"></div>-->
+
+    <!--        <div class="addition_item">-->
+    <!--          <div class="addition_item_label">支付密钥</div>-->
+    <!--          <label>-->
+    <!--            <input type="text" class="addition_item_input"-->
+    <!--                   placeholder="请输入支付密钥" maxlength="32" v-model="http.req.config.wechatPaySecretKey">-->
+    <!--          </label>-->
+    <!--        </div>-->
+
+    <!--        <div class="box_divide"></div>-->
+
+    <!--        <div class="addition_item">-->
+    <!--          <div class="addition_item_label">支持信用卡</div>-->
+    <!--          <div class="addition_item_check">-->
+    <!--            <div class="addition_item_check_on" v-if="http.req.config.supportCredit" @click="btnSupportCredit(false)"></div>-->
+    <!--            <div class="addition_item_check_off" v-else @click="btnSupportCredit(true)"></div>-->
+    <!--          </div>-->
+    <!--        </div>-->
+    <!--      </div>-->
+    <!--    </div>-->
 
     <div class="button_box">
       <div class="button_big" @click="btnUpdate">更新</div>
@@ -95,68 +127,83 @@
         http: {
           req: {
             config: {
-              appId: null,
               perTablewarePrice: null,
-              subMchId: null,
-              secretKey: null,
-              supportCredit: true
+              prepayment: false,
+              openWechat: false,
+              openAlipay: false
             }
           }
         }
       }
     },
     created() {
-      this.loadConfig()
+      this.httpConfig()
     },
     methods: {
       getWechatPayUrl() {
         return 'http://kf.qq.com/faq/180910jimEvQ180910Zj6jQV.html'
       },
-      loadConfig() {
+      httpConfig() {
         httpOrderApi.getConfig(this.$route.params.shortId).then(res => {
           this.http.req.config = res
         })
       },
-      btnSupportCredit(enable) {
-        this.http.req.config.supportCredit = enable
+      btnPrepayment(enable) {
+        this.http.req.config.prepayment = enable
+      },
+      btnOpenWechat(enable) {
+        this.http.req.config.openWechat = enable
+      },
+      btnOpenAlipay(enable) {
+        this.http.req.config.openAlipay = enable
       },
       btnUpdate() {
-        if (Boolean(this.http.req.config.appId)) {
-          if (!Boolean(this.http.req.config.subMchId) || !Boolean(this.http.req.config.secretKey)) {
-            this.$msgBox.doModal({
-              type: 'yes',
-              title: '支付',
-              content: '微信支付字段需配对设置。'
-            })
+        if (Boolean(this.http.req.config.prepayment)) {
+          this.$msgBox.doModal({
+            type: 'yes',
+            title: '支付',
+            content: '开通预支付前请先开通至少一种在线支付。'
+          })
 
-            return
-          }
+          return
         }
 
-        if (Boolean(this.http.req.config.subMchId)) {
-          if (!Boolean(this.http.req.config.appId) || !Boolean(this.http.req.config.secretKey)) {
-            this.$msgBox.doModal({
-              type: 'yes',
-              title: '支付',
-              content: '微信支付字段需配对设置。'
-            })
-
-            return
-
-          }
-        }
-
-        if (Boolean(this.http.req.config.secretKey)) {
-          if (!Boolean(this.http.req.config.subMchId) || !Boolean(this.http.req.config.appId)) {
-            this.$msgBox.doModal({
-              type: 'yes',
-              title: '支付',
-              content: '微信支付字段需配对设置。'
-            })
-
-            return
-          }
-        }
+        // if (Boolean(this.http.req.config.wechatPayAppId)) {
+        //   if (!Boolean(this.http.req.config.wechatPaySubMchId) || !Boolean(this.http.req.config.wechatPaySecretKey)) {
+        //     this.$msgBox.doModal({
+        //       type: 'yes',
+        //       title: '支付',
+        //       content: '微信支付字段需配对设置。'
+        //     })
+        //
+        //     return
+        //   }
+        // }
+        //
+        // if (Boolean(this.http.req.config.wechatPaySubMchId)) {
+        //   if (!Boolean(this.http.req.config.wechatPayAppId) || !Boolean(this.http.req.config.wechatPaySecretKey)) {
+        //     this.$msgBox.doModal({
+        //       type: 'yes',
+        //       title: '支付',
+        //       content: '微信支付字段需配对设置。'
+        //     })
+        //
+        //     return
+        //
+        //   }
+        // }
+        //
+        // if (Boolean(this.http.req.config.wechatPaySecretKey)) {
+        //   if (!Boolean(this.http.req.config.wechatPaySubMchId) || !Boolean(this.http.req.config.wechatPayAppId)) {
+        //     this.$msgBox.doModal({
+        //       type: 'yes',
+        //       title: '支付',
+        //       content: '微信支付字段需配对设置。'
+        //     })
+        //
+        //     return
+        //   }
+        // }
 
         httpOrderAdminApi.putConfig(this.$route.params.shortId, this.http.req.config).then(res => {
           this.$msgBox.doModal({

@@ -89,8 +89,17 @@
         </div>
       </div>
 
+      <div class="box" v-if="http.res.config.prepayment && roleType === 'c'">
+        <div class="tip">
+          <ul class="tip_ul">
+            <li>为了您的正常用餐，请您立即支付。</li>
+          </ul>
+        </div>
+      </div>
+
       <div class="button_box">
-        <div class="button_big" @click="btnFood">继续点餐</div>
+        <div class="button_big" v-if="http.res.config.prepayment && roleType === 'c'" @click="btnPay">立即支付</div>
+        <div class="button_big" v-else @click="btnFood">继续点餐</div>
       </div>
     </div>
   </div>
@@ -128,7 +137,8 @@
         ui: {},
         http: {
           res: {
-            order: {}
+            order: {},
+            config: {}
           }
         }
       }
@@ -142,10 +152,20 @@
     },
     created() {
       this.httpOrder()
+      this.httpConfig()
     },
     methods: {
       dateFormat(date) {
         return timeApi.dateFormat(date)
+      },
+      httpConfig() {
+        httpOrderApi.getConfig(this.$route.params.shortId).then(res => {
+          this.http.res.config = res
+
+          if (res.prepayment && this.roleType === 'c') {
+            this.title.title = '确认订单'
+          }
+        })
       },
       httpOrder() {
         httpOrderApi.getOrder(this.$route.params.shortId, this.$route.params.orderOneId).then(res => {
@@ -153,8 +173,8 @@
         })
       },
       getStatusTitle() {
-        if (!this.http.res.order.type) {
-          return ''
+        if (this.http.res.config.prepayment && this.roleType === 'c') {
+          return '订单尚未支付'
         }
 
         return this.http.res.order.type === 'TakeOut' ? '外卖请求已发送给商家' : '订单已发送后厨'
@@ -274,7 +294,7 @@
               this.$msgBox.doModal({
                 type: 'yes',
                 title: '立即支付',
-                content: '商家尚未开通在线支付，请您线下付款。'
+                content: '商家尚未开通微信支付，请您线下付款。'
               })
               return
             }
@@ -295,18 +315,7 @@
         })
       },
       btnPay() {
-        if (alipayApi.inAlipay()) {
-          this.$msgBox.doModal({
-            type: 'yes',
-            title: '立即支付',
-            content: '商家尚未开通在线支付，请您线下付款。'
-          })
-
-          return
-        }
-
-        let wechatOpenId = userApi.getUserWechatOpenId()
-        if (!Boolean(wechatOpenId) || !wechatApi.inWechat()) {
+        if (!wechatApi.inWechat() && !alipayApi.inAlipay()) {
           this.$msgBox.doModal({
             type: 'yes',
             title: '立即支付',
@@ -316,8 +325,28 @@
           return
         }
 
+        if (alipayApi.inAlipay()) {
+          this.$msgBox.doModal({
+            type: 'yes',
+            title: '立即支付',
+            content: '商家尚未开通支付宝支付，请您线下付款。'
+          })
+
+          return
+        }
+
         httpOrderApi.getConfig(this.$route.params.shortId).then(res => {
-          if (!Boolean(res.subMchId)) {
+          if (wechatApi.inWechat() && !Boolean(res.openWechat)) {
+            this.$msgBox.doModal({
+              type: 'yes',
+              title: '立即支付',
+              content: '商家尚未开通微信支付，请您线下付款。'
+            })
+
+            return
+          }
+
+          if (alipayApi.inAlipay() && !Boolean(res.openAlipay)) {
             this.$msgBox.doModal({
               type: 'yes',
               title: '立即支付',
