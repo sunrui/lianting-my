@@ -6,7 +6,7 @@
 
     <div :class="{ cover_mask_9: ui.vCoverMask}" @click="btnCoverMask"></div>
 
-    <div class="shop_nav">
+    <div class="shop_nav_c">
       <div class="shop_center">
         <div class="shop_info">
           <div class="shop_info_logo">
@@ -99,7 +99,7 @@
 
         <div v-if="!http.res.wifi.name">
           <div class="blank_20"></div>
-          <div class="wifi_empty">很抱歉，暂时没有提供无线。</div>
+          <div class="wifi_empty">暂时没有提供无线。</div>
           <div class="blank_20"></div>
         </div>
         <div class="blank_10"></div>

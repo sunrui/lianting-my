@@ -125,11 +125,6 @@
       httpOrder() {
         httpOrderApi.getOrder(this.$route.params.shortId, this.$route.query.orderOneId).then(res => {
           this.http.res.order = res
-
-          this.ui.vCoverMask = true
-          scrollApi.enable(false)
-
-          this.ui.vOrderMenu = true
         })
       },
       elapsedTime(time) {

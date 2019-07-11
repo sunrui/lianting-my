@@ -323,11 +323,6 @@
       btnOrder(wall) {
         httpOrderApi.getOrder(this.$route.params.shortId, wall.orderOneId).then(res => {
           this.http.res.order = res
-
-          this.ui.vCoverMask = true
-          scrollApi.enable(false)
-
-          this.ui.vOrderMenu = true
         })
       },
       btnReply() {

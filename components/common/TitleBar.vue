@@ -148,7 +148,6 @@
           this.$router.push(this.backUri)
         } else {
           wechatApi.closeWindow()
-          window.history.back()
         }
       }
     }
