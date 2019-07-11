@@ -5,7 +5,7 @@
     <div class="box">
       <div class="tip">
         <ul class="tip_ul">
-          <li>飞鹅云官网请参考: <a class="tip_link" :href="getFeieUrl()">http://www.feieyun.com</a>。</li>
+          <li>佳博云官网请参考: <a class="tip_link" :href="getFeieUrl()">http://cloud.poscom.cn/</a>。</li>
         </ul>
       </div>
     </div>
@@ -13,27 +13,27 @@
     <div class="box">
       <div class="addition box_radius">
         <div class="addition_item">
-          <div class="addition_item_label">USER</div>
+          <div class="addition_item_label">memberCode</div>
           <label>
-            <input class="addition_item_input" placeholder="请输入 USER" maxlength="30" v-model="http.req.printer.user">
+            <input class="addition_item_input" placeholder="请输入 memberCode" maxlength="30" v-model="http.req.printer.memberCode">
           </label>
         </div>
 
         <div class="box_divide"></div>
 
         <div class="addition_item">
-          <div class="addition_item_label">UKEY</div>
+          <div class="addition_item_label">apiKey</div>
           <label>
-            <input class="addition_item_input" placeholder="请输入 UKEY" maxlength="30" v-model="http.req.printer.ukey">
+            <input class="addition_item_input" placeholder="请输入 apiKey" maxlength="30" v-model="http.req.printer.apiKey">
           </label>
         </div>
 
         <div class="box_divide"></div>
 
         <div class="addition_item">
-          <div class="addition_item_label">SN</div>
+          <div class="addition_item_label">deviceNo</div>
           <label>
-            <input class="addition_item_input" placeholder="请输入 SN" maxlength="30" v-model="http.req.printer.sn">
+            <input class="addition_item_input" placeholder="请输入 deviceNo" maxlength="30" v-model="http.req.printer.deviceNo">
           </label>
         </div>
 
@@ -60,11 +60,11 @@
 <script>
   import TitleBar from '../../../../../../components/common/TitleBar'
   import CurrencyInput from '../../../../../../components/common/CurrencyInput'
-  import {httpPrinterFeieAdminApi} from '../../../../../../api/http/lt/httpPrinterFeieAdminApi'
+  import {httpPrinterPoscomAdminApi} from '../../../../../../api/http/lt/httpPrinterPoscomAdminApi'
 
   export default {
     metaInfo: {
-      title: '添加飞鹅云打印机'
+      title: '添加佳博云打印机'
     },
     middleware: 'auth',
     components: {TitleBar, CurrencyInput},
@@ -72,7 +72,7 @@
       return {
         title: {
           canBack: true,
-          title: '添加飞鹅云打印机',
+          title: '添加佳博云打印机',
           backUri: `/b/${this.$route.params.shortId}/owner/printer`,
           theme: 'image',
           imageHeight: 300
@@ -80,9 +80,9 @@
         http: {
           req: {
             printer: {
-              user: null,
-              ukey: null,
-              sn: null,
+              memberCode: 'cb2354b237104d1bb580242f698a3318',
+              apiKey: '9YIPJENT',
+              deviceNo: '00391282543628364',
               enable: true,
               remark: null
             }
@@ -92,65 +92,65 @@
     },
     methods: {
       getFeieUrl() {
-        return 'http://www.feieyun.com'
+        return 'http://cloud.poscom.cn/'
       },
       btnCreate() {
-        if (!Boolean(this.http.req.printer.user)) {
+        if (!Boolean(this.http.req.printer.memberCode)) {
           this.$msgBox.doModal({
             type: 'yes',
-            title: '添加飞鹅云打印机',
-            content: '请输入 USER。'
+            title: '添加佳博云打印机',
+            content: '请输入 memberCode。'
           })
 
           return
         }
 
-        if (!Boolean(this.http.req.printer.ukey)) {
+        if (!Boolean(this.http.req.printer.apiKey)) {
           this.$msgBox.doModal({
             type: 'yes',
-            title: '添加飞鹅云打印机',
-            content: '请输入 UKEY。'
+            title: '添加佳博云打印机',
+            content: '请输入 apiKey。'
           })
 
           return
         }
 
-        if (!Boolean(this.http.req.printer.sn)) {
+        if (!Boolean(this.http.req.printer.deviceNo)) {
           this.$msgBox.doModal({
             type: 'yes',
-            title: '添加飞鹅云打印机',
-            content: '请输入 SN。'
+            title: '添加佳博云打印机',
+            content: '请输入 deviceNo。'
           })
 
           return
         }
 
-        httpPrinterFeieAdminApi.getPrinterStatus(this.$route.params.shortId, this.http.req.printer).then(res => {
+        httpPrinterPoscomAdminApi.getPrinterStatus(this.$route.params.shortId, this.http.req.printer).then(res => {
           if (res.notExists) {
             this.$msgBox.doModal({
               type: 'yes',
-              title: '添加飞鹅云打印机',
+              title: '添加佳博云打印机',
               content: '打印机不存在，请检查配置是否正确。'
             })
           } else if (res.offline) {
             this.$msgBox.doModal({
               type: 'yes',
-              title: '添加飞鹅云打印机',
+              title: '添加佳博云打印机',
               content: '打印机已离线，请确认打印机在线且可用。'
             })
           } else if (res.error) {
             this.$msgBox.doModal({
               type: 'yes',
-              title: '添加飞鹅云打印机',
+              title: '添加佳博云打印机',
               content: res.error
             })
           } else if (res.online) {
             this.$msgBox.doModal({
               type: 'yes',
-              title: '添加飞鹅云打印机',
+              title: '添加佳博云打印机',
               content: '恭喜，打印机在线。'
             }).then(async (val) => {
-              httpPrinterFeieAdminApi.putPrinter(this.$route.params.shortId, this.http.req.printer).then(res => {
+              httpPrinterPoscomAdminApi.putPrinter(this.$route.params.shortId, this.http.req.printer).then(res => {
                 if (res.maxLimit) {
                   this.$router.push(`/b/${this.$route.params.shortId}/owner/limit`)
                   return
@@ -159,7 +159,7 @@
                 if (res.printerId) {
                   this.$msgBox.doModal({
                     type: 'yes',
-                    title: '添加飞鹅云打印机',
+                    title: '添加佳博云打印机',
                     content: '添加成功。'
                   }).then(async (val) => {
                     this.$router.push(`/b/${this.$route.params.shortId}/owner/printer`)
@@ -170,7 +170,7 @@
           } else {
             this.$msgBox.doModal({
               type: 'yes',
-              title: '添加飞鹅云打印机',
+              title: '添加佳博云打印机',
               content: res
             })
           }

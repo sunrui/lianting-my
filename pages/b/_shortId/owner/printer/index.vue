@@ -17,7 +17,7 @@
 
     <div class="box" v-for="printer in http.res.printerFeie.elements">
       <div class="printer_header box_radius_header">
-        <div class="badge_delete" @click="btnDelete(printer)"></div>
+        <div class="badge_delete" @click="btnDeleteFeie(printer)"></div>
         <div class="printer_box">
           <div class="printer_box_left">
             <div class="printer_type_title">飞鹅云打印机</div>
@@ -37,8 +37,37 @@
         <div class="addition_item">
           <div class="addition_item_label">开启</div>
           <div class="addition_item_check">
-            <div class="addition_item_check_on" v-if="printer.enable" @click="btnEnable(printer)"></div>
-            <div class="addition_item_check_off" v-else @click="btnEnable(printer)"></div>
+            <div class="addition_item_check_on" v-if="printer.enable" @click="btnEnableFeie(printer)"></div>
+            <div class="addition_item_check_off" v-else @click="btnEnableFeie(printer)"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="box" v-for="printer in http.res.printerPoscom.elements">
+      <div class="printer_header box_radius_header">
+        <div class="badge_delete" @click="btnDeletePoscom(printer)"></div>
+        <div class="printer_box">
+          <div class="printer_box_left">
+            <div class="printer_type_title">佳博云打印机</div>
+            <div class="printer_type_name">{{printer.remark ? '名称：' + printer.remark : '序列号：' + printer.deviceNo}}</div>
+          </div>
+          <div class="printer_box_right">
+            <div class="printer_online_status">{{getPrinterPoscomOneStatus(printer)}}</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="box_divide_radius">
+        <div class="box_divide_radius_line"></div>
+      </div>
+
+      <div class="printer_footer box_radius_footer">
+        <div class="addition_item">
+          <div class="addition_item_label">开启</div>
+          <div class="addition_item_check">
+            <div class="addition_item_check_on" v-if="printer.enable" @click="btnEnablePoscom(printer)"></div>
+            <div class="addition_item_check_off" v-else @click="btnEnablePoscom(printer)"></div>
           </div>
         </div>
       </div>
@@ -56,19 +85,19 @@
              @click="btnChoosePrinter('feie')">飞鹅云
         </div>
 
-        <div class="modal_menu" v-bind:class="{modal_menu_select: ui.choosePrinter === 'jiabo'}"
-             @click="btnChoosePrinter('jiabo')">佳博云 (支持中)
+        <div class="modal_menu" v-bind:class="{modal_menu_select: ui.choosePrinter === 'poscom'}"
+             @click="btnChoosePrinter('poscom')">佳博云
         </div>
 
-        <div class="modal_menu" v-bind:class="{modal_menu_select: ui.choosePrinter === 'yilian'}"
-             @click="btnChoosePrinter('yilian')">易联云 (支持中)
+        <div class="modal_menu" v-bind:class="{modal_menu_select: ui.choosePrinter === 'un-support-0'}"
+             @click="btnChoosePrinter('un-support-0')">易联云 (支持中)
         </div>
 
-        <div class="modal_menu" v-bind:class="{modal_menu_select: ui.choosePrinter === 'zhongwuyun'}"
-             @click="btnChoosePrinter('zhongwuyun')">中午云 (支持中)
+        <div class="modal_menu" v-bind:class="{modal_menu_select: ui.choosePrinter === 'un-support-1'}"
+             @click="btnChoosePrinter('un-support-1')">中午云 (支持中)
         </div>
 
-        <div class="modal_menu modal_menu_disable">更多品牌请联系我们</div>
+        <div class="modal_menu modal_menu_disable">其它品牌请联系我们</div>
 
         <div class="modal_button_box">
           <div class="button_big" @click="btnChooseConfirm">确认</div>
@@ -83,10 +112,11 @@
 </template>
 
 <script>
-  import {httpPrinterAdminApi} from '../../../../../api/http/lt/httpPrinterAdminApi'
   import TitleBar from '../../../../../components/common/TitleBar'
   import Empty from '../../../../../components/common/Empty'
   import {scrollApi} from '../../../../../api/local/scrollApi'
+  import {httpPrinterFeieAdminApi} from '../../../../../api/http/lt/httpPrinterFeieAdminApi'
+  import {httpPrinterPoscomAdminApi} from '../../../../../api/http/lt/httpPrinterPoscomAdminApi'
 
   export default {
     metaInfo: {
@@ -107,6 +137,9 @@
           res: {
             printerFeie: {
               elements: []
+            },
+            printerPoscom: {
+              elements: []
             }
           }
         },
@@ -114,14 +147,15 @@
           vCoverMask: false,
           vPrinter: false,
           choosePrinter: 'feie',
-          feiePrinterStatus: [],
+          printerStatus: [],
           interval: null
         }
       }
     },
     mounted() {
       this.httpPrinterFeie()
-      this.ui.interval = setInterval(this.httpPrinterFeie, 30 * 1000)
+      this.httpPrinterPoscom()
+      this.ui.interval = setInterval(this.httpPrinter, 30 * 1000)
     },
     beforeDestroy() {
       if (this.ui.interval) {
@@ -140,31 +174,28 @@
         scrollApi.enable(true)
       },
       btnChooseConfirm() {
+        this.ui.vCoverMask = false
+        this.ui.vPrinter = false
+        scrollApi.enable(true)
+
         if (!Boolean(this.ui.choosePrinter)) {
           return
         }
 
-        this.ui.vCoverMask = false
-        this.ui.vPrinter = false
-
-        scrollApi.enable(true)
-
-        if (this.ui.choosePrinter !== 'feie') {
-          this.$msgBox.doModal({
-            type: 'yes',
-            title: '品牌对接中',
-            content: '很抱歉暂未支持，我们会在第一时间内支持。'
-          })
-
+        if (this.ui.choosePrinter.indexOf('un-support') !== -1) {
           return
         }
 
         this.$router.push(`/b/${this.$route.params.shortId}/owner/printer/create/${this.ui.choosePrinter}`)
       },
+      httpPrinter() {
+        this.httpPrinterFeie()
+        this.httpPrinterPoscom()
+      },
       httpPrinterFeie() {
-        this.ui.feiePrinterStatus = []
+        this.ui.printerStatus = []
 
-        httpPrinterAdminApi.getPrinterFeie(this.$route.params.shortId, 0, 99).then(res => {
+        httpPrinterFeieAdminApi.getPrinter(this.$route.params.shortId, 0, 99).then(res => {
           if (res.elements.length !== 0) {
             this.$refs.titleBar_Printer.setTheme('image')
           } else {
@@ -179,35 +210,87 @@
           }
         })
       },
+      httpPrinterPoscom() {
+        this.ui.printerStatus = []
+
+        httpPrinterPoscomAdminApi.getPrinter(this.$route.params.shortId, 0, 99).then(res => {
+          if (res.elements.length !== 0) {
+            this.$refs.titleBar_Printer.setTheme('image')
+          } else {
+            this.$refs.titleBar_Printer.setTheme('white')
+          }
+
+          this.http.res.printerPoscom = res
+
+          for (let index in res.elements) {
+            let printer = res.elements[index]
+            this.getPrinterPoscomOneStatus(printer)
+          }
+        })
+      },
       getPrinterFeieOneStatus(printer) {
-        for (let index in this.ui.feiePrinterStatus) {
-          let statusOne = this.ui.feiePrinterStatus[index]
+        for (let index in this.ui.printerStatus) {
+          let statusOne = this.ui.printerStatus[index]
           if (statusOne.id === printer.id) {
             return statusOne.status
           }
         }
 
-        httpPrinterAdminApi.getPrinterFeieOneStatus(this.$route.params.shortId, printer.id).then(res => {
+        httpPrinterFeieAdminApi.getPrinterOneStatus(this.$route.params.shortId, printer.id).then(res => {
           let status
 
           if (res.notExists) {
             status = '不存在'
           } else if (res.offline) {
             status = '离线'
-          } else if (res.onlineNoPaper) {
-            status = '缺纸异常'
+          } else if (res.error) {
+            status = res.error
           } else if (res.online) {
             status = '在线'
           }
 
-          for (let index in this.ui.feiePrinterStatus) {
-            let statusOne = this.ui.feiePrinterStatus[index]
+          for (let index in this.ui.printerStatus) {
+            let statusOne = this.ui.printerStatus[index]
             if (statusOne.id === printer.id) {
               return
             }
           }
 
-          this.ui.feiePrinterStatus.push({
+          this.ui.printerStatus.push({
+            id: printer.id,
+            status: status
+          })
+        })
+      },
+      getPrinterPoscomOneStatus(printer) {
+        for (let index in this.ui.printerStatus) {
+          let statusOne = this.ui.printerStatus[index]
+          if (statusOne.id === printer.id) {
+            return statusOne.status
+          }
+        }
+
+        httpPrinterPoscomAdminApi.getPrinterOneStatus(this.$route.params.shortId, printer.id).then(res => {
+          let status
+
+          if (res.notExists) {
+            status = '不存在'
+          } else if (res.offline) {
+            status = '离线'
+          } else if (res.error) {
+            status = res.error
+          } else if (res.online) {
+            status = '在线'
+          }
+
+          for (let index in this.ui.printerStatus) {
+            let statusOne = this.ui.printerStatus[index]
+            if (statusOne.id === printer.id) {
+              return
+            }
+          }
+
+          this.ui.printerStatus.push({
             id: printer.id,
             status: status
           })
@@ -216,18 +299,17 @@
       btnCreate() {
         this.ui.vCoverMask = true
         scrollApi.enable(false)
-
         this.ui.vPrinter = true
       },
-      btnDelete(printer) {
+      btnDeleteFeie(printer) {
         this.$msgBox.doModal({
           type: 'yesOrNo',
           title: '删除打印机',
           content: '确认要删除吗？'
         }).then(async (val) => {
           if (val === 'Yes') {
-            httpPrinterAdminApi.deletePrinterFeie(this.$route.params.shortId, printer.id).then(res => {
-              if (res.printerFeieIdNotExists) {
+            httpPrinterFeieAdminApi.deletePrinter(this.$route.params.shortId, printer.id).then(res => {
+              if (res.printerIdNotExists) {
                 this.$msgBox.doModal({
                   type: 'yes',
                   title: '删除打印机',
@@ -240,9 +322,30 @@
           }
         })
       },
-      btnEnable(printer) {
-        httpPrinterAdminApi.putPrinterFeieEnable(this.$route.params.shortId, printer.id, !printer.enable).then(res => {
-          if (res.printerFeieIdNotExists) {
+      btnDeletePoscom(printer) {
+        this.$msgBox.doModal({
+          type: 'yesOrNo',
+          title: '删除打印机',
+          content: '确认要删除吗？'
+        }).then(async (val) => {
+          if (val === 'Yes') {
+            httpPrinterPoscomAdminApi.deletePrinter(this.$route.params.shortId, printer.id).then(res => {
+              if (res.printerIdNotExists) {
+                this.$msgBox.doModal({
+                  type: 'yes',
+                  title: '删除打印机',
+                  content: '打印机不存在。'
+                })
+              } else if (res.success) {
+                this.httpPrinterPoscom()
+              }
+            })
+          }
+        })
+      },
+      btnEnableFeie(printer) {
+        httpPrinterFeieAdminApi.putPrinterEnable(this.$route.params.shortId, printer.id, !printer.enable).then(res => {
+          if (res.printerIdNotExists) {
             this.$msgBox.doModal({
               type: 'yes',
               title: '启用打印机',
@@ -250,6 +353,19 @@
             })
           } else if (res.success) {
             this.httpPrinterFeie()
+          }
+        })
+      },
+      btnEnablePoscom(printer) {
+        httpPrinterPoscomAdminApi.putPrinterEnable(this.$route.params.shortId, printer.id, !printer.enable).then(res => {
+          if (res.printerIdNotExists) {
+            this.$msgBox.doModal({
+              type: 'yes',
+              title: '启用打印机',
+              content: '打印机不存在。'
+            })
+          } else if (res.success) {
+            this.httpPrinterPoscom()
           }
         })
       }
