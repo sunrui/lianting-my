@@ -256,8 +256,8 @@
       <div class="button_small" @click="btnPayOffline" v-if="roleType === 'cashier'">线下结算</div>
     </div>
     <div class="button_box" v-else-if="roleType === 'admin' || roleType === 'retailer'">
-      <div class="button_big" @click="btnChangePrice">更改价格</div>
-      <div class="button_big" @click="btnPayOffline">线下结算</div>
+      <div class="button_big" v-if="http.res.order.status !== 'Paid'" @click="btnChangePrice">更改价格</div>
+      <div class="button_big" v-if="http.res.order.status !== 'Paid'" @click="btnPayOffline">线下结算</div>
       <div class="button_big" @click="btnCancel">取消订单</div>
     </div>
 
