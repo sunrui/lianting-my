@@ -73,7 +73,7 @@
         title: {
           canBack: true,
           title: '添加飞鹅云打印机',
-          backUri: `/b/${this.$route.params.shortId}/owner/printer`,
+          backUri: `/b/${this.$route.params.shortId}/owner/printer/list`,
           theme: 'image',
           imageHeight: 300
         },
