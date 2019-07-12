@@ -4,7 +4,18 @@
 
     <div class="box">
       <div class="addition box_radius">
+        <div class="addition_item">
+          <div class="addition_item_label">异常短信报警</div>
+          <div class="addition_item_check">
+            <div class="addition_item_check_on" v-if="http.req.printerConfig.errorSmsReport" @click="btnErrorSmsReport(false)"></div>
+            <div class="addition_item_check_off" v-else @click="btnErrorSmsReport(true)"></div>
+          </div>
+        </div>
+      </div>
+    </div>
 
+    <div class="box">
+      <div class="addition box_radius">
         <div class="addition_item">
           <div class="addition_item_label">下单时打印</div>
           <div class="addition_item_check">
@@ -56,8 +67,9 @@
         http: {
           req: {
             printerConfig: {
-              printWhenOrder: false,
-              printWhenPaid: false
+              printWhenOrder: true,
+              printWhenPaid: true,
+              errorSmsReport: true
             }
           }
         }
@@ -75,6 +87,12 @@
       },
       btnPrintWhenPaid(enable) {
         this.http.req.printerConfig.printWhenPaid = enable
+
+        httpPrinterAdminApi.putConfig(this.$route.params.shortId, this.http.req.printerConfig).then(res => {
+        })
+      },
+      btnErrorSmsReport(enable) {
+        this.http.req.printerConfig.errorSmsReport = enable
 
         httpPrinterAdminApi.putConfig(this.$route.params.shortId, this.http.req.printerConfig).then(res => {
         })
