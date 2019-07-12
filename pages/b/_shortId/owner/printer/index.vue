@@ -5,7 +5,7 @@
     <div class="box">
       <div class="addition box_radius">
         <div class="addition_item">
-          <div class="addition_item_label">异常短信报警</div>
+          <div class="addition_item_label">打印机异常时短信报警</div>
           <div class="addition_item_check">
             <div class="addition_item_check_on" v-if="http.req.printerConfig.errorSmsReport" @click="btnErrorSmsReport(false)"></div>
             <div class="addition_item_check_off" v-else @click="btnErrorSmsReport(true)"></div>
@@ -36,7 +36,7 @@
 
         <div class="box_divide"></div>
 
-        <div class="addition_item" @click="btnPrinterList()">
+        <div class="addition_item" @click="btnPrinterList">
           <div class="addition_item_label">打印机列表</div>
           <div class="addition_item_link"></div>
         </div>
