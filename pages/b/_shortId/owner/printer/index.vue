@@ -6,12 +6,33 @@
       <div :class="{ cover_mask_9: ui.vCoverMask}" @click="btnCoverMask"></div>
     </transition>
 
-    <div class="empty" v-if="http.res.printerFeie.elements.length === 0">
+    <div class="empty" v-if="http.res.printerFeie.elements.length === 0 && http.res.printerPoscom.elements.length === 0">
       <img class="empty_image" src="/img/no/no_order.png" alt="没有打印机">
       <div class="empty_label">没有打印机</div>
 
       <div class="button_box">
         <div class="button_big" @click="btnCreate">添加打印机</div>
+      </div>
+    </div>
+    <div v-else class="box">
+      <div class="addition box_radius">
+        <div class="addition_item">
+          <div class="addition_item_label">下单时打印</div>
+          <div class="addition_item_check">
+            <div class="addition_item_check_on" v-if="http.req.printerConfig.printWhenOrder" @click="btnPrintWhenOrder(false)"></div>
+            <div class="addition_item_check_off" v-else @click="btnPrintWhenOrder(true)"></div>
+          </div>
+        </div>
+
+        <div class="box_divide"></div>
+
+        <div class="addition_item">
+          <div class="addition_item_label">支付后打印</div>
+          <div class="addition_item_check">
+            <div class="addition_item_check_on" v-if="http.req.printerConfig.printWhenPaid" @click="btnPrintWhenPaid(false)"></div>
+            <div class="addition_item_check_off" v-else @click="btnPrintWhenPaid(true)"></div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -53,7 +74,11 @@
             <div class="printer_type_name">{{printer.remark ? '名称：' + printer.remark : '序列号：' + printer.deviceNo}}</div>
           </div>
           <div class="printer_box_right">
-            <div class="printer_online_status">{{getPrinterPoscomOneStatus(printer)}}</div>
+            <div class="printer_online_status" v-bind:class="{
+            printer_online_status_online: getPrinterPoscomOneStatus(printer) === '在线',
+            printer_online_status_offline: getPrinterPoscomOneStatus(printer) !== '在线'
+            }">{{getPrinterPoscomOneStatus(printer)}}
+            </div>
           </div>
         </div>
       </div>
@@ -117,6 +142,7 @@
   import {scrollApi} from '../../../../../api/local/scrollApi'
   import {httpPrinterFeieAdminApi} from '../../../../../api/http/lt/httpPrinterFeieAdminApi'
   import {httpPrinterPoscomAdminApi} from '../../../../../api/http/lt/httpPrinterPoscomAdminApi'
+  import {httpPrinterAdminApi} from '../../../../../api/http/lt/httpPrinterAdminApi'
 
   export default {
     metaInfo: {
@@ -134,6 +160,12 @@
           imageHeight: 300
         },
         http: {
+          req: {
+            printerConfig: {
+              printWhenOrder: false,
+              printWhenPaid: false
+            }
+          },
           res: {
             printerFeie: {
               elements: []
@@ -148,11 +180,13 @@
           vPrinter: false,
           choosePrinter: 'feie',
           printerStatus: [],
+          printerStatusLoads: [],
           interval: null
         }
       }
     },
     mounted() {
+      this.httpPrinterConfig()
       this.httpPrinterFeie()
       this.httpPrinterPoscom()
       this.ui.interval = setInterval(this.httpPrinter, 30 * 1000)
@@ -164,6 +198,18 @@
       }
     },
     methods: {
+      btnPrintWhenOrder(enable) {
+        this.http.req.printerConfig.printWhenOrder = enable
+
+        httpPrinterAdminApi.putConfig(this.$route.params.shortId, this.http.req.printerConfig).then(res => {
+        })
+      },
+      btnPrintWhenPaid(enable) {
+        this.http.req.printerConfig.printWhenPaid = enable
+
+        httpPrinterAdminApi.putConfig(this.$route.params.shortId, this.http.req.printerConfig).then(res => {
+        })
+      },
       btnChoosePrinter(printer) {
         this.ui.choosePrinter = printer
       },
@@ -189,8 +235,16 @@
         this.$router.push(`/b/${this.$route.params.shortId}/owner/printer/create/${this.ui.choosePrinter}`)
       },
       httpPrinter() {
+        this.ui.printerStatusLoads = []
+        this.ui.printerStatus = []
+
         this.httpPrinterFeie()
         this.httpPrinterPoscom()
+      },
+      httpPrinterConfig() {
+        httpPrinterAdminApi.getConfig(this.$route.params.shortId).then(res => {
+          this.http.req.printerConfig = res
+        })
       },
       httpPrinterFeie() {
         this.ui.printerStatus = []
@@ -236,6 +290,15 @@
           }
         }
 
+        for (let index in this.ui.printerStatusLoads) {
+          let one = this.ui.printerStatusLoads[index]
+          if (one === printer.id) {
+            return
+          }
+        }
+
+        this.ui.printerStatusLoads.push(printer.id)
+
         httpPrinterFeieAdminApi.getPrinterOneStatus(this.$route.params.shortId, printer.id).then(res => {
           let status
 
@@ -269,6 +332,15 @@
             return statusOne.status
           }
         }
+
+        for (let index in this.ui.printerStatusLoads) {
+          let one = this.ui.printerStatusLoads[index]
+          if (one === printer.id) {
+            return
+          }
+        }
+
+        this.ui.printerStatusLoads.push(printer.id)
 
         httpPrinterPoscomAdminApi.getPrinterOneStatus(this.$route.params.shortId, printer.id).then(res => {
           let status
@@ -352,7 +424,7 @@
               content: '打印机不存在。'
             })
           } else if (res.success) {
-            this.httpPrinterFeie()
+            this.httpPrinter()
           }
         })
       },
@@ -365,7 +437,7 @@
               content: '打印机不存在。'
             })
           } else if (res.success) {
-            this.httpPrinterPoscom()
+            this.httpPrinter()
           }
         })
       }

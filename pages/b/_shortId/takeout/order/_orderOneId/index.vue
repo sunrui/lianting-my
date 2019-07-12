@@ -402,7 +402,7 @@
             }
           })
         } else if (this.ui.selectOrderType === 'TakeoutDeliver') {
-          httpOrderAdminApi.postSuccess(this.$route.params.shortId, this.$route.params.orderOneId, this.ui.orderRemark).then(res => {
+          httpOrderAdminApi.putPayOffline(this.$route.params.shortId, this.$route.params.orderOneId, this.ui.orderRemark).then(res => {
             this.httpOrder()
 
             if (res.orderOneIdNotExists) {

@@ -33,10 +33,18 @@
     padding-right: px2rem(35);
 
     .printer_online_status {
-      color: #f52626;
-      font-size: px2rem(54);
+      color: #f42326;
+      font-size: px2rem(48);
       font-weight: 400;
-      margin-top: px2rem(20);
+      margin-top: px2rem(30);
+    }
+
+    .printer_online_status_online {
+      color: #00b16b;
+    }
+
+    .printer_online_status_offline {
+      color: #f42326;
     }
   }
 }

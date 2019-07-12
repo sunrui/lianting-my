@@ -75,11 +75,6 @@ export const httpOrderAdminApi = {
       reason: reason
     }).then(res => res.data)
   },
-  postSuccess(shortId, orderOneId, remark) {
-    return axios.post(`${base}/${shortId}/order/${orderOneId}/success`, {
-      remark: remark
-    }).then(res => res.data)
-  },
   putReturn(shortId, orderOneId, model) {
     return axios.put(`${base}/${shortId}/order/${orderOneId}/return`, model).then(res => res.data)
   },
