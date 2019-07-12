@@ -15,7 +15,7 @@
         <div class="addition_item">
           <div class="addition_item_label">memberCode</div>
           <label>
-            <input class="addition_item_input" placeholder="请输入 memberCode" maxlength="30" v-model="http.req.printer.memberCode">
+            <input class="addition_item_input" placeholder="请输入 memberCode" maxlength="32" v-model="http.req.printer.memberCode">
           </label>
         </div>
 
@@ -24,7 +24,7 @@
         <div class="addition_item">
           <div class="addition_item_label">apiKey</div>
           <label>
-            <input class="addition_item_input" placeholder="请输入 apiKey" maxlength="30" v-model="http.req.printer.apiKey">
+            <input class="addition_item_input" placeholder="请输入 apiKey" maxlength="32" v-model="http.req.printer.apiKey">
           </label>
         </div>
 
@@ -33,7 +33,7 @@
         <div class="addition_item">
           <div class="addition_item_label">deviceNo</div>
           <label>
-            <input class="addition_item_input" placeholder="请输入 deviceNo" maxlength="30" v-model="http.req.printer.deviceNo">
+            <input class="addition_item_input" placeholder="请输入 deviceNo" maxlength="32" v-model="http.req.printer.deviceNo">
           </label>
         </div>
 
@@ -42,7 +42,7 @@
         <div class="addition_item">
           <div class="addition_item_label">备注打印机名</div>
           <label>
-            <input class="addition_item_input" placeholder="请输入备注打印机名" maxlength="30" v-model="http.req.printer.remark">
+            <input class="addition_item_input" placeholder="请输入备注打印机名" maxlength="32" v-model="http.req.printer.remark">
           </label>
         </div>
 
