@@ -150,7 +150,7 @@
               title: '添加飞鹅云打印机',
               content: '恭喜，打印机在线。'
             }).then(async (val) => {
-              httpPrinterFeieAdminApi.putPrinter(this.$route.params.shortId, this.http.req.printer).then(res => {
+              httpPrinterFeieAdminApi.postPrinter(this.$route.params.shortId, this.http.req.printer).then(res => {
                 if (res.maxLimit) {
                   this.$router.push(`/b/${this.$route.params.shortId}/owner/limit`)
                   return

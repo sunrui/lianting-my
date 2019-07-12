@@ -48,6 +48,13 @@
 
         <div class="box_divide"></div>
 
+        <div class="addition_item">
+          <div class="addition_item_label">80MM 打印机</div>
+          <div class="addition_item_check">
+            <div class="addition_item_check_on" v-if="http.req.printer.eightyMM" @click="btnEightyMM(false)"></div>
+            <div class="addition_item_check_off" v-else @click="btnEightyMM(true)"></div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -80,10 +87,11 @@
         http: {
           req: {
             printer: {
-              memberCode: 'cb2354b237104d1bb580242f698a3318',
-              apiKey: '9YIPJENT',
-              deviceNo: '00391282543628364',
+              memberCode: null,
+              apiKey: null,
+              deviceNo: null,
               enable: true,
+              eightyMM: false,
               remark: null
             }
           }
@@ -93,6 +101,9 @@
     methods: {
       getFeieUrl() {
         return 'http://cloud.poscom.cn/'
+      },
+      btnEightyMM(eightyMM) {
+        this.http.req.printer.eightyMM = eightyMM
       },
       btnCreate() {
         if (!Boolean(this.http.req.printer.memberCode)) {
@@ -150,7 +161,7 @@
               title: '添加佳博云打印机',
               content: '恭喜，打印机在线。'
             }).then(async (val) => {
-              httpPrinterPoscomAdminApi.putPrinter(this.$route.params.shortId, this.http.req.printer).then(res => {
+              httpPrinterPoscomAdminApi.postPrinter(this.$route.params.shortId, this.http.req.printer).then(res => {
                 if (res.maxLimit) {
                   this.$router.push(`/b/${this.$route.params.shortId}/owner/limit`)
                   return

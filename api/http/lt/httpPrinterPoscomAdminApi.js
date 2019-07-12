@@ -11,8 +11,8 @@ export const httpPrinterPoscomAdminApi = {
       }
     }).then(res => res.data)
   },
-  putPrinter(shortId, printer) {
-    return axios.put(`${base}/${shortId}/printer/poscom`, printer).then(res => res.data)
+  postPrinter(shortId, printer) {
+    return axios.post(`${base}/${shortId}/printer/poscom`, printer).then(res => res.data)
   },
   getPrinterStatus(shortId, printer) {
     return axios.put(`${base}/${shortId}/printer/poscom/status`, printer).then(res => res.data)

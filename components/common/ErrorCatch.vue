@@ -22,7 +22,7 @@
         <div class="box">
           <div class="addition box_radius_header">
             <div class="addition_item" v-if="ui.error.message">
-              <div class="addition_item_label_text_area">内容</div>
+              <div class="addition_item_label_text_area">详情</div>
               <div class="addition_item_text_area">
                 <label>
                   <textarea class="addition_item_text_input" v-model="ui.error.message"></textarea>
@@ -59,6 +59,8 @@
   import TitleBar from '../../components/common/TitleBar'
   import {stringApi} from '../../api/local/stringApi'
   import {httpReportApi} from '../../api/http/report/httpReportApi'
+  import {wechatApi} from '../../api/local/wechatApi'
+  import {alipayApi} from '../../api/local/alipayApi'
 
   export default {
     metaInfo: {
@@ -138,6 +140,14 @@
       },
       btnReturn() {
         this.ui.vReport = false
+
+        if (wechatApi.inWechat()) {
+          wechatApi.closeWindow()
+        }
+
+        if (alipayApi.inAlipay()) {
+          alipayApi.closeWindow()
+        }
       },
       btnReportConfirm() {
         this.initError()
