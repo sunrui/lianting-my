@@ -257,7 +257,7 @@
                 pThis.$msgBox.doModal({
                   type: 'yes',
                   title: '上传图片失败',
-                  content: '选择的文件最大不能超过1M。'
+                  content: '图片过大会影响顾客的流量和加载速度，请不要上传超过 512kb 的图片。'
                 })
               } else if (err.code === -601) {
                 pThis.$msgBox.doModal({
