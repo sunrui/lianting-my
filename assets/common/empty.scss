@@ -16,21 +16,21 @@
 
 .empty_image {
   display: inline-block;
-  width: px2rem(320);
-  height: px2rem(320);
+  width: 320px;
+  height: 320px;
 }
 
 .empty_label {
-  margin-top: px2rem(10);
-  padding: 0 px2rem(35);
-  font-size: px2rem(30);
+  margin-top: 10px;
+  padding: 0 35px;
+  font-size: 30px;
   color: #666666;
 }
 
 .empty_label_tip {
-  margin-top: px2rem(50);
-  font-size: px2rem(26);
-  padding: 0 px2rem(35);
+  margin-top: 50px;
+  font-size: 26px;
+  padding: 0 35px;
   font-weight: 400;
   color: #999999;
 

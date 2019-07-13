@@ -1,5 +1,5 @@
 .calendar {
-  border-radius: px2rem(10) px2rem(10) 0 0;
+  border-radius: 10px 10px 0 0;
   position: absolute;
   background: white;
   z-index: 9 + 1;
@@ -7,35 +7,35 @@
 
   .calendar_title {
     width: 100%;
-    height: px2rem(80);
+    height: 80px;
     background: #F2F4F5;
-    border-bottom: solid px2rem(1) rgba(230, 230, 230, 0.5);
+    border-bottom: solid 1px rgba(230, 230, 230, 0.5);
     text-align: center;
 
     .calendar_title_cancel {
       position: absolute;
-      width: px2rem(80);
-      left: px2rem(10);
+      width: 80px;
+      left: 10px;
       top: 0;
 
       .calendar_title_cancel_label {
         color: #999999;
-        font-size: px2rem(28);
-        line-height: px2rem(80);
+        font-size: 28px;
+        line-height: 80px;
       }
     }
 
     .calendar_title_date_minus_disable {
       display: inline-block;
-      width: px2rem(80);
-      height: px2rem(80);
+      width: 80px;
+      height: 80px;
     }
 
     .calendar_title_date_minus {
       display: inline-block;
       text-align: center;
-      width: px2rem(80);
-      height: px2rem(80);
+      width: 80px;
+      height: 80px;
       vertical-align: top;
 
       .calendar_title_date_minus_icon {
@@ -43,8 +43,8 @@
         background-image: url("/img/common/calendar/calendar_minus.png");
         background-repeat: no-repeat;
         background-size: 100% 100%;
-        width: px2rem(24);
-        height: px2rem(24);
+        width: 24px;
+        height: 24px;
 
         margin-top: px2rem((80 - 24) / 2);
       }
@@ -52,25 +52,25 @@
 
     .calendar_title_date {
       display: inline-block;
-      height: px2rem(80);
+      height: 80px;
       top: 0;
       margin-top: 0;
       vertical-align: top;
 
       .calendar_title_date_label {
-        line-height: px2rem(80);
+        line-height: 80px;
         color: #333333;
-        font-size: px2rem(28);
+        font-size: 28px;
         text-align: center;
-        height: px2rem(80);
+        height: 80px;
       }
     }
 
     .calendar_title_date_add {
       display: inline-block;
       text-align: center;
-      width: px2rem(80);
-      height: px2rem(80);
+      width: 80px;
+      height: 80px;
       vertical-align: top;
 
       .calendar_title_date_add_icon {
@@ -78,8 +78,8 @@
         background-image: url("/img/common/calendar/calendar_add.png");
         background-repeat: no-repeat;
         background-size: 100% 100%;
-        width: px2rem(24);
-        height: px2rem(24);
+        width: 24px;
+        height: 24px;
 
         margin-top: px2rem((80 - 24) / 2);
       }
@@ -87,23 +87,23 @@
 
     .calendar_title_confirm {
       position: absolute;
-      width: px2rem(80);
-      right: px2rem(10);
+      width: 80px;
+      right: 10px;
       top: 0;
-      line-height: px2rem(80);
+      line-height: 80px;
 
       .calendar_title_confirm_label {
-        font-size: px2rem(28);
+        font-size: 28px;
         color: #f52626;
-        line-height: px2rem(80);
+        line-height: 80px;
       }
     }
   }
 
   .calendar_week {
     text-align: center;
-    margin-top: px2rem(40);
-    padding: 0 px2rem(10);
+    margin-top: 40px;
+    padding: 0 10px;
 
     .calendar_week_one {
       display: inline-block;
@@ -114,17 +114,17 @@
 
   .calendar_day {
     text-align: center;
-    margin-top: px2rem(30);
-    margin-bottom: px2rem(30);
-    padding: 0 px2rem(10);
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 0 10px;
 
     .calendar_day_one {
-      margin-top: px2rem(8);
+      margin-top: 8px;
       display: inline-block;
       vertical-align: top;
       width: 14.28%;
-      height: px2rem(70);
-      line-height: px2rem(70);
+      height: 70px;
+      line-height: 70px;
     }
 
     .calendar_day_one_label {
@@ -132,8 +132,8 @@
       vertical-align: top;
       text-align: center;
       color: #333333;
-      height: px2rem(70);
-      line-height: px2rem(70);
+      height: 70px;
+      line-height: 70px;
     }
 
     .calendar_day_one_label_disable {
@@ -141,21 +141,21 @@
       vertical-align: top;
       text-align: center;
       color: #BBBBBB;
-      height: px2rem(70);
-      line-height: px2rem(70);
+      height: 70px;
+      line-height: 70px;
     }
 
     .calendar_day_one_label_select {
       display: inline-block;
       vertical-align: top;
       background: linear-gradient(90deg, rgba(255, 51, 68, 1), rgba(255, 136, 51, 1));
-      width: px2rem(70);
-      height: px2rem(70);
-      box-shadow: 0 0 px2rem(5) rgba(0, 0, 0, 0.2);
+      width: 70px;
+      height: 70px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
       border-radius: 50%;
       text-align: center;
       color: white;
-      line-height: px2rem(70);
+      line-height: 70px;
     }
   }
 }

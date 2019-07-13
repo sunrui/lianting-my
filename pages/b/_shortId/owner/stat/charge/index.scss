@@ -1,31 +1,31 @@
 .charge {
   position: relative;
-  margin-top: px2rem(30);
+  margin-top: 30px;
 }
 
 .charge_header {
-  height: px2rem(24);
-  border-radius: px2rem(12);
+  height: 24px;
+  border-radius: 12px;
   background: #b2b8c6;
 }
 
 .charge_body {
   background: white;
-  margin-top: px2rem(-12);
-  margin-left: px2rem(15);
-  margin-right: px2rem(15);
-  padding: 0 px2rem(20);
+  margin-top: -12px;
+  margin-left: 15px;
+  margin-right: 15px;
+  padding: 0 20px;
 }
 
 .charge_body_title {
-  height: px2rem(50);
+  height: 50px;
 
   .charge_body_title_one {
     display: inline-block;
     vertical-align: middle;
     float: left;
     text-align: center;
-    font-size: px2rem(28);
+    font-size: 28px;
     color: #333333;
     font-weight: 400;
     width: 25%;
@@ -33,18 +33,18 @@
 }
 
 .charge_body_content {
-  height: px2rem(50);
+  height: 50px;
 
   .charge_body_content_one {
     display: inline-block;
     vertical-align: middle;
     float: left;
     text-align: center;
-    font-size: px2rem(24);
+    font-size: 24px;
     color: #666666;
     font-weight: 400;
     width: 25%;
-    line-height: px2rem(50);
+    line-height: 50px;
 
     white-space: nowrap;
     overflow: hidden;
@@ -54,30 +54,30 @@
   .charge_body_content_price {
     display: inline-block;
     vertical-align: middle;
-    font-size: px2rem(24);
+    font-size: 24px;
     color: #f52626;
-    line-height: px2rem(50);
+    line-height: 50px;
   }
 
   .charge_body_content_price:before {
     display: inline-block;
     vertical-align: middle;
     content: "¥";
-    font-size: px2rem(24);
+    font-size: 24px;
     color: #f52626;
-    margin-right: px2rem(5);
-    line-height: px2rem(50);
+    margin-right: 5px;
+    line-height: 50px;
   }
 }
 
 .charge_empty {
-  height: px2rem(200);
+  height: 200px;
   color: #999999;
   text-align: center;
-  line-height: px2rem(200);
-  font-size: px2rem(28);
+  line-height: 200px;
+  font-size: 28px;
 }
 
 .charge_footer {
-  height: px2rem(10);
+  height: 10px;
 }

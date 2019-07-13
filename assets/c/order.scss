@@ -1,55 +1,55 @@
 .order_table {
-  height: px2rem(160);
-  margin-top: px2rem(40);
+  height: 160px;
+  margin-top: 40px;
   text-align: center;
   background: white;
 
   .order_table_number {
     display: inline-block;
-    font-size: px2rem(80);
+    font-size: 80px;
     color: #f52626;
-    line-height: px2rem(160);
+    line-height: 160px;
   }
 
   .order_table_name {
     display: inline-block;
-    margin-left: px2rem(5);
-    font-size: px2rem(30);
+    margin-left: 5px;
+    font-size: 30px;
   }
 }
 
 .order_content {
   background: white;
-  padding-bottom: px2rem(10);
+  padding-bottom: 10px;
 }
 
 .order_food {
   position: relative;
-  height: px2rem(130);
+  height: 130px;
 
   .order_food_image {
     background: white;
-    width: px2rem(100);
-    height: px2rem(100);
-    border-radius: px2rem(5);
+    width: 100px;
+    height: 100px;
+    border-radius: 5px;
     position: absolute;
-    left: px2rem(35);
+    left: 35px;
     top: 50%;
     transform: translate(0, -50%);
   }
 
   .table_name {
     position: absolute;
-    left: px2rem(155);
+    left: 155px;
     display: inline-block;
-    font-size: px2rem(28);
-    line-height: px2rem(130);
+    font-size: 28px;
+    line-height: 130px;
   }
 
   .order_food_name_detail {
     position: absolute;
-    left: px2rem(155);
-    right: px2rem(320);
+    left: 155px;
+    right: 320px;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -57,27 +57,27 @@
     transform: translate(0, -50%);
 
     .order_food_name_detail_name {
-      font-size: px2rem(28);
+      font-size: 28px;
       color: #333333;
     }
 
     .order_food_name_detail_name_category {
-      margin-top: px2rem(5);
-      font-size: px2rem(24);
+      margin-top: 5px;
+      font-size: 24px;
       color: #999999;
     }
   }
 
   .order_food_status {
     position: absolute;
-    border-radius: px2rem(10);
-    font-size: px2rem(24);
-    width: px2rem(100);
+    border-radius: 10px;
+    font-size: 24px;
+    width: 100px;
     text-align: center;
     vertical-align: middle;
-    right: px2rem(210);
-    height: px2rem(40);
-    line-height: px2rem(40);
+    right: 210px;
+    height: 40px;
+    line-height: 40px;
     top: 50%;
     transform: translate(0, -50%);
   }
@@ -109,131 +109,131 @@
 
   .order_food_count {
     position: relative;
-    right: px2rem(130);
+    right: 130px;
     top: 0;
     text-align: right;
-    line-height: px2rem(130);
+    line-height: 130px;
   }
 
   .order_food_count:before {
     position: relative;
-    font-size: px2rem(24);
+    font-size: 24px;
     content: "x";
-    right: px2rem(5);
+    right: 5px;
   }
 
   .order_food_price {
     position: absolute;
-    right: px2rem(30);
+    right: 30px;
     top: 0;
     text-align: right;
-    line-height: px2rem(130);
+    line-height: 130px;
   }
 
   .order_food_price:before {
     content: "¥";
-    font-size: px2rem(22);
-    margin-right: px2rem(5);
+    font-size: 22px;
+    margin-right: 5px;
   }
 }
 
 .order_tableware {
   position: relative;
-  height: px2rem(100);
+  height: 100px;
 
   .order_tableware_icon {
-    font-size: px2rem(24);
+    font-size: 24px;
     color: #B38F8F;
     background: #FAF2F2;
-    border-radius: px2rem(5);
-    border: #F0E4E4 px2rem(1) solid;
-    width: px2rem(100);
-    height: px2rem(40);
-    line-height: px2rem(40);
+    border-radius: 5px;
+    border: #F0E4E4 1px solid;
+    width: 100px;
+    height: 40px;
+    line-height: 40px;
     text-align: center;
     vertical-align: middle;
-    left: px2rem(35);
+    left: 35px;
     position: absolute;
     top: 50%;
     transform: translate(0, -50%);
   }
 
   .order_tableware_label {
-    left: px2rem(155);
+    left: 155px;
     top: 0;
     position: absolute;
-    font-size: px2rem(28);
-    line-height: px2rem(100);
+    font-size: 28px;
+    line-height: 100px;
   }
 
   .order_tableware_count {
     position: absolute;
-    right: px2rem(130);
+    right: 130px;
     text-align: right;
     top: 0;
-    line-height: px2rem(100);
+    line-height: 100px;
   }
 
   .order_tableware_count:before {
     content: "x";
-    font-size: px2rem(24);
-    margin-right: px2rem(5);
+    font-size: 24px;
+    margin-right: 5px;
   }
 
   .order_tableware_price {
     position: absolute;
-    right: px2rem(35);
+    right: 35px;
     text-align: right;
     top: 0;
-    line-height: px2rem(100);
+    line-height: 100px;
   }
 
   .order_tableware_price:before {
     content: "¥";
-    font-size: px2rem(22);
-    margin-right: px2rem(5);
+    font-size: 22px;
+    margin-right: 5px;
   }
 }
 
 .order_coupon {
   position: relative;
-  height: px2rem(100);
+  height: 100px;
 
   .order_coupon_icon {
-    font-size: px2rem(24);
+    font-size: 24px;
     background: #F7DBA0;
     color: #AA8635;
-    border-radius: px2rem(5);
-    width: px2rem(100);
-    height: px2rem(40);
-    line-height: px2rem(40);
+    border-radius: 5px;
+    width: 100px;
+    height: 40px;
+    line-height: 40px;
     text-align: center;
     vertical-align: middle;
-    left: px2rem(35);
+    left: 35px;
     position: absolute;
     top: 50%;
     transform: translate(0, -50%);
   }
 
   .order_coupon_label {
-    left: px2rem(155);
+    left: 155px;
     top: 0;
     position: absolute;
-    font-size: px2rem(28);
-    line-height: px2rem(100);
+    font-size: 28px;
+    line-height: 100px;
   }
 
   .order_coupon_count {
     color: #f52626;
     background: #FCF0F0;
-    border-radius: px2rem(5);
-    border: #F57A7A px2rem(1) solid;
-    right: px2rem(75);
+    border-radius: 5px;
+    border: #F57A7A 1px solid;
+    right: 75px;
     text-align: right;
-    height: px2rem(40);
-    line-height: px2rem(40);
+    height: 40px;
+    line-height: 40px;
     vertical-align: middle;
-    padding: 0 px2rem(10);
+    padding: 0 10px;
     position: absolute;
     top: 50%;
     transform: translate(0, -50%);
@@ -242,79 +242,79 @@
   .order_coupon_count:after {
     content: ">";
     color: #666666;
-    margin-left: px2rem(20);
-    height: px2rem(40);
-    line-height: px2rem(40);
+    margin-left: 20px;
+    height: 40px;
+    line-height: 40px;
     vertical-align: middle;
-    padding: 0 px2rem(10);
+    padding: 0 10px;
     position: absolute;
   }
 
   .order_coupon_content {
     position: absolute;
-    right: px2rem(35);
+    right: 35px;
     top: 0;
-    line-height: px2rem(100);
+    line-height: 100px;
     color: #F52626;
   }
 
   .order_coupon_content:before {
     content: "- ¥";
-    font-size: px2rem(22);
-    margin-right: px2rem(5);
+    font-size: 22px;
+    margin-right: 5px;
     color: #F52626;
   }
 }
 
 .order_price {
   position: relative;
-  height: px2rem(100);
+  height: 100px;
 
   .order_price_food_count {
     display: inline-block;
     vertical-align: bottom;
-    margin-left: px2rem(35);
-    font-size: px2rem(26);
-    line-height: px2rem(100);
+    margin-left: 35px;
+    font-size: 26px;
+    line-height: 100px;
   }
 
   .order_price_total_label {
     display: inline-block;
     vertical-align: bottom;
     float: right;
-    font-size: px2rem(26);
-    line-height: px2rem(100);
-    padding-right: px2rem(20);
+    font-size: 26px;
+    line-height: 100px;
+    padding-right: 20px;
   }
 
   .order_price_total {
     display: inline-block;
     vertical-align: bottom;
     float: right;
-    font-size: px2rem(50);
+    font-size: 50px;
     color: #f52626;
-    margin-right: px2rem(35);
-    line-height: px2rem(100);
+    margin-right: 35px;
+    line-height: 100px;
   }
 
   .order_price_total:before {
     display: inline-block;
     vertical-align: bottom;
     content: "¥";
-    font-size: px2rem(36);
+    font-size: 36px;
     color: #f52626;
-    margin-right: px2rem(5);
-    line-height: px2rem(100);
+    margin-right: 5px;
+    line-height: 100px;
   }
 
   .order_price_total_original {
     display: inline-block;
     vertical-align: bottom;
     float: right;
-    font-size: px2rem(28);
+    font-size: 28px;
     color: #999999;
-    margin-right: px2rem(15);
-    line-height: px2rem(100);
+    margin-right: 15px;
+    line-height: 100px;
     text-decoration:line-through;
   }
 
@@ -322,10 +322,10 @@
     display: inline-block;
     vertical-align: bottom;
     content: "¥";
-    font-size: px2rem(28);
+    font-size: 28px;
     color: #999999;
-    margin-right: px2rem(5);
-    line-height: px2rem(100);
+    margin-right: 5px;
+    line-height: 100px;
   }
 }
 
@@ -334,39 +334,39 @@
   background: white;
 
   .order_taste_note_history_label {
-    font-size: px2rem(28);
-    margin-top: px2rem(20);
-    margin-left: px2rem(35);
-    margin-bottom: px2rem(20);
+    font-size: 28px;
+    margin-top: 20px;
+    margin-left: 35px;
+    margin-bottom: 20px;
   }
 
   .order_taste_note_history_item {
-    padding-left: px2rem(110);
+    padding-left: 110px;
     position: relative;
-    padding-bottom: px2rem(20);
-    margin-right: px2rem(35);
+    padding-bottom: 20px;
+    margin-right: 35px;
 
     .order_taste_note_history_icon_ball {
       position: absolute;
       background: rgba(230, 230, 230, 0.5);
       border-radius: 50%;
-      width: px2rem(10);
-      height: px2rem(10);
-      top: px2rem(10);
+      width: 10px;
+      height: 10px;
+      top: 10px;
       z-index: 1;
     }
 
     .order_taste_note_history_icon_line {
       position: absolute;
       background: rgba(230, 230, 230, 0.5);
-      width: px2rem(1);
-      margin-left: px2rem(4);
+      width: 1px;
+      margin-left: 4px;
       bottom: 0;
       height: 100%;
     }
 
     .order_taste_note_history_content {
-      margin-left: px2rem(35);
+      margin-left: 35px;
       color: #999999;
     }
   }
@@ -375,9 +375,9 @@
 .order_history_status {
   float: right;
   display: inline-block;
-  margin-right: px2rem(30);
-  line-height: px2rem(90);
-  font-size: px2rem(28);
+  margin-right: 30px;
+  line-height: 90px;
+  font-size: 28px;
 }
 
 .order_history_status_finish {
@@ -403,79 +403,79 @@
 
 .order_history_food {
   position: relative;
-  padding: px2rem(20) px2rem(35);
+  padding: 20px 35px;
 
   .order_history_food_content {
-    line-height: px2rem(40);
+    line-height: 40px;
     color: #666666;
   }
 }
 
 .order_history_footer {
   position: relative;
-  height: px2rem(70);
+  height: 70px;
 
   .order_history_label {
     position: relative;
     display: inline-block;
     vertical-align: middle;
-    margin-left: px2rem(30);
-    height: px2rem(70);
+    margin-left: 30px;
+    height: 70px;
 
     .order_history_table_label {
       display: inline-block;
       vertical-align: middle;
       color: #333333;
-      line-height: px2rem(70);
+      line-height: 70px;
     }
 
     .order_history_table_content {
       display: inline-block;
       vertical-align: middle;
-      margin-left: px2rem(5);
-      margin-right: px2rem(5);
-      line-height: px2rem(70);
+      margin-left: 5px;
+      margin-right: 5px;
+      line-height: 70px;
       color: #f52626;
-      font-size: px2rem(36);
+      font-size: 36px;
     }
 
     .order_history_price_label {
       display: inline-block;
       vertical-align: middle;
       color: #333333;
-      line-height: px2rem(70);
+      line-height: 70px;
     }
 
     .order_history_price_content {
       display: inline-block;
       vertical-align: middle;
-      margin-left: px2rem(5);
-      margin-right: px2rem(5);
-      line-height: px2rem(70);
+      margin-left: 5px;
+      margin-right: 5px;
+      line-height: 70px;
       color: #f52626;
-      font-size: px2rem(36);
+      font-size: 36px;
     }
 
     .order_history_price_content:after {
       display: inline-block;
       vertical-align: middle;
       content: "元";
-      margin-left: px2rem(5);
-      margin-right: px2rem(5);
+      margin-left: 5px;
+      margin-right: 5px;
       color: #333333;
     }
   }
 
   .order_history_detail {
-    margin-right: px2rem(30);
-    line-height: px2rem(58);
+    margin-right: 30px;
+    line-height: 58px;
     text-align: center;
     color: #666666;
 
-    width: px2rem(168);
-    height: px2rem(58);
-    border: px2rem(1) solid rgba(230, 230, 230, 0.5);
-    border-radius: px2rem(58/2);
+    width: 168px;
+    height: 58px;
+    border: 1px solid rgba(230, 230, 230, 0.5);
+    border-radius: px2rem(58 / 2);
 
     right: 0;
     position: absolute;
@@ -485,8 +485,8 @@
 }
 
 .people_box {
-  margin: px2rem(30) px2rem(30);
-  height: px2rem(300);
+  margin: 30px 30px;
+  height: 300px;
   overflow-y: auto;
 
   .people_one {
@@ -494,7 +494,7 @@
     float: left;
     width: 33%;
     text-align: center;
-    margin-bottom: px2rem(30);
+    margin-bottom: 30px;
 
     .people_one_name {
       display: inline-block;
@@ -502,7 +502,7 @@
       background: #F5F5F5;
       color: #666666;
       width: 80%;
-      padding: px2rem(10);
+      padding: 10px;
     }
 
     .people_one_name_select {
@@ -511,7 +511,7 @@
       background: #FEE9E9;
       color: #f52626;
       width: 80%;
-      padding: px2rem(10);
+      padding: 10px;
     }
   }
 }
@@ -519,40 +519,40 @@
 
 .choose_box {
   position: relative;
-  padding: px2rem(0) px2rem(40);
+  padding: 0 40px;
   text-align: left;
 }
 
 .choose_remark {
   .choose_remark_label {
     display: inline-block;
-    font-size: px2rem(28);
+    font-size: 28px;
     color: #333333;
   }
 
   .choose_remark_one {
     display: inline-block;
-    margin-right: px2rem(20);
-    margin-bottom: px2rem(20);
+    margin-right: 20px;
+    margin-bottom: 20px;
 
     .choose_remark_name {
       display: inline-block;
       background: #F5F5F5;
       color: #666666;
-      padding: px2rem(15) px2rem(20);
+      padding: 15px 20px;
     }
 
     .choose_remark_name_select {
       display: inline-block;
       background: #FFEBEB;
       color: #f52626;
-      padding: px2rem(15) px2rem(20);
+      padding: 15px 20px;
     }
   }
 
   .choose_remark_text_area {
     position: relative;
-    height: px2rem(150);
+    height: 150px;
 
     .choose_remark_text_input {
       overflow-y: auto;
@@ -562,7 +562,7 @@
       color: #666666;
       resize: none;
 
-      padding: px2rem(10);
+      padding: 10px;
       width: 100%;
       height: 100%;
     }
@@ -573,6 +573,6 @@
   background: white;
 
   .order_taste_note_label {
-    margin-left: px2rem(35);
+    margin-left: 35px;
   }
 }

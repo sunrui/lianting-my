@@ -1,9 +1,9 @@
 .shop_title_license {
   display: inline-block;
   background: linear-gradient(90deg, rgba(255, 76, 91, 1), rgba(255, 127, 102, 1));
-  padding: px2rem(0) px2rem(10);
-  height: px2rem(30);
-  border-radius: px2rem(3);
+  padding: 0 10px;
+  height: 30px;
+  border-radius: 4px;
   text-align: center;
 
   .shop_title_license_king {
@@ -13,17 +13,17 @@
     background-image: url("/img/b/nav/owner/b_nav_owner_king.png");
     background-repeat: no-repeat;
     background-size: 100% 100%;
-    width: px2rem(24);
-    height: px2rem(24);
+    width: 24px;
+    height: 24px;
     margin-top: px2rem((30 - 24) / 2);
   }
 
   .shop_title_license_label {
     display: inline-block;
     vertical-align: middle;
-    font-size: px2rem(18);
-    height: px2rem(30);
+    font-size: 18px;
+    height: 30px;
     color: #FFFCF0;
-    line-height: px2rem(30);
+    line-height: 30px;
   }
 }

@@ -1,37 +1,37 @@
 .reserve_title {
-  height: px2rem(160);
-  margin-top: px2rem(40);
+  height: 160px;
+  margin-top: 40px;
   text-align: center;
   background: white;
   color: #333333;
-  font-size: px2rem(48);
-  line-height: px2rem(160);
+  font-size: 48px;
+  line-height: 160px;
 }
 
 .reserve_name {
   display: inline-block;
   vertical-align: middle;
-  font-size: px2rem(30);
+  font-size: 30px;
   color: #333333;
-  margin-left: px2rem(35);
-  line-height: px2rem(88);
+  margin-left: 35px;
+  line-height: 88px;
 }
 
 .reserve_sex {
   display: inline-block;
   vertical-align: middle;
-  font-size: px2rem(28);
+  font-size: 28px;
   color: #666666;
-  margin-left: px2rem(5);
-  line-height: px2rem(88);
+  margin-left: 5px;
+  line-height: 88px;
 }
 
 .reserve_status {
   float: right;
   display: inline-block;
-  margin-right: px2rem(30);
-  line-height: px2rem(90);
-  font-size: px2rem(28);
+  margin-right: 30px;
+  line-height: 90px;
+  font-size: 28px;
 }
 
 .reserve_status_arrived {
@@ -57,12 +57,12 @@
 .reserve_info {
   position: relative;
   background: white;
-  height: px2rem(180);
+  height: 180px;
   text-align: center;
 
   .reserve_info_left {
     position: absolute;
-    left: px2rem(35);
+    left: 35px;
     text-align: left;
 
     top: 50%;
@@ -70,8 +70,8 @@
 
     .reserve_info_label {
       color: #333333;
-      font-size: px2rem(28);
-      margin-top: px2rem(10);
+      font-size: 28px;
+      margin-top: 10px;
 
       .reserve_info_label_phone {
         user-select: text;
@@ -82,14 +82,14 @@
   .reserve_info_middle {
     position: relative;
     display: inline-block;
-    width: px2rem(110);
-    height: px2rem(110);
+    width: 110px;
+    height: 110px;
     border-radius: 50%;
     top: 50%;
     transform: translate(0, -50%);
 
-    border: solid px2rem(1) rgba(230, 230, 230, 0.5);
-    box-shadow: 0 0 px2rem(5) rgba(0, 0, 0, 0.2);
+    border: solid 1px rgba(230, 230, 230, 0.5);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 
     .reserve_info_phone {
       position: relative;
@@ -97,8 +97,8 @@
       background-image: url("/img/b/reserve/b_reserve_phone.png");
       background-repeat: no-repeat;
       background-size: 100% 100%;
-      width: px2rem(60);
-      height: px2rem(60);
+      width: 60px;
+      height: 60px;
 
       top: 50%;
       transform: translate(0, -50%);
@@ -108,22 +108,22 @@
   .reserve_info_right {
     position: absolute;
     top: 0;
-    right: px2rem(40);
-    width: px2rem(240);
+    right: 40px;
+    width: 240px;
     text-align: right;
 
     .reserve_info_time {
       display: inline-block;
-      font-size: px2rem(80);
+      font-size: 80px;
       color: #333333;
-      line-height: px2rem(180);
+      line-height: 180px;
     }
   }
 }
 
 .reserve_remark {
   background: white;
-  padding: px2rem(10) px2rem(25);
+  padding: 10px 25px;
 
   .reserve_remark_icon {
     display: inline-block;
@@ -131,13 +131,13 @@
     background-image: url("/img/b/reserve/b_reserve_message.png");
     background-repeat: no-repeat;
     background-size: 100% 100%;
-    width: px2rem(32);
-    height: px2rem(32);
+    width: 32px;
+    height: 32px;
   }
 
   .reserve_remark_label {
     color: #666666;
-    margin-left: px2rem(5);
-    line-height: px2rem(32);
+    margin-left: 5px;
+    line-height: 32px;
   }
 }

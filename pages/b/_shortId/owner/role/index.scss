@@ -1,63 +1,63 @@
 .list_role_icon {
   display: inline-block;
   vertical-align: middle;
-  width: px2rem(40);
-  height: px2rem(40);
-  margin-left: px2rem(35);
+  width: 40px;
+  height: 40px;
+  margin-left: 35px;
 }
 
 .list_admin_icon {
   background-image: url("/img/b/role/b_role_admin.png");
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  width: px2rem(40);
-  height: px2rem(40);
+  width: 40px;
+  height: 40px;
 }
 
 .list_cashier_icon {
   background-image: url("/img/b/role/b_role_cashier.png");
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  width: px2rem(40);
-  height: px2rem(40);
+  width: 40px;
+  height: 40px;
 }
 
 .list_cooker_icon {
   background-image: url("/img/b/role/b_role_cooker.png");
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  width: px2rem(40);
-  height: px2rem(40);
+  width: 40px;
+  height: 40px;
 }
 
 .list_waiter_icon {
   background-image: url("/img/b/role/b_role_waiter.png");
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  width: px2rem(40);
-  height: px2rem(40);
+  width: 40px;
+  height: 40px;
 }
 
 .list_item_add {
   background-image: url("/img/b/role/b_role_add.png");
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  width: px2rem(44);
-  height: px2rem(44);
+  width: 44px;
+  height: 44px;
   float: right;
   margin-top: px2rem((88 - 44) / 2);
-  margin-right: px2rem(35);
+  margin-right: 35px;
 }
 
 .list_item_add_captcha {
   background-image: url("/img/b/nav/role/b_nav_role_captcha.png");
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  width: px2rem(44);
-  height: px2rem(44);
+  width: 44px;
+  height: 44px;
   float: right;
   margin-top: px2rem((88 - 44) / 2);
-  margin-right: px2rem(20);
+  margin-right: 20px;
   opacity: 0.6;
 }
 
@@ -67,13 +67,13 @@
   .no_role_user {
     position: relative;
     text-align: center;
-    height: px2rem(50);
-    line-height: px2rem(50);
+    height: 50px;
+    line-height: 50px;
     color: #999999;
   }
 
   .role_user_list {
-    padding: px2rem(20) px2rem(30);
+    padding: 20px 30px;
 
     .role_user_item {
       display: inline-block;
@@ -85,13 +85,13 @@
         display: inline-block;
         background: #F5F5F5;
         width: 80%;
-        height: px2rem(68);
-        margin-bottom: px2rem(20);
+        height: 68px;
+        margin-bottom: 20px;
 
         .role_user_one_label {
           color: #666666;
-          font-size: px2rem(28);
-          line-height: px2rem(68);
+          font-size: 28px;
+          line-height: 68px;
         }
       }
     }

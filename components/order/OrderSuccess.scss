@@ -2,18 +2,18 @@
   background-image: url("/img/c/order/order_success.png");
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  width: px2rem(140);
-  height: px2rem(140);
+  width: 140px;
+  height: 140px;
 }
 
 .success_order_price {
-  font-size: px2rem(40);
+  font-size: 40px;
   color: #f52626;
-  line-height: px2rem(90);
+  line-height: 90px;
 }
 
 .success_order_price:after {
   color: #666666;
   content: "元";
-  margin-left: px2rem(10);
+  margin-left: 10px;
 }

@@ -8,19 +8,19 @@
 
     .search {
       background: #F0F1F2;
-      height: px2rem(70);
+      height: 70px;
 
-      margin-left: px2rem(20);
-      margin-right: px2rem(120);
-      border-radius: px2rem(70/2);
+      margin-left: 20px;
+      margin-right: 120px;
+      border-radius: px2rem(70 / 2);
 
       .search_icon {
         background-image: url("/img/common/search.png");
         background-repeat: no-repeat;
         background-size: 100% 100%;
-        width: px2rem(26);
-        height: px2rem(26);
-        left: px2rem(50);
+        width: 26px;
+        height: 26px;
+        left: 50px;
 
         position: absolute;
         top: 50%;
@@ -34,7 +34,7 @@
 
         .search_input {
           color: #666666;
-          line-height: px2rem(70);
+          line-height: 70px;
           width: 100%;
           border: none;
           outline: medium;
@@ -45,36 +45,36 @@
 
     .search_btn {
       position: absolute;
-      height: px2rem(120-30);
+      height: px2rem(120 - 30);
       text-align: center;
       top: 0;
       right: 0;
-      font-size: px2rem(30);
-      width: px2rem(120);
-      line-height: px2rem(70);
+      font-size: 30px;
+      width: 120px;
+      line-height: 70px;
       color: #666666;
     }
   }
 
   .search_hot {
-    margin-top: px2rem(40);
+    margin-top: 40px;
 
     .search_hot_label {
       color: #333333;
-      margin-left: px2rem(25);
-      font-size: px2rem(30);
-      margin-bottom: px2rem(30);
+      margin-left: 25px;
+      font-size: 30px;
+      margin-bottom: 30px;
     }
 
     .search_hot_box {
       text-align: center;
-      padding: px2rem(0) px2rem(10);
+      padding: 0 10px;
 
       .search_hot_one {
         position: relative;
         width: 25%;
         float: left;
-        margin-bottom: px2rem(20);
+        margin-bottom: 20px;
 
         .search_hot_name {
           display: inline-block;
@@ -85,7 +85,7 @@
           background: #F5F5F5;
           color: #666666;
           width: 80%;
-          padding: px2rem(10);
+          padding: 10px;
         }
       }
     }
@@ -93,35 +93,35 @@
 
   .search_result {
     clear: both;
-    margin-top: px2rem(10);
+    margin-top: 10px;
 
     .search_result_one {
-      margin-left: px2rem(35);
+      margin-left: 35px;
       position: relative;
-      height: px2rem(80);
+      height: 80px;
 
       .search_result_food {
         display: inline-block;
 
         color: #666666;
-        line-height: px2rem(80);
+        line-height: 80px;
       }
 
       .search_result_nav {
         display: inline-block;
         float: right;
-        height: px2rem(80);
-        width: px2rem(90);
+        height: 80px;
+        width: 90px;
 
         .search_result_nav_icon {
           background-image: url("/img/c/food/food_search_nav.png");
           background-repeat: no-repeat;
           background-size: 100% 100%;
-          height: px2rem(27);
-          width: px2rem(28);
+          height: 27px;
+          width: 28px;
 
-          margin-left: px2rem(30);
-          margin-top: px2rem((90-27)/2);
+          margin-left: 30px;
+          margin-top: px2rem((90 - 27) / 2);
         }
       }
     }
@@ -129,11 +129,11 @@
 
   .search_not_found {
     position: relative;
-    margin-top: px2rem(50);
+    margin-top: 50px;
     text-align: center;
 
     .search_not_found_label {
-      font-size: px2rem(28);
+      font-size: 28px;
       color: #666666;
     }
   }

@@ -72,7 +72,7 @@
     border: none;
     outline: medium;
     color: #666666;
-    font-size: px2rem(28);
+    font-size: 28px;
     text-align: center;
   }
 

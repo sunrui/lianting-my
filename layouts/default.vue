@@ -18,6 +18,6 @@
   *,
   *:before,
   *:after {
-    font-size: px2rem(26);
+    font-size: 26px;
   }
 </style>

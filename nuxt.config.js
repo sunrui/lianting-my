@@ -102,6 +102,11 @@ module.exports = {
     optimization: {
       splitChunks: {}
     },
+    postcss: [
+      require('postcss-px2rem')({
+        remUnit: 100
+      })
+    ],
     /*
     ** You can extend webpack config here
     */

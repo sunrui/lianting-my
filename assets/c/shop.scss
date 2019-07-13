@@ -1,21 +1,21 @@
 .shop_info {
   position: relative;
   background: white;
-  border-radius: px2rem(10);
-  box-shadow: 0 0 px2rem(5) rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   text-align: center;
 
   .shop_info_logo {
     position: relative;
 
     .shop_logo_radius {
-      width: px2rem(140);
-      height: px2rem(140);
+      width: 140px;
+      height: 140px;
       border-radius: 50%;
       overflow: hidden;
       z-index: 2;
-      border: solid px2rem(1) rgba(230, 230, 230, 0.5);
-      box-shadow: 0 0 px2rem(5) rgba(0, 0, 0, 0.2);
+      border: solid 1px rgba(230, 230, 230, 0.5);
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 
       position: absolute;
       top: 0;
@@ -36,20 +36,20 @@
 }
 
 .shop_title_box {
-  margin-top: px2rem(40);
-  margin-left: px2rem(35);
-  padding-right: px2rem(35);
+  margin-top: 40px;
+  margin-left: 35px;
+  padding-right: 35px;
 
   .shop_title_name {
-    font-size: px2rem(36);
+    font-size: 36px;
     color: white;
     font-weight: 400;
-    height: px2rem(36);
-    text-shadow: 0 0 px2rem(1) #666666;
+    height: 36px;
+    text-shadow: 0 0 1px #666666;
   }
 
   .shop_title_detail {
-    margin-top: px2rem(10);
+    margin-top: 10px;
     color: rgba(254, 254, 254, 0.8);
     overflow: hidden;
     text-overflow:ellipsis;

@@ -1,26 +1,26 @@
 .reserve_title {
   position: relative;
-  margin-top: px2rem(20);
-  height: px2rem(90);
+  margin-top: 20px;
+  height: 90px;
 
   .reserve_title_icon {
     display: inline-block;
     vertical-align: middle;
-    margin-left: px2rem(35);
+    margin-left: 35px;
 
     background-image: url("/img/b/reserve/b_reserve_clock.png");
     background-repeat: no-repeat;
     background-size: 100% 100%;
-    height: px2rem(40);
-    width: px2rem(40);
+    height: 40px;
+    width: 40px;
   }
 
   .reserve_title_label {
     display: inline-block;
     vertical-align: middle;
-    margin-left: px2rem(10);
-    font-size: px2rem(28);
-    line-height: px2rem(90);
+    margin-left: 10px;
+    font-size: 28px;
+    line-height: 90px;
   }
 }
 
@@ -29,7 +29,7 @@
   background: white;
 
   .week_list {
-    padding: px2rem(20) px2rem(30);
+    padding: 20px 30px;
 
     .week_one_item {
       position: relative;
@@ -40,8 +40,8 @@
         display: inline-block;
         background: #F5F5F5;
         width: 80%;
-        height: px2rem(68);
-        margin-bottom: px2rem(20);
+        height: 68px;
+        margin-bottom: 20px;
       }
     }
   }
@@ -58,7 +58,7 @@
       position: relative;
       width: 25%;
       float: left;
-      margin-bottom: px2rem(20);
+      margin-bottom: 20px;
 
       .week_one_name {
         display: inline-block;
@@ -66,7 +66,7 @@
         background: #F5F5F5;
         color: #666666;
         width: 80%;
-        padding: px2rem(10) px2rem(10);
+        padding: 10px 10px;
       }
 
       .week_one_name_select {
@@ -75,7 +75,7 @@
         background: #FFEBEB;
         color: #f52626;
         width: 80%;
-        padding: px2rem(10) px2rem(10);
+        padding: 10px 10px;
       }
     }
   }

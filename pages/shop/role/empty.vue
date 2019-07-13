@@ -37,8 +37,8 @@
 
   .no_role_user_tip {
     position: fixed;
-    bottom: px2rem(30);
-    right: px2rem(20);
+    bottom: 30px;
+    right: 20px;
     color: #666666;
   }
 </style>

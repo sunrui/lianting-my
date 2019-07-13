@@ -7,29 +7,29 @@
 
 .queue_notice_box {
   position: relative;
-  margin-left: px2rem(25);
-  margin-right: px2rem(25);
+  margin-left: 25px;
+  margin-right: 25px;
   background: transparent;
   z-index: 1;
 }
 
 .queue_notice {
   background: white;
-  height: px2rem(88);
-  margin-left: px2rem(15);
-  margin-right: px2rem(15);
-  margin-top: px2rem(30);
+  height: 88px;
+  margin-left: 15px;
+  margin-right: 15px;
+  margin-top: 30px;
 
-  border-radius: px2rem(88/2);
-  box-shadow: 0 0 px2rem(5) rgba(0, 0, 0, 0.2);
+  border-radius: px2rem(88 / 2);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 
   .queue_notice_icon {
     background-image: url("/img/common/notice.png");
     background-repeat: no-repeat;
     background-size: 100% 100%;
-    width: px2rem(40);
-    height: px2rem(40);
-    left: px2rem(40);
+    width: 40px;
+    height: 40px;
+    left: 40px;
 
     position: absolute;
     top: 50%;
@@ -40,7 +40,7 @@
     position: absolute;
     left: px2rem(40 + 40 + 15);
 
-    line-height: px2rem(88);
+    line-height: 88px;
     color: #f52626;
   }
 }
@@ -48,32 +48,32 @@
 .queue_content_box {
   position: relative;
   background: white;
-  top: px2rem(-45);
+  top: -45px;
 }
 
 .queue_box {
   position: relative;
-  margin-top: px2rem(50);
+  margin-top: 50px;
 
   .queue_title {
-    height: px2rem(40);
+    height: 40px;
 
     .queue_title_icon {
       background-image: url("/img/c/queue/queue_title.png");
       background-repeat: no-repeat;
       background-size: 100% 100%;
-      width: px2rem(40);
-      height: px2rem(40);
+      width: 40px;
+      height: 40px;
       position: absolute;
-      left: px2rem(30);
+      left: 30px;
       top: 0;
     }
 
     .queue_title_label {
       position: absolute;
-      font-size: px2rem(28);
+      font-size: 28px;
       color: #333333;
-      line-height: px2rem(40);
+      line-height: 40px;
       left: px2rem(30 + 40 + 10);
       top: 0;
     }
@@ -82,16 +82,16 @@
 
 .queue_box_table {
   position: relative;
-  height: px2rem(120);
-  border-radius: px2rem(10);
-  margin: px2rem(20) px2rem(30);
+  height: 120px;
+  border-radius: 10px;
+  margin: 20px 30px;
   background: #FFF5F5;
-  border: solid px2rem(1) #F7949D;
+  border: solid 1px #F7949D;
 
   .queue_box_table_info {
     position: relative;
     display: inline-block;
-    margin-left: px2rem(50);
+    margin-left: 50px;
     text-align: center;
 
     top: 50%;
@@ -103,37 +103,37 @@
       .queue_box_table_name {
         display: inline-block;
         vertical-align: middle;
-        font-size: px2rem(28);
+        font-size: 28px;
         color: #333333;
-        line-height: px2rem(32);
+        line-height: 32px;
       }
 
       .queue_box_table_private {
         display: inline-block;
         vertical-align: middle;
         background: linear-gradient(90deg, rgba(255, 51, 68, 1), rgba(255, 136, 51, 1));
-        border-radius: px2rem(5);
-        height: px2rem(32);
-        line-height: px2rem(32);
-        padding: 0 px2rem(10);
+        border-radius: 5px;
+        height: 32px;
+        line-height: 32px;
+        padding: 0 10px;
 
         color: white;
-        font-size: px2rem(24);
+        font-size: 24px;
         text-align: center;
       }
     }
 
     .queue_box_table_people {
-      margin-top: px2rem(5);
+      margin-top: 5px;
       color: #666666;
-      font-size: px2rem(24);
+      font-size: 24px;
     }
 
     .queue_box_table_people:after {
       content: "人";
-      margin-left: px2rem(2);
+      margin-left: 2px;
       color: #666666;
-      font-size: px2rem(24);
+      font-size: 24px;
     }
   }
 
@@ -141,52 +141,52 @@
     display: inline-block;
     color: #f52626;
     position: absolute;
-    right: px2rem(240);
+    right: 240px;
   }
 
   .queue_box_table_wait_people:before {
     content: "等待";
-    font-size: px2rem(28);
+    font-size: 28px;
     color: #333333;
-    line-height: px2rem(120);
-    margin-right: px2rem(10);
+    line-height: 120px;
+    margin-right: 10px;
   }
 
   .queue_box_table_wait_people:after {
     content: "桌";
-    font-size: px2rem(28);
+    font-size: 28px;
     color: #333333;
-    line-height: px2rem(120);
-    margin-left: px2rem(10);
+    line-height: 120px;
+    margin-left: 10px;
   }
 
   .queue_box_table_wait_time_zero {
     display: inline-block;
     float: right;
-    margin-right: px2rem(50);
-    font-size: px2rem(28);
+    margin-right: 50px;
+    font-size: 28px;
     color: #999999;
-    line-height: px2rem(120);
+    line-height: 120px;
   }
 
   .queue_box_table_wait_guess {
     display: inline-block;
-    margin-right: px2rem(50);
+    margin-right: 50px;
     float: right;
 
     .queue_box_table_wait_time {
       display: inline-block;
-      font-size: px2rem(28);
+      font-size: 28px;
       color: #f52626;
-      line-height: px2rem(120);
+      line-height: 120px;
     }
 
     .queue_box_table_wait_time2 {
       display: inline-block;
-      margin-left: px2rem(10);
-      font-size: px2rem(28);
+      margin-left: 10px;
+      font-size: 28px;
       color: #333333;
-      line-height: px2rem(120);
+      line-height: 120px;
     }
   }
 }
@@ -194,11 +194,11 @@
 .queue_distance {
   position: relative;
   background: white;
-  height: px2rem(60);
+  height: 60px;
 
   .queue_distance_label {
     display: inline-block;
-    margin-left: px2rem(35);
+    margin-left: 35px;
 
   }
 
@@ -210,29 +210,29 @@
       background-image: url("/img/c/queue/queue_goto.png");
       background-repeat: no-repeat;
       background-size: 100% 100%;
-      width: px2rem(34);
-      height: px2rem(34);
+      width: 34px;
+      height: 34px;
 
       float: right;
       display: inline-block;
-      margin-right: px2rem(10);
+      margin-right: 10px;
     }
 
     .queue_distance_goto_label {
       display: inline-block;
       float: right;
-      margin-right: px2rem(35);
+      margin-right: 35px;
       color: #f52626;
-      line-height: px2rem(34);
+      line-height: 34px;
     }
   }
 }
 
 .queue_prompt {
-  margin: px2rem(30) px2rem(25) px2rem(0) px2rem(25);
+  margin: 30px 25px 0 25px;
 
   .queue_prompt_label {
-    font-size: px2rem(24);
+    font-size: 24px;
   }
 }
 
@@ -246,18 +246,18 @@
 
   .queue_number_title {
     position: relative;
-    height: px2rem(50);
-    margin-left: px2rem(35);
-    margin-right: px2rem(35);
-    top: px2rem(35);
+    height: 50px;
+    margin-left: 35px;
+    margin-right: 35px;
+    top: 35px;
 
     .queue_number_title_icon {
       display: inline-block;
       background-image: url("/img/c/queue/queue_number.png");
       background-repeat: no-repeat;
       background-size: 100% 100%;
-      width: px2rem(40);
-      height: px2rem(40);
+      width: 40px;
+      height: 40px;
 
       position: absolute;
       top: 50%;
@@ -268,7 +268,7 @@
       position: absolute;
       left: px2rem(40 + 10);
       color: #333333;
-      line-height: px2rem(50);
+      line-height: 50px;
       top: 0;
     }
 
@@ -276,71 +276,71 @@
       position: absolute;
       right: px2rem(40 + 20);
       color: #333333;
-      font-size: px2rem(24);
+      font-size: 24px;
       top: 0;
-      padding: px2rem(5) px2rem(10);
-      border-radius: px2rem(5);
+      padding: 5px 10px;
+      border-radius: 5px;
     }
 
     .queue_number_title_status_now {
       background: #f6fffc;
       color: #3ed195;
-      border: solid px2rem(1) #00c172;
+      border: solid 1px #00c172;
 
-      right: px2rem(0);
+      right: 0;
     }
 
     .queue_number_title_status_wait {
       background: #fef2f4;
       color: #f32824;
-      border: solid px2rem(1) #f32824;
+      border: solid 1px #f32824;
     }
 
     .queue_number_title_cancel {
       background-image: url("/img/common/delete.png");
       background-repeat: no-repeat;
       background-size: 100% 100%;
-      width: px2rem(28);
-      height: px2rem(30);
+      width: 28px;
+      height: 30px;
       color: #333333;
       position: absolute;
       right: 0;
-      top: px2rem((50-30)/2)
+      top: px2rem((50 - 30) / 2)
     }
   }
 
   .queue_number_desk {
     position: relative;
-    margin-top: px2rem(50);
+    margin-top: 50px;
     text-align: center;
 
     .queue_number_desk_number {
       display: inline-block;
-      font-size: px2rem(80);
+      font-size: 80px;
       color: #f52626;
     }
 
     .queue_number_desk_detail {
       display: inline-block;
 
-      margin-right: px2rem(10);
+      margin-right: 10px;
     }
   }
 
   .queue_number_time {
     text-align: center;
-    margin-top: px2rem(10);
-    margin-bottom: px2rem(30);
+    margin-top: 10px;
+    margin-bottom: 30px;
   }
 
   .queue_number_status {
-    margin-top: px2rem(25);
-    margin-left: px2rem(35);
-    margin-right: px2rem(35);
+    margin-top: 25px;
+    margin-left: 35px;
+    margin-right: 35px;
 
     .queue_number_status_wait_people {
       display: inline-block;
-      font-size: px2rem(28);
+      font-size: 28px;
       color: #f52626;
     }
 
@@ -348,14 +348,14 @@
       display: inline-block;
       content: "前方正在等待";
       color: #666666;
-      margin-right: px2rem(10);
+      margin-right: 10px;
     }
 
     .queue_number_status_wait_people:after {
       display: inline-block;
       content: "桌";
       color: #666666;
-      margin-left: px2rem(10);
+      margin-left: 10px;
     }
 
     .queue_number_status_wait_guess {
@@ -366,19 +366,19 @@
         display: inline-block;
         content: "预计等待";
         color: #666666;
-        margin-right: px2rem(10);
+        margin-right: 10px;
       }
 
       .queue_number_status_wait_time {
         display: inline-block;
-        font-size: px2rem(28);
+        font-size: 28px;
         color: #f52626;
       }
 
       .queue_number_status_wait_time2 {
         display: inline-block;
         color: #666666;
-        margin-left: px2rem(10);
+        margin-left: 10px;
       }
     }
   }
@@ -386,27 +386,27 @@
 
 .queue_table_select {
   text-align: center;
-  height: px2rem(90);
-  margin: px2rem(20) px2rem(70);
-  border-radius: px2rem(10);
+  height: 90px;
+  margin: 20px 70px;
+  border-radius: 10px;
 }
 
 .queue_table_select_none {
-  border: solid px2rem(1) #D3D3D3;
+  border: solid 1px #D3D3D3;
 }
 
 .queue_table_select_yes {
-  border: solid px2rem(1) #f52626;
+  border: solid 1px #f52626;
 }
 
 .queue_table_select_no {
-  border: solid px2rem(1) #999999;
+  border: solid 1px #999999;
 }
 
 .queue_table_name {
   display: inline-block;
-  font-size: px2rem(28);
-  line-height: px2rem(90);
+  font-size: 28px;
+  line-height: 90px;
 }
 
 .queue_table_name_none {
@@ -423,8 +423,8 @@
 
 .queue_table_people {
   display: inline-block;
-  font-size: px2rem(28);
-  line-height: px2rem(90);
+  font-size: 28px;
+  line-height: 90px;
 }
 
 .queue_table_people_none {
@@ -441,14 +441,14 @@
 
 .queue_table_private {
   background: linear-gradient(90deg, rgba(255, 51, 68, 1), rgba(255, 136, 51, 1));
-  border-radius: px2rem(5);
-  width: px2rem(60);
-  height: px2rem(32);
-  left: px2rem(40);
+  border-radius: 5px;
+  width: 60px;
+  height: 32px;
+  left: 40px;
 
   display: inline-block;
   color: white;
-  font-size: px2rem(24);
-  line-height: px2rem(32);
+  font-size: 24px;
+  line-height: 32px;
   text-align: center;
 }

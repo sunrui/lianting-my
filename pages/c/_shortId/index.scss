@@ -10,7 +10,7 @@
   width: 100%;
   height: auto;
   position: absolute;
-  bottom: px2rem(290+320+110);
+  bottom: px2rem(290 + 320 + 110);
 }
 
 .shop_nav_c {
@@ -20,54 +20,54 @@
   .shop_center {
     position: absolute;
     background: transparent;
-    left: px2rem(25);
-    right: px2rem(25);
-    bottom: px2rem(320+110+50);
+    left: 25px;
+    right: 25px;
+    bottom: px2rem(320 + 110 + 50);
     z-index: 1;
 
     .shop_title_name {
-      padding-top: px2rem(100);
-      font-size: px2rem(30);
+      padding-top: 100px;
+      font-size: 30px;
       text-align: center;
     }
 
     .shop_notice {
-      margin: px2rem(20) px2rem(35);
+      margin: 20px 35px;
       text-align: left;
 
       .shop_notice_icon {
         display: inline-block;
-        font-size: px2rem(24);
+        font-size: 24px;
         color: #f52626;
         background: #FEDEDF;
-        border-radius: px2rem(5);
-        padding: px2rem(1) px2rem(5);
+        border-radius: 5px;
+        padding: 1px 5px;
       }
 
       .shop_notice_label {
-        margin-left: px2rem(5);
+        margin-left: 5px;
       }
     }
 
     .shop_extra {
       position: relative;
-      margin-top: px2rem(20);
+      margin-top: 20px;
 
       .shop_extra_left {
         margin-right: px2rem(110 + 10);
-        margin-left: px2rem(35);
+        margin-left: 35px;
 
         .shop_addr {
           position: relative;
-          margin: px2rem(25) auto;
+          margin: 25px auto;
           text-align: left;
 
           .shop_addr_icon {
             background-image: url("/img/c/shop/shop_info_addr.png");
             background-repeat: no-repeat;
             background-size: 100% 100%;
-            height: px2rem(32);
-            width: px2rem(32);
+            height: 32px;
+            width: 32px;
 
             position: absolute;
             top: 50%;
@@ -75,21 +75,21 @@
           }
 
           .shop_addr_label {
-            margin-left: px2rem(45);
+            margin-left: 45px;
           }
         }
 
         .shop_time {
           position: relative;
-          margin: px2rem(25) auto;
+          margin: 25px auto;
           text-align: left;
 
           .shop_time_icon {
             background-image: url("/img/c/shop/shop_info_time.png");
             background-repeat: no-repeat;
             background-size: 100% 100%;
-            height: px2rem(32);
-            width: px2rem(32);
+            height: 32px;
+            width: 32px;
 
             position: absolute;
             top: 50%;
@@ -97,53 +97,53 @@
           }
 
           .shop_time_label {
-            margin-left: px2rem(45);
+            margin-left: 45px;
           }
         }
       }
 
       .shop_extra_right {
-        width: px2rem(110);
+        width: 110px;
 
         .shop_phone {
           background-image: url("/img/c/shop/shop_info_phone.png");
           background-repeat: no-repeat;
           background-size: 100% 100%;
-          height: px2rem(60);
-          width: px2rem(60);
+          height: 60px;
+          width: 60px;
 
           position: absolute;
           top: 50%;
           transform: translate(0, -50%);
 
-          right: px2rem(50);
+          right: 50px;
         }
       }
     }
 
     .coupon {
       position: relative;
-      margin-top: px2rem(35);
-      margin-bottom: px2rem(20);
+      margin-top: 35px;
+      margin-bottom: 20px;
       text-align: center;
       font-size: 0;
 
       .coupon_label_left {
         display: inline-block;
-        line-height: px2rem(50);
+        line-height: 50px;
         background: #fd6d62;
         color: white;
-        padding-left: px2rem(10);
-        padding-right: px2rem(5);
-        border-radius: px2rem(5) 0 0 px2rem(5);
-        box-shadow: 0 0 px2rem(5) rgba(0, 0, 0, 0.2);
+        padding-left: 10px;
+        padding-right: 5px;
+        border-radius: 5px 0 0 5px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
       }
 
       .coupon_divide_radius {
         display: inline-block;
-        height: px2rem(50);
-        width: px2rem(10);
-        background: radial-gradient(circle at top, transparent px2rem(5), #fd6d62 0) top, radial-gradient(circle at bottom, transparent px2rem(5), #fd6d62 0) bottom;
+        height: 50px;
+        width: 10px;
+        background: radial-gradient(circle at top, transparent 5px, #fd6d62 0) top, radial-gradient(circle at bottom, transparent 5px, #fd6d62 0) bottom;
         background-size: 100% 50%;
         background-repeat: no-repeat;
 
@@ -155,26 +155,26 @@
       .coupon_label_right {
         display: inline-block;
 
-        line-height: px2rem(50);
+        line-height: 50px;
         background: #fd6d62;
-        margin-left: px2rem(10);
-        padding-left: px2rem(5);
-        padding-right: px2rem(10);
+        margin-left: 10px;
+        padding-left: 5px;
+        padding-right: 10px;
         color: white;
-        border-radius: 0 px2rem(5) px2rem(5) 0;
-        box-shadow: 0 0 px2rem(5) rgba(0, 0, 0, 0.2);
+        border-radius: 0 5px 5px 0;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
       }
     }
 
     .shop_center_footer {
-      padding-bottom: px2rem(10);
+      padding-bottom: 10px;
     }
   }
 }
 
 .shop_nav_blank {
   position: absolute;
-  height: px2rem(290);
+  height: 290px;
   bottom: px2rem(320 + 110);
   background: white;
   width: 100%;
@@ -183,28 +183,28 @@
 
 .shop_nav_box {
   position: absolute;
-  height: px2rem(320);
+  height: 320px;
   width: 100%;
   left: 0;
-  bottom: px2rem(110);
+  bottom: 110px;
   background: white;
 
   .shop_nav_box_one {
     position: relative;
-    height: px2rem(140);
+    height: 140px;
     width: 33.33%;
     float: left;
     text-align: center;
-    margin-bottom: px2rem(20);
+    margin-bottom: 20px;
 
     .shop_nav_box_one_icon {
       display: inline-block;
-      width: px2rem(80);
-      height: px2rem(80);
+      width: 80px;
+      height: 80px;
     }
 
     .shop_nav_box_one_label {
-      padding-top: px2rem(5);
+      padding-top: 5px;
       color: #333333;
     }
   }
@@ -216,15 +216,15 @@
   width: 100%;
   bottom: 0;
   left: 0;
-  height: px2rem(110);
+  height: 110px;
 
   .shop_footer_queue_icon {
     background-image: url("/img/c/shop/shop_footer_queue.png");
     background-repeat: no-repeat;
     background-size: 100% 100%;
-    width: px2rem(31);
-    height: px2rem(40);
-    left: px2rem(35);
+    width: 31px;
+    height: 40px;
+    left: 35px;
 
     position: absolute;
     top: 50%;
@@ -234,36 +234,36 @@
   .shop_footer_queue_label {
     position: absolute;
     left: px2rem(35 + 31 + 20);
-    line-height: px2rem(110);
-    font-size: px2rem(28);
+    line-height: 110px;
+    font-size: 28px;
   }
 
   .shop_footer_queue_content {
     float: right;
-    margin-right: px2rem(35);
-    line-height: px2rem(110);
-    font-size: px2rem(40);
+    margin-right: 35px;
+    line-height: 110px;
+    font-size: 40px;
     color: #f52626;
   }
 
   .shop_footer_queue_content:after {
     content: "桌";
     color: #666666;
-    font-size: px2rem(28);
-    margin-left: px2rem(10);
+    font-size: 28px;
+    margin-left: 10px;
   }
 
   .shop_footer_closed {
     position: absolute;
     bottom: 0;
     left: 0;
-    height: px2rem(110);
+    height: 110px;
     width: 100%;
     background: rgba(0, 0, 0, 0.3);
     color: white;
     text-align: center;
-    font-size: px2rem(40);
-    line-height: px2rem(90);
+    font-size: 40px;
+    line-height: 90px;
   }
 }
 
@@ -276,13 +276,13 @@
     background-image: url("/img/c/wifi/wifi.png");
     background-repeat: no-repeat;
     background-size: 100% 100%;
-    width: px2rem(200);
-    height: px2rem(140);
+    width: 200px;
+    height: 140px;
   }
 
   .wifi_empty {
     text-align: center;
     color: #666666;
-    font-size: px2rem(28)
+    font-size: 28px
   }
 }

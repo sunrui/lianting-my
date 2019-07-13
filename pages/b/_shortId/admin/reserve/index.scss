@@ -2,8 +2,8 @@
   background-image: url("/img/b/reserve/b_reserve_logo.png");
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  width: px2rem(140);
-  height: px2rem(140);
+  width: 140px;
+  height: 140px;
 }
 
 .reserve_reply {
@@ -13,20 +13,20 @@
 .reserve_reply_icon {
   display: inline-block;
   vertical-align: middle;
-  width: px2rem(32);
-  height: px2rem(32);
+  width: 32px;
+  height: 32px;
 }
 
 .reserve_reply_label {
   display: inline-block;
   vertical-align: middle;
-  margin-left: px2rem(5);
-  line-height: px2rem(32);
+  margin-left: 5px;
+  line-height: 32px;
   color: #999999;
 }
 
 .reserve_reply_divide {
   display: inline-block;
   vertical-align: middle;
-  margin-right: px2rem(20);
+  margin-right: 20px;
 }

@@ -4,9 +4,9 @@
   .shop_center {
     position: absolute;
     background: transparent;
-    top: px2rem(320);
-    left: px2rem(25);
-    right: px2rem(25);
+    top: 320px;
+    left: 25px;
+    right: 25px;
     z-index: 1;
 
     .shop_title {
@@ -15,9 +15,9 @@
       .shop_title_name {
         display: inline-block;
         vertical-align: top;
-        font-size: px2rem(30);
-        height: px2rem(30);
-        line-height: px2rem(30);
+        font-size: 30px;
+        height: 30px;
+        line-height: 30px;
       }
     }
   }
@@ -26,11 +26,11 @@
     position: absolute;
     width: 100%;
     background: white;
-    top: px2rem(450);
+    top: 450px;
     bottom: 0;
 
     .shop_nav_blank {
-      height: px2rem(200);
+      height: 200px;
     }
 
     .shop_nav_box_one_box {
@@ -42,18 +42,18 @@
         position: relative;
         float: left;
         text-align: center;
-        margin-bottom: px2rem(20);
+        margin-bottom: 20px;
         background: white;
 
         .shop_nav_box_one_icon {
           display: inline-block;
-          width: px2rem(120);
-          height: px2rem(120);
+          width: 120px;
+          height: 120px;
         }
 
         .shop_nav_box_one_label {
-          font-size: px2rem(28);
-          padding-top: px2rem(5);
+          font-size: 28px;
+          padding-top: 5px;
           color: #333333;
         }
       }

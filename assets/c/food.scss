@@ -1,27 +1,27 @@
 .search_box {
   position: relative;
-  margin-left: px2rem(25);
-  margin-right: px2rem(25);
+  margin-left: 25px;
+  margin-right: 25px;
   background: transparent;
   z-index: 1;
 
   .search {
     background: white;
-    height: px2rem(88);
-    margin-left: px2rem(15);
-    margin-right: px2rem(15);
-    margin-top: px2rem(30);
+    height: 88px;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-top: 30px;
 
-    border-radius: px2rem(10);
-    box-shadow: 0 0 px2rem(5) rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 
     .search_icon {
       background-image: url("/img/common/search.png");
       background-repeat: no-repeat;
       background-size: 100% 100%;
-      width: px2rem(26);
-      height: px2rem(26);
-      left: px2rem(50);
+      width: 26px;
+      height: 26px;
+      left: 50px;
 
       position: absolute;
       top: 50%;
@@ -32,7 +32,7 @@
       position: absolute;
       left: px2rem(50 + 26 + 20);
 
-      line-height: px2rem(88);
+      line-height: 88px;
       color: #999999;
     }
   }
@@ -41,7 +41,7 @@
 .content_box {
   position: relative;
   background: white;
-  top: px2rem(-44);
+  top: -44px;
 
   .menu_box {
     position: -webkit-sticky;
@@ -49,30 +49,30 @@
     background: white;
     top: 0;
     z-index: 5;
-    height: px2rem(88);
-    border-bottom: solid px2rem(1) rgba(230, 230, 230, 0.5);
+    height: 88px;
+    border-bottom: solid 1px rgba(230, 230, 230, 0.5);
 
     .leaf_box {
       position: absolute;
       width: px2rem(20 + 30 + 36);
       right: 0;
-      padding-left: px2rem(20);
-      top: px2rem(20);
+      padding-left: 20px;
+      top: 20px;
 
       .leaf {
         background-image: url("/img/c/food/food_leaf.png");
         background-repeat: no-repeat;
         background-size: 100% 100%;
-        width: px2rem(36);
-        height: px2rem(36);
+        width: 36px;
+        height: 36px;
       }
 
       .add {
         background-image: url("/img/c/food/food_menu_add.png");
         background-repeat: no-repeat;
         background-size: 100% 100%;
-        width: px2rem(36);
-        height: px2rem(36);
+        width: 36px;
+        height: 36px;
       }
     }
   }
@@ -87,7 +87,7 @@
     -webkit-overflow-scrolling: touch;
     position: relative;
 
-    margin-left: px2rem(30);
+    margin-left: 30px;
     margin-right: px2rem(20 + 30 + 36);
   }
 
@@ -97,47 +97,47 @@
     background: transparent;
     top: 0;
     z-index: 12;
-    height: px2rem(88);
+    height: 88px;
 
     .leaf_box_extend {
       position: absolute;
       width: px2rem(20 + 30 + 36);
       margin-right: 0;
-      padding-left: px2rem(20);
-      top: px2rem(-88+20);
+      padding-left: 20px;
+      top: px2rem(-88 + 20);
       right: 0;
 
       .leaf_extend {
         background-image: url("/img/c/food/food_leaf_extend.png");
         background-repeat: no-repeat;
         background-size: 100% 100%;
-        width: px2rem(36);
-        height: px2rem(36);
+        width: 36px;
+        height: 36px;
       }
     }
 
     .menu_extend {
       position: absolute;
-      border-radius: px2rem(10);
+      border-radius: 10px;
       background: white;
-      top: px2rem(5);
-      left: px2rem(15);
-      right: px2rem(15);
+      top: 5px;
+      left: 15px;
+      right: 15px;
       display: inline-block;
-      padding: px2rem(10) px2rem(25);
+      padding: 10px 25px;
     }
 
     .menu_item_extend {
       display: inline-block;
-      margin-bottom: px2rem(10);
+      margin-bottom: 10px;
     }
 
   }
 
   .menu_item {
     position: relative;
-    margin-top: px2rem(10);
-    margin-right: px2rem(50);
+    margin-top: 10px;
+    margin-right: 50px;
 
     .menu_item_href {
       text-decoration: none;
@@ -151,30 +151,30 @@
 
     .menu_item_badge {
       position: absolute;
-      font-size: px2rem(18);
+      font-size: 18px;
       font-weight: 400;
-      line-height: px2rem(32);
+      line-height: 32px;
       color: white;
       text-align: center;
 
       background: linear-gradient(90deg, rgba(255, 51, 68, 1), rgba(255, 136, 51, 1));
       border-radius: 50%;
-      width: px2rem(32);
-      height: px2rem(32);
+      width: 32px;
+      height: 32px;
 
       top: 0;
-      right: px2rem(-30);
+      right: -30px;
     }
 
     .menu_item_badge_delete {
       top: 0;
-      right: px2rem(-30);
+      right: -30px;
     }
 
     .menu_item_label {
       font-weight: 400;
-      line-height: px2rem(40);
-      margin-top: px2rem(10);
+      line-height: 40px;
+      margin-top: 10px;
     }
 
     .menu_item_label_select {
@@ -183,15 +183,15 @@
 
     .menu_item_select {
       position: relative;
-      height: px2rem(4);
-      margin-top: px2rem(1);
+      height: 4px;
+      margin-top: 1px;
 
       .menu_item_select_line {
         background: #f52626;
-        border-radius: px2rem(1);
+        border-radius: 1px;
         width: 60%;
-        height: px2rem(4);
-        margin: px2rem(5) auto 0;
+        height: 4px;
+        margin: 5px auto 0;
       }
     }
   }
@@ -201,37 +201,37 @@
 
     .food_group {
       position: relative;
-      height: px2rem(110);
-      margin-left: px2rem(30);
+      height: 110px;
+      margin-left: 30px;
 
       .food_group_anchor {
         position: absolute;
-        top: px2rem(-60);
+        top: -60px;
       }
 
       .food_group_name {
         display: inline-block;
         vertical-align: middle;
-        font-size: px2rem(32);
+        font-size: 32px;
         color: #333333;
-        line-height: px2rem(110);
+        line-height: 110px;
       }
 
       .food_group_count {
         display: inline-block;
         vertical-align: middle;
         color: #666666;
-        font-size: px2rem(24);
-        margin-left: px2rem(5);
-        line-height: px2rem(110);
+        font-size: 24px;
+        margin-left: 5px;
+        line-height: 110px;
       }
 
       .food_group_order {
         display: inline-block;
         vertical-align: middle;
         float: right;
-        line-height: px2rem(110);
-        margin-right: px2rem(25);
+        line-height: 110px;
+        margin-right: 25px;
 
         .food_group_order_icon {
           display: inline-block;
@@ -240,14 +240,14 @@
           background-repeat: no-repeat;
           background-size: 100% 100%;
           border-radius: 50%;
-          width: px2rem(24);
-          height: px2rem(24);
+          width: 24px;
+          height: 24px;
         }
 
         .food_group_order_label {
           display: inline-block;
           vertical-align: middle;
-          font-size: px2rem(24);
+          font-size: 24px;
           color: #999999;
         }
       }
@@ -256,24 +256,24 @@
 
   .food {
     position: relative;
-    margin-left: px2rem(20);
-    margin-right: px2rem(10);
+    margin-left: 20px;
+    margin-right: 10px;
   }
 
   .food_category_anchor {
     position: absolute;
-    top: px2rem(-100)
+    top: -100px
   }
 
   .food_image_box {
     position: absolute;
     background: white;
-    top: px2rem(-10);
-    left: px2rem(-10);
-    width: px2rem(200);
-    height: px2rem(200);
-    border-radius: px2rem(10);
-    box-shadow: 0 0 px2rem(5) rgba(0, 0, 0, 0.2);
+    top: -10px;
+    left: -10px;
+    width: 200px;
+    height: 200px;
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     overflow: hidden;
   }
 
@@ -289,11 +289,11 @@
     top: 0;
     left: 0;
     color: white;
-    height: px2rem(40);
-    font-size: px2rem(24);
-    line-height: px2rem(40);
+    height: 40px;
+    font-size: 24px;
+    line-height: 40px;
     font-weight: 400;
-    border-radius: px2rem(10) 0 px2rem(0) px2rem(0);
+    border-radius: 10px 0 0 0;
   }
 
   .food_info_box {
@@ -302,59 +302,59 @@
 
   .food_info {
     position: relative;
-    height: px2rem(180);
-    margin-right: px2rem(30);
+    height: 180px;
+    margin-right: 30px;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
 
     .food_name {
-      margin-top: px2rem(20);
-      font-size: px2rem(32);
+      margin-top: 20px;
+      font-size: 32px;
       font-weight: 400;
       color: #333333;
     }
 
     .food_detail {
-      margin-top: px2rem(10);
-      font-size: px2rem(24);
+      margin-top: 10px;
+      font-size: 24px;
       color: #999999;
       font-weight: 400;
-      height: px2rem(26);
+      height: 26px;
     }
 
     .food_price_box {
       position: absolute;
-      bottom: px2rem(20);
+      bottom: 20px;
 
       .food_price_now {
         display: inline-block;
-        font-size: px2rem(42);
+        font-size: 42px;
         color: #f52626;
       }
 
       .food_price_now:before {
         content: "¥";
-        font-size: px2rem(26);
-        line-height: px2rem(42);
+        font-size: 26px;
+        line-height: 42px;
         color: #f52626;
-        margin-right: px2rem(5);
+        margin-right: 5px;
       }
 
       .food_price_original {
         display: inline-block;
         text-decoration: line-through;
-        font-size: px2rem(24);
-        line-height: px2rem(24);
+        font-size: 24px;
+        line-height: 24px;
         color: #999999;
       }
 
       .food_price_original:before {
         content: "¥";
-        font-size: px2rem(18);
-        line-height: px2rem(24);
+        font-size: 18px;
+        line-height: 24px;
         color: #999999;
-        margin-right: px2rem(5);
+        margin-right: 5px;
         text-decoration: line-through;
       }
     }
@@ -362,22 +362,22 @@
 
   .food_button {
     position: absolute;
-    right: px2rem(20);
-    bottom: px2rem(20);
+    right: 20px;
+    bottom: 20px;
 
     .food_button_zero {
       background-image: url("/img/c/food/food_add_zero.png");
       background-repeat: no-repeat;
       background-size: 100% 100%;
-      height: px2rem(40);
-      width: px2rem(40);
+      height: 40px;
+      width: 40px;
     }
 
     .food_button_count {
       color: #333333;
       float: right;
-      line-height: px2rem(40);
-      padding: 0 px2rem(20);
+      line-height: 40px;
+      padding: 0 20px;
     }
 
     .food_button_add {
@@ -385,8 +385,8 @@
       background-repeat: no-repeat;
       background-size: 100% 100%;
       float: right;
-      height: px2rem(40);
-      width: px2rem(40);
+      height: 40px;
+      width: 40px;
     }
 
     .food_button_minus {
@@ -394,8 +394,8 @@
       background-repeat: no-repeat;
       background-size: 100% 100%;
       float: right;
-      height: px2rem(40);
-      width: px2rem(40);
+      height: 40px;
+      width: 40px;
     }
   }
 
@@ -403,8 +403,8 @@
     background-image: url("/img/c/food/food_status_online.png");
     background-repeat: no-repeat;
     background-size: 100% 100%;
-    height: px2rem(101);
-    width: px2rem(91);
+    height: 101px;
+    width: 91px;
 
     position: absolute;
     bottom: 0;
@@ -415,8 +415,8 @@
     background-image: url("/img/c/food/food_status_offline.png");
     background-repeat: no-repeat;
     background-size: 100% 100%;
-    height: px2rem(101);
-    width: px2rem(91);
+    height: 101px;
+    width: 91px;
 
     position: absolute;
     bottom: 0;
@@ -427,8 +427,8 @@
     background-image: url("/img/c/food/food_status_sold_out.png");
     background-repeat: no-repeat;
     background-size: 100% 100%;
-    height: px2rem(101);
-    width: px2rem(91);
+    height: 101px;
+    width: 91px;
 
     position: absolute;
     bottom: 0;
@@ -442,7 +442,7 @@
 
 .cart {
   position: fixed;
-  bottom: px2rem(95);
+  bottom: 95px;
   background: white;
   width: 100%;
   z-index: 9 + 1;
@@ -450,15 +450,15 @@
 
   .cart_title {
     background: #F3F4F6;
-    height: px2rem(80);
-    border-top: solid px2rem(1) rgba(230, 230, 230, 0.5);
+    height: 80px;
+    border-top: solid 1px rgba(230, 230, 230, 0.5);
 
     .cart_title_label {
       display: inline-block;
       color: #333333;
-      font-size: px2rem(28);
-      margin-left: px2rem(30);
-      line-height: px2rem(80);
+      font-size: 28px;
+      margin-left: 30px;
+      line-height: 80px;
     }
 
     .cart_title_delete {
@@ -470,8 +470,8 @@
         background-image: url("/img/common/delete.png");
         background-repeat: no-repeat;
         background-size: 100% 100%;
-        height: px2rem(30);
-        width: px2rem(28);
+        height: 30px;
+        width: 28px;
 
         position: absolute;
         top: 50%;
@@ -482,9 +482,9 @@
         text-align: right;
         color: #333333;
 
-        line-height: px2rem(80);
+        line-height: 80px;
         margin-left: px2rem(28 + 10);
-        margin-right: px2rem(20);
+        margin-right: 20px;
       }
     }
   }
@@ -493,20 +493,20 @@
     position: relative;
     overflow-y: auto;
     width: 100%;
-    min-height: px2rem(0);
-    max-height: px2rem(450);
+    min-height: 0;
+    max-height: 450px;
 
     .cart_food {
       position: relative;
-      height: px2rem(90);
-      font-size: px2rem(28);
+      height: 90px;
+      font-size: 28px;
 
       .cart_food_info {
         position: absolute;
         left: 0;
         top: 0;
-        height: px2rem(90);
-        right: px2rem(280);
+        height: 90px;
+        right: 280px;
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
@@ -514,15 +514,15 @@
         .cart_food_name {
           display: inline-block;
           color: #333333;
-          margin-left: px2rem(45);
-          line-height: px2rem(90);
+          margin-left: 45px;
+          line-height: 90px;
         }
 
         .cart_food_detail {
           display: inline-block;
           color: #666666;
-          margin-left: px2rem(5);
-          line-height: px2rem(90);
+          margin-left: 5px;
+          line-height: 90px;
         }
       }
 
@@ -531,28 +531,28 @@
         position: absolute;
         top: 0;
 
-        line-height: px2rem(90);
-        right: px2rem(200);
+        line-height: 90px;
+        right: 200px;
       }
 
       .cart_food_price:before {
         content: "¥";
-        font-size: px2rem(22);
-        line-height: px2rem(90);
+        font-size: 22px;
+        line-height: 90px;
         color: #f52626;
-        margin-right: px2rem(5);
+        margin-right: 5px;
       }
 
       .cart_food_button {
         position: absolute;
-        right: px2rem(30);
+        right: 30px;
         top: px2rem((90 - 40) / 2);
 
         .cart_food_button_count {
           color: #666666;
           float: right;
-          line-height: px2rem(40);
-          padding: 0 px2rem(20);
+          line-height: 40px;
+          padding: 0 20px;
         }
 
         .cart_food_button_add {
@@ -560,8 +560,8 @@
           background-repeat: no-repeat;
           background-size: 100% 100%;
           float: right;
-          height: px2rem(40);
-          width: px2rem(40);
+          height: 40px;
+          width: 40px;
         }
 
         .cart_food_button_minus {
@@ -569,8 +569,8 @@
           background-repeat: no-repeat;
           background-size: 100% 100%;
           float: right;
-          height: px2rem(40);
-          width: px2rem(40);
+          height: 40px;
+          width: 40px;
         }
       }
     }
@@ -579,31 +579,31 @@
 
 .footer {
   position: fixed;
-  height: px2rem(95);
+  height: 95px;
   background: white;
   width: 100%;
   left: 0;
   bottom: 0;
-  border-top: solid px2rem(1) rgba(230, 230, 230, 0.5);
+  border-top: solid 1px rgba(230, 230, 230, 0.5);
   z-index: 9 + 1;
 
   .footer_cart_box {
     position: absolute;
-    height: px2rem(110);
-    width: px2rem(110);
+    height: 110px;
+    width: 110px;
 
-    border: solid px2rem(1) rgba(230, 230, 230, 0.5);
-    box-shadow: 0 0 px2rem(5) rgba(0, 0, 0, 0.2);
+    border: solid 1px rgba(230, 230, 230, 0.5);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     border-radius: 50%;
-    bottom: px2rem(10);
-    left: px2rem(30);
+    bottom: 10px;
+    left: 30px;
 
     .footer_cart {
       background-image: url("/img/c/food/food_cart.png");
       background-repeat: no-repeat;
       background-size: 100% 100%;
-      width: px2rem(110);
-      height: px2rem(110);
+      width: 110px;
+      height: 110px;
       border-radius: 50%;
       top: 0;
       left: 0;
@@ -613,8 +613,8 @@
       background-image: url("/img/c/food/food_cart_extend.png");
       background-repeat: no-repeat;
       background-size: 100% 100%;
-      width: px2rem(110);
-      height: px2rem(110);
+      width: 110px;
+      height: 110px;
       border-radius: 50%;
       top: 0;
       left: 0;
@@ -622,45 +622,45 @@
 
     .footer_cart_badge {
       position: absolute;
-      font-size: px2rem(18);
+      font-size: 18px;
       font-weight: 400;
-      line-height: px2rem(32);
+      line-height: 32px;
       color: white;
       text-align: center;
 
       background: linear-gradient(90deg, rgba(255, 51, 68, 1), rgba(255, 136, 51, 1));
       border-radius: 50%;
-      width: px2rem(32);
-      height: px2rem(32);
+      width: 32px;
+      height: 32px;
 
-      top: px2rem(15);
-      right: px2rem(5);
+      top: 15px;
+      right: 5px;
     }
   }
 
   .footer_price {
     position: relative;
     margin-left: px2rem(30 + 110 + 30);
-    font-size: px2rem(28);
-    line-height: px2rem(95);
+    font-size: 28px;
+    line-height: 95px;
     color: #f52626;
   }
 
   .footer_price:before {
     content: "合计";
     position: relative;
-    margin-right: px2rem(10);
-    font-size: px2rem(28);
-    line-height: px2rem(95);
+    margin-right: 10px;
+    font-size: 28px;
+    line-height: 95px;
     color: #666666;
   }
 
   .footer_price:after {
     content: "元";
     position: relative;
-    margin-left: px2rem(10);
-    font-size: px2rem(28);
-    line-height: px2rem(95);
+    margin-left: 10px;
+    font-size: 28px;
+    line-height: 95px;
     color: #666666;
   }
 
@@ -668,12 +668,12 @@
     display: inline-block;
     color: white;
     background: linear-gradient(90deg, rgba(255, 51, 68, 1), rgba(255, 136, 51, 1));
-    border-radius: px2rem(30);
-    width: px2rem(160);
-    height: px2rem(60);
-    line-height: px2rem(60);
+    border-radius: 30px;
+    width: 160px;
+    height: 60px;
+    line-height: 60px;
     text-align: center;
-    right: px2rem(30);
+    right: 30px;
 
     position: absolute;
     top: 50%;
@@ -687,94 +687,94 @@
 }
 
 .category_food {
-  margin-top: px2rem(50);
+  margin-top: 50px;
   position: relative;
-  height: px2rem(180);
-  margin-bottom: px2rem(50);
-  margin-left: px2rem(35);
+  height: 180px;
+  margin-bottom: 50px;
+  margin-left: 35px;
 
   .category_food_image {
     background-repeat: no-repeat;
     background-size: 100% 100%;
 
     position: absolute;
-    height: px2rem(200);
-    width: px2rem(200);
-    top: px2rem(-10);
-    left: px2rem(-10);
+    height: 200px;
+    width: 200px;
+    top: -10px;
+    left: -10px;
   }
 
   .category_food_info {
     position: relative;
-    margin-right: px2rem(30);
+    margin-right: 30px;
     margin-left: px2rem(200 + 30);
-    top: px2rem(20);
+    top: 20px;
 
     .category_food_name {
-      font-size: px2rem(32);
+      font-size: 32px;
       color: #333333;
     }
 
     .category_food_detail {
-      margin-top: px2rem(5);
-      font-size: px2rem(24);
+      margin-top: 5px;
+      font-size: 24px;
       color: #666666;
     }
 
     .category_food_price {
-      margin-top: px2rem(15);
+      margin-top: 15px;
 
       .category_food_price_now {
         display: inline-block;
-        font-size: px2rem(36);
-        line-height: px2rem(36);
+        font-size: 36px;
+        line-height: 36px;
         color: #f52626;
       }
 
       .category_food_price_now:before {
         content: "¥";
 
-        line-height: px2rem(36);
+        line-height: 36px;
         color: #f52626;
-        margin-right: px2rem(5);
+        margin-right: 5px;
       }
 
       .category_food_price_original {
         display: inline-block;
         text-decoration: line-through;
-        font-size: px2rem(24);
-        line-height: px2rem(24);
+        font-size: 24px;
+        line-height: 24px;
         color: #999999;
       }
 
       .category_food_price_original:before {
         content: "¥";
-        font-size: px2rem(18);
-        line-height: px2rem(24);
+        font-size: 18px;
+        line-height: 24px;
         text-decoration: line-through;
         color: #999999;
-        margin-right: px2rem(5);
+        margin-right: 5px;
       }
     }
   }
 }
 
 .category_label {
-  margin-top: px2rem(20);
-  font-size: px2rem(28);
+  margin-top: 20px;
+  font-size: 28px;
   color: #333333;
-  margin-left: px2rem(35);
+  margin-left: 35px;
 }
 
 .category_box {
-  margin: px2rem(30) px2rem(30) 0;
+  margin: 30px 30px 0;
 
   .category_one {
     display: inline-block;
     float: left;
     width: 33.33%;
     text-align: center;
-    margin-bottom: px2rem(30);
+    margin-bottom: 30px;
 
     .category_one_name {
       display: inline-block;
@@ -782,7 +782,7 @@
       background: #F5F5F5;
       color: #666666;
       width: 80%;
-      padding: px2rem(10);
+      padding: 10px;
     }
 
     .category_one_name_select {
@@ -791,22 +791,22 @@
       background: #FEE9E9;
       color: #f52626;
       width: 80%;
-      padding: px2rem(10);
+      padding: 10px;
     }
   }
 }
 
 .category_blank {
-  height: px2rem(80);
+  height: 80px;
 }
 
 .food_add {
-  margin-top: px2rem(10);
+  margin-top: 10px;
   background: white;
-  height: px2rem(88);
+  height: 88px;
   text-align: center;
-  margin-left: px2rem(10);
-  margin-right: px2rem(10);
+  margin-left: 10px;
+  margin-right: 10px;
 
   .food_add_icon {
     display: inline-block;
@@ -814,15 +814,15 @@
     background-image: url("/img/c/food/food_new.png");
     background-repeat: no-repeat;
     background-size: 100% 100%;
-    height: px2rem(32);
-    width: px2rem(32);
+    height: 32px;
+    width: 32px;
   }
 
   .food_add_label {
     display: inline-block;
     vertical-align: middle;
-    font-size: px2rem(28);
+    font-size: 28px;
     color: #f52626;
-    line-height: px2rem(88);
+    line-height: 88px;
   }
 }

@@ -53,7 +53,7 @@
   @import '~assets/common';
 
   #captcha_canvas {
-    border-top: solid px2rem(1) rgba(230, 230, 230, 0.5);
+    border-top: solid 1px rgba(230, 230, 230, 0.5);
     width: 100% !important;
     height: auto !important;
   }

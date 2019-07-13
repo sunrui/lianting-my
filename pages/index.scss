@@ -1,19 +1,19 @@
 .wechat {
   position: relative;
-  margin-top: px2rem(150);
+  margin-top: 150px;
   text-align: center;
 
   .wechat_title {
     color: #666666;
-    font-size: px2rem(32);
+    font-size: 32px;
   }
 
   .wechat_icon {
     display: inline-block;
-    margin-top: px2rem(50);
+    margin-top: 50px;
     background-image: url("/img/wechat.png");
     background-size: 100% 100%;
-    width: px2rem(430);
-    height: px2rem(430);
+    width: 430px;
+    height: 430px;
   }
 }

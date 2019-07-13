@@ -1,36 +1,36 @@
 .top_blank {
-  height: px2rem(180);
+  height: 180px;
 }
 
 .food_group {
   background: white;
-  margin-bottom: px2rem(120);
+  margin-bottom: 120px;
 
   .group_box_name {
-    font-size: px2rem(36);
+    font-size: 36px;
     text-align: center;
-    padding: px2rem(25);
+    padding: 25px;
   }
 }
 
 .shop_logo_radius_center {
-  margin-top: px2rem(-75);
+  margin-top: -75px;
 }
 
 .shop_short_id {
-  margin: px2rem(20) px2rem(35);
+  margin: 20px 35px;
 }
 
 .shop_title {
   position: relative;
-  padding-top: px2rem(100);
+  padding-top: 100px;
 
   .shop_title_name {
     display: inline-block;
     vertical-align: top;
-    font-size: px2rem(30);
-    height: px2rem(30);
-    line-height: px2rem(30);
+    font-size: 30px;
+    height: 30px;
+    line-height: 30px;
   }
 }
 
@@ -41,33 +41,33 @@
   .shop_role_one {
     display: inline-block;
     width: 20%;
-    height: px2rem(100);
-    margin-top: px2rem(10);
-    margin-bottom: px2rem(20);
+    height: 100px;
+    margin-top: 10px;
+    margin-bottom: 20px;
 
     .shop_role_one_logo {
       display: inline-block;
-      width: px2rem(64);
-      height: px2rem(64);
+      width: 64px;
+      height: 64px;
     }
 
     .shop_role_one_label {
-      margin-top: px2rem(5);
+      margin-top: 5px;
     }
   }
 }
 
 .shop_divide {
-  height: px2rem(150);
+  height: 150px;
 }
 
 .shop_create {
-  margin-top: px2rem(80);
-  margin-bottom: px2rem(30);
+  margin-top: 80px;
+  margin-bottom: 30px;
   text-align: center;
 
   .shop_create_button {
     color: #999999;
-    font-size: px2rem(28);
+    font-size: 28px;
   }
 }

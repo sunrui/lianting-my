@@ -21,13 +21,13 @@
       background-image: url("/img/common/loading.png");
       background-repeat: no-repeat;
       background-size: 100% 100%;
-      width: px2rem(320);
-      height: px2rem(320);
+      width: 320px;
+      height: 320px;
     }
 
     .loading_label {
-      margin-top: px2rem(10);
-      font-size: px2rem(30);
+      margin-top: 10px;
+      font-size: 30px;
       color: #666666;
     }
   }

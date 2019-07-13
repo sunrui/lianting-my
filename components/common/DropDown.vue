@@ -63,8 +63,8 @@
 <style scoped lang="scss">
   .btn-group {
     position: relative;
-    min-width: px2rem(100);
-    height: px2rem(40);
+    min-width: 100px;
+    height: 40px;
     display: inline-block;
   }
 
@@ -74,11 +74,11 @@
 
   .dropdown-toggle {
     color: #333333;
-    min-width: px2rem(100);
-    padding: px2rem(10);
+    min-width: 100px;
+    padding: 10px;
     text-transform: none;
     font-weight: 400;
-    margin-bottom: px2rem(7);
+    margin-bottom: 7px;
     transition: background .3s ease-out;
     float: none;
     box-shadow: none;
@@ -97,20 +97,20 @@
     left: 0;
     z-index: 100;
     float: left;
-    min-width: px2rem(100);
-    padding: px2rem(5) 0;
-    margin: px2rem(1) 0 0;
+    min-width: 100px;
+    padding: 5px 0;
+    margin: 1px 0 0;
     list-style: none;
     text-align: left;
     background-color: #fff;
-    border: px2rem(1) solid rgba(230, 230, 230, 0.5);
-    border-radius: px2rem(4);
-    box-shadow: 0 px2rem(6) px2rem(12) rgba(0, 0, 0, 0.175);
+    border: 1px solid rgba(230, 230, 230, 0.5);
+    border-radius: 4px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
     background-clip: padding-box;
   }
 
   .dropdown-menu > li > a {
-    padding: px2rem(10) px2rem(30);
+    padding: 10px 30px;
     display: block;
     clear: both;
     font-weight: normal;
@@ -134,13 +134,13 @@
   .caret {
     width: 0;
     position: relative;
-    top: px2rem(10);
+    top: 10px;
     height: 0;
-    margin-left: px2rem(1);
+    margin-left: 1px;
     vertical-align: middle;
-    border-top: px2rem(10) dashed;
-    border-right: px2rem(10) solid transparent;
-    border-left: px2rem(10) solid transparent;
+    border-top: 10px dashed;
+    border-right: 10px solid transparent;
+    border-left: 10px solid transparent;
     float: right;
   }
 

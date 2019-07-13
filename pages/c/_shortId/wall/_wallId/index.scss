@@ -4,34 +4,34 @@
 
 .wall_message_reply_more {
   position: relative;
-  margin-top: px2rem(10);
+  margin-top: 10px;
 
   .wall_message_one {
     display: inline-block;
     vertical-align: middle;
-    margin-left: px2rem(25);
+    margin-left: 25px;
 
     .wall_message_icon {
       display: inline-block;
       vertical-align: middle;
-      margin-left: px2rem(10);
-      width: px2rem(32);
-      height: px2rem(32);
+      margin-left: 10px;
+      width: 32px;
+      height: 32px;
     }
 
     .wall_message_label {
       display: inline-block;
       vertical-align: middle;
       color: #999999;
-      line-height: px2rem(32);
-      margin-left: px2rem(7);
+      line-height: 32px;
+      margin-left: 7px;
     }
   }
 
   .wall_message_order_menu {
     display: inline-block;
     vertical-align: middle;
-    margin-right: px2rem(25);
+    margin-right: 25px;
     float: right;
 
     .wall_message_order_menu_icon {
@@ -40,20 +40,20 @@
       background-image: url("/img/c/wall/wall_menu.png");
       background-repeat: no-repeat;
       background-size: 100% 100%;
-      height: px2rem(32);
-      width: px2rem(32);
+      height: 32px;
+      width: 32px;
     }
 
     .wall_message_order_menu_label {
       display: inline-block;
-      margin-right: px2rem(5);
+      margin-right: 5px;
     }
   }
 }
 
 .wall_message_menu {
   float: right;
-  line-height: px2rem(32);
+  line-height: 32px;
 
   .wall_order_menu_icon {
     display: inline-block;
@@ -61,20 +61,20 @@
     background-image: url("/img/c/wall/wall_menu.png");
     background-repeat: no-repeat;
     background-size: 100% 100%;
-    height: px2rem(32);
-    width: px2rem(32);
+    height: 32px;
+    width: 32px;
   }
 
   .wall_order_menu_label {
     display: inline-block;
-    margin-right: px2rem(5);
+    margin-right: 5px;
   }
 }
 
 .wall_user_reply_content {
   margin-left: px2rem(80 + 20);
-  margin-top: px2rem(20);
-  margin-bottom: px2rem(30);
+  margin-top: 20px;
+  margin-bottom: 30px;
   color: #666666;
 }
 
@@ -82,26 +82,26 @@
   position: fixed;
   bottom: 0;
   width: 100%;
-  height: px2rem(100);
+  height: 100px;
   background: white;
-  border-top: solid px2rem(1) rgba(230, 230, 230, 0.5);
+  border-top: solid 1px rgba(230, 230, 230, 0.5);
 
   .wall_reply_content {
-    border-radius: px2rem(70/2);
+    border-radius: px2rem(70 / 2);
     background: #F0F1F2;
-    height: px2rem(70);
+    height: 70px;
 
-    right: px2rem(110);
-    left: px2rem(20);
+    right: 110px;
+    left: 20px;
 
     position: absolute;
     top: 50%;
     transform: translate(0, -50%);
 
     .wall_reply_input {
-      padding: 0 px2rem(25);
+      padding: 0 25px;
       color: #666666;
-      line-height: px2rem(70);
+      line-height: 70px;
       width: 100%;
       border: none;
       outline: medium;
@@ -115,14 +115,14 @@
     vertical-align: middle;
     text-align: center;
     color: #f52626;
-    font-size: px2rem(28);
-    width: px2rem(110);
-    line-height: px2rem(100);
+    font-size: 28px;
+    width: 110px;
+    line-height: 100px;
   }
 }
 
 .wall_reply_empty {
   text-align: center;
-  margin: px2rem(50);
+  margin: 50px;
   color: #999999;
 }

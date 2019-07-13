@@ -10,42 +10,42 @@
   position: absolute;
   text-align: center;
   vertical-align: middle;
-  right: px2rem(40);
+  right: 40px;
   top: 50%;
   transform: translate(0, -50%);
 
-  width: px2rem(120);
-  height: px2rem(48);
-  border-radius: px2rem(24);
+  width: 120px;
+  height: 48px;
+  border-radius: 24px;
 
-  font-size: px2rem(26);
+  font-size: 26px;
   font-weight: 400;;
   color: rgba(255, 255, 255, 1);
-  line-height: px2rem(48);
+  line-height: 48px;
 }
 
 .order_food_button_finish {
   background: linear-gradient(90deg, rgba(255, 51, 68, 1), rgba(255, 136, 51, 1)) !important;
-  box-shadow: 0 0 px2rem(5) rgba(255, 65, 65, 0.2) !important;
+  box-shadow: 0 0 5px rgba(255, 65, 65, 0.2) !important;
 }
 
 .order_food_button_cooking {
   background: linear-gradient(90deg, rgba(55, 209, 133, 1), rgba(51, 217, 173, 1)) !important;
-  box-shadow: 0 0 px2rem(5) rgba(54, 211, 142, 0.2) !important;
+  box-shadow: 0 0 5px rgba(54, 211, 142, 0.2) !important;
 }
 
 .order_food_button_cooked {
   background: linear-gradient(90deg, rgba(206, 107, 254, 1), rgba(244, 123, 251, 1)) !important;
-  box-shadow: 0 0 px2rem(5) rgba(215, 111, 253, 0.2) !important;
+  box-shadow: 0 0 5px rgba(215, 111, 253, 0.2) !important;
 }
 
 .order_food_button_return {
   background: linear-gradient(90deg, rgba(246, 88, 132, 1), rgba(242, 100, 109, 1)) !important;
-  box-shadow: 0 0 px2rem(5) rgba(245, 91, 126, 0.2) !important;
+  box-shadow: 0 0 5px rgba(245, 91, 126, 0.2) !important;
 }
 
 .order_operator {
-  height: px2rem(200);
+  height: 200px;
   position: relative;
   text-align: center;
 
@@ -62,7 +62,7 @@
 
   .order_operator_status {
     position: relative;
-    height: px2rem(25);
+    height: 25px;
     text-align: center;
 
     .order_operator_line_left {
@@ -73,7 +73,7 @@
 
       width: 50%;
       background: rgba(204, 204, 204, 1);
-      height: px2rem(1);
+      height: 1px;
     }
 
     .order_operator_line_right {
@@ -84,15 +84,15 @@
 
       width: 50%;
       background: rgba(204, 204, 204, 1);
-      height: px2rem(1);
+      height: 1px;
     }
 
     .order_operator_ball {
       position: absolute;
       top: 50%;
       transform: translate(0, -50%);
-      width: px2rem(25);
-      height: px2rem(25);
+      width: 25px;
+      height: 25px;
       border-radius: 50%;
       left: 0;
       right: 0;
@@ -118,8 +118,8 @@
 
     .order_operator_ball_dot {
       position: absolute;
-      width: px2rem(15);
-      height: px2rem(15);
+      width: 15px;
+      height: 15px;
       background: rgba(204, 204, 204, 1);
       border-radius: 50%;
 
@@ -155,9 +155,9 @@
 
   .order_operator_label_time {
     color: #999999;
-    font-size: px2rem(24);
-    height: px2rem(24);
-    margin-top: px2rem(5);
+    font-size: 24px;
+    height: 24px;
+    margin-top: 5px;
   }
 
   .order_operator_label_wait {
@@ -182,14 +182,14 @@
 
   .return_food_category_name {
     display: inline-block;
-    font-size: px2rem(28);
+    font-size: 28px;
     font-weight: 400;
     color: #333333;
   }
 
   .return_food_name {
     display: inline-block;
-    margin-left: px2rem(5);
+    margin-left: 5px;
     font-weight: 400;
     color: #666666;
   }
@@ -197,7 +197,7 @@
   .return_food_count {
     display: inline-block;
     color: #F52626;
-    font-size: px2rem(28);
+    font-size: 28px;
     font-weight: 400;
     float: right;
   }
@@ -208,8 +208,8 @@
 
   .return_count_label {
     display: inline-block;
-    font-size: px2rem(28);
-    line-height: px2rem(40);
+    font-size: 28px;
+    line-height: 40px;
     color: #333333;
   }
 
@@ -217,20 +217,20 @@
     display: inline-block;
     color: #F52626;
     overflow-y: auto;
-    height: px2rem(240);
+    height: 240px;
     float: right;
   }
 }
 
 .change_price_label {
   display: inline-block;
-  margin-left: px2rem(35);
-  font-size: px2rem(28);
+  margin-left: 35px;
+  font-size: 28px;
 }
 
 .change_price_input {
   display: inline-block;
-  margin-right: px2rem(35);
+  margin-right: 35px;
   color: #666666;
   text-align: right;
   width: 70%;

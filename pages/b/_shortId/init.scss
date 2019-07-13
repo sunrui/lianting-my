@@ -5,13 +5,13 @@
 }
 
 .init_house {
-  margin-top: px2rem(20);
+  margin-top: 20px;
   display: inline-block;
 
   background: url("/img/b/init/b_init_house.png") no-repeat;
   background-size: 120% 120%;
-  width: px2rem(448);
-  height: px2rem(448);
+  width: 448px;
+  height: 448px;
 }
 
 .task {
@@ -20,9 +20,9 @@
 
 .task_one {
   position: relative;
-  margin-top: px2rem(20);
+  margin-top: 20px;
   text-align: left;
-  height: px2rem(120);
+  height: 120px;
 
   .task_one_number {
     position: relative;
@@ -30,24 +30,24 @@
     text-align: center;
     color: white;
     font-weight: 400;;
-    line-height: px2rem(38);
-    width: px2rem(38);
-    height: px2rem(38);
+    line-height: 38px;
+    width: 38px;
+    height: 38px;
     background: rgba(255, 65, 65, 1);
     border-radius: 50%;
   }
 
   .task_one_content {
     display: inline-block;
-    border: solid px2rem(1) rgba(221, 221, 221, 1);
-    border-radius: px2rem(10);
-    height: px2rem(120);
-    width: px2rem(580);
-    margin-left: px2rem(20);
+    border: solid 1px rgba(221, 221, 221, 1);
+    border-radius: 10px;
+    height: 120px;
+    width: 580px;
+    margin-left: 20px;
 
     .task_one_content_label {
-      line-height: px2rem(120);
-      margin-left: px2rem(30);
+      line-height: 120px;
+      margin-left: 30px;
       color: #999999;
     }
 
@@ -58,8 +58,8 @@
 
       background-image: url("/img/b/init/b_init_finish.png");
       background-size: 100% 100%;
-      width: px2rem(103);
-      height: px2rem(107);
+      width: 103px;
+      height: 107px;
     }
   }
 }

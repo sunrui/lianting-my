@@ -1,15 +1,15 @@
 .food_group_private_room {
   background: linear-gradient(90deg, rgba(255, 51, 68, 1), rgba(255, 136, 51, 1));
-  border-radius: px2rem(5);
-  padding: 0 px2rem(5);
-  height: px2rem(32);
-  left: px2rem(40);
+  border-radius: 5px;
+  padding: 0 5px;
+  height: 32px;
+  left: 40px;
 
   display: inline-block;
   vertical-align: middle;
   color: white;
-  font-size: px2rem(24);
-  line-height: px2rem(32);
+  font-size: 24px;
+  line-height: 32px;
   text-align: center;
 }
 
@@ -17,34 +17,34 @@
   display: inline-block;
   vertical-align: middle;
   float: right;
-  line-height: px2rem(110);
-  margin-right: px2rem(35);
-  font-size: px2rem(28);
+  line-height: 110px;
+  margin-right: 35px;
+  font-size: 28px;
 
   .food_group_right_remark {
     color: #999999;
-    line-height: px2rem(110);
-    margin-right: px2rem(5);
+    line-height: 110px;
+    margin-right: 5px;
   }
 
   .food_group_right_people {
     color: #666666;
-    line-height: px2rem(110);
+    line-height: 110px;
   }
 }
 
 .table {
   position: relative;
-  height: px2rem(120);
-  margin-left: px2rem(10);
-  margin-right: px2rem(10);
+  height: 120px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .table_number {
   display: inline-block;
-  font-size: px2rem(54);
+  font-size: 54px;
   color: #f52626;
-  line-height: px2rem(120);
+  line-height: 120px;
   margin-left: px2rem(35 + 48 + 20);
 }
 
@@ -52,9 +52,9 @@
   background-image: url("/img/b/menu/b_menu_captcha.png");
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  width: px2rem(48);
-  height: px2rem(48);
-  margin-left: px2rem(35);
+  width: 48px;
+  height: 48px;
+  margin-left: 35px;
 
   position: absolute;
   top: 50%;
@@ -65,9 +65,9 @@
   background-image: url("/img/b/table/b_table_idle.png");
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  width: px2rem(48);
-  height: px2rem(48);
-  right: px2rem(35);
+  width: 48px;
+  height: 48px;
+  right: 35px;
 
   position: absolute;
   top: 50%;
@@ -77,8 +77,8 @@
 .table_busy {
   position: absolute;
   top: 0;
-  right: px2rem(35);
-  left: px2rem(150);
+  right: 35px;
+  left: 150px;
   height: 100%;
   text-align: right;
 
@@ -87,63 +87,63 @@
   }
 
   .table_extra {
-    margin-top: px2rem(20);
+    margin-top: 20px;
   }
 
   .table_one {
     display: inline-block;
-    margin-left: px2rem(20);
+    margin-left: 20px;
 
     .table_one_icon {
       display: inline-block;
       vertical-align: top;
-      width: px2rem(28);
-      height: px2rem(28);
+      width: 28px;
+      height: 28px;
     }
 
     .table_one_label {
       display: inline-block;
       vertical-align: top;
-      line-height: px2rem(28);
+      line-height: 28px;
       color: #999999;
     }
   }
 }
 
 .modal_group {
-  max-height: px2rem(500);
+  max-height: 500px;
   overflow-y: auto;
 
   .modal_group_name {
     clear: both;
     text-align: left;
-    margin-left: px2rem(30);
-    height: px2rem(40);
+    margin-left: 30px;
+    height: 40px;
 
     .modal_group_name_label {
       display: inline-block;
       color: #333333;
-      font-size: px2rem(28);
-      line-height: px2rem(40);
+      font-size: 28px;
+      line-height: 40px;
     }
 
     .modal_group_name_people {
       display: inline-block;
       color: #666666;
-      font-size: px2rem(26);
-      line-height: px2rem(40);
+      font-size: 26px;
+      line-height: 40px;
     }
   }
 
   .modal_group_box {
-    margin: px2rem(30) px2rem(30);
+    margin: 30px 30px;
 
     .modal_group_one {
       display: inline-block;
       float: left;
       width: 33.33%;
       text-align: center;
-      margin-bottom: px2rem(30);
+      margin-bottom: 30px;
       height: px2rem(26 + 10 + 10);
 
       .modal_group_one_name {
@@ -152,7 +152,7 @@
         background: #F5F5F5;
         color: #666666;
         width: 80%;
-        padding: px2rem(10);
+        padding: 10px;
       }
 
       .modal_group_one_name_select {
@@ -161,7 +161,7 @@
         background: #FEE9E9;
         color: #f52626;
         width: 80%;
-        padding: px2rem(10);
+        padding: 10px;
         font-weight:bold;
       }
 
@@ -169,11 +169,11 @@
         display: inline-block;
 
         background: white;
-        border: px2rem(1) solid #f52626;
+        border: 1px solid #f52626;
 
         color: #f52626;
         width: 80%;
-        padding: px2rem(10);
+        padding: 10px;
       }
     }
   }

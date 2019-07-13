@@ -1,15 +1,15 @@
 .order_food {
   background: white;
-  padding: 0 px2rem(35);
+  padding: 0 35px;
 
   .order_food_one {
-    height: px2rem(90);
+    height: 90px;
 
     .order_food_name {
       display: inline-block;
-      line-height: px2rem(90);
+      line-height: 90px;
       color: #666666;
-      font-size: px2rem(28);
+      font-size: 28px;
     }
 
     .order_food_down {
@@ -18,10 +18,10 @@
       background-image: url("/img/common/order_down.png");
       background-repeat: no-repeat;
       background-size: 100% 100%;
-      width: px2rem(32);
-      height: px2rem(32);
+      width: 32px;
+      height: 32px;
       margin-top: px2rem((90 - 32) / 2);
-      margin-left: px2rem(30);
+      margin-left: 30px;
     }
 
     .order_food_up {
@@ -30,8 +30,8 @@
       background-image: url("/img/common/order_up.png");
       background-repeat: no-repeat;
       background-size: 100% 100%;
-      width: px2rem(32);
-      height: px2rem(32);
+      width: 32px;
+      height: 32px;
       margin-top: px2rem((90 - 32) / 2);
     }
   }

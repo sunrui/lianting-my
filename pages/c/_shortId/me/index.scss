@@ -1,32 +1,32 @@
 .wall_user_info {
   text-align: center;
-  height: px2rem(40);
-  padding-top: px2rem(95);
+  height: 40px;
+  padding-top: 95px;
 
   .wall_user_info_nick {
     display: inline-block;
     vertical-align: middle;
     color: #333333;
-    font-size: px2rem(32);
-    line-height: px2rem(40);
+    font-size: 32px;
+    line-height: 40px;
     text-align: center;
   }
 
   .user_info_edit {
     display: inline-block;
     vertical-align: middle;
-    margin-left: px2rem(5);
+    margin-left: 5px;
     background-image: url("/img/c/me/me_edit.png");
     background-size: 100% 100%;
-    height: px2rem(28);
-    width: px2rem(28);
-    line-height: px2rem(40);
+    height: 28px;
+    width: 28px;
+    line-height: 40px;
   }
 }
 
 .user_phone {
   text-align: center;
-  margin-top: px2rem(50);
+  margin-top: 50px;
 
   .user_phone_label {
     color: #666666;
@@ -43,6 +43,6 @@
   position: relative;
   text-align: center;
   color: #999999;
-  margin-top: px2rem(60);
-  font-size: px2rem(28);
+  margin-top: 60px;
+  font-size: 28px;
 }

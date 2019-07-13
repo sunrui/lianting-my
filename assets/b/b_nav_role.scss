@@ -2,46 +2,46 @@
   display: inline-block;
   vertical-align: top;
   background: rgba(245, 38, 38, 0.15);
-  border-radius: px2rem(5);
-  height: px2rem(30);
+  border-radius: 5px;
+  height: 30px;
 
   color: #f52626;
-  font-size: px2rem(22);
-  padding: 0 px2rem(10);
-  line-height: px2rem(30);
+  font-size: 22px;
+  padding: 0 10px;
+  line-height: 30px;
 }
 
 .shop_status_close {
   display: inline-block;
   vertical-align: top;
   background: rgba(153, 153, 153, 0.15);
-  border-radius: px2rem(5);
-  height: px2rem(30);
+  border-radius: 5px;
+  height: 30px;
 
   color: rgb(153, 153, 153);
-  font-size: px2rem(22);
-  padding: 0 px2rem(10);
-  line-height: px2rem(30);
+  font-size: 22px;
+  padding: 0 10px;
+  line-height: 30px;
 }
 
 .shop_nav_box_one_role {
   width: 50% !important;
-  padding-bottom: px2rem(50);
+  padding-bottom: 50px;
 }
 
 .shop_nav_box_one_icon_role {
-  width: px2rem(120) !important;
-  height: px2rem(120) !important;
+  width: 120px !important;
+  height: 120px !important;
 }
 
 .shop_menu {
   position: relative;
-  margin-top: px2rem(50);
+  margin-top: 50px;
 
   .shop_menu_icon {
     display: inline-block;
-    margin: 0 px2rem(50);
-    width: px2rem(48);
-    height: px2rem(48);
+    margin: 0 50px;
+    width: 48px;
+    height: 48px;
   }
 }

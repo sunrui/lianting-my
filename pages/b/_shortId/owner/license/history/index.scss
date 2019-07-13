@@ -3,12 +3,12 @@
 
   .license_label_one {
     position: relative;
-    height: px2rem(60);
-    padding: 0 px2rem(35);
+    height: 60px;
+    padding: 0 35px;
 
     .license_label_one_name {
       display: inline-block;
-      line-height: px2rem(60);
+      line-height: 60px;
       text-align: left;
       color: #333333;
     }
@@ -16,7 +16,7 @@
     .license_label_one_value {
       display: inline-block;
       float: right;
-      line-height: px2rem(60);
+      line-height: 60px;
       text-align: right;
       max-width: 70%;
       color: #666666;

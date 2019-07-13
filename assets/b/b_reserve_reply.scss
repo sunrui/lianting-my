@@ -4,42 +4,42 @@
   height: 100vh;
 
   .reply_label {
-    padding-top: px2rem(50);
+    padding-top: 50px;
     color: #333333;
-    margin-left: px2rem(35);
-    font-size: px2rem(28);
-    margin-bottom: px2rem(30);
+    margin-left: 35px;
+    font-size: 28px;
+    margin-bottom: 30px;
   }
 
   .reply_remark {
     text-align: left;
-    padding: px2rem(0) px2rem(35);
+    padding: 0 35px;
 
     .reply_remark_one {
       display: inline-block;
-      margin-bottom: px2rem(20);
-      margin-right: px2rem(20);
+      margin-bottom: 20px;
+      margin-right: 20px;
 
       .reply_remark_name {
         display: inline-block;
         background: #F5F5F5;
         color: #666666;
-        padding: px2rem(15) px2rem(20);
+        padding: 15px 20px;
       }
 
       .reply_remark_name_select {
         display: inline-block;
         background: #FFEBEB;
         color: #f52626;
-        padding: px2rem(15) px2rem(20);
+        padding: 15px 20px;
       }
     }
   }
 
   .reply_device_area {
     position: relative;
-    margin-top: px2rem(30);
-    padding: 0 px2rem(35);
+    margin-top: 30px;
+    padding: 0 35px;
 
     .reply_device_input {
       border: none;
@@ -47,17 +47,17 @@
       background-color: #F5F5F5;
       color: #666666;
 
-      padding: px2rem(10);
-      width: px2rem(150);
+      padding: 10px;
+      width: 150px;
       height: 100%;
     }
   }
 
   .reply_remark_area {
     position: relative;
-    margin-top: px2rem(30);
-    height: px2rem(190);
-    padding: 0 px2rem(35);
+    margin-top: 30px;
+    height: 190px;
+    padding: 0 35px;
 
     .reply_remark_input {
       border: none;
@@ -66,7 +66,7 @@
       color: #666666;
       resize: none;
 
-      padding: px2rem(10);
+      padding: 10px;
       width: 100%;
       height: 100%;
     }

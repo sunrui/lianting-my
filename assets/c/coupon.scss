@@ -1,6 +1,6 @@
 .coupon {
-  margin-top: px2rem(20);
-  height: px2rem(245);
+  margin-top: 20px;
+  height: 245px;
   background: #FFF8ED;
 }
 
@@ -10,29 +10,29 @@
 
 .coupon_title {
   display: inline-block;
-  height: px2rem(150);
+  height: 150px;
 
   .coupon_title_label {
-    margin-left: px2rem(35);
-    margin-top: px2rem(30);
-    font-size: px2rem(30);
+    margin-left: 35px;
+    margin-top: 30px;
+    font-size: 30px;
     color: #333333;
     font-weight: 400;
   }
 
   .coupon_title_charge {
-    margin-left: px2rem(35);
-    margin-top: px2rem(20);
+    margin-left: 35px;
+    margin-top: 20px;
 
     .coupon_title_charge_icon {
       display: inline-block;
       background: #F7DBA0;
       color: #AA8635;
-      border-radius: px2rem(4);
-      font-size: px2rem(22);
-      height: px2rem(34);
-      line-height: px2rem(34);
-      padding: 0 px2rem(10);
+      border-radius: 4px;
+      font-size: 22px;
+      height: 34px;
+      line-height: 34px;
+      padding: 0 10px;
     }
 
     .coupon_title_charge_icon_disable {
@@ -42,8 +42,8 @@
 
     .coupon_title_charge_label {
       display: inline-block;
-      margin-left: px2rem(5);
-      font-size: px2rem(24);
+      margin-left: 5px;
+      font-size: 24px;
       color: #666666;
     }
   }
@@ -51,21 +51,21 @@
 
 .coupon_price {
   float: right;
-  height: px2rem(150);
+  height: 150px;
   display: inline-block;
-  font-size: px2rem(80);
+  font-size: 80px;
   font-weight: 400;
   color: #F52626;
-  margin-right: px2rem(35);
-  line-height: px2rem(150);
+  margin-right: 35px;
+  line-height: 150px;
 }
 
 .coupon_price:before {
   content: "¥";
-  line-height: px2rem(150);
+  line-height: 150px;
   color: #f52626;
-  font-size: px2rem(40);
-  margin-right: px2rem(5);
+  font-size: 40px;
+  margin-right: 5px;
 }
 
 .coupon_price_disable {
@@ -74,22 +74,22 @@
 
 .coupon_price_disable:before {
   content: "¥";
-  line-height: px2rem(150);
+  line-height: 150px;
   color: #999999;
-  font-size: px2rem(40);
-  margin-right: px2rem(5);
+  font-size: 40px;
+  margin-right: 5px;
 }
 
 .coupon_footer {
   position: relative;
-  padding: 0 px2rem(35);
+  padding: 0 35px;
 
   .coupon_expired_time {
     display: inline-block;
     vertical-align: middle;
     color: #999999;
-    font-size: px2rem(24);
-    line-height: px2rem(58);
+    font-size: 24px;
+    line-height: 58px;
   }
 
   .coupon_button {
@@ -98,18 +98,18 @@
     vertical-align: middle;
     color: white;
     background: linear-gradient(90deg, rgba(255, 51, 68, 1), rgba(255, 136, 51, 1));
-    line-height: px2rem(58);
+    line-height: 58px;
     text-align: center;
 
-    width: px2rem(168);
-    height: px2rem(58);
-    border: px2rem(1) solid rgba(230, 230, 230, 0.5);
+    width: 168px;
+    height: 58px;
+    border: 1px solid rgba(230, 230, 230, 0.5);
     border-radius: px2rem(58 / 2);
   }
 }
 
 .limit_coupon_label {
-  margin: px2rem(30) auto px2rem(20) auto;
+  margin: 30px auto 20px auto;
   text-align: center;
   color: #666666;
 }
@@ -117,18 +117,18 @@
 .coupon_limit {
   position: relative;
   background: #FAFAFA;
-  height: px2rem(90);
-  padding: px2rem(10) px2rem(35) 0 px2rem(35);
+  height: 90px;
+  padding: 10px 35px 0 35px;
 
   .coupon_limit_title {
-    font-size: px2rem(20);
+    font-size: 20px;
     color: #F52626;
   }
 
   .coupon_limit_label {
-    font-size: px2rem(20);
+    font-size: 20px;
     color: #333333;
-    margin-top: px2rem(5);
+    margin-top: 5px;
   }
 }
 

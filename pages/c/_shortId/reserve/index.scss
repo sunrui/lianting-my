@@ -7,29 +7,29 @@
 
 .reserve_notice_box {
   position: relative;
-  margin-left: px2rem(25);
-  margin-right: px2rem(25);
+  margin-left: 25px;
+  margin-right: 25px;
   background: transparent;
   z-index: 1;
 }
 
 .reserve_notice {
   background: white;
-  height: px2rem(88);
-  margin-left: px2rem(15);
-  margin-right: px2rem(15);
-  margin-top: px2rem(30);
+  height: 88px;
+  margin-left: 15px;
+  margin-right: 15px;
+  margin-top: 30px;
 
-  border-radius: px2rem(88/2);
-  box-shadow: 0 0 px2rem(5) rgba(0, 0, 0, 0.2);
+  border-radius: px2rem(88 / 2);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 
   .reserve_notice_icon {
     background-image: url("/img/common/notice.png");
     background-repeat: no-repeat;
     background-size: 100% 100%;
-    width: px2rem(40);
-    height: px2rem(40);
-    left: px2rem(40);
+    width: 40px;
+    height: 40px;
+    left: 40px;
 
     position: absolute;
     top: 50%;
@@ -40,7 +40,7 @@
     position: absolute;
     left: px2rem(40 + 40 + 15);
 
-    line-height: px2rem(88);
+    line-height: 88px;
     color: #f52626;
   }
 }
@@ -48,17 +48,17 @@
 .reserve_content_box {
   position: relative;
   background: white;
-  top: px2rem(-45);
+  top: -45px;
 
   .date_select_box {
     position: relative;
     background: white;
-    height: px2rem(110);
-    border-bottom: solid px2rem(1) rgba(230, 230, 230, 0.5);
+    height: 110px;
+    border-bottom: solid 1px rgba(230, 230, 230, 0.5);
 
     .time {
       position: absolute;
-      left: px2rem(5);
+      left: 5px;
       right: px2rem(30 + 90 + 10 + 10);
       text-align: center;
 
@@ -72,12 +72,12 @@
         }
 
         .date_item_desc {
-          font-size: px2rem(28);
-          line-height: px2rem(40);
+          font-size: 28px;
+          line-height: 40px;
         }
 
         .date_item_date {
-          line-height: px2rem(40);
+          line-height: 40px;
         }
 
         .date_item_label_select {
@@ -86,15 +86,15 @@
 
         .date_item_select {
           position: relative;
-          height: px2rem(4);
-          margin-top: px2rem(1);
+          height: 4px;
+          margin-top: 1px;
 
           .date_item_select_line {
             background: #f52626;
-            border-radius: px2rem(1);
-            width: px2rem(30);
-            height: px2rem(4);
-            margin: px2rem(5) auto 0;
+            border-radius: 1px;
+            width: 30px;
+            height: 4px;
+            margin: 5px auto 0;
           }
         }
       }
@@ -102,8 +102,8 @@
 
     .date_divide {
       position: absolute;
-      width: px2rem(1);
-      height: px2rem(70);
+      width: 1px;
+      height: 70px;
       background: rgba(230, 230, 230, 0.5);
       right: px2rem(120 + 10);
       top: px2rem((80 - 70) / 2);
@@ -111,37 +111,37 @@
 
     .calendar_box {
       position: absolute;
-      width: px2rem(90);
-      right: px2rem(30);
+      width: 90px;
+      right: 30px;
       top: 0;
-      height: px2rem(80);
+      height: 80px;
 
       .calendar_icon {
         background-image: url("/img/c/reserve/reserve_calendar.png");
         background-repeat: no-repeat;
         background-size: 100% 100%;
-        width: px2rem(36);
-        height: px2rem(36);
+        width: 36px;
+        height: 36px;
         position: absolute;
         top: 50%;
         transform: translate(0, -50%);
-        left: px2rem((90-36) / 2)
+        left: px2rem((90 - 36) / 2)
       }
     }
   }
 
   .table_box {
     position: relative;
-    margin-top: px2rem(20);
+    margin-top: 20px;
 
     .table_select_label {
-      font-size: px2rem(28);
+      font-size: 28px;
       color: #666666;
-      margin-left: px2rem(30);
+      margin-left: 30px;
     }
 
     .table {
-      padding: px2rem(20) px2rem(30);
+      padding: 20px 30px;
 
       .table_list {
         position: relative;
@@ -151,9 +151,9 @@
           vertical-align: middle;
           background: #FFEBEB;
           text-align: center;
-          margin-right: px2rem(20);
-          padding: px2rem(20) px2rem(30);
-          margin-bottom: px2rem(20);
+          margin-right: 20px;
+          padding: 20px 30px;
+          margin-bottom: 20px;
         }
 
         .table_box_table_info {
@@ -161,9 +161,9 @@
           vertical-align: middle;
           background: #F5F5F5;
           text-align: center;
-          margin-right: px2rem(20);
-          padding: px2rem(20) px2rem(30);
-          margin-bottom: px2rem(20);
+          margin-right: 20px;
+          padding: 20px 30px;
+          margin-bottom: 20px;
         }
 
         .table_box_table_title {
@@ -171,40 +171,40 @@
 
           .table_box_table_name {
             display: inline-block;
-            font-size: px2rem(28);
+            font-size: 28px;
             color: #333333;
-            line-height: px2rem(32);
+            line-height: 32px;
           }
 
           .table_box_table_name_select {
             display: inline-block;
-            font-size: px2rem(28);
+            font-size: 28px;
             color: #f52626;
-            line-height: px2rem(32);
+            line-height: 32px;
           }
 
           .table_box_table_private {
             background: linear-gradient(90deg, rgba(255, 51, 68, 1), rgba(255, 136, 51, 1));
-            border-radius: px2rem(5);
-            width: px2rem(60);
-            height: px2rem(32);
-            line-height: px2rem(32);
-            left: px2rem(40);
+            border-radius: 5px;
+            width: 60px;
+            height: 32px;
+            line-height: 32px;
+            left: 40px;
 
             display: inline-block;
             color: white;
-            font-size: px2rem(24);
+            font-size: 24px;
             text-align: center;
           }
         }
 
         .table_box_table_people {
-          margin-top: px2rem(5);
+          margin-top: 5px;
           color: #666666;
         }
 
         .table_box_table_people_select {
-          margin-top: px2rem(5);
+          margin-top: 5px;
           color: #f52626;
         }
       }
@@ -212,8 +212,8 @@
       .table_empty {
         text-align: center;
         color: #999999;
-        border: px2rem(1) solid rgba(230, 230, 230, 0.5);
-        padding: px2rem(30) px2rem(0);
+        border: 1px solid rgba(230, 230, 230, 0.5);
+        padding: 30px 0;
       }
     }
   }
@@ -221,36 +221,36 @@
   .time_select_box {
 
     .time_select_label {
-      font-size: px2rem(28);
+      font-size: 28px;
       color: #666666;
-      margin-left: px2rem(30);
+      margin-left: 30px;
     }
 
     .time_select_list {
-      margin-top: px2rem(20);
-      padding: px2rem(20) px2rem(30) 0 px2rem(30);
+      margin-top: 20px;
+      padding: 20px 30px 0 30px;
       max-height: px2rem((30 * 2 + 26 + 20) * 3);
       overflow-y: auto;
 
       .time_select_item_none {
         text-align: center;
         color: #999999;
-        border: px2rem(1) solid rgba(230, 230, 230, 0.5);
-        padding: px2rem(30) px2rem(0);
+        border: 1px solid rgba(230, 230, 230, 0.5);
+        padding: 30px 0;
       }
 
       .time_select_item {
         display: inline-block;
         width: 25%;
         text-align: center;
-        margin-bottom: px2rem(20);
+        margin-bottom: 20px;
 
         .time_select_item_one {
           display: inline-block;
           background: #F5F5F5;
           width: 80%;
           color: #666666;
-          padding: px2rem(20) px2rem(30);
+          padding: 20px 30px;
         }
 
         .time_select_item_one_select {
@@ -258,7 +258,7 @@
           background: #FFEBEB;
           color: #f52626;
           width: 80%;
-          padding: px2rem(20) px2rem(30);
+          padding: 20px 30px;
         }
       }
     }

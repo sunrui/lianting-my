@@ -2,46 +2,46 @@
   position: relative;
   display: inline-block;
   float: right;
-  line-height: px2rem(110);
-  margin-right: px2rem(30);
+  line-height: 110px;
+  margin-right: 30px;
   text-align: right;
 
   .food_group_mode_icon {
     display: inline-block;
     vertical-align: middle;
     background-size: 100% 100%;
-    width: px2rem(28);
-    height: px2rem(28);
+    width: 28px;
+    height: 28px;
   }
 
   .food_group_mode_label {
     display: inline-block;
     vertical-align: middle;
-    font-size: px2rem(24);
+    font-size: 24px;
     color: #666666;
-    margin-left: px2rem(5);
+    margin-left: 5px;
   }
 }
 
 .food_big {
   position: relative;
-  margin-left: px2rem(10);
-  margin-right: px2rem(10);
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .food_info_big_box {
-  margin-left: px2rem(30);
+  margin-left: 30px;
 }
 
 .food_image_big_box {
   position: relative;
   background: white;
-  max-height: px2rem(600);
-  min-height: px2rem(200);
+  max-height: 600px;
+  min-height: 200px;
   width: 100%;
   height: auto;
-  border-radius: px2rem(10);
-  box-shadow: 0 0 px2rem(5) rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   overflow: hidden;
 }
 
@@ -56,20 +56,20 @@
   .inner {
     background: linear-gradient(90deg, rgba(255, 51, 68, 1), rgba(255, 136, 51, 1));
     border-radius: 50%;
-    width: px2rem(32);
-    height: px2rem(32);
+    width: 32px;
+    height: 32px;
     transition: all 0.4s linear;
   }
 }
 
 .preview_modal_center {
-  left: px2rem(10) !important;
-  right: px2rem(10) !important;
+  left: 10px !important;
+  right: 10px !important;
 
   .preview_image {
     width: 100%;
     height: auto;
-    max-height: px2rem(600);
-    border-radius: px2rem(10);
+    max-height: 600px;
+    border-radius: 10px;
   }
 }

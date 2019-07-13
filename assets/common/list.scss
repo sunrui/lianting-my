@@ -1,8 +1,8 @@
 .list_title {
   position: relative;
-  margin-top: px2rem(30);
+  margin-top: 30px;
   background: white;
-  height: px2rem(88);
+  height: 88px;
   padding-top: px2rem(12 / 2);
 
   .list_time_icon {
@@ -11,26 +11,26 @@
     background-image: url("/img/common/time.png");
     background-repeat: no-repeat;
     background-size: 100% 100%;
-    width: px2rem(28);
-    height: px2rem(28);
-    margin-left: px2rem(35);
+    width: 28px;
+    height: 28px;
+    margin-left: 35px;
   }
 
   .list_time_label {
     display: inline-block;
     vertical-align: middle;
-    font-size: px2rem(28);
-    margin-left: px2rem(5);
-    line-height: px2rem(88);
+    font-size: 28px;
+    margin-left: 5px;
+    line-height: 88px;
     font-weight: 400;
   }
 
   .list_title_label {
     display: inline-block;
     vertical-align: middle;
-    font-size: px2rem(28);
+    font-size: 28px;
     margin-left: px2rem(5 + 35);
-    line-height: px2rem(88);
+    line-height: 88px;
     font-weight: 400;
   }
 }

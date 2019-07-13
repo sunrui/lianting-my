@@ -2,13 +2,13 @@
   background: white;
 
   .food_price_title {
-    padding: px2rem(25) px2rem(35);
+    padding: 25px 35px;
     text-align: left;
 
     .food_price_title_label {
       display: inline-block;
       vertical-align: top;
-      font-size: px2rem(28);
+      font-size: 28px;
       color: #333333;
     }
 
@@ -20,14 +20,14 @@
       background-image: url("/img/common/add_+.png");
       background-repeat: no-repeat;
       background-size: 100% 100%;
-      width: px2rem(28);
-      height: px2rem(28);
+      width: 28px;
+      height: 28px;
     }
   }
 
   .food_price_empty {
-    margin-top: px2rem(30);
-    padding-bottom: px2rem(30);
+    margin-top: 30px;
+    padding-bottom: 30px;
     text-align: center;
 
     .food_price_empty_image {
@@ -35,18 +35,18 @@
       background-image: url("/img/b/food/b_food_price_empty.png");
       background-repeat: no-repeat;
       background-size: 100% 100%;
-      width: px2rem(180);
-      height: px2rem(180);
+      width: 180px;
+      height: 180px;
     }
 
     .food_price_empty_label {
-      margin-top: px2rem(5);
+      margin-top: 5px;
       color: #999999;
     }
   }
 
   .food_price_one {
-    height: px2rem(90);
+    height: 90px;
     position: relative;
 
     .food_price_name {
@@ -57,49 +57,49 @@
       display: inline-block;
       vertical-align: top;
       color: #333333;
-      font-size: px2rem(28);
+      font-size: 28px;
       margin-left: px2rem(35 + 10);
-      line-height: px2rem(90);
+      line-height: 90px;
     }
 
     .food_price_now {
-      margin-left: px2rem(60);
+      margin-left: 60px;
       display: inline-block;
       vertical-align: top;
-      font-size: px2rem(36);
+      font-size: 36px;
       color: #f52626;
-      line-height: px2rem(90);
+      line-height: 90px;
     }
 
     .food_price_now:before {
       display: inline-block;
       vertical-align: bottom;
       content: "¥";
-      line-height: px2rem(90);
+      line-height: 90px;
       color: #f52626;
-      margin-right: px2rem(5);
+      margin-right: 5px;
     }
 
     .food_price_original {
       display: inline-block;
       vertical-align: top;
       text-decoration: line-through;
-      font-size: px2rem(24);
-      line-height: px2rem(90);
+      font-size: 24px;
+      line-height: 90px;
       color: #999999;
     }
 
     .food_price_original:before {
       content: "¥";
-      font-size: px2rem(18);
-      line-height: px2rem(90);
+      font-size: 18px;
+      line-height: 90px;
       text-decoration: line-through;
       color: #999999;
-      margin-right: px2rem(5);
+      margin-right: 5px;
     }
 
     .food_price_delete {
-      right: px2rem(35 + 10);
+      right: 35 + 10px;
       position: absolute;
       top: 50%;
       transform: translate(0, -50%);
@@ -107,8 +107,8 @@
       background-image: url("/img/common/delete_x.png");
       background-repeat: no-repeat;
       background-size: 100% 100%;
-      width: px2rem(20);
-      height: px2rem(20);
+      width: 20px;
+      height: 20px;
     }
   }
 }

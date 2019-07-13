@@ -45,6 +45,8 @@
     "html2canvas": "^1.0.0-rc.3",
     "nuxt": "^2.8.1",
     "plupload": "^2.3.6",
+    "postcss-loader": "^3.0.0",
+    "postcss-px2rem": "^0.3.0",
     "qrcode": "^1.4.0",
     "store": "^2.0.12",
     "vue": "^2.6.10",

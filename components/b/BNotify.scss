@@ -1,26 +1,26 @@
 .notify_type {
   display: inline-block;
   float: right;
-  font-size: px2rem(28);
-  margin-right: px2rem(35);
-  line-height: px2rem(88);
+  font-size: 28px;
+  margin-right: 35px;
+  line-height: 88px;
 
   .notify_type_status {
     position: absolute;
     text-align: center;
     vertical-align: middle;
-    right: px2rem(40);
+    right: 40px;
     top: 50%;
     transform: translate(0, -50%);
 
-    width: px2rem(120);
-    height: px2rem(48);
-    border-radius: px2rem(24);
+    width: 120px;
+    height: 48px;
+    border-radius: 24px;
 
-    font-size: px2rem(26);
+    font-size: 26px;
     font-weight: 400;;
     color: rgba(255, 255, 255, 1);
-    line-height: px2rem(48);
+    line-height: 48px;
   }
 }
 
@@ -28,35 +28,35 @@
   background: white;
 
   .notify_message {
-    padding: 0 px2rem(35) px2rem(30) px2rem(35);
+    padding: 0 35px 30px 35px;
   }
 
   .notify_table_label {
     display: inline-block;
-    margin-left: px2rem(35);
-    line-height: px2rem(58);
+    margin-left: 35px;
+    line-height: 58px;
     color: #666666;
   }
 
   .notify_table_number {
     display: inline-block;
-    margin-left: px2rem(5);
-    line-height: px2rem(58);
-    font-size: px2rem(36);
+    margin-left: 5px;
+    line-height: 58px;
+    font-size: 36px;
     color: #F52626;
   }
 
   .notify_detail_button {
     display: inline-block;
     float: right;
-    margin-right: px2rem(30);
-    line-height: px2rem(58);
+    margin-right: 30px;
+    line-height: 58px;
     text-align: center;
     color: #666666;
 
-    width: px2rem(168);
-    height: px2rem(58);
-    border: px2rem(1) solid rgba(230, 230, 230, 0.5);
-    border-radius: px2rem(58/2);
+    width: 168px;
+    height: 58px;
+    border: 1px solid rgba(230, 230, 230, 0.5);
+    border-radius: px2rem(58 / 2);
   }
 }

@@ -19,7 +19,7 @@
 
   function dbcRefresh() {
     clearTimeout(tid)
-    tid = setTimeout(refreshRem, 100)
+    tid = setTimeout(refreshRem, 1)
   }
 
   win.addEventListener('resize', function() {

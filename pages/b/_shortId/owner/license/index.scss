@@ -1,17 +1,17 @@
 .shop_name {
   display: inline-block;
   vertical-align: middle;
-  font-size: px2rem(30);
+  font-size: 30px;
   color: #333333;
-  margin-left: px2rem(35);
-  line-height: px2rem(88);
+  margin-left: 35px;
+  line-height: 88px;
 }
 
 .shop_license {
   position: relative;
   float: right;
   text-align: center;
-  margin-right: px2rem(35);
+  margin-right: 35px;
 
   top: 50%;
   transform: translate(0, -50%);
@@ -23,45 +23,45 @@
 
   .shop_detail_one {
     position: relative;
-    height: px2rem(70);
+    height: 70px;
   }
 
   .shop_detail_left {
     display: inline-block;
     vertical-align: middle;
-    line-height: px2rem(70);
-    margin-left: px2rem(35);
+    line-height: 70px;
+    margin-left: 35px;
   }
 
   .shop_detail_sms {
     position: relative;
     display: inline-block;
     vertical-align: middle;
-    margin-left: px2rem(10);
+    margin-left: 10px;
     text-align: center;
 
-    width: px2rem(120);
-    height: px2rem(58);
-    line-height: px2rem(58);
-    border: px2rem(1) solid rgba(230, 230, 230, 0.5);
-    border-radius: px2rem(58/2);
+    width: 120px;
+    height: 58px;
+    line-height: 58px;
+    border: 1px solid rgba(230, 230, 230, 0.5);
+    border-radius: px2rem(58 / 2);
   }
 
   .shop_detail_expired_at {
     float: right;
-    line-height: px2rem(70);
-    margin-right: px2rem(35);
+    line-height: 70px;
+    margin-right: 35px;
   }
 
   .shop_license_history {
-    margin-right: px2rem(30);
-    line-height: px2rem(58);
+    margin-right: 30px;
+    line-height: 58px;
     text-align: center;
 
-    width: px2rem(168);
-    height: px2rem(58);
-    border: px2rem(1) solid rgba(230, 230, 230, 0.5);
-    border-radius: px2rem(58/2);
+    width: 168px;
+    height: 58px;
+    border: 1px solid rgba(230, 230, 230, 0.5);
+    border-radius: px2rem(58 / 2);
 
     right: 0;
     position: absolute;
@@ -75,31 +75,31 @@
 
 .shop_license_plan {
   background: white;
-  border-radius: px2rem(10);
+  border-radius: 10px;
   position: relative;
-  margin-left: px2rem(80);
-  margin-right: px2rem(80);
+  margin-left: 80px;
+  margin-right: 80px;
   text-align: center;
 
   .shop_license_type {
     position: relative;
-    height: px2rem(88);
+    height: 88px;
 
     .shop_license_icon {
       display: inline-block;
       vertical-align: middle;
       background-size: 100% 100%;
-      width: px2rem(61);
-      height: px2rem(61);
+      width: 61px;
+      height: 61px;
     }
 
     .shop_license_label {
       display: inline-block;
       vertical-align: middle;
-      font-size: px2rem(34);
+      font-size: 34px;
       font-weight: 400;;
-      line-height: px2rem(88);
-      margin-left: px2rem(5);
+      line-height: 88px;
+      margin-left: 5px;
     }
   }
 
@@ -130,10 +130,10 @@
 
   .shop_feature_one {
     position: relative;
-    margin-top: px2rem(15);
-    margin-bottom: px2rem(15);
+    margin-top: 15px;
+    margin-bottom: 15px;
     text-align: left;
-    height: px2rem(26);
+    height: 26px;
     width: 100%;
 
     .shop_feature_one_icon {
@@ -141,40 +141,40 @@
       vertical-align: middle;
 
       background-size: 100% 100%;
-      width: px2rem(24);
-      height: px2rem(24);
+      width: 24px;
+      height: 24px;
 
-      line-height: px2rem(26);
+      line-height: 26px;
       margin-top: px2rem((26 - 24) / 2);
     }
 
     .shop_feature_one_label {
       display: inline-block;
       vertical-align: middle;
-      margin-left: px2rem(10);
-      font-size: px2rem(26);
+      margin-left: 10px;
+      font-size: 26px;
     }
 
     .shop_feature_one_label_star {
       display: inline-block;
       vertical-align: middle;
-      height: px2rem(26);
+      height: 26px;
       color: white;
-      border-radius: px2rem(4);
-      font-size: px2rem(20);
-      line-height: px2rem(26);
-      margin-left: px2rem(5);
-      padding: px2rem(2) px2rem(10);
+      border-radius: 4px;
+      font-size: 20px;
+      line-height: 26px;
+      margin-left: 5px;
+      padding: 2px 10px;
       background: linear-gradient(90deg, rgba(255, 207, 76, 1), rgba(255, 166, 102, 1));
     }
   }
 
   .shop_license_button {
-    height: px2rem(88);
-    border-radius: 0 0 px2rem(10) px2rem(10);
+    height: 88px;
+    border-radius: 0 0 10px 10px;
     color: white;
-    font-size: px2rem(28);
-    line-height: px2rem(88);
+    font-size: 28px;
+    line-height: 88px;
     text-align: center;
   }
 
@@ -196,8 +196,8 @@
   vertical-align: middle;
   color: white;
   background: linear-gradient(90deg, rgba(255, 51, 68, 1), rgba(255, 136, 51, 1));
-  border-radius: px2rem(5);
-  height: px2rem(40);
-  line-height: px2rem(40);
-  padding: 0 px2rem(10);
+  border-radius: 5px;
+  height: 40px;
+  line-height: 40px;
+  padding: 0 10px;
 }

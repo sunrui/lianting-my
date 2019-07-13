@@ -1,9 +1,9 @@
 .queue_history_status {
   float: right;
   display: inline-block;
-  margin-right: px2rem(30);
-  font-size: px2rem(28);
-  line-height: px2rem(102);
+  margin-right: 30px;
+  font-size: 28px;
+  line-height: 102px;
 }
 
 .queue_history_status_wait {
@@ -29,42 +29,42 @@
 
 .queue_history_food {
   position: relative;
-  height: px2rem(70);
+  height: 70px;
 
   .queue_history_food_label {
     display: inline-block;
 
-    margin-left: px2rem(30);
-    line-height: px2rem(70);
+    margin-left: 30px;
+    line-height: 70px;
     color: #666666;
   }
 
   .queue_history_food_content {
     display: inline-block;
-    font-size: px2rem(28);
-    margin-left: px2rem(10);
-    line-height: px2rem(70);
+    font-size: 28px;
+    margin-left: 10px;
+    line-height: 70px;
     color: #333333;
   }
 }
 
 .queue_history_price {
   position: relative;
-  height: px2rem(70);
+  height: 70px;
 
   .queue_history_price_label {
     display: inline-block;
 
-    margin-left: px2rem(30);
-    line-height: px2rem(70);
+    margin-left: 30px;
+    line-height: 70px;
     color: #666666;
   }
 
   .queue_history_price_content {
     display: inline-block;
-    margin-left: px2rem(10);
-    line-height: px2rem(70);
-    font-size: px2rem(28);
+    margin-left: 10px;
+    line-height: 70px;
+    font-size: 28px;
     color: #f52626;
   }
 }

@@ -1,34 +1,34 @@
 .button_box {
-  margin-top: px2rem(100);
-  margin-bottom: px2rem(30);
+  margin-top: 100px;
+  margin-bottom: 30px;
   text-align: center;
 }
 
 .button_big {
-  font-size: px2rem(30);
+  font-size: 30px;
   color: white;
   display: inline-block;
   background: linear-gradient(90deg, rgba(255, 51, 68, 1), rgba(255, 136, 51, 1));
   border-radius: px2rem(90 / 2);
-  margin-bottom: px2rem(30);
+  margin-bottom: 30px;
 
   width: 60%;
-  height: px2rem(90);
-  line-height: px2rem(90);
+  height: 90px;
+  line-height: 90px;
   text-align: center;
 }
 
 .button_small {
   display: inline-block;
-  font-size: px2rem(30);
+  font-size: 30px;
   color: white;
   background: linear-gradient(90deg, rgba(255, 51, 68, 1), rgba(255, 136, 51, 1));
   border-radius: px2rem(74 / 2);
   width: 40%;
-  height: px2rem(74);
-  line-height: px2rem(74);
+  height: 74px;
+  line-height: 74px;
   text-align: center;
-  margin: 0 px2rem(15);
+  margin: 0 15px;
 }
 
 .button_gray {
