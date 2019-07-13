@@ -1,16 +1,20 @@
 <template>
-  <div>
-    <loading v-show="false" id="http_loading"></loading>
+  <div v-show="false" id="nuxt_div">
+    <loading v-show="false" id="nuxt_loading"></loading>
     <nuxt/>
   </div>
 </template>
 
 <script>
   import Loading from '../components/common/Loading'
+  import {remApi} from '../api/local/remApi'
 
   export default {
     name: 'default',
-    components: {Loading}
+    components: {Loading},
+    mounted() {
+      remApi.init()
+    }
   }
 </script>
 

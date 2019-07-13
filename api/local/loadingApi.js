@@ -3,12 +3,12 @@ export const loadingApi = {
   enable: true,
   show() {
     if (this.enable && ++this.ref > 0) {
-      document.getElementById('http_loading').style.display = 'block'
+      document.getElementById('nuxt_loading').style.display = 'block'
     }
   },
   hide() {
     if (--this.ref <= 0) {
-      document.getElementById('http_loading').style.display = 'none'
+      document.getElementById('nuxt_loading').style.display = 'none'
     }
   }
 }
