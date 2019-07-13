@@ -128,7 +128,7 @@
                   </div>
                 </div>
               </div>
-              <div class="food_button" v-if="foodCategory.status === 'ONLINE'">
+              <div class="food_button" v-if="foodCategory.foods && foodCategory.foods.length > 0 && foodCategory.status === 'ONLINE'">
                 <div v-if="foodCategory.select > 0">
                   <div class="food_button_add" @click="btnFoodAdd($event, foodGroup.id, foodCategory)" @click.stop.prevent="eventFoodAdd($event, foodCategory)"></div>
                   <div class="food_button_count">{{foodCategory.select}}</div>

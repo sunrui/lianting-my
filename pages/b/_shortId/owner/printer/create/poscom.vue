@@ -5,7 +5,7 @@
     <div class="box">
       <div class="tip">
         <ul class="tip_ul">
-          <li>佳博云官网请参考: <a class="tip_link" :href="getFeieUrl()">http://cloud.poscom.cn/</a>。</li>
+          <li>佳博云官网请参考: <a class="tip_link" :href="getUrl()">http://cloud.poscom.cn/</a>。</li>
         </ul>
       </div>
     </div>
@@ -99,7 +99,7 @@
       }
     },
     methods: {
-      getFeieUrl() {
+      getUrl() {
         return 'http://cloud.poscom.cn/'
       },
       btnEightyMM(eightyMM) {
@@ -193,5 +193,4 @@
 
 <style scoped lang="scss">
   @import '~assets/common';
-  @import 'feie';
 </style>

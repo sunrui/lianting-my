@@ -77,6 +77,39 @@
       </div>
     </div>
 
+    <div class="box" v-for="printer in http.res.printerYly.elements">
+      <div class="printer_header box_radius_header">
+        <div class="badge_delete" @click="btnDeleteYly(printer)"></div>
+        <div class="printer_box">
+          <div class="printer_box_left">
+            <div class="printer_type_title">易联云打印机</div>
+            <div class="printer_type_name">{{printer.remark ? '名称：' + printer.remark : '序列号：' + printer.machineCode}}</div>
+          </div>
+          <div class="printer_box_right">
+            <div class="printer_online_status" v-bind:class="{
+            printer_online_status_online: getPrinterYlyOneStatus(printer) === '在线',
+            printer_online_status_offline: getPrinterYlyOneStatus(printer) !== '在线'
+            }">{{getPrinterYlyOneStatus(printer)}}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="box_divide_radius">
+        <div class="box_divide_radius_line"></div>
+      </div>
+
+      <div class="printer_footer box_radius_footer">
+        <div class="addition_item">
+          <div class="addition_item_label">开启</div>
+          <div class="addition_item_check">
+            <div class="addition_item_check_on" v-if="printer.enable" @click="btnEnableYly(printer)"></div>
+            <div class="addition_item_check_off" v-else @click="btnEnableYly(printer)"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <transition name="toggle">
       <div class="modal_bottom" v-if="ui.vPrinter">
         <div class="modal_close_box" @click="btnCoverMask">
@@ -93,8 +126,8 @@
              @click="btnChoosePrinter('feie')">飞鹅云
         </div>
 
-        <div class="modal_menu" v-bind:class="{modal_menu_select: ui.choosePrinter === 'un-support-0'}"
-             @click="btnChoosePrinter('un-support-0')">易联云 (支持中)
+        <div class="modal_menu" v-bind:class="{modal_menu_select: ui.choosePrinter === 'yly'}"
+             @click="btnChoosePrinter('yly')">易联云
         </div>
 
         <div class="modal_menu" v-bind:class="{modal_menu_select: ui.choosePrinter === 'un-support-1'}"
@@ -121,10 +154,11 @@
   import {scrollApi} from '../../../../../../api/local/scrollApi'
   import {httpPrinterFeieAdminApi} from '../../../../../../api/http/lt/httpPrinterFeieAdminApi'
   import {httpPrinterPoscomAdminApi} from '../../../../../../api/http/lt/httpPrinterPoscomAdminApi'
+  import {httpPrinterYlyAdminApi} from '../../../../../../api/http/lt/httpPrinterYlyAdminApi'
 
   export default {
     metaInfo: {
-      title: '打印'
+      title: '打印机列表'
     },
     middleware: 'auth',
     components: {TitleBar, Empty},
@@ -132,7 +166,7 @@
       return {
         title: {
           canBack: true,
-          title: '打印',
+          title: '打印机列表',
           backUri: `/b/${this.$route.params.shortId}/owner/printer`,
           theme: 'white',
           imageHeight: 300
@@ -143,6 +177,9 @@
               elements: []
             },
             printerPoscom: {
+              elements: []
+            },
+            printerYly: {
               elements: []
             }
           }
@@ -160,6 +197,7 @@
     mounted() {
       this.httpPrinterFeie()
       this.httpPrinterPoscom()
+      this.httpPrinterYly()
       this.ui.interval = setInterval(this.httpPrinter, 30 * 1000)
     },
     beforeDestroy() {
@@ -195,12 +233,16 @@
 
         this.httpPrinterFeie()
         this.httpPrinterPoscom()
+        this.httpPrinterYly()
       },
       httpPrinterFeie() {
         this.ui.printerStatus = []
 
         httpPrinterFeieAdminApi.getPrinter(this.$route.params.shortId, 0, 99).then(res => {
-          if (res.elements.length !== 0) {
+          if (this.http.res.printerFeie.elements.length !== 0 ||
+              this.http.res.printerPoscom.elements.length !== 0 ||
+              this.http.res.printerYly.elements.length !== 0
+          ) {
             this.$refs.titleBar_Printer.setTheme('image')
           } else {
             this.$refs.titleBar_Printer.setTheme('white')
@@ -218,7 +260,10 @@
         this.ui.printerStatus = []
 
         httpPrinterPoscomAdminApi.getPrinter(this.$route.params.shortId, 0, 99).then(res => {
-          if (res.elements.length !== 0) {
+          if (this.http.res.printerFeie.elements.length !== 0 ||
+              this.http.res.printerPoscom.elements.length !== 0 ||
+              this.http.res.printerYly.elements.length !== 0
+          ) {
             this.$refs.titleBar_Printer.setTheme('image')
           } else {
             this.$refs.titleBar_Printer.setTheme('white')
@@ -229,6 +274,27 @@
           for (let index in res.elements) {
             let printer = res.elements[index]
             this.getPrinterPoscomOneStatus(printer)
+          }
+        })
+      },
+      httpPrinterYly() {
+        this.ui.printerStatus = []
+
+        httpPrinterYlyAdminApi.getPrinter(this.$route.params.shortId, 0, 99).then(res => {
+          if (this.http.res.printerFeie.elements.length !== 0 ||
+              this.http.res.printerPoscom.elements.length !== 0 ||
+              this.http.res.printerYly.elements.length !== 0
+          ) {
+            this.$refs.titleBar_Printer.setTheme('image')
+          } else {
+            this.$refs.titleBar_Printer.setTheme('white')
+          }
+
+          this.http.res.printerYly = res
+
+          for (let index in res.elements) {
+            let printer = res.elements[index]
+            this.getPrinterYlyOneStatus(printer)
           }
         })
       },
@@ -257,7 +323,13 @@
           } else if (res.offline) {
             status = '离线'
           } else if (res.error) {
-            status = res.error
+            this.$msgBox.doModal({
+              type: 'yes',
+              title: '飞鹅云打印机',
+              content: res.error
+            })
+
+            status = '错误'
           } else if (res.online) {
             status = '在线'
           }
@@ -300,7 +372,62 @@
           } else if (res.offline) {
             status = '离线'
           } else if (res.error) {
-            status = res.error
+            this.$msgBox.doModal({
+              type: 'yes',
+              title: '佳博云打印机',
+              content: res.error
+            })
+
+            status = '错误'
+          } else if (res.online) {
+            status = '在线'
+          }
+
+          for (let index in this.ui.printerStatus) {
+            let statusOne = this.ui.printerStatus[index]
+            if (statusOne.id === printer.id) {
+              return
+            }
+          }
+
+          this.ui.printerStatus.push({
+            id: printer.id,
+            status: status
+          })
+        })
+      },
+      getPrinterYlyOneStatus(printer) {
+        for (let index in this.ui.printerStatus) {
+          let statusOne = this.ui.printerStatus[index]
+          if (statusOne.id === printer.id) {
+            return statusOne.status
+          }
+        }
+
+        for (let index in this.ui.printerStatusLoads) {
+          let one = this.ui.printerStatusLoads[index]
+          if (one === printer.id) {
+            return
+          }
+        }
+
+        this.ui.printerStatusLoads.push(printer.id)
+
+        httpPrinterYlyAdminApi.getPrinterOneStatus(this.$route.params.shortId, printer.id).then(res => {
+          let status
+
+          if (res.notExists) {
+            status = '不存在'
+          } else if (res.offline) {
+            status = '离线'
+          } else if (res.error) {
+            this.$msgBox.doModal({
+              type: 'yes',
+              title: '易联云打印机',
+              content: res.error
+            })
+
+            status = '错误'
           } else if (res.online) {
             status = '在线'
           }
@@ -365,6 +492,27 @@
           }
         })
       },
+      btnDeleteYly(printer) {
+        this.$msgBox.doModal({
+          type: 'yesOrNo',
+          title: '删除打印机',
+          content: '确认要删除吗？'
+        }).then(async (val) => {
+          if (val === 'Yes') {
+            httpPrinterYlyAdminApi.deletePrinter(this.$route.params.shortId, printer.id).then(res => {
+              if (res.printerIdNotExists) {
+                this.$msgBox.doModal({
+                  type: 'yes',
+                  title: '删除打印机',
+                  content: '打印机不存在。'
+                })
+              } else if (res.success) {
+                this.httpPrinterPoscom()
+              }
+            })
+          }
+        })
+      },
       btnEnableFeie(printer) {
         httpPrinterFeieAdminApi.putPrinterEnable(this.$route.params.shortId, printer.id, !printer.enable).then(res => {
           if (res.printerIdNotExists) {
@@ -380,6 +528,19 @@
       },
       btnEnablePoscom(printer) {
         httpPrinterPoscomAdminApi.putPrinterEnable(this.$route.params.shortId, printer.id, !printer.enable).then(res => {
+          if (res.printerIdNotExists) {
+            this.$msgBox.doModal({
+              type: 'yes',
+              title: '启用打印机',
+              content: '打印机不存在。'
+            })
+          } else if (res.success) {
+            this.httpPrinter()
+          }
+        })
+      },
+      btnEnableYly(printer) {
+        httpPrinterYlyAdminApi.putPrinterEnable(this.$route.params.shortId, printer.id, !printer.enable).then(res => {
           if (res.printerIdNotExists) {
             this.$msgBox.doModal({
               type: 'yes',
