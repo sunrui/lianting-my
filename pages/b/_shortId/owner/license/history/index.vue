@@ -42,7 +42,7 @@
           </div>
           <div class="license_label_one">
             <div class="license_label_one_name">价格</div>
-            <div class="license_label_one_value">{{shopLicense.shopLicensePay.pricePerYear}} 元/永久使用</div>
+            <div class="license_label_one_value">{{shopLicense.shopLicensePay.pricePerYear}} 元/年</div>
           </div>
           <div class="license_label_one">
             <div class="license_label_one_name">续费天数</div>
