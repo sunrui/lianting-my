@@ -14,7 +14,7 @@
       border-radius: 50%;
       overflow: hidden;
       z-index: 2;
-      border: solid 1px rgba(230, 230, 230, 0.5);
+      border: solid px2rem(1) rgba(230, 230, 230, 0.5);
       box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 
       position: absolute;
@@ -45,7 +45,7 @@
     color: white;
     font-weight: 400;
     height: 36px;
-    text-shadow: 0 0 1px #666666;
+    text-shadow: 0 0 px2rem(1) #666666;
   }
 
   .shop_title_detail {

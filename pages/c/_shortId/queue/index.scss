@@ -86,7 +86,7 @@
   border-radius: 10px;
   margin: 20px 30px;
   background: #FFF5F5;
-  border: solid 1px #F7949D;
+  border: solid px2rem(1) #F7949D;
 
   .queue_box_table_info {
     position: relative;
@@ -285,7 +285,7 @@
     .queue_number_title_status_now {
       background: #f6fffc;
       color: #3ed195;
-      border: solid 1px #00c172;
+      border: solid px2rem(1) #00c172;
 
       right: 0;
     }
@@ -293,7 +293,7 @@
     .queue_number_title_status_wait {
       background: #fef2f4;
       color: #f32824;
-      border: solid 1px #f32824;
+      border: solid px2rem(1) #f32824;
     }
 
     .queue_number_title_cancel {
@@ -392,15 +392,15 @@
 }
 
 .queue_table_select_none {
-  border: solid 1px #D3D3D3;
+  border: solid px2rem(1) #D3D3D3;
 }
 
 .queue_table_select_yes {
-  border: solid 1px #f52626;
+  border: solid px2rem(1) #f52626;
 }
 
 .queue_table_select_no {
-  border: solid 1px #999999;
+  border: solid px2rem(1) #999999;
 }
 
 .queue_table_name {

@@ -41,7 +41,7 @@
         color: #f52626;
         background: #FEDEDF;
         border-radius: 5px;
-        padding: 1px 5px;
+        padding: px2rem(1) 5px;
       }
 
       .shop_notice_label {
@@ -222,7 +222,7 @@
     background-image: url("/img/c/shop/shop_footer_queue.png");
     background-repeat: no-repeat;
     background-size: 100% 100%;
-    width: 31px;
+    width: 3px2rem(1);
     height: 40px;
     left: 35px;
 

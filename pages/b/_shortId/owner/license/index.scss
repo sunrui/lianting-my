@@ -43,7 +43,7 @@
     width: 120px;
     height: 58px;
     line-height: 58px;
-    border: 1px solid rgba(230, 230, 230, 0.5);
+    border: px2rem(1) solid rgba(230, 230, 230, 0.5);
     border-radius: px2rem(58 / 2);
   }
 
@@ -60,7 +60,7 @@
 
     width: 168px;
     height: 58px;
-    border: 1px solid rgba(230, 230, 230, 0.5);
+    border: px2rem(1) solid rgba(230, 230, 230, 0.5);
     border-radius: px2rem(58 / 2);
 
     right: 0;
@@ -89,8 +89,8 @@
       display: inline-block;
       vertical-align: middle;
       background-size: 100% 100%;
-      width: 61px;
-      height: 61px;
+      width: 6px2rem(1);
+      height: 6px2rem(1);
     }
 
     .shop_license_label {

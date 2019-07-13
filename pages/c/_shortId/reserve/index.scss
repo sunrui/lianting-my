@@ -54,7 +54,7 @@
     position: relative;
     background: white;
     height: 110px;
-    border-bottom: solid 1px rgba(230, 230, 230, 0.5);
+    border-bottom: solid px2rem(1) rgba(230, 230, 230, 0.5);
 
     .time {
       position: absolute;
@@ -87,11 +87,11 @@
         .date_item_select {
           position: relative;
           height: 4px;
-          margin-top: 1px;
+          margin-top: px2rem(1);
 
           .date_item_select_line {
             background: #f52626;
-            border-radius: 1px;
+            border-radius: px2rem(1);
             width: 30px;
             height: 4px;
             margin: 5px auto 0;
@@ -102,7 +102,7 @@
 
     .date_divide {
       position: absolute;
-      width: 1px;
+      width: px2rem(1);
       height: 70px;
       background: rgba(230, 230, 230, 0.5);
       right: px2rem(120 + 10);
@@ -212,7 +212,7 @@
       .table_empty {
         text-align: center;
         color: #999999;
-        border: 1px solid rgba(230, 230, 230, 0.5);
+        border: px2rem(1) solid rgba(230, 230, 230, 0.5);
         padding: 30px 0;
       }
     }
@@ -235,7 +235,7 @@
       .time_select_item_none {
         text-align: center;
         color: #999999;
-        border: 1px solid rgba(230, 230, 230, 0.5);
+        border: px2rem(1) solid rgba(230, 230, 230, 0.5);
         padding: 30px 0;
       }
 

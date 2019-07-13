@@ -77,7 +77,7 @@
   }
 
   .right {
-    padding-right: 1px;
+    padding-right: px2rem(1);
     text-align: right !important;
   }
 </style>

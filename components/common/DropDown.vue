@@ -99,11 +99,11 @@
     float: left;
     min-width: 100px;
     padding: 5px 0;
-    margin: 1px 0 0;
+    margin: px2rem(1) 0 0;
     list-style: none;
     text-align: left;
     background-color: #fff;
-    border: 1px solid rgba(230, 230, 230, 0.5);
+    border: px2rem(1) solid rgba(230, 230, 230, 0.5);
     border-radius: 4px;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
     background-clip: padding-box;
@@ -136,7 +136,7 @@
     position: relative;
     top: 10px;
     height: 0;
-    margin-left: 1px;
+    margin-left: px2rem(1);
     vertical-align: middle;
     border-top: 10px dashed;
     border-right: 10px solid transparent;

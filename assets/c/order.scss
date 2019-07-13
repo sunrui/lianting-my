@@ -146,7 +146,7 @@
     color: #B38F8F;
     background: #FAF2F2;
     border-radius: 5px;
-    border: #F0E4E4 1px solid;
+    border: #F0E4E4 px2rem(1) solid;
     width: 100px;
     height: 40px;
     line-height: 40px;
@@ -227,7 +227,7 @@
     color: #f52626;
     background: #FCF0F0;
     border-radius: 5px;
-    border: #F57A7A 1px solid;
+    border: #F57A7A px2rem(1) solid;
     right: 75px;
     text-align: right;
     height: 40px;
@@ -359,7 +359,7 @@
     .order_taste_note_history_icon_line {
       position: absolute;
       background: rgba(230, 230, 230, 0.5);
-      width: 1px;
+      width: px2rem(1);
       margin-left: 4px;
       bottom: 0;
       height: 100%;
@@ -474,7 +474,7 @@
 
     width: 168px;
     height: 58px;
-    border: 1px solid rgba(230, 230, 230, 0.5);
+    border: px2rem(1) solid rgba(230, 230, 230, 0.5);
     border-radius: px2rem(58 / 2);
 
     right: 0;

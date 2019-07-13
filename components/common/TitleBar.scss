@@ -9,12 +9,12 @@
     color: white;
     font-size: 32px;
     line-height: 88px;
-    text-shadow: 0 0 1px #666666;
+    text-shadow: 0 0 px2rem(1) #666666;
   }
 
   .title_bar_title_black {
     color: #666666 !important;
-    text-shadow: 0 0 1px white !important;
+    text-shadow: 0 0 px2rem(1) white !important;
   }
 
   .title_bar_back {
@@ -51,7 +51,7 @@
 
 .image_white {
   background: white;
-  border-bottom: solid 1px rgba(230, 230, 230, 0.5);
+  border-bottom: solid px2rem(1) rgba(230, 230, 230, 0.5);
 }
 
 .image_height_220 {
