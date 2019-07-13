@@ -55,7 +55,7 @@
             userApi.setTableName(res.tableName)
             userApi.setTableNumber(res.tableNumber)
 
-            this.$router.push(`/c/${this.$route.params.shortId}`)
+            this.$router.push(`/c/${this.$route.params.shortId}/food`)
           }
         })
       }
