@@ -135,7 +135,7 @@
         return userApi.getUserPhone()
       }
     },
-    created() {
+    mounted() {
       if (!Boolean(this.$route.query.date) || !Boolean(this.$route.query.tableGroupName)) {
         this.$router.push(`/c/${this.$route.params.shortId}/reserve`)
       }

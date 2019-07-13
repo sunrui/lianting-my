@@ -72,7 +72,7 @@
         }
       }
     },
-    created() {
+    mounted() {
       this.httpHistory(null)
     },
     methods: {

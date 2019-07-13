@@ -186,14 +186,16 @@
       }
     },
     mounted() {
+      this.httpOrderAllByCaptchaTableId()
+    },
+    created() {
+      this.$store.commit('cart/update', cartApi.getCart())
+
       if (this.roleType === 'c') {
         this.title.backUri = `/c/${this.$route.params.shortId}/food`
       } else {
         this.title.backUri = `/b/${this.$route.params.shortId}/${this.roleType}/food`
       }
-    },
-    created() {
-      this.$store.commit('cart/update', cartApi.getCart())
 
       if (!this.cart.select || this.cart.select === 0) {
         if (this.roleType === 'c') {
@@ -215,11 +217,7 @@
         } else {
           this.$router.push(`/b/${this.$route.params.shortId}/${this.roleType}/table`)
         }
-
-        return
       }
-
-      this.httpOrderAllByCaptchaTableId()
     },
     methods: {
       dateFormat(date) {

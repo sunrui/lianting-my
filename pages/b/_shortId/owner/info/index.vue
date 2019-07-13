@@ -196,25 +196,32 @@
         }
       }
     },
-    created() {
-      httpShopApi.getOne(this.$route.params.shortId).then(res => {
-        this.http.req.shop = res
-      })
-
-      httpInfoApi.get(this.$route.params.shortId).then(res => {
-        this.http.req.info = res
-      })
-
-      if (this.http.req.shop.licenseType !== 'Free') {
-        httpSearchApi.getSearchWord(this.$route.params.shortId).then(res => {
-          if (res.length > 0) {
-            this.ui.searchWords = res
-            this.ui.searchWordEnable = true
-          }
-        })
-      }
+    mounted() {
+      this.httpShop()
+      this.httpInfo()
+      this.httpSearchWord()
     },
     methods: {
+      httpShop() {
+        httpShopApi.getOne(this.$route.params.shortId).then(res => {
+          this.http.req.shop = res
+        })
+      },
+      httpInfo() {
+        httpInfoApi.get(this.$route.params.shortId).then(res => {
+          this.http.req.info = res
+        })
+      },
+      httpSearchWord() {
+        if (this.http.req.shop.licenseType !== 'Free') {
+          httpSearchApi.getSearchWord(this.$route.params.shortId).then(res => {
+            if (res.length > 0) {
+              this.ui.searchWords = res
+              this.ui.searchWordEnable = true
+            }
+          })
+        }
+      },
       updateInfo() {
         httpShopApi.putName(this.$route.params.shortId, this.http.req.shop.name).then(res => {
           httpInfoAdminApi.put(this.$route.params.shortId, this.http.req.info).then(res => {
@@ -306,7 +313,7 @@
         let limit = 20
 
         if (this.http.req.shop.licenseType === 'Free') {
-          limit = 5
+          limit = 2
           return
         }
 

@@ -15,7 +15,7 @@
       title: '退出登录'
     },
     components: {Loading},
-    created() {
+    mounted() {
       httpUserApi.postLogout().then(res => {
         userApi.clearAll()
         cartApi.clearAll()

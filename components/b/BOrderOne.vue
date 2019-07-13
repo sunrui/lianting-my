@@ -537,10 +537,6 @@
         }
       }
     },
-    created() {
-      this.autoRefresh()
-      this.ui.interval = setInterval(this.autoRefresh, 10 * 1000)
-    },
     beforeDestroy() {
       if (this.ui.interval) {
         clearInterval(this.ui.interval)
@@ -549,6 +545,9 @@
     },
     mounted() {
       this.title.title = '订单详情 - ' + roleApi.getRoleTypeName(this.roleType)
+
+      this.autoRefresh()
+      this.ui.interval = setInterval(this.autoRefresh, 10 * 1000)
     },
     methods: {
       dateFormat(date) {

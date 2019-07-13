@@ -244,11 +244,14 @@
       } else {
         this.title.backUri = `/b/${this.$route.params.shortId}/${this.roleType}/food`
       }
+
+      this.httpTakeOutConfig()
     },
     created() {
+      this.$store.commit('cart/update', cartApi.getCart())
+
       cartApi.setPeople(null)
       cartApi.setTasteNote(null)
-      this.$store.commit('cart/update', cartApi.getCart())
 
       if (!this.cart.select || this.cart.select === 0) {
         if (this.roleType === 'c') {
@@ -262,8 +265,6 @@
       this.ui.table.captchaTableId = userApi.getCaptchaTableId()
       this.ui.table.tableName = userApi.getTableName()
       this.ui.table.tableNumber = userApi.getTableNumber()
-
-      this.httpTakeOutConfig()
     },
     methods: {
       dateFormat(date) {

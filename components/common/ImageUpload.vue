@@ -41,7 +41,7 @@
         default: null
       }
     },
-    created() {
+    mounted() {
       this.ui.imageUploadId = uuidApi.uuid()
       this.ui.pickFileId = uuidApi.uuid()
 

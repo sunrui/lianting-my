@@ -81,7 +81,7 @@
         }
       }
     },
-    created() {
+    mounted() {
       this.httpShop()
       this.httpStatUser()
       this.httpShopLicenseExpiredAt()

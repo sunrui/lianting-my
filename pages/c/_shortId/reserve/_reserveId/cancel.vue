@@ -57,7 +57,7 @@
         }
       }
     },
-    created() {
+    mounted() {
       this.btnChooseReason(this.ui.status[0])
     },
     methods: {

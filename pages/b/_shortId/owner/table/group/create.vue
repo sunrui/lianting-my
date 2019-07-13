@@ -125,8 +125,6 @@
         ui: {}
       }
     },
-    created() {
-    },
     methods: {
       btnPrivateRoom(privateRoom) {
         this.http.req.group.privateRoom = privateRoom

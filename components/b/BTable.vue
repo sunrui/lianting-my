@@ -220,18 +220,17 @@
         }
       }
     },
-    created() {
+    mounted() {
+      this.title.title = '餐桌 - ' + roleApi.getRoleTypeName(this.roleType)
+
+      window.addEventListener('scroll', this.onScroll)
+
       this.httpShop()
       this.httpInfo()
       this.httpTableGroup()
 
       this.autoRefresh()
       this.ui.interval = setInterval(this.autoRefresh, 10 * 1000)
-    },
-    mounted() {
-      this.title.title = '餐桌 - ' + roleApi.getRoleTypeName(this.roleType)
-
-      window.addEventListener('scroll', this.onScroll)
     },
     beforeDestroy() {
       window.removeEventListener('scroll', this.onScroll)

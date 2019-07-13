@@ -113,7 +113,7 @@
         }
       }
     },
-    created() {
+    mounted() {
       this.httpShop()
       this.httpInfo()
     },

@@ -10,7 +10,7 @@
   export default {
     middleware: 'auth',
     components: {Loading},
-    created() {
+    mounted() {
       let cart = cartApi.getCart()
       if (cart.select === 0) {
         this.$router.push(`/c/${this.$route.params.shortId}/food`)
@@ -27,9 +27,7 @@
               live: 1
             }
           })
-          return
         }
-
       })
     }
   }

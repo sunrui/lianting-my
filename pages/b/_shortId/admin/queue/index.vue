@@ -97,7 +97,7 @@
         }
       }
     },
-    created() {
+    mounted() {
       this.httpState()
     },
     methods: {

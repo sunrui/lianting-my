@@ -181,7 +181,7 @@
         }
       }
     },
-    created() {
+    mounted() {
       httpLicenseApi.getAll(this.$route.params.shortId).then(res => {
         this.http.res.shopLicense = res
 

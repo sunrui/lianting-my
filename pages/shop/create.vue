@@ -139,7 +139,7 @@
         }
       }
     },
-    created() {
+    mounted() {
       this.ui.phone = userApi.getUserPhone()
       this.http.req.shop.shopGroupId = this.$route.query.shopGroupId
     },

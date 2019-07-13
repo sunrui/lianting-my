@@ -205,7 +205,7 @@
         }
       }
     },
-    created() {
+    mounted() {
       this.httpCoupon()
     },
     methods: {

@@ -88,7 +88,7 @@
         }
       }
     },
-    created() {
+    mounted() {
       let phone = userApi.getUserPhone()
       if (Boolean(phone)) {
         this.ui.phone = phone

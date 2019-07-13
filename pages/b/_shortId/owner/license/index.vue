@@ -442,7 +442,7 @@
         }
       }
     },
-    created() {
+    mounted() {
       this.httpShop()
       this.httpShopLicenseExpiredAt()
       this.httpLicensePlan()

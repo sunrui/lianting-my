@@ -83,7 +83,7 @@
         }
       }
     },
-    created() {
+    mounted() {
       this.httpReserves(null)
     },
     methods: {

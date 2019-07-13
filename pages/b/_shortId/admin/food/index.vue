@@ -178,13 +178,12 @@
         }
       }
     },
-    created() {
+    mounted() {
+      window.addEventListener('scroll', this.onScroll)
+
       this.httpShop()
       this.httpInfo()
       this.httpFoodGroup()
-    },
-    mounted() {
-      window.addEventListener('scroll', this.onScroll)
     },
     beforeDestroy() {
       window.removeEventListener('scroll', this.onScroll)

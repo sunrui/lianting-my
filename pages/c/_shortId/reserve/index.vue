@@ -148,7 +148,7 @@
         }
       }
     },
-    created() {
+    mounted() {
       this.httpShop()
       this.httpInfo()
       this.httpReserveLive()

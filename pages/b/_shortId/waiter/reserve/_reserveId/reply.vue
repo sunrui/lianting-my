@@ -101,10 +101,11 @@
         }
       }
     },
-    created() {
+    mounted() {
       this.httpShop()
       this.httpInfo()
       this.httpReserve()
+
       this.btnChooseStatus(this.ui.status[0])
     },
     methods: {

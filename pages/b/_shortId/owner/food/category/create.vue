@@ -197,7 +197,7 @@
         }
       }
     },
-    created() {
+    mounted() {
       if (!Boolean(this.$route.query.foodGroupId)) {
         this.$msgBox.doModal({
           type: 'yes',

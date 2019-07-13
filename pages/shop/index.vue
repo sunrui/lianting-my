@@ -135,7 +135,7 @@
         }
       }
     },
-    created() {
+    mounted() {
       this.httpShop()
     },
     methods: {

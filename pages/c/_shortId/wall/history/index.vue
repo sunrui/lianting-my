@@ -12,7 +12,7 @@
     },
     middleware: 'auth',
     components: {Loading},
-    created() {
+    mounted() {
       this.httpWall()
     },
     methods: {

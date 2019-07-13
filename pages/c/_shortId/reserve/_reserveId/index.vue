@@ -113,7 +113,7 @@
         }
       }
     },
-    created() {
+    mounted() {
       this.httpReserve()
     },
     methods: {

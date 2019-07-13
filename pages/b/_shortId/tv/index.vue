@@ -132,7 +132,7 @@
         }
       }
     },
-    created() {
+    mounted() {
       document.addEventListener('fullscreenchange', this.onFullScreenChange)
       document.addEventListener('mozfullscreenchange', this.onFullScreenChange)
       document.addEventListener('webkitfullscreenchange', this.onFullScreenChange)

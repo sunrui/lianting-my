@@ -149,8 +149,7 @@
       } else {
         this.title.backUri = `/b/${this.$route.params.shortId}/${this.roleType}`
       }
-    },
-    created() {
+
       this.httpOrder()
       this.httpConfig()
     },

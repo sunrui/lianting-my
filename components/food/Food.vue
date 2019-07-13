@@ -315,10 +315,6 @@
     },
     created() {
       this.$store.commit('cart/update', cartApi.getCart())
-
-      this.httpShop()
-      this.httpInfo()
-      this.httpFoodGroup()
     },
     mounted() {
       if (this.roleType === 'c') {
@@ -328,6 +324,10 @@
       }
 
       window.addEventListener('scroll', this.onScroll)
+
+      this.httpShop()
+      this.httpInfo()
+      this.httpFoodGroup()
     },
     beforeDestroy() {
       window.removeEventListener('scroll', this.onScroll)

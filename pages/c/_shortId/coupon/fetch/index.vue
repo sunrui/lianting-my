@@ -60,7 +60,7 @@
         ui: {}
       }
     },
-    created() {
+    mounted() {
       this.httpFetch()
     },
     methods: {

@@ -99,8 +99,7 @@
       } else {
         this.title.backUri = `/b/${this.$route.params.shortId}/${this.roleType}/food`
       }
-    },
-    created() {
+
       this.httpSearchWord()
     },
     methods: {

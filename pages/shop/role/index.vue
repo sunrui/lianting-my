@@ -88,7 +88,7 @@
         }
       }
     },
-    created() {
+    mounted() {
       this.httpRole()
     },
     methods: {

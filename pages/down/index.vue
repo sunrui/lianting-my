@@ -19,7 +19,7 @@
         }
       }
     },
-    created() {
+    mounted() {
       this.ui.interval = setInterval(this.refreshTime, 1000)
     },
     beforeDestroy() {

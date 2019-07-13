@@ -93,7 +93,7 @@
         }
       }
     },
-    created() {
+    mounted() {
       this.httpUserInfo()
       this.httpOrder()
     },

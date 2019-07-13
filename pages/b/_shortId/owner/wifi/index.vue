@@ -73,7 +73,7 @@
         }
       }
     },
-    created() {
+    mounted() {
       this.httpWifi()
     },
     methods: {

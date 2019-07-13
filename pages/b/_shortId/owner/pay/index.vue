@@ -136,7 +136,7 @@
         }
       }
     },
-    created() {
+    mounted() {
       this.httpConfig()
     },
     methods: {

@@ -80,11 +80,10 @@
         default: 'Waiter'
       }
     },
-    created() {
-      this.httpPush()
-    },
     mounted() {
       this.title.title = '微信推送 - ' + roleApi.getRoleTypeName(this.roleType)
+
+      this.httpPush()
     },
     methods: {
       httpPush() {

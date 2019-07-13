@@ -192,7 +192,7 @@
         }
       }
     },
-    created() {
+    mounted() {
       this.httpInfo()
       this.httpCoupon()
       this.httpQueuePeople()

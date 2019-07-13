@@ -215,7 +215,7 @@
         }
       }
     },
-    created() {
+    mounted() {
       this.httpFoodCategory()
     },
     methods: {

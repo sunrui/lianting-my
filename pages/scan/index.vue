@@ -31,7 +31,7 @@
         }
       }
     },
-    created() {
+    mounted() {
       if (alipayApi.inAlipay()) {
         this.scanAlipay()
       }

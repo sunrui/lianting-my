@@ -266,7 +266,7 @@
         }
       }
     },
-    created() {
+    mounted() {
       this.httpOrder()
     },
     methods: {

@@ -110,7 +110,7 @@
         }
       }
     },
-    created() {
+    mounted() {
       this.httpUserInfo()
     },
     methods: {

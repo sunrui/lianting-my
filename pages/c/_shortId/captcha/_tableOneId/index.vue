@@ -14,7 +14,7 @@
     data() {
       return {}
     },
-    created() {
+    mounted() {
       let tableOneId = this.$route.params.tableOneId
       if (!Boolean(tableOneId)) {
         this.invalidTable()

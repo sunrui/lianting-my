@@ -103,7 +103,7 @@
         }
       }
     },
-    created() {
+    mounted() {
       this.httpStatFoodCategory(0)
     },
     methods: {

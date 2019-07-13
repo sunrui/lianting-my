@@ -73,12 +73,15 @@
         ui: {}
       }
     },
-    created() {
-      httpTakeoutAdminApi.getConfig(this.$route.params.shortId).then(res => {
-        this.http.req.tableOutConfig = res
-      })
+    mounted() {
+      this.httpConfig()
     },
     methods: {
+      httpConfig() {
+        httpTakeoutAdminApi.getConfig(this.$route.params.shortId).then(res => {
+          this.http.req.tableOutConfig = res
+        })
+      },
       btnUpdate() {
         httpTakeoutAdminApi.putConfig(this.$route.params.shortId, this.http.req.tableOutConfig).then(res => {
           this.$msgBox.doModal({

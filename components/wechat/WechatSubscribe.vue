@@ -23,7 +23,7 @@
         }
       }
     },
-    created() {
+    mounted() {
       this.httpWechatInfo()
     },
     methods: {

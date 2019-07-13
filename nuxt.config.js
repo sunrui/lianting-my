@@ -1,8 +1,7 @@
 const pkg = require('./package')
 
 module.exports = {
-  mode: 'spa',
-
+  mode: 'universal',
   htmlAttrs: {
     lang: 'zh-cmn-Hans',
   },
@@ -48,14 +47,14 @@ module.exports = {
   plugins: [
     // {src: '~plugins/down', ssr: false},
     {src: '~plugins/axios', ssr: false},
-    {src: '~plugins/stat', ssr: false},
     {src: '~plugins/console', ssr: false},
-    {src: '~plugins/https', ssr: false},
+    // {src: '~plugins/https', ssr: false},
     {src: '~plugins/message_box', ssr: false},
-    {src: '~plugins/rem', ssr: false},
     {src: '~plugins/meta', ssr: false},
+    {src: '~plugins/route', ssr: false},
     {src: '~plugins/scroller', ssr: false},
-    {src: '~plugins/route', ssr: false}
+    {src: '~plugins/rem', ssr: false},
+    {src: '~plugins/stat', ssr: false},
   ],
 
   /*
@@ -77,7 +76,10 @@ module.exports = {
       {
         target: 'http://localhost:8080',
         // target: 'http://shop.lt.city/api',
-        pathRewrite: {'^/api': '/'}
+        pathRewrite: {
+          '^/api': '/',
+          changeOrigin: true
+        }
       }
     ]
   ],
@@ -86,6 +88,10 @@ module.exports = {
   */
   axios: {
     // See https://github.com/nuxt-community/axios-module#options
+    proxy: true,
+    debug: true,
+    prefix: '/api',
+    credentials: true
   },
 
   /*
@@ -94,9 +100,7 @@ module.exports = {
   build: {
     extractCSS: true,
     optimization: {
-      splitChunks: {
-        name: true
-      }
+      splitChunks: {}
     },
     /*
     ** You can extend webpack config here

@@ -88,7 +88,7 @@
         }
       }
     },
-    created() {
+    mounted() {
       this.httpOrder(null)
     },
     methods: {

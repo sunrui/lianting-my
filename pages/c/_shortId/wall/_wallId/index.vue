@@ -165,7 +165,7 @@
         }
       }
     },
-    created() {
+    mounted() {
       this.httpUserInfo()
       this.httpWall()
     },

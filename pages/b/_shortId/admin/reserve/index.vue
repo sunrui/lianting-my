@@ -82,7 +82,7 @@
         }
       }
     },
-    created() {
+    mounted() {
       this.httpReserveAll()
     },
     methods: {

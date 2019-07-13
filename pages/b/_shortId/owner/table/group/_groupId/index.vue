@@ -109,7 +109,7 @@
         ui: {}
       }
     },
-    created() {
+    mounted() {
       this.httpGroup()
     },
     methods: {
