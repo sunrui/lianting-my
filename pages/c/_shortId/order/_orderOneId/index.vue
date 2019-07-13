@@ -260,9 +260,7 @@
         },
         ui: {
           vCoverMask: false,
-          vCancel: false,
-          inWechat: wechatApi.inWechat(),
-          inAlipay: alipayApi.inAlipay()
+          vCancel: false
         }
       }
     },

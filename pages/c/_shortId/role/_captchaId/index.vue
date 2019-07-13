@@ -62,11 +62,13 @@
         },
         ui: {
           link: 'https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzU5MTQzNzQxNA==#wechat_redirect',
-          inWechat: wechatApi.inWechat()
+          inWechat: false
         }
       }
     },
     mounted() {
+      this.ui.inWechat = wechatApi.inWechat()
+
       this.httpShop()
     },
     methods: {

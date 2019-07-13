@@ -105,12 +105,15 @@
           }
         },
         ui: {
-          inWechat: wechatApi.inWechat(),
-          inAlipay: alipayApi.inAlipay()
+          inWechat: false,
+          inAlipay: false
         }
       }
     },
     mounted() {
+      this.ui.inWechat = wechatApi.inWechat()
+      this.ui.inAlipay = alipayApi.inAlipay()
+
       this.httpUserInfo()
     },
     methods: {
