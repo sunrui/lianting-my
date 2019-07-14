@@ -28,7 +28,7 @@
 
       <div class="reply_remark_area">
         <label>
-          <textarea class="reply_remark_input" placeholder="请输入回复内容" maxlength="256" v-model="http.req.reply.remark"></textarea>
+          <textarea class="reply_remark_input" placeholder="请输入回复内容" maxlength="15" v-model="http.req.reply.remark"></textarea>
         </label>
       </div>
 
