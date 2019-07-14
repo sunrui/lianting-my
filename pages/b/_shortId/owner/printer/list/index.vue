@@ -24,7 +24,11 @@
             <div class="printer_type_name">{{printer.remark ? '名称：' + printer.remark : '序列号：' + printer.sn}}</div>
           </div>
           <div class="printer_box_right">
-            <div class="printer_online_status">{{getPrinterFeieOneStatus(printer)}}</div>
+            <div class="printer_online_status" v-bind:class="{
+            printer_online_status_online: getPrinterFeieOneStatus(printer) === '在线',
+            printer_online_status_offline: getPrinterFeieOneStatus(printer) !== '在线'
+            }">{{getPrinterFeieOneStatus(printer)}}
+            </div>
           </div>
         </div>
       </div>
