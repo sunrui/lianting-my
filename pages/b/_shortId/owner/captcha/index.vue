@@ -95,7 +95,6 @@
   import {httpShopApi} from '../../../../../api/http/shop/httpShopApi'
   import TitleBar from '../../../../../components/common/TitleBar'
   import QRCode from 'qrcode'
-  import html2canvas from 'html2canvas'
   import {downloadApi} from '../../../../../api/local/downloadApi'
   import {wechatApi} from '../../../../../api/local/wechatApi'
   import {highlightApi} from '../../../../../api/local/highlightApi'
@@ -183,14 +182,18 @@
 
         let shopId = document.getElementById('shop_' + this.http.res.shop.id)
 
-        html2canvas(shopId, {
-          logging: false
-        }).then(canvas => {
-          let canvasIdText = 'shop_' + this.http.res.shop.id + '_canvas'
-          canvas.setAttribute('id', canvasIdText)
-          shopId.parentNode.appendChild(canvas)
-          shopId.parentNode.removeChild(shopId)
-        })
+        if (process.browser) {
+          let html2canvas = require('html2canvas')
+
+          html2canvas(shopId, {
+            logging: false
+          }).then(canvas => {
+            let canvasIdText = 'shop_' + this.http.res.shop.id + '_canvas'
+            canvas.setAttribute('id', canvasIdText)
+            shopId.parentNode.appendChild(canvas)
+            shopId.parentNode.removeChild(shopId)
+          })
+        }
 
         for (let tableGroupIndex in this.http.res.tableGroups.elements) {
           let tableGroup = this.http.res.tableGroups.elements[tableGroupIndex]
@@ -206,15 +209,19 @@
 
             let tableId = document.getElementById('table_' + tableOne.id)
 
-            html2canvas(tableId, {
-              logging: false
-            }).then(canvas => {
-              let canvasIdText = 'table_' + tableOne.id + '_canvas'
+            if (process.browser) {
+              let html2canvas = require('html2canvas')
 
-              canvas.setAttribute('id', canvasIdText)
-              tableId.parentNode.appendChild(canvas)
-              tableId.parentNode.removeChild(tableId)
-            })
+              html2canvas(tableId, {
+                logging: false
+              }).then(canvas => {
+                let canvasIdText = 'table_' + tableOne.id + '_canvas'
+
+                canvas.setAttribute('id', canvasIdText)
+                tableId.parentNode.appendChild(canvas)
+                tableId.parentNode.removeChild(tableId)
+              })
+            }
           }
         }
       },
