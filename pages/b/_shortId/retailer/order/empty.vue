@@ -12,7 +12,7 @@
 
   export default {
     metaInfo: {
-      title: '实时订单'
+      title: '订单记录'
     },
     middleware: 'auth',
     components: { TitleBar, Empty },
@@ -20,7 +20,7 @@
       return {
         title: {
           canBack: true,
-          title: '实时订单',
+          title: '订单记录',
           backUri: `/b/${this.$route.params.shortId}/retailer`,
           theme: 'white',
           imageHeight: 0

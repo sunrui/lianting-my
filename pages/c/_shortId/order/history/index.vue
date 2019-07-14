@@ -62,7 +62,7 @@
 
   export default {
     metaInfo: {
-      title: '我的订单'
+      title: '订单记录'
     },
     middleware: 'auth',
     components: {TitleBar},
@@ -71,7 +71,7 @@
         title: {
           canBack: true,
           backUri: `/c/${this.$route.params.shortId}/me`,
-          title: '我的订单',
+          title: '订单记录',
           theme: 'image',
           imageHeight: 220
         },
@@ -99,9 +99,6 @@
         this.httpOrder(done)
       },
       httpOrder(done) {
-        let live = this.$route.query.live
-        this.title.title = live ? '实时订单' : '我的订单'
-
         httpOrderApi.getAll(this.$route.params.shortId, this.ui.scroller.page++, 20).then(res => {
           if (done) {
             done()
