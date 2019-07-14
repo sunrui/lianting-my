@@ -102,6 +102,8 @@
         <div class="button_big" v-else @click="btnFood">继续点餐</div>
       </div>
     </div>
+
+    <wechat-subscribe></wechat-subscribe>
   </div>
 </template>
 
@@ -112,13 +114,14 @@
   import {wechatApi} from '../../api/local/wechatApi'
   import {timeApi} from '../../api/local/timeApi'
   import {alipayApi} from '../../api/local/alipayApi'
+  import WechatSubscribe from '../wechat/WechatSubscribe'
 
   export default {
     metaInfo: {
       title: '下单成功'
     },
     middleware: 'auth',
-    components: {TitleBar},
+    components: {TitleBar, WechatSubscribe},
     props: {
       roleType: {
         type: String,

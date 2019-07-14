@@ -37,6 +37,8 @@
       btnLink() {
         if (this.ui.inWechat) {
           window.location.href = this.ui.link
+        } else {
+          window.location.href = 'https://m.lt.city'
         }
       }
     }
