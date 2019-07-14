@@ -442,15 +442,7 @@
           this.ui.vMenuTable = true
           this.ui.selectTable = table
         } else {
-          if (this.getTableOrder(table) && this.getTableOrder(table).length > 0) {
-            this.btnTableOrder(table)
-          } else {
-            this.$msgBox.doModal({
-              type: 'yes',
-              title: '餐桌 ' + table.fullNumber,
-              content: '当前餐桌没有订单。'
-            })
-          }
+          this.btnTableOrder(table)
         }
       },
       btnTableFood(table) {
@@ -485,7 +477,6 @@
         scrollApi.enable(true)
 
         let live = (this.roleType !== 'admin' && this.roleType !== 'retailer')
-
         httpOrderAdminApi.getAllByTableOneId(this.$route.params.shortId, table.id, live, 0, 2).then(res => {
           if (res.currentPageSize === 0) {
             this.$router.push(`/b/${this.$route.params.shortId}/${this.roleType}/order/empty`)
