@@ -125,7 +125,7 @@
         },
         ui: {
           vRenderType: '',
-          vCopyright: false,
+          vCopyright: true,
           tableText: ''
         }
       }
