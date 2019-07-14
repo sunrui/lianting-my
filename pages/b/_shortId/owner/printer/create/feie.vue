@@ -162,7 +162,7 @@
                     title: '添加飞鹅云打印机',
                     content: '添加成功。'
                   }).then(async (val) => {
-                    this.$router.push(`/b/${this.$route.params.shortId}/owner/printer`)
+                    this.$router.push(`/b/${this.$route.params.shortId}/owner/printer/list`)
                   })
                 }
               })
