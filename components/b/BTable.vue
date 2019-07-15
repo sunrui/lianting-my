@@ -119,11 +119,10 @@
         <div class="modal_title">{{ui.selectTable.tableGroup_name}} - {{ui.selectTable.fullNumber}}</div>
 
         <div class="modal_menu modal_menu_select" v-if="getTableOrder(ui.selectTable).length > 0" @click="btnTableOrder(ui.selectTable)">查看订单</div>
-        <div class="modal_menu modal_menu_select" v-else-if="roleType === 'retailer' || roleType === 'admin'" @click="btnTableOrder(ui.selectTable)">订单记录</div>
+        <div class="modal_menu" v-else-if="roleType === 'retailer' || roleType === 'admin'" @click="btnTableOrder(ui.selectTable)">订单记录</div>
         <div class="box_divide" v-if="roleType === 'retailer' || roleType === 'admin' || getTableOrder(ui.selectTable).length > 0"></div>
         <div class="modal_menu" @click="btnTableFood(ui.selectTable)">{{getTableOrder(ui.selectTable).length > 0 ? '加餐' : '点餐'}}</div>
         <div class="modal_menu" v-if="getTableOrder(ui.selectTable).length > 0" @click="btnTableChange(ui.selectTable)">换桌</div>
-
         <div class="blank_30"></div>
       </div>
     </transition>
@@ -172,6 +171,7 @@
   import {userApi} from '../../api/local/userApi'
   import {httpCaptchaApi} from '../../api/http/lt/httpCaptchaApi'
   import {roleApi} from '../../api/local/roleApi'
+  import {cartApi} from '../../api/local/cartApi'
 
   export default {
     metaInfo: {
@@ -463,6 +463,8 @@
             userApi.setCaptchaTableId(res.captchaTableId)
             userApi.setTableName(res.tableName)
             userApi.setTableNumber(res.tableNumber)
+
+            cartApi.clearAll()
 
             this.$router.push({
               path: `/b/${this.$route.params.shortId}/${this.roleType}/food`,

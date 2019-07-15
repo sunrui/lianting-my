@@ -11,8 +11,8 @@ export const httpPrinterYlyAdminApi = {
       }
     }).then(res => res.data)
   },
-  postPrinter(shortId, printer) {
-    return axios.post(`${base}/${shortId}/printer/yly`, printer).then(res => res.data)
+  putPrinter(shortId, printer) {
+    return axios.put(`${base}/${shortId}/printer/yly`, printer).then(res => res.data)
   },
   getPrinterStatus(shortId, printer) {
     return axios.put(`${base}/${shortId}/printer/yly/status`, printer).then(res => res.data)
@@ -22,10 +22,5 @@ export const httpPrinterYlyAdminApi = {
   },
   deletePrinter(shortId, printerId) {
     return axios.delete(`${base}/${shortId}/printer/yly/${printerId}`).then(res => res.data)
-  },
-  putPrinterEnable(shortId, printerId, enable) {
-    return axios.put(`${base}/${shortId}/printer/yly/${printerId}/enable`, {
-      enable: enable
-    }).then(res => res.data)
   }
 }

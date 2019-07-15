@@ -22,6 +22,9 @@
   *,
   *:before,
   *:after {
+    box-sizing: border-box;
     font-size: 26px;
+    margin: 0;
+    padding: 0;
   }
 </style>

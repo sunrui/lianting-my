@@ -119,6 +119,19 @@
       </div>
     </div>
 
+    <div class="box">
+      <div class="addition box_radius">
+        <div class="addition_item">
+          <div class="addition_item_label_text_area">口味</div>
+          <div class="addition_item_text_area">
+            <label>
+              <textarea class="addition_item_text_input" :placeholder="roleType !== 'c' ? '请输入顾客的口味要求。' : '请输入您的口味要求，我们会尽量安排。'" v-model="ui.tasteNote"></textarea>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="button_box">
       <div class="button_big" v-if="ui.table.captchaTableId" @click="btnOrder">立即下单</div>
       <div class="button_big" v-else @click="btnScanCaptcha">扫码下单</div>
@@ -236,6 +249,14 @@
           }
 
           this.ui.orderAnyOne = orderOne
+
+          cartApi.setPeople(this.ui.orderAnyOne.people)
+          this.$store.commit('cart/update', cartApi.getCart())
+
+          httpOrderApi.getConfig(this.$route.params.shortId).then(res => {
+            cartApi.setPerTablewarePrice(res.perTablewarePrice)
+            this.$store.commit('cart/update', cartApi.getCart())
+          })
         }
 
         if (this.ui.orderedFoods.length === 0) {
@@ -333,6 +354,7 @@
         order.people = this.cart.people
         order.captchaTableId = userApi.getCaptchaTableId()
         order.roleWaiter = this.roleType !== 'c'
+        order.tasteNote = this.ui.tasteNote
 
         httpOrderApi.postOrder(this.$route.params.shortId, order).then(res => {
           if (res.shopClosed) {

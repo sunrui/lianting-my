@@ -4,52 +4,17 @@
 
     <div :class="{ cover_mask_9: ui.vCoverMask}" @click="btnCoverMask"></div>
 
-    <div class="box" v-if="http.res.order.orderTakeOut">
-      <div class="list_title box_radius_header">
-        <div class="list_title_label">外卖配送详情</div>
-      </div>
-
-      <div class="box_divide_radius">
-        <div class="box_divide_radius_line"></div>
-      </div>
-
-      <div class="order_content box_radius_footer">
-        <div class="addition_item">
-          <div class="addition_item_label_text_area">地址</div>
-          <div class="addition_item_text_area">
-            <label>
-              <textarea class="addition_item_text_input" placeholder="请输入您的配送地址" readonly v-model="http.res.order.orderTakeOut.address"></textarea>
-            </label>
-          </div>
-        </div>
-
-        <div class="box_divide"></div>
-
-        <div class="addition_item">
-          <div class="addition_item_label">订单人</div>
-          <div class="addition_item_content" style="user-select: text;">{{http.res.order.orderTakeOut.name}}</div>
-        </div>
-
-        <div class="box_divide"></div>
-
-        <div class="addition_item">
-          <div class="addition_item_label">手机号</div>
-          <div class="addition_item_content" style="user-select: text;">{{http.res.order.orderTakeOut.phone}}</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="box" v-if="http.res.order.orderTable">
+    <div class="box" v-if="ui.receipt.orderFirst.orderTable">
       <div class="order_table box_radius">
-        <div class="order_table_number">{{http.res.order.orderTable.tableFullNumber}}</div>
-        <div class="order_table_name">{{http.res.order.orderTable.tableGroupName}}</div>
+        <div class="order_table_number">{{ui.receipt.orderFirst.orderTable.tableFullNumber}}</div>
+        <div class="order_table_name">{{ui.receipt.orderFirst.orderTable.tableGroupName}}</div>
       </div>
     </div>
 
     <div class="box">
       <div class="list_title box_radius_header">
         <div class="list_time_icon"></div>
-        <div class="list_time_label">{{dateFormat(new Date(parseInt(http.res.order.createdAt)))}}</div>
+        <div class="list_time_label">{{dateFormat(new Date(parseInt(ui.receipt.orderFirst.createdAt)))}}</div>
       </div>
 
       <div class="box_divide_radius">
@@ -57,7 +22,7 @@
       </div>
     </div>
 
-    <div class="box" v-for="(orderFood, index) in http.res.order.orderFoods">
+    <div class="box" v-for="(orderFood, index) in ui.receipt.orderFoods">
       <div class="order_content" v-bind:class="{
       box_radius_footer: index === 0,
       box_radius: index !== 0
@@ -141,28 +106,22 @@
         <div class="order_tableware">
           <div class="order_tableware_icon">餐位费</div>
           <div class="order_tableware_label">餐具</div>
-          <div class="order_tableware_count">{{http.res.order.people}}</div>
-          <div class="order_tableware_price">{{http.res.order.priceTableware}}</div>
+          <div class="order_tableware_count">{{ui.receipt.orderFirst.people}}</div>
+          <div class="order_tableware_price">{{getTotalPriceTableware()}}</div>
         </div>
 
-        <div class="order_tableware" v-if="http.res.order.priceTakeOutFee > 0">
-          <div class="order_tableware_icon">配送费</div>
-          <div class="order_tableware_label">外卖配送</div>
-          <div class="order_tableware_price">{{http.res.order.priceTakeOutFee}}</div>
-        </div>
-
-        <div class="order_coupon" v-if="http.res.order.couponDeductPrice > 0">
+        <div class="order_coupon" v-if="getTotalCouponDeductPrice() > 0">
           <div class="order_coupon_icon">优惠券</div>
           <div class="order_coupon_label">优惠</div>
-          <div class="order_coupon_content">{{http.res.order.couponDeductPrice}}</div>
+          <div class="order_coupon_content">{{getTotalCouponDeductPrice()}}</div>
         </div>
 
         <div class="box_divide"></div>
 
         <div class="order_price">
           <div class="order_price_food_count">共计 {{getTotalFood()}} 份</div>
-          <div class="order_price_total">{{http.res.order.price}}</div>
-          <div class="order_price_total_original" v-if="http.res.order.price !== http.res.order.priceOriginal">{{http.res.order.priceOriginal}}</div>
+          <div class="order_price_total">{{getTotalPrice()}}</div>
+          <div class="order_price_total_original" v-if="getTotalPrice() !== getTotalPriceOriginal()">{{getTotalPriceOriginal()}}</div>
           <div class="order_price_total_label">小计</div>
         </div>
       </div>
@@ -172,10 +131,10 @@
       <div class="addition box_radius">
         <div class="addition_item" @click="btnPeople">
           <div class="addition_item_label">人数</div>
-          <div class="addition_item_content">{{http.res.order.people}} 人</div>
+          <div class="addition_item_content">{{ui.receipt.orderFirst.people}} 人</div>
         </div>
 
-        <div v-if="http.res.order.tasteNotes && http.res.order.tasteNotes.length > 0">
+        <div v-if="ui.receipt.tasteNotes && ui.receipt.tasteNotes.length > 0">
           <div class="box_divide"></div>
 
           <div class="order_taste_note">
@@ -183,7 +142,7 @@
           </div>
 
           <div class="order_taste_note_history">
-            <div class="order_taste_note_history_item" v-for="taskNote in http.res.order.tasteNotes">
+            <div class="order_taste_note_history_item" v-for="taskNote in ui.receipt.tasteNotes">
               <div class="order_taste_note_history_icon_ball"></div>
               <div class="order_taste_note_history_icon_line"></div>
               <div class="order_taste_note_history_content">{{taskNote}}</div>
@@ -200,36 +159,36 @@
         <div class="addition_item" @click="btnOrderStatus">
           <div class="addition_item_label">订单状态</div>
           <div class="addition_item_content">{{
-            http.res.order.status === 'Paid' ? '已支付' :
-            http.res.order.status === 'NotPaid' ? '待支付' :
-            http.res.order.status === 'Finish' ? '已完成' :
-            http.res.order.status === 'Closed' ? '已关闭' : http.res.order.status
+            ui.receipt.orderFirst.status === 'Paid' ? '已支付' :
+            ui.receipt.orderFirst.status === 'NotPaid' ? '待支付' :
+            ui.receipt.orderFirst.status === 'Finish' ? '已完成' :
+            ui.receipt.orderFirst.status === 'Closed' ? '已关闭' : ui.receipt.orderFirst.status
             }}
           </div>
         </div>
 
-        <div class="addition_item" v-if="http.res.order.payMethod">
+        <div class="addition_item" v-if="ui.receipt.orderFirst.payMethod">
           <div class="box_divide"></div>
 
           <div class="addition_item_label">支付方式</div>
           <div class="addition_item_content">{{
-            http.res.order.payMethod === 'Wechat' ? '微信支付' :
-            http.res.order.payMethod === 'Alipay' ? '支付宝支付' :
-            http.res.order.payMethod === 'Offline' ? '线下结算' :
-            http.res.order.payMethod === 'Cancel' ? '取消支付' : http.res.order.payMethod
+            ui.receipt.orderFirst.payMethod === 'Wechat' ? '微信支付' :
+            ui.receipt.orderFirst.payMethod === 'Alipay' ? '支付宝支付' :
+            ui.receipt.orderFirst.payMethod === 'Offline' ? '线下结算' :
+            ui.receipt.orderFirst.payMethod === 'Cancel' ? '取消支付' : ui.receipt.orderFirst.payMethod
             }}
           </div>
         </div>
 
-        <div v-if="http.res.order.payPaidAt">
+        <div v-if="ui.receipt.orderFirst.payPaidAt">
           <div class="box_divide"></div>
           <div class="addition_item">
             <div class="addition_item_label">支付时间</div>
-            <div class="addition_item_content">{{dateFormat(new Date(parseInt(http.res.order.payPaidAt)))}}</div>
+            <div class="addition_item_content">{{dateFormat(new Date(parseInt(ui.receipt.orderFirst.payPaidAt)))}}</div>
           </div>
         </div>
 
-        <div v-if="http.res.order.remarks && http.res.order.remarks.length > 0">
+        <div v-if="ui.receipt.remarks && ui.receipt.remarks.length > 0">
           <div class="box_divide"></div>
 
           <div class="order_taste_note">
@@ -237,7 +196,7 @@
           </div>
 
           <div class="order_taste_note_history">
-            <div class="order_taste_note_history_item" v-for="remark in http.res.order.remarks">
+            <div class="order_taste_note_history_item" v-for="remark in ui.receipt.remarks">
               <div class="order_taste_note_history_icon_ball"></div>
               <div class="order_taste_note_history_icon_line"></div>
               <div class="order_taste_note_history_content">{{remark}}</div>
@@ -249,15 +208,12 @@
       </div>
     </div>
 
-    <div class="blank_30" v-if="http.res.order.status === 'Finish' || http.res.order.status === 'Closed'"></div>
-    <div class="button_box" v-else-if="http.res.order.status === 'NotPaid' && roleType !== 'admin' && roleType !== 'retailer'">
-      <div class="button_big" @click="btnFood" v-if="roleType === 'waiter'">加餐</div>
-      <div class="button_small" @click="btnChangePrice" v-if="roleType === 'cashier'">更改价格</div>
+    <div class="blank_30" v-if="ui.receipt.orderFirst.status === 'Finish' || ui.receipt.orderFirst.status === 'Closed'"></div>
+    <div class="button_box" v-else-if="ui.receipt.orderFirst.status === 'NotPaid' && roleType !== 'admin' && roleType !== 'retailer'">
       <div class="button_small" @click="btnPayOffline" v-if="roleType === 'cashier'">线下结算</div>
     </div>
     <div class="button_box" v-else-if="roleType === 'admin' || roleType === 'retailer'">
-      <div class="button_big" v-if="http.res.order.status !== 'Paid'" @click="btnChangePrice">更改价格</div>
-      <div class="button_big" v-if="http.res.order.status !== 'Paid'" @click="btnPayOffline">线下结算</div>
+      <div class="button_big" v-if="ui.receipt.orderFirst.status !== 'Paid'" @click="btnPayOffline">线下结算</div>
       <div class="button_big" @click="btnCancel">取消订单</div>
     </div>
 
@@ -413,58 +369,14 @@
         </div>
       </div>
     </transition>
-
-    <transition name="toggle">
-      <div class="modal_bottom" v-if="ui.vChangePrice">
-        <div class="modal_close_box" @click="btnCoverMask">
-          <img class="modal_close" src="/img/common/close.png" alt="">
-        </div>
-
-        <div class="modal_title">更改价格</div>
-
-        <div class="blank_20"></div>
-
-        <div class="change_price_label">请输入新价格 (原价: {{http.res.order.price}} 元)</div>
-
-        <div class="box">
-          <div class="modal_input_box">
-            <div class="modal_input_area">
-              <currency-input placeholder="请输入新价格" v-model="http.req.changePrice.price"></currency-input>
-            </div>
-          </div>
-        </div>
-
-        <div class="choose_box">
-          <div class="choose_remark">
-            <div class="choose_remark_label">改价原因</div>
-
-            <div class="blank_20"></div>
-
-            <div class="choose_remark_text_area">
-              <label>
-                <textarea class="choose_remark_text_input" placeholder="请在此备注更改价格的原因。" v-model="http.req.changePrice.remark"></textarea>
-              </label>
-            </div>
-          </div>
-        </div>
-
-        <div class="modal_button_box">
-          <div class="button_big" v-if="http.req.changePrice.remark" @click="btnChangePriceConfirm">确认</div>
-          <div class="button_big button_gray" v-else>确认</div>
-        </div>
-      </div>
-    </transition>
   </div>
 </template>
 
 <script>
   import TitleBar from '../common/TitleBar'
-  import {httpOrderApi} from '../../api/http/lt/httpOrderApi'
   import {httpOrderAdminApi} from '../../api/http/lt/httpOrderAdminApi'
-  import {httpCaptchaApi} from '../../api/http/lt/httpCaptchaApi'
   import {scrollApi} from '../../api/local/scrollApi'
   import {timeApi} from '../../api/local/timeApi'
-  import {userApi} from '../../api/local/userApi'
   import DropDown from '../common/DropDown'
   import CurrencyInput from '../common/CurrencyInput'
   import {highlightApi} from '../../api/local/highlightApi'
@@ -510,18 +422,21 @@
             }
           },
           res: {
-            order: {
-              orderFoods: [],
-              createdAt: new Date().getTime()
-            }
+            orderOnes: {}
           }
         },
         ui: {
+          receipt: {
+            orderFirst: {},
+            orderFoods: [],
+            tasteNotes: [],
+            remarks: []
+          },
+          remarks: [],
           vPeople: false,
           vCoverMask: false,
           vPayOffline: false,
           vReturn: false,
-          vChangePrice: false,
           selectPeople: null,
           selectOrderFood: {},
           peopleChoose: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
@@ -537,99 +452,242 @@
         }
       }
     },
-    beforeDestroy() {
-      if (this.ui.interval) {
-        clearInterval(this.ui.interval)
-        this.ui.interval = null
-      }
-    },
     mounted() {
       this.title.title = '订单详情 - ' + roleApi.getRoleTypeName(this.roleType)
 
-      this.autoRefresh()
-      this.ui.interval = setInterval(this.autoRefresh, 10 * 1000)
+      this.httpOrder()
     },
     methods: {
       dateFormat(date) {
         return timeApi.dateFormat(date)
       },
-      autoRefresh() {
-        this.httpOrder()
-      },
       btnChooseReturnCount(payload) {
         this.http.req.return.count = payload.name
       },
       httpOrder() {
-        httpOrderApi.getOrder(this.$route.params.shortId, this.$route.params.orderOneId).then(res => {
-          this.http.res.order = res
+        httpOrderAdminApi.getAllByTableOneId(this.$route.params.shortId, this.$route.query.orderOneId, true, 0, 20).then(res => {
+          if (res.elements.length === 0) {
+            this.$router.push(`/b/${this.$route.params.shortId}/${this.roleType}/order`)
+            return
+          }
+
+          let priceTableware = null
+          let orderOneId = null
+
+          for (let orderOneIndex in res.elements) {
+            let orderOne = res.elements[orderOneIndex]
+            if (orderOne.priceTableware > 0) {
+              if (priceTableware === null) {
+                priceTableware = orderOne.priceTableware
+                orderOneId = orderOne.id
+
+                continue
+              }
+
+              this.$msgBox.doModal({
+                type: 'yesOrNo',
+                title: '多个餐具费',
+                content: '多个订单存在餐具费，您需要将其它订单的餐具费更为零吗?'
+              }).then(async (val) => {
+                if (val !== 'Yes') {
+                  return
+                }
+
+                for (let orderOneIndex in res.elements) {
+                  let orderOne = res.elements[orderOneIndex]
+
+                  if (orderOne.priceTableware === 0) {
+                    continue
+                  }
+
+                  if (orderOne.id === orderOneId) {
+                    continue
+                  }
+
+                  let changePrice = {
+                    price: 0,
+                    remark: '免餐具费 - ' + orderOne.priceTableware
+                  }
+
+                  httpOrderAdminApi.putPriceTableware(this.$route.params.shortId, orderOne.id, changePrice).then(res => {
+                    if (res.orderOneIdNotExists) {
+                      this.$msgBox.doModal({
+                        type: 'yes',
+                        title: '更改价格',
+                        content: '订单不存在。'
+                      })
+                    } else if (res.paid) {
+                      this.$msgBox.doModal({
+                        type: 'yes',
+                        title: '更改价格',
+                        content: '已支付，无法更改价格。'
+                      })
+                    } else if (res.closed) {
+                      this.$msgBox.doModal({
+                        type: 'yes',
+                        title: '更改价格',
+                        content: '订单已关闭。'
+                      })
+                    } else if (res.success) {
+                      this.$msgBox.doModal({
+                        type: 'yes',
+                        title: '更改价格',
+                        content: '已更改价格。'
+                      }).then(async (val) => {
+                        this.httpOrder()
+                      })
+                    }
+                  })
+                }
+              })
+            }
+          }
+
+          this.http.res.orderOnes = res
 
           let orderFoods = []
 
-          function addFood(orderFood) {
-            let have = false
-            for (let i in orderFoods) {
-              let one = orderFoods[i]
+          this.ui.receipt.tasteNotes = []
+          this.ui.receipt.remarks = []
 
-              if (one.id === orderFood.id) {
-                have = true
-                break
+          for (let orderOneIndex in res.elements) {
+            let orderOne = res.elements[orderOneIndex]
+
+            this.ui.receipt.orderFirst = orderOne
+
+            if (orderOne.tasteNotes && orderOne.tasteNotes.length > 0) {
+              this.ui.receipt.tasteNotes = this.ui.receipt.tasteNotes.concat(orderOne.tasteNotes)
+            }
+
+            if (orderOne.remarks && orderOne.remarks.length > 0) {
+              this.ui.receipt.remarks = this.ui.receipt.remarks.concat(orderOne.remarks)
+            }
+
+            function addFood(orderFood) {
+              let have = false
+              for (let i in orderFoods) {
+                let one = orderFoods[i]
+
+                if (one.id === orderFood.id) {
+                  have = true
+                  break
+                }
+              }
+
+              if (!have) {
+                orderFoods.push(orderFood)
               }
             }
 
-            if (!have) {
-              orderFoods.push(orderFood)
+            for (let index in orderOne.orderFoods) {
+              let orderFood = orderOne.orderFoods[index]
+
+              if (orderFood.status === 'Cooked') {
+                addFood(orderFood)
+              }
             }
-          }
 
-          for (let index in this.http.res.order.orderFoods) {
-            let orderFood = this.http.res.order.orderFoods[index]
+            for (let index in orderOne.orderFoods) {
+              let orderFood = orderOne.orderFoods[index]
 
-            if (orderFood.status === 'Cooked') {
+              if (orderFood.status === 'Cooking') {
+                addFood(orderFood)
+              }
+            }
+
+            for (let index in orderOne.orderFoods) {
+              let orderFood = orderOne.orderFoods[index]
+
+              if (orderFood.status === 'Wait') {
+                addFood(orderFood)
+              }
+            }
+
+            for (let index in orderOne.orderFoods) {
+              let orderFood = orderOne.orderFoods[index]
+
+              if (orderFood.status === 'Finish') {
+                addFood(orderFood)
+              }
+            }
+
+            for (let index in orderOne.orderFoods) {
+              let orderFood = orderOne.orderFoods[index]
               addFood(orderFood)
             }
           }
 
-          for (let index in this.http.res.order.orderFoods) {
-            let orderFood = this.http.res.order.orderFoods[index]
-
-            if (orderFood.status === 'Cooking') {
-              addFood(orderFood)
-            }
-          }
-
-          for (let index in this.http.res.order.orderFoods) {
-            let orderFood = this.http.res.order.orderFoods[index]
-
-            if (orderFood.status === 'Wait') {
-              addFood(orderFood)
-            }
-          }
-
-          for (let index in this.http.res.order.orderFoods) {
-            let orderFood = this.http.res.order.orderFoods[index]
-
-            if (orderFood.status === 'Finish') {
-              addFood(orderFood)
-            }
-          }
-
-          for (let index in this.http.res.order.orderFoods) {
-            let orderFood = this.http.res.order.orderFoods[index]
-            addFood(orderFood)
-          }
-
-          this.http.res.order.orderFoods = orderFoods
+          this.ui.receipt.orderFoods = orderFoods
         })
+      },
+      getOrderOneIdByOrderFoodId(orderFoodId) {
+        for (let orderOneIndex in this.http.res.orderOnes.elements) {
+          let orderOne = this.http.res.orderOnes.elements[orderOneIndex]
+
+          for (let orderFoodIndex in orderOne.orderFoods) {
+            let orderFood = orderOne.orderFoods[orderFoodIndex]
+
+            if (orderFood.id === orderFoodId) {
+              return orderOne.id
+            }
+          }
+        }
+
+        return null
       },
       getTotalFood() {
         let count = 0
 
-        for (let index in this.http.res.order.orderFoods) {
-          let orderFood = this.http.res.order.orderFoods[index]
+        for (let index in this.ui.receipt.orderFoods) {
+          let orderFood = this.ui.receipt.orderFoods[index]
           count += orderFood.count
         }
 
         return count
+      },
+      getTotalPriceOriginal() {
+        let priceOriginal = 0
+
+        for (let orderOneIndex in this.http.res.orderOnes.elements) {
+          let orderOne = this.http.res.orderOnes.elements[orderOneIndex]
+
+          priceOriginal += orderOne.priceOriginal
+        }
+
+        return priceOriginal
+      },
+      getTotalPrice() {
+        let price = 0
+
+        for (let orderOneIndex in this.http.res.orderOnes.elements) {
+          let orderOne = this.http.res.orderOnes.elements[orderOneIndex]
+
+          price += orderOne.price
+        }
+
+        return price
+      },
+      getTotalPriceTableware() {
+        let priceTableware = 0
+
+        for (let orderOneIndex in this.http.res.orderOnes.elements) {
+          let orderOne = this.http.res.orderOnes.elements[orderOneIndex]
+
+          priceTableware += orderOne.priceTableware
+        }
+
+        return priceTableware
+      },
+      getTotalCouponDeductPrice() {
+        let couponDeductPrice = 0
+
+        for (let orderOneIndex in this.http.res.orderOnes.elements) {
+          let orderOne = this.http.res.orderOnes.elements[orderOneIndex]
+
+          couponDeductPrice += orderOne.couponDeductPrice
+        }
+
+        return couponDeductPrice
       },
       getStatusLabel(status) {
         switch (status) {
@@ -644,10 +702,6 @@
         }
       },
       btnChangeStatus(orderFood, status) {
-        if (this.http.res.order.status === 'Finish' || this.http.res.order.status === 'Closed') {
-          return
-        }
-
         if (orderFood.status === status) {
           return
         }
@@ -702,7 +756,7 @@
           content: content
         }).then(async (val) => {
           if (val === 'Yes') {
-            httpOrderAdminApi.putFoodStatus(this.$route.params.shortId, this.$route.params.orderOneId, orderFood.id, status).then(res => {
+            httpOrderAdminApi.putFoodStatus(this.$route.params.shortId, this.getOrderOneIdByOrderFoodId(orderFood.id), orderFood.id, status).then(res => {
               if (res.orderOneIdNotExists) {
                 this.$msgBox.doModal({
                   type: 'yes',
@@ -743,16 +797,11 @@
         this.ui.vCancel = false
         this.ui.vPayOffline = false
         this.ui.vReturn = false
-        this.ui.vChangePrice = false
         this.ui.vCoverMask = false
 
         scrollApi.enable(true)
       },
       btnPeople() {
-        if (this.http.res.order.status === 'Paid' || this.http.res.order.status === 'Finish' || this.http.res.order.status === 'Closed') {
-          return
-        }
-
         if (this.roleType === 'cooker') {
           return
         }
@@ -761,45 +810,49 @@
         scrollApi.enable(false)
 
         this.ui.vPeople = true
-        this.ui.selectPeople = this.http.res.order.people
+        this.ui.selectPeople = this.ui.receipt.orderFirst.people
       },
       btnPeopleChoose(one) {
         this.ui.selectPeople = one
       },
       btnPeopleConfirm() {
-        httpOrderAdminApi.putPeople(this.$route.params.shortId, this.$route.params.orderOneId, this.ui.selectPeople).then(res => {
-          this.ui.vPeople = false
-          this.ui.vCoverMask = false
-          scrollApi.enable(true)
+        for (let orderOneIndex in this.http.res.orderOnes.elements) {
+          let orderOne = this.http.res.orderOnes.elements[orderOneIndex]
 
-          if (res.orderOneIdNotExists) {
-            this.$msgBox.doModal({
-              type: 'yes',
-              title: '更改人数',
-              content: '订单不存在。'
-            })
-          } else if (res.paid) {
-            this.$msgBox.doModal({
-              type: 'yes',
-              title: '更改人数',
-              content: '订单已支付。'
-            })
-          } else if (res.closed) {
-            this.$msgBox.doModal({
-              type: 'yes',
-              title: '更改人数',
-              content: '订单已关闭。'
-            })
-          } else if (res.success) {
-            this.$msgBox.doModal({
-              type: 'yes',
-              title: '更改人数',
-              content: '人数已更改。'
-            })
-          }
+          httpOrderAdminApi.putPeople(this.$route.params.shortId, orderOne.id, this.ui.selectPeople).then(res => {
+            this.ui.vPeople = false
+            this.ui.vCoverMask = false
+            scrollApi.enable(true)
 
-          this.httpOrder()
-        })
+            if (res.orderOneIdNotExists) {
+              this.$msgBox.doModal({
+                type: 'yes',
+                title: '更改人数',
+                content: '订单不存在。'
+              })
+            } else if (res.paid) {
+              this.$msgBox.doModal({
+                type: 'yes',
+                title: '更改人数',
+                content: '订单已支付。'
+              })
+            } else if (res.closed) {
+              this.$msgBox.doModal({
+                type: 'yes',
+                title: '更改人数',
+                content: '订单已关闭。'
+              })
+            } else if (res.success) {
+              this.$msgBox.doModal({
+                type: 'yes',
+                title: '更改人数',
+                content: '人数已更改。'
+              })
+            }
+
+            this.httpOrder()
+          })
+        }
       },
       getTime(time) {
         if (!Boolean(time)) {
@@ -808,126 +861,12 @@
 
         return timeApi.dateFormat(new Date(time), 'HH:mm')
       },
-      btnFood() {
-        let tableId = this.http.res.order.orderTable.tableOneId
-
-        httpCaptchaApi.postCaptchaTable(this.$route.params.shortId, tableId).then(res => {
-          if (res.tableOneNotExists) {
-            this.$msgBox.doModal({
-              type: 'yes',
-              title: '无效餐桌',
-              content: '餐桌二维码已过期，请重新扫码或联系服务员。'
-            })
-
-            userApi.setCaptchaTableId(null)
-            userApi.setTableName(null)
-            userApi.setTableNumber(null)
-          } else {
-            userApi.setCaptchaTableId(res.captchaTableId)
-            userApi.setTableName(res.tableName)
-            userApi.setTableNumber(res.tableNumber)
-
-            this.$router.push({
-              path: `/b/${this.$route.params.shortId}/waiter/food`,
-              query: {
-                tableId: tableId
-              }
-            })
-          }
-        })
-      },
       btnStatusReset(orderFood, status) {
-        if (this.http.res.order.status === 'Finish' || this.http.res.order.status === 'Closed') {
-          return
-        }
-
         if (this.roleType !== 'admin') {
           return
         }
 
-        if (this.http.res.order.status === 'Finish' || this.http.res.order.status === 'Closed') {
-          this.$msgBox.doModal({
-            type: 'yes',
-            title: '烹饪餐食',
-            content: '订单已关闭。'
-          })
-
-          return
-        }
-
         this.btnChangeStatus(orderFood, status)
-      },
-      btnChangePrice() {
-        this.ui.vCoverMask = true
-        scrollApi.enable(false)
-
-        this.ui.vChangePrice = true
-        this.http.req.changePrice.price = this.http.res.order.price
-      },
-      btnChangePriceConfirm() {
-        this.ui.vChangePrice = false
-        this.ui.vCoverMask = false
-        scrollApi.enable(true)
-
-        if (this.roleType !== 'admin' && this.roleType !== 'cashier' && this.roleType !== 'retailer') {
-          this.$msgBox.doModal({
-            type: 'yes',
-            title: '更改价格',
-            content: `仅允许${highlightApi.highlight('店长')}、${highlightApi.highlight('收银员')}、${highlightApi.highlight('零售员')}可以操作，您只有查看权限。`
-          })
-
-          return
-        }
-
-        if (this.http.req.changePrice.price <= 0) {
-          this.$msgBox.doModal({
-            type: 'yes',
-            title: '更改价格',
-            content: `更改价格不能为零，如您要取消订单请联系${highlightApi.highlight('店长')}或${highlightApi.highlight('零售员')}。`
-          })
-
-          return
-        }
-
-        if (this.http.req.changePrice.price === this.http.res.order.price) {
-          this.$msgBox.doModal({
-            type: 'yes',
-            title: '更改价格',
-            content: `由于两次价格相同，已忽略更改。`
-          })
-
-          return
-        }
-
-        httpOrderAdminApi.putPrice(this.$route.params.shortId, this.$route.params.orderOneId, this.http.req.changePrice).then(res => {
-          if (res.orderOneIdNotExists) {
-            this.$msgBox.doModal({
-              type: 'yes',
-              title: '更改价格',
-              content: '订单不存在。'
-            })
-          } else if (res.paid) {
-            this.$msgBox.doModal({
-              type: 'yes',
-              title: '更改价格',
-              content: '已支付，无法更改价格。'
-            })
-          } else if (res.closed) {
-            this.$msgBox.doModal({
-              type: 'yes',
-              title: '更改价格',
-              content: '订单已关闭。'
-            })
-          } else if (res.success) {
-            this.$msgBox.doModal({
-              type: 'yes',
-              title: '更改价格',
-              content: '已更改价格。'
-            }).then(async (val) => {
-              this.httpOrder()
-            })
-          }
-        })
       },
       btnOrderStatus() {
         if (this.roleType !== 'admin' && this.roleType !== 'cashier' && this.roleType !== 'retailer') {
@@ -943,33 +882,37 @@
         this.ui.vPayOffline = true
       },
       btnPayOfflineConfirm() {
-        httpOrderAdminApi.putPayOffline(this.$route.params.shortId, this.$route.params.orderOneId, this.http.req.payOffline.remark).then(res => {
-          this.ui.vPayOffline = false
-          this.ui.vCoverMask = false
-          scrollApi.enable(true)
+        for (let orderOneIndex in this.http.res.orderOnes.elements) {
+          let orderOne = this.http.res.orderOnes.elements[orderOneIndex]
 
-          if (res.orderOneIdNotExists) {
-            this.$msgBox.doModal({
-              type: 'yes',
-              title: '线下结算',
-              content: '订单不存在。'
-            })
-          } else if (res.closed) {
-            this.$msgBox.doModal({
-              type: 'yes',
-              title: '线下结算',
-              content: '订单已关闭。'
-            })
-          } else if (res.success) {
-            this.$msgBox.doModal({
-              type: 'yes',
-              title: '线下结算',
-              content: '线下结算已完成。'
-            }).then(async (val) => {
-              this.httpOrder()
-            })
-          }
-        })
+          httpOrderAdminApi.putPayOffline(this.$route.params.shortId, orderOne.id, this.http.req.payOffline.remark).then(res => {
+            this.ui.vPayOffline = false
+            this.ui.vCoverMask = false
+            scrollApi.enable(true)
+
+            if (res.orderOneIdNotExists) {
+              this.$msgBox.doModal({
+                type: 'yes',
+                title: '线下结算',
+                content: '订单不存在。'
+              })
+            } else if (res.closed) {
+              this.$msgBox.doModal({
+                type: 'yes',
+                title: '线下结算',
+                content: '订单已关闭。'
+              })
+            } else if (res.success) {
+              this.$msgBox.doModal({
+                type: 'yes',
+                title: '线下结算',
+                content: '线下结算已完成。'
+              }).then(async (val) => {
+                this.httpOrder()
+              })
+            }
+          })
+        }
       },
       btnCancel() {
         if (this.roleType !== 'admin' && this.roleType !== 'retailer') {
@@ -990,33 +933,37 @@
       btnCancelConfirm() {
         scrollApi.enable(true)
 
-        httpOrderAdminApi.putCancel(this.$route.params.shortId, this.$route.params.orderOneId, this.http.req.cancel.remark).then(res => {
-          this.ui.vCancel = false
-          this.ui.vCoverMask = false
-          scrollApi.enable(true)
+        for (let orderOneIndex in this.http.res.orderOnes.elements) {
+          let orderOne = this.http.res.orderOnes.elements[orderOneIndex]
 
-          if (res.orderOneIdNotExists) {
-            this.$msgBox.doModal({
-              type: 'yes',
-              title: '取消订单',
-              content: '订单不存在。'
-            })
-          } else if (res.closed) {
-            this.$msgBox.doModal({
-              type: 'yes',
-              title: '取消订单',
-              content: '订单已关闭。'
-            })
-          } else if (res.success) {
-            this.$msgBox.doModal({
-              type: 'yes',
-              title: '取消订单',
-              content: '订单已取消。'
-            }).then(async (val) => {
-              this.httpOrder()
-            })
-          }
-        })
+          httpOrderAdminApi.putCancel(this.$route.params.shortId, orderOne.id, this.http.req.cancel.remark).then(res => {
+            this.ui.vCancel = false
+            this.ui.vCoverMask = false
+            scrollApi.enable(true)
+
+            if (res.orderOneIdNotExists) {
+              this.$msgBox.doModal({
+                type: 'yes',
+                title: '取消订单',
+                content: '订单不存在。'
+              })
+            } else if (res.closed) {
+              this.$msgBox.doModal({
+                type: 'yes',
+                title: '取消订单',
+                content: '订单已关闭。'
+              })
+            } else if (res.success) {
+              this.$msgBox.doModal({
+                type: 'yes',
+                title: '取消订单',
+                content: '订单已取消。'
+              }).then(async (val) => {
+                this.httpOrder()
+              })
+            }
+          })
+        }
       },
       btnChooseReturnRemark(remark) {
         this.http.req.return.remark = remark
@@ -1025,16 +972,6 @@
         this.http.req.payOffline.remark = remark
       },
       btnFoodReturn(orderFood) {
-        if (this.http.res.order.status === 'Finish' || this.http.res.order.status === 'Closed') {
-          this.$msgBox.doModal({
-            type: 'yes',
-            title: '烹饪餐食',
-            content: '订单已关闭。'
-          })
-
-          return
-        }
-
         this.http.req.return.count = 1
         this.ui.selectOrderFood = orderFood
         this.http.req.return.orderFoodId = orderFood.id
@@ -1054,7 +991,7 @@
         this.ui.vCoverMask = false
         scrollApi.enable(true)
 
-        httpOrderAdminApi.putReturn(this.$route.params.shortId, this.$route.params.orderOneId, this.http.req.return).then(res => {
+        httpOrderAdminApi.putReturn(this.$route.params.shortId, this.getOrderOneIdByOrderFoodId(this.http.req.return.orderFoodId), this.http.req.return).then(res => {
           if (res.orderOneIdNotExists) {
             this.$msgBox.doModal({
               type: 'yes',

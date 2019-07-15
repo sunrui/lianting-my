@@ -11,8 +11,8 @@ export const httpPrinterPoscomAdminApi = {
       }
     }).then(res => res.data)
   },
-  postPrinter(shortId, printer) {
-    return axios.post(`${base}/${shortId}/printer/poscom`, printer).then(res => res.data)
+  putPrinter(shortId, printer) {
+    return axios.put(`${base}/${shortId}/printer/poscom`, printer).then(res => res.data)
   },
   getPrinterStatus(shortId, printer) {
     return axios.put(`${base}/${shortId}/printer/poscom/status`, printer).then(res => res.data)
@@ -22,10 +22,5 @@ export const httpPrinterPoscomAdminApi = {
   },
   deletePrinter(shortId, printerId) {
     return axios.delete(`${base}/${shortId}/printer/poscom/${printerId}`).then(res => res.data)
-  },
-  putPrinterEnable(shortId, printerId, enable) {
-    return axios.put(`${base}/${shortId}/printer/poscom/${printerId}/enable`, {
-      enable: enable
-    }).then(res => res.data)
   }
 }

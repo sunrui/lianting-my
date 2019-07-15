@@ -60,6 +60,9 @@ export const httpOrderAdminApi = {
   putPrice(shortId, orderOneId, model) {
     return axios.put(`${base}/${shortId}/order/${orderOneId}/price`, model).then(res => res.data)
   },
+  putPriceTableware(shortId, orderOneId, model) {
+    return axios.put(`${base}/${shortId}/order/${orderOneId}/priceTableware`, model).then(res => res.data)
+  },
   putRemark(shortId, orderOneId, remark) {
     return axios.put(`${base}/${shortId}/order/${orderOneId}/remark`, {
       remark: remark

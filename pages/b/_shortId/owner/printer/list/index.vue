@@ -39,10 +39,20 @@
 
       <div class="printer_footer box_radius_footer">
         <div class="addition_item">
-          <div class="addition_item_label">开启</div>
+          <div class="addition_item_label">后厨订单打印</div>
           <div class="addition_item_check">
-            <div class="addition_item_check_on" v-if="printer.enable" @click="btnEnableFeie(printer)"></div>
-            <div class="addition_item_check_off" v-else @click="btnEnableFeie(printer)"></div>
+            <div class="addition_item_check_on" v-if="printer.enableOrder" @click="btnEnableFeieOrder(printer)"></div>
+            <div class="addition_item_check_off" v-else @click="btnEnableFeieOrder(printer)"></div>
+          </div>
+        </div>
+
+        <div class="box_divide"></div>
+
+        <div class="addition_item">
+          <div class="addition_item_label">顾客收据打印</div>
+          <div class="addition_item_check">
+            <div class="addition_item_check_on" v-if="printer.enableReceipt" @click="btnEnableFeieReceipt(printer)"></div>
+            <div class="addition_item_check_off" v-else @click="btnEnableFeieReceipt(printer)"></div>
           </div>
         </div>
       </div>
@@ -72,10 +82,20 @@
 
       <div class="printer_footer box_radius_footer">
         <div class="addition_item">
-          <div class="addition_item_label">开启</div>
+          <div class="addition_item_label">后厨订单打印</div>
           <div class="addition_item_check">
-            <div class="addition_item_check_on" v-if="printer.enable" @click="btnEnablePoscom(printer)"></div>
-            <div class="addition_item_check_off" v-else @click="btnEnablePoscom(printer)"></div>
+            <div class="addition_item_check_on" v-if="printer.enableOrder" @click="btnEnablePoscomOrder(printer)"></div>
+            <div class="addition_item_check_off" v-else @click="btnEnablePoscomOrder(printer)"></div>
+          </div>
+        </div>
+
+        <div class="box_divide"></div>
+
+        <div class="addition_item">
+          <div class="addition_item_label">顾客收据打印</div>
+          <div class="addition_item_check">
+            <div class="addition_item_check_on" v-if="printer.enableReceipt" @click="btnEnablePoscomReceipt(printer)"></div>
+            <div class="addition_item_check_off" v-else @click="btnEnablePoscomReceipt(printer)"></div>
           </div>
         </div>
       </div>
@@ -105,10 +125,20 @@
 
       <div class="printer_footer box_radius_footer">
         <div class="addition_item">
-          <div class="addition_item_label">开启</div>
+          <div class="addition_item_label">后厨订单打印</div>
           <div class="addition_item_check">
-            <div class="addition_item_check_on" v-if="printer.enable" @click="btnEnableYly(printer)"></div>
-            <div class="addition_item_check_off" v-else @click="btnEnableYly(printer)"></div>
+            <div class="addition_item_check_on" v-if="printer.enableOrder" @click="btnEnableYlyOrder(printer)"></div>
+            <div class="addition_item_check_off" v-else @click="btnEnableYlyOrder(printer)"></div>
+          </div>
+        </div>
+
+        <div class="box_divide"></div>
+
+        <div class="addition_item">
+          <div class="addition_item_label">顾客收据打印</div>
+          <div class="addition_item_check">
+            <div class="addition_item_check_on" v-if="printer.enableReceipt" @click="btnEnableYlyReceipt(printer)"></div>
+            <div class="addition_item_check_off" v-else @click="btnEnableYlyReciept(printer)"></div>
           </div>
         </div>
       </div>
@@ -517,45 +547,90 @@
           }
         })
       },
-      btnEnableFeie(printer) {
-        httpPrinterFeieAdminApi.putPrinterEnable(this.$route.params.shortId, printer.id, !printer.enable).then(res => {
-          if (res.printerIdNotExists) {
-            this.$msgBox.doModal({
-              type: 'yes',
-              title: '启用打印机',
-              content: '打印机不存在。'
-            })
-          } else if (res.success) {
+      btnEnableFeieOrder(printer) {
+        printer.enableOrder = !printer.enableOrder
+
+        httpPrinterFeieAdminApi.putPrinter(this.$route.params.shortId, printer).then(res => {
+          if (res.maxLimit) {
+            this.$router.push(`/b/${this.$route.params.shortId}/owner/limit`)
+            return
+          }
+
+          if (res.printerId) {
             this.httpPrinter()
           }
         })
       },
-      btnEnablePoscom(printer) {
-        httpPrinterPoscomAdminApi.putPrinterEnable(this.$route.params.shortId, printer.id, !printer.enable).then(res => {
-          if (res.printerIdNotExists) {
-            this.$msgBox.doModal({
-              type: 'yes',
-              title: '启用打印机',
-              content: '打印机不存在。'
-            })
-          } else if (res.success) {
+      btnEnableFeieReceipt(printer) {
+        printer.enableReceipt = !printer.enableReceipt
+
+        httpPrinterFeieAdminApi.putPrinter(this.$route.params.shortId, printer).then(res => {
+          if (res.maxLimit) {
+            this.$router.push(`/b/${this.$route.params.shortId}/owner/limit`)
+            return
+          }
+
+          if (res.printerId) {
             this.httpPrinter()
           }
         })
       },
-      btnEnableYly(printer) {
-        httpPrinterYlyAdminApi.putPrinterEnable(this.$route.params.shortId, printer.id, !printer.enable).then(res => {
-          if (res.printerIdNotExists) {
-            this.$msgBox.doModal({
-              type: 'yes',
-              title: '启用打印机',
-              content: '打印机不存在。'
-            })
-          } else if (res.success) {
+      btnEnablePoscomOrder(printer) {
+        printer.enableOrder = !printer.enableOrder
+
+        httpPrinterPoscomAdminApi.putPrinter(this.$route.params.shortId, printer).then(res => {
+          if (res.maxLimit) {
+            this.$router.push(`/b/${this.$route.params.shortId}/owner/limit`)
+            return
+          }
+
+          if (res.printerId) {
             this.httpPrinter()
           }
         })
-      }
+      },
+      btnEnablePoscomReceipt(printer) {
+        printer.enableReceipt = !printer.enableReceipt
+
+        httpPrinterPoscomAdminApi.putPrinter(this.$route.params.shortId, printer).then(res => {
+          if (res.maxLimit) {
+            this.$router.push(`/b/${this.$route.params.shortId}/owner/limit`)
+            return
+          }
+
+          if (res.printerId) {
+            this.httpPrinter()
+          }
+        })
+      },
+      btnEnableYlyOrder(printer) {
+        printer.enableOrder = !printer.enableOrder
+
+        httpPrinterYlyAdminApi.putPrinter(this.$route.params.shortId, printer).then(res => {
+          if (res.maxLimit) {
+            this.$router.push(`/b/${this.$route.params.shortId}/owner/limit`)
+            return
+          }
+
+          if (res.printerId) {
+            this.httpPrinter()
+          }
+        })
+      },
+      btnEnableYlyReceipt(printer) {
+        printer.enableReceipt = !printer.enableReceipt
+
+        httpPrinterYlyAdminApi.putPrinter(this.$route.params.shortId, printer).then(res => {
+          if (res.maxLimit) {
+            this.$router.push(`/b/${this.$route.params.shortId}/owner/limit`)
+            return
+          }
+
+          if (res.printerId) {
+            this.httpPrinter()
+          }
+        })
+      },
     }
   }
 </script>

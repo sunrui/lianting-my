@@ -208,6 +208,9 @@
             }
 
             this.ui.scroller.elements = this.ui.scroller.elements.concat(res.elements)
+            this.ui.scroller.elements.sort(function (a, b) {
+              return b.createdAt - a.createdAt
+            })
           })
         } else {
           httpWallApi.getAll(this.$route.params.shortId, this.ui.scroller.page++, 20).then(res => {
@@ -230,6 +233,9 @@
             }
 
             this.ui.scroller.elements = this.ui.scroller.elements.concat(res.elements)
+            this.ui.scroller.elements.sort(function (a, b) {
+              return b.createdAt - a.createdAt
+            })
           })
         }
       },

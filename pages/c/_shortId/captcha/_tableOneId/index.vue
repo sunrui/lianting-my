@@ -7,6 +7,7 @@
   import {httpTableApi} from '../../../../../api/http/lt/httpTableApi'
   import {httpCaptchaApi} from '../../../../../api/http/lt/httpCaptchaApi'
   import Loading from '../../../../../components/common/Loading'
+  import {cartApi} from '../../../../../api/local/cartApi'
 
   export default {
     middleware: 'auth',
@@ -54,6 +55,8 @@
             userApi.setCaptchaTableId(res.captchaTableId)
             userApi.setTableName(res.tableName)
             userApi.setTableNumber(res.tableNumber)
+
+            cartApi.setPeople(0)
 
             this.$router.push(`/c/${this.$route.params.shortId}/food`)
           }
