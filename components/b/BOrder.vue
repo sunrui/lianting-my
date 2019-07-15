@@ -120,31 +120,20 @@
             elements: [],
             haveMore: true
           },
-          interval: null,
           tableOneId: null
         }
-      }
-    },
-    beforeDestroy() {
-      if (this.ui.interval) {
-        clearInterval(this.ui.interval)
-        this.ui.interval = null
       }
     },
     mounted() {
       this.title.title = '订单记录 - ' + roleApi.getRoleTypeName(this.roleType)
 
-      this.autoRefresh()
-      this.ui.interval = setInterval(this.autoRefresh, 10 * 1000)
-
       this.ui.tableOneId = this.$route.query.tableOneId
+
+      this.onRefresh(null)
     },
     methods: {
       dateFormat(date) {
         return timeApi.dateFormat(date)
-      },
-      autoRefresh() {
-        this.onRefresh(null)
       },
       onRefresh(done) {
         this.ui.scroller.page = 0
