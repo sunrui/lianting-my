@@ -97,10 +97,6 @@ module.exports = {
   ** Build configuration
   */
   build: {
-    extractCSS: true,
-    optimization: {
-      splitChunks: {}
-    },
     postcss: [
       require('postcss-px2rem')({
         remUnit: 100
@@ -116,17 +112,6 @@ module.exports = {
 
   render: {
     resourceHints: false,
-    bundleRenderer: {
-      shouldPrefetch: (file, type) => {
-        // if (type === 'script') {
-        //   if (/login/.test(file)) {
-        //     return true
-        //   }
-        // }
-
-        return false
-      }
-    }
   },
   generate: {
     subFolders: false
