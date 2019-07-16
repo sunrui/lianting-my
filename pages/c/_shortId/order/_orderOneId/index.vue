@@ -169,6 +169,26 @@
           </div>
         </div>
 
+        <div v-if="http.res.order.remarks && http.res.order.remarks.length > 0">
+          <div class="box_divide"></div>
+
+          <div class="order_taste_note">
+            <div class="order_taste_note_label">备注</div>
+          </div>
+
+          <div class="order_taste_note_history">
+            <div class="order_taste_note_history_item" v-for="remark in http.res.order.remarks">
+              <div class="order_taste_note_history_icon_ball"></div>
+              <div class="order_taste_note_history_icon_line"></div>
+              <div class="order_taste_note_history_content">{{remark}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="box">
+      <div class="addition box_radius">
         <div class="addition_item" @click="btnWall(http.res.order)" v-if="http.res.order.status === 'Finish'">
           <div class="box_divide"></div>
           <div class="addition_item_label">留言墙</div>
@@ -176,7 +196,7 @@
         </div>
       </div>
     </div>
-
+    
     <div class="button_box" v-if="http.res.order.status === 'NotPaid'">
       <div class="button_small" @click="btnFood" v-if="http.res.order.type === 'ForHere'">加餐</div>
       <div class="button_small" @click="btnPay" v-if="http.res.order.type === 'ForHere'">立即支付</div>
