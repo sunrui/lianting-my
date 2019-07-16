@@ -196,7 +196,7 @@
         </div>
       </div>
     </div>
-    
+
     <div class="button_box" v-if="http.res.order.status === 'NotPaid'">
       <div class="button_small" @click="btnFood" v-if="http.res.order.type === 'ForHere'">加餐</div>
       <div class="button_small" @click="btnPay" v-if="http.res.order.type === 'ForHere'">立即支付</div>

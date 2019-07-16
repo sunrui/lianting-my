@@ -20,7 +20,7 @@
           <div class="order_history_price_content">{{getTableTotal().price}}</div>
         </div>
         <div class="order_history_label order_history_label_2">
-          <div class="order_history_table_label">总订单数</div>
+          <div class="order_history_table_label">订单数</div>
           <div class="order_history_table_content">{{getTableTotal().order}}</div>
         </div>
         <div class="order_history_detail order_history_detail_mix" @click="btnOrderReceipt()">查看详情</div>
