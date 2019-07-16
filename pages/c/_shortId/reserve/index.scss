@@ -134,36 +134,32 @@
     position: relative;
     margin-top: 20px;
 
-    .table_select_label {
+    .table_choose_label {
       font-size: 28px;
       color: #666666;
       margin-left: 30px;
     }
 
     .table {
-      padding: 20px 30px;
+      padding: px2rem(20) px2rem(30);
+
+      .table_list::-webkit-scrollbar {
+        background-color: transparent;
+      }
 
       .table_list {
-        position: relative;
-
-        .table_box_table_info_select {
-          display: inline-block;
-          vertical-align: middle;
-          background: #FFEBEB;
-          text-align: center;
-          margin-right: 20px;
-          padding: 20px 30px;
-          margin-bottom: 20px;
-        }
+        display: -webkit-box;
+        overflow-x: scroll;
 
         .table_box_table_info {
-          display: inline-block;
-          vertical-align: middle;
           background: #F5F5F5;
           text-align: center;
-          margin-right: 20px;
           padding: 20px 30px;
-          margin-bottom: 20px;
+          margin-right: 20px;
+        }
+
+        .table_box_table_info_select {
+          background: #FFEBEB !important;
         }
 
         .table_box_table_title {
@@ -177,10 +173,7 @@
           }
 
           .table_box_table_name_select {
-            display: inline-block;
-            font-size: 28px;
-            color: #f52626;
-            line-height: 32px;
+            color: #f52626 !important;
           }
 
           .table_box_table_private {
@@ -204,17 +197,16 @@
         }
 
         .table_box_table_people_select {
-          margin-top: 5px;
-          color: #f52626;
+          color: #f52626 !important;
         }
       }
+    }
 
-      .table_empty {
-        text-align: center;
-        color: #999999;
-        border: px2rem(1) solid rgba(230, 230, 230, 0.5);
-        padding: 30px 0;
-      }
+    .table_empty {
+      text-align: center;
+      color: #999999;
+      border: px2rem(1) solid rgba(230, 230, 230, 0.5);
+      padding: 30px 0;
     }
   }
 
@@ -227,7 +219,6 @@
     }
 
     .time_select_list {
-      margin-top: 20px;
       padding: 20px 30px 0 30px;
       max-height: px2rem((30 * 2 + 26 + 20) * 3);
       overflow-y: auto;

@@ -27,7 +27,6 @@ img {
 *:before,
 *:after {
     box-sizing: border-box;
-    touch-action: pan-y;
 }
 
 input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {

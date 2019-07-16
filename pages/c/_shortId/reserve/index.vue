@@ -46,30 +46,28 @@
       </div>
 
       <div class="table_box">
-        <div class="table_select_label">餐桌类型</div>
+        <div class="table_choose_label">餐桌类型</div>
 
-        <div class="table">
-          <div class="table_list" v-if="http.res.tableGroups.elements.length > 0">
-            <div v-bind:class="{
-            table_box_table_info: ui.selectTableGroup.id !== tableGroup.id,
+        <div class="table" v-if="http.res.tableGroups.elements.length > 0">
+          <div class="table_list">
+            <div class="table_box_table_info" v-bind:class="{
             table_box_table_info_select: ui.selectTableGroup.id === tableGroup.id}"
                  v-for="tableGroup in http.res.tableGroups.elements" @click="btnTableGroup(tableGroup)">
               <div class="table_box_table_title">
-                <div v-bind:class="{
-                table_box_table_name: ui.selectTableGroup.id !== tableGroup.id,
+                <div class="table_box_table_name" v-bind:class="{
                 table_box_table_name_select: ui.selectTableGroup.id === tableGroup.id
                 }">{{tableGroup.name}}
                 </div>
                 <div class="table_box_table_private" v-if="tableGroup.privateRoom">包间</div>
               </div>
-              <div v-bind:class="{table_box_table_people: ui.selectTableGroup.id !== tableGroup.id,
+              <div class="table_box_table_people" v-bind:class="{
                 table_box_table_people_select: ui.selectTableGroup.id === tableGroup.id}"
               >{{tableGroup.minPeople}}-{{tableGroup.maxPeople}}人
               </div>
             </div>
           </div>
-          <div class="table_empty" v-else>没有餐桌类型，如您是管理员请先添加。</div>
         </div>
+        <div class="table_empty" v-else>没有餐桌类型，如您是管理员请先添加。</div>
       </div>
 
       <div class="time_select_box">
@@ -109,7 +107,7 @@
   import {httpShopApi} from '../../../../api/http/shop/httpShopApi'
   import {httpInfoApi} from '../../../../api/http/lt/httpInfoApi'
   import {httpReserveApi} from '../../../../api/http/lt/httpReserveApi'
-  import WechatSubscribe from "../../../../components/wechat/WechatSubscribe"
+  import WechatSubscribe from '../../../../components/wechat/WechatSubscribe'
   import {scrollApi} from '../../../../api/local/scrollApi'
 
   export default {
