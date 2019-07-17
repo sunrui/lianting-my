@@ -199,12 +199,13 @@
     mounted() {
       this.httpShop()
       this.httpInfo()
-      this.httpSearchWord()
     },
     methods: {
       httpShop() {
         httpShopApi.getOne(this.$route.params.shortId).then(res => {
           this.http.req.shop = res
+
+          this.httpSearchWord()
         })
       },
       httpInfo() {
@@ -289,6 +290,12 @@
         this.ui.searchWordEnable = enable
       },
       btnSearchWordAdd() {
+        if (this.http.req.shop.licenseType === 'Free') {
+          this.$router.push(`/b/${this.$route.params.shortId}/owner/limit`)
+          return
+        }
+
+
         this.ui.vCoverMask = true
         scrollApi.enable(false)
 
@@ -296,6 +303,11 @@
         this.ui.vSearchWordAdd = true
       },
       btnSearchWordDelete(searchWord) {
+        if (this.http.req.shop.licenseType === 'Free') {
+          this.$router.push(`/b/${this.$route.params.shortId}/owner/limit`)
+          return
+        }
+
         for (let index in this.ui.searchWords) {
           let one = this.ui.searchWords[index]
 
@@ -311,11 +323,6 @@
         scrollApi.enable(true)
 
         let limit = 20
-
-        if (this.http.req.shop.licenseType === 'Free') {
-          limit = 2
-          return
-        }
 
         if (this.ui.searchWords.length > limit) {
           this.$msgBox.doModal({
