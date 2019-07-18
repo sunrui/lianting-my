@@ -270,8 +270,6 @@
         this.httpPrinterYly()
       },
       httpPrinterFeie() {
-        this.ui.printerStatus = []
-
         httpPrinterFeieAdminApi.getPrinter(this.$route.params.shortId, 0, 99).then(res => {
           if (this.http.res.printerFeie.elements.length !== 0 ||
               this.http.res.printerPoscom.elements.length !== 0 ||
@@ -291,8 +289,6 @@
         })
       },
       httpPrinterPoscom() {
-        this.ui.printerStatus = []
-
         httpPrinterPoscomAdminApi.getPrinter(this.$route.params.shortId, 0, 99).then(res => {
           if (this.http.res.printerFeie.elements.length !== 0 ||
               this.http.res.printerPoscom.elements.length !== 0 ||
@@ -312,8 +308,6 @@
         })
       },
       httpPrinterYly() {
-        this.ui.printerStatus = []
-
         httpPrinterYlyAdminApi.getPrinter(this.$route.params.shortId, 0, 99).then(res => {
           if (this.http.res.printerFeie.elements.length !== 0 ||
               this.http.res.printerPoscom.elements.length !== 0 ||
@@ -335,7 +329,7 @@
       getPrinterFeieOneStatus(printer) {
         for (let index in this.ui.printerStatus) {
           let statusOne = this.ui.printerStatus[index]
-          if (statusOne.id === printer.id) {
+          if (statusOne.id === printer.id && statusOne.status) {
             return statusOne.status
           }
         }
@@ -384,7 +378,7 @@
       getPrinterPoscomOneStatus(printer) {
         for (let index in this.ui.printerStatus) {
           let statusOne = this.ui.printerStatus[index]
-          if (statusOne.id === printer.id) {
+          if (statusOne.id === printer.id && statusOne.status) {
             return statusOne.status
           }
         }
@@ -433,7 +427,7 @@
       getPrinterYlyOneStatus(printer) {
         for (let index in this.ui.printerStatus) {
           let statusOne = this.ui.printerStatus[index]
-          if (statusOne.id === printer.id) {
+          if (statusOne.id === printer.id && statusOne.status) {
             return statusOne.status
           }
         }

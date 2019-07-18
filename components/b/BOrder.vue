@@ -2,7 +2,7 @@
   <div>
     <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
-    <div class="box" v-if="ui.tableOneId && getTableTotal().order > 1">
+    <div class="box" v-if="ui.tableOneId && getTableNotPaidTotal().order > 0">
       <div class="order_table box_radius_header">
         <div class="order_table_number">{{ui.scroller.elements[0].orderTable.tableFullNumber}}</div>
         <div class="order_table_name">{{ui.scroller.elements[0].orderTable.tableGroupName}}</div>
@@ -17,11 +17,11 @@
 
         <div class="order_history_label">
           <div class="order_history_price_label">总价</div>
-          <div class="order_history_price_content">{{getTableTotal().price}}</div>
+          <div class="order_history_price_content">{{getTableNotPaidTotal().price}}</div>
         </div>
         <div class="order_history_label order_history_label_2">
           <div class="order_history_table_label">订单数</div>
-          <div class="order_history_table_content">{{getTableTotal().order}}</div>
+          <div class="order_history_table_content">{{getTableNotPaidTotal().order}}</div>
         </div>
         <div class="order_history_detail order_history_detail_mix" @click="btnOrderReceipt()">查看详情</div>
       </div>
@@ -30,7 +30,7 @@
     </div>
 
     <scroller class="scroller"
-              v-bind:class="{scroller_order_mix: ui.tableOneId && getTableTotal().order > 1}"
+              v-bind:class="{scroller_order_mix: ui.tableOneId && getTableNotPaidTotal().order > 1}"
               noDataText=""
               ref="bOrder"
               :on-refresh="onRefresh"
@@ -140,7 +140,7 @@
         this.ui.scroller.haveMore = true
         this.httpOrder(done)
       },
-      getTableTotal() {
+      getTableNotPaidTotal() {
         if (!Boolean(this.ui.tableOneId)) {
           return 0
         }
@@ -150,7 +150,7 @@
 
         for (let orderOneIndex in this.ui.scroller.elements) {
           let orderOne = this.ui.scroller.elements[orderOneIndex]
-          if (orderOne.status === 'NotPaid' || orderOne.status === 'Paid') {
+          if (orderOne.status === 'NotPaid') {
             order++
             price += orderOne.price
           }

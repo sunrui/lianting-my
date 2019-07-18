@@ -2,14 +2,15 @@
   <div>
     <div class="empty" v-if="ui.error.frequent">
       <img class="empty_image" src="/img/no/no_crash.png" alt="">
-      <div class="empty_label">您的操作过于频繁，请于{{elapsedTime(ui.error.frequent)}}后重试。</div>
+      <div class="empty_label">您的访问过于频繁，请于{{elapsedTime(ui.error.frequent)}}后重试。</div>
+      <div class="empty_label_tip">我们已为您记录，请不要乱操作。</div>
     </div>
     <div v-else>
       <div class="empty" v-if="!ui.vReport">
         <img class="empty_image" src="/img/no/no_crash.png" alt="">
         <div v-if="!ui.reported">
-          <div class="empty_label">{{ui.error.notFound? '404 - 呃~ 好像迷路了！' : '呃~ 无法提交您的请求！'}}</div>
-          <div class="empty_label_tip">您可以<span class="empty_label_tip_link" @click="btnReport">反馈错误</span>或返回重试。</div>
+          <div class="empty_label">{{ui.error.notFound? '404 - 好像迷路了！' : '呃〜服务器去度假了！'}}</div>
+          <div class="empty_label_tip">您可以<span class="empty_label_tip_link" @click="btnReport">查看详情</span>或返回重试。</div>
           <div class="blank_30"></div>
         </div>
         <div v-else>
@@ -22,7 +23,7 @@
         <div class="box">
           <div class="addition box_radius_header">
             <div class="addition_item" v-if="ui.error.message">
-              <div class="addition_item_label_text_area">错误</div>
+              <div class="addition_item_label_text_area">异常</div>
               <div class="addition_item_text_area">
                 <label>
                   <textarea class="addition_item_text_input" v-model="ui.error.message"></textarea>

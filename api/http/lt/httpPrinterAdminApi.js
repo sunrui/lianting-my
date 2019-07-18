@@ -8,5 +8,11 @@ export const httpPrinterAdminApi = {
   },
   putConfig(shortId, printerConfig) {
     return axios.put(`${base}/${shortId}/printer/config`, printerConfig).then(res => res.data)
+  },
+  getStatus(shortId) {
+    return axios.get(`${base}/${shortId}/printer/status`).then(res => res.data)
+  },
+  postReceipt(shortId, orderOneIds) {
+    return axios.post(`${base}/${shortId}/printer/receipt`, orderOneIds).then(res => res.data)
   }
 }

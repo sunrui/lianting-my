@@ -87,10 +87,10 @@
         </div>
 
         <div @click="btnChooseCoupon()" v-if="http.res.order.status === 'NotPaid'">
-          <div class="order_coupon" v-if="http.res.order.couponDeductPrice || $route.query.deductPrice">
+          <div class="order_coupon" v-if="http.res.order.couponDeductPrice > 0 || $route.query.deductPrice">
             <div class="order_coupon_icon">优惠券</div>
             <div class="order_coupon_label">优惠</div>
-            <div class="order_coupon_content">{{http.res.order.couponDeductPrice ? http.res.order.couponDeductPrice : $route.query.deductPrice}}</div>
+            <div class="order_coupon_content">{{http.res.order.couponDeductPrice > 0 ? http.res.order.couponDeductPrice : $route.query.deductPrice}}</div>
           </div>
           <div class="order_coupon" v-else-if="http.res.coupon.valid.length > 0">
             <div class="order_coupon_icon">优惠券</div>
@@ -295,6 +295,10 @@
         httpOrderApi.getOrder(this.$route.params.shortId, this.$route.params.orderOneId).then(res => {
           this.http.res.order = res
 
+          if (this.http.res.order.couponDeductPrice === 0 && this.$route.query.deductPrice && this.$route.query.deductPrice > 0) {
+            this.http.res.order.price -= this.$route.query.deductPrice
+          }
+
           this.httpCoupon()
         })
       },
@@ -358,7 +362,9 @@
             this.$msgBox.doModal({
               type: 'yes',
               title: '使用优惠券',
-              content: '您已使用一张优惠券。'
+              content: '您已使用过一张优惠券。'
+            }).then(async (val) => {
+              this.httpOrder()
             })
 
             return
@@ -473,6 +479,8 @@
               type: 'yes',
               title: '立即支付',
               content: '订单不存在。'
+            }).then(async (val) => {
+              this.httpOrder()
             })
             return
           }
@@ -482,6 +490,8 @@
               type: 'yes',
               title: '立即支付',
               content: '订单已关闭。'
+            }).then(async (val) => {
+              this.httpOrder()
             })
             return
           }
@@ -491,6 +501,8 @@
               type: 'yes',
               title: '立即支付',
               content: '订单已支付。'
+            }).then(async (val) => {
+              this.httpOrder()
             })
             return
           }
@@ -609,24 +621,32 @@
               type: 'yes',
               title: '取消订单',
               content: '订单不存在。'
+            }).then(async (val) => {
+              this.httpOrder()
             })
           } else if (res.closed) {
             this.$msgBox.doModal({
               type: 'yes',
               title: '取消订单',
               content: '订单已关闭。'
+            }).then(async (val) => {
+              this.httpOrder()
             })
           } else if (res.paid) {
             this.$msgBox.doModal({
               type: 'yes',
               title: '取消订单',
               content: '订单已支付。'
+            }).then(async (val) => {
+              this.httpOrder()
             })
           } else if (res.notTakeOut) {
             this.$msgBox.doModal({
               type: 'yes',
               title: '取消订单',
               content: '仅允许取消外卖订单。'
+            }).then(async (val) => {
+              this.httpOrder()
             })
           } else if (res.success) {
             this.$msgBox.doModal({

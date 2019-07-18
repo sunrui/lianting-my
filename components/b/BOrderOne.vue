@@ -345,6 +345,14 @@
           </div>
         </div>
 
+        <div class="addition_item">
+          <div class="addition_item_label">打印顾客收据</div>
+          <div class="addition_item_check">
+            <div class="addition_item_check_on" v-if="ui.printReceipt" @click="btnPrintReceipt(false)"></div>
+            <div class="addition_item_check_off" v-else @click="btnPrintReceipt(true)"></div>
+          </div>
+        </div>
+
         <div class="modal_button_box">
           <div class="button_big" v-if="http.req.payOffline.remark" @click="btnPayOfflineConfirm">确认</div>
           <div class="button_big button_gray" v-else>确认</div>
@@ -469,6 +477,8 @@
   import CurrencyInput from '../common/CurrencyInput'
   import {highlightApi} from '../../api/local/highlightApi'
   import {roleApi} from '../../api/local/roleApi'
+  import {cartApi} from '../../api/local/cartApi'
+  import {httpPrinterAdminApi} from '../../api/http/lt/httpPrinterAdminApi'
 
   export default {
     metaInfo: {
@@ -533,6 +543,7 @@
           offlinePayRemarks: [
             '现金收银', '微信转账', '支付宝转账'
           ],
+          printReceipt: false,
           interval: null
         }
       }
@@ -555,13 +566,22 @@
       },
       autoRefresh() {
         this.httpOrder()
+        this.httpPrinterStatus()
       },
       btnChooseReturnCount(payload) {
         this.http.req.return.count = payload.name
       },
+      httpPrinterStatus() {
+        httpPrinterAdminApi.getStatus(this.$route.params.shortId).then(res => {
+          this.http.res.printerStatus = res
+          this.ui.printReceipt = res.printerOnline > 0 && res.printerReceiptOk > 0
+        })
+      },
       httpOrder() {
         httpOrderApi.getOrder(this.$route.params.shortId, this.$route.params.orderOneId).then(res => {
           this.http.res.order = res
+
+          this.ui.selectPeople = res.people
 
           let orderFoods = []
 
@@ -708,18 +728,24 @@
                   type: 'yes',
                   title: '烹饪餐食',
                   content: '订单不存在。'
+                }).then(async (val) => {
+                  this.httpOrder()
                 })
               } else if (res.orderFoodIdNotExists) {
                 this.$msgBox.doModal({
                   type: 'yes',
                   title: '烹饪餐食',
                   content: '餐食不存在。'
+                }).then(async (val) => {
+                  this.httpOrder()
                 })
               } else if (res.closed) {
                 this.$msgBox.doModal({
                   type: 'yes',
                   title: '烹饪餐食',
                   content: '订单已关闭。'
+                }).then(async (val) => {
+                  this.httpOrder()
                 })
               } else if (res.success) {
                 if (status === 'Cooked') {
@@ -730,8 +756,6 @@
                   }).then(async (val) => {
                     this.httpOrder()
                   })
-                } else {
-                  this.httpOrder()
                 }
               }
             })
@@ -777,25 +801,35 @@
               type: 'yes',
               title: '更改人数',
               content: '订单不存在。'
+            }).then(async (val) => {
+              this.httpOrder()
             })
           } else if (res.paid) {
             this.$msgBox.doModal({
               type: 'yes',
               title: '更改人数',
               content: '订单已支付。'
+            }).then(async (val) => {
+              this.httpOrder()
             })
           } else if (res.closed) {
             this.$msgBox.doModal({
               type: 'yes',
               title: '更改人数',
               content: '订单已关闭。'
+            }).then(async (val) => {
+              this.httpOrder()
             })
           } else if (res.success) {
             this.$msgBox.doModal({
               type: 'yes',
               title: '更改人数',
               content: '人数已更改。'
+            }).then(async (val) => {
+              this.httpOrder()
             })
+
+            cartApi.setPeople(this.ui.selectPeople)
           }
 
           this.httpOrder()
@@ -850,6 +884,8 @@
             type: 'yes',
             title: '烹饪餐食',
             content: '订单已关闭。'
+          }).then(async (val) => {
+            this.httpOrder()
           })
 
           return
@@ -905,18 +941,24 @@
               type: 'yes',
               title: '更改价格',
               content: '订单不存在。'
+            }).then(async (val) => {
+              this.httpOrder()
             })
           } else if (res.paid) {
             this.$msgBox.doModal({
               type: 'yes',
               title: '更改价格',
               content: '已支付，无法更改价格。'
+            }).then(async (val) => {
+              this.httpOrder()
             })
           } else if (res.closed) {
             this.$msgBox.doModal({
               type: 'yes',
               title: '更改价格',
               content: '订单已关闭。'
+            }).then(async (val) => {
+              this.httpOrder()
             })
           } else if (res.success) {
             this.$msgBox.doModal({
@@ -953,21 +995,52 @@
               type: 'yes',
               title: '线下结算',
               content: '订单不存在。'
+            }).then(async (val) => {
+              this.httpOrder()
             })
           } else if (res.closed) {
             this.$msgBox.doModal({
               type: 'yes',
               title: '线下结算',
               content: '订单已关闭。'
-            })
-          } else if (res.success) {
-            this.$msgBox.doModal({
-              type: 'yes',
-              title: '线下结算',
-              content: '线下结算已完成。'
             }).then(async (val) => {
               this.httpOrder()
             })
+          } else if (res.success) {
+            if (this.ui.printReceipt) {
+              let orderOneIds = []
+              orderOneIds.push(this.$route.params.orderOneId)
+
+              httpPrinterAdminApi.postReceipt(this.$route.params.shortId, orderOneIds).then(res => {
+                if (res.orderIdNotExists) {
+                  this.$msgBox.doModal({
+                    type: 'yes',
+                    title: '无法打印顾客收据',
+                    content: '部分订单号不存在。'
+                  }).then(async (val) => {
+                    this.httpOrder()
+                  })
+                }
+
+                if (res.printerTaskId) {
+                  this.$msgBox.doModal({
+                    type: 'yes',
+                    title: '顾客收据',
+                    content: '顾客收据已打印。'
+                  }).then(async (val) => {
+                    this.httpOrder()
+                  })
+                }
+              })
+            } else {
+              this.$msgBox.doModal({
+                type: 'yes',
+                title: '线下结算',
+                content: '线下结算已完成。'
+              }).then(async (val) => {
+                this.httpOrder()
+              })
+            }
           }
         })
       },
@@ -1000,12 +1073,16 @@
               type: 'yes',
               title: '取消订单',
               content: '订单不存在。'
+            }).then(async (val) => {
+              this.httpOrder()
             })
           } else if (res.closed) {
             this.$msgBox.doModal({
               type: 'yes',
               title: '取消订单',
               content: '订单已关闭。'
+            }).then(async (val) => {
+              this.httpOrder()
             })
           } else if (res.success) {
             this.$msgBox.doModal({
@@ -1060,24 +1137,32 @@
               type: 'yes',
               title: '退菜',
               content: '订单不存在。'
+            }).then(async (val) => {
+              this.httpOrder()
             })
           } else if (res.orderFoodIdNotExists) {
             this.$msgBox.doModal({
               type: 'yes',
               title: '退菜',
               content: '餐食不存在。'
+            }).then(async (val) => {
+              this.httpOrder()
             })
           } else if (res.paid) {
             this.$msgBox.doModal({
               type: 'yes',
               title: '退菜',
               content: '已支付，无法退菜。'
+            }).then(async (val) => {
+              this.httpOrder()
             })
           } else if (res.closed) {
             this.$msgBox.doModal({
               type: 'yes',
               title: '退菜',
               content: '订单已关闭。'
+            }).then(async (val) => {
+              this.httpOrder()
             })
           } else if (res.success) {
             this.$msgBox.doModal({
@@ -1089,6 +1174,9 @@
             })
           }
         })
+      },
+      btnPrintReceipt(enable) {
+        this.ui.printReceipt = enable
       }
     }
   }

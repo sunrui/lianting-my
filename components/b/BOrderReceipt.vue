@@ -301,6 +301,14 @@
           </div>
         </div>
 
+        <div class="addition_item">
+          <div class="addition_item_label">打印顾客收据</div>
+          <div class="addition_item_check">
+            <div class="addition_item_check_on" v-if="ui.printReceipt" @click="btnPrintReceipt(false)"></div>
+            <div class="addition_item_check_off" v-else @click="btnPrintReceipt(true)"></div>
+          </div>
+        </div>
+
         <div class="modal_button_box">
           <div class="button_big" v-if="http.req.payOffline.remark" @click="btnPayOfflineConfirm">确认</div>
           <div class="button_big button_gray" v-else>确认</div>
@@ -381,6 +389,7 @@
   import CurrencyInput from '../common/CurrencyInput'
   import {highlightApi} from '../../api/local/highlightApi'
   import {roleApi} from '../../api/local/roleApi'
+  import {httpPrinterAdminApi} from '../../api/http/lt/httpPrinterAdminApi'
 
   export default {
     metaInfo: {
@@ -422,12 +431,15 @@
             }
           },
           res: {
+            printerStatus: {},
             orderOnes: {}
           }
         },
         ui: {
           receipt: {
-            orderFirst: {},
+            orderFirst: {
+              createdAt: new Date().getTime()
+            },
             orderFoods: [],
             tasteNotes: [],
             remarks: []
@@ -448,6 +460,7 @@
           offlinePayRemarks: [
             '现金收银', '微信转账', '支付宝转账'
           ],
+          printReceipt: false,
           interval: null
         }
       }
@@ -456,6 +469,7 @@
       this.title.title = '订单详情 - ' + roleApi.getRoleTypeName(this.roleType)
 
       this.httpOrder()
+      this.httpPrinterStatus()
     },
     methods: {
       dateFormat(date) {
@@ -464,12 +478,21 @@
       btnChooseReturnCount(payload) {
         this.http.req.return.count = payload.name
       },
+      httpPrinterStatus() {
+        httpPrinterAdminApi.getStatus(this.$route.params.shortId).then(res => {
+          this.http.res.printerStatus = res
+          this.ui.printReceipt = res.printerOnline > 0 && res.printerReceiptOk > 0
+        })
+      },
       httpOrder() {
-        httpOrderAdminApi.getAllByTableOneId(this.$route.params.shortId, this.$route.query.orderOneId, true, 0, 20).then(res => {
+        httpOrderAdminApi.getAllByTableOneId(this.$route.params.shortId, this.$route.query.tableOneId, true, 0, 20).then(res => {
           if (res.elements.length === 0) {
             this.$router.push(`/b/${this.$route.params.shortId}/${this.roleType}/order`)
             return
           }
+
+          this.ui.receipt.orderFirst = res.elements[0]
+          this.ui.selectPeople = res.elements[0].people
 
           let priceTableware = null
           let orderOneId = null
@@ -506,7 +529,7 @@
 
                   let changePrice = {
                     price: 0,
-                    remark: '免餐具费 - ' + orderOne.priceTableware
+                    remark: '免餐具费: ' + orderOne.priceTableware
                   }
 
                   httpOrderAdminApi.putPriceTableware(this.$route.params.shortId, orderOne.id, changePrice).then(res => {
@@ -545,15 +568,13 @@
 
           this.http.res.orderOnes = res
 
-          let orderFoods = []
+          let _orderFoods = []
 
           this.ui.receipt.tasteNotes = []
           this.ui.receipt.remarks = []
 
           for (let orderOneIndex in res.elements) {
             let orderOne = res.elements[orderOneIndex]
-
-            this.ui.receipt.orderFirst = orderOne
 
             if (orderOne.tasteNotes && orderOne.tasteNotes.length > 0) {
               this.ui.receipt.tasteNotes = this.ui.receipt.tasteNotes.concat(orderOne.tasteNotes)
@@ -563,58 +584,65 @@
               this.ui.receipt.remarks = this.ui.receipt.remarks.concat(orderOne.remarks)
             }
 
-            function addFood(orderFood) {
-              let have = false
-              for (let i in orderFoods) {
-                let one = orderFoods[i]
+            for (let index in orderOne.orderFoods) {
+              let orderFood = orderOne.orderFoods[index]
+              _orderFoods.push(orderFood)
+            }
+          }
 
-                if (one.id === orderFood.id) {
-                  have = true
-                  break
-                }
-              }
+          let orderFoods = []
 
-              if (!have) {
-                orderFoods.push(orderFood)
+          function addFood(orderFood) {
+            let have = false
+            for (let i in orderFoods) {
+              let one = orderFoods[i]
+
+              if (one.id === orderFood.id) {
+                have = true
+                break
               }
             }
 
-            for (let index in orderOne.orderFoods) {
-              let orderFood = orderOne.orderFoods[index]
-
-              if (orderFood.status === 'Cooked') {
-                addFood(orderFood)
-              }
+            if (!have) {
+              orderFoods.push(orderFood)
             }
+          }
 
-            for (let index in orderOne.orderFoods) {
-              let orderFood = orderOne.orderFoods[index]
+          for (let index in _orderFoods) {
+            let orderFood = _orderFoods[index]
 
-              if (orderFood.status === 'Cooking') {
-                addFood(orderFood)
-              }
-            }
-
-            for (let index in orderOne.orderFoods) {
-              let orderFood = orderOne.orderFoods[index]
-
-              if (orderFood.status === 'Wait') {
-                addFood(orderFood)
-              }
-            }
-
-            for (let index in orderOne.orderFoods) {
-              let orderFood = orderOne.orderFoods[index]
-
-              if (orderFood.status === 'Finish') {
-                addFood(orderFood)
-              }
-            }
-
-            for (let index in orderOne.orderFoods) {
-              let orderFood = orderOne.orderFoods[index]
+            if (orderFood.status === 'Cooked') {
               addFood(orderFood)
             }
+          }
+
+          for (let index in _orderFoods) {
+            let orderFood = _orderFoods[index]
+
+            if (orderFood.status === 'Cooking') {
+              addFood(orderFood)
+            }
+          }
+
+          for (let index in _orderFoods) {
+            let orderFood = _orderFoods[index]
+
+            if (orderFood.status === 'Wait') {
+              addFood(orderFood)
+            }
+          }
+
+          for (let index in _orderFoods) {
+            let orderFood = _orderFoods[index]
+
+            if (orderFood.status === 'Finish') {
+              addFood(orderFood)
+            }
+          }
+
+          for (let index in _orderFoods) {
+            let orderFood = _orderFoods[index]
+            addFood(orderFood)
           }
 
           this.ui.receipt.orderFoods = orderFoods
@@ -882,6 +910,8 @@
         this.ui.vPayOffline = true
       },
       btnPayOfflineConfirm() {
+        let payProcess = 0
+
         for (let orderOneIndex in this.http.res.orderOnes.elements) {
           let orderOne = this.http.res.orderOnes.elements[orderOneIndex]
 
@@ -895,21 +925,61 @@
                 type: 'yes',
                 title: '线下结算',
                 content: '订单不存在。'
+              }).then(async (val) => {
+                this.httpOrder()
               })
             } else if (res.closed) {
               this.$msgBox.doModal({
                 type: 'yes',
                 title: '线下结算',
                 content: '订单已关闭。'
-              })
-            } else if (res.success) {
-              this.$msgBox.doModal({
-                type: 'yes',
-                title: '线下结算',
-                content: '线下结算已完成。'
               }).then(async (val) => {
                 this.httpOrder()
               })
+            } else if (res.success) {
+              payProcess++
+
+              if (payProcess === this.http.res.orderOnes.elements.length) {
+                if (this.ui.printReceipt) {
+                  let orderOneIds = []
+
+                  for (let orderOneIndex in this.http.res.orderOnes.elements) {
+                    let orderOne = this.http.res.orderOnes.elements[orderOneIndex]
+
+                    orderOneIds.push(orderOne.id)
+                  }
+
+                  httpPrinterAdminApi.postReceipt(this.$route.params.shortId, orderOneIds).then(res => {
+                    if (res.orderIdNotExists) {
+                      this.$msgBox.doModal({
+                        type: 'yes',
+                        title: '无法打印顾客收据',
+                        content: '部分订单号不存在。'
+                      }).then(async (val) => {
+                        this.httpOrder()
+                      })
+                    }
+
+                    if (res.printerTaskId) {
+                      this.$msgBox.doModal({
+                        type: 'yes',
+                        title: '顾客收据',
+                        content: '顾客收据已打印。'
+                      }).then(async (val) => {
+                        this.httpOrder()
+                      })
+                    }
+                  })
+                }
+              } else {
+                this.$msgBox.doModal({
+                  type: 'yes',
+                  title: '线下结算',
+                  content: '线下结算已完成。'
+                }).then(async (val) => {
+                  this.httpOrder()
+                })
+              }
             }
           })
         }
@@ -946,12 +1016,16 @@
                 type: 'yes',
                 title: '取消订单',
                 content: '订单不存在。'
+              }).then(async (val) => {
+                this.httpOrder()
               })
             } else if (res.closed) {
               this.$msgBox.doModal({
                 type: 'yes',
                 title: '取消订单',
                 content: '订单已关闭。'
+              }).then(async (val) => {
+                this.httpOrder()
               })
             } else if (res.success) {
               this.$msgBox.doModal({
@@ -997,24 +1071,32 @@
               type: 'yes',
               title: '退菜',
               content: '订单不存在。'
+            }).then(async (val) => {
+              this.httpOrder()
             })
           } else if (res.orderFoodIdNotExists) {
             this.$msgBox.doModal({
               type: 'yes',
               title: '退菜',
               content: '餐食不存在。'
+            }).then(async (val) => {
+              this.httpOrder()
             })
           } else if (res.paid) {
             this.$msgBox.doModal({
               type: 'yes',
               title: '退菜',
               content: '已支付，无法退菜。'
+            }).then(async (val) => {
+              this.httpOrder()
             })
           } else if (res.closed) {
             this.$msgBox.doModal({
               type: 'yes',
               title: '退菜',
               content: '订单已关闭。'
+            }).then(async (val) => {
+              this.httpOrder()
             })
           } else if (res.success) {
             this.$msgBox.doModal({
@@ -1026,6 +1108,31 @@
             })
           }
         })
+      },
+      btnPrintReceipt(enable) {
+        if (enable) {
+          if (this.http.res.printerStatus.printerOnline === 0) {
+            this.$msgBox.doModal({
+              type: 'yes',
+              title: '无法打印顾客收据',
+              content: '没有在线的打印机。'
+            })
+
+            return
+          }
+
+          if (this.http.res.printerStatus.printerReceiptOk === 0) {
+            this.$msgBox.doModal({
+              type: 'yes',
+              title: '无法打印顾客收据',
+              content: `有在线 ${this.http.res.printerStatus.printerOnline} 台打印机，但是没有允许打印顾客收据。`
+            })
+
+            return
+          }
+        }
+
+        this.ui.printReceipt = enable
       }
     }
   }
