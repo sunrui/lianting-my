@@ -445,7 +445,7 @@
       this.httpShop()
       this.httpShopLicenseExpiredAt()
       this.httpLicensePlan()
-      this.httpTakeOutSmsShop()
+      this.httpTakeoutSmsShop()
     },
     methods: {
       httpShop() {
@@ -472,7 +472,7 @@
           })
         })
       },
-      httpTakeOutSmsShop() {
+      httpTakeoutSmsShop() {
         httpSmsAdminApi.getSms(this.$route.params.shortId).then(res => {
           this.http.res.smsShop = res
         })
@@ -519,12 +519,12 @@
                   }).then(async (val) => {
                     pThis.httpShop()
                     pThis.httpLicensePlan()
-                    pThis.httpTakeOutSmsShop()
+                    pThis.httpTakeoutSmsShop()
                   })
                 } else if (res.err_msg === 'get_brand_wcpay_request:cancel') {
                   pThis.httpShop()
                   pThis.httpLicensePlan()
-                  pThis.httpTakeOutSmsShop()
+                  pThis.httpTakeoutSmsShop()
                 } else if (res.err_msg) {
                   pThis.$msgBox.doModal({
                     type: 'yes',
@@ -533,7 +533,7 @@
                   }).then(async (val) => {
                     pThis.httpShop()
                     pThis.httpLicensePlan()
-                    pThis.httpTakeOutSmsShop()
+                    pThis.httpTakeoutSmsShop()
                   })
                 }
               }

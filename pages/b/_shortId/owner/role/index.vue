@@ -21,7 +21,7 @@
       <div class="list_title box_radius_header">
         <div class="list_role_icon" v-bind:class="{
         list_admin_icon: role.type === 'Admin',
-        list_waiter_icon: role.type === 'Waiter' || role.type === 'TakeOut',
+        list_waiter_icon: role.type === 'Waiter' || role.type === 'Takeout',
         list_cooker_icon: role.type === 'Cooker',
         list_cashier_icon: role.type === 'Cashier' || role.type === 'Retailer',
         }" @click="btnEnter(role)"></div>
@@ -150,7 +150,7 @@
           })
 
           this.ui.roles.push({
-            type: 'TakeOut',
+            type: 'Takeout',
             roles: res.takeouts ? res.takeouts : []
           })
 

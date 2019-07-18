@@ -281,7 +281,7 @@
         })
       },
       httpOrder() {
-        httpOrderAdminApi.getAll(this.$route.params.shortId, 1, 0, 99).then(res => {
+        httpOrderAdminApi.getAll(this.$route.params.shortId, 'ForHere', 1, 0, 99).then(res => {
           this.http.res.orders = res
         })
       },

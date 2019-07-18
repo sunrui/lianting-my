@@ -117,7 +117,7 @@
             }
 
             add('Retailer')
-            add('TakeOut')
+            add('Takeout')
             add('Admin')
             add('Waiter')
             add('Cooker')

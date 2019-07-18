@@ -4,7 +4,7 @@
 
     <scroller class="scroller"
               noDataText=""
-              ref="takeOut"
+              ref="takeout"
               :on-refresh="onRefresh"
               refresh-text=""
               :on-infinite="onInfinite">
@@ -38,9 +38,9 @@
               <div class="order_history_table_label">餐桌</div>
               <div class="order_history_table_content">{{order.orderTable.tableFullNumber}}</div>
             </div>
-            <div class="order_history_label" v-else-if="order.orderTakeOut">
+            <div class="order_history_label" v-else-if="order.orderTakeout">
               <div class="order_history_table_label">订单人</div>
-              <div class="order_history_table_content">{{order.orderTakeOut.name}}</div>
+              <div class="order_history_table_content">{{order.orderTakeout.name}}</div>
             </div>
             <div class="order_history_detail" @click="btnDetail(order)">查看详情</div>
           </div>
@@ -117,7 +117,7 @@
         this.httpOrder(done)
       },
       httpOrder(done) {
-        httpOrderAdminApi.getTakeOut(this.$route.params.shortId, this.ui.scroller.page++, 20).then(res => {
+        httpOrderAdminApi.getAll(this.$route.params.shortId, 'Takeout', false, this.ui.scroller.page++, 20).then(res => {
           if (done) {
             done()
           }
@@ -164,8 +164,8 @@
       },
       onInfinite(done) {
         if (!this.ui.scroller.haveMore) {
-          this.$refs.takeOut.finishPullToRefresh()
-          this.$refs.takeOut.finishInfinite(true)
+          this.$refs.takeout.finishPullToRefresh()
+          this.$refs.takeout.finishInfinite(true)
         } else {
           this.httpOrder(done)
         }

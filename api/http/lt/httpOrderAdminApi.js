@@ -3,18 +3,11 @@ import axios from "axios"
 let base = "/api/b"
 
 export const httpOrderAdminApi = {
-  getAll(shortId, live, page, size) {
+  getAll(shortId, type, live, page, size) {
     return axios.get(`${base}/${shortId}/order`, {
       params: {
         live: live,
-        page: page,
-        size: size
-      }
-    }).then(res => res.data)
-  },
-  getTakeOut(shortId, page, size) {
-    return axios.get(`${base}/${shortId}/order/takeout`, {
-      params: {
+        type: type,
         page: page,
         size: size
       }
@@ -26,6 +19,7 @@ export const httpOrderAdminApi = {
   getAllByTableOneId(shortId, tableOneId, live, page, size) {
     return axios.get(`${base}/${shortId}/order`, {
       params: {
+        type: 'ForHere',
         tableOneId: tableOneId,
         live: live,
         page: page,
@@ -33,18 +27,20 @@ export const httpOrderAdminApi = {
       }
     }).then(res => res.data)
   },
-  getAllByDate(shortId, timeStamp, page, size) {
+  getAllByDate(shortId, type, timeStamp, page, size) {
     return axios.get(`${base}/${shortId}/order`, {
       params: {
+        type: type,
         timeStamp: timeStamp,
         page: page,
         size: size
       }
     }).then(res => res.data)
   },
-  getAllByUserId(shortId, userId, live, page, size) {
+  getAllByUserId(shortId, type, userId, live, page, size) {
     return axios.get(`${base}/${shortId}/order`, {
       params: {
+        type: type,
         userId: userId,
         live: live,
         page: page,

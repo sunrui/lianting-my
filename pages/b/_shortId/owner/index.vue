@@ -147,7 +147,7 @@
             {
               tag: 'coupon',
               name: '外卖',
-              icon: '/img/b/nav/owner/b_nav_owner_take_out.png',
+              icon: '/img/b/nav/owner/b_nav_owner_takeout.png',
               url: `/b/${this.$route.params.shortId}/owner/takeout`
             },
             {

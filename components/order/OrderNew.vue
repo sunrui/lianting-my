@@ -9,24 +9,24 @@
         <div class="order_table_number">{{ui.table.tableNumber}}</div>
         <div class="order_table_name">{{ui.table.tableName}}</div>
       </div>
-      <div class="addition box_radius" v-else-if="roleType === 'c' && http.req.takeOutConfig.enable">
+      <div class="addition box_radius" v-else-if="roleType === 'c' && http.req.takeoutConfig.enable">
         <div class="addition_item">
           <div class="addition_item_label">外卖配送</div>
           <div class="addition_item_check">
-            <div class="addition_item_check_on" v-if="ui.takeOutEnable"
+            <div class="addition_item_check_on" v-if="ui.takeoutEnable"
                  @click="btnTableOutEnable(false)"></div>
             <div class="addition_item_check_off" v-else @click="btnTableOutEnable(true)"></div>
           </div>
         </div>
 
-        <div v-if="ui.takeOutEnable">
+        <div v-if="ui.takeoutEnable">
           <div class="box_divide"></div>
 
           <div class="addition_item">
             <div class="addition_item_label_text_area">地址</div>
             <div class="addition_item_text_area">
               <label>
-                <textarea class="addition_item_text_input" placeholder="请输入您的配送地址" v-model="http.req.order.takeOut.address"></textarea>
+                <textarea class="addition_item_text_input" placeholder="请输入您的配送地址" v-model="http.req.order.takeout.address"></textarea>
               </label>
             </div>
           </div>
@@ -36,7 +36,7 @@
           <div class="addition_item">
             <div class="addition_item_label">您的姓名</div>
             <label>
-              <input class="addition_item_input" placeholder="请输入您的姓名" maxlength="20" v-model="http.req.order.takeOut.name">
+              <input class="addition_item_input" placeholder="请输入您的姓名" maxlength="20" v-model="http.req.order.takeout.name">
             </label>
           </div>
 
@@ -86,12 +86,12 @@
           </div>
         </div>
 
-        <div class="order_tableware" v-if="ui.takeOutEnable">
+        <div class="order_tableware" v-if="ui.takeoutEnable">
           <div class="box_divide"></div>
 
           <div class="order_tableware_icon">配送费</div>
           <div class="order_tableware_label">外卖配送</div>
-          <div class="order_tableware_price">{{http.req.takeOutConfig.takeOutFee}}</div>
+          <div class="order_tableware_price">{{http.req.takeoutConfig.takeoutFee}}</div>
         </div>
 
         <div class="box_divide"></div>
@@ -127,7 +127,7 @@
       </div>
     </div>
 
-    <div class="button_box" v-if="ui.takeOutEnable">
+    <div class="button_box" v-if="ui.takeoutEnable">
       <div class="button_big" @click="btnOrder">立即下单</div>
     </div>
     <div class="button_box" v-else>
@@ -167,7 +167,7 @@
   import {userApi} from '../../api/local/userApi'
   import {scrollApi} from '../../api/local/scrollApi'
   import {wechatApi} from '../../api/local/wechatApi'
-  import {httpTakeoutApi} from '../../api/http/lt/httpTakeOutApi'
+  import {httpTakeoutApi} from '../../api/http/lt/httpTakeoutApi'
   import {timeApi} from '../../api/local/timeApi'
   import {alipayApi} from '../../api/local/alipayApi'
 
@@ -194,14 +194,14 @@
         },
         http: {
           req: {
-            takeOutConfig: {
+            takeoutConfig: {
               enable: false,
-              takeOutFee: 0,
+              takeoutFee: 0,
             },
             order: {
               type: 'ForHere',
               captchaTableId: null,
-              takeOut: {
+              takeout: {
                 address: '',
                 phone: '',
                 name: ''
@@ -224,7 +224,7 @@
             tableNumber: null,
             tableName: null
           },
-          takeOutEnable: false,
+          takeoutEnable: false,
           orderOneId: null
         },
       }
@@ -245,7 +245,7 @@
         this.title.backUri = `/b/${this.$route.params.shortId}/${this.roleType}/food`
       }
 
-      this.httpTakeOutConfig()
+      this.httpTakeoutConfig()
     },
     created() {
       this.$store.commit('cart/update', cartApi.getCart())
@@ -270,9 +270,9 @@
       dateFormat(date) {
         return timeApi.dateFormat(date)
       },
-      httpTakeOutConfig() {
+      httpTakeoutConfig() {
         httpTakeoutApi.getConfig(this.$route.params.shortId).then(res => {
-          this.http.req.takeOutConfig = res
+          this.http.req.takeoutConfig = res
         })
       },
       getTotalPrice() {
@@ -285,8 +285,8 @@
 
         price += this.cart.people && this.cart.perTablewarePrice ? this.cart.people * this.cart.perTablewarePrice : 0
 
-        if (this.ui.takeOutEnable) {
-          price += this.http.req.takeOutConfig.takeOutFee
+        if (this.ui.takeoutEnable) {
+          price += this.http.req.takeoutConfig.takeoutFee
         }
 
         return price
@@ -325,8 +325,8 @@
           return
         }
 
-        if (this.ui.takeOutEnable) {
-          if (!Boolean(this.http.req.order.takeOut.address)) {
+        if (this.ui.takeoutEnable) {
+          if (!Boolean(this.http.req.order.takeout.address)) {
             this.$msgBox.doModal({
               type: 'yes',
               title: '下单',
@@ -336,9 +336,9 @@
             return
           }
 
-          this.http.req.order.takeOut.phone = this.phone
+          this.http.req.order.takeout.phone = this.phone
 
-          if (!Boolean(this.http.req.order.takeOut.phone)) {
+          if (!Boolean(this.http.req.order.takeout.phone)) {
             this.$msgBox.doModal({
               type: 'yes',
               title: '下单',
@@ -348,7 +348,7 @@
             return
           }
 
-          if (!Boolean(this.http.req.order.takeOut.name)) {
+          if (!Boolean(this.http.req.order.takeout.name)) {
             this.$msgBox.doModal({
               type: 'yes',
               title: '下单',
@@ -358,7 +358,7 @@
             return
           }
 
-          this.http.req.order.type = 'TakeOut'
+          this.http.req.order.type = 'Takeout'
         }
 
         this.http.req.order.foods = []
@@ -397,7 +397,7 @@
                 this.$router.push(`/b/${this.$route.params.shortId}/${this.roleType}/table`)
               }
             })
-          } else if (res.takeOutNotExists) {
+          } else if (res.takeoutNotExists) {
             this.$msgBox.doModal({
               type: 'yes',
               title: '下单',
@@ -480,7 +480,7 @@
         this.$router.push('/scan')
       },
       btnTableOutEnable(enable) {
-        this.ui.takeOutEnable = enable
+        this.ui.takeoutEnable = enable
       },
       btnBindPhone() {
         this.$router.push(`/c/${this.$route.params.shortId}/me/bind/phone`)

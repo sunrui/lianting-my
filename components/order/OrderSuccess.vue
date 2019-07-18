@@ -24,9 +24,9 @@
           <div class="status_item_label">餐具费</div>
           <div class="status_item_content">{{http.res.order.priceTableware}} 元</div>
         </div>
-        <div class="status_item" v-if="http.res.order.priceTakeOutFee > 0">
+        <div class="status_item" v-if="http.res.order.priceTakeoutFee > 0">
           <div class="status_item_label">配送费</div>
-          <div class="status_item_content">{{http.res.order.priceTakeOutFee}} 元</div>
+          <div class="status_item_content">{{http.res.order.priceTakeoutFee}} 元</div>
         </div>
         <div class="status_item">
           <div class="status_item_label">人数</div>
@@ -59,7 +59,7 @@
       </div>
     </div>
 
-    <div v-if="http.res.order.type === 'TakeOut' && http.res.order.status === 'NotPaid'">
+    <div v-if="http.res.order.type === 'Takeout' && http.res.order.status === 'NotPaid'">
       <div class="box">
         <div class="tip">
           <ul class="tip_ul">
@@ -179,7 +179,7 @@
           return '订单尚未支付'
         }
 
-        return this.http.res.order.type === 'TakeOut' ? '外卖请求已发送给商家' : '订单已发送后厨'
+        return this.http.res.order.type === 'Takeout' ? '外卖请求已发送给商家' : '订单已发送后厨'
       },
       getTotalFood() {
         let count = 0

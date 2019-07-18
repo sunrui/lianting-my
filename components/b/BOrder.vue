@@ -66,9 +66,9 @@
               <div class="order_history_table_label">餐桌</div>
               <div class="order_history_table_content">{{order.orderTable.tableFullNumber}}</div>
             </div>
-            <div class="order_history_label order_history_label_2" v-else-if="order.orderTakeOut">
+            <div class="order_history_label order_history_label_2" v-else-if="order.orderTakeout">
               <div class="order_history_table_label">外卖</div>
-              <div class="order_history_table_content">{{order.orderTakeOut.name}}</div>
+              <div class="order_history_table_content">{{order.orderTakeout.name}}</div>
             </div>
             <div class="order_history_detail" @click="btnDetail(order)">查看详情</div>
           </div>
@@ -189,7 +189,7 @@
             })
           })
         } else if (this.date) {
-          httpOrderAdminApi.getAllByDate(this.$route.params.shortId, this.date, this.ui.scroller.page++, 20).then(res => {
+          httpOrderAdminApi.getAllByDate(this.$route.params.shortId, 'ForHere', this.date, this.ui.scroller.page++, 20).then(res => {
             if (done) {
               done()
             }
@@ -213,7 +213,7 @@
             })
           })
         } else {
-          httpOrderAdminApi.getAll(this.$route.params.shortId, live, this.ui.scroller.page++, 20).then(res => {
+          httpOrderAdminApi.getAll(this.$route.params.shortId, 'ForHere', live, this.ui.scroller.page++, 20).then(res => {
             if (done) {
               done()
             }

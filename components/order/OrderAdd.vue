@@ -2,13 +2,13 @@
   <div>
     <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
-    <div class="box" v-if="ui.orderAnyOne.orderTakeOut">
+    <div class="box" v-if="ui.orderAnyOne.orderTakeout">
       <div class="addition box_radius">
         <div class="addition_item">
           <div class="addition_item_label_text_area">地址</div>
           <div class="addition_item_text_area">
             <label>
-              <textarea class="addition_item_text_input" placeholder="请输入您的配送地址" readonly v-model="ui.orderAnyOne.orderTakeOut.address"></textarea>
+              <textarea class="addition_item_text_input" placeholder="请输入您的配送地址" readonly v-model="ui.orderAnyOne.orderTakeout.address"></textarea>
             </label>
           </div>
         </div>
@@ -17,14 +17,14 @@
 
         <div class="addition_item">
           <div class="addition_item_label">订单人</div>
-          <div class="addition_item_content" style="user-select: text;">{{ui.orderAnyOne.orderTakeOut.name}}</div>
+          <div class="addition_item_content" style="user-select: text;">{{ui.orderAnyOne.orderTakeout.name}}</div>
         </div>
 
         <div class="box_divide"></div>
 
         <div class="addition_item">
           <div class="addition_item_label">手机号</div>
-          <div class="addition_item_content" style="user-select: text;">{{ui.orderAnyOne.orderTakeOut.phone}}</div>
+          <div class="addition_item_content" style="user-select: text;">{{ui.orderAnyOne.orderTakeout.phone}}</div>
         </div>
       </div>
     </div>

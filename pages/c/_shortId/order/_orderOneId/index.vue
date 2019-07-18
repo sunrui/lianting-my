@@ -4,7 +4,7 @@
 
     <div :class="{ cover_mask_9: ui.vCoverMask}" @click="btnCoverMask"></div>
 
-    <div class="box" v-if="http.res.order.orderTakeOut">
+    <div class="box" v-if="http.res.order.orderTakeout">
       <div class="list_title box_radius_header">
         <div class="list_title_label">外卖配送详情</div>
       </div>
@@ -18,7 +18,7 @@
           <div class="addition_item_label_text_area">地址</div>
           <div class="addition_item_text_area">
             <label>
-              <textarea class="addition_item_text_input" placeholder="请输入您的配送地址" readonly v-model="http.res.order.orderTakeOut.address"></textarea>
+              <textarea class="addition_item_text_input" placeholder="请输入您的配送地址" readonly v-model="http.res.order.orderTakeout.address"></textarea>
             </label>
           </div>
         </div>
@@ -27,14 +27,14 @@
 
         <div class="addition_item">
           <div class="addition_item_label">订单人</div>
-          <div class="addition_item_content" style="user-select: text;">{{http.res.order.orderTakeOut.name}}</div>
+          <div class="addition_item_content" style="user-select: text;">{{http.res.order.orderTakeout.name}}</div>
         </div>
 
         <div class="box_divide"></div>
 
         <div class="addition_item">
           <div class="addition_item_label">手机号</div>
-          <div class="addition_item_content" style="user-select: text;">{{http.res.order.orderTakeOut.phone}}</div>
+          <div class="addition_item_content" style="user-select: text;">{{http.res.order.orderTakeout.phone}}</div>
         </div>
       </div>
     </div>
@@ -80,10 +80,10 @@
           <div class="order_tableware_price">{{http.res.order.priceTableware}}</div>
         </div>
 
-        <div class="order_tableware" v-if="http.res.order.priceTakeOutFee > 0">
+        <div class="order_tableware" v-if="http.res.order.priceTakeoutFee > 0">
           <div class="order_tableware_icon">配送费</div>
           <div class="order_tableware_label">外卖配送</div>
-          <div class="order_tableware_price">{{http.res.order.priceTakeOutFee}}</div>
+          <div class="order_tableware_price">{{http.res.order.priceTakeoutFee}}</div>
         </div>
 
         <div @click="btnChooseCoupon()" v-if="http.res.order.status === 'NotPaid'">
@@ -200,8 +200,8 @@
     <div class="button_box" v-if="http.res.order.status === 'NotPaid'">
       <div class="button_small" @click="btnFood" v-if="http.res.order.type === 'ForHere'">加餐</div>
       <div class="button_small" @click="btnPay" v-if="http.res.order.type === 'ForHere'">立即支付</div>
-      <div class="button_big" @click="btnPay" v-if="http.res.order.type === 'TakeOut'">立即支付</div>
-      <div class="button_big" @click="btnCancel" v-if="http.res.order.type === 'TakeOut'">取消订单</div>
+      <div class="button_big" @click="btnPay" v-if="http.res.order.type === 'Takeout'">立即支付</div>
+      <div class="button_big" @click="btnCancel" v-if="http.res.order.type === 'Takeout'">取消订单</div>
     </div>
     <div class="blank_30" v-else></div>
 
@@ -640,7 +640,7 @@
             }).then(async (val) => {
               this.httpOrder()
             })
-          } else if (res.notTakeOut) {
+          } else if (res.notTakeout) {
             this.$msgBox.doModal({
               type: 'yes',
               title: '取消订单',

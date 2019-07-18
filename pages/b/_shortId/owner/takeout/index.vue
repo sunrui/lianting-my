@@ -31,7 +31,7 @@
         <div class="addition_item">
           <div class="addition_item_label">外卖配送费</div>
           <currency-input class="addition_item_input" right="true" placeholder="请输入外卖配送费"
-                          v-model="http.req.tableOutConfig.takeOutFee"></currency-input>
+                          v-model="http.req.tableOutConfig.takeoutFee"></currency-input>
         </div>
       </div>
     </div>
@@ -45,7 +45,7 @@
 <script>
   import TitleBar from '../../../../../components/common/TitleBar'
   import CurrencyInput from '../../../../../components/common/CurrencyInput'
-  import {httpTakeoutAdminApi} from '../../../../../api/http/lt/httpTakeOutAdminApi'
+  import {httpTakeoutAdminApi} from '../../../../../api/http/lt/httpTakeoutAdminApi'
 
   export default {
     metaInfo: {
@@ -66,7 +66,7 @@
           req: {
             tableOutConfig: {
               enable: false,
-              takeOutFee: null
+              takeoutFee: null
             }
           }
         },

@@ -4,7 +4,7 @@
 
     <div :class="{ cover_mask_9: ui.vCoverMask}" @click="btnCoverMask"></div>
 
-    <div class="box" v-if="http.res.order.orderTakeOut">
+    <div class="box" v-if="http.res.order.orderTakeout">
       <div class="list_title box_radius_header">
         <div class="list_title_label">配送详情</div>
       </div>
@@ -18,7 +18,7 @@
           <div class="addition_item_label_text_area">地址</div>
           <div class="addition_item_text_area">
             <label>
-              <textarea class="addition_item_text_input" placeholder="请输入您的配送地址" readonly v-model="http.res.order.orderTakeOut.address"></textarea>
+              <textarea class="addition_item_text_input" placeholder="请输入您的配送地址" readonly v-model="http.res.order.orderTakeout.address"></textarea>
             </label>
           </div>
         </div>
@@ -27,14 +27,14 @@
 
         <div class="addition_item">
           <div class="addition_item_label">订单人</div>
-          <div class="addition_item_content" style="user-select: text;">{{http.res.order.orderTakeOut.name}}</div>
+          <div class="addition_item_content" style="user-select: text;">{{http.res.order.orderTakeout.name}}</div>
         </div>
 
         <div class="box_divide"></div>
 
         <div class="addition_item">
           <div class="addition_item_label">手机号</div>
-          <div class="addition_item_content" style="user-select: text;">{{http.res.order.orderTakeOut.phone}}</div>
+          <div class="addition_item_content" style="user-select: text;">{{http.res.order.orderTakeout.phone}}</div>
         </div>
       </div>
     </div>
@@ -67,10 +67,10 @@
           <div class="order_tableware_price">{{http.res.order.priceTableware}}</div>
         </div>
 
-        <div class="order_tableware" v-if="http.res.order.priceTakeOutFee > 0">
+        <div class="order_tableware" v-if="http.res.order.priceTakeoutFee > 0">
           <div class="order_tableware_icon">配送费</div>
           <div class="order_tableware_label">外卖配送</div>
-          <div class="order_tableware_price">{{http.res.order.priceTakeOutFee}}</div>
+          <div class="order_tableware_price">{{http.res.order.priceTakeoutFee}}</div>
         </div>
 
         <div class="order_coupon" v-if="http.res.order.couponDeductPrice || $route.query.deductPrice">
@@ -171,7 +171,7 @@
     </div>
 
     <div class="button_box" v-if="http.res.order.status === 'NotPaid' || http.res.order.status === 'Paid'">
-      <div class="button_big" @click="btnReply">确认订单</div>
+      <div class="button_big" @click="btnReply">回复订单</div>
     </div>
     <div class="blank_30" v-else></div>
 
@@ -181,7 +181,7 @@
           <img class="modal_close" src="/img/common/close.png" alt="">
         </div>
 
-        <div class="modal_title">确认订单</div>
+        <div class="modal_title">回复订单</div>
 
         <div class="blank_20"></div>
 
@@ -275,7 +275,7 @@
             shop: {},
             info: {},
             order: {
-              orderTakeOut: {},
+              orderTakeout: {},
               createdAt: new Date().getTime()
             }
           }
@@ -333,7 +333,7 @@
         return count
       },
       getSmsTypeLabel(status) {
-        let name = this.http.res.order.orderTakeOut.name || '匿名用户'
+        let name = this.http.res.order.orderTakeout.name || '匿名用户'
         let shop = this.http.res.shop.name || '恋厅'
         let phone = this.http.res.info.phone || ''
         let reason = this.ui.orderRemark || '未在线说明'
@@ -456,7 +456,7 @@
                 title: '发送短信',
                 content: '订单号不存在。'
               })
-            } else if (res.notTakeOut) {
+            } else if (res.notTakeout) {
               this.$msgBox.doModal({
                 type: 'yes',
                 title: '发送短信',
