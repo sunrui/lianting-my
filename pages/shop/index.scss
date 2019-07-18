@@ -37,6 +37,8 @@
 .shop_role {
   position: relative;
   text-align: center;
+  overflow: scroll;
+  height: 140px;
 
   .shop_role_one {
     display: inline-block;

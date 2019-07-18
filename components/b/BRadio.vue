@@ -4,7 +4,7 @@
     <div class="box">
       <div class="tip">
         <ul class="tip_ul">
-          <li>要启用此功能，请确认展屏处在工作状态中。</li>
+          <li>要使用此功能，请确认展屏处在工作状态中。</li>
         </ul>
       </div>
     </div>
