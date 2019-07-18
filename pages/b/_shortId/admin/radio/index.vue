@@ -93,12 +93,12 @@
         audio.play()
       },
       btnRadio() {
-        let content = `确定将以下播报内容发送至展屏吗？`
+        let content = `以下内容将发送至展屏:`
         content += `<br/><br/>${highlightApi.highlight(this.http.req.radio.radioText)}`
 
         this.$msgBox.doModal({
           type: 'yesOrNo',
-          title: '播报确认',
+          title: '播报提醒',
           content: content
         }).then(async (val) => {
           if (val === 'Yes') {
