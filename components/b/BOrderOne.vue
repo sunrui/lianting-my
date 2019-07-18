@@ -745,6 +745,8 @@
                   }).then(async (val) => {
                     this.httpOrder()
                   })
+                } else {
+                  this.httpOrder()
                 }
               }
             })
