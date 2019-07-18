@@ -544,29 +544,18 @@
             '现金收银', '微信转账', '支付宝转账'
           ],
           printReceipt: false,
-          interval: null
         }
-      }
-    },
-    beforeDestroy() {
-      if (this.ui.interval) {
-        clearInterval(this.ui.interval)
-        this.ui.interval = null
       }
     },
     mounted() {
       this.title.title = '订单详情 - ' + roleApi.getRoleTypeName(this.roleType)
 
-      this.autoRefresh()
-      this.ui.interval = setInterval(this.autoRefresh, 10 * 1000)
+      this.httpOrder()
+      this.httpPrinterStatus()
     },
     methods: {
       dateFormat(date) {
         return timeApi.dateFormat(date)
-      },
-      autoRefresh() {
-        this.httpOrder()
-        this.httpPrinterStatus()
       },
       btnChooseReturnCount(payload) {
         this.http.req.return.count = payload.name

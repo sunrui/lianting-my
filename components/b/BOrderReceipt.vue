@@ -460,8 +460,7 @@
           offlinePayRemarks: [
             '现金收银', '微信转账', '支付宝转账'
           ],
-          printReceipt: false,
-          interval: null
+          printReceipt: false
         }
       }
     },
