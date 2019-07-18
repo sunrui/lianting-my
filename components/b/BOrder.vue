@@ -30,7 +30,7 @@
     </div>
 
     <scroller class="scroller"
-              v-bind:class="{scroller_order_mix: ui.tableOneId && getTableNotPaidTotal().order > 1}"
+              v-bind:class="{scroller_order_mix: ui.tableOneId && getTableNotPaidTotal().order > 0}"
               noDataText=""
               ref="bOrder"
               :on-refresh="onRefresh"

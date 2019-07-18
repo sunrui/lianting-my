@@ -90,7 +90,8 @@
               memberCode: null,
               apiKey: null,
               deviceNo: null,
-              enable: true,
+              enableOrder: true,
+              enableReceipt: true,
               eightyMM: false,
               remark: null
             }
@@ -161,7 +162,7 @@
               title: '添加佳博云打印机',
               content: '恭喜，打印机在线。'
             }).then(async (val) => {
-              httpPrinterPoscomAdminApi.postPrinter(this.$route.params.shortId, this.http.req.printer).then(res => {
+              httpPrinterPoscomAdminApi.putPrinter(this.$route.params.shortId, this.http.req.printer).then(res => {
                 if (res.maxLimit) {
                   this.$router.push(`/b/${this.$route.params.shortId}/owner/limit`)
                   return

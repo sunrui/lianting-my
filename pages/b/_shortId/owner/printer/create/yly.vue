@@ -90,7 +90,8 @@
               clientId: null,
               clientSecret: null,
               machineCode: null,
-              enable: true,
+              enableOrder: true,
+              enableReceipt: true,
               eightyMM: false,
               remark: null
             }
@@ -161,7 +162,7 @@
               title: '添加易联云打印机',
               content: '恭喜，打印机在线。'
             }).then(async (val) => {
-              httpPrinterYlyAdminApi.postPrinter(this.$route.params.shortId, this.http.req.printer).then(res => {
+              httpPrinterYlyAdminApi.putPrinter(this.$route.params.shortId, this.http.req.printer).then(res => {
                 if (res.maxLimit) {
                   this.$router.push(`/b/${this.$route.params.shortId}/owner/limit`)
                   return
