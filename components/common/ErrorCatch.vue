@@ -9,8 +9,8 @@
       <div class="empty" v-if="!ui.vReport">
         <img class="empty_image" src="/img/no/no_crash.png" alt="">
         <div v-if="!ui.reported">
-          <div class="empty_label">{{ui.error.notFound? '404 - 好像迷路了！' : '呃〜服务器去度假了！'}}</div>
-          <div class="empty_label_tip">您可以<span class="empty_label_tip_link" @click="btnReport">查看详情</span>或返回重试。</div>
+          <div class="empty_label">{{ui.error.notFound? '404 - 好像迷路了！' : '不好〜恋厅服务器去度假了！'}}</div>
+          <div class="empty_label_tip">请<span class="empty_label_tip_link" @click="btnReport">查看留言</span>或返回重试。</div>
           <div class="blank_30"></div>
         </div>
         <div v-else>
@@ -23,7 +23,7 @@
         <div class="box">
           <div class="addition box_radius_header">
             <div class="addition_item" v-if="ui.error.message">
-              <div class="addition_item_label_text_area">异常</div>
+              <div class="addition_item_label_text_area">内容</div>
               <div class="addition_item_text_area">
                 <label>
                   <textarea class="addition_item_text_input" v-model="ui.error.message"></textarea>
@@ -38,7 +38,7 @@
 
           <div class="report_input_area box_radius_footer">
             <label>
-              <textarea class="report_input" placeholder="请描述您重现的过程，以帮助我们更好的改进产品。" v-model="http.req.report.message" maxlength="256"></textarea>
+              <textarea class="report_input" placeholder="请描述您重现的过程，以便恋厅更好的改进产品。" v-model="http.req.report.message" maxlength="256"></textarea>
             </label>
           </div>
         </div>
@@ -65,7 +65,7 @@
 
   export default {
     metaInfo: {
-      title: '访问异常'
+      title: '恋厅异常捕获'
     },
     components: {TitleBar},
     props: ['error'],
@@ -81,7 +81,7 @@
         },
         title: {
           canBack: false,
-          title: '反馈错误',
+          title: '问题反馈',
           backUri: null,
           theme: 'image',
           imageHeight: 460

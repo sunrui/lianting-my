@@ -27,8 +27,15 @@
       <div class="tip">
         <ul class="tip_ul">
           <li>要开通微信在线支付功能，您需拥有认证微信公众号。请查阅<a class="tip_link" :href="getWechatPayUrl()">微信支付商户接入指引</a>。</li>
-          <li>您需要准备姓名、手机号、邮箱、身份证、营业执照、食品安全许可证、餐食类型、银行卡信息等资料。</li>
-          <li>签约完成后即可以开通微信在线支付了，顾客支付将实时打入到您的收款账户。</li>
+          <li>开通微信支付需提交营业执照、收款银行卡等资料至微信审核，请联系恋厅客服。</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="box" v-if="http.req.config.openAlipay">
+      <div class="tip">
+        <ul class="tip_ul">
+          <li>开通支付宝支付需提交营业执照、收款支付宝账号等资料至支付宝审核，请联系恋厅客服。</li>
         </ul>
       </div>
     </div>

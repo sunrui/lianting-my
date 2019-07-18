@@ -2,7 +2,7 @@
   <div>
     <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
-    <empty image="/img/no/no_table.png" content="没有餐桌。"></empty>
+    <empty image="/img/no/no_table.png" content="没有餐桌，如您是管理员请先添加。"></empty>
   </div>
 </template>
 

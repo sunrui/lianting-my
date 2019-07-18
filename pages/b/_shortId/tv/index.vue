@@ -85,7 +85,7 @@
   import {loadingApi} from '../../../../api/local/loadingApi'
   import {httpNotifyAdminApi} from '../../../../api/http/lt/httpNotifyAdminApi'
   import QRCode from 'qrcode'
-  import {httpSpeechAdminApi} from '../../../../api/http/lt/httpSpeechAdminApi'
+  import {httpRadioAdminApi} from '../../../../api/http/lt/httpRadioAdminApi'
 
   export default {
     metaInfo: {
@@ -394,7 +394,7 @@
         })
       },
       speech(radioText) {
-        let url = httpSpeechAdminApi.getSpeechUrl(this.$route.params.shortId, radioText)
+        let url = httpRadioAdminApi.getSpeechUrl(this.$route.params.shortId, radioText)
         let audio = new Audio(url)
         audio.play()
       },

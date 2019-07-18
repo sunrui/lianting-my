@@ -67,7 +67,7 @@
             </div>
           </div>
         </div>
-        <div class="table_empty" v-else>没有餐桌类型，如您是管理员请先添加。</div>
+        <div class="table_empty" v-else>没有餐桌，如您是管理员请先添加。</div>
       </div>
 
       <div class="time_select_box">
