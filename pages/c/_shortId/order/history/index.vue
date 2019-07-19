@@ -99,7 +99,7 @@
         this.httpOrder(done)
       },
       httpOrder(done) {
-        httpOrderApi.getAll(this.$route.params.shortId, null, this.ui.scroller.page++, 20).then(res => {
+        httpOrderApi.getAll(this.$route.params.shortId, null, false, this.ui.scroller.page++, 20).then(res => {
           if (done) {
             done()
           }

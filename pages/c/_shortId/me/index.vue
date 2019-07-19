@@ -137,7 +137,7 @@
       },
       btnNav(url) {
         if (url === 'order/history') {
-          httpOrderApi.getAll(this.$route.params.shortId, null, 0, 1).then(res => {
+          httpOrderApi.getAll(this.$route.params.shortId, null, false, 0, 1).then(res => {
             if (res.currentPageSize === 0) {
               this.$router.push(`/c/${this.$route.params.shortId}/order/history/empty`)
             }

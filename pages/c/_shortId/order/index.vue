@@ -17,7 +17,7 @@
         return
       }
 
-      httpOrderApi.getAllByLive(this.$route.params.shortId, 0, 99).then(res => {
+      httpOrderApi.getAll(this.$route.params.shortId, 'ForHere', true, 0, 99).then(res => {
         if (res.currentPageSize > 0) {
           this.$router.push(`/c/${this.$route.params.shortId}/order/add`)
         } else {

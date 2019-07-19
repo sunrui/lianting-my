@@ -3,18 +3,11 @@ import axios from 'axios'
 let base = '/api/c'
 
 export const httpOrderApi = {
-  getAll(shortId, type, page, size) {
+  getAll(shortId, type, live, page, size) {
     return axios.get(`${base}/${shortId}/order`, {
       params: {
+        live: live,
         type: type,
-        page: page,
-        size: size
-      }
-    }).then(res => res.data)
-  },
-  getAllByLive(shortId, page, size) {
-    return axios.get(`${base}/${shortId}/order/live`, {
-      params: {
         page: page,
         size: size
       }
