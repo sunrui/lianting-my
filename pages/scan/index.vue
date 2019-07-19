@@ -2,8 +2,10 @@
   <div class="scan">
     <title-bar v-show="false" :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
     <empty v-if="!ui.inWechat && !ui.inAlipay" image="/img/no/no_crash.png" content="请在微信或支付宝中使用。"></empty>
-    <div class="scan_image" @click="btnScan"></div>
-    <div class="scan_label">扫一扫</div>
+    <div v-else>
+      <div class="scan_image" @click="btnScan"></div>
+      <div class="scan_label">扫一扫</div>
+    </div>
   </div>
 </template>
 
@@ -30,8 +32,8 @@
           imageHeight: 0
         },
         ui: {
-          inWechat: false,
-          inAlipay: false
+          inWechat: true,
+          inAlipay: true
         }
       }
     },
@@ -39,19 +41,25 @@
       this.ui.inWechat = wechatApi.inWechat()
       this.ui.inAlipay = alipayApi.inAlipay()
 
-      if (this.ui.inAlipay) {
-        this.scanAlipay()
-      }
-
-      if (this.ui.inWechat) {
-        this.scanWechat()
-      }
+      this.btnScan()
     },
     methods: {
+      btnScan() {
+        this.scanAlipay()
+        this.scanWechat()
+      },
       scanAlipay() {
+        if (!this.ui.inAlipay) {
+          return
+        }
+
         alipayApi.scan()
       },
       scanWechat() {
+        if (!this.ui.inWechat) {
+          return
+        }
+
         let pThis = this
 
         httpWechatApi.getConfig('scan', urlApi.getCurrentUrl()).then(res => {
