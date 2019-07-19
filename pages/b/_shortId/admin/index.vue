@@ -102,12 +102,6 @@
               name: '排队',
               icon: '/img/b/nav/role/b_nav_role_queue.png',
               url: `/b/${this.$route.params.shortId}/admin/queue`
-            },
-            {
-              tag: 'radio',
-              name: '播报',
-              icon: '/img/b/nav/role/b_nav_role_radio.png',
-              url: `/b/${this.$route.params.shortId}/admin/radio`
             }
           ]
         },
