@@ -106,7 +106,7 @@
               tag: 'radio',
               name: '播报',
               icon: '/img/b/nav/role/b_nav_role_radio.png',
-              url: `/b/${this.$route.params.shortId}/admin/radio`
+              url: `/b/${this.$route.params.shortId}/waiter/radio`
             }
           ]
         },

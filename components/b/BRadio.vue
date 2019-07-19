@@ -15,7 +15,7 @@
           <div class="addition_item_label_text_area">内容</div>
           <div class="addition_item_text_area">
             <label>
-              <textarea class="addition_item_text_input" placeholder="请输入您要播报的通知" v-model="http.req.radio.radioText"></textarea>
+              <textarea class="addition_item_text_input" placeholder="请输入您要播报的通知" maxlength="128" v-model="http.req.radio.radioText"></textarea>
             </label>
           </div>
         </div>
