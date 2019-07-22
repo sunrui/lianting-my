@@ -15,49 +15,6 @@
       </div>
     </div>
 
-    <div class="box" v-for="printer in http.res.printerFeie.elements">
-      <div class="printer_header box_radius_header">
-        <div class="badge_delete" @click="btnDeleteFeie(printer)"></div>
-        <div class="printer_box">
-          <div class="printer_box_left">
-            <div class="printer_type_title">飞鹅云打印机</div>
-            <div class="printer_type_name">{{printer.remark ? '名称：' + printer.remark : '序列号：' + printer.sn}}</div>
-          </div>
-          <div class="printer_box_right">
-            <div class="printer_online_status" v-bind:class="{
-            printer_online_status_online: getPrinterFeieOneStatus(printer) === '在线',
-            printer_online_status_offline: getPrinterFeieOneStatus(printer) !== '在线'
-            }">{{getPrinterFeieOneStatus(printer)}}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="box_divide_radius">
-        <div class="box_divide_radius_line"></div>
-      </div>
-
-      <div class="printer_footer box_radius_footer">
-        <div class="addition_item">
-          <div class="addition_item_label">后厨订单打印</div>
-          <div class="addition_item_check">
-            <div class="addition_item_check_on" v-if="printer.enableOrder" @click="btnEnableFeieOrder(printer)"></div>
-            <div class="addition_item_check_off" v-else @click="btnEnableFeieOrder(printer)"></div>
-          </div>
-        </div>
-
-        <div class="box_divide"></div>
-
-        <div class="addition_item">
-          <div class="addition_item_label">顾客收据打印</div>
-          <div class="addition_item_check">
-            <div class="addition_item_check_on" v-if="printer.enableReceipt" @click="btnEnableFeieReceipt(printer)"></div>
-            <div class="addition_item_check_off" v-else @click="btnEnableFeieReceipt(printer)"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
     <div class="box" v-for="printer in http.res.printerPoscom.elements">
       <div class="printer_header box_radius_header">
         <div class="badge_delete" @click="btnDeletePoscom(printer)"></div>
@@ -96,6 +53,49 @@
           <div class="addition_item_check">
             <div class="addition_item_check_on" v-if="printer.enableReceipt" @click="btnEnablePoscomReceipt(printer)"></div>
             <div class="addition_item_check_off" v-else @click="btnEnablePoscomReceipt(printer)"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="box" v-for="printer in http.res.printerFeie.elements">
+      <div class="printer_header box_radius_header">
+        <div class="badge_delete" @click="btnDeleteFeie(printer)"></div>
+        <div class="printer_box">
+          <div class="printer_box_left">
+            <div class="printer_type_title">飞鹅云打印机</div>
+            <div class="printer_type_name">{{printer.remark ? '名称：' + printer.remark : '序列号：' + printer.sn}}</div>
+          </div>
+          <div class="printer_box_right">
+            <div class="printer_online_status" v-bind:class="{
+            printer_online_status_online: getPrinterFeieOneStatus(printer) === '在线',
+            printer_online_status_offline: getPrinterFeieOneStatus(printer) !== '在线'
+            }">{{getPrinterFeieOneStatus(printer)}}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="box_divide_radius">
+        <div class="box_divide_radius_line"></div>
+      </div>
+
+      <div class="printer_footer box_radius_footer">
+        <div class="addition_item">
+          <div class="addition_item_label">后厨订单打印</div>
+          <div class="addition_item_check">
+            <div class="addition_item_check_on" v-if="printer.enableOrder" @click="btnEnableFeieOrder(printer)"></div>
+            <div class="addition_item_check_off" v-else @click="btnEnableFeieOrder(printer)"></div>
+          </div>
+        </div>
+
+        <div class="box_divide"></div>
+
+        <div class="addition_item">
+          <div class="addition_item_label">顾客收据打印</div>
+          <div class="addition_item_check">
+            <div class="addition_item_check_on" v-if="printer.enableReceipt" @click="btnEnableFeieReceipt(printer)"></div>
+            <div class="addition_item_check_off" v-else @click="btnEnableFeieReceipt(printer)"></div>
           </div>
         </div>
       </div>
@@ -144,6 +144,49 @@
       </div>
     </div>
 
+    <div class="box" v-for="printer in http.res.printerZhongwu.elements">
+      <div class="printer_header box_radius_header">
+        <div class="badge_delete" @click="btnDeleteZhongwu(printer)"></div>
+        <div class="printer_box">
+          <div class="printer_box_left">
+            <div class="printer_type_title">中午云打印机</div>
+            <div class="printer_type_name">{{printer.remark ? '名称：' + printer.remark : '序列号：' + printer.machineCode}}</div>
+          </div>
+          <div class="printer_box_right">
+            <div class="printer_online_status" v-bind:class="{
+            printer_online_status_online: getPrinterZhongwuOneStatus(printer) === '在线',
+            printer_online_status_offline: getPrinterZhongwuOneStatus(printer) !== '在线'
+            }">{{getPrinterZhongwuOneStatus(printer)}}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="box_divide_radius">
+        <div class="box_divide_radius_line"></div>
+      </div>
+
+      <div class="printer_footer box_radius_footer">
+        <div class="addition_item">
+          <div class="addition_item_label">后厨订单打印</div>
+          <div class="addition_item_check">
+            <div class="addition_item_check_on" v-if="printer.enableOrder" @click="btnEnableZhongwuOrder(printer)"></div>
+            <div class="addition_item_check_off" v-else @click="btnEnableZhongwuOrder(printer)"></div>
+          </div>
+        </div>
+
+        <div class="box_divide"></div>
+
+        <div class="addition_item">
+          <div class="addition_item_label">顾客收据打印</div>
+          <div class="addition_item_check">
+            <div class="addition_item_check_on" v-if="printer.enableReceipt" @click="btnEnableZhongwuReceipt(printer)"></div>
+            <div class="addition_item_check_off" v-else @click="btnEnableZhongwuReciept(printer)"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <transition name="toggle">
       <div class="modal_bottom" v-if="ui.vPrinter">
         <div class="modal_close_box" @click="btnCoverMask">
@@ -164,11 +207,11 @@
              @click="btnChoosePrinter('yly')">易联云
         </div>
 
-        <div class="modal_menu" v-bind:class="{modal_menu_select: ui.choosePrinter === 'un-support-1'}"
-             @click="btnChoosePrinter('un-support-1')">中午云 (支持中)
+        <div class="modal_menu" v-bind:class="{modal_menu_select: ui.choosePrinter === 'zhongwu'}"
+             @click="btnChoosePrinter('zhongwu')">中午云
         </div>
 
-        <div class="modal_menu modal_menu_disable">其它品牌请联系我们</div>
+        <div class="modal_menu modal_menu_disable">更多品牌请联系我们</div>
 
         <div class="modal_button_box">
           <div class="button_big" @click="btnChooseConfirm">确认</div>
@@ -189,6 +232,7 @@
   import {httpPrinterFeieAdminApi} from '../../../../../../api/http/lt/httpPrinterFeieAdminApi'
   import {httpPrinterPoscomAdminApi} from '../../../../../../api/http/lt/httpPrinterPoscomAdminApi'
   import {httpPrinterYlyAdminApi} from '../../../../../../api/http/lt/httpPrinterYlyAdminApi'
+  import {httpPrinterZhongwuAdminApi} from '../../../../../../api/http/lt/httpPrinterZhongwuAdminApi'
 
   export default {
     metaInfo: {
@@ -215,6 +259,9 @@
             },
             printerYly: {
               elements: []
+            },
+            printerZhongwu: {
+              elements: []
             }
           }
         },
@@ -232,6 +279,7 @@
       this.httpPrinterFeie()
       this.httpPrinterPoscom()
       this.httpPrinterYly()
+      this.httpPrinterZhongwu()
       this.ui.interval = setInterval(this.httpPrinter, 30 * 1000)
     },
     beforeDestroy() {
@@ -268,12 +316,14 @@
         this.httpPrinterFeie()
         this.httpPrinterPoscom()
         this.httpPrinterYly()
+        this.httpPrinterZhongwu()
       },
       httpPrinterFeie() {
         httpPrinterFeieAdminApi.getPrinter(this.$route.params.shortId, 0, 99).then(res => {
           if (this.http.res.printerFeie.elements.length !== 0 ||
-              this.http.res.printerPoscom.elements.length !== 0 ||
-              this.http.res.printerYly.elements.length !== 0
+                  this.http.res.printerPoscom.elements.length !== 0 ||
+                  this.http.res.printerYly.elements.length !== 0||
+                  this.http.res.printerZhongwu.elements.length !== 0
           ) {
             this.$refs.titleBar_Printer.setTheme('image')
           } else {
@@ -291,8 +341,9 @@
       httpPrinterPoscom() {
         httpPrinterPoscomAdminApi.getPrinter(this.$route.params.shortId, 0, 99).then(res => {
           if (this.http.res.printerFeie.elements.length !== 0 ||
-              this.http.res.printerPoscom.elements.length !== 0 ||
-              this.http.res.printerYly.elements.length !== 0
+                  this.http.res.printerPoscom.elements.length !== 0 ||
+                  this.http.res.printerYly.elements.length !== 0||
+                  this.http.res.printerZhongwu.elements.length !== 0
           ) {
             this.$refs.titleBar_Printer.setTheme('image')
           } else {
@@ -310,8 +361,9 @@
       httpPrinterYly() {
         httpPrinterYlyAdminApi.getPrinter(this.$route.params.shortId, 0, 99).then(res => {
           if (this.http.res.printerFeie.elements.length !== 0 ||
-              this.http.res.printerPoscom.elements.length !== 0 ||
-              this.http.res.printerYly.elements.length !== 0
+                  this.http.res.printerPoscom.elements.length !== 0 ||
+                  this.http.res.printerYly.elements.length !== 0||
+                  this.http.res.printerZhongwu.elements.length !== 0
           ) {
             this.$refs.titleBar_Printer.setTheme('image')
           } else {
@@ -323,6 +375,26 @@
           for (let index in res.elements) {
             let printer = res.elements[index]
             this.getPrinterYlyOneStatus(printer)
+          }
+        })
+      },
+      httpPrinterZhongwu() {
+        httpPrinterZhongwuAdminApi.getPrinter(this.$route.params.shortId, 0, 99).then(res => {
+          if (this.http.res.printerFeie.elements.length !== 0 ||
+                  this.http.res.printerPoscom.elements.length !== 0 ||
+                  this.http.res.printerYly.elements.length !== 0||
+                  this.http.res.printerZhongwu.elements.length !== 0
+          ) {
+            this.$refs.titleBar_Printer.setTheme('image')
+          } else {
+            this.$refs.titleBar_Printer.setTheme('white')
+          }
+
+          this.http.res.printerZhongwu = res
+
+          for (let index in res.elements) {
+            let printer = res.elements[index]
+            this.getPrinterZhongwuOneStatus(printer)
           }
         })
       },
@@ -473,6 +545,55 @@
           })
         })
       },
+      getPrinterZhongwuOneStatus(printer) {
+        for (let index in this.ui.printerStatus) {
+          let statusOne = this.ui.printerStatus[index]
+          if (statusOne.id === printer.id && statusOne.status) {
+            return statusOne.status
+          }
+        }
+
+        for (let index in this.ui.printerStatusLoads) {
+          let one = this.ui.printerStatusLoads[index]
+          if (one === printer.id) {
+            return
+          }
+        }
+
+        this.ui.printerStatusLoads.push(printer.id)
+
+        httpPrinterZhongwuAdminApi.getPrinterOneStatus(this.$route.params.shortId, printer.id).then(res => {
+          let status
+
+          if (res.notExists) {
+            status = '不存在'
+          } else if (res.offline) {
+            status = '离线'
+          } else if (res.error) {
+            this.$msgBox.doModal({
+              type: 'yes',
+              title: '中午云打印机',
+              content: res.error
+            })
+
+            status = '错误'
+          } else if (res.online) {
+            status = '在线'
+          }
+
+          for (let index in this.ui.printerStatus) {
+            let statusOne = this.ui.printerStatus[index]
+            if (statusOne.id === printer.id) {
+              return
+            }
+          }
+
+          this.ui.printerStatus.push({
+            id: printer.id,
+            status: status
+          })
+        })
+      },
       btnCreate() {
         this.ui.vCoverMask = true
         scrollApi.enable(false)
@@ -535,7 +656,28 @@
                   content: '打印机不存在。'
                 })
               } else if (res.success) {
-                this.httpPrinterPoscom()
+                this.httpPrinterYly()
+              }
+            })
+          }
+        })
+      },
+      btnDeleteZhongwu(printer) {
+        this.$msgBox.doModal({
+          type: 'yesOrNo',
+          title: '删除打印机',
+          content: '确认要删除吗？'
+        }).then(async (val) => {
+          if (val === 'Yes') {
+            httpPrinterZhongwuAdminApi.deletePrinter(this.$route.params.shortId, printer.id).then(res => {
+              if (res.printerIdNotExists) {
+                this.$msgBox.doModal({
+                  type: 'yes',
+                  title: '删除打印机',
+                  content: '打印机不存在。'
+                })
+              } else if (res.success) {
+                this.httpPrinterZhongwu()
               }
             })
           }
@@ -551,7 +693,7 @@
           }
 
           if (res.printerId) {
-            this.httpPrinter()
+            this.httpPrinterFeie()
           }
         })
       },
@@ -565,7 +707,7 @@
           }
 
           if (res.printerId) {
-            this.httpPrinter()
+            this.httpPrinterFeie()
           }
         })
       },
@@ -579,7 +721,7 @@
           }
 
           if (res.printerId) {
-            this.httpPrinter()
+            this.httpPrinterPoscom()
           }
         })
       },
@@ -593,7 +735,7 @@
           }
 
           if (res.printerId) {
-            this.httpPrinter()
+            this.httpPrinterPoscom()
           }
         })
       },
@@ -607,7 +749,7 @@
           }
 
           if (res.printerId) {
-            this.httpPrinter()
+            this.httpPrinterYly()
           }
         })
       },
@@ -621,7 +763,35 @@
           }
 
           if (res.printerId) {
-            this.httpPrinter()
+            this.httpPrinterYly()
+          }
+        })
+      },
+      btnEnableZhongwuOrder(printer) {
+        printer.enableOrder = !printer.enableOrder
+
+        httpPrinterZhongwuAdminApi.putPrinter(this.$route.params.shortId, printer).then(res => {
+          if (res.maxLimit) {
+            this.$router.push(`/b/${this.$route.params.shortId}/owner/limit`)
+            return
+          }
+
+          if (res.printerId) {
+            this.httpPrinterZhongwu()
+          }
+        })
+      },
+      btnEnableZhongwuReceipt(printer) {
+        printer.enableReceipt = !printer.enableReceipt
+
+        httpPrinterZhongwuAdminApi.putPrinter(this.$route.params.shortId, printer).then(res => {
+          if (res.maxLimit) {
+            this.$router.push(`/b/${this.$route.params.shortId}/owner/limit`)
+            return
+          }
+
+          if (res.printerId) {
+            this.httpPrinterZhongwu()
           }
         })
       },
