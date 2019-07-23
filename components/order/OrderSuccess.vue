@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="order_success">
     <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
     <div class="blank_20"></div>
@@ -110,7 +110,6 @@
 <script>
   import TitleBar from '../common/TitleBar'
   import {httpOrderApi} from '../../api/http/lt/httpOrderApi'
-  import {userApi} from '../../api/local/userApi'
   import {wechatApi} from '../../api/local/wechatApi'
   import {timeApi} from '../../api/local/timeApi'
   import {alipayApi} from '../../api/local/alipayApi'

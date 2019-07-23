@@ -8,6 +8,7 @@
   import {httpCaptchaApi} from '../../../../../api/http/lt/httpCaptchaApi'
   import Loading from '../../../../../components/common/Loading'
   import {cartApi} from '../../../../../api/local/cartApi'
+  import {httpOrderApi} from '../../../../../api/http/lt/httpOrderApi'
 
   export default {
     middleware: 'auth',
@@ -58,7 +59,20 @@
 
             cartApi.setPeople(0)
 
-            this.$router.push(`/c/${this.$route.params.shortId}/food`)
+            httpOrderApi.getAllByTableOneId(this.$route.params.shortId, tableOneId, true, 0, 20).then(res => {
+              if (res.elements.length > 1) {
+                this.$router.push({
+                  path: `/c/${this.$route.params.shortId}/order/receipt`,
+                  query: {
+                    tableOneId: tableOneId
+                  }
+                })
+              } else if (res.elements.length > 0) {
+                this.$router.push(`/c/${this.$route.params.shortId}/order/${res.elements[0].id}`)
+              } else {
+                this.$router.push(`/c/${this.$route.params.shortId}/food`)
+              }
+            })
           }
         })
       }

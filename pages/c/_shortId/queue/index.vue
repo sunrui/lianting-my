@@ -151,7 +151,6 @@
   import {httpTableApi} from '../../../../api/http/lt/httpTableApi'
   import {httpShopApi} from '../../../../api/http/shop/httpShopApi'
   import {httpInfoApi} from '../../../../api/http/lt/httpInfoApi'
-  import {highlightApi} from '../../../../api/local/highlightApi'
   import WechatSubscribe from '../../../../components/wechat/WechatSubscribe'
   import {timeApi} from '../../../../api/local/timeApi'
   import {scrollApi} from '../../../../api/local/scrollApi'

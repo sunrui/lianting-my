@@ -13,6 +13,16 @@ export const httpOrderApi = {
       }
     }).then(res => res.data)
   },
+  getAllByTableOneId(shortId, tableOneId, live, page, size) {
+    return axios.get(`${base}/${shortId}/order`, {
+      params: {
+        live: live,
+        tableOneId: tableOneId,
+        page: page,
+        size: size
+      }
+    }).then(res => res.data)
+  },
   getAllByCaptchaTableId(shortId, captchaTableId, page, size) {
     return axios.get(`${base}/${shortId}/order/captcha/${captchaTableId}`, {
       params: {

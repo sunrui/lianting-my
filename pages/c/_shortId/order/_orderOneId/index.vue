@@ -551,25 +551,25 @@
         })
       },
       btnPay() {
-        // if (!wechatApi.inWechat() && !alipayApi.inAlipay()) {
-        //   this.$msgBox.doModal({
-        //     type: 'yes',
-        //     title: '立即支付',
-        //     content: '请在微信或支付宝中使用。'
-        //   })
-        //
-        //   return
-        // }
-        //
-        // if (alipayApi.inAlipay()) {
-        //   this.$msgBox.doModal({
-        //     type: 'yes',
-        //     title: '立即支付',
-        //     content: '商家尚未开通支付宝支付，请您线下付款。'
-        //   })
-        //
-        //   return
-        // }
+        if (!wechatApi.inWechat() && !alipayApi.inAlipay()) {
+          this.$msgBox.doModal({
+            type: 'yes',
+            title: '立即支付',
+            content: '请在微信或支付宝中使用。'
+          })
+
+          return
+        }
+
+        if (alipayApi.inAlipay()) {
+          this.$msgBox.doModal({
+            type: 'yes',
+            title: '立即支付',
+            content: '商家尚未开通支付宝支付，请您线下付款。'
+          })
+
+          return
+        }
 
         httpOrderApi.getConfig(this.$route.params.shortId).then(res => {
           if (wechatApi.inWechat() && !Boolean(res.openWechat)) {
