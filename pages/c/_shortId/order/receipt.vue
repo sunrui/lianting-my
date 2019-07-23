@@ -208,7 +208,7 @@
         return timeApi.dateFormat(date)
       },
       httpOrder() {
-        httpOrderAdminApi.getAllByTableOneId(this.$route.params.shortId, this.$route.query.tableOneId, true, 0, 20).then(res => {
+        httpOrderApi.getAllByTableOneId(this.$route.params.shortId, this.$route.query.tableOneId, true, 0, 20).then(res => {
           if (res.elements.length === 0) {
             this.$router.push(`/c/${this.$route.params.shortId}/order`)
             return
