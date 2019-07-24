@@ -6,13 +6,16 @@
   right: px2rem(30 + 80 + 100) !important;
 }
 
-.order_food_button {
+.order_food_button_group {
   position: absolute;
   text-align: center;
-  vertical-align: middle;
   right: 40px;
   top: 50%;
   transform: translate(0, -50%);
+}
+
+.order_food_button {
+  margin: 10px auto;
 
   width: 120px;
   height: 48px;

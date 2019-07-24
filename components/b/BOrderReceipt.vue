@@ -35,20 +35,22 @@
           </div>
           <div class="order_food_count order_food_count_2">{{orderFood.count}}</div>
           <div class="order_food_price order_food_price_2">{{orderFood.count * orderFood.foodPrice}}</div>
-          <div class="order_food_button button_gray" v-if="orderFood.status === 'Cancel'">已取消</div>
-          <div class="order_food_button order_food_button_return" v-else-if="roleType === 'admin'" @click="btnFoodReturn(orderFood)">退菜</div>
-          <div class="order_food_button order_food_button_return" v-else-if="roleType === 'retailer' && orderFood.status !== 'Finish'"
-               @click="btnChangeStatus(orderFood, 'Finish')">传菜
-          </div>
-          <div v-else>
-            <div class="order_food_button order_food_button_finish" v-if="orderFood.status === 'Cooked'" @click="btnChangeStatus(orderFood, 'Finish')">传菜</div>
-            <div class="order_food_button order_food_button_cooking" v-if="orderFood.status === 'Wait'" @click="btnChangeStatus(orderFood, 'Cooking')">开始做</div>
-            <div class="order_food_button order_food_button_cooked" v-if="orderFood.status === 'Cooking'" @click="btnChangeStatus(orderFood, 'Cooked')">做好了</div>
+          <div class="order_food_button_group">
+            <div class="order_food_button button_gray" v-if="orderFood.status === 'Cancel'">已取消</div>
+            <div v-else-if="(roleType === 'admin' || roleType === 'retailer')">
+              <div class="order_food_button order_food_button_cooking" v-if="orderFood.status !== 'Finish'" @click="btnChangeStatus(orderFood, 'Finish')">上菜</div>
+              <div class="order_food_button order_food_button_return" @click="btnFoodReturn(orderFood)">退菜</div>
+            </div>
+            <div v-else>
+              <div class="order_food_button order_food_button_finish" v-if="orderFood.status === 'Cooked'" @click="btnChangeStatus(orderFood, 'Finish')">上菜</div>
+              <div class="order_food_button order_food_button_cooking" v-if="orderFood.status === 'Wait'" @click="btnChangeStatus(orderFood, 'Cooking')">开始做</div>
+              <div class="order_food_button order_food_button_cooked" v-if="orderFood.status === 'Cooking'" @click="btnChangeStatus(orderFood, 'Cooked')">做好了</div>
+            </div>
           </div>
         </div>
 
         <div class="order_operator">
-          <div class="order_operator_one" @click="btnStatusReset(orderFood, 'Wait')">
+          <div class="order_operator_one" @click="btnChangeStatus(orderFood, 'Wait')">
             <div class="order_operator_status">
               <div class="order_operator_line_right" v-bind:class="{order_food_button_cooking: orderFood.status === 'Wait'}"></div>
               <div class="order_operator_ball">
@@ -59,7 +61,7 @@
             <div class="order_operator_label" v-bind:class="{order_operator_label_wait: orderFood.status === 'Wait'}">下单</div>
             <div class="order_operator_label_time" v-bind:class="{order_operator_label_wait: orderFood.status === 'Wait'}">{{getTime(orderFood.createdAt)}}</div>
           </div>
-          <div class="order_operator_one" @click="btnStatusReset(orderFood, 'Cooking')">
+          <div class="order_operator_one" @click="btnChangeStatus(orderFood, 'Cooking')">
             <div class="order_operator_status">
               <div class="order_operator_line_left" v-bind:class="{order_food_button_cooking: orderFood.status === 'Wait'}"></div>
               <div class="order_operator_line_right" v-bind:class="{order_food_button_cooked: orderFood.status === 'Cooking'}"></div>
@@ -71,7 +73,7 @@
             <div class="order_operator_label" v-bind:class="{order_operator_label_cooking: orderFood.status === 'Cooking'}">开始做</div>
             <div class="order_operator_label_time" v-bind:class="{order_operator_label_cooking: orderFood.status === 'Cooking'}">{{getTime(orderFood.cookingAt)}}</div>
           </div>
-          <div class="order_operator_one" @click="btnStatusReset(orderFood, 'Cooked')">
+          <div class="order_operator_one" @click="btnChangeStatus(orderFood, 'Cooked')">
             <div class="order_operator_status">
               <div class="order_operator_line_left" v-bind:class="{order_food_button_cooked: orderFood.status === 'Cooking'}"></div>
               <div class="order_operator_line_right" v-bind:class="{order_food_button_finish: orderFood.status === 'Cooked'}"></div>
@@ -83,7 +85,7 @@
             <div class="order_operator_label" v-bind:class="{order_operator_label_cooked: orderFood.status === 'Cooked'}">做好了</div>
             <div class="order_operator_label_time" v-bind:class="{order_operator_label_cooked: orderFood.status === 'Cooked'}">{{getTime(orderFood.cookedAt)}}</div>
           </div>
-          <div class="order_operator_one" @click="btnStatusReset(orderFood, 'Finish')">
+          <div class="order_operator_one" @click="btnChangeStatus(orderFood, 'Finish')">
             <div class="order_operator_status">
               <div class="order_operator_line_left" v-bind:class="{order_food_button_finish: orderFood.status === 'Cooked'}"></div>
               <div class="order_operator_ball"
@@ -93,7 +95,7 @@
               </div>
             </div>
             <div class="blank_30"></div>
-            <div class="order_operator_label" v-bind:class="{order_operator_label_finish: orderFood.status === 'Finish'}">传菜</div>
+            <div class="order_operator_label" v-bind:class="{order_operator_label_finish: orderFood.status === 'Finish'}">上菜</div>
             <div class="order_operator_label_time" v-bind:class="{order_operator_label_finish: orderFood.status === 'Finish'}">{{getTime(orderFood.finishAt)}}</div>
           </div>
         </div>
@@ -725,12 +727,24 @@
           case 'Cooked':
             return '做好了'
           case 'Finish':
-            return '传菜'
+            return '上菜'
         }
       },
       btnChangeStatus(orderFood, status) {
         if (orderFood.status === status) {
           return
+        }
+
+        if (status === 'Wait') {
+          if (this.roleType !== 'admin') {
+            this.$msgBox.doModal({
+              type: 'yes',
+              title: '上菜',
+              content: `仅允许${highlightApi.highlight('店长')}可以操作，您只有查看权限。`
+            })
+
+            return
+          }
         }
 
         if (status === 'Cooking' || status === 'Cooked') {
@@ -749,7 +763,7 @@
           if (this.roleType !== 'admin' && this.roleType !== 'waiter' && this.roleType !== 'retailer') {
             this.$msgBox.doModal({
               type: 'yes',
-              title: '传菜',
+              title: '上菜',
               content: `仅允许${highlightApi.highlight('店长')}、${highlightApi.highlight('服务员')}、${highlightApi.highlight('零售员')}可以操作，您只有查看权限。`
             })
 
@@ -775,7 +789,7 @@
         }
 
         let title = status === 'Wait' ? '状态重置' :
-            status === 'Finish' ? '传菜' : '烹饪餐食'
+            status === 'Finish' ? '上菜' : '烹饪餐食'
 
         this.$msgBox.doModal({
           type: 'yesOrNo',
@@ -807,7 +821,7 @@
                   this.$msgBox.doModal({
                     type: 'yes',
                     title: '烹饪餐食',
-                    content: '已推送服务员传菜通知。'
+                    content: '已推送服务员上菜通知。'
                   }).then(async (val) => {
                     this.httpOrder()
                   })
@@ -887,13 +901,6 @@
         }
 
         return timeApi.dateFormat(new Date(time), 'HH:mm')
-      },
-      btnStatusReset(orderFood, status) {
-        if (this.roleType !== 'admin') {
-          return
-        }
-
-        this.btnChangeStatus(orderFood, status)
       },
       btnOrderStatus() {
         if (this.roleType !== 'admin' && this.roleType !== 'cashier' && this.roleType !== 'retailer') {
