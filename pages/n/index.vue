@@ -328,7 +328,7 @@
             this.$msgBox.doModal({
               type: 'yes',
               title: '添加新闻',
-              content: '魔法串不正确'
+              content: '魔法串不正确。'
             })
 
             return
@@ -338,7 +338,17 @@
             this.$msgBox.doModal({
               type: 'yes',
               title: '添加新闻',
-              content: '没有权限'
+              content: '没有权限。'
+            })
+
+            return
+          }
+
+          if (res.titleExists) {
+            this.$msgBox.doModal({
+              type: 'yes',
+              title: '添加新闻',
+              content: '标题已存在。'
             })
 
             return
@@ -358,7 +368,7 @@
             this.$msgBox.doModal({
               type: 'yes',
               title: '添加新闻',
-              content: '添加成功'
+              content: '添加成功。'
             })
 
             this.http.req.news = {
