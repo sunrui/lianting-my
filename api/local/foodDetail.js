@@ -3,6 +3,10 @@ export const foodDetailApi = {
     let detail = ''
     let count = this.countFood(order)
 
+    if (!order.orderFoods || order.orderFoods.length === 0) {
+      return ''
+    }
+
     if (count > 3) {
       let showCount = 0
       for (let index in order.orderFoods) {
@@ -46,6 +50,10 @@ export const foodDetailApi = {
   },
   countWaitFood(order) {
     let count = 0
+
+    if (!order.orderFoods || order.orderFoods.length === 0) {
+      return count
+    }
 
     for (let index in order.orderFoods) {
       let orderFood = order.orderFoods[index]

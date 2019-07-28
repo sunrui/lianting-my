@@ -88,6 +88,7 @@
   import {httpOrderAdminApi} from '../../api/http/lt/httpOrderAdminApi'
   import {roleApi} from '../../api/local/roleApi'
   import {timeApi} from '../../api/local/timeApi'
+  import {foodDetailApi} from '../../api/local/foodDetail'
 
   export default {
     metaInfo: {
@@ -239,21 +240,7 @@
         }
       },
       getFoodContent(order) {
-        let detail = ''
-
-        for (let index in order.orderFoods) {
-          let OrderFood = order.orderFoods[index]
-
-          detail += OrderFood.foodCategoryName
-
-          if (parseInt(index) + 1 === order.orderFoods.length) {
-            break
-          } else {
-            detail += ', '
-          }
-        }
-
-        return detail
+        return foodDetailApi.detail(order)
       },
       btnDetail(order) {
         this.$router.push(`/b/${this.$route.params.shortId}/${this.roleType}/order/${order.id}`)

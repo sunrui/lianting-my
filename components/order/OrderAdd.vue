@@ -237,6 +237,8 @@
         return timeApi.dateFormat(date)
       },
       checkOrderFood(res) {
+        this.ui.orderedFoods = []
+
         for (let index in res.elements) {
           let orderOne = res.elements[index]
           if (orderOne.type !== 'ForHere') {

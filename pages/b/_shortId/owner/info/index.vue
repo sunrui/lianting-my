@@ -12,7 +12,7 @@
         <div class="addition_item">
           <div class="addition_item_label">店铺头像</div>
           <div class="addition_item_avatar_input">
-            <image-upload :b="true" :file-url="http.req.info.logo" v-on:uploadSuccess="uploadLogoSuccess"></image-upload>
+            <image-upload type="b" :file-url="http.req.info.logo" v-on:uploadSuccess="uploadLogoSuccess"></image-upload>
           </div>
         </div>
 
@@ -21,7 +21,7 @@
         <div class="addition_item">
           <div class="addition_item_label">店铺背景</div>
           <div class="addition_item_avatar_input">
-            <image-upload :b="true" :file-url="http.req.info.image" v-on:uploadSuccess="uploadImageSuccess"></image-upload>
+            <image-upload type="b" :file-url="http.req.info.image" v-on:uploadSuccess="uploadImageSuccess"></image-upload>
           </div>
         </div>
 

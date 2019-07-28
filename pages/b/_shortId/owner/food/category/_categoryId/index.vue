@@ -11,7 +11,7 @@
         <div class="addition_item">
           <div class="addition_item_label">餐食图片</div>
           <div class="addition_item_avatar_input">
-            <image-upload :b="true" :file-url="http.req.category.image" v-on:uploadSuccess="uploadSuccess"></image-upload>
+            <image-upload type="b" :file-url="http.req.category.image" v-on:uploadSuccess="uploadSuccess"></image-upload>
           </div>
         </div>
 
@@ -108,7 +108,7 @@
           <div class="food_price_table_add" @click="btnFoodAdd"></div>
         </div>
 
-        <div v-for="food in http.req.category.foods">
+        <div v-if="http.req.category.foods" v-for="food in http.req.category.foods">
           <div class="food_price_one">
             <div class="food_price_name">{{food.name}}</div>
             <div class="food_price_now">{{food.price}}</div>
@@ -118,7 +118,7 @@
 
           <div class="box_divide"></div>
         </div>
-        <div v-if="http.req.category.foods.length === 0">
+        <div v-if="http.req.category.foods && http.req.category.foods.length === 0">
           <div class="food_price_empty">
             <div class="food_price_empty_image"></div>
             <div class="food_price_empty_label">暂无价格</div>
@@ -224,6 +224,10 @@
       },
       httpFoodCategory() {
         httpFoodApi.getCategory(this.$route.params.shortId, this.$route.params.categoryId).then(res => {
+          if (!res.foods) {
+            res.foods = []
+          }
+
           this.http.req.category = res
           this.ui.tagEnable = Boolean(res.tagName)
         })
@@ -256,16 +260,6 @@
         this.ui.food = {}
       },
       btnFoodDelete(food) {
-        if (this.http.req.category.foods.length <= 1) {
-          this.$msgBox.doModal({
-            type: 'yes',
-            title: '删除价格',
-            content: '唯一价格无法删除。'
-          })
-
-          return
-        }
-
         httpFoodAdminApi.deleteFood(this.$route.params.shortId, food.id).then(res => {
           if (res.foodIdNotExists) {
             this.$msgBox.doModal({

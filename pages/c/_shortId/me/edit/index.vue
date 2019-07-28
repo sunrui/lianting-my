@@ -7,7 +7,7 @@
         <div class="addition_item">
           <div class="addition_item_label">头像</div>
           <div class="addition_item_avatar_input">
-            <image-upload :b="false" :file-url="http.res.userInfo.headImgUrl" v-on:uploadSuccess="uploadSuccess"></image-upload>
+            <image-upload type="c" :file-url="http.res.userInfo.headImgUrl" v-on:uploadSuccess="uploadSuccess"></image-upload>
           </div>
         </div>
 
@@ -80,8 +80,7 @@
   import {httpUserApi} from '../../../../../api/http/user/httpUserApi'
   import {userApi} from '../../../../../api/local/userApi'
   import ImageUpload from '../../../../../components/common/ImageUpload'
-  import {wechatApi} from "../../../../../api/local/wechatApi"
-  import {cookieApi} from '../../../../../api/local/cookieApi'
+  import {wechatApi} from '../../../../../api/local/wechatApi'
   import {alipayApi} from '../../../../../api/local/alipayApi'
 
   export default {

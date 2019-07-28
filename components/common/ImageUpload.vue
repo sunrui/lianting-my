@@ -13,11 +13,11 @@
 <script>
   import {httpUploadApi} from '../../api/http/lt/httpUploadApi'
   import {httpWechatApi} from '../../api/http/lt/httpWechatApi'
-  import plupload from 'plupload'
   import {uuidApi} from '../../api/local/uuidApi'
-  import {httpUploadApi as httpUploadAdminApi} from '../../api/http/lt/httpUploadAdminApi'
+  import {httpUploadAdminApi} from '../../api/http/lt/httpUploadAdminApi'
   import {wechatApi} from '../../api/local/wechatApi'
   import {urlApi} from '../../api/local/urlApi'
+  import {httpNewsApi} from '../../api/http/news/httpNewsApi'
 
   export default {
     data() {
@@ -27,14 +27,19 @@
           pickFileId: null,
           percent: 0,
           fileUrl: null,
-          fileName: null
+          fileName: null,
+          hashKey: null
         }
       }
     },
     props: {
-      b: {
-        type: Boolean,
-        default: false
+      type: {
+        type: String,
+        default: null
+      },
+      hashKey: {
+        type: String,
+        default: null
       },
       fileUrl: {
         type: String,
@@ -49,18 +54,32 @@
         this.ui.fileUrl = this.fileUrl
       }
 
+      if (Boolean(this.hashKey)) {
+        this.ui.hashKey = this.hashKey
+      }
+
       if (!wechatApi.inWechat()) {
         this.initOssSign(null)
       }
     },
     methods: {
+      setFileUrl(fileUrl) {
+        this.ui.fileUrl = fileUrl
+      },
+      setHashKey(hashKey) {
+        this.ui.hashKey = hashKey
+
+        if (!wechatApi.inWechat()) {
+          this.initOssSign(null)
+        }
+      },
       btnUploadDelete() {
         this.ui.fileUrl = null
         this.$emit('uploadSuccess', this.ui.fileUrl)
       },
       btnUploadWechat() {
         if (wechatApi.inWechat()) {
-          this.initWxConfig(this)
+          this.initWxConfig()
         }
       },
       getFileName() {
@@ -84,7 +103,9 @@
 
         return this.ui.fileName
       },
-      initWxConfig(pThis) {
+      initWxConfig() {
+        let pThis = this
+
         httpWechatApi.getConfig(this.$route.params.shortId, urlApi.getCurrentUrl()).then(res => {
           let wx = require('weixin-js-sdk')
 
@@ -147,19 +168,33 @@
             fetch(localData)
                 .then(res => res.blob())
                 .then(blob => {
-                  pThis.initStreamUploader(res, blob, pThis)
+                  pThis.httpStreamUploader(res, blob)
                 })
           } else {
-            pThis.initFileUploader(res, pThis)
+            pThis.initFileUploader(res)
           }
         }
 
-        if (this.b) {
+        if (this.type === 'b') {
           httpUploadAdminApi.getSignImage(this.$route.params.shortId).then(res => {
             init(this, res)
           })
-        } else {
+        } else if (this.type === 'c') {
           httpUploadApi.getSignImage(this.$route.params.shortId).then(res => {
+            init(this, res)
+          })
+        } else {
+          if (!Boolean(this.ui.hashKey)) {
+            this.$msgBox.doModal({
+              type: 'yes',
+              title: '上传图片失败',
+              content: 'hashKey 不能为空'
+            })
+
+            return
+          }
+
+          httpNewsApi.getUploadSign(this.ui.hashKey).then(res => {
             init(this, res)
           })
         }
@@ -175,7 +210,9 @@
         this.ui.fileUrl += '?r=' + Math.random()
         this.$set(this.ui, 'fileUrl', this.ui.fileUrl)
       },
-      initStreamUploader(sign, localData, pThis) {
+      httpStreamUploader(sign, localData) {
+        let pThis = this
+
         let param = {
           'key': sign.key + this.getFileName(),
           'policy': sign.policy,
@@ -208,7 +245,11 @@
         xmlHttpRequest.open('POST', document.location.protocol + '//' + sign.endPoint)
         xmlHttpRequest.send(formData)
       },
-      initFileUploader(sign, pThis) {
+      initFileUploader(sign) {
+        var plupload = require('plupload')
+
+        let pThis = this
+
         let uploader = new plupload.Uploader({
           runtimes: 'html5,html4',
           browse_button: pThis.ui.pickFileId,

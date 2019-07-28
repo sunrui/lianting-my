@@ -11,7 +11,7 @@
         <div class="addition_item">
           <div class="addition_item_label">餐食图片</div>
           <div class="addition_item_avatar_input">
-            <image-upload :b="true" :file-url="http.req.category.image" v-on:uploadSuccess="uploadSuccess"></image-upload>
+            <image-upload type="b" :file-url="http.req.category.image" v-on:uploadSuccess="uploadSuccess"></image-upload>
           </div>
         </div>
 
@@ -89,7 +89,7 @@
           <div class="food_price_table_add" @click="btnFoodAdd"></div>
         </div>
 
-        <div v-for="food in ui.foods">
+        <div v-if="ui.foods" v-for="food in ui.foods">
           <div class="food_price_one">
             <div class="food_price_name">{{food.name}}</div>
             <div class="food_price_now">{{food.price}}</div>
@@ -99,7 +99,7 @@
 
           <div class="box_divide"></div>
         </div>
-        <div v-if="ui.foods.length === 0">
+        <div v-if="!ui.foods || ui.foods.length === 0">
           <div class="food_price_empty">
             <div class="food_price_empty_image"></div>
             <div class="food_price_empty_label">暂无价格</div>
@@ -179,7 +179,7 @@
               detail: null,
               tagName: null,
               tagIndex: 0,
-              foods: null
+              foods: []
             }
           }
         },
@@ -345,7 +345,7 @@
 
         }
 
-        if (this.ui.foods.length === 0) {
+        if (!this.ui.foods || this.ui.foods.length === 0) {
           this.$msgBox.doModal({
             type: 'yes',
             title: '添加餐食',
