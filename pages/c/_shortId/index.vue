@@ -210,7 +210,7 @@
 
           setTimeout(function () {
             document.title = res.name
-          }, 100)
+          }, 1)
         })
       },
       httpInfo() {
