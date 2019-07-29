@@ -88,7 +88,7 @@ module.exports = {
   axios: {
     // See https://github.com/nuxt-community/axios-module#options
     proxy: true,
-    debug: true,
+    debug: false,
     prefix: '/api',
     credentials: true
   },
@@ -100,7 +100,7 @@ module.exports = {
     postcss: {
       plugins: {
         'postcss-px2rem': {
-          remUnit: 100 / 26 * 18.0
+          remUnit: 100
         }
       }
     },
