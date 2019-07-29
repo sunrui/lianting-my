@@ -23,6 +23,7 @@
     data() {
       return {
         ui: {
+          uploader: null,
           imageUploadId: null,
           pickFileId: null,
           percent: 0,
@@ -65,6 +66,9 @@
     methods: {
       setFileUrl(fileUrl) {
         this.ui.fileUrl = fileUrl
+      },
+      setFileName(fileName) {
+        this.ui.fileName = fileName
       },
       setHashKey(hashKey) {
         this.ui.hashKey = hashKey
@@ -250,6 +254,10 @@
 
         let pThis = this
 
+        if (this.ui.uploader) {
+          this.ui.uploader.destroy()
+        }
+
         let uploader = new plupload.Uploader({
           runtimes: 'html5,html4',
           browse_button: pThis.ui.pickFileId,
@@ -324,6 +332,8 @@
         })
 
         uploader.init()
+
+        this.ui.uploader = uploader;
       }
     }
   }

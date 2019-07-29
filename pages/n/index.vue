@@ -189,8 +189,8 @@
       }
     },
     mounted() {
-    },
-    created() {
+      this.$refs.imageUpload_AddContent.setFileName(null)
+      this.$refs.imageUpload_AddContent.setFileUrl(null)
     },
     methods: {
       btnChangeHashKey() {
@@ -224,6 +224,7 @@
           text: null
         }
 
+        this.$refs.imageUpload_AddContent.setFileName(null)
         this.$refs.imageUpload_AddContent.setFileUrl(null)
       },
       btnCreate() {
