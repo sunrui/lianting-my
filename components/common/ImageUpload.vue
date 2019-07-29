@@ -260,7 +260,7 @@
           filters: {
             max_file_size: '512kb',
             mime_types: [
-              {title: '图片', extensions: 'jpg,jpeg,gif,png'}
+              {title: '图片', extensions: 'jpg,jpeg,gif,png,webp'}
             ]
           },
           init: {
