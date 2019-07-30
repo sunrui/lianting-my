@@ -312,6 +312,10 @@
           }
         }
 
+        if (contentText.length > 10240) {
+          contentText = contentText.substring(0, 10200)
+        }
+
         this.http.req.news.content = contentText
 
         if (!Boolean(this.http.req.news.content)) {
