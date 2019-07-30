@@ -168,7 +168,7 @@
             news: {
               magicId: 'honeysense',
               type: 'IndustryNews',
-              hashKey: '2019',
+              hashKey: '',
               shortcut: '',
               title: '',
               content: '',
