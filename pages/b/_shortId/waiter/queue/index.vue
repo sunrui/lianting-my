@@ -220,7 +220,7 @@
   }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
   @import '~assets/common';
   @import '~assets/b/b_queue';
 </style>

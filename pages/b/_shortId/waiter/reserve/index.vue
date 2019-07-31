@@ -166,7 +166,7 @@
   }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
   @import '~assets/common';
   @import '~assets/c/reserve';
   @import 'index';

@@ -1,5 +1,12 @@
 const pkg = require('./package')
 
+const modifyHtml = (html) => {
+  html = html.replace(/ data-n-head-ssr/g, '')
+  html = html.replace(/ data-server-rendered="true"/g, '')
+  html = html.replace(/ data-n-head=""/g, '')
+  return html.replace(/ data-n-head="true"/g, '')
+}
+
 module.exports = {
   mode: 'universal',
   htmlAttrs: {
@@ -48,7 +55,7 @@ module.exports = {
     // {src: '~plugins/down', ssr: false},
     {src: '~plugins/axios', ssr: false},
     {src: '~plugins/console', ssr: false},
-    {src: '~plugins/https', ssr: false},
+    // {src: '~plugins/https', ssr: false},
     {src: '~plugins/message_box', ssr: false},
     {src: '~plugins/meta', ssr: false},
     {src: '~plugins/route', ssr: false},
@@ -97,6 +104,7 @@ module.exports = {
   ** Build configuration
   */
   build: {
+    extractCSS: true,
     postcss: {
       plugins: {
         'postcss-px2rem': {
@@ -116,5 +124,13 @@ module.exports = {
   },
   generate: {
     subFolders: false
+  },
+  hooks: {
+    'generate:page': (page) => {
+      page.html = modifyHtml(page.html)
+    },
+    'render:route': (url, page, {req, res}) => {
+      page.html = modifyHtml(page.html)
+    }
   }
 }

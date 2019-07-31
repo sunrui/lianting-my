@@ -80,7 +80,7 @@
   }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
   .container {
     background: white;
     height: 100vh;

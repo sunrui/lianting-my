@@ -130,7 +130,7 @@
       <div class="blank_20"></div>
       <div class="food_add box_radius" @click="btnContentAdd()">
         <div class="food_add_icon"></div>
-        <div class="food_add_label">添加餐食</div>
+        <div class="food_add_label">添加内容</div>
       </div>
 
       <div class="blank_30"></div>
@@ -401,7 +401,7 @@
   }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
   @import '~assets/common';
   @import '~assets/c/food';
 </style>

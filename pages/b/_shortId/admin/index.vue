@@ -168,7 +168,7 @@
   }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
   @import '~assets/common';
   @import "~assets/c/shop";
   @import '~assets/b/b_nav';

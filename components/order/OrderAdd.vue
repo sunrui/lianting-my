@@ -446,7 +446,7 @@
   }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
   @import '~assets/common';
   @import '~assets/c/order';
   @import 'OrderAdd';
