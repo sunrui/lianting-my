@@ -30,7 +30,7 @@
   }
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
   .title_bar_hide {
     visibility: hidden;
   }

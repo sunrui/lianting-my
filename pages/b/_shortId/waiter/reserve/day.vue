@@ -175,7 +175,7 @@
   }
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
   @import '~assets/common';
   @import '~assets/c/reserve';
   @import '~assets/c/reserve_history';

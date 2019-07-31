@@ -66,7 +66,7 @@
   }
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
   .currency_input {
     width: 100%;
     border: none;

@@ -60,7 +60,7 @@
   }
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
   .btn-group {
     position: relative;
     min-width: 100px;
