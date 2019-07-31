@@ -312,7 +312,7 @@
           }
         }
 
-        if (contentText.length > 10240) {
+        if (contentText.length >= 10240) {
           contentText = contentText.substring(0, 10200)
         }
 

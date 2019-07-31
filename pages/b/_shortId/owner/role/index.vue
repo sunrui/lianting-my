@@ -9,7 +9,8 @@
     <div class="box">
       <div class="tip">
         <ul class="tip_ul">
-          <li>您的店铺人员可在关注恋厅公众号后处理日常工作。</li>
+          <li>为了及时收到餐厅消息需工作人员关注恋厅公众号。</li>
+          <li>工作人员可在公众号菜单工作台中处理日常工作。</li>
           <li>您可点击人事头像直接进入相关工作台。</li>
         </ul>
       </div>
@@ -20,7 +21,7 @@
     <div class="box" v-for="role in ui.roles">
       <div class="list_title box_radius_header">
         <div class="list_role_icon" v-bind:class="{
-        list_admin_icon: role.type === 'Admin',
+        list_admin_icon: role.type === 'Admin' || role.type === 'Owner',
         list_waiter_icon: role.type === 'Waiter' || role.type === 'Takeout',
         list_cooker_icon: role.type === 'Cooker',
         list_cashier_icon: role.type === 'Cashier' || role.type === 'Retailer',
@@ -95,6 +96,7 @@
   import {scrollApi} from '../../../../../api/local/scrollApi'
   import Captcha from '../../../../../components/common/Captcha'
   import {roleApi} from '../../../../../api/local/roleApi'
+  import {highlightApi} from '../../../../../api/local/highlightApi'
 
   export default {
     metaInfo: {
@@ -143,6 +145,11 @@
 
         httpRoleAdminApi.getAll(this.$route.params.shortId).then(res => {
           this.http.res.roles = res
+
+          this.ui.roles.push({
+            type: 'Owner',
+            roles: res.owners ? res.owners : []
+          })
 
           this.ui.roles.push({
             type: 'Retailer',
@@ -249,8 +256,8 @@
       btnDelete(role) {
         this.$msgBox.doModal({
           type: 'yesOrNo',
-          title: '删除角色',
-          content: '您确认要删除吗？'
+          title: '删除' + this.getRoleTypeName(role.type),
+          content: `您确认要删除${highlightApi.highlight(role.name)}吗?`
         }).then(async (val) => {
           if (val === 'Yes') {
             httpRoleAdminApi.deleteRole(this.$route.params.shortId, role.id).then(res => {
@@ -270,7 +277,7 @@
                 this.$msgBox.doModal({
                   type: 'yes',
                   title: '删除' + this.getRoleTypeName(this.http.req.role.type),
-                  content: '删除成功。'
+                  content: `删除${highlightApi.highlight(role.name)}成功。`
                 }).then(async (val) => {
                   this.httpRole()
                 })

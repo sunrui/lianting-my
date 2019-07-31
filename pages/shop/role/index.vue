@@ -116,6 +116,7 @@
               }
             }
 
+            add('Owner')
             add('Retailer')
             add('Takeout')
             add('Admin')

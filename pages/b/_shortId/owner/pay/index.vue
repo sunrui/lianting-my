@@ -2,6 +2,23 @@
   <div>
     <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
+    <div class="box" v-if="http.req.config.openWechat">
+      <div class="tip">
+        <ul class="tip_ul">
+          <li>要开通微信在线支付功能，您需拥有认证微信公众号。请查阅<a class="tip_link" :href="getWechatPayUrl()">微信支付商户接入指引</a>。</li>
+          <li>开通微信支付需提交营业执照、收款银行卡等资料至微信审核，请联系恋厅客服。</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="box" v-if="http.req.config.openAlipay">
+      <div class="tip">
+        <ul class="tip_ul">
+          <li>开通支付宝支付需提交营业执照、收款支付宝账号等资料至支付宝审核，请联系恋厅客服。</li>
+        </ul>
+      </div>
+    </div>
+
     <div class="box">
       <div class="addition box_radius">
         <div class="addition_item">
@@ -20,23 +37,6 @@
           </div>
         </div>
 
-      </div>
-    </div>
-
-    <div class="box" v-if="http.req.config.openWechat">
-      <div class="tip">
-        <ul class="tip_ul">
-          <li>要开通微信在线支付功能，您需拥有认证微信公众号。请查阅<a class="tip_link" :href="getWechatPayUrl()">微信支付商户接入指引</a>。</li>
-          <li>开通微信支付需提交营业执照、收款银行卡等资料至微信审核，请联系恋厅客服。</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="box" v-if="http.req.config.openAlipay">
-      <div class="tip">
-        <ul class="tip_ul">
-          <li>开通支付宝支付需提交营业执照、收款支付宝账号等资料至支付宝审核，请联系恋厅客服。</li>
-        </ul>
       </div>
     </div>
 
