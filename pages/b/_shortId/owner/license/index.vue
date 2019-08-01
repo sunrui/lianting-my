@@ -459,7 +459,7 @@
         })
       },
       httpLicensePlan() {
-        httpLicenseApi.getPlanAll(this.http.res.shop.type, 0, 99).then(res => {
+        httpLicenseApi.getPlanAll(0, 99).then(res => {
           this.http.res.shopLicensePlans = res
 
           this.http.res.shopLicensePlans.elements.sort(function (a, b) {

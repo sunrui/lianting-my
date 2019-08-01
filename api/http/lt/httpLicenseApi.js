@@ -29,10 +29,9 @@ export const httpLicenseApi = {
   getOrder(shopLicenseOrderId) {
     return axios.get(`${base}/order/${shopLicenseOrderId}`).then(res => res.data)
   },
-  getPlanAll(type, page, size) {
+  getPlanAll(page, size) {
     return axios.get(`${base}/plan`, {
       params: {
-        type: type,
         page: page,
         size: size
       }
