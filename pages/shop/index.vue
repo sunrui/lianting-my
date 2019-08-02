@@ -22,7 +22,7 @@
             <div class="shop_title_license">
               <div class="shop_title_license_king"></div>
               <div class="shop_title_license_label">{{
-                shop.licenseType === 'Free' ? '基础会员' :
+                shop.licenseType === 'Free' ? '免费会员' :
                 shop.licenseType === 'Lite' ? '标准会员' :
                 shop.licenseType === 'Normal' ? '高级会员' :
                 shop.licenseType === 'Senior' ? '旗舰会员' : licenseType
@@ -63,7 +63,7 @@
           <div class="shop_title_license">
             <span class="shop_title_license_king"></span>
             <span class="shop_title_license_label">{{
-                shop.licenseType === 'Free' ? '基础会员' :
+                shop.licenseType === 'Free' ? '免费会员' :
                 shop.licenseType === 'Lite' ? '标准会员' :
                 shop.licenseType === 'Normal' ? '高级会员' :
                 shop.licenseType === 'Senior' ? '旗舰会员' : shop.licenseType
