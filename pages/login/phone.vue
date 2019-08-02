@@ -55,17 +55,18 @@
     <div class="button_box">
       <div class="button_big" @click="btnLogin">登录</div>
     </div>
-    <!--    <div class="blank_100"></div>-->
-    <!---->
-    <!--    <div class="login_third_title">-->
-    <!--      <div class="login_third_divide"></div>-->
-    <!--      <div class="login_third_label">第三方账号直接登录</div>-->
-    <!--      <div class="login_third_divide"></div>-->
-    <!--    </div>-->
-    <!--    <div class="login_third_icon">-->
-    <!--      <div class="login_third_icon_wechat" @click="btnWechat"></div>-->
-    <!--        <div class="login_third_icon_alipay" @click="btnAlipay"></div>-->
-    <!--    </div>-->
+    
+    <div class="blank_50"></div>
+
+    <div class="login_third_title">
+      <div class="login_third_divide"></div>
+      <div class="login_third_label">第三方账号直接登录</div>
+      <div class="login_third_divide"></div>
+    </div>
+    <div class="login_third_icon">
+      <div class="login_third_icon_wechat" @click="btnWechat"></div>
+      <div class="login_third_icon_alipay" @click="btnAlipay"></div>
+    </div>
     <div class="blank_20"></div>
   </div>
 </template>
@@ -77,6 +78,9 @@
   import TitleBar from '../../components/common/TitleBar'
   import {httpUserApi} from '../../api/http/user/httpUserApi'
   import {timeApi} from '../../api/local/timeApi'
+  import {wechatApi} from '../../api/local/wechatApi'
+  import {loginApi} from '../../api/local/loginApi'
+  import {alipayApi} from '../../api/local/alipayApi'
 
   export default {
     metaInfo: {
@@ -215,6 +219,44 @@
             this.$router.push(r)
           }
         })
+      },
+      btnWechat() {
+        let r = this.$route.query.r
+        if (!Boolean(r)) {
+          r = '/'
+        }
+
+        let shortId = this.$route.query.shortId || 'undefined'
+        let scope = this.$route.query.scope
+
+        if (wechatApi.inWechat()) {
+          loginApi.loginWechat(shortId, scope, r)
+        } else {
+          this.$msgBox.doModal({
+            type: 'yes',
+            title: '微信登录',
+            content: `请在微信中打开。`
+          })
+        }
+      },
+      btnAlipay() {
+        let r = this.$route.query.r
+        if (!Boolean(r)) {
+          r = '/'
+        }
+
+        let shortId = this.$route.query.shortId || 'undefined'
+        let scope = this.$route.query.scope
+
+        if (alipayApi.inAlipay()) {
+          loginApi.loginAlipay(shortId, scope, r)
+        } else {
+          this.$msgBox.doModal({
+            type: 'yes',
+            title: '支付宝登录',
+            content: `请在支付宝中打开。`
+          })
+        }
       }
     }
   }
