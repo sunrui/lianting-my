@@ -103,7 +103,7 @@
           this.ui.days.push(one)
         }
 
-        let left = 42 - this.ui.days.length
+        let left = 35 - this.ui.days.length
         for (let i = 0; i < left; i++) {
           let one = {}
           one.date = ''
