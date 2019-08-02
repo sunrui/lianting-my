@@ -28,7 +28,7 @@
             <div class="shop_extra_left">
               <div class="shop_addr">
                 <div class="shop_addr_icon"></div>
-                <div class="shop_addr_label">{{http.res.info.address ? http.res.info.address : '尚未设置餐厅地址'}}</div>
+                <div class="shop_addr_label">{{http.res.info.address ? http.res.info.address : '尚未设置店铺地址'}}</div>
               </div>
 
               <div class="box_divide"></div>
@@ -72,7 +72,7 @@
         <div class="shop_footer_queue_label">前方正在等待</div>
         <div class="shop_footer_queue_content">{{ui.queue.waitPeople}}</div>
       </div>
-      <div class="shop_footer_closed" v-if="!http.res.shop.open">餐厅已打烊</div>
+      <div class="shop_footer_closed" v-if="!http.res.shop.open">店铺已打烊</div>
     </div>
 
     <div class="modal_center" v-if="ui.vWifi">

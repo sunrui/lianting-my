@@ -317,8 +317,8 @@
 
         let url = 'https://shop.lt.city/c/'
         let content = `请您认真阅读以上开店流程，如您在使用中遇到任何问题可联系我们客服。`
-        content += `<br/><br/>您的餐厅名称为：<br/>${highlightApi.highlight(this.http.req.shop.name)}`
-        content += `<br/><br/>您的餐厅地址为：<br/>${url}${highlightApi.highlight(this.http.req.shop.shortId)}`
+        content += `<br/><br/>您的店铺名称为：<br/>${highlightApi.highlight(this.http.req.shop.name)}`
+        content += `<br/><br/>您的店铺地址为：<br/>${url}${highlightApi.highlight(this.http.req.shop.shortId)}`
 
         if (Boolean(this.http.req.shop.referrer)) {
           content += `<br/><br/>告之我们您从哪里了解到的恋厅?<br/>${highlightApi.highlight(this.http.req.shop.referrer)}`

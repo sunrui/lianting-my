@@ -120,7 +120,7 @@
             this.$msgBox.doModal({
               type: 'yes',
               title: '人事邀请',
-              content: '恭喜您，您已成为本餐厅的一员。'
+              content: '恭喜您，您已成为本店铺的一员。'
             }).then(async (val) => {
               if (this.ui.inWechat) {
                 this.$msgBox.doModal({
