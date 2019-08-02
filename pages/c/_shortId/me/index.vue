@@ -189,7 +189,7 @@
         this.$router.push(`/c/${this.$route.params.shortId}/me/edit`)
       },
       btnCopyrightLink() {
-        window.location.href = 'https://m.lt.city/index.html'
+        window.location.href = 'https://m.lt.city/'
       }
     }
   }
