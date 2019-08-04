@@ -212,7 +212,7 @@
             this.$msgBox.doModal({
               type: 'yes',
               title: '立即预订',
-              content: '商家尚未开通预订。'
+              content: '商家尚未开通预订，您可线下联系。'
             })
           } else if (res.reserveId) {
             this.$router.push(`/c/${this.$route.params.shortId}/reserve/${res.reserveId}`)

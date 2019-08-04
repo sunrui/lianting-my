@@ -7,6 +7,6 @@ export const httpConfigAdminApi = {
     return axios.get(`${base}/${shortId}/config/wechat`).then(res => res.data)
   },
   putConfigWechat(shortId, model) {
-    return axios.get(`${base}/${shortId}/config/wechat`, model).then(res => res.data)
+    return axios.put(`${base}/${shortId}/config/wechat`, model).then(res => res.data)
   }
 }

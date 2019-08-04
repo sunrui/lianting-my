@@ -423,7 +423,7 @@
             this.$msgBox.doModal({
               type: 'yes',
               title: '立即支付',
-              content: '商家尚未开通在线支付，请您线下付款。'
+              content: '商家尚未开通支付宝支付，请您线下付款。'
             })
 
             return
