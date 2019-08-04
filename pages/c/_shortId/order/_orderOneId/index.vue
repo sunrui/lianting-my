@@ -545,7 +545,7 @@
             }
 
             if (res.pay.wechat) {
-              this.prepareWechatPay(this.pay.wechat.jsPay)
+              this.prepareWechatPay(res.pay.wechat.jsPay)
             }
           }
         })

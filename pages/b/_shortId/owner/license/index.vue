@@ -660,6 +660,7 @@
           if (res.pay) {
             if (res.pay.wechat) {
               this.prepareWechatPay(res.pay.wechat.jsPay)
+              return
             }
 
             if (res.pay.wechatOpenIdNotExists) {
