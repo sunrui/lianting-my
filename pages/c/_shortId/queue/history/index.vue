@@ -30,7 +30,7 @@
 
           <div class="queue_history_price">
             <div class="queue_history_price_label">取号</div>
-            <div class="queue_history_price_content">{{history.tableGroupNumberPrefix}}{{history.sequence}}</div>
+            <div class="queue_history_price_content">{{history.tableGroupNumberPrefix}}{{history.sequence}}{{Boolean(history.tableGroupNumberSuffix) ? history.tableGroupNumberSuffix : ''}}</div>
           </div>
         </div>
       </div>

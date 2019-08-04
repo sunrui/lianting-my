@@ -67,7 +67,7 @@
             </div>
 
             <div class="queue_number_desk">
-              <div class="queue_number_desk_number">{{myTicket.tableGroupNumberPrefix}}{{myTicket.sequence}}</div>
+              <div class="queue_number_desk_number">{{myTicket.tableGroupNumberPrefix}}{{myTicket.sequence}}{{Boolean(myTicket.tableGroupNumberSuffix) ? myTicket.tableGroupNumberSuffix : ''}}</div>
               <div class="queue_number_desk_detail">{{myTicket.tableGroupName}}</div>
             </div>
 

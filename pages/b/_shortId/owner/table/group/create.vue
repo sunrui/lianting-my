@@ -60,6 +60,17 @@
           <div class="box_divide"></div>
 
           <div class="addition_item">
+            <div class="addition_item_label">号码后缀</div>
+            <label>
+              <input class="addition_item_input"
+                     type="text"
+                     placeholder="请输入号码后缀，如 8 (可选)" minlength="1" maxlength="4" v-model="http.req.group.numberSuffix">
+            </label>
+          </div>
+
+          <div class="box_divide"></div>
+
+          <div class="addition_item">
             <div class="addition_item_label">备注</div>
             <label>
               <input class="addition_item_input" placeholder="请输入备注" maxlength="64" v-model="http.req.group.remark">
@@ -116,6 +127,7 @@
               minPeople: '',
               maxPeople: '',
               numberPrefix: '',
+              numberSuffix: '',
               privateRoom: false,
               remark: '',
               preGenTableCount: ''

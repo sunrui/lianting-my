@@ -59,6 +59,17 @@
           <div class="box_divide"></div>
 
           <div class="addition_item">
+            <div class="addition_item_label">号码后缀</div>
+            <label>
+              <input class="addition_item_input"
+                     type="text"
+                     placeholder="请输入号码后缀，如 8 (可选)" minlength="1" maxlength="4" v-model="http.req.group.numberSuffix">
+            </label>
+          </div>
+
+          <div class="box_divide"></div>
+
+          <div class="addition_item">
             <div class="addition_item_label">备注</div>
             <label>
               <input class="addition_item_input" placeholder="请输入备注" maxlength="64" v-model="http.req.group.remark">
@@ -90,7 +101,7 @@
         title: {
           canBack: true,
           title: '餐食组',
-          backUri: `/b/${this.$route.params.shortId}/owner`,
+          backUri: `/b/${this.$route.params.shortId}/owner/table`,
           theme: 'image',
           imageHeight: 300
         },
@@ -101,6 +112,7 @@
               minPeople: '',
               maxPeople: '',
               numberPrefix: '',
+              numberSuffix: '',
               privateRoom: false,
               remark: ''
             }

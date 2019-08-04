@@ -23,16 +23,16 @@
 
           <div class="queue_ring">
             <div class="queue_ring_icon"></div>
-            <div class="queue_ring_label">请{{getQueueNow(tableGroup).queueTicket.tableGroupNumberPrefix}}{{getQueueNow(tableGroup).queueTicket.sequence}}号顾客前往迎宾台就餐。</div>
+            <div class="queue_ring_label">请{{getQueueNowTableNumber(tableGroup)}}号顾客前往迎宾台就餐。</div>
             <div class="queue_ring_button" v-if="getQueueNow(tableGroup).queueTicket.status === 'Now'"
-                 @click="btnRadio(getQueueNow(tableGroup).queueTicket.tableGroupNumberPrefix + getQueueNow(tableGroup).queueTicket.sequence)">播报
+                 @click="btnRadio(getQueueNowTableNumber(tableGroup))">播报
             </div>
             <div class="queue_ring_button queue_ring_button_gray" v-else>播报
             </div>
           </div>
 
           <div class="queue_table">
-            <div class="queue_table_number">{{getQueueNow(tableGroup).queueTicket.tableGroupNumberPrefix}}{{getQueueNow(tableGroup).queueTicket.sequence}}</div>
+            <div class="queue_table_number">{{getQueueNowTableNumber(tableGroup)}}</div>
             <div class="queue_table_extra">
               <div class="queue_table_status" v-bind:class="{
               queue_table_status_now: getQueueNow(tableGroup).queueTicket.status === 'Now',
@@ -178,6 +178,15 @@
             this.ui.queuePeople += queueNow.waitPeople
           }
         })
+      },
+      getQueueNowTableNumber(tableGroup) {
+        let queueNow = this.getQueueNow(tableGroup)
+
+        if (queueNow === null) {
+          return ''
+        }
+
+        return queueNow.queueTicket.tableGroupNumberPrefix + queueNow.queueTicket.sequence + Boolean(queueNow.queueTicket.tableGroupNumberSuffix) ? queueNow.queueTicket.tableGroupNumberSuffix : ''
       },
       getQueueNow(tableGroup) {
         for (let queueNowIndex in this.http.res.queueNows.elements) {

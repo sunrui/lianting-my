@@ -1,5 +1,5 @@
 <template>
-  <div v-show="false" id="nuxt_div">
+  <div class="container" v-show="false" id="nuxt_div">
     <loading v-show="false" id="nuxt_loading"></loading>
     <nuxt/>
   </div>
@@ -19,6 +19,12 @@
 </script>
 
 <style scoped lang="scss">
+  .container {
+    font-size: 26px;
+    margin: 0;
+    padding: 0;
+  }
+
   *,
   *:before,
   *:after {
