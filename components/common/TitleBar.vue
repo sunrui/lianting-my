@@ -21,17 +21,15 @@
       image_height_220: imageHeight === 220,
       image_height_300: imageHeight === 300,
       image_height_330: imageHeight === 330,
-      image_height_460: imageHeight === 460,
-      image_height_900: imageHeight === 900
-      }" :style="{'backgroundImage':'url('+ui.image+')'}" v-if="ui.vTitleBar">
+      image_height_460: imageHeight === 460
+      }" :style="{'backgroundImage':'url('+ui.image+getXOssProcess()+')'}" v-if="ui.vTitleBar">
       </div>
       <div class="image_box" v-bind:class="{
       image_height_220_no_title_bar: imageHeight === 220,
       image_height_300_no_title_bar: imageHeight === 300,
       image_height_330_no_title_bar: imageHeight === 330,
-      image_height_460_no_title_bar: imageHeight === 460,
-      image_height_900_no_title_bar: imageHeight === 900
-    }" :style="{'backgroundImage':'url('+ui.image+')'}" v-else>
+      image_height_460_no_title_bar: imageHeight === 460
+    }" :style="{'backgroundImage':'url('+ui.image+getXOssProcess()+')'}" v-else>
       </div>
     </div>
   </div>
@@ -40,6 +38,7 @@
 <script>
   import {httpInfoApi} from '../../api/http/lt/httpInfoApi'
   import {wechatApi} from '../../api/local/wechatApi'
+  import {imageApi} from '../../api/local/imageApi'
 
   export default {
     props: {
@@ -93,6 +92,9 @@
       window.removeEventListener('popstate', this.popStateHandle)
     },
     methods: {
+      getXOssProcess() {
+        return imageApi.getXOssProcess()
+      },
       httpInfo() {
         if (this.imageHeight === 0 || !Boolean(this.$route.params.shortId)) {
           this.setImage('/img/common/title_bar_bg.png')

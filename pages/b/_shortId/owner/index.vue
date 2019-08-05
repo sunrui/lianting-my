@@ -66,7 +66,7 @@
           title: '我的店铺',
           backUri: `/b/${this.$route.params.shortId}/owner`,
           theme: 'image',
-          imageHeight: 900
+          imageHeight: 460
         },
         ui: {
           vCoverMask: false,

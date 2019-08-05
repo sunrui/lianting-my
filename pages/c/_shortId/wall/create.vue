@@ -5,7 +5,7 @@
     <div class="wall">
       <div class="wall_user_info">
         <div class="wall_user_avatar_radius" @click="btnUser">
-          <img class="wall_user_avatar_radius_image" :src="http.res.info.headImgUrl" :alt="http.res.info.nickName">
+          <img class="wall_user_avatar_radius_image" :src="http.res.info.headImgUrl + getXOssProcess()" :alt="http.res.info.nickName">
         </div>
         <div class="wall_user_info_title">
           <div class="wall_user_info_nick" @click="btnUser">{{http.res.info.nickName}}</div>
@@ -57,6 +57,7 @@
   import {timeApi} from '../../../../api/local/timeApi'
   import {foodDetailApi} from '../../../../api/local/foodDetail'
   import {scrollApi} from '../../../../api/local/scrollApi'
+  import {imageApi} from '../../../../api/local/imageApi'
 
   export default {
     metaInfo: {
@@ -98,6 +99,9 @@
       this.httpOrder()
     },
     methods: {
+      getXOssProcess() {
+        return imageApi.getXOssProcess()
+      },
       dateFormat(date) {
         return timeApi.dateFormat(date)
       },

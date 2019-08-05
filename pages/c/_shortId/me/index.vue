@@ -7,7 +7,7 @@
     <div class="box">
       <div class="status box_radius">
         <div class="status_logo_radius status_logo_radius_center">
-          <img class="status_logo_radius_image " :src="http.res.userInfo.headImgUrl" :alt="this.http.res.userInfo.nickName">
+          <img class="status_logo_radius_image " :src="http.res.userInfo.headImgUrl + getXOssProcess()" :alt="this.http.res.userInfo.nickName">
         </div>
 
         <div class="wall_user_info">
@@ -53,6 +53,7 @@
   import {httpReserveApi} from '../../../../api/http/lt/httpReserveApi'
   import {httpWallApi} from '../../../../api/http/lt/httpWallApi'
   import {httpCouponApi} from '../../../../api/http/lt/httpCouponApi'
+  import {imageApi} from '../../../../api/local/imageApi'
 
   export default {
     metaInfo: {
@@ -97,6 +98,9 @@
       this.httpUserInfo()
     },
     methods: {
+      getXOssProcess() {
+        return imageApi.getXOssProcess()
+      },
       httpUserInfo() {
         httpUserApi.getInfo(userApi.getUserId()).then(res => {
           if (res.userIdNotExists) {

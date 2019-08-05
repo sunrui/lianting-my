@@ -59,7 +59,7 @@
             <div class="badge_delete" @click="btnCategoryDelete(foodCategory)"></div>
             <div class="food_category_anchor" :id="foodCategory.id"></div>
             <div class="food_image_box" @click="btnCategory(foodCategory)">
-              <img class="food_image" :src="foodCategory.image" :alt="foodCategory.name">
+              <img class="food_image" :src="foodCategory.image + getXOssProcess()" :alt="foodCategory.name">
               <div class="addition_item_tag_label food_image_tag" v-if="foodCategory.tagName" v-bind:class="{
                    addition_item_tag_color_1: foodCategory.tagIndex === 1,
                    addition_item_tag_color_2: foodCategory.tagIndex === 2,
@@ -156,6 +156,7 @@
   import {httpFoodAdminApi} from '../../../../../api/http/lt/httpFoodAdminApi'
   import {highlightApi} from '../../../../../api/local/highlightApi'
   import {scrollApi} from '../../../../../api/local/scrollApi'
+  import {imageApi} from '../../../../../api/local/imageApi'
 
   export default {
     metaInfo: {
@@ -205,6 +206,9 @@
       window.removeEventListener('scroll', this.onScroll)
     },
     methods: {
+      getXOssProcess() {
+        return imageApi.getXOssProcess()
+      },
       httpShop() {
         httpShopApi.getOne(this.$route.params.shortId).then(res => {
           this.http.res.shop = res

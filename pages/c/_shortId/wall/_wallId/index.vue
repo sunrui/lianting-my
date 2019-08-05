@@ -9,7 +9,7 @@
     <div class="wall wall_top">
       <div class="wall_user_info">
         <div class="wall_user_avatar_radius" @click="btnUser()">
-          <img class="wall_user_avatar_radius_image" :src="http.res.userInfo.headImgUrl" :alt="http.res.userInfo.nickName">
+          <img class="wall_user_avatar_radius_image" :src="http.res.userInfo.headImgUrl + getXOssProcess()" :alt="http.res.userInfo.nickName">
         </div>
         <div class="wall_user_info_title">
           <div class="wall_user_info_nick" @click="btnUser()">{{http.res.userInfo.nickName}}</div>
@@ -132,6 +132,7 @@
   import { foodDetailApi } from '../../../../../api/local/foodDetail'
   import { stringApi } from '../../../../../api/local/stringApi'
   import { scrollApi } from '../../../../../api/local/scrollApi'
+  import {imageApi} from '../../../../../api/local/imageApi'
 
   export default {
     metaInfo: {
@@ -170,6 +171,9 @@
       this.httpWall()
     },
     methods: {
+      getXOssProcess() {
+        return imageApi.getXOssProcess()
+      },
       dateFormat(date) {
         return timeApi.dateFormat(date)
       },

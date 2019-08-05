@@ -48,7 +48,7 @@
 
       <div class="order_add_content box_radius_footer">
         <div class="order_food" v-for="food in cart.foods">
-          <img class="order_food_image" :src="food.category.image" :alt="food.category.name">
+          <img class="order_food_image" :src="food.category.image + getXOssProcess()" :alt="food.category.name">
           <div class="order_food_name_detail">
             <div class="order_food_name_detail_name">{{food.category.name}}</div>
             <div class="order_food_name_detail_name_category">{{food.food.name}}</div>
@@ -147,6 +147,7 @@
   import {wechatApi} from '../../api/local/wechatApi'
   import {timeApi} from '../../api/local/timeApi'
   import {alipayApi} from '../../api/local/alipayApi'
+  import {imageApi} from '../../api/local/imageApi'
 
   export default {
     metaInfo: {
@@ -233,6 +234,9 @@
       }
     },
     methods: {
+      getXOssProcess() {
+        return imageApi.getXOssProcess()
+      },
       dateFormat(date) {
         return timeApi.dateFormat(date)
       },

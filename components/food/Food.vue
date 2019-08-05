@@ -103,7 +103,7 @@
             food_image_big_box: foodGroup.groupMode === 'Big',
             food_image_box: foodGroup.groupMode !== 'Big',
             }" class="">
-              <img class="food_image" :src="foodCategory.image" :alt="foodCategory.name" @click="btnPreview(foodGroup, foodCategory)">
+              <img class="food_image" :src="foodCategory.image + getXOssProcess()" :alt="foodCategory.name" @click="btnPreview(foodGroup, foodCategory)">
               <div class="addition_item_tag_label food_image_tag" v-if="foodCategory.tagName" v-bind:class="{
                    addition_item_tag_color_1: foodCategory.tagIndex === 1,
                    addition_item_tag_color_2: foodCategory.tagIndex === 2,
@@ -200,7 +200,7 @@
         </div>
 
         <div class="category_food">
-          <img class="category_food_image" :src="ui.modalCategory.category.image" :alt="ui.modalCategory.selectFood.name">
+          <img class="category_food_image" :src="ui.modalCategory.category.image + getXOssProcess()" :alt="ui.modalCategory.selectFood.name">
 
           <div class="category_food_info">
             <div class="category_food_name">{{ui.modalCategory.category.name}}</div>
@@ -241,7 +241,7 @@
           <img class="modal_close" src="/img/common/close.png" alt="">
         </div>
 
-        <img class="preview_image" :src="ui.modalPreview.foodCategory.image" alt="">
+        <img class="preview_image" :src="ui.modalPreview.foodCategory.image + getXOssProcess()" alt="">
       </div>
     </transition>
   </div>
@@ -259,6 +259,7 @@
   import {httpOrderAdminApi} from '../../api/http/lt/httpOrderAdminApi'
   import {highlightApi} from '../../api/local/highlightApi'
   import {userApi} from '../../api/local/userApi'
+  import {imageApi} from '../../api/local/imageApi'
 
   export default {
     metaInfo: {
@@ -339,6 +340,9 @@
       }
     },
     methods: {
+      getXOssProcess() {
+        return imageApi.getXOssProcess()
+      },
       eventFoodAdd(event, foodCategory) {
         if (this.cart.select >= 99) {
           return

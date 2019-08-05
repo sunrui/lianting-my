@@ -2,7 +2,7 @@
   <div>
     <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
-    <div class="shop_bg" :style="{'backgroundImage':'url('+http.res.info.image+')'}"></div>
+    <div class="shop_bg" :style="{'backgroundImage':'url('+http.res.info.image+getXOssProcess()+')'}"></div>
 
     <div :class="{ cover_mask_9: ui.vCoverMask}" @click="btnCoverMask"></div>
 
@@ -121,6 +121,7 @@
   import {httpWallApi} from '../../../api/http/lt/httpWallApi'
   import {httpFoodApi} from '../../../api/http/lt/httpFoodApi'
   import TitleBar from '../../../components/common/TitleBar'
+  import {imageApi} from '../../../api/local/imageApi'
 
   export default {
     metaInfo: {
@@ -201,6 +202,9 @@
       this.httpShop()
     },
     methods: {
+      getXOssProcess() {
+        return imageApi.getXOssProcess()
+      },
       btnPhone() {
         return 'tel:' + this.http.res.info.phone
       },

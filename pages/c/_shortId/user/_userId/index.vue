@@ -7,7 +7,7 @@
     <div class="box">
       <div class="status box_radius">
         <div class="status_logo_radius status_logo_radius_center">
-          <img class="status_logo_radius_image " :src="http.res.info.headImgUrl" :alt="http.res.info.nickName">
+          <img class="status_logo_radius_image " :src="http.res.info.headImgUrl + getXOssProcess()" :alt="http.res.info.nickName">
         </div>
 
         <div class="blank_40"></div>
@@ -50,6 +50,7 @@
 <script>
   import TitleBar from '../../../../../components/common/TitleBar'
   import { httpUserApi } from '../../../../../api/http/user/httpUserApi'
+  import {imageApi} from '../../../../../api/local/imageApi'
 
   export default {
     metaInfo: {
@@ -79,6 +80,9 @@
       this.httpUserInfo()
     },
     methods: {
+      getXOssProcess() {
+        return imageApi.getXOssProcess()
+      },
       httpUserInfo() {
         httpUserApi.getInfo(this.$route.params.userId).then(res => {
           if (res.userIdNotExists) {
