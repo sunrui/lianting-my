@@ -369,6 +369,16 @@
             return
           }
 
+          if (res.referUrlExists) {
+            this.$msgBox.doModal({
+              type: 'yes',
+              title: '添加新闻',
+              content: '引用地址已存在。'
+            })
+
+            return
+          }
+          
           if (res.success) {
             this.$msgBox.doModal({
               type: 'yes',
