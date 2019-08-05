@@ -266,7 +266,7 @@
           container: document.getElementById(this.ui.imageUploadId),
           resize: {quality: 90},
           filters: {
-            max_file_size: '512kb',
+            max_file_size: '4mb',
             mime_types: [
               {title: '图片', extensions: 'jpg,jpeg,gif,png,webp'}
             ]
@@ -306,7 +306,7 @@
                 pThis.$msgBox.doModal({
                   type: 'yes',
                   title: '上传图片失败',
-                  content: '图片过大会影响顾客的流量和加载速度，请不要上传超过 512kb 的图片。'
+                  content: '图片过大会影响顾客的流量和加载速度，请不要上传超过 4m 的图片。'
                 })
               } else if (err.code === -601) {
                 pThis.$msgBox.doModal({
