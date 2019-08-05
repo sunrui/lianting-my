@@ -150,7 +150,7 @@
 
   export default {
     metaInfo: {
-      title: '下单'
+      title: '行业新闻'
     },
     middleware: 'auth',
     components: {TitleBar, ImageUpload},
@@ -378,7 +378,7 @@
 
             return
           }
-          
+
           if (res.success) {
             this.$msgBox.doModal({
               type: 'yes',

@@ -55,7 +55,7 @@ module.exports = {
     // {src: '~plugins/down', ssr: false},
     {src: '~plugins/axios', ssr: false},
     {src: '~plugins/console', ssr: false},
-    // {src: '~plugins/https', ssr: false},
+    {src: '~plugins/https', ssr: false},
     {src: '~plugins/message_box', ssr: false},
     {src: '~plugins/meta', ssr: false},
     {src: '~plugins/route', ssr: false},
