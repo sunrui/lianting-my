@@ -64,7 +64,7 @@
             <label>
               <input class="addition_item_input"
                      type="text"
-                     placeholder="请输入号码后缀，如 8 (可选)" minlength="1" maxlength="4" v-model="http.req.group.numberSuffix">
+                     placeholder="请输入号码后缀，如 8 (可选)" maxlength="4" v-model="http.req.group.numberSuffix">
             </label>
           </div>
 
