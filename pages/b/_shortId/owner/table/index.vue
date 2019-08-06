@@ -237,6 +237,10 @@
           },
           // Element dragging ended
           onEnd: function (/**Event*/evt) {
+            if (evt.oldIndex === evt.newIndex) {
+              return
+            }
+
             let oldTableGroup = pThis.http.res.tableGroups.elements[evt.oldIndex]
             let newTableGroup = pThis.http.res.tableGroups.elements[evt.newIndex]
 

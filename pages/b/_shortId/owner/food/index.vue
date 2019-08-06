@@ -241,6 +241,10 @@
           },
           // Element dragging ended
           onEnd: function (/**Event*/evt) {
+            if (evt.oldIndex === evt.newIndex) {
+              return
+            }
+            
             let oldFoodGroup = pThis.http.res.foodGroups.elements[evt.oldIndex]
             let newFoodGroup = pThis.http.res.foodGroups.elements[evt.newIndex]
 
