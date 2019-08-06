@@ -52,6 +52,7 @@
     "nuxt": "^2.8.1",
     "plupload": "^2.3.6",
     "qrcode": "^1.4.1",
+    "sortablejs": "^1.10.0-rc3",
     "store": "^2.0.12",
     "vue": "^2.6.10",
     "vue-scroller": "^2.2.4",

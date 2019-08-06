@@ -112,12 +112,18 @@
       },
       httpTableGroup() {
         httpTableApi.getGroupAll(this.$route.params.shortId).then(res => {
-          this.http.res.tableGroups = res
-
           if (res.currentPageSize === 0) {
             this.$router.push(`/b/${this.$route.params.shortId}/admin/table/empty`)
             return
           }
+
+          res.elements.sort(function (a, b) {
+            if (a.orderIndex !== b.orderIndex) {
+              return a.orderIndex - b.orderIndex
+            }
+
+            return a.createdAt - b.createdAt
+          })
 
           for (let index in res.elements) {
             let tableGroup = res.elements[index]
@@ -133,6 +139,7 @@
             }
           }
 
+          this.http.res.tableGroups = res
           this.ui.loading = false
           this.httpQueueNow()
         })

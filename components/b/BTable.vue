@@ -267,6 +267,14 @@
             return
           }
 
+          res.elements.sort(function (a, b) {
+            if (a.orderIndex !== b.orderIndex) {
+              return a.orderIndex - b.orderIndex
+            }
+
+            return a.createdAt - b.createdAt
+          })
+
           for (let index in res.elements) {
             let tableGroup = res.elements[index]
             if (tableGroup.tableOnes && tableGroup.tableOnes.length > 0)

@@ -134,6 +134,14 @@
         this.http.res.shop = res
 
         httpTableApi.getGroupAll(this.$route.params.shortId).then(res => {
+          res.elements.sort(function (a, b) {
+            if (a.orderIndex !== b.orderIndex) {
+              return a.orderIndex - b.orderIndex
+            }
+
+            return a.createdAt - b.createdAt
+          })
+
           this.http.res.tableGroups = res
 
           if (this.$route.query.vCopyright) {

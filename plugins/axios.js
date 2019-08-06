@@ -3,6 +3,7 @@ import {loadingApi} from '../api/local/loadingApi'
 import {storeApi} from '../api/local/storeApi'
 import {userApi} from '../api/local/userApi'
 import {cookieApi} from '../api/local/cookieApi'
+import {logApi} from '../api/local/logApi'
 
 axios.defaults.withCredentials = true
 axios.defaults.timeout = 30 * 1000
@@ -37,11 +38,19 @@ axios.interceptors.response.use(function (response) {
       return
     }
 
-    storeApi.object.set('error', err.response.data)
-    window.location.href = '/error'
+    if (process.env.NODE_ENV === 'development') {
+      logApi.error(err.response.data)
+    } else {
+      storeApi.object.set('error', err.response.data)
+      window.location.href = '/error'
+    }
   } else {
-    storeApi.object.set('error', err)
-    window.location.href = '/error'
+    if (process.env.NODE_ENV === 'development') {
+      logApi.error(err)
+    } else {
+      storeApi.object.set('error', err)
+      window.location.href = '/error'
+    }
   }
 
   return Promise.reject(err)

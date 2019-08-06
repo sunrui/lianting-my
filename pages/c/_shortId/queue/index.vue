@@ -352,6 +352,14 @@
             return
           }
 
+          res.elements.sort(function (a, b) {
+            if (a.orderIndex !== b.orderIndex) {
+              return a.orderIndex - b.orderIndex
+            }
+
+            return a.createdAt - b.createdAt
+          })
+
           this.http.res.tableGroups = res
           this.httpNow()
         })

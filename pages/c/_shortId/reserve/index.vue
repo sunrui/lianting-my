@@ -183,17 +183,21 @@
       },
       httpTableGroup() {
         httpTableApi.getGroupAll(this.$route.params.shortId).then(res => {
-          this.http.res.tableGroups = res
-
-          if (this.http.res.tableGroups.length === 0) {
+          if (res.elements.length === 0) {
             this.$router.push(`/c/${this.$route.params.shortId}/reserve/close`)
             return
           }
 
-          if (this.http.res.tableGroups.elements.length > 0) {
-            this.ui.selectTableGroup = this.http.res.tableGroups.elements[0]
-          }
+          res.elements.sort(function (a, b) {
+            if (a.orderIndex !== b.orderIndex) {
+              return a.orderIndex - b.orderIndex
+            }
 
+            return a.createdAt - b.createdAt
+          })
+
+          this.http.res.tableGroups = res
+          this.ui.selectTableGroup = res.elements[0]
           this.btnDate(0, new Date())
         })
       },

@@ -18,7 +18,7 @@
       <div class="blank_10"></div>
 
       <div class="menu_box">
-        <div class="menu">
+        <div class="menu" id="table_group_item">
           <div class="menu_item" v-for="(tableGroup, index) in http.res.tableGroups.elements">
             <div :id="'menu_' + tableGroup.id"
                  :class="{menu_item_href:!isSelectMenu(tableGroup.id), menu_item_href_select:isSelectMenu(tableGroup.id)}"
@@ -146,7 +146,8 @@
           captcha: {
             title: '',
             text: ''
-          }
+          },
+          sortable: null
         },
         http: {
           req: {
@@ -175,6 +176,11 @@
     },
     beforeDestroy() {
       window.removeEventListener('scroll', this.onScroll)
+
+      if (this.ui.sortable) {
+        this.ui.sortable.destroy()
+        this.ui.sortable = null
+      }
     },
     methods: {
       httpShop() {
@@ -205,16 +211,87 @@
           }
         }
       },
+      sortableTableGroup() {
+        let {Sortable} = require('sortablejs')
+        let el = document.getElementById('table_group_item')
+
+        let pThis = this
+
+        this.ui.sortable = new Sortable(el, {
+          animation: 150,  // ms, animation speed moving items when sorting, `0` — without animation
+          easing: 'cubic-bezier(1, 0, 0, 1)', // Easing for animation. Defaults to null. See https://easings.net/ for examples.
+          preventOnFilter: true, // Call `event.preventDefault()` when triggered `filter`
+          swapThreshold: 1, // Threshold of the swap zone
+          invertSwap: false, // Will always use inverted swap zone if set to true
+          invertedSwapThreshold: 1, // Threshold of the inverted swap zone (will be set to swapThreshold value by default)
+          direction: 'horizontal', // Direction of Sortable (will be detected automatically if not given)
+          forceFallback: false,  // ignore the HTML5 DnD behaviour and force the fallback to kick in
+          fallbackClass: 'sortable-fallback',  // Class name for the cloned DOM Element when using forceFallback
+          fallbackOnBody: false,  // Appends the cloned DOM Element into the Document's Body
+          fallbackTolerance: 0, // Specify in pixels how far the mouse should move before it's considered as a drag.
+          dragoverBubble: false,
+          removeCloneOnHide: true, // Remove the clone element when it is not showing, rather than just hiding it
+          emptyInsertThreshold: 5, // px, distance mouse must be from empty sortable to insert drag element into it
+          setData: function (/** DataTransfer */dataTransfer, /** HTMLElement*/dragEl) {
+            dataTransfer.setData('Text', dragEl.textContent) // `dataTransfer` object of HTML5 DragEvent
+          },
+          // Element dragging ended
+          onEnd: function (/**Event*/evt) {
+            let oldTableGroup = pThis.http.res.tableGroups.elements[evt.oldIndex]
+            let newTableGroup = pThis.http.res.tableGroups.elements[evt.newIndex]
+
+            for (let index in pThis.http.res.tableGroups.elements) {
+              if (parseInt(index) === parseInt(evt.oldIndex)) {
+                pThis.http.res.tableGroups.elements[index] = newTableGroup
+              } else if (parseInt(index) === parseInt(evt.newIndex)) {
+                pThis.http.res.tableGroups.elements[index] = oldTableGroup
+              }
+            }
+
+            for (let index in pThis.http.res.tableGroups.elements) {
+              let tableGroup = pThis.http.res.tableGroups.elements[index]
+              pThis.http.res.tableGroups.elements[index].orderIndex = parseInt(index)
+              tableGroup.orderIndex = parseInt(index)
+
+              httpTableAdminApi.putGroup(pThis.$route.params.shortId, tableGroup).then(res => {
+                if (res.tableGroupIdNotExists) {
+                  pThis.$msgBox.doModal({
+                    type: 'yes',
+                    title: '更新餐桌组',
+                    content: '餐桌组不存在。'
+                  })
+                } else if (res.nameExists) {
+                  pThis.$msgBox.doModal({
+                    type: 'yes',
+                    title: '更新餐桌组',
+                    content: '餐桌组名称重复。'
+                  })
+                } else if (res.numberPrefixExists) {
+                  pThis.$msgBox.doModal({
+                    type: 'yes',
+                    title: '更新餐桌组',
+                    content: '餐桌前缀已存在。'
+                  })
+                } else if (res.success) {
+                  location.reload()
+                }
+              })
+            }
+          }
+        })
+      },
       httpTableGroup() {
         httpTableApi.getGroupAll(this.$route.params.shortId, 0, 99).then(res => {
-          this.http.res.tableGroups = res
+          res.elements.sort(function (a, b) {
+            if (a.orderIndex !== b.orderIndex) {
+              return a.orderIndex - b.orderIndex
+            }
 
-          if (this.http.res.tableGroups.elements.length > 0) {
-            this.ui.selectMenuId = this.http.res.tableGroups.elements[0].id
-          }
+            return a.createdAt - b.createdAt
+          })
 
-          for (let index in this.http.res.tableGroups.elements) {
-            let tableGroup = this.http.res.tableGroups.elements[index]
+          for (let index in res.elements) {
+            let tableGroup = res.elements[index]
             if (tableGroup.tableOnes && tableGroup.tableOnes.length > 0) {
               tableGroup.tableOnes.sort(function (a, b) {
                 return a.number - b.number
@@ -222,7 +299,14 @@
             }
           }
 
+          this.http.res.tableGroups = res
+
+          if (res.elements.length > 0) {
+            this.ui.selectMenuId = res.elements[0].id
+          }
+
           setTimeout(this.navToHash, 100)
+          this.sortableTableGroup()
         })
       },
       onScroll() {

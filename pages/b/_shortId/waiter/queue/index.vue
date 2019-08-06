@@ -142,7 +142,13 @@
       },
       httpTableGroup() {
         httpTableApi.getGroupAll(this.$route.params.shortId).then(res => {
-          this.http.res.tableGroups = res
+          res.elements.sort(function (a, b) {
+            if (a.orderIndex !== b.orderIndex) {
+              return a.orderIndex - b.orderIndex
+            }
+
+            return a.createdAt - b.createdAt
+          })
 
           if (res.currentPageSize === 0) {
             this.$router.push(`/b/${this.$route.params.shortId}/waiter/table/empty`)
@@ -163,6 +169,7 @@
             }
           }
 
+          this.http.res.tableGroups = res
           this.ui.loading = false
           this.httpQueueNow()
         })
