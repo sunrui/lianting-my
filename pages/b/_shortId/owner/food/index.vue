@@ -243,6 +243,14 @@
           if (res.elements.length > 0) {
             this.ui.selectMenuId = res.elements[0].id
 
+            res.elements.sort(function (a, b) {
+              if (a.orderIndex !== b.orderIndex) {
+                return a.orderIndex - b.orderIndex
+              }
+
+              return a.createdAt - b.createdAt
+            })
+
             for (let groupIndex in res.elements) {
               let categories = res.elements[groupIndex]
               if (!categories.foodCategories) {
@@ -250,7 +258,11 @@
               }
 
               res.elements[groupIndex].foodCategories.sort(function (a, b) {
-                return a.orderIndex - b.orderIndex
+                if (a.orderIndex !== b.orderIndex) {
+                  return a.orderIndex - b.orderIndex
+                }
+
+                return a.createdAt - b.createdAt
               })
             }
           }

@@ -262,7 +262,6 @@
         if (nav.tag === 'food') {
           httpFoodApi.getGroupAll(this.$route.params.shortId, 0, 99).then(res => {
             if (res.elements && res.elements.length > 0) {
-
               let haveFood = false
               for (let index in res.elements) {
                 let categories = res.elements[index].foodCategories

@@ -458,12 +458,24 @@
             return
           }
 
+          res.elements.sort(function (a, b) {
+            if (a.orderIndex !== b.orderIndex) {
+              return a.orderIndex - b.orderIndex
+            }
+
+            return a.createdAt - b.createdAt
+          })
+
           for (let index in res.elements) {
             let foodGroup = res.elements[index]
             this.$set(foodGroup, 'groupMode', 'Small')
             if (foodGroup.foodCategories && foodGroup.foodCategories.length > 0) {
               foodGroup.foodCategories.sort(function (a, b) {
-                return a.orderIndex - b.orderIndex
+                if (a.orderIndex !== b.orderIndex) {
+                  return a.orderIndex - b.orderIndex
+                }
+
+                return a.createdAt - b.createdAt
               })
             }
           }
