@@ -193,6 +193,9 @@
       this.$refs.imageUpload_AddContent.setFileUrl(null)
     },
     methods: {
+      btnChooseType(type) {
+        this.http.req.news.type = type
+      },
       btnChangeHashKey() {
         this.$refs.imageUpload_AddContent.setHashKey(this.http.req.news.hashKey)
       },

@@ -193,7 +193,16 @@
           return ''
         }
 
-        return queueNow.queueTicket.tableGroupNumberPrefix + queueNow.queueTicket.sequence + Boolean(queueNow.queueTicket.tableGroupNumberSuffix) ? queueNow.queueTicket.tableGroupNumberSuffix : ''
+        let tableNumber
+
+        tableNumber = queueNow.queueTicket.tableGroupNumberPrefix
+        tableNumber += queueNow.queueTicket.sequence
+
+        if (Boolean(queueNow.queueTicket.tableGroupNumberSuffix)) {
+          tableNumber += queueNow.queueTicket.tableGroupNumberSuffix
+        }
+
+        return tableNumber
       },
       getQueueNow(tableGroup) {
         for (let queueNowIndex in this.http.res.queueNows.elements) {
