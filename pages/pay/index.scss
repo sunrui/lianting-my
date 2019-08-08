@@ -1,0 +1,61 @@
+.pay_price {
+  position: relative;
+  height: 160px;
+  text-align: center;
+  background: white;
+
+  .pay_price_label {
+    display: inline-block;
+    font-size: 80px;
+    color: #f52626;
+    line-height: 160px;
+  }
+
+  .pay_price_label::after {
+    content: "元";
+    font-size: 36px;
+    color: #333333;
+    line-height: 160px;
+    margin-left: 10px;
+  }
+}
+
+.pay_method {
+  position: relative;
+  background: white;
+  margin-top: 20px;
+
+  .pay_method_title {
+    margin-left: 35px;
+    font-size: 28px;
+    line-height: 60px;
+  }
+
+  .pay_method_one {
+    position: relative;
+    height: 90px;
+
+    .pay_method_icon {
+      background: white;
+      width: 72px;
+      height: 72px;
+      position: absolute;
+      left: 35px;
+      top: 50%;
+      transform: translate(0, -50%);
+    }
+
+    .pay_method_label {
+      display: inline-block;
+      vertical-align: top;
+      margin-left: px2rem(35 + 72 + 20);
+      font-size: 28px;
+      line-height: 90px;
+    }
+
+    .pay_method_check {
+      display: inline-block;
+      height: 90px;
+    }
+  }
+}

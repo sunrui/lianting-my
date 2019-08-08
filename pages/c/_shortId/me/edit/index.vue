@@ -100,7 +100,9 @@
         },
         http: {
           res: {
-            userInfo: {}
+            userInfo: {
+              headImgUrl: '/img/default/default_user_avatar.png'
+            }
           }
         },
         ui: {

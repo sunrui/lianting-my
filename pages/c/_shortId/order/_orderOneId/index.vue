@@ -87,16 +87,15 @@
         </div>
 
         <div @click="btnChooseCoupon()" v-if="http.res.order.status === 'NotPaid'">
-          <div class="order_coupon" v-if="http.res.order.couponDeductPrice > 0 || $route.query.deductPrice">
+          <div class="order_coupon" v-if="http.res.order.couponDeductPrice > 0">
             <div class="order_coupon_icon">优惠券</div>
             <div class="order_coupon_label">优惠</div>
-            <div class="order_coupon_content">{{http.res.order.couponDeductPrice > 0 ? http.res.order.couponDeductPrice : $route.query.deductPrice}}</div>
+            <div class="order_coupon_content">{{http.res.order.couponDeductPrice}}</div>
           </div>
           <div class="order_coupon" v-else-if="http.res.coupon.valid.length > 0">
             <div class="order_coupon_icon">优惠券</div>
             <div class="order_coupon_label">优惠</div>
-            <div class="order_coupon_content" v-if="$route.query.deductPrice > 0">{{$route.query.deductPrice}}</div>
-            <div class="order_coupon_count" v-else>{{http.res.coupon.valid.length}}张优惠券可用</div>
+            <div class="order_coupon_count">{{http.res.coupon.valid.length}}张优惠券可用</div>
           </div>
         </div>
 
@@ -131,6 +130,8 @@
               <div class="order_taste_note_history_icon_line"></div>
               <div class="order_taste_note_history_content">{{taskNote}}</div>
             </div>
+
+            <div class="blank_10"></div>
           </div>
         </div>
       </div>
@@ -183,6 +184,8 @@
               <div class="order_taste_note_history_content">{{remark}}</div>
             </div>
           </div>
+
+          <div class="blank_10"></div>
         </div>
       </div>
     </div>
@@ -259,7 +262,7 @@
         title: {
           canBack: true,
           title: '订单详情',
-          backUri: `/c/${this.$route.params.shortId}`,
+          backUri: `/c/${this.$route.params.shortId}/order/history`,
           theme: 'image',
           imageHeight: 330
         },
@@ -294,11 +297,6 @@
       httpOrder() {
         httpOrderApi.getOrder(this.$route.params.shortId, this.$route.params.orderOneId).then(res => {
           this.http.res.order = res
-
-          if (this.http.res.order.couponDeductPrice === 0 && this.$route.query.deductPrice && this.$route.query.deductPrice > 0) {
-            this.http.res.order.price -= this.$route.query.deductPrice
-          }
-
           this.httpCoupon()
         })
       },
@@ -357,245 +355,22 @@
         }
       },
       btnChooseCoupon() {
-        if (this.http.res.coupon.valid.length > 0) {
-          if (Boolean(this.http.res.order.couponDeductPrice)) {
-            this.$msgBox.doModal({
-              type: 'yes',
-              title: '使用优惠券',
-              content: '您已使用过一张优惠券。'
-            }).then(async (val) => {
-              this.httpOrder()
-            })
-
-            return
-          }
-
-          this.$router.push({
-            path: `/c/${this.$route.params.shortId}/coupon/choose`,
-            query: {
-              orderOneId: this.$route.params.orderOneId,
-              price: this.http.res.order.price
-            }
-          })
-        }
-      },
-      btnChooseCouponConfirm() {
-        httpOrderApi.postCoupon(this.$route.params.shortId, this.$route.params.orderOneId, this.$route.query.couponId).then(res => {
-          if (res.orderNotExists) {
-            this.$msgBox.doModal({
-              type: 'yes',
-              title: '使用优惠券',
-              content: '订单不存在。'
-            }).then(async (val) => {
-              this.$router.push(`/c/${this.$route.params.shortId}`)
-            })
-            return
-          }
-
-          if (res.orderClosed) {
-            this.$msgBox.doModal({
-              type: 'yes',
-              title: '使用优惠券',
-              content: '订单已关闭。'
-            }).then(async (val) => {
-              this.$router.push(`/c/${this.$route.params.shortId}`)
-            })
-
-            return
-          }
-
-          if (res.orderPaid) {
-            this.$msgBox.doModal({
-              type: 'yes',
-              title: '使用优惠券',
-              content: '订单已支付。'
-            }).then(async (val) => {
-              this.$router.push(`/c/${this.$route.params.shortId}`)
-            })
-
-            return
-          }
-
-          if (res.couponIdNotValid) {
-            this.$msgBox.doModal({
-              type: 'yes',
-              title: '使用优惠券',
-              content: '优惠券无效。'
-            }).then(async (val) => {
-              this.$router.push(`/c/${this.$route.params.shortId}`)
-            })
-
-            return
-          }
-
-          if (res.success) {
-            this.payNow()
-          }
-        })
-      },
-      prepareWechatPay(jsPay) {
-        let pThis = this
-
-        function onBridgeReady() {
-          WeixinJSBridge.invoke(
-              'getBrandWCPayRequest', {
-                'appId': jsPay.appId,
-                'timeStamp': jsPay.timeStamp,
-                'nonceStr': jsPay.nonceStr,
-                'package': jsPay.package,
-                'signType': jsPay.signType,
-                'paySign': jsPay.paySign
-              },
-              function (res) {
-                if (res.err_msg === 'get_brand_wcpay_request:ok') {
-                  pThis.$msgBox.doModal({
-                    type: 'yes',
-                    title: '立即支付',
-                    content: '支付已成功，支付结果可能存在延迟，请稍候刷新等待服务器返回。'
-                  }).then(async (val) => {
-                    pThis.httpShop()
-                  })
-                } else if (res.err_msg === 'get_brand_wcpay_request:cancel') {
-                }
-              }
-          )
-        }
-
-        if (typeof WeixinJSBridge === 'undefined') {
-          if (document.addEventListener) {
-            document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false)
-          } else if (document.attachEvent) {
-            document.attachEvent('WeixinJSBridgeReady', onBridgeReady)
-            document.attachEvent('onWeixinJSBridgeReady', onBridgeReady)
-          }
-        } else {
-          onBridgeReady()
-        }
-      },
-      payNow() {
-        httpOrderApi.postPay(this.$route.params.shortId, this.$route.params.orderOneId, 'WECHAT_JSAPI', this.$route.query.couponId).then(res => {
-          if (res.orderNotExists) {
-            this.$msgBox.doModal({
-              type: 'yes',
-              title: '立即支付',
-              content: '订单不存在。'
-            }).then(async (val) => {
-              this.httpOrder()
-            })
-            return
-          }
-
-          if (res.orderClosed) {
-            this.$msgBox.doModal({
-              type: 'yes',
-              title: '立即支付',
-              content: '订单已关闭。'
-            }).then(async (val) => {
-              this.httpOrder()
-            })
-            return
-          }
-
-          if (res.orderPaid) {
-            this.$msgBox.doModal({
-              type: 'yes',
-              title: '立即支付',
-              content: '订单已支付。'
-            }).then(async (val) => {
-              this.httpOrder()
-            })
-            return
-          }
-
-          if (res.pay) {
-            if (res.pay.subMchIdNotExists) {
-              this.$msgBox.doModal({
-                type: 'yes',
-                title: '立即支付',
-                content: '商家尚未设置微信支付参数。'
-              })
-              return
-            }
-
-            if (res.pay.wechatOpenIdNotExists) {
-              this.$msgBox.doModal({
-                type: 'yes',
-                title: '立即支付',
-                content: '请先获得微信授权。'
-              })
-              return
-            }
-
-            if (res.pay.payConfigWechatNotExists) {
-              this.$msgBox.doModal({
-                type: 'yes',
-                title: '立即支付',
-                content: '商家尚未开通在线支付，请您线下付款。'
-              })
-              return
-            }
-
-            if (res.pay.payWayNotSupport) {
-              this.$msgBox.doModal({
-                type: 'yes',
-                title: '立即支付',
-                content: '暂未支付此支付方式。'
-              })
-              return
-            }
-
-            if (res.pay.wechat) {
-              this.prepareWechatPay(res.pay.wechat.jsPay)
-            }
+        this.$router.push({
+          path: `/c/${this.$route.params.shortId}/coupon/choose`,
+          query: {
+            orderOneId: this.$route.params.orderOneId,
+            price: this.http.res.order.price + this.http.res.order.couponDeductPrice
           }
         })
       },
       btnPay() {
-        if (!wechatApi.inWechat() && !alipayApi.inAlipay()) {
-          this.$msgBox.doModal({
-            type: 'yes',
-            title: '立即支付',
-            content: '请在微信或支付宝中使用。'
-          })
-
-          return
-        }
-
-        if (alipayApi.inAlipay()) {
-          this.$msgBox.doModal({
-            type: 'yes',
-            title: '立即支付',
-            content: '商家尚未开通支付宝支付，请您线下付款。'
-          })
-
-          return
-        }
-
-        httpOrderApi.getConfig(this.$route.params.shortId).then(res => {
-          if (wechatApi.inWechat() && !Boolean(res.openWechat)) {
-            this.$msgBox.doModal({
-              type: 'yes',
-              title: '立即支付',
-              content: '商家尚未开通微信支付，请您线下付款。'
-            })
-
-            return
-          }
-
-          if (alipayApi.inAlipay() && !Boolean(res.openAlipay)) {
-            this.$msgBox.doModal({
-              type: 'yes',
-              title: '立即支付',
-              content: '商家尚未开通支付宝支付，请您线下付款。'
-            })
-
-            return
-          }
-
-          if (this.$route.query.deductPrice && !Boolean(this.http.res.order.couponDeductPrice)) {
-            this.btnChooseCouponConfirm()
-          } else {
-            this.payNow()
+        this.$router.push({
+          path: `/pay`,
+          query: {
+            type: 'order',
+            shortId: this.$route.params.shortId,
+            orderOneId: this.$route.params.orderOneId,
+            price: this.http.res.order.price
           }
         })
       },

@@ -7,7 +7,7 @@
     <div class="box">
       <div class="status box_radius">
         <div class="status_logo_radius status_logo_radius_center">
-          <img class="status_logo_radius_image " :src="http.res.userInfo.headImgUrl + getXOssProcess()" :alt="this.http.res.userInfo.nickName">
+          <img class="status_logo_radius_image" :src="http.res.userInfo.headImgUrl + getXOssProcess()" :alt="this.http.res.userInfo.nickName">
         </div>
 
         <div class="wall_user_info">
@@ -84,7 +84,9 @@
         },
         http: {
           res: {
-            userInfo: {}
+            userInfo: {
+              headImgUrl: '/img/default/default_user_avatar.png'
+            }
           }
         }
       }
@@ -108,8 +110,6 @@
               type: 'yes',
               title: '个人信息',
               content: '用户不存在。'
-            }).then(async (val) => {
-              this.$router.push('/logout')
             })
 
             return

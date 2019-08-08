@@ -2,7 +2,7 @@
   <div v-show="!ui.loading">
     <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
-    <div class="box" v-for="coupon in http.res.coupon.valid" @click="btnChooseCoupon(coupon)">
+    <div class="box" v-for="coupon in http.res.coupon.valid" @click="btnChooseCoupon(coupon.id)">
       <div class="coupon box_radius">
         <div class="coupon_title">
           <div class="coupon_title_label">优惠券</div>
@@ -166,13 +166,14 @@
     <div class="blank_100"></div>
     <div class="blank_20"></div>
 
-    <div class="coupon_choose_none" @click="btnChooseNone">不使用任何优惠券</div>
+    <div class="coupon_choose_none" @click="btnChooseCoupon(null)">不使用任何优惠券</div>
   </div>
 </template>
 
 <script>
   import {httpCouponApi} from '../../../../../api/http/lt/httpCouponApi'
   import TitleBar from '../../../../../components/common/TitleBar'
+  import {httpOrderApi} from '../../../../../api/http/lt/httpOrderApi'
 
   export default {
     metaInfo: {
@@ -245,17 +246,59 @@
           this.ui.loading = false
         })
       },
-      btnChooseCoupon(coupon) {
-        this.$router.push({
-          path: `/c/${this.$route.params.shortId}/order/${this.$route.query.orderOneId}`,
-          query: {
-            couponId: coupon.id,
-            deductPrice: coupon.deductPrice
+      btnChooseCoupon(couponId) {
+        httpOrderApi.postCoupon(this.$route.params.shortId, this.$route.query.orderOneId, couponId).then(res => {
+          if (res.orderNotExists) {
+            this.$msgBox.doModal({
+              type: 'yes',
+              title: '使用优惠券',
+              content: '订单不存在。'
+            }).then(async (val) => {
+              this.$router.push(`/c/${this.$route.params.shortId}/order/${this.$route.query.orderOneId}`)
+            })
+            return
+          }
+
+          if (res.orderClosed) {
+            this.$msgBox.doModal({
+              type: 'yes',
+              title: '使用优惠券',
+              content: '订单已关闭。'
+            }).then(async (val) => {
+              this.$router.push(`/c/${this.$route.params.shortId}/order/${this.$route.query.orderOneId}`)
+            })
+
+            return
+          }
+
+          if (res.orderPaid) {
+            this.$msgBox.doModal({
+              type: 'yes',
+              title: '使用优惠券',
+              content: '订单已支付。'
+            }).then(async (val) => {
+              this.$router.push(`/c/${this.$route.params.shortId}/order/${this.$route.query.orderOneId}`)
+            })
+
+            return
+          }
+
+          if (res.couponIdNotValid) {
+            this.$msgBox.doModal({
+              type: 'yes',
+              title: '使用优惠券',
+              content: '优惠券无效。'
+            }).then(async (val) => {
+              this.$router.push(`/c/${this.$route.params.shortId}/order/${this.$route.query.orderOneId}`)
+            })
+
+            return
+          }
+
+          if (res.success) {
+            this.$router.push(`/c/${this.$route.params.shortId}/order/${this.$route.query.orderOneId}`)
           }
         })
-      },
-      btnChooseNone() {
-        this.$router.push(`/c/${this.$route.params.shortId}/order/${this.$route.query.orderOneId}`)
       }
     }
   }

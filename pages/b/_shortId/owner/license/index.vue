@@ -440,7 +440,7 @@
 
         <div class="modal_menu" v-bind:class="{modal_menu_select: ui.year === 5}"
              @click="btnChooseYear(5)">续费 5 年
-          <div class="charge_year_tip">限时送 2 年</div>
+          <div class="charge_year_tip">限时送 3 年</div>
         </div>
 
         <div class="modal_button_box">
@@ -549,7 +549,7 @@
       btnChooseYear(year) {
         this.ui.year = year
       },
-      prepareWechatPay(jsPay) {
+      weixinJSBridgePay(jsPay) {
         let pThis = this
 
         function onBridgeReady() {
@@ -659,7 +659,7 @@
 
           if (res.pay) {
             if (res.pay.wechat) {
-              this.prepareWechatPay(res.pay.wechat.jsPay)
+              this.weixinJSBridgePay(res.pay.wechat.jsPay)
               return
             }
 
@@ -730,7 +730,7 @@
 
           if (res.pay) {
             if (res.pay.wechat) {
-              this.prepareWechatPay(res.pay.wechat.jsPay)
+              this.weixinJSBridgePay(res.pay.wechat.jsPay)
             }
 
             if (res.pay.wechatOpenIdNotExists) {

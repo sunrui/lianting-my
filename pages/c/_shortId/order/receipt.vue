@@ -148,16 +148,11 @@
 </template>
 
 <script>
-  import {httpOrderAdminApi} from '../../../../api/http/lt/httpOrderAdminApi'
-  import {scrollApi} from '../../../../api/local/scrollApi'
   import {timeApi} from '../../../../api/local/timeApi'
-  import {roleApi} from '../../../../api/local/roleApi'
   import TitleBar from '../../../../components/common/TitleBar'
   import DropDown from '../../../../components/common/DropDown'
   import CurrencyInput from '../../../../components/common/CurrencyInput'
   import {httpOrderApi} from '../../../../api/http/lt/httpOrderApi'
-  import {wechatApi} from '../../../../api/local/wechatApi'
-  import {alipayApi} from '../../../../api/local/alipayApi'
 
   export default {
     metaInfo: {
@@ -176,7 +171,7 @@
         title: {
           canBack: true,
           title: '订单详情',
-          backUri: `/c/${this.$route.params.shortId}/`,
+          backUri: `/c/${this.$route.params.shortId}/order/history`,
           theme: 'image',
           imageHeight: 330
         },
@@ -388,54 +383,12 @@
         return timeApi.dateFormat(new Date(time), 'HH:mm')
       },
       btnPay() {
-        if (!wechatApi.inWechat() && !alipayApi.inAlipay()) {
-          this.$msgBox.doModal({
-            type: 'yes',
-            title: '立即支付',
-            content: '请在微信或支付宝中使用。'
-          })
-
-          return
-        }
-
-        if (alipayApi.inAlipay()) {
-          this.$msgBox.doModal({
-            type: 'yes',
-            title: '立即支付',
-            content: '商家尚未开通支付宝支付，请您线下付款。'
-          })
-
-          return
-        }
-
-        httpOrderApi.getConfig(this.$route.params.shortId).then(res => {
-          if (wechatApi.inWechat() && !Boolean(res.openWechat)) {
-            this.$msgBox.doModal({
-              type: 'yes',
-              title: '立即支付',
-              content: '商家尚未开通微信支付，请您线下付款。'
-            })
-
-            return
-          }
-
-          if (alipayApi.inAlipay() && !Boolean(res.openAlipay)) {
-            this.$msgBox.doModal({
-              type: 'yes',
-              title: '立即支付',
-              content: '商家尚未开通支付宝支付，请您线下付款。'
-            })
-
-            return
-          }
-
-          this.$msgBox.doModal({
-            type: 'yes',
-            title: '立即支付',
-            content: '多个订单将转至订单列表后支付。'
-          }).then(async (val) => {
-            this.$router.push(`/c/${this.$route.params.shortId}/order/history`)
-          })
+        this.$msgBox.doModal({
+          type: 'yes',
+          title: '立即支付',
+          content: '多个订单将转至订单列表。'
+        }).then(async (val) => {
+          this.$router.push(`/c/${this.$route.params.shortId}/order/history`)
         })
       },
       btnFood() {

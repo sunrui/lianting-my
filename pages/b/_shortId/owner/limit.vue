@@ -24,7 +24,7 @@
           canBack: true,
           title: '授权限制',
           theme: 'white',
-          backUri: `/b/${this.$route.params.shortId}/owner`,
+          backUri: `/b/${this.$route.params.shortId}/owner/license`,
           imageHeight: 0
         },
       }

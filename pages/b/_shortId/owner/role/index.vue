@@ -74,7 +74,7 @@
       <div class="modal_input_box">
         <div class="modal_input_area">
           <label>
-            <input class="modal_input" placeholder="请输入真实姓名" maxlength="16" v-model="http.req.role.name">
+            <input class="modal_input" placeholder="请输入真实姓名" maxlength="12" v-model="http.req.role.name">
           </label>
         </div>
       </div>
