@@ -52,9 +52,6 @@
 </template>
 
 <script>
-  import {httpOrderApi} from '../../../../../api/http/lt/httpOrderApi'
-  import {httpOrderAdminApi} from '../../../../../api/http/lt/httpOrderAdminApi'
-  import CurrencyInput from '../../../../../components/common/CurrencyInput'
   import TitleBar from '../../../../../components/common/TitleBar'
   import {httpConfigAdminApi} from '../../../../../api/http/lt/httpConfigAdminApi'
 
@@ -63,7 +60,7 @@
       title: '支付'
     },
     middleware: 'auth',
-    components: {TitleBar, CurrencyInput},
+    components: {TitleBar},
     data() {
       return {
         title: {

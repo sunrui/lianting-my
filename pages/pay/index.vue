@@ -181,14 +181,10 @@
               return
             }
 
-            this.httpPay()
+            this.httpPay('WECHAT_JSAPI')
           })
         } else {
-          this.$msgBox.doModal({
-            type: 'yes',
-            title: '立即支付',
-            content: '商家尚未开通支付宝支付，请您线下付款。'
-          })
+          this.httpPay('ALIPAY_FORM')
         }
       },
       weixinJSBridgePay(jsPay) {
@@ -230,8 +226,8 @@
           onBridgeReady()
         }
       },
-      httpPay() {
-        httpOrderApi.postPay(this.$route.query.shortId, this.$route.query.orderOneId, 'WECHAT_JSAPI').then(res => {
+      httpPay(payWay) {
+        httpOrderApi.postPay(this.$route.query.shortId, this.$route.query.orderOneId, payWay).then(res => {
           if (res.orderNotExists) {
             this.$msgBox.doModal({
               type: 'yes',
@@ -277,8 +273,19 @@
               this.$msgBox.doModal({
                 type: 'yes',
                 title: '立即支付',
-                content: '商家尚未开通在线支付，请您线下付款。'
+                content: '商家尚未开通微信支付，请您线下付款。'
               })
+
+              return
+            }
+
+            if (res.pay.payConfigAlipayNotExists) {
+              this.$msgBox.doModal({
+                type: 'yes',
+                title: '立即支付',
+                content: '商家尚未开通支付宝支付，请您线下付款。'
+              })
+
               return
             }
 
@@ -286,8 +293,9 @@
               this.$msgBox.doModal({
                 type: 'yes',
                 title: '立即支付',
-                content: '暂未支付此支付方式。'
+                content: '暂未支持此支付方式。'
               })
+
               return
             }
 

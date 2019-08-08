@@ -107,7 +107,8 @@
             }
           },
           res: {
-            configWechat: {}
+            configWechat: {},
+            configAlipay: {}
           }
         }
       }
@@ -115,6 +116,7 @@
     mounted() {
       this.httpConfig()
       this.httpConfigWechat()
+      this.httpConfigAlipay()
     },
     methods: {
       getWechatPayUrl() {
@@ -128,6 +130,11 @@
       httpConfigWechat() {
         httpConfigAdminApi.getConfigWechat(this.$route.params.shortId).then(res => {
           this.http.res.configWechat = res
+        })
+      },
+      httpConfigAlipay() {
+        httpConfigAdminApi.getConfigWechat(this.$route.params.shortId).then(res => {
+          this.http.res.configAlipay = res
         })
       },
       btnPrepayment(enable) {
@@ -147,6 +154,16 @@
         this.http.req.config.openWechat = enable
       },
       btnOpenAlipay(enable) {
+        if (enable && !Boolean(this.http.res.configAlipay.appId)) {
+          this.$msgBox.doModal({
+            type: 'yes',
+            title: '支付',
+            content: '尚未配置支付宝支付参数，无法启用。'
+          })
+
+          return
+        }
+
         this.http.req.config.openAlipay = enable
       },
       btnUpdate() {

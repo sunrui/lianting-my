@@ -8,5 +8,11 @@ export const httpConfigAdminApi = {
   },
   putConfigWechat(shortId, model) {
     return axios.put(`${base}/${shortId}/config/wechat`, model).then(res => res.data)
+  },
+  getConfigAlipay(shortId) {
+    return axios.get(`${base}/${shortId}/config/alipay`).then(res => res.data)
+  },
+  putConfigAlipay(shortId, model) {
+    return axios.put(`${base}/${shortId}/config/alipay`, model).then(res => res.data)
   }
 }
