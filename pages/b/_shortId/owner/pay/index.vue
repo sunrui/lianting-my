@@ -50,24 +50,24 @@
       </div>
     </div>
 
-<!--    <div class="box">-->
-<!--      <div class="addition box_radius">-->
-<!--        <div class="addition_item">-->
-<!--          <div class="addition_item_label">支付宝支付</div>-->
-<!--          <div class="addition_item_check">-->
-<!--            <div class="addition_item_check_on" v-if="http.req.config.openAlipay" @click="btnOpenAlipay(false)"></div>-->
-<!--            <div class="addition_item_check_off" v-else @click="btnOpenAlipay(true)"></div>-->
-<!--          </div>-->
-<!--        </div>-->
+    <div class="box">
+      <div class="addition box_radius">
+        <div class="addition_item">
+          <div class="addition_item_label">支付宝支付</div>
+          <div class="addition_item_check">
+            <div class="addition_item_check_on" v-if="http.req.config.openAlipay" @click="btnOpenAlipay(false)"></div>
+            <div class="addition_item_check_off" v-else @click="btnOpenAlipay(true)"></div>
+          </div>
+        </div>
 
-<!--        <div class="box_divide"></div>-->
+        <div class="box_divide"></div>
 
-<!--        <div class="addition_item" @click="btnPayAlipay">-->
-<!--          <div class="addition_item_label">参数配置</div>-->
-<!--          <div class="addition_item_link"></div>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
+        <div class="addition_item" @click="btnPayAlipay">
+          <div class="addition_item_label">参数配置</div>
+          <div class="addition_item_link"></div>
+        </div>
+      </div>
+    </div>
 
     <div class="button_box">
       <div class="button_big" @click="btnUpdate">更新</div>
@@ -133,7 +133,7 @@
         })
       },
       httpConfigAlipay() {
-        httpConfigAdminApi.getConfigWechat(this.$route.params.shortId).then(res => {
+        httpConfigAdminApi.getConfigAlipay(this.$route.params.shortId).then(res => {
           this.http.res.configAlipay = res
         })
       },
@@ -154,7 +154,7 @@
         this.http.req.config.openWechat = enable
       },
       btnOpenAlipay(enable) {
-        if (enable && !Boolean(this.http.res.configAlipay.appId)) {
+        if (enable && !Boolean(this.http.res.configAlipay.partnerId)) {
           this.$msgBox.doModal({
             type: 'yes',
             title: '支付',

@@ -184,7 +184,19 @@
             this.httpPay('WECHAT_JSAPI')
           })
         } else {
-          this.httpPay('ALIPAY_FORM')
+          httpOrderApi.getConfig(this.$route.query.shortId).then(res => {
+            if (!Boolean(res.openAlipay)) {
+              this.$msgBox.doModal({
+                type: 'yes',
+                title: '立即支付',
+                content: '商家尚未开通微信支付，请您线下付款。'
+              })
+
+              return
+            }
+
+            this.httpPay('ALIPAY_QUICK_WAP_WAY')
+          })
         }
       },
       weixinJSBridgePay(jsPay) {
@@ -301,6 +313,13 @@
 
             if (res.pay.wechat) {
               this.weixinJSBridgePay(res.pay.wechat.jsPay)
+            }
+
+            if (res.pay.alipayForm) {
+              const div = document.createElement('div')
+              div.innerHTML = res.pay.alipayForm
+              document.body.appendChild(div)
+              document.forms[0].submit()
             }
           }
         })

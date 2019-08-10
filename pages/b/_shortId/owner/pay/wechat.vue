@@ -5,7 +5,7 @@
     <div class="box">
       <div class="tip">
         <ul class="tip_ul">
-          <li>要开通微信在线支付功能，您需拥有认证微信公众号。请查阅<a class="tip_link" :href="getWechatPayUrl()">微信支付商户接入指引</a>。</li>
+          <li>要开通微信在线支付功能，您需拥有认证微信公众号。请查阅<a class="tip_link" href="http://kf.qq.com/faq/180910jimEvQ180910Zj6jQV.html">微信支付商户接入指引</a>。</li>
           <li>开通特约商户支付需提交姓名、身份证、手机、邮箱、营业执照、收款银行卡等资料至微信备案。</li>
           <li>为了保护您的隐私安全，暂不支持在线提交，请联系恋厅客服人工提交。微信审核通过后，就可以使用微信在线支付了。</li>
           <li>您的交易没有任何订单抽成，所有交易将直接与微信通讯并实时打款至您的收款账户。</li>
@@ -19,7 +19,7 @@
           <div class="addition_item_label">公众号 appId</div>
           <label>
             <input type="text" class="addition_item_input"
-                   placeholder="请输入公众号 appId" maxlength="20" v-model="http.req.config.subAppId">
+                   placeholder="请输入公众号 appId" maxlength="64" v-model="http.req.config.subAppId">
           </label>
         </div>
 
@@ -29,7 +29,7 @@
           <div class="addition_item_label">商户号 mch_id</div>
           <label>
             <input type="text" class="addition_item_input"
-                   placeholder="请输入商户号 mch_id" maxlength="20" v-model="http.req.config.subMchId">
+                   placeholder="请输入商户号 mch_id" maxlength="64" v-model="http.req.config.subMchId">
           </label>
         </div>
 
@@ -57,7 +57,7 @@
 
   export default {
     metaInfo: {
-      title: '支付'
+      title: '微信支付'
     },
     middleware: 'auth',
     components: {TitleBar},
@@ -65,7 +65,7 @@
       return {
         title: {
           canBack: true,
-          title: '支付',
+          title: '微信支付',
           backUri: `/b/${this.$route.params.shortId}/owner/pay`,
           theme: 'image',
           imageHeight: 300
@@ -85,9 +85,6 @@
       this.httpConfig()
     },
     methods: {
-      getWechatPayUrl() {
-        return 'http://kf.qq.com/faq/180910jimEvQ180910Zj6jQV.html'
-      },
       httpConfig() {
         httpConfigAdminApi.getConfigWechat(this.$route.params.shortId).then(res => {
           this.http.req.config = res
@@ -100,7 +97,7 @@
         if (!Boolean(this.http.req.config.subAppId)) {
             this.$msgBox.doModal({
               type: 'yes',
-              title: '支付',
+              title: '微信支付',
               content: '请输入公众号 appId。'
             })
 
@@ -110,7 +107,7 @@
         if (!Boolean(this.http.req.config.subMchId)) {
             this.$msgBox.doModal({
               type: 'yes',
-              title: '支付',
+              title: '微信支付',
               content: '请输入商户号 mch_id。'
             })
 

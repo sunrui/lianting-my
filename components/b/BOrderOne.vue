@@ -251,7 +251,9 @@
       </div>
     </div>
 
-    <div class="blank_30" v-if="http.res.order.status === 'Finish' || http.res.order.status === 'Closed'"></div>
+    <div class="button_box" v-if="http.res.order.status === 'Finish' || http.res.order.status === 'Closed'">
+      <div class="button_big" @click="btnPrint">打印顾客收据</div>
+    </div>
     <div class="button_box" v-else-if="http.res.order.status === 'NotPaid' && roleType !== 'admin' && roleType !== 'retailer'">
       <div class="button_big" @click="btnFood" v-if="roleType === 'waiter'">加餐</div>
       <div class="button_small" @click="btnChangePrice" v-if="roleType === 'cashier'">更改价格</div>
@@ -1159,6 +1161,32 @@
       },
       btnPrintReceipt(enable) {
         this.ui.printReceipt = enable
+      },
+      btnPrint() {
+        let orderOneIds = []
+        orderOneIds.push(this.$route.params.orderOneId)
+
+        httpPrinterAdminApi.postReceipt(this.$route.params.shortId, orderOneIds).then(res => {
+          if (res.orderIdNotExists) {
+            this.$msgBox.doModal({
+              type: 'yes',
+              title: '无法打印顾客收据',
+              content: '部分订单号不存在。'
+            }).then(async (val) => {
+              this.httpOrder()
+            })
+          }
+
+          if (res.printerTaskId) {
+            this.$msgBox.doModal({
+              type: 'yes',
+              title: '顾客收据',
+              content: '顾客收据已打印。'
+            }).then(async (val) => {
+              this.httpOrder()
+            })
+          }
+        })
       }
     }
   }
