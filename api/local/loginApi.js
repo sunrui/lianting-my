@@ -1,6 +1,6 @@
 export const loginApi = {
   wechatAppId: 'wxdd2ac18f974e8e70',
-  alipayAppId: '2018010501607494',
+  alipayAppId: '2019040463763558',
   loginWechat(shortId, scope, r) {
     if (!Boolean(scope)) {
       scope = 'snsapi_base'
