@@ -22,11 +22,12 @@ export const httpUserApi = {
   //     password: passwords
   //   }).then(res => res.data)
   // },
-  postLoginAlipay(shortId, code, state) {
+  postLoginAlipay(shortId, code, state, scope) {
     return axios.post(`${base}/login/alipay`, {
       shortId: shortId,
       code: code,
       state: state,
+      scope: scope,
       maxAge: maxAge
     }).then(res => res.data)
   },

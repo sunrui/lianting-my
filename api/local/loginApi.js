@@ -2,10 +2,11 @@ export const loginApi = {
   wechatAppId: 'wxdd2ac18f974e8e70',
   alipayAppId: '2018010501607494',
   loginWechat(shortId, scope, r) {
-    r = document.location.protocol + '//' + window.location.host + `/login/wechat?r=${r}&shortId=${shortId}`
     if (!Boolean(scope)) {
       scope = 'snsapi_base'
     }
+
+    r = document.location.protocol + '//' + window.location.host + `/login/wechat?r=${r}&shortId=${shortId}&scope=${scope}`
 
     let state = 'csrf_uncheck'
 
@@ -14,10 +15,11 @@ export const loginApi = {
     window.location.href = r
   },
   loginAlipay(shortId, scope, r) {
-    r = document.location.protocol + '//' + window.location.host + `/login/alipay?r=${r}&shortId=${shortId}`
     if (!Boolean(scope)) {
       scope = 'auth_base'
     }
+
+    r = document.location.protocol + '//' + window.location.host + `/login/alipay?r=${r}&shortId=${shortId}&scope=${scope}`
 
     let state = 'csrf_uncheck'
 
