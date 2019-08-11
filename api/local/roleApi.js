@@ -1,5 +1,9 @@
 export const roleApi = {
   getRoleTypeName(type) {
+    if (!Boolean(type)) {
+      return '未知'
+    }
+
     type = type.toLowerCase()
 
     if (type === 'admin') {

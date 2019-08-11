@@ -26,11 +26,11 @@
         <div class="order_history_detail order_history_detail_mix" @click="btnOrderReceipt()">查看详情</div>
       </div>
 
-      <div class="white blank_5 box_radius_footer"></div>
+      <div class="white blank_10 box_radius_footer"></div>
     </div>
 
     <scroller class="scroller"
-              v-bind:class="{scroller_order_mix: ui.tableOneId && getTableNotPaidTotal().order > 0}"
+              v-bind:class="{scroller_order: ui.tableOneId && getTableNotPaidTotal().order > 0}"
               noDataText=""
               ref="bOrder"
               :on-refresh="onRefresh"

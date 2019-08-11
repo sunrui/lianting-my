@@ -19,6 +19,12 @@
 </script>
 
 <style scoped lang="scss">
+  html, body {
+    font-size: 26px;
+    margin: 0;
+    padding: 0;
+  }
+
   .container {
     font-size: 26px;
     margin: 0;
