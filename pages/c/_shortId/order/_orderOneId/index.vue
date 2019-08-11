@@ -206,7 +206,10 @@
       <div class="button_big" @click="btnPay" v-if="http.res.order.type === 'Takeout'">立即支付</div>
       <div class="button_big" @click="btnCancel" v-if="http.res.order.type === 'Takeout'">取消订单</div>
     </div>
-    <div class="blank_30" v-else></div>
+    <div class="button_box" v-else-if="http.res.order.status === 'Paid'">
+      <div class="button_big" @click="btnFood" v-if="http.res.order.type === 'ForHere'">加餐</div>
+    </div>
+    <div v-else class="blank_30"></div>
 
     <transition name="toggle">
       <div class="modal_bottom" v-if="ui.vCancel">
