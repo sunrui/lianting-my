@@ -160,6 +160,52 @@
           price: price
         }
       },
+      sortOrder() {
+        this.ui.scroller.elements.sort(function (a, b) {
+          return b.createdAt - a.createdAt
+        })
+
+        let orderOnes = []
+
+        function addOne(orderOne) {
+          let have = false
+          for (let i in orderOnes) {
+            let one = orderOnes[i]
+
+            if (one.id === orderOne.id) {
+              have = true
+              break
+            }
+          }
+
+          if (!have) {
+            orderOnes.push(orderOne)
+          }
+        }
+
+        for (let index in this.ui.scroller.elements) {
+          let orderOne = this.ui.scroller.elements[index]
+
+          if (orderOne.status === 'NotPaid') {
+            addOne(orderOne)
+          }
+        }
+
+        for (let index in this.ui.scroller.elements) {
+          let orderOne = this.ui.scroller.elements[index]
+
+          if (orderOne.status === 'Paid') {
+            addOne(orderOne)
+          }
+        }
+
+        for (let index in this.ui.scroller.elements) {
+          let orderOne = this.ui.scroller.elements[index]
+            addOne(orderOne)
+        }
+
+        this.ui.scroller.elements = orderOnes
+      },
       httpOrder(done) {
         let live = (this.roleType !== 'admin' && this.roleType !== 'retailer')
 
@@ -183,9 +229,7 @@
             }
 
             this.ui.scroller.elements = this.ui.scroller.elements.concat(res.elements)
-            this.ui.scroller.elements.sort(function (a, b) {
-              return b.createdAt - a.createdAt
-            })
+            this.sortOrder()
           })
         } else if (this.date) {
           httpOrderAdminApi.getAllByDate(this.$route.params.shortId, 'ForHere', this.date, this.ui.scroller.page++, 20).then(res => {
@@ -207,9 +251,7 @@
             }
 
             this.ui.scroller.elements = this.ui.scroller.elements.concat(res.elements)
-            this.ui.scroller.elements.sort(function (a, b) {
-              return b.createdAt - a.createdAt
-            })
+            this.sortOrder()
           })
         } else {
           httpOrderAdminApi.getAll(this.$route.params.shortId, 'ForHere', live, this.ui.scroller.page++, 20).then(res => {
@@ -231,9 +273,7 @@
             }
 
             this.ui.scroller.elements = this.ui.scroller.elements.concat(res.elements)
-            this.ui.scroller.elements.sort(function (a, b) {
-              return b.createdAt - a.createdAt
-            })
+            this.sortOrder()
           })
         }
       },

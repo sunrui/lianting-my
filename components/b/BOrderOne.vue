@@ -252,7 +252,7 @@
     </div>
 
     <div class="button_box" v-if="http.res.order.status === 'Finish' || http.res.order.status === 'Closed'">
-      <div class="button_big" @click="btnPrint">打印顾客收据</div>
+      <div class="button_big" v-if="http.res.order.orderFoods && http.res.order.orderFoods.length > 0" @click="btnPrint">打印顾客收据</div>
     </div>
     <div class="button_box" v-else-if="http.res.order.status === 'NotPaid' && roleType !== 'admin' && roleType !== 'retailer'">
       <div class="button_big" @click="btnFood" v-if="roleType === 'waiter'">加餐</div>

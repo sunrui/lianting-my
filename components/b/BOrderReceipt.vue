@@ -211,7 +211,7 @@
     </div>
 
     <div class="button_box" v-if="ui.receipt.orderFirst.status === 'Finish' || ui.receipt.orderFirst.status === 'Closed'">
-      <div class="button_big" @click="btnPrint">打印顾客收据</div>
+      <div class="button_big" v-if="ui.receipt.orderFirst.orderFoods && ui.receipt.orderFirst.orderFoods.length > 0" @click="btnPrint">打印顾客收据</div>
     </div>
     <div class="button_box" v-else-if="ui.receipt.orderFirst.status === 'NotPaid' && roleType !== 'admin' && roleType !== 'retailer'">
       <div class="button_small" @click="btnPayOffline" v-if="roleType === 'cashier'">线下结算</div>
