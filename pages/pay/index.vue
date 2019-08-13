@@ -129,16 +129,6 @@
         // this.ui.type = type
       },
       btnPay() {
-        if (this.ui.type !== 'order') {
-          this.$msgBox.doModal({
-            type: 'yes',
-            title: '立即支付',
-            content: '仅支持餐费买单。'
-          })
-
-          return
-        }
-
         if (!this.$route.query.shortId) {
           this.$msgBox.doModal({
             type: 'yes',
@@ -164,7 +154,7 @@
             this.$msgBox.doModal({
               type: 'yes',
               title: '立即支付',
-              content: '请在微信中使用。'
+              content: '微信支付在支付宝中无法使用，请使用支付宝支付或线下付款。'
             })
 
             return
@@ -184,6 +174,34 @@
             this.httpPay('WECHAT_JSAPI')
           })
         } else {
+          if (wechatApi.inWechat()) {
+            this.$msgBox.doModal({
+              type: 'yesOrNo',
+              title: '立即支付',
+              content: '在微信中使用支付宝时会受到阻止，但您仍可以在复制链接后继续付款。'
+            }).then(async (val) => {
+              if (val !== 'Yes') {
+                return
+              }
+
+              httpOrderApi.getConfig(this.$route.query.shortId).then(res => {
+                if (!Boolean(res.openAlipay)) {
+                  this.$msgBox.doModal({
+                    type: 'yes',
+                    title: '立即支付',
+                    content: '商家尚未开通支付宝支付，请您线下付款。'
+                  })
+
+                  return
+                }
+
+                this.httpPay('ALIPAY_QUICK_WAP_WAY')
+              })
+            })
+
+            return
+          }
+
           httpOrderApi.getConfig(this.$route.query.shortId).then(res => {
             if (!Boolean(res.openAlipay)) {
               this.$msgBox.doModal({
