@@ -107,7 +107,7 @@
         ui: {
           code: {
             limit: 0,
-            interval: 0
+            interval: null
           }
         }
       }

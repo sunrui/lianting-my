@@ -129,8 +129,6 @@
       this.title.title = '订单记录 - ' + roleApi.getRoleTypeName(this.roleType)
 
       this.ui.tableOneId = this.$route.query.tableOneId
-
-      this.onRefresh(null)
     },
     methods: {
       dateFormat(date) {
@@ -176,7 +174,7 @@
             }
 
             if (res.currentPageSize === 0) {
-              if (!this.ui.scroller.haveMore && this.ui.scroller.elements.length === 0) {
+              if (this.ui.scroller.page === 1) {
                 this.$router.push(`/b/${this.$route.params.shortId}/${this.roleType}/order/empty`)
               } else {
                 this.ui.scroller.haveMore = false
@@ -200,7 +198,7 @@
             }
 
             if (res.currentPageSize === 0) {
-              if (!this.ui.scroller.haveMore && this.ui.scroller.elements.length === 0) {
+              if (this.ui.scroller.page === 1) {
                 this.$router.push(`/b/${this.$route.params.shortId}/${this.roleType}/order/empty`)
               } else {
                 this.ui.scroller.haveMore = false
@@ -224,7 +222,7 @@
             }
 
             if (res.currentPageSize === 0) {
-              if (!this.ui.scroller.haveMore && this.ui.scroller.elements.length === 0) {
+              if (this.ui.scroller.page === 1) {
                 this.$router.push(`/b/${this.$route.params.shortId}/${this.roleType}/order/empty`)
               } else {
                 this.ui.scroller.haveMore = false

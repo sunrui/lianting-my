@@ -289,7 +289,7 @@
         })
       },
       httpOrder() {
-        httpOrderAdminApi.getAll(this.$route.params.shortId, 'ForHere', 1, 0, 99).then(res => {
+        httpOrderAdminApi.getAll(this.$route.params.shortId, 'ForHere', 1, 0, 500).then(res => {
           this.http.res.orders = res
         })
       },
@@ -492,7 +492,7 @@
         scrollApi.enable(true)
 
         let live = (this.roleType !== 'admin' && this.roleType !== 'retailer')
-        httpOrderAdminApi.getAllByTableOneId(this.$route.params.shortId, table.id, live, 0, 2).then(res => {
+        httpOrderAdminApi.getAllByTableOneId(this.$route.params.shortId, table.id, live, 0, 20).then(res => {
           if (res.currentPageSize === 0) {
             this.$router.push(`/b/${this.$route.params.shortId}/${this.roleType}/order/empty`)
             return

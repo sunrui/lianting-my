@@ -97,8 +97,6 @@
           this.$router.push(this.title.backUri)(-1)
         })
       }
-
-      this.httpReserveDay(null)
     },
     methods: {
       onRefresh(done) {
@@ -133,7 +131,7 @@
           }
 
           if (res.currentPageSize === 0) {
-            if (!this.ui.scroller.haveMore && this.ui.scroller.elements.length === 0) {
+            if (this.ui.scroller.page === 1) {
               this.$router.push(`/b/${this.$route.params.shortId}/waiter/reserve/empty`)
             } else {
               this.ui.scroller.haveMore = false

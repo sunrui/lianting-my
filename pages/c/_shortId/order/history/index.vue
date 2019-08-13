@@ -89,9 +89,6 @@
         }
       }
     },
-    mounted() {
-      this.httpOrder(null)
-    },
     methods: {
       dateFormat(date) {
         return timeApi.dateFormat(date)
@@ -110,7 +107,7 @@
           }
 
           if (res.currentPageSize === 0) {
-            if (!this.ui.scroller.haveMore && this.ui.scroller.elements.length === 0) {
+            if (this.ui.scroller.page === 1) {
               this.$router.push(`/c/${this.$route.params.shortId}/order/history/empty`)
             } else {
               this.ui.scroller.haveMore = false

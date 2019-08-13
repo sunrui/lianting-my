@@ -90,27 +90,13 @@
             page: 0,
             elements: [],
             haveMore: true
-          },
-          interval: null
+          }
         }
-      }
-    },
-    mounted() {
-      this.autoRefresh()
-      this.ui.interval = setInterval(this.autoRefresh, 10 * 1000)
-    },
-    beforeDestroy() {
-      if (this.ui.interval) {
-        clearInterval(this.ui.interval)
-        this.ui.interval = null
       }
     },
     methods: {
       dateFormat(date) {
         return timeApi.dateFormat(date)
-      },
-      autoRefresh() {
-        this.onRefresh(null)
       },
       onRefresh(done) {
         this.ui.scroller.page = 0
@@ -128,7 +114,7 @@
           }
 
           if (res.currentPageSize === 0) {
-            if (!this.ui.scroller.haveMore && this.ui.scroller.elements.length === 0) {
+            if (this.ui.scroller.page === 1) {
               this.$router.push(`/b/${this.$route.params.shortId}/takeout/empty`)
             } else {
               this.ui.scroller.haveMore = false
