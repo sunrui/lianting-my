@@ -96,8 +96,8 @@
     data() {
       return {
         title: {
-          canBack: false,
-          backUri: null,
+          canBack: true,
+          backUri: `/b/${this.$route.params.shortId}/owner`,
           title: '展屏',
           theme: 'image',
           imageHeight: 300
@@ -152,7 +152,7 @@
     },
     methods: {
       getTvUrl() {
-        return document.location.protocol + '//' + window.location.host + `/b/${this.$route.params.shortId}/tv`
+        return `https://shop.lt.city/b/${this.$route.params.shortId}/tv`
       },
       updateTime() {
         let date = new Date()

@@ -1,7 +1,7 @@
 <template>
   <div class="container" v-show="false" id="nuxt_div">
-    <loading v-show="false" id="nuxt_loading"></loading>
     <nuxt/>
+    <loading v-show="false" id="nuxt_loading"></loading>
   </div>
 </template>
 
