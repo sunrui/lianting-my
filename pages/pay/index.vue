@@ -174,34 +174,6 @@
             this.httpPay('WECHAT_JSAPI')
           })
         } else {
-          if (wechatApi.inWechat()) {
-            this.$msgBox.doModal({
-              type: 'yesOrNo',
-              title: '立即支付',
-              content: '在微信中使用支付宝时会受到阻止，但您仍可以在复制链接后继续付款。'
-            }).then(async (val) => {
-              if (val !== 'Yes') {
-                return
-              }
-
-              httpOrderApi.getConfig(this.$route.query.shortId).then(res => {
-                if (!Boolean(res.openAlipay)) {
-                  this.$msgBox.doModal({
-                    type: 'yes',
-                    title: '立即支付',
-                    content: '商家尚未开通支付宝支付，请您线下付款。'
-                  })
-
-                  return
-                }
-
-                this.httpPay('ALIPAY_QUICK_WAP_WAY')
-              })
-            })
-
-            return
-          }
-
           httpOrderApi.getConfig(this.$route.query.shortId).then(res => {
             if (!Boolean(res.openAlipay)) {
               this.$msgBox.doModal({
@@ -213,7 +185,21 @@
               return
             }
 
-            this.httpPay('ALIPAY_QUICK_WAP_WAY')
+            if (wechatApi.inWechat()) {
+              this.$msgBox.doModal({
+                type: 'yesOrNo',
+                title: '立即支付',
+                content: '在微信中使用支付宝时会受到阻止，但您仍可以在复制链接后继续付款。'
+              }).then(async (val) => {
+                if (val !== 'Yes') {
+                  return
+                }
+
+                this.httpPay('ALIPAY_QUICK_WAP_WAY')
+              })
+            } else {
+              this.httpPay('ALIPAY_QUICK_WAP_WAY')
+            }
           })
         }
       },
