@@ -28,6 +28,15 @@
           </div>
         </div>
 
+        <div class="box_divide"></div>
+
+        <div class="addition_item">
+          <div class="addition_item_label">自动上菜</div>
+          <div class="addition_item_check">
+            <div class="addition_item_check_on" v-if="http.req.config.foodFinishAuto" @click="btnFoodFinishAuto(false)"></div>
+            <div class="addition_item_check_off" v-else @click="btnFoodFinishAuto(true)"></div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -103,7 +112,8 @@
               perTablewarePrice: null,
               prepayment: false,
               openWechat: false,
-              openAlipay: false
+              openAlipay: false,
+              foodFinishAuto: true
             }
           },
           res: {
@@ -139,6 +149,9 @@
       },
       btnPrepayment(enable) {
         this.http.req.config.prepayment = enable
+      },
+      btnFoodFinishAuto(enable) {
+        this.http.req.config.foodFinishAuto = enable
       },
       btnOpenWechat(enable) {
         if (enable && !Boolean(this.http.res.configWechat.subAppId)) {
