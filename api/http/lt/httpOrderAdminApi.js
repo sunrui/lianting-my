@@ -69,6 +69,9 @@ export const httpOrderAdminApi = {
       reason: reason
     }).then(res => res.data)
   },
+  deleteOne(shortId, orderOneId) {
+    return axios.delete(`${base}/${shortId}/order/${orderOneId}`).then(res => res.data)
+  },
   postRefund(shortId, orderOneId, reason) {
     return axios.post(`${base}/${shortId}/order/${orderOneId}/refund`, {
       reason: reason

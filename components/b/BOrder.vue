@@ -39,7 +39,10 @@
       <div class="box" v-for="order in ui.scroller.elements">
         <div class="list_title box_radius_header">
           <div class="list_time_icon"></div>
-          <div class="list_time_label">{{dateFormat(new Date(parseInt(order.createdAt)))}}</div>
+          <div class="list_time_label" v-bind:class="{
+          list_time_label_deleted: order.deletedAt
+          }">{{dateFormat(new Date(parseInt(order.createdAt)))}}
+          </div>
           <div class="order_history_status order_history_status_finish" v-if="order.status === 'Finish'">已完成</div>
           <div class="order_history_status order_history_status_not_paid" v-if="order.status === 'NotPaid'">未支付</div>
           <div class="order_history_status order_history_status_eating" v-if="order.status === 'Paid'">进行中</div>
@@ -167,6 +170,8 @@
 
         let orderOnes = []
 
+        let pThis = this
+
         function addOne(orderOne) {
           let have = false
           for (let i in orderOnes) {
@@ -179,7 +184,11 @@
           }
 
           if (!have) {
-            orderOnes.push(orderOne)
+            if (pThis.roleType === 'owner') {
+              orderOnes.push(orderOne)
+            } else if (!Boolean(orderOne.deletedAt)) {
+              orderOnes.push(orderOne)
+            }
           }
         }
 
@@ -201,10 +210,14 @@
 
         for (let index in this.ui.scroller.elements) {
           let orderOne = this.ui.scroller.elements[index]
-            addOne(orderOne)
+          addOne(orderOne)
         }
 
         this.ui.scroller.elements = orderOnes
+
+        if (this.ui.scroller.elements.length === 0) {
+          this.$router.push(`/b/${this.$route.params.shortId}/${this.roleType}/order/empty`)
+        }
       },
       httpOrder(done) {
         let live = (this.roleType !== 'admin' && this.roleType !== 'retailer')
@@ -232,7 +245,7 @@
             this.sortOrder()
           })
         } else if (this.date) {
-          httpOrderAdminApi.getAllByDate(this.$route.params.shortId, 'ForHere', this.date, this.ui.scroller.page++, 20).then(res => {
+          httpOrderAdminApi.getAllByDate(this.$route.params.shortId, null, this.date, this.ui.scroller.page++, 20).then(res => {
             if (done) {
               done()
             }

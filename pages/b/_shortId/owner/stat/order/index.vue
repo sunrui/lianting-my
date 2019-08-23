@@ -23,7 +23,7 @@
 
           <div v-if="http.res.statOrder.elements.length > 0">
             <div v-for="statOrder in http.res.statOrder.elements">
-              <div class="order_body_content" @click="btnOrder(statOrder.dateTime)">
+              <div class="order_body_content" @click="btnOrder(statOrder.lastDateTime)">
                 <div class="order_body_content_one">{{getDate(statOrder.dateTime)}}</div>
                 <div class="order_body_content_one">{{statOrder.totalOrder}}</div>
                 <div class="order_body_content_one order_body_content_one2">{{dateFormat(new Date(parseInt(statOrder.lastDateTime)))}}</div>
