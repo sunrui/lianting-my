@@ -254,7 +254,6 @@
     <div class="button_box">
       <div v-if="http.res.order.status === 'Finish' || http.res.order.status === 'Closed'">
         <div class="button_big" v-if="http.res.order.orderFoods && http.res.order.orderFoods.length > 0" @click="btnPrint">打印顾客收据</div>
-        <div class="button_big" v-if="!http.res.order.deletedAt && (roleType === 'owner' || roleType === 'admin' || roleType === 'retailer')" @click="btnDelete">删除订单</div>
       </div>
       <div v-else-if="http.res.order.status === 'NotPaid' && roleType !== 'admin' && roleType !== 'retailer'">
         <div class="button_big" @click="btnFood" v-if="roleType === 'waiter'">加餐</div>
@@ -1080,37 +1079,6 @@
               this.httpOrder()
             })
           }
-        })
-      },
-      btnDelete() {
-        this.$msgBox.doModal({
-          type: 'yesOrNo',
-          title: '删除订单',
-          content: '删除的订单将不再可见，仅管理员可恢复查看删除订单，您确认吗?'
-        }).then(async (val) => {
-          if (val !== 'Yes') {
-            return
-          }
-
-          httpOrderAdminApi.deleteOne(this.$route.params.shortId, this.$route.params.orderOneId).then(res => {
-            if (res.orderOneIdNotExists) {
-              this.$msgBox.doModal({
-                type: 'yes',
-                title: '删除订单',
-                content: '订单不存在。'
-              }).then(async (val) => {
-                this.httpOrder()
-              })
-            } else if (res.success) {
-              this.$msgBox.doModal({
-                type: 'yes',
-                title: '删除订单',
-                content: '订单已删除。'
-              }).then(async (val) => {
-                this.$router.push(`/b/${this.$route.params.shortId}/${this.roleType}`)
-              })
-            }
-          })
         })
       },
       btnChooseReturnRemark(remark) {

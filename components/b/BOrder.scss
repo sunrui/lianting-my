@@ -2,8 +2,25 @@
   margin-top: 430px !important;
 }
 
-.list_time_label_deleted {
-  text-decoration: line-through;
+.order_history_delete {
+  background-image: url("/img/common/delete.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  width: 28px;
+  height: 30px;
+
+  position: absolute;
+  right: 30px;
+  top: px2rem((90 - 28 + 6) / 2)
+}
+
+.order_history_status_delete {
+  margin-right: px2rem(30 + 20 + 28) !important;
+}
+
+.list_order_deleted {
+  color: rgba(221, 221, 221, 1);
+  text-decoration: line-through !important;
 }
 
 .order_history_footer_mix {

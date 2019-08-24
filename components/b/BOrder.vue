@@ -40,13 +40,30 @@
         <div class="list_title box_radius_header">
           <div class="list_time_icon"></div>
           <div class="list_time_label" v-bind:class="{
-          list_time_label_deleted: order.deletedAt
+          list_order_deleted: order.deletedAt
           }">{{dateFormat(new Date(parseInt(order.createdAt)))}}
           </div>
-          <div class="order_history_status order_history_status_finish" v-if="order.status === 'Finish'">已完成</div>
-          <div class="order_history_status order_history_status_not_paid" v-if="order.status === 'NotPaid'">未支付</div>
-          <div class="order_history_status order_history_status_eating" v-if="order.status === 'Paid'">进行中</div>
-          <div class="order_history_status order_history_status_closed" v-if="order.status === 'Closed'">已取消</div>
+          <div class="order_history_status order_history_status_finish" v-bind:class="{
+          list_order_deleted: order.deletedAt,
+          order_history_status_delete: roleType === 'owner'
+          }" v-if="order.status === 'Finish'">已完成
+          </div>
+          <div class="order_history_status order_history_status_not_paid" v-bind:class="{
+          list_order_deleted: order.deletedAt,
+          order_history_status_delete: roleType === 'owner'
+          }" v-if="order.status === 'NotPaid'">未支付
+          </div>
+          <div class="order_history_status order_history_status_eating" v-bind:class="{
+          list_order_deleted: order.deletedAt,
+          order_history_status_delete: roleType === 'owner'
+          }" v-if="order.status === 'Paid'">进行中
+          </div>
+          <div class="order_history_status order_history_status_closed" v-bind:class="{
+          list_order_deleted: order.deletedAt,
+          order_history_status_delete: roleType === 'owner'
+          }" v-if="order.status === 'Closed'">已取消
+          </div>
+          <div class="order_history_delete" @click="btnDelete(order)" v-if="roleType === 'owner'"></div>
         </div>
 
         <div class="box_divide_radius">
@@ -295,6 +312,19 @@
       },
       btnDetail(order) {
         this.$router.push(`/b/${this.$route.params.shortId}/${this.roleType}/order/${order.id}`)
+      },
+      btnDelete(order) {
+        order.deletedAt = !order.deletedAt
+
+        httpOrderAdminApi.putDelete(this.$route.params.shortId, order.id, order.deletedAt).then(res => {
+          if (res.orderOneIdNotExists) {
+            this.$msgBox.doModal({
+              type: 'yes',
+              title: '删除订单',
+              content: '订单不存在。'
+            })
+          }
+        })
       },
       onInfinite(done) {
         if (!this.ui.scroller.haveMore) {
