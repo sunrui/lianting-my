@@ -2,6 +2,8 @@
   <div>
     <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
+    <div class="title_bar_printer" v-if="http.res.order.orderFoods && http.res.order.orderFoods.length > 0" @click="btnPrint"></div>
+
     <div :class="{ cover_mask_9: ui.vCoverMask}" @click="btnCoverMask"></div>
 
     <div class="box" v-if="http.res.order.orderTakeout">
@@ -251,20 +253,16 @@
       </div>
     </div>
 
-    <div class="button_box">
-      <div v-if="http.res.order.status === 'Finish' || http.res.order.status === 'Closed'">
-        <div class="button_big" v-if="http.res.order.orderFoods && http.res.order.orderFoods.length > 0" @click="btnPrint">打印顾客收据</div>
-      </div>
-      <div v-else-if="http.res.order.status === 'NotPaid' && roleType !== 'admin' && roleType !== 'retailer'">
-        <div class="button_big" @click="btnFood" v-if="roleType === 'waiter'">加餐</div>
-        <div class="button_small" @click="btnChangePrice" v-if="roleType === 'cashier'">更改价格</div>
-        <div class="button_small" @click="btnPayOffline" v-if="roleType === 'cashier'">线下结算</div>
-      </div>
-      <div v-else-if="roleType === 'admin' || roleType === 'retailer'">
-        <div class="button_big" v-if="http.res.order.status !== 'Paid'" @click="btnChangePrice">更改价格</div>
-        <div class="button_big" v-if="http.res.order.status !== 'Paid'" @click="btnPayOffline">线下结算</div>
-        <div class="button_big" @click="btnCancel">取消订单</div>
-      </div>
+    <div class="blank_30" v-if="http.res.order.status === 'Finish' || http.res.order.status === 'Closed'"></div>
+    <div class="button_box" v-else-if="http.res.order.status === 'NotPaid' && roleType !== 'admin' && roleType !== 'retailer'">
+      <div class="button_big" @click="btnFood" v-if="roleType === 'waiter'">加餐</div>
+      <div class="button_small" @click="btnChangePrice" v-if="roleType === 'cashier'">更改价格</div>
+      <div class="button_small" @click="btnPayOffline" v-if="roleType === 'cashier'">线下结算</div>
+    </div>
+    <div class="button_box" v-else-if="roleType === 'admin' || roleType === 'retailer'">
+      <div class="button_big" v-if="http.res.order.status !== 'Paid'" @click="btnChangePrice">更改价格</div>
+      <div class="button_big" v-if="http.res.order.status !== 'Paid'" @click="btnPayOffline">线下结算</div>
+      <div class="button_big" @click="btnCancel">取消订单</div>
     </div>
 
     <transition name="toggle">
@@ -1165,29 +1163,39 @@
         this.ui.printReceipt = enable
       },
       btnPrint() {
-        let orderOneIds = []
-        orderOneIds.push(this.$route.params.orderOneId)
-
-        httpPrinterAdminApi.postReceipt(this.$route.params.shortId, orderOneIds).then(res => {
-          if (res.orderIdNotExists) {
-            this.$msgBox.doModal({
-              type: 'yes',
-              title: '无法打印顾客收据',
-              content: '部分订单号不存在。'
-            }).then(async (val) => {
-              this.httpOrder()
-            })
+        this.$msgBox.doModal({
+          type: 'yesOrNo',
+          title: '打印顾客收据',
+          content: '打印顾客收据请求将发送至打印机，您确认吗？'
+        }).then(async (val) => {
+          if (val !== 'Yes') {
+            return
           }
 
-          if (res.printerTaskId) {
-            this.$msgBox.doModal({
-              type: 'yes',
-              title: '顾客收据',
-              content: '顾客收据已打印。'
-            }).then(async (val) => {
-              this.httpOrder()
-            })
-          }
+          let orderOneIds = []
+          orderOneIds.push(this.$route.params.orderOneId)
+
+          httpPrinterAdminApi.postReceipt(this.$route.params.shortId, orderOneIds).then(res => {
+            if (res.orderIdNotExists) {
+              this.$msgBox.doModal({
+                type: 'yes',
+                title: '无法打印顾客收据',
+                content: '部分订单号不存在。'
+              }).then(async (val) => {
+                this.httpOrder()
+              })
+            }
+
+            if (res.printerTaskId) {
+              this.$msgBox.doModal({
+                type: 'yes',
+                title: '顾客收据',
+                content: '顾客收据已打印。'
+              }).then(async (val) => {
+                this.httpOrder()
+              })
+            }
+          })
         })
       }
     }
