@@ -158,7 +158,7 @@
 
     <div class="box">
       <div class="addition box_radius">
-        <div class="addition_item" @click="btnOrderStatus">
+        <div class="addition_item" @click="btnPayOffline">
           <div class="addition_item_label">订单状态</div>
           <div class="addition_item_content">{{
             ui.receipt.orderFirst.status === 'Paid' ? '已支付' :
@@ -904,14 +904,19 @@
 
         return timeApi.dateFormat(new Date(time), 'HH:mm')
       },
-      btnOrderStatus() {
+      btnPayOffline() {
         if (this.roleType !== 'admin' && this.roleType !== 'cashier' && this.roleType !== 'retailer') {
           return
         }
 
-        this.btnPayOffline()
-      },
-      btnPayOffline() {
+        if (this.http.res.orderOnes.elements === 0) {
+          return
+        }
+
+        if (this.http.res.orderOnes.elements[0].status !== 'NotPaid') {
+          return
+        }
+
         this.ui.vCoverMask = true
         scrollApi.enable(false)
 

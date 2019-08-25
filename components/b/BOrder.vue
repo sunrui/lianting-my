@@ -314,15 +314,19 @@
         this.$router.push(`/b/${this.$route.params.shortId}/${this.roleType}/order/${order.id}`)
       },
       btnDelete(order) {
-        order.deletedAt = !order.deletedAt
-
-        httpOrderAdminApi.putDelete(this.$route.params.shortId, order.id, order.deletedAt).then(res => {
+        httpOrderAdminApi.putDelete(this.$route.params.shortId, order.id, !order.deletedAt).then(res => {
           if (res.orderOneIdNotExists) {
             this.$msgBox.doModal({
               type: 'yes',
               title: '删除订单',
               content: '订单不存在。'
             })
+
+            return
+          }
+
+          if (res.success) {
+            this.$set(order, 'deletedAt', !order.deletedAt)
           }
         })
       },
