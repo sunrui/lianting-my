@@ -41,10 +41,7 @@
     "qrcode": "^1.4.1",
     "sortablejs": "^1.10.0-rc3",
     "store": "^2.0.12",
-    "vue": "^2.6.10",
     "vue-scroller": "^2.2.4",
-    "vue-server-renderer": "^2.6.10",
-    "vue-template-compiler": "^2.6.10",
     "weixin-js-sdk": "^1.4.0-test"
   },
   "devDependencies": {
@@ -53,6 +50,6 @@
     "postcss-loader": "^3.0.0",
     "postcss-px2rem": "^0.3.0",
     "sass-loader": "^7.3.1",
-    "webpack": "^4.39.2"
+    "webpack": "^4.39.3"
   }
 }
