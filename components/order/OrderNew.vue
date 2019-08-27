@@ -315,6 +315,8 @@
         this.ui.vCoverMask = false
         scrollApi.enable(true)
 
+        scrollApi.scrollAnimation(scrollApi.getCurrentY(), scrollApi.getCurrentBottom())
+
         cartApi.setPeople(this.ui.selectPeople)
         this.$store.commit('cart/update', cartApi.getCart())
 

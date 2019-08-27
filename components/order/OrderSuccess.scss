@@ -14,7 +14,7 @@
 }
 
 .success_order_price {
-  font-size: 40px;
+  font-size: 36px;
   color: #f52626;
   line-height: 90px;
 }
@@ -22,5 +22,6 @@
 .success_order_price:after {
   color: #666666;
   content: "元";
+  font-size: 26px;
   margin-left: 10px;
 }

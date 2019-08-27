@@ -983,6 +983,14 @@
                       })
                     }
                   })
+                } else {
+                  this.$msgBox.doModal({
+                    type: 'yes',
+                    title: '线下结算',
+                    content: '线下结算已完成。'
+                  }).then(async (val) => {
+                    this.httpOrder()
+                  })
                 }
               } else {
                 this.$msgBox.doModal({

@@ -5,10 +5,20 @@
     <div class="box">
       <div class="addition box_radius">
         <div class="addition_item">
-          <div class="addition_item_label">打印机异常时短信报警</div>
+          <div class="addition_item_label">打印机异常时发送短信报警</div>
           <div class="addition_item_check">
             <div class="addition_item_check_on" v-if="http.req.printerConfig.errorSmsReport" @click="btnErrorSmsReport(false)"></div>
             <div class="addition_item_check_off" v-else @click="btnErrorSmsReport(true)"></div>
+          </div>
+        </div>
+
+        <div class="box_divide"></div>
+
+        <div class="addition_item">
+          <div class="addition_item_label">打印订单时打印二维码</div>
+          <div class="addition_item_check">
+            <div class="addition_item_check_on" v-if="http.req.printerConfig.printCaptcha" @click="btnPrintCaptcha(false)"></div>
+            <div class="addition_item_check_off" v-else @click="btnPrintCaptcha(true)"></div>
           </div>
         </div>
       </div>
@@ -33,9 +43,11 @@
             <div class="addition_item_check_off" v-else @click="btnPrintWhenPaid(true)"></div>
           </div>
         </div>
+      </div>
+    </div>
 
-        <div class="box_divide"></div>
-
+    <div class="box">
+      <div class="addition box_radius">
         <div class="addition_item" @click="btnPrinterList">
           <div class="addition_item_label">打印机列表</div>
           <div class="addition_item_link"></div>
@@ -69,6 +81,7 @@
             printerConfig: {
               printWhenOrder: true,
               printWhenPaid: true,
+              printCaptcha: true,
               errorSmsReport: true
             }
           }
@@ -87,6 +100,12 @@
       },
       btnPrintWhenPaid(enable) {
         this.http.req.printerConfig.printWhenPaid = enable
+
+        httpPrinterAdminApi.putConfig(this.$route.params.shortId, this.http.req.printerConfig).then(res => {
+        })
+      },
+      btnPrintCaptcha(enable) {
+        this.http.req.printerConfig.printCaptcha = enable
 
         httpPrinterAdminApi.putConfig(this.$route.params.shortId, this.http.req.printerConfig).then(res => {
         })
