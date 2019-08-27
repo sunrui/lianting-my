@@ -214,45 +214,27 @@
         })
       },
       httpSearchWord() {
-        if (this.http.req.shop.licenseType !== 'Free') {
-          httpSearchApi.getSearchWord(this.$route.params.shortId).then(res => {
-            if (res.length > 0) {
-              this.ui.searchWords = res
-              this.ui.searchWordEnable = true
-            }
-          })
-        }
+        httpSearchApi.getSearchWord(this.$route.params.shortId).then(res => {
+          if (res.length > 0) {
+            this.ui.searchWords = res
+            this.ui.searchWordEnable = true
+          }
+        })
       },
       updateInfo() {
         httpShopApi.putName(this.$route.params.shortId, this.http.req.shop.name).then(res => {
           httpInfoAdminApi.put(this.$route.params.shortId, this.http.req.info).then(res => {
-            if (this.http.req.shop.licenseType !== 'Free') {
-              if (!this.ui.searchWordEnable) {
-                this.ui.searchWords = []
+            httpSearchAdminApi.putSearchWord(this.$route.params.shortId, this.ui.searchWords).then(res => {
+              if (res.success) {
+                this.$msgBox.doModal({
+                  type: 'yes',
+                  title: '资料',
+                  content: '已更新。'
+                }).then(async (val) => {
+                  this.$router.push(this.title.backUri)
+                })
               }
-
-              httpSearchAdminApi.putSearchWord(this.$route.params.shortId, this.ui.searchWords).then(res => {
-                if (res.maxLimit) {
-                  this.$router.push(`/b/${this.$route.params.shortId}/owner/limit`)
-                } else if (res.success) {
-                  this.$msgBox.doModal({
-                    type: 'yes',
-                    title: '资料',
-                    content: '已更新。'
-                  }).then(async (val) => {
-                    this.$router.push(this.title.backUri)
-                  })
-                }
-              })
-            } else {
-              this.$msgBox.doModal({
-                type: 'yes',
-                title: '资料',
-                content: '已更新。'
-              }).then(async (val) => {
-                this.$router.push(this.title.backUri)
-              })
-            }
+            })
           })
         })
       },
@@ -290,12 +272,6 @@
         this.ui.searchWordEnable = enable
       },
       btnSearchWordAdd() {
-        if (this.http.req.shop.licenseType === 'Free') {
-          this.$router.push(`/b/${this.$route.params.shortId}/owner/limit`)
-          return
-        }
-
-
         this.ui.vCoverMask = true
         scrollApi.enable(false)
 
@@ -303,11 +279,6 @@
         this.ui.vSearchWordAdd = true
       },
       btnSearchWordDelete(searchWord) {
-        if (this.http.req.shop.licenseType === 'Free') {
-          this.$router.push(`/b/${this.$route.params.shortId}/owner/limit`)
-          return
-        }
-
         for (let index in this.ui.searchWords) {
           let one = this.ui.searchWords[index]
 
