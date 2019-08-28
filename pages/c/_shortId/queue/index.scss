@@ -124,14 +124,7 @@
     }
 
     .queue_box_table_people {
-      margin-top: 5px;
-      color: #666666;
-      font-size: 24px;
-    }
-
-    .queue_box_table_people:after {
-      content: "人";
-      margin-left: 2px;
+      margin-top: 10px;
       color: #666666;
       font-size: 24px;
     }
@@ -229,7 +222,7 @@
 }
 
 .queue_prompt {
-  margin: 30px 25px 0 25px;
+  margin: 20px 25px 0 25px;
 
   .queue_prompt_label {
     font-size: 24px;
