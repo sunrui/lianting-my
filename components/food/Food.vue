@@ -3,10 +3,10 @@
     <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
     <transition name="fade">
-      <div :class="{ cover_mask_9: ui.vCoverMaskCart}" @click="btnCoverMaskCart"></div>
+      <div :class="{ cover_mask_9: ui.vCoverMaskCart}" @click="btnCoverMask"></div>
     </transition>
     <transition name="fade">
-      <div :class="{ cover_mask_11: ui.vCoverMask}" @click="btnCoverMaskCart"></div>
+      <div :class="{ cover_mask_11: ui.vCoverMask}" @click="btnCoverMask"></div>
     </transition>
 
     <transition name="fade">
@@ -195,7 +195,7 @@
 
     <transition name="toggle">
       <div class="modal_bottom" v-if="ui.vCategory">
-        <div class="modal_close_box" @click="btnCoverMaskCart">
+        <div class="modal_close_box" @click="btnCoverMask">
           <img class="modal_close" src="/img/common/close.png" alt="">
         </div>
 
@@ -237,11 +237,11 @@
 
     <transition name="fade">
       <div class="modal_center preview_modal_center" v-if="ui.vPreview">
-        <div class="modal_close_box" @click="btnCoverMaskCart">
+        <div class="modal_close_box" @click="btnCoverMask">
           <img class="modal_close" src="/img/common/close.png" alt="">
         </div>
 
-        <img class="preview_image" :src="ui.modalPreview.foodCategory.image + getXOssProcess()" alt="">
+        <img class="preview_image" :src="ui.modalPreview.foodCategory.image + getXOssProcess()" alt="" @click="btnCoverMask">
       </div>
     </transition>
   </div>
@@ -708,7 +708,7 @@
           this.ballDrop(this.ui.modalCategory.selectEvent.target)
         })
       },
-      btnCoverMaskCart() {
+      btnCoverMask() {
         this.ui.vCoverMask = false
         this.ui.vCoverMaskCart = false
         this.ui.vCoverMaskLeaf = false
