@@ -201,9 +201,16 @@
     </div>
 
     <div class="button_box" v-if="http.res.order.status === 'NotPaid'">
-      <div class="button_small" @click="btnFood" v-if="http.res.order.type === 'ForHere'">加餐</div>
-      <div class="button_small" @click="btnPay" v-if="http.res.order.type === 'ForHere'">立即支付</div>
-      <div class="button_big" @click="btnPay" v-if="http.res.order.type === 'Takeout'">立即支付</div>
+      <div v-if="canPayOnline()">
+        <div v-if="http.res.order.type === 'ForHere'">
+          <div class="button_small" @click="btnFood">加餐</div>
+          <div class="button_small" @click="btnPay">立即支付</div>
+        </div>
+        <div v-else class="button_big" @click="btnPay">立即支付</div>
+      </div>
+      <div v-else>
+        <div class="button_big" @click="btnFood" v-if="http.res.order.type === 'ForHere'">加餐</div>
+      </div>
       <div class="button_big" @click="btnCancel" v-if="http.res.order.type === 'Takeout'">取消订单</div>
     </div>
     <div class="button_box" v-else-if="http.res.order.status === 'Paid'">
@@ -281,7 +288,8 @@
             },
             coupon: {
               valid: []
-            }
+            },
+            config: {}
           }
         },
         ui: {
@@ -292,6 +300,7 @@
     },
     mounted() {
       this.httpOrder()
+      this.httpConfig()
     },
     methods: {
       dateFormat(date) {
@@ -301,6 +310,12 @@
         httpOrderApi.getOrder(this.$route.params.shortId, this.$route.params.orderOneId).then(res => {
           this.http.res.order = res
           this.httpCoupon()
+        })
+      },
+
+      httpConfig() {
+        httpOrderApi.getConfig(this.$route.params.shortId).then(res => {
+          this.http.res.config = res
         })
       },
       httpCoupon() {
@@ -365,6 +380,19 @@
             price: this.http.res.order.price + this.http.res.order.couponDeductPrice
           }
         })
+      },
+      canPayOnline() {
+        if (!Boolean(this.http.res.config.openWechat) && !Boolean(this.http.res.config.openAlipay)) {
+          return false
+        }
+
+        if (Boolean(this.http.res.config.openWechat)) {
+          if (!wechatApi.inWechat()) {
+            return false
+          }
+        }
+
+        return true
       },
       btnPay() {
         this.$router.push({

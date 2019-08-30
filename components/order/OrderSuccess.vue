@@ -98,8 +98,13 @@
       </div>
 
       <div class="button_box">
-        <div class="button_big" v-if="http.res.config.prepayment && roleType === 'c'" @click="btnPay">立即支付</div>
-        <div class="button_big" v-else @click="btnFood">继续点餐</div>
+        <div v-if="canPayOnline()">
+          <div v-if="http.res.config.prepayment && roleType === 'c'">
+            <div class="button_big" @click="btnPay">立即支付</div>
+          </div>
+          <div v-else class="button_big" @click="btnFood">继续点餐</div>
+        </div>
+        <div v-else class="button_big" @click="btnFood">继续点餐</div>
       </div>
     </div>
 
@@ -112,7 +117,6 @@
   import {httpOrderApi} from '../../api/http/lt/httpOrderApi'
   import {wechatApi} from '../../api/local/wechatApi'
   import {timeApi} from '../../api/local/timeApi'
-  import {alipayApi} from '../../api/local/alipayApi'
   import WechatSubscribe from '../wechat/WechatSubscribe'
 
   export default {
@@ -197,6 +201,19 @@
           this.$router.push(`/b/${this.$route.params.shortId}/${this.roleType}/table`)
         }
       },
+      canPayOnline() {
+        if (!Boolean(this.http.res.config.openWechat) && !Boolean(this.http.res.config.openAlipay)) {
+          return false
+        }
+
+        if (Boolean(this.http.res.config.openWechat)) {
+          if (!wechatApi.inWechat()) {
+            return false
+          }
+        }
+
+        return true
+      },
       btnPay() {
         this.$router.push({
           path: `/pay`,
@@ -207,6 +224,7 @@
             price: this.http.res.order.price
           }
         })
+
       }
     }
   }

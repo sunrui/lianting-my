@@ -13,14 +13,8 @@
       </div>
 
       <div class="addition_no_top box_radius_footer">
-        <div class="pay_price">
-          <div class="pay_price_label">{{ui.price}}</div>
-        </div>
-
-        <div class="box_divide"></div>
-
         <div class="addition_item">
-          <div class="addition_item_label">订单类型</div>
+          <div class="addition_item_label">支付类型</div>
           <div class="addition_item_tag">
             <div class="addition_item_tag_one addition_item_tag_label addition_item_tag_color_1"
                  v-if="ui.type === 'order'"
@@ -37,6 +31,12 @@
           </div>
         </div>
 
+        <div class="box_divide"></div>
+
+        <div class="pay_price">
+          <div class="pay_price_label">{{ui.price}}</div>
+        </div>
+
         <div class="blank_5"></div>
       </div>
     </div>
@@ -49,7 +49,7 @@
 
         <div class="pay_method_one" @click="btnChooseWechat(true)">
           <img class="pay_method_icon" src="/img/login/login_wechat.png" alt="微信支付">
-          <div class="pay_method_label">微信支付</div>
+          <div class="pay_method_label">微信支付 <span v-if="!canWechatPay()" class="pay_method_label_disable">(不可用)</span></div>
           <div class="addition_item_radio">
             <div class="addition_item_radio_icon_select" v-if="ui.chooseWechat"></div>
             <div class="addition_item_radio_icon_unselect" v-else></div>
@@ -60,7 +60,7 @@
 
         <div class="pay_method_one" @click="btnChooseWechat(false)">
           <img class="pay_method_icon" src="/img/login/login_alipay.png" alt="支付宝支付">
-          <div class="pay_method_label">支付宝支付</div>
+          <div class="pay_method_label">支付宝支付 <span v-if="!canAlipay()" class="pay_method_label_disable">(不可用)</span></div>
           <div class="addition_item_radio">
             <div class="addition_item_radio_icon_select" v-if="!ui.chooseWechat"></div>
             <div class="addition_item_radio_icon_unselect" v-else></div>
@@ -104,7 +104,12 @@
           req: {
             pay: {}
           },
-          res: {}
+          res: {
+            config: {
+              openWechat: true,
+              openAlipay: true
+            }
+          }
         },
         ui: {
           chooseWechat: true,
@@ -114,12 +119,24 @@
       }
     },
     mounted() {
-      this.ui.chooseWechat = wechatApi.inWechat()
       this.ui.type = this.$route.query.type ? this.$route.query.type : 'order'
       this.ui.price = this.$route.query.price ? this.$route.query.price : '0.0'
+
+      this.httpConfig()
     },
     methods: {
+      httpConfig() {
+        httpOrderApi.getConfig(this.$route.query.shortId).then(res => {
+          this.http.res.config = res
+
+          this.ui.chooseWechat = this.canWechatPay()
+        })
+      },
       btnChooseWechat(enable) {
+        if (!this.canWechatPay()) {
+          return
+        }
+
         this.ui.chooseWechat = enable
       },
       dateFormat(date) {
@@ -127,6 +144,12 @@
       },
       btnChooseType(type) {
         // this.ui.type = type
+      },
+      canWechatPay() {
+        return wechatApi.inWechat() && this.http.res.config.openWechat
+      },
+      canAlipay() {
+        return this.http.res.config.openAlipay
       },
       btnPay() {
         if (!this.$route.query.shortId) {
@@ -150,57 +173,23 @@
         }
 
         if (this.ui.chooseWechat) {
-          if (!wechatApi.inWechat()) {
-            this.$msgBox.doModal({
-              type: 'yes',
-              title: '立即支付',
-              content: '微信支付在支付宝中无法使用，请使用支付宝支付或线下付款。'
-            })
-
-            return
-          }
-
-          httpOrderApi.getConfig(this.$route.query.shortId).then(res => {
-            if (!Boolean(res.openWechat)) {
-              this.$msgBox.doModal({
-                type: 'yes',
-                title: '立即支付',
-                content: '商家尚未开通微信支付，请您线下付款。'
-              })
-
-              return
-            }
-
-            this.httpPay('WECHAT_JSAPI')
-          })
+          this.httpPay('WECHAT_JSAPI')
         } else {
-          httpOrderApi.getConfig(this.$route.query.shortId).then(res => {
-            if (!Boolean(res.openAlipay)) {
-              this.$msgBox.doModal({
-                type: 'yes',
-                title: '立即支付',
-                content: '商家尚未开通支付宝支付，请您线下付款。'
-              })
+          if (wechatApi.inWechat()) {
+            this.$msgBox.doModal({
+              type: 'yesOrNo',
+              title: '立即支付',
+              content: '在微信中使用支付宝时会受到阻止，但您仍可以在复制链接后继续付款。'
+            }).then(async (val) => {
+              if (val !== 'Yes') {
+                return
+              }
 
-              return
-            }
-
-            if (wechatApi.inWechat()) {
-              this.$msgBox.doModal({
-                type: 'yesOrNo',
-                title: '立即支付',
-                content: '在微信中使用支付宝时会受到阻止，但您仍可以在复制链接后继续付款。'
-              }).then(async (val) => {
-                if (val !== 'Yes') {
-                  return
-                }
-
-                this.httpPay('ALIPAY_QUICK_WAP_WAY')
-              })
-            } else {
               this.httpPay('ALIPAY_QUICK_WAP_WAY')
-            }
-          })
+            })
+          } else {
+            this.httpPay('ALIPAY_QUICK_WAP_WAY')
+          }
         }
       },
       weixinJSBridgePay(jsPay) {

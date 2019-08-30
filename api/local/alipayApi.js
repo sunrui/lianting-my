@@ -1,5 +1,9 @@
 export const alipayApi = {
   inAlipay() {
+    if (typeof navigator === 'undefined') {
+      return false
+    }
+
     let userAgent = navigator.userAgent.toLowerCase() || window.navigator.userAgent.toLowerCase()
     return userAgent.match(/alipayclient/i)
   },
