@@ -147,6 +147,7 @@
   import TitleBar from '../../components/common/TitleBar'
   import ImageUpload from '../../components/common/ImageUpload'
   import {httpNewsApi} from '../../api/http/news/httpNewsApi'
+  import {stringApi} from '../../api/local/stringApi'
 
   export default {
     metaInfo: {
@@ -216,8 +217,8 @@
         }
 
         let content = {
-          url: this.ui.content.url,
-          text: this.ui.content.text
+          url: stringApi.trim(this.ui.content.url),
+          text: stringApi.trim(this.ui.content.text)
         }
 
         this.ui.contents.push(content)
@@ -260,6 +261,8 @@
 
           return
         }
+
+        this.http.req.news.title = stringApi.trim(this.http.req.news.title)
 
         if (!Boolean(this.http.req.news.referName)) {
           this.$msgBox.doModal({
