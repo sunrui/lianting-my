@@ -170,7 +170,7 @@
             news: {
               magicId: 'honeysense',
               type: 'IndustryNews',
-              hashKey: '',
+              hashKey: '2019',
               shortcut: '',
               title: '',
               content: '',
@@ -337,83 +337,93 @@
           return
         }
 
-        httpNewsApi.postContent(this.http.req.news).then(res => {
-          if (res.magicIdNotMatch) {
-            this.$msgBox.doModal({
-              type: 'yes',
-              title: '添加新闻',
-              content: '魔法串不正确。'
-            })
-
+        this.$msgBox.doModal({
+          type: 'yesOrNo',
+          title: '添加新闻',
+          content: '确认要添加新闻吗？'
+        }).then(async (val) => {
+          if (val !== 'Yes') {
             return
           }
 
-          if (res.forbidden) {
-            this.$msgBox.doModal({
-              type: 'yes',
-              title: '添加新闻',
-              content: '没有权限。'
-            })
+          httpNewsApi.postContent(this.http.req.news).then(res => {
+            if (res.magicIdNotMatch) {
+              this.$msgBox.doModal({
+                type: 'yes',
+                title: '添加新闻',
+                content: '魔法串不正确。'
+              })
 
-            return
-          }
-
-          if (res.titleExists) {
-            this.$msgBox.doModal({
-              type: 'yes',
-              title: '添加新闻',
-              content: '标题已存在。'
-            })
-
-            return
-          }
-
-          if (res.hashKeyExists) {
-            this.$msgBox.doModal({
-              type: 'yes',
-              title: '添加新闻',
-              content: 'hashKey 已经存在。'
-            })
-
-            return
-          }
-
-          if (res.referUrlExists) {
-            this.$msgBox.doModal({
-              type: 'yes',
-              title: '添加新闻',
-              content: '引用地址已存在。'
-            })
-
-            return
-          }
-
-          if (res.success) {
-            this.$msgBox.doModal({
-              type: 'yes',
-              title: '添加新闻',
-              content: '添加成功。'
-            })
-
-            this.http.req.news = {
-              magicId: 'honeysense',
-              type: 'IndustryNews',
-              hashKey: '2019',
-              shortcut: '',
-              title: '',
-              content: '',
-              referName: '',
-              referUrl: '',
-              referDate: ''
+              return
             }
 
-            this.ui.content = {
-              url: null,
-              text: null
+            if (res.forbidden) {
+              this.$msgBox.doModal({
+                type: 'yes',
+                title: '添加新闻',
+                content: '没有权限。'
+              })
+
+              return
             }
 
-            this.ui.contents = []
-          }
+            if (res.titleExists) {
+              this.$msgBox.doModal({
+                type: 'yes',
+                title: '添加新闻',
+                content: '标题已存在。'
+              })
+
+              return
+            }
+
+            if (res.hashKeyExists) {
+              this.$msgBox.doModal({
+                type: 'yes',
+                title: '添加新闻',
+                content: 'hashKey 已经存在。'
+              })
+
+              return
+            }
+
+            if (res.referUrlExists) {
+              this.$msgBox.doModal({
+                type: 'yes',
+                title: '添加新闻',
+                content: '引用地址已存在。'
+              })
+
+              return
+            }
+
+            if (res.success) {
+              this.$msgBox.doModal({
+                type: 'yes',
+                title: '添加新闻',
+                content: '添加成功。'
+              })
+
+              this.http.req.news = {
+                magicId: 'honeysense',
+                type: 'IndustryNews',
+                hashKey: '2019',
+                shortcut: '',
+                title: '',
+                content: '',
+                referName: '',
+                referUrl: '',
+                referDate: ''
+              }
+
+              this.ui.content = {
+                url: null,
+                text: null
+              }
+
+              this.ui.contents = []
+            }
+          })
         })
       }
     }
