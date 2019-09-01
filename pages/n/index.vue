@@ -148,6 +148,7 @@
   import ImageUpload from '../../components/common/ImageUpload'
   import {httpNewsApi} from '../../api/http/news/httpNewsApi'
   import {stringApi} from '../../api/local/stringApi'
+  import {scrollApi} from '../../api/local/scrollApi'
 
   export default {
     metaInfo: {
@@ -230,6 +231,8 @@
 
         this.$refs.imageUpload_AddContent.setFileName(null)
         this.$refs.imageUpload_AddContent.setFileUrl(null)
+
+        scrollApi.scrollAnimation(scrollApi.getCurrentY(), scrollApi.getCurrentBottom())
       },
       btnCreate() {
         if (!Boolean(this.http.req.news.type)) {
