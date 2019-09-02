@@ -130,7 +130,7 @@
       <div class="blank_20"></div>
       <div class="food_add box_radius" @click="btnContentAdd()">
         <div class="food_add_icon"></div>
-        <div class="food_add_label">添加内容</div>
+        <div class="food_add_label">添加内容 (目前字数: {{getContent().length}})</div>
       </div>
 
       <div class="blank_30"></div>
@@ -206,6 +206,23 @@
       },
       uploadContentUrlSuccess(fileUrl) {
         this.ui.content.url = fileUrl
+      },
+      getContent() {
+        let contentText = ''
+
+        for (let index in this.ui.contents) {
+          let content = this.ui.contents[index]
+
+          if (Boolean(content.text)) {
+            contentText += `<p>${content.text}</p>`
+          }
+
+          if (Boolean(content.url)) {
+            contentText += `<img src="${content.url}" alt="恋厅 - 扫码点餐 - 配图">`
+          }
+        }
+
+        return contentText
       },
       btnContentAdd() {
         if (!Boolean(this.ui.content.url) && !Boolean(this.ui.content.text)) {
@@ -307,22 +324,9 @@
           return
         }
 
-        let contentText = ''
-
-        for (let index in this.ui.contents) {
-          let content = this.ui.contents[index]
-
-          if (Boolean(content.text)) {
-            contentText += `<p>${content.text}</p>`
-          }
-
-          if (Boolean(content.url)) {
-            contentText += `<img src="${content.url}" alt="恋厅 - 扫码点餐 - 配图">`
-          }
-        }
-
-        if (contentText.length >= 10240) {
-          contentText = contentText.substring(0, 10200)
+        let contentText = this.getContent()
+        if (contentText.length >= 15000) {
+          contentText = contentText.substring(0, 14999)
         }
 
         this.http.req.news.content = contentText
