@@ -236,7 +236,7 @@
         xmlHttpRequest.upload.onprogress = function (e) {
           if (e.type === 'progress') {
             let percent = e.loaded / e.total * 100
-            this.ui.percent = Math.round(percent) + '%'
+            pThis.ui.percent = Math.round(percent) + '%'
           }
         }
 
