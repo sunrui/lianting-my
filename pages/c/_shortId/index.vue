@@ -122,6 +122,7 @@
   import {httpFoodApi} from '../../../api/http/lt/httpFoodApi'
   import TitleBar from '../../../components/common/TitleBar'
   import {imageApi} from '../../../api/local/imageApi'
+  import {httpTableApi} from '../../../api/http/lt/httpTableApi'
 
   export default {
     metaInfo: {
@@ -284,29 +285,43 @@
         } else if (nav.tag === 'wifi') {
           this.httpWifi()
         } else if (nav.tag === 'queue') {
-          httpQueueApi.getState(this.$route.params.shortId).then(res => {
-            if (!res.needQueues || res.needQueues.length === 0) {
+          httpTableApi.getGroupAll(this.$route.params.shortId).then(res => {
+            if (res.currentPageSize === 0) {
               this.$router.push(`/c/${this.$route.params.shortId}/queue/close`)
               return
             }
 
-            this.$router.push(nav.url)
-          })
-        } else if (nav.tag === 'reserve') {
-          httpReserveApi.getState(this.$route.params.shortId).then(res => {
-            if (!res.enable) {
-              this.$router.push(`/c/${this.$route.params.shortId}/reserve/close`)
-
-              return
-            }
-
-            httpReserveApi.getAll(this.$route.params.shortId, 'Wait, Accept, Refused', null, 0, 1).then(res => {
-              if (res.elements && res.elements.length > 0) {
-                this.$router.push(`/c/${this.$route.params.shortId}/reserve/${res.elements[0].id}`)
+            httpQueueApi.getState(this.$route.params.shortId).then(res => {
+              if (!res.needQueues || res.needQueues.length === 0) {
+                this.$router.push(`/c/${this.$route.params.shortId}/queue/close`)
                 return
               }
 
               this.$router.push(nav.url)
+            })
+          })
+        } else if (nav.tag === 'reserve') {
+          httpTableApi.getGroupAll(this.$route.params.shortId).then(res => {
+            if (res.currentPageSize === 0) {
+              this.$router.push(`/c/${this.$route.params.shortId}/reserve/close`)
+              return
+            }
+
+            httpReserveApi.getState(this.$route.params.shortId).then(res => {
+              if (!res.enable) {
+                this.$router.push(`/c/${this.$route.params.shortId}/reserve/close`)
+
+                return
+              }
+
+              httpReserveApi.getAll(this.$route.params.shortId, 'Wait, Accept, Refused', null, 0, 1).then(res => {
+                if (res.elements && res.elements.length > 0) {
+                  this.$router.push(`/c/${this.$route.params.shortId}/reserve/${res.elements[0].id}`)
+                  return
+                }
+
+                this.$router.push(nav.url)
+              })
             })
           })
         } else if (nav.tag === 'wall') {
