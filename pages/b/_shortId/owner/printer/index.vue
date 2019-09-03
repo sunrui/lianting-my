@@ -11,11 +11,23 @@
             <div class="addition_item_check_off" v-else @click="btnErrorSmsReport(true)"></div>
           </div>
         </div>
+      </div>
+    </div>
+
+    <div class="box">
+      <div class="addition box_radius">
+        <div class="addition_item">
+          <div class="addition_item_label">打印订单序号</div>
+          <div class="addition_item_check">
+            <div class="addition_item_check_on" v-if="http.req.printerConfig.printOrderNumber" @click="btnPrintOrderNumber(false)"></div>
+            <div class="addition_item_check_off" v-else @click="btnPrintOrderNumber(true)"></div>
+          </div>
+        </div>
 
         <div class="box_divide"></div>
 
         <div class="addition_item">
-          <div class="addition_item_label">打印订单时打印二维码</div>
+          <div class="addition_item_label">打印订单二维码</div>
           <div class="addition_item_check">
             <div class="addition_item_check_on" v-if="http.req.printerConfig.printCaptcha" @click="btnPrintCaptcha(false)"></div>
             <div class="addition_item_check_off" v-else @click="btnPrintCaptcha(true)"></div>
@@ -100,6 +112,12 @@
       },
       btnPrintWhenPaid(enable) {
         this.http.req.printerConfig.printWhenPaid = enable
+
+        httpPrinterAdminApi.putConfig(this.$route.params.shortId, this.http.req.printerConfig).then(res => {
+        })
+      },
+      btnPrintOrderNumber(enable) {
+        this.http.req.printerConfig.printOrderNumber = enable
 
         httpPrinterAdminApi.putConfig(this.$route.params.shortId, this.http.req.printerConfig).then(res => {
         })

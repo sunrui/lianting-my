@@ -92,16 +92,28 @@
               url: `/b/${this.$route.params.shortId}/admin/order`
             },
             {
-              tag: 'food',
-              name: '餐食',
-              icon: '/img/b/nav/role/b_nav_role_food.png',
-              url: `/b/${this.$route.params.shortId}/admin/food`
+              tag: 'radio',
+              name: '播报',
+              icon: '/img/b/nav/role/b_nav_role_radio.png',
+              url: `/b/${this.$route.params.shortId}/admin/radio`
             },
             {
               tag: 'queue',
               name: '排队',
               icon: '/img/b/nav/role/b_nav_role_queue.png',
               url: `/b/${this.$route.params.shortId}/admin/queue`
+            },
+            {
+              tag: 'food',
+              name: '餐食',
+              icon: '/img/b/nav/role/b_nav_role_food.png',
+              url: `/b/${this.$route.params.shortId}/admin/food`
+            },
+            {
+              tag: 'printer',
+              name: '打印',
+              icon: '/img/b/nav/role/b_nav_role_printer.png',
+              url: `/b/${this.$route.params.shortId}/admin/printer`
             }
           ]
         },
@@ -136,9 +148,11 @@
         this.$router.push(nav.url)
       },
       btnShopOpen() {
+        let title = '店铺' + (this.http.res.shop.open ? '打烊' : '营业')
+
         this.$msgBox.doModal({
           type: 'yesOrNo',
-          title: '店铺状态',
+          title: title,
           content: `${this.http.res.shop.open ? '打烊后顾客将无法下单或排队，' : ''}您确定要${highlightApi.highlight(this.http.res.shop.open ? '打烊' : '营业')}吗？`
         }).then(async (val) => {
           if (val === 'Yes') {
@@ -146,7 +160,7 @@
             httpShopApi.putOpen(this.$route.params.shortId, this.http.res.shop.open).then(res => {
               this.$msgBox.doModal({
                 type: 'yes',
-                title: '店铺状态',
+                title: title,
                 content: `店铺已${this.http.res.shop.open ? '营业' : '打烊'}。`
               })
             })

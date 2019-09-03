@@ -1,5 +1,5 @@
 <template>
-  <b-radio roleType="waiter"></b-radio>
+  <b-radio roleType="admin"></b-radio>
 </template>
 
 <script>

@@ -209,7 +209,8 @@
               },
               foods: [],
               tasteNote: '',
-              people: 0
+              people: 0,
+              createdAt: new Date().getTime()
             }
           },
           res: {}

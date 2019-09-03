@@ -187,7 +187,8 @@
               tableOneId: null,
               foods: [],
               tasteNote: '',
-              people: 0
+              people: 0,
+              createdAt: new Date().getTime()
             }
           }
         }
@@ -323,7 +324,7 @@
           price += food.select * food.food.price
         }
 
-        price += this.ui.orderAnyOne.priceTableware
+        price += this.ui.orderAnyOne.priceTableware | 0
 
         return price
       },

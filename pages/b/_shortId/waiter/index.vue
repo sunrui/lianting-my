@@ -101,12 +101,6 @@
               name: '预订',
               icon: '/img/b/nav/role/b_nav_role_reserve.png',
               url: `/b/${this.$route.params.shortId}/waiter/reserve`
-            },
-            {
-              tag: 'radio',
-              name: '播报',
-              icon: '/img/b/nav/role/b_nav_role_radio.png',
-              url: `/b/${this.$route.params.shortId}/waiter/radio`
             }
           ]
         },

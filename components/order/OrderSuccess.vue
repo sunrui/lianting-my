@@ -17,6 +17,11 @@
         <div class="box_divide"></div>
 
         <div class="status_item">
+          <div class="status_item_label">下单时间</div>
+          <div class="status_item_content">{{dateFormat(new Date(parseInt(http.res.order.createdAt)))}}</div>
+        </div>
+
+        <div class="status_item">
           <div class="status_item_label">共计菜数</div>
           <div class="status_item_content">{{getTotalFood()}} 份</div>
         </div>
@@ -50,11 +55,6 @@
             }}
           </div>
         </div>
-        <div class="status_item">
-          <div class="status_item_label">下单时间</div>
-          <div class="status_item_content">{{dateFormat(new Date(parseInt(http.res.order.createdAt)))}}</div>
-        </div>
-
         <div class="blank_20"></div>
       </div>
     </div>
@@ -143,7 +143,9 @@
         ui: {},
         http: {
           res: {
-            order: {},
+            order: {
+              createdAt: new Date().getTime()
+            },
             config: {}
           }
         }

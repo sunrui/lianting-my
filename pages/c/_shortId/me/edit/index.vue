@@ -135,7 +135,7 @@
             return
           }
 
-          this.http.res.userInfo = res.info ? res.info : {
+          this.http.res.userInfo = res.info | {
             male: true
           }
         })

@@ -56,7 +56,7 @@
     props: {
       roleType: {
         type: String,
-        default: 'waiter'
+        default: 'admin'
       }
     },
     data() {
