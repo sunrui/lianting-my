@@ -314,6 +314,16 @@
         this.$router.push(`/b/${this.$route.params.shortId}/${this.roleType}/order/${order.id}`)
       },
       btnDelete(order) {
+        if (!Boolean(order.deletedAt) && (order.status === 'NotPaid' || order.status === 'Paid')) {
+          this.$msgBox.doModal({
+            type: 'yes',
+            title: '删除订单',
+            content: '无法删除进行中的订单。'
+          })
+
+          return
+        }
+
         httpOrderAdminApi.putDelete(this.$route.params.shortId, order.id, !order.deletedAt).then(res => {
           if (res.orderOneIdNotExists) {
             this.$msgBox.doModal({
