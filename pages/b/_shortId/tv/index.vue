@@ -58,7 +58,7 @@
         <div class="tip">
           <ul class="tip_ul">
             <li>要启用展屏首先需要一台智能电视或其它显示设备。</li>
-            <li>您可以通过服务员工作台发送语音播报消息到展屏。</li>
+            <li>店长可以通过工作台发送语音播报消息到展屏。</li>
             <li>请在智能电视的浏览器中输入访问以下网址：</li>
             <li><a class="tip_link" :href="getTvUrl()">{{getTvUrl()}}</a></li>
           </ul>
