@@ -213,8 +213,6 @@
 
         <div class="modal_menu modal_menu_disable">更多品牌请联系我们</div>
 
-        <div class="blank_10"></div>
-
         <div class="modal_button_box">
           <div class="button_big" @click="btnChooseConfirm">确认</div>
         </div>

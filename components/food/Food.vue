@@ -227,7 +227,8 @@
           </div>
         </div>
 
-        <div class="category_blank"></div>
+        <div class="blank_50"></div>
+        <div class="blank_30"></div>
 
         <div class="modal_button_box">
           <div class="button_big" @click="btnCategoryConfirm()">选好了</div>

@@ -410,8 +410,6 @@
              @click="btnChooseSmsPrice(500)">500 元
         </div>
 
-        <div class="blank_20"></div>
-
         <div class="modal_button_box">
           <div class="button_big" @click="btnSmsChargeConfirm">立即充值</div>
         </div>
@@ -444,8 +442,6 @@
              @click="btnChooseYear(5)">续费 5 年
           <div class="charge_year_tip">限时送 5 年</div>
         </div>
-
-        <div class="blank_20"></div>
 
         <div class="modal_button_box">
           <div class="button_big" @click="btnChargeConfirm">立即续费</div>
