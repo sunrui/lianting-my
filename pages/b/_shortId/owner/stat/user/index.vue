@@ -9,8 +9,7 @@
           <div class="blank_40"></div>
 
           <div class="user_body_title">
-            <div class="user_body_title_one">手机号</div>
-            <div class="user_body_title_one">呢称</div>
+            <div class="user_body_title_one">顾客</div>
             <div class="user_body_title_one">消费</div>
             <div class="user_body_title_one">笔数</div>
             <div class="user_body_title_one">最近光顾</div>
@@ -21,10 +20,9 @@
           <div v-if="http.res.statUser.elements.length > 0">
             <div v-for="statUser in http.res.statUser.elements">
               <div class="user_body_content" @click="btnUser(statUser)">
-                <a v-if="getPhone(statUser.userId)" class="user_body_content_one user_body_content_one_phone user_body_content_one_width_25"
+                <a v-if="getPhone(statUser.userId)" class="user_body_content_one user_body_content_one_phone"
                    :href="getTelPhone(statUser)">{{getPhone(statUser.userId)}}</a>
-                <div v-else class="user_body_content_one user_body_content_one_width_25">未填写</div>
-                <div class="user_body_content_one user_body_content_one_nick">{{getWechatNick(statUser.userId)}}</div>
+                <div v-else class="user_body_content_one">{{getWechatNick(statUser.userId)}}</div>
                 <div class="user_body_content_one user_body_content_price">{{statUser.chargePrice}}</div>
                 <div class="user_body_content_one">{{statUser.orderTimes}}</div>
                 <div class="user_body_content_one">{{getDate(statUser.lastVisited)}}</div>
