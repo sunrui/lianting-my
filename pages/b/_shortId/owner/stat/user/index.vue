@@ -112,7 +112,9 @@
           }
 
           if (one.userId === userId) {
-            return one.userInfo.nickName ? one.userInfo.nickName : '未填写'
+            let date = new Date(one.user.createdAt)
+            let createdDate = date.getFullYear() + '/' + date.getMonth() + '/' + date.getDate() + '-' + date.getHours()
+            return one.userInfo.nickName ? one.userInfo.nickName : createdDate
           }
         }
 
@@ -169,7 +171,7 @@
           }
 
           if (!Boolean(res.info.nickName)) {
-            res.info.nickName = '未填写'
+            res.info.nickName = res.info.id
           }
 
           if (!Boolean(res.info.headImgUrl)) {
