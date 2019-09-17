@@ -63,7 +63,7 @@
           }
         }
 
-        return false
+        return this.ui.date.year > date.getFullYear();
       }
     },
     methods: {

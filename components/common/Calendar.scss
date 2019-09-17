@@ -4,6 +4,7 @@
   background: white;
   z-index: 9 + 1;
   bottom: 0;
+  width: 100%;
 
   .calendar_title {
     width: 100%;
@@ -113,7 +114,6 @@
   }
 
   .calendar_day {
-    text-align: center;
     margin-top: 30px;
     margin-bottom: 30px;
     padding: 0 10px;
@@ -125,6 +125,7 @@
       width: 14.28%;
       height: 70px;
       line-height: 70px;
+      text-align: center;
     }
 
     .calendar_day_one_label {
