@@ -23,9 +23,9 @@
       let scope = this.$route.query.scope
 
       if (wechatApi.inWechat()) {
-        loginApi.loginWechat(shortId, scope, r)
+        loginApi.loginWechat(loginApi.wechatAppId, shortId, scope, r)
       } else if (alipayApi.inAlipay()) {
-        loginApi.loginAlipay(shortId, scope, r)
+        loginApi.loginAlipay(loginApi.alipayAppId, shortId, scope, r)
       } else {
         this.$router.push({
           path: '/login/phone',

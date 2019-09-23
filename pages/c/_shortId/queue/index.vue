@@ -492,9 +492,9 @@
                   type: 'yes',
                   title: '取消排队',
                   content: '您已取消成功。'
+                }).then(async (val) => {
+                  this.httpState()
                 })
-
-                this.httpState()
               }
             })
           }

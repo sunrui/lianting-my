@@ -39,6 +39,20 @@ export const httpUserApi = {
       maxAge: maxAge
     }).then(res => res.data)
   },
+  postLoginWechatShop(shortId, code, state) {
+    return axios.post(`${base}/login/wechat/shop`, {
+      shortId: shortId,
+      code: code,
+      state: state,
+      maxAge: maxAge
+    }).then(res => res.data)
+  },
+  postLoginWechatShopTest(appId, appSecret) {
+    return axios.post(`${base}/login/wechat/shop/test`, {
+      appId: appId,
+      appSecret: appSecret
+    }).then(res => res.data)
+  },
   postLoginPhone(shortId, phone, code) {
     return axios.post(`${base}/login/phone`, {
       shortId: shortId,
@@ -62,8 +76,8 @@ export const httpUserApi = {
       maxAge: maxAge
     }).then(res => res.data)
   },
-  getWechatInfo(shortId) {
-    return axios.get(`${base}/wechat/info`, {
+  getWechat(shortId) {
+    return axios.get(`${base}/wechat`, {
       params: {
         shortId: shortId
       }

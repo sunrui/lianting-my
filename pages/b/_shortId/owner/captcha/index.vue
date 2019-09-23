@@ -5,10 +5,9 @@
     <div class="box">
       <div class="tip">
         <ul class="tip_ul">
-          <li>"扫码点餐桌贴"需您自行购买后贴至餐桌一角。</li>
-          <li>您可使用淘宝或京东等搜索“扫码点餐桌贴"来获取您想要的风格定制。</li>
-          <li>部分手机如显示错位，请选择使用电脑打开后下载。</li>
-          <li>以下生成样式仅供您参考。</li>
+          <li>在顾客扫码点餐前，需您自行购买摆放至顾客餐桌或贴至餐桌一角。</li>
+          <li>您可淘宝或京东等搜索"亚克力二维码"或“扫码点餐桌贴"来获取您想要的风格定制。</li>
+          <li>生成预览可能会显示错位，以下生成样式仅供您参考。</li>
         </ul>
       </div>
     </div>
@@ -31,7 +30,7 @@
       <div class="blank_50"></div>
 
       <div class="title">
-        <div class="title_table">{{http.res.shop.name}}</div>
+        <div class="title_table">{{http.res.shop.name}} - 店铺二维码</div>
         <div class="title_download" @click="btnDownloadShop()">下载</div>
       </div>
 

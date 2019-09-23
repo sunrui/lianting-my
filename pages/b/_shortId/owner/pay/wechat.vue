@@ -7,7 +7,7 @@
         <ul class="tip_ul">
           <li>要开通微信在线支付功能，您需拥有认证微信公众号。请查阅<a class="tip_link" href="https://kf.qq.com/kf_search.html?search_key=%E5%BE%AE%E4%BF%A1%E8%AE%A4%E8%AF%81%E9%9C%80%E8%A6%81%E6%94%AF%E4%BB%98%E7%9A%84%E8%B4%B9%E7%94%A8%EF%BC%9F&code=A2497">微信支付</a>。</li>
           <li>开通特约商户支付需提交姓名、身份证、手机、邮箱、营业执照、收款银行卡等资料至微信备案。</li>
-          <li>为了保护您的隐私安全，暂不支持在线提交，请联系恋厅客服人工提交。微信审核通过后，就可以使用微信在线支付了。</li>
+          <li>微信官方不支持您在线提交，请联系恋厅客服人工提交，微信审核通过后，就可以使用微信在线支付了。</li>
           <li>您的交易没有任何订单抽成，所有交易将直接与微信通讯并实时打款至您的收款账户。</li>
         </ul>
       </div>
@@ -86,7 +86,7 @@
     },
     methods: {
       httpConfig() {
-        httpConfigAdminApi.getConfigWechat(this.$route.params.shortId).then(res => {
+        httpConfigAdminApi.getPayConfigWechat(this.$route.params.shortId).then(res => {
           this.http.req.config = res
         })
       },
@@ -114,7 +114,7 @@
             return
         }
 
-        httpConfigAdminApi.putConfigWechat(this.$route.params.shortId, this.http.req.config).then(res => {
+        httpConfigAdminApi.putPayConfigWechat(this.$route.params.shortId, this.http.req.config).then(res => {
           this.$msgBox.doModal({
             type: 'yes',
             title: '微信支付',

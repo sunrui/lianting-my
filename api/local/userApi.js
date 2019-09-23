@@ -12,6 +12,7 @@ export const userApi = {
         userName: null,
         phone: null,
         wechatOpenId: null,
+        shopWechatOpenId: null,
         alipayOpenId: null,
         avatar: null,
         captchaTableId: null,
@@ -61,6 +62,15 @@ export const userApi = {
   getUserWechatOpenId() {
     this._verifyUser()
     return this.user.wechatOpenId
+  },
+  setUserShopWechatOpenId(shopWechatOpenId) {
+    this._verifyUser()
+    this.user.shopWechatOpenId = shopWechatOpenId
+    this.saveUser()
+  },
+  getUserShopWechatOpenId() {
+    this._verifyUser()
+    return this.user.shopWechatOpenId
   },
   setUserAlipayOpenId(alipayOpenId) {
     this._verifyUser()

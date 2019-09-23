@@ -1,0 +1,21 @@
+.template_text_box {
+  position: relative;
+  text-align: left;
+  margin-top: 20px;
+  padding: 20px 30px;
+
+  .template_title {
+    text-align: center;
+    color: #F52626;
+    font-size: 32px;
+    padding: 20px;
+  }
+
+  .template_text {
+    font-size: 24px;
+    width: 100%;
+    padding: 20px;
+    min-height: 450px;
+    color: #666666;
+  }
+}

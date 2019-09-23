@@ -85,7 +85,7 @@
     },
     methods: {
       httpConfig() {
-        httpConfigAdminApi.getConfigAlipay(this.$route.params.shortId).then(res => {
+        httpConfigAdminApi.getPayConfigAlipay(this.$route.params.shortId).then(res => {
           this.http.req.config = res
         })
       },
@@ -113,7 +113,7 @@
           return
         }
 
-        httpConfigAdminApi.putConfigAlipay(this.$route.params.shortId, this.http.req.config).then(res => {
+        httpConfigAdminApi.putPayConfigAlipay(this.$route.params.shortId, this.http.req.config).then(res => {
           this.$msgBox.doModal({
             type: 'yes',
             title: '支付宝支付',

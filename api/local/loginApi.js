@@ -1,12 +1,12 @@
 export const loginApi = {
   wechatAppId: 'wxdd2ac18f974e8e70',
   alipayAppId: '2019040463763558',
-  loginWechat(shortId, scope, r) {
+  loginWechat(wechatAppId, shortId, scope, r, shop) {
     if (!Boolean(scope)) {
       scope = 'snsapi_base'
     }
 
-    r = document.location.protocol + '//' + window.location.host + `/login/wechat?r=${r}&shortId=${shortId}&scope=${scope}`
+    r = document.location.protocol + '//' + window.location.host + `/login/wechat${shop ? '/shop' : ''}?r=${r}&shortId=${shortId}`
 
     let state = 'csrf_uncheck'
 
@@ -14,7 +14,7 @@ export const loginApi = {
     r = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${this.wechatAppId}&redirect_uri=${r}&response_type=code&scope=${scope}&state=${state}&connect_redirect=1#wechat_redirect`
     window.location.href = r
   },
-  loginAlipay(shortId, scope, r) {
+  loginAlipay(alipayAppId, shortId, scope, r) {
     if (!Boolean(scope)) {
       scope = 'auth_base'
     }

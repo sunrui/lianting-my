@@ -138,12 +138,12 @@
         })
       },
       httpConfigWechat() {
-        httpConfigAdminApi.getConfigWechat(this.$route.params.shortId).then(res => {
+        httpConfigAdminApi.getPayConfigWechat(this.$route.params.shortId).then(res => {
           this.http.res.configWechat = res
         })
       },
       httpConfigAlipay() {
-        httpConfigAdminApi.getConfigAlipay(this.$route.params.shortId).then(res => {
+        httpConfigAdminApi.getPayConfigAlipay(this.$route.params.shortId).then(res => {
           this.http.res.configAlipay = res
         })
       },

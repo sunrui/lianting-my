@@ -16,13 +16,13 @@
       let code = this.$route.query.auth_code
       let state = this.$route.query.state
       let scope = this.$route.query.scope
+      let shortId = this.$route.query.shortId
 
       if (!Boolean(code)) {
         this.$router.push('/login')
         return
       }
 
-      let shortId = this.$route.query.shortId
       if (!Boolean(shortId)) {
         shortId = 'undefined'
       }

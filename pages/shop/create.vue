@@ -16,7 +16,7 @@
         <div class="addition_item">
           <div class="addition_item_label">店铺名称</div>
           <label>
-            <input class="addition_item_input" placeholder="请输入店铺名称" minlength="1" maxlength="32"
+            <input class="addition_item_input" placeholder="请输入您的店铺名称" minlength="1" maxlength="32"
                    v-model="http.req.shop.name">
           </label>
         </div>
@@ -26,7 +26,7 @@
         <div class="addition_item">
           <div class="addition_item_label">恋厅号</div>
           <label>
-            <input class="addition_item_input" placeholder="请输入恋厅号，如：ltcity。" minlength="2" maxlength="20"
+            <input class="addition_item_input" placeholder="请输入您的专属恋厅号，如：ltcity。" minlength="2" maxlength="20"
                    onkeyup="value=value.replace(/[^\w.\/]/ig,'')"
                    v-model="http.req.shop.shortId">
           </label>
@@ -97,9 +97,6 @@
   import {httpShopApi} from '../../api/http/shop/httpShopApi'
   import {timeApi} from '../../api/local/timeApi'
   import {highlightApi} from '../../api/local/highlightApi'
-  import {cartApi} from '../../api/local/cartApi'
-  import {storeApi} from '../../api/local/storeApi'
-  import {cookieApi} from '../../api/local/cookieApi'
 
   export default {
     metaInfo: {

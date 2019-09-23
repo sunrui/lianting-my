@@ -1,18 +1,20 @@
 <template>
-  <div class="wechat_subscribe" v-if="ui.inWechat && !http.res.wechatInfo.subscribe">担心错过提醒？您可关注<a class="wechat_subscribe_link" @click="btnLink()">恋厅</a>公众号。</div>
+  <div class="wechat_subscribe" v-if="!http.res.wechat.subscribe && !http.res.wechat.shopSubscribe">担心错过提醒？您可关注<a class="wechat_subscribe_link" @click="btnLink()">恋厅或商家</a>公众号。
+  </div>
 </template>
 
 <script>
-  import {wechatApi} from "../../api/local/wechatApi"
-  import {httpUserApi} from "../../api/http/user/httpUserApi"
+  import {wechatApi} from '../../api/local/wechatApi'
+  import {httpUserApi} from '../../api/http/user/httpUserApi'
 
   export default {
     data() {
       return {
         http: {
           res: {
-            wechatInfo: {
+            wechat: {
               subscribe: true,
+              shopSubscribe: true,
               openId: null
             }
           }
@@ -30,8 +32,21 @@
     },
     methods: {
       httpWechatInfo() {
-        httpUserApi.getWechatInfo(this.$route.params.shortId).then(res => {
-          this.http.res.wechatInfo = res
+        httpUserApi.getWechat(this.$route.params.shortId).then(res => {
+          this.http.res.wechat = res
+
+          if (this.ui.inWechat) {
+            if (res.shopConfigWechatMpEnable && !Boolean(res.shopWechatOpenId)) {
+              this.$router.push({
+                    path: `/login/wechat/shop`,
+                    query: {
+                      r: window.location.href,
+                      shortId: this.$route.params.shortId
+                    }
+                  }
+              )
+            }
+          }
         })
       },
       btnLink() {

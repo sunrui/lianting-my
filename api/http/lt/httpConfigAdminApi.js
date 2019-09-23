@@ -3,16 +3,22 @@ import axios from 'axios'
 let base = '/api/b'
 
 export const httpConfigAdminApi = {
-  getConfigWechat(shortId) {
-    return axios.get(`${base}/${shortId}/config/wechat`).then(res => res.data)
+  getMpConfigWechat(shortId) {
+    return axios.get(`${base}/${shortId}/config/mp/wechat`).then(res => res.data)
   },
-  putConfigWechat(shortId, model) {
-    return axios.put(`${base}/${shortId}/config/wechat`, model).then(res => res.data)
+  putMpConfigWechat(shortId, model) {
+    return axios.put(`${base}/${shortId}/config/mp/wechat`, model).then(res => res.data)
   },
-  getConfigAlipay(shortId) {
-    return axios.get(`${base}/${shortId}/config/alipay`).then(res => res.data)
+  getPayConfigWechat(shortId) {
+    return axios.get(`${base}/${shortId}/config/pay/wechat`).then(res => res.data)
   },
-  putConfigAlipay(shortId, model) {
-    return axios.put(`${base}/${shortId}/config/alipay`, model).then(res => res.data)
+  putPayConfigWechat(shortId, model) {
+    return axios.put(`${base}/${shortId}/config/pay/wechat`, model).then(res => res.data)
+  },
+  getPayConfigAlipay(shortId) {
+    return axios.get(`${base}/${shortId}/config/pay/alipay`).then(res => res.data)
+  },
+  putPayConfigAlipay(shortId, model) {
+    return axios.put(`${base}/${shortId}/config/pay/alipay`, model).then(res => res.data)
   }
 }

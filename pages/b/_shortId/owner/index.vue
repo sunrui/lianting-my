@@ -127,24 +127,6 @@
               url: `/b/${this.$route.params.shortId}/owner/pay`
             },
             {
-              tag: 'captcha',
-              name: '二维码',
-              icon: '/img/b/nav/owner/b_nav_owner_captcha.png',
-              url: `/b/${this.$route.params.shortId}/owner/captcha`
-            },
-            {
-              tag: 'tv',
-              name: '展屏',
-              icon: '/img/b/nav/owner/b_nav_owner_tv.png',
-              url: `/b/${this.$route.params.shortId}/tv`
-            },
-            {
-              tag: 'stat',
-              name: '统计',
-              icon: '/img/b/nav/owner/b_nav_owner_stat.png',
-              url: `/b/${this.$route.params.shortId}/owner/stat`
-            },
-            {
               tag: 'coupon',
               name: '外卖',
               icon: '/img/b/nav/owner/b_nav_owner_takeout.png',
@@ -155,6 +137,30 @@
               name: '打印',
               icon: '/img/b/nav/owner/b_nav_owner_printer.png',
               url: `/b/${this.$route.params.shortId}/owner/printer`
+            },
+            {
+              tag: 'stat',
+              name: '统计',
+              icon: '/img/b/nav/owner/b_nav_owner_stat.png',
+              url: `/b/${this.$route.params.shortId}/owner/stat`
+            },
+            {
+              tag: 'wechat',
+              name: '公众号',
+              icon: '/img/b/nav/owner/b_nav_owner_wechat.png',
+              url: `/b/${this.$route.params.shortId}/owner/wechat`
+            },
+            {
+              tag: 'captcha',
+              name: '二维码',
+              icon: '/img/b/nav/owner/b_nav_owner_captcha.png',
+              url: `/b/${this.$route.params.shortId}/owner/captcha`
+            },
+            {
+              tag: 'tv',
+              name: '展屏',
+              icon: '/img/b/nav/owner/b_nav_owner_tv.png',
+              url: `/b/${this.$route.params.shortId}/tv`
             },
           ]
         },
