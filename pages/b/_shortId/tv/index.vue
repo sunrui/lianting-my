@@ -65,6 +65,10 @@
         </div>
       </div>
 
+      <div class="tv_preview">
+        <img class="tv_preview_img" src="/img/b/tv/tv_preview.png" alt="展屏">
+      </div>
+
       <div class="button_box">
         <div class="button_big" @click="btnFullScreen">打开展屏</div>
       </div>

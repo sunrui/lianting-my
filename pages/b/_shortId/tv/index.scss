@@ -4,6 +4,17 @@
   height: 100% !important;
 }
 
+.tv_preview {
+  position: relative;
+  text-align: center;
+  margin-top: 50px;
+
+  .tv_preview_img {
+    display: inline-block;
+    width: 80%;
+  }
+}
+
 .tv_full_screen {
   position: fixed;
   top: 0;
