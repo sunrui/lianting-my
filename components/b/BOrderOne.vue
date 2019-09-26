@@ -886,6 +886,11 @@
         })
       },
       btnPriceSale() {
+        if (!Boolean(this.ui.priceSale)) {
+          this.http.req.changePrice.price = this.http.res.order.price
+          return
+        }
+
         this.http.req.changePrice.price = this.http.res.order.price * this.ui.priceSale / 100
         this.http.req.changePrice.price.toFixed(2)
       },
