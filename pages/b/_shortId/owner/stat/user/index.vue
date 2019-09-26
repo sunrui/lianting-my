@@ -19,17 +19,17 @@
 
           <div v-if="http.res.statUser.elements.length > 0">
             <div v-for="statUser in http.res.statUser.elements">
-              <div class="user_body_content" @click="btnUser(statUser)">
+              <div class="user_body_content">
                 <a v-if="getPhone(statUser.userId)" class="user_body_content_one user_body_content_one_phone"
                    :href="getTelPhone(statUser)">{{getPhone(statUser.userId)}}</a>
-                <div v-else class="user_body_content_one">{{getWechatNick(statUser.userId)}}</div>
-                <div class="user_body_content_one user_body_content_price">{{statUser.chargePrice}}</div>
-                <div class="user_body_content_one">{{statUser.orderTimes}}</div>
-                <div class="user_body_content_one">{{getDate(statUser.lastVisited)}}</div>
+                <div v-else class="user_body_content_one" @click="btnUser(statUser)">{{getWechatNick(statUser.userId)}}</div>
+                <div class="user_body_content_one user_body_content_price" @click="btnUser(statUser)">{{statUser.chargePrice}}</div>
+                <div class="user_body_content_one" @click="btnUser(statUser)">{{statUser.orderTimes}}</div>
+                <div class="user_body_content_one" @click="btnUser(statUser)">{{getDate(statUser.lastVisited)}}</div>
               </div>
               <div class="box_divide" v-if="statUser !== http.res.statUser.elements[http.res.statUser.elements.length - 1]"></div>
             </div>
-            <div class="user_footer"></div>
+            <div class="blank_10"></div>
           </div>
           <div class="user_empty" v-else>没有顾客记录。</div>
         </div>
