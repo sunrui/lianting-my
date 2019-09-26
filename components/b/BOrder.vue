@@ -121,6 +121,10 @@
         type: Number | String,
         default: null
       },
+      userId: {
+        type: String,
+        default: null
+      },
       roleType: {
         type: String,
         default: 'waiter'
@@ -141,7 +145,8 @@
             elements: [],
             haveMore: true
           },
-          tableOneId: null
+          tableOneId: null,
+          userId: null
         }
       }
     },
@@ -149,6 +154,7 @@
       this.title.title = '订单记录 - ' + roleApi.getRoleTypeName(this.roleType)
 
       this.ui.tableOneId = this.$route.query.tableOneId
+      this.ui.userId = this.$route.query.userId
     },
     methods: {
       dateFormat(date) {
@@ -263,6 +269,28 @@
           })
         } else if (this.date) {
           httpOrderAdminApi.getAllByDate(this.$route.params.shortId, null, this.date, this.ui.scroller.page++, 20).then(res => {
+            if (done) {
+              done()
+            }
+
+            if (this.ui.scroller.page === 1) {
+              this.ui.scroller.elements = []
+            }
+
+            if (res.currentPageSize === 0) {
+              if (this.ui.scroller.page === 1) {
+                this.$router.push(`/b/${this.$route.params.shortId}/${this.roleType}/order/empty`)
+              } else {
+                this.ui.scroller.haveMore = false
+              }
+              return
+            }
+
+            this.ui.scroller.elements = this.ui.scroller.elements.concat(res.elements)
+            this.sortOrder()
+          })
+        } else if (this.ui.userId) {
+          httpOrderAdminApi.getAllByUserId(this.$route.params.shortId, null, this.ui.userId, live, this.ui.scroller.page++, 20).then(res => {
             if (done) {
               done()
             }

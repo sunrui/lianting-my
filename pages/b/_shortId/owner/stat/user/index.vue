@@ -185,18 +185,18 @@
           })
         })
       },
-      btnUser() {
+      btnUser(statUser) {
         // if (this.ui.limit.licenseType || this.ui.limit.licenseExpiredAt) {
         //   this.$router.push(`/b/${this.$route.params.shortId}/owner/limit`)
-        // return
+        //   return
         // }
 
-        // this.$router.push({
-        //   path: `/b/${this.$route.params.shortId}/owner/user`,
-        //   query: {
-        //     date: date
-        //   }
-        // })
+        this.$router.push({
+          path: `/b/${this.$route.params.shortId}/owner/order`,
+          query: {
+            userId: statUser.userId
+          }
+        })
       }
     }
   }
