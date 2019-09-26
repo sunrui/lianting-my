@@ -18,7 +18,7 @@
           <div class="addition_item_label_text_area">地址</div>
           <div class="addition_item_text_area">
             <label>
-              <textarea class="addition_item_text_input" placeholder="请输入您的配送地址" v-model="http.res.order.orderTakeout.address"></textarea>
+              <textarea class="addition_item_text_input" placeholder="请输入您的配送地址" readonly v-model="http.res.order.orderTakeout.address"></textarea>
             </label>
           </div>
         </div>
@@ -27,18 +27,14 @@
 
         <div class="addition_item">
           <div class="addition_item_label">订单人</div>
-          <label>
-            <input class="addition_item_content" v-model="http.res.order.orderTakeout.name">
-          </label>
+          <div class="addition_item_content" style="user-select: text;">{{http.res.order.orderTakeout.name}}</div>
         </div>
 
         <div class="box_divide"></div>
 
         <div class="addition_item">
           <div class="addition_item_label">手机号</div>
-          <label>
-            <input class="addition_item_content" v-model="http.res.order.orderTakeout.phone">
-          </label>
+          <div class="addition_item_content" style="user-select: text;">{{http.res.order.orderTakeout.phone}}</div>
         </div>
       </div>
     </div>
@@ -237,8 +233,6 @@
             </div>
           </div>
         </div>
-
-        <div class="blank_30"></div>
 
         <div class="modal_button_box">
           <div class="button_big" @click="btnReplyConfirm" v-if="ui.selectOrderType === 'TakeoutAccept' || ui.selectOrderType === 'TakeoutDeliver'">确认</div>
