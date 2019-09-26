@@ -234,6 +234,8 @@
           </div>
         </div>
 
+        <div class="blank_30"></div>
+
         <div class="modal_button_box">
           <div class="button_big" @click="btnReplyConfirm" v-if="ui.selectOrderType === 'TakeoutAccept' || ui.selectOrderType === 'TakeoutDeliver'">确认</div>
           <div class="button_big button_gray" v-else-if="!ui.orderRemark">确认</div>

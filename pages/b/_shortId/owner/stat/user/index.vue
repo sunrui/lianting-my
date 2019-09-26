@@ -99,7 +99,7 @@
         })
       },
       httpStatUser() {
-        httpStatAdminApi.getUser(this.$route.params.shortId, 0, 200).then(res => {
+        httpStatAdminApi.getUser(this.$route.params.shortId, 0, 999).then(res => {
           this.http.res.statUser = res
         })
       },
