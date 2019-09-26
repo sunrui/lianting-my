@@ -436,7 +436,14 @@
 
         <div class="blank_20"></div>
 
+        <div class="change_price_title">
         <div class="change_price_label">请输入新价格 (原价: {{http.res.order.price}} 元)</div>
+          <label>
+            <input v-model="ui.priceSale" v-on:input="btnPriceSale()" type="number" class="change_price_sale_input" placeholder="打折快速计算器"
+                   oninput="value=value.replace(/[^0-9]/g,'');
+                            if (value.length >= 3) value = 100;">
+          </label>
+        </div>
 
         <div class="box">
           <div class="modal_input_box">
@@ -548,6 +555,7 @@
             '现金收银', '微信转账', '支付宝转账'
           ],
           printReceipt: false,
+          priceSale: ''
         }
       }
     },
@@ -876,6 +884,10 @@
             })
           }
         })
+      },
+      btnPriceSale() {
+        this.http.req.changePrice.price = this.http.res.order.price * this.ui.priceSale / 100
+        this.http.req.changePrice.price.toFixed(2)
       },
       btnChangePrice() {
         this.ui.vCoverMask = true

@@ -238,10 +238,19 @@
   }
 }
 
-.change_price_label {
-  display: inline-block;
-  margin-left: 35px;
-  font-size: 28px;
+.change_price_title {
+  position: relative;
+
+  .change_price_label {
+    display: inline-block;
+    margin-left: 35px;
+    font-size: 28px;
+  }
+
+  .change_price_sale_input {
+    float: right;
+    text-align: center;
+  }
 }
 
 .change_price_input {
