@@ -201,7 +201,7 @@
     </div>
 
     <div class="button_box" v-if="http.res.order.status === 'NotPaid'">
-      <div v-if="canPayOnline()">
+      <div v-if="showBtnPay()">
         <div v-if="http.res.order.type === 'ForHere'">
           <div class="button_small" @click="btnFood">加餐</div>
           <div class="button_small" @click="btnPay">立即支付</div>
@@ -381,20 +381,42 @@
           }
         })
       },
-      canPayOnline() {
-        if (!Boolean(this.http.res.config.openWechat) && !Boolean(this.http.res.config.openAlipay)) {
-          return false
-        }
-
-        if (Boolean(this.http.res.config.openWechat)) {
-          if (!wechatApi.inWechat()) {
-            return false
-          }
-        }
+      showBtnPay() {
+        // if (!Boolean(this.http.res.config.openWechat) && !Boolean(this.http.res.config.openAlipay)) {
+        //   return false
+        // }
+        //
+        // if (Boolean(this.http.res.config.openWechat)) {
+        //   if (!wechatApi.inWechat()) {
+        //     return false
+        //   }
+        // }
 
         return true
       },
       btnPay() {
+        if (!Boolean(this.http.res.config.openWechat) && !Boolean(this.http.res.config.openAlipay)) {
+          this.$msgBox.doModal({
+            type: 'yes',
+            title: '立即支付',
+            content: '店铺尚未开通在线支付，请您线下付款。'
+          })
+
+          return
+        }
+
+        if (Boolean(this.http.res.config.openWechat)) {
+          if (!wechatApi.inWechat()) {
+            this.$msgBox.doModal({
+              type: 'yes',
+              title: '立即支付',
+              content: '店铺已开通微信在线支付，请使用微信扫码后付款。'
+            })
+
+            return
+          }
+        }
+
         this.$router.push({
           path: `/pay`,
           query: {
