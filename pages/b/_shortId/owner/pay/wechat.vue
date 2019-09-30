@@ -5,7 +5,7 @@
     <div class="box">
       <div class="tip">
         <ul class="tip_ul">
-          <li>开通微信支付请查阅<a class="tip_link" rel="nofollow" href="https://kf.qq.com/kf_search.html?search_key=%E5%BE%AE%E4%BF%A1%E8%AE%A4%E8%AF%81%E9%9C%80%E8%A6%81%E6%94%AF%E4%BB%98%E7%9A%84%E8%B4%B9%E7%94%A8%EF%BC%9F&code=A2497">微信官网文档</a>，绑定恋厅下载<a class="tip_link" href="https://lt.city/doc/pay_wechat.docx">恋厅微信开通文档.docx</a>。
+          <li>开通微信支付请查阅<a class="tip_link" rel="nofollow" href="https://kf.qq.com/kf_search.html?search_key=%E5%BE%AE%E4%BF%A1%E8%AE%A4%E8%AF%81%E9%9C%80%E8%A6%81%E6%94%AF%E4%BB%98%E7%9A%84%E8%B4%B9%E7%94%A8%EF%BC%9F&code=A2497">微信官网文档</a>，绑定恋厅请下载<a class="tip_link" href="https://lt.city/doc/pay_wechat.docx">恋厅微信开通文档.docx</a>。
           <li>您的交易没有任何订单抽成，所有交易将直接与微信通讯并实时打款至您的收款账户。</li>
         </ul>
       </div>
