@@ -77,7 +77,7 @@
           shop_license_label_normal: license.plan.licenseType === 'Lite' || license.plan.licenseType === 'Normal',
           shop_license_label_senior: license.plan.licenseType === 'Senior',
           shop_license_price_free: license.plan.licenseType === 'Free',
-          }">{{'￥' + license.plan.pricePerYear + '/年'}}
+          }">{{'￥' + license.plan.pricePerYear + '/套'}} (永久使用)
         </div>
 
         <div class="blank_10"></div>
@@ -425,23 +425,23 @@
         <div class="modal_title">选择套餐</div>
 
         <div class="modal_menu" v-bind:class="{modal_menu_select: ui.year === 1}"
-             @click="btnChooseYear(1)">续费 1 年
+             @click="btnChooseYear(1)">续费 1 套 (永久使用)
         </div>
 
-        <div class="modal_menu" v-bind:class="{modal_menu_select: ui.year === 2}"
-             @click="btnChooseYear(2)">续费 2 年
-          <div class="charge_year_tip">限时送 1 年</div>
-        </div>
-
-        <div class="modal_menu" v-bind:class="{modal_menu_select: ui.year === 3}"
-             @click="btnChooseYear(3)">续费 3 年
-          <div class="charge_year_tip">限时送 2 年</div>
-        </div>
-
-        <div class="modal_menu" v-bind:class="{modal_menu_select: ui.year === 5}"
-             @click="btnChooseYear(5)">续费 5 年
-          <div class="charge_year_tip">限时送 5 年</div>
-        </div>
+<!--        <div class="modal_menu" v-bind:class="{modal_menu_select: ui.year === 2}"-->
+<!--             @click="btnChooseYear(2)">续费 2 年-->
+<!--          <div class="charge_year_tip">限时送 1 年</div>-->
+<!--        </div>-->
+<!---->
+<!--        <div class="modal_menu" v-bind:class="{modal_menu_select: ui.year === 3}"-->
+<!--             @click="btnChooseYear(3)">续费 3 年-->
+<!--          <div class="charge_year_tip">限时送 2 年</div>-->
+<!--        </div>-->
+<!---->
+<!--        <div class="modal_menu" v-bind:class="{modal_menu_select: ui.year === 5}"-->
+<!--             @click="btnChooseYear(5)">续费 5 年-->
+<!--          <div class="charge_year_tip">限时送 5 年</div>-->
+<!--        </div>-->
 
         <div class="modal_button_box">
           <div class="button_big" @click="btnChargeConfirm">立即续费</div>

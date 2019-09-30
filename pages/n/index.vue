@@ -331,6 +331,10 @@
 
         this.http.req.news.content = contentText
 
+        if (this.http.req.news.referUrl.length > 255) {
+          this.http.req.news.referUrl = this.http.req.news.referUrl.substring(0, 254)
+        }
+
         if (!Boolean(this.http.req.news.content)) {
           this.$msgBox.doModal({
             type: 'yes',

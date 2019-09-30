@@ -5,8 +5,7 @@
     <div class="box">
       <div class="tip">
         <ul class="tip_ul">
-          <li>要开通支付宝在线支付功能，您需创建支付宝应用。请查阅<a class="tip_link" href="https://openhome.alipay.com/platform/appManage.htm#/apps">支付宝开放平台</a>。</li>
-          <li>待您创建好应用后，请联系客服为您发起第三方应用授权。请查阅<a class="tip_link" href="https://docs.open.alipay.com/200/105314">支付宝签约功能</a>。</li>
+          <li>开通支付宝支付请查阅<a class="tip_link" rel="nofollow" href="https://render.alipay.com/p/f/fd-iztoosq3/index.html">支付宝官网文档</a>，绑定恋厅下载<a class="tip_link" href="https://lt.city/doc/pay_alipay.docx">恋厅支付宝开通文档.docx</a></li>
           <li>您的交易没有任何订单抽成，所有交易将直接与支付宝通讯并实时打款至您的收款账户。</li>
         </ul>
       </div>
@@ -32,15 +31,15 @@
           </label>
         </div>
 
-        <div class="box_divide"></div>
+<!--        <div class="box_divide"></div>-->
 
-        <div class="addition_item">
-          <div class="addition_item_label">支持信用卡</div>
-          <div class="addition_item_check">
-            <div class="addition_item_check_on" v-if="http.req.config.supportCredit" @click="btnSupportCredit(false)"></div>
-            <div class="addition_item_check_off" v-else @click="btnSupportCredit(true)"></div>
-          </div>
-        </div>
+<!--        <div class="addition_item">-->
+<!--          <div class="addition_item_label">支持信用卡</div>-->
+<!--          <div class="addition_item_check">-->
+<!--            <div class="addition_item_check_on" v-if="http.req.config.supportCredit" @click="btnSupportCredit(false)"></div>-->
+<!--            <div class="addition_item_check_off" v-else @click="btnSupportCredit(true)"></div>-->
+<!--          </div>-->
+<!--        </div>-->
       </div>
     </div>
 

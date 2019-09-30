@@ -21,7 +21,7 @@
         <div class="box_divide"></div>
 
         <div class="addition_item">
-          <div class="addition_item_label">饭前买单</div>
+          <div class="addition_item_label">饭前买单 (下单时向导顾客立即支付)</div>
           <div class="addition_item_check">
             <div class="addition_item_check_on" v-if="http.req.config.prepayment" @click="btnPrepayment(false)"></div>
             <div class="addition_item_check_off" v-else @click="btnPrepayment(true)"></div>
@@ -31,7 +31,7 @@
         <div class="box_divide"></div>
 
         <div class="addition_item">
-          <div class="addition_item_label">自动上菜</div>
+          <div class="addition_item_label">自动上菜 (无需服务员手动确认上菜状态)</div>
           <div class="addition_item_check">
             <div class="addition_item_check_on" v-if="http.req.config.foodFinishAuto" @click="btnFoodFinishAuto(false)"></div>
             <div class="addition_item_check_off" v-else @click="btnFoodFinishAuto(true)"></div>

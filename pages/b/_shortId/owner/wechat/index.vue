@@ -15,9 +15,9 @@
     <div class="box">
       <div class="tip">
         <ul class="tip_ul">
-          <li>要保证私有公众号开发配置生效，还需要公众号主页右上角功能设置，将 <a class="tip_link">shop.lt.city</a> 分别加入到业务域名、JS接口安全域名、网页授权域名中。</li>
-          <li>同时还需要将微信通知特定模版消息类型加入到模版消息中，恋厅用到的模版包含<a class="tip_link">'排队叫号提醒'</a>，<a class="tip_link">'外卖订单通知'</a>，<a class="tip_link">'支付完成通知'</a>，<a
-              class="tip_link">'预订结果通知'</a>，<a class="tip_link">'点餐成功通知'</a>。
+          <li>要保证私有公众号开发配置生效，还需要公众号主页右上角功能设置，将 <a class="tip_highlight">shop.lt.city</a> 分别加入到业务域名、JS接口安全域名、网页授权域名中。</li>
+          <li>同时还需要将微信通知特定模版消息类型加入到模版消息中，恋厅用到的模版包含<a class="tip_highlight">'排队叫号提醒'</a>，<a class="tip_highlight">'外卖订单通知'</a>，<a class="tip_highlight">'支付完成通知'</a>，<a
+              class="tip_highlight">'预订结果通知'</a>，<a class="tip_highlight">'点餐成功通知'</a>。
           </li>
         </ul>
       </div>
