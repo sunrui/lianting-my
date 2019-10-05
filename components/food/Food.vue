@@ -173,7 +173,13 @@
             <div class="cart_food_button">
               <div class="cart_food_button_add"
                    @click="btnCartFoodAdd(cartFood.foodGroupId, cartFood.category, cartFood.food)"></div>
-              <div class="cart_food_button_count">{{cartFood.select}}</div>
+              <label>
+                <input class="cart_food_button_count" type="number"
+                       oninput="value=value.replace(/[^0-9]/g,'');
+                          if (value.length === 0) value = 1;
+                          if (value.length > 2) value = 99;"
+                       @input="btnCartFoodInput($event, cartFood.category, cartFood.food)" v-model="cartFood.select">
+              </label>
               <div class="cart_food_button_minus" @click="btnCartFoodMinus(cartFood.category, cartFood.food)"></div>
             </div>
           </div>
@@ -648,6 +654,32 @@
           this.ui.vCart = false
           this.ui.vCoverMaskCart = true
           this.ui.vCategory = true
+        }
+      },
+      btnCartFoodInput(event, foodCategory, food) {
+        let select = event.currentTarget.value
+        select = parseInt(select)
+
+        if (select <= 0) {
+          event.currentTarget.value = 1
+        }
+
+        if (select > 99) {
+          event.currentTarget.value = 99
+        }
+
+        select = event.currentTarget.value
+        select = parseInt(select)
+
+        cartApi.update(cloneApi.clone(foodCategory), cloneApi.clone(food), select)
+        this.$store.commit('cart/update', cartApi.getCart())
+        this.computedCartSelect()
+        this.computedFoodSelect()
+
+        if (this.cart.select === 0) {
+          this.ui.vCoverMaskCart = false
+          this.ui.vCart = false
+          scrollApi.enable(true)
         }
       },
       btnCartFoodMinus(foodCategory, food) {

@@ -144,15 +144,27 @@ export const cartApi = {
 
     one.select++
 
-    this.cart.select++
-    this.cart.price += food.price
+    this.saveCart()
+  },
+  update(foodCategory, food, select) {
+    this._verifyCart()
+
+    for (let index in this.cart.foods) {
+      let cartFood = this.cart.foods[index]
+      if (cartFood.category.id === foodCategory.id && cartFood.food.id === food.id) {
+        cartFood.select = select
+
+        if (cartFood.select === 0) {
+          this.cart.foods.splice(index, 1)
+          break
+        }
+      }
+    }
+
     this.saveCart()
   },
   decrease(foodCategory, food) {
     this._verifyCart()
-
-    this.cart.select--
-    this.cart.price -= food.price
 
     for (let index in this.cart.foods) {
       let cartFood = this.cart.foods[index]
