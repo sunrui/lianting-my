@@ -113,6 +113,7 @@
     top: 0;
     text-align: right;
     line-height: 130px;
+    color: #666666;
   }
 
   .order_food_count:before {
@@ -120,7 +121,6 @@
     font-size: 24px;
     content: "x";
     right: 5px;
-    line-height: 130px;
   }
 
   .order_food_price {
@@ -129,6 +129,7 @@
     top: 0;
     text-align: right;
     line-height: 130px;
+    font-size: 28px;
   }
 
   .order_food_price:before {
