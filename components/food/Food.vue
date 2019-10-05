@@ -177,7 +177,7 @@
                 <input class="cart_food_button_count" type="number"
                        oninput="value=value.replace(/[^0-9]/g,'');
                           if (value.length === 0) value = 1;
-                          if (value.length > 2) value = 99;"
+                          if (value.length > 2) value = 999;"
                        @input="btnCartFoodInput($event, cartFood.category, cartFood.food)" v-model="cartFood.select">
               </label>
               <div class="cart_food_button_minus" @click="btnCartFoodMinus(cartFood.category, cartFood.food)"></div>
@@ -194,7 +194,7 @@
         <div v-bind:class="{footer_cart:!ui.vCart, footer_cart_extend: ui.vCart}"></div>
         <div class="footer_cart_badge" v-show="!ui.vCart && cart.select > 0">{{cart.select}}</div>
       </div>
-      <div class="footer_price">{{cart.price}}</div>
+      <div class="footer_price">{{cart.price.toFixed(2)}}</div>
       <div class="footer_button" v-if="cart.select > 0" @click="btnOrder">立即下单</div>
       <div class="footer_button footer_button_gray" v-else>立即下单</div>
     </div>
@@ -351,7 +351,7 @@
         return imageApi.getXOssProcess()
       },
       eventFoodAdd(event, foodCategory) {
-        if (this.cart.select >= 99) {
+        if (this.cart.select >= 999) {
           return
         }
 
@@ -441,7 +441,7 @@
         }
       },
       httpFoodGroup() {
-        httpFoodApi.getGroupAll(this.$route.params.shortId, 0, 99).then(res => {
+        httpFoodApi.getGroupAll(this.$route.params.shortId, 0, 999).then(res => {
           this.http.res.foodGroups = res
           let haveFood = false
 
@@ -627,11 +627,11 @@
         foodGroup.groupMode = mode
       },
       btnCartFoodAdd(foodGroupId, foodCategory, food) {
-        if (this.cart.select >= 99) {
+        if (this.cart.select >= 999) {
           this.$msgBox.doModal({
             type: 'yes',
             title: '点餐',
-            content: '餐食最多允许添加99份，如您有特殊需求请联系服务员。'
+            content: '餐食最多允许添加999份，如您有特殊需求请联系服务员。'
           })
 
           return
@@ -664,8 +664,8 @@
           event.currentTarget.value = 1
         }
 
-        if (select > 99) {
-          event.currentTarget.value = 99
+        if (select > 999) {
+          event.currentTarget.value = 999
         }
 
         select = event.currentTarget.value
@@ -792,7 +792,7 @@
         }
 
         if (Boolean(this.$route.query.tableId)) {
-          httpOrderAdminApi.getAllByTableOneId(this.$route.params.shortId, this.$route.query.tableId, true, 0, 99).then(res => {
+          httpOrderAdminApi.getAllByTableOneId(this.$route.params.shortId, this.$route.query.tableId, true, 0, 999).then(res => {
             if (res.currentPageSize > 0) {
               if (this.roleType === 'c') {
                 this.$router.push(`/c/${this.$route.params.shortId}/order/add`)
