@@ -44,6 +44,7 @@
     display: inline-block;
     font-size: 28px;
     line-height: 130px;
+    vertical-align: middle;
   }
 
   .order_food_name_detail {
@@ -55,6 +56,7 @@
     text-overflow: ellipsis;
     top: 50%;
     transform: translate(0, -50%);
+    vertical-align: middle;
 
     .order_food_name_detail_name {
       font-size: 28px;
@@ -114,6 +116,7 @@
     text-align: right;
     line-height: 130px;
     color: #666666;
+    vertical-align: middle;
   }
 
   .order_food_count:before {
@@ -130,6 +133,7 @@
     text-align: right;
     line-height: 130px;
     font-size: 28px;
+    vertical-align: middle;
   }
 
   .order_food_price:before {
