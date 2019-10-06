@@ -55,7 +55,7 @@
           </div>
           <div class="order_food_status order_food_status_new">新增</div>
           <div class="order_food_count">{{food.select}}</div>
-          <div class="order_food_price">{{food.select * food.food.price}}</div>
+          <div class="order_food_price">{{(food.select * food.food.price).toFixed(2)}}</div>
         </div>
 
         <div class="blank_10"></div>
@@ -96,7 +96,7 @@
             <div class="order_tableware_icon">餐位费</div>
             <div class="order_tableware_label">餐具</div>
             <div class="order_tableware_count">{{ui.orderAnyOne.people}}</div>
-            <div class="order_tableware_price">{{ui.orderAnyOne.priceTableware}}</div>
+            <div class="order_tableware_price">{{ui.orderAnyOne.priceTableware.toFixed(2)}}</div>
           </div>
         </div>
 
@@ -326,7 +326,7 @@
 
         price += this.ui.orderAnyOne.priceTableware | 0
 
-        return price
+        return price.toFixed(2)
       },
       btnScanCaptcha() {
         if (!wechatApi.inWechat() && !alipayApi.inAlipay()) {

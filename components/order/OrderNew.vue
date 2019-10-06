@@ -294,7 +294,7 @@
           price += this.http.req.takeoutConfig.takeoutFee
         }
 
-        return price
+        return price.toFixed(2)
       },
       btnPeople() {
         this.ui.vCoverMask = true

@@ -437,7 +437,7 @@
         <div class="blank_20"></div>
 
         <div class="change_price_title">
-        <div class="change_price_label">请输入新价格 (原价: {{http.res.order.price}} 元)</div>
+          <div class="change_price_label">请输入新价格 (原价: {{http.res.order.price}} 元)</div>
           <label>
             <input v-model="ui.priceSale" v-on:input="btnPriceSale()" type="number" class="change_price_sale_input" placeholder="打折快速计算器"
                    oninput="value=value.replace(/[^0-9]/g,'');
@@ -563,7 +563,6 @@
       this.title.title = '订单详情 - ' + roleApi.getRoleTypeName(this.roleType)
 
       this.httpOrder()
-      this.httpPrinterStatus()
     },
     methods: {
       dateFormat(date) {
@@ -571,12 +570,6 @@
       },
       btnChooseReturnCount(payload) {
         this.http.req.return.count = payload.name
-      },
-      httpPrinterStatus() {
-        httpPrinterAdminApi.getStatus(this.$route.params.shortId).then(res => {
-          this.http.res.printerStatus = res
-          this.ui.printReceipt = res.printerOnline > 0 && res.printerReceiptOk > 0
-        })
       },
       httpOrder() {
         httpOrderApi.getOrder(this.$route.params.shortId, this.$route.params.orderOneId).then(res => {
@@ -1178,7 +1171,26 @@
         })
       },
       btnPrintReceipt(enable) {
-        this.ui.printReceipt = enable
+        if (enable) {
+          httpPrinterAdminApi.getStatus(this.$route.params.shortId).then(res => {
+            let canPrintOk = res.printerOnline > 0 && res.printerReceiptOk > 0
+            if (!canPrintOk) {
+              this.btnCoverMask()
+
+              this.$msgBox.doModal({
+                type: 'yes',
+                title: '打印收据',
+                content: '当前无打印机可用，无法打印收据。'
+              })
+
+              return
+            }
+
+            this.ui.printReceipt = enable
+          })
+        } else {
+          this.ui.printReceipt = enable
+        }
       },
       btnPrint() {
         this.$msgBox.doModal({

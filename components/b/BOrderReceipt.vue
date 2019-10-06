@@ -696,7 +696,7 @@
           price += orderOne.price
         }
 
-        return price
+        return price.toFixed(2)
       },
       getTotalPriceTableware() {
         let priceTableware = 0
