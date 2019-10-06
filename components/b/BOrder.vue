@@ -183,7 +183,7 @@
 
         return {
           order: order,
-          price: price
+          price: price.toFixed(2)
         }
       },
       sortOrder() {
