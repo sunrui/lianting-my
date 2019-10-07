@@ -39,7 +39,7 @@
   .reserve_notice_label {
     position: absolute;
     left: px2rem(40 + 40 + 15);
-
+    height: 88px;
     line-height: 88px;
     color: #f52626;
   }
@@ -73,10 +73,12 @@
 
         .date_item_desc {
           font-size: 28px;
+          height: 40px;
           line-height: 40px;
         }
 
         .date_item_date {
+          height: 40px;
           line-height: 40px;
         }
 
@@ -169,6 +171,7 @@
             display: inline-block;
             font-size: 28px;
             color: #333333;
+            height: 32px;
             line-height: 32px;
           }
 

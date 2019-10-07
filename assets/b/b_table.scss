@@ -17,18 +17,21 @@
   display: inline-block;
   vertical-align: middle;
   float: right;
+  height: 110px;
   line-height: 110px;
   margin-right: 35px;
   font-size: 28px;
 
   .food_group_right_remark {
     color: #999999;
+    height: 110px;
     line-height: 110px;
     margin-right: 5px;
   }
 
   .food_group_right_people {
     color: #666666;
+    height: 110px;
     line-height: 110px;
   }
 }
@@ -44,6 +47,7 @@
   display: inline-block;
   font-size: 54px;
   color: #f52626;
+  height: 120px;
   line-height: 120px;
   margin-left: px2rem(35 + 48 + 20);
 }
@@ -104,6 +108,7 @@
     .table_one_label {
       display: inline-block;
       vertical-align: top;
+      height: 28px;
       line-height: 28px;
       color: #999999;
     }
@@ -124,6 +129,7 @@
       display: inline-block;
       color: #333333;
       font-size: 28px;
+      height: 40px;
       line-height: 40px;
     }
 
@@ -131,6 +137,7 @@
       display: inline-block;
       color: #666666;
       font-size: 26px;
+      height: 40px;
       line-height: 40px;
     }
   }

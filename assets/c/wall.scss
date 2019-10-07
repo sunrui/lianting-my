@@ -85,6 +85,7 @@
       display: inline-block;
       vertical-align: middle;
       margin-left: 5px;
+      height: 32px;
       line-height: 32px;
       color: #666666;
     }
@@ -156,6 +157,7 @@
   //background: #fff1f1;
   border-radius: 20px;
   color: #666666;
+  height: 50px;
   line-height: 50px;
   padding: 25px;
 }
@@ -179,6 +181,7 @@
       display: inline-block;
       vertical-align: middle;
       color: #999999;
+      height: 32px;
       line-height: 32px;
       margin-left: 5px;
     }
@@ -197,23 +200,27 @@
 
   .menu_food_category {
     display: inline-block;
+    vertical-align: middle;
     color: #333333;
     margin-left: 35px;
+    height: 60px;
     line-height: 60px;
     font-size: 28px;
   }
 
   .menu_food_name {
     display: inline-block;
+    vertical-align: middle;
     color: #666666;
     margin-left: 5px;
+    height: 60px;
     line-height: 60px;
   }
 
   .menu_food_count {
     position: absolute;
     top: 0;
-
+    height: 60px;
     line-height: 60px;
     right: 35px;
   }
@@ -235,6 +242,7 @@
     font-size: 26px;
     margin-left: 35px;
     color: #666666;
+    height: 60px;
     line-height: 60px;
   }
 
@@ -255,6 +263,7 @@
     float: right;
     margin-right: 35px;
     font-size: 36px;
+    height: 60px;
     line-height: 60px;
   }
 

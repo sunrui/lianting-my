@@ -235,6 +235,7 @@
   .shop_footer_queue_label {
     position: absolute;
     left: px2rem(35 + 31 + 20);
+    height: 110px;
     line-height: 110px;
     font-size: 28px;
   }
@@ -242,6 +243,7 @@
   .shop_footer_queue_content {
     float: right;
     margin-right: 35px;
+    height: 110px;
     line-height: 110px;
     font-size: 40px;
     color: #f52626;
@@ -259,12 +261,12 @@
     bottom: 0;
     left: 0;
     height: 110px;
+    line-height: 110px;
     width: 100%;
     background: rgba(0, 0, 0, 0.3);
     color: white;
     text-align: center;
     font-size: 40px;
-    line-height: 90px;
   }
 }
 

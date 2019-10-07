@@ -8,6 +8,7 @@
     display: inline-block;
     font-size: 80px;
     color: #f52626;
+    height: 160px;
     line-height: 160px;
   }
 
@@ -28,6 +29,7 @@
   .pay_method_title {
     margin-left: 35px;
     font-size: 28px;
+    height: 60px;
     line-height: 60px;
   }
 
@@ -50,18 +52,21 @@
       vertical-align: top;
       margin-left: px2rem(35 + 72 + 20);
       font-size: 28px;
+      height: 90px;
       line-height: 90px;
     }
 
     .pay_method_label_disable {
       color: #999999;
       font-size: 28px;
+      height: 90px;
       line-height: 90px;
     }
 
     .pay_method_check {
       display: inline-block;
       height: 90px;
+      line-height: 90px;
     }
   }
 }

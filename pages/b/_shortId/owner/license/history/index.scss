@@ -8,6 +8,8 @@
 
     .license_label_one_name {
       display: inline-block;
+      vertical-align: middle;
+      height: 60px;
       line-height: 60px;
       text-align: left;
       color: #333333;
@@ -15,7 +17,9 @@
 
     .license_label_one_value {
       display: inline-block;
+      vertical-align: middle;
       float: right;
+      height: 60px;
       line-height: 60px;
       text-align: right;
       max-width: 70%;

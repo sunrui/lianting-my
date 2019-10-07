@@ -31,7 +31,7 @@
     .search_label {
       position: absolute;
       left: px2rem(50 + 26 + 20);
-
+      height: 88px;
       line-height: 88px;
       color: #999999;
     }
@@ -173,6 +173,7 @@
 
     .menu_item_label {
       font-weight: 400;
+      height: 40px;
       line-height: 40px;
       margin-top: 10px;
     }
@@ -214,6 +215,7 @@
         vertical-align: middle;
         font-size: 32px;
         color: #333333;
+        height: 110px;
         line-height: 110px;
       }
 
@@ -223,6 +225,7 @@
         color: #666666;
         font-size: 24px;
         margin-left: 5px;
+        height: 110px;
         line-height: 110px;
       }
 
@@ -230,6 +233,7 @@
         display: inline-block;
         vertical-align: middle;
         float: right;
+        height: 110px;
         line-height: 110px;
         margin-right: 25px;
 
@@ -376,6 +380,7 @@
     .food_button_count {
       color: #333333;
       float: right;
+      height: 40px;
       line-height: 40px;
       padding: 0 20px;
     }
@@ -458,6 +463,7 @@
       color: #333333;
       font-size: 28px;
       margin-left: 30px;
+      height: 80px;
       line-height: 80px;
     }
 
@@ -481,7 +487,7 @@
       .cart_title_delete_label {
         text-align: right;
         color: #333333;
-
+        height: 80px;
         line-height: 80px;
         margin-left: px2rem(28 + 10);
         margin-right: 20px;
@@ -515,6 +521,7 @@
           display: inline-block;
           color: #333333;
           margin-left: 45px;
+          height: 90px;
           line-height: 90px;
         }
 
@@ -522,6 +529,7 @@
           display: inline-block;
           color: #666666;
           margin-left: 5px;
+          height: 90px;
           line-height: 90px;
         }
       }
@@ -531,6 +539,7 @@
         position: absolute;
         top: 0;
 
+        height: 90px;
         line-height: 90px;
         right: 220px;
       }
@@ -538,6 +547,7 @@
       .cart_food_price:before {
         content: "¥";
         font-size: 22px;
+        height: 90px;
         line-height: 90px;
         color: #f52626;
         margin-right: 5px;
@@ -551,6 +561,7 @@
         .cart_food_button_count {
           color: #666666;
           float: right;
+          height: 40px;
           line-height: 40px;
           border: none;
           width: 80px;
@@ -644,6 +655,7 @@
     position: relative;
     margin-left: px2rem(30 + 110 + 30);
     font-size: 28px;
+    height: 95px;
     line-height: 95px;
     color: #f52626;
   }
@@ -653,6 +665,7 @@
     position: relative;
     margin-right: 10px;
     font-size: 28px;
+    height: 95px;
     line-height: 95px;
     color: #666666;
   }
@@ -662,6 +675,7 @@
     position: relative;
     margin-left: 10px;
     font-size: 28px;
+    height: 95px;
     line-height: 95px;
     color: #666666;
   }
@@ -729,13 +743,14 @@
       .category_food_price_now {
         display: inline-block;
         font-size: 36px;
+        height: 36px;
         line-height: 36px;
         color: #f52626;
       }
 
       .category_food_price_now:before {
         content: "¥";
-
+        height: 36px;
         line-height: 36px;
         color: #f52626;
         margin-right: 5px;
@@ -745,6 +760,7 @@
         display: inline-block;
         text-decoration: line-through;
         font-size: 24px;
+        height: 24px;
         line-height: 24px;
         color: #999999;
       }
@@ -821,6 +837,7 @@
     vertical-align: middle;
     font-size: 28px;
     color: #f52626;
+    height: 88px;
     line-height: 88px;
   }
 }

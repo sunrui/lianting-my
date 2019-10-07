@@ -1,8 +1,10 @@
 .queue_history_status {
   float: right;
   display: inline-block;
+  vertical-align: middle;
   margin-right: 30px;
   font-size: 28px;
+  height: 102px;
   line-height: 102px;
 }
 
@@ -33,16 +35,19 @@
 
   .queue_history_food_label {
     display: inline-block;
-
+    vertical-align: middle;
     margin-left: 30px;
+    height: 70px;
     line-height: 70px;
     color: #666666;
   }
 
   .queue_history_food_content {
     display: inline-block;
+    vertical-align: middle;
     font-size: 28px;
     margin-left: 10px;
+    height: 70px;
     line-height: 70px;
     color: #333333;
   }
@@ -54,15 +59,18 @@
 
   .queue_history_price_label {
     display: inline-block;
-
+    vertical-align: middle;
     margin-left: 30px;
+    height: 70px;
     line-height: 70px;
     color: #666666;
   }
 
   .queue_history_price_content {
     display: inline-block;
+    vertical-align: middle;
     margin-left: 10px;
+    height: 70px;
     line-height: 70px;
     font-size: 28px;
     color: #f52626;

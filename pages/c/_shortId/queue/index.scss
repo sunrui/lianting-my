@@ -39,7 +39,7 @@
   .queue_notice_label {
     position: absolute;
     left: px2rem(40 + 40 + 15);
-
+    height: 88px;
     line-height: 88px;
     color: #f52626;
   }
@@ -73,6 +73,7 @@
       position: absolute;
       font-size: 28px;
       color: #333333;
+      height: 40px;
       line-height: 40px;
       left: px2rem(30 + 40 + 10);
       top: 0;
@@ -105,6 +106,7 @@
         vertical-align: middle;
         font-size: 28px;
         color: #333333;
+        height: 32px;
         line-height: 32px;
       }
 
@@ -132,6 +134,7 @@
 
   .queue_box_table_wait_people {
     display: inline-block;
+    vertical-align: middle;
     color: #f52626;
     position: absolute;
     right: 240px;
@@ -141,6 +144,7 @@
     content: "等待";
     font-size: 28px;
     color: #333333;
+    height: 120px;
     line-height: 120px;
     margin-right: 10px;
   }
@@ -155,30 +159,37 @@
 
   .queue_box_table_wait_time_zero {
     display: inline-block;
+    vertical-align: middle;
     float: right;
     margin-right: 50px;
     font-size: 28px;
     color: #999999;
+    height: 120px;
     line-height: 120px;
   }
 
   .queue_box_table_wait_guess {
     display: inline-block;
+    vertical-align: middle;
     margin-right: 50px;
     float: right;
 
     .queue_box_table_wait_time {
       display: inline-block;
+      vertical-align: middle;
       font-size: 28px;
       color: #f52626;
+      height: 120px;
       line-height: 120px;
     }
 
     .queue_box_table_wait_time2 {
       display: inline-block;
+      vertical-align: middle;
       margin-left: 10px;
       font-size: 28px;
       color: #333333;
+      height: 120px;
       line-height: 120px;
     }
   }
@@ -208,14 +219,17 @@
 
       float: right;
       display: inline-block;
+      vertical-align: middle;
       margin-right: 10px;
     }
 
     .queue_distance_goto_label {
       display: inline-block;
+      vertical-align: middle;
       float: right;
       margin-right: 35px;
       color: #f52626;
+      height: 34px;
       line-height: 34px;
     }
   }
@@ -261,6 +275,7 @@
       position: absolute;
       left: px2rem(40 + 10);
       color: #333333;
+      height: 50px;
       line-height: 50px;
       top: 0;
     }
@@ -399,6 +414,7 @@
 .queue_table_name {
   display: inline-block;
   font-size: 28px;
+  height: 90px;
   line-height: 90px;
 }
 
@@ -417,6 +433,7 @@
 .queue_table_people {
   display: inline-block;
   font-size: 28px;
+  height: 90px;
   line-height: 90px;
 }
 
