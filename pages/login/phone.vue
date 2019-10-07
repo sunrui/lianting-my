@@ -33,8 +33,6 @@
             <div class="login_sms_code_icon"></div>
             <label>
               <input type="number" class="login_sms_code_input addition_item_code_input" placeholder="验证码"
-                     oninput="value=value.replace(/[^0-9]/g,'');
-                              if (value.length > 6) value = value.slice(0, 6)"
                      v-model="http.req.bind.code">
             </label>
           </div>
