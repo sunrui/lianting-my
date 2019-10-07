@@ -292,7 +292,7 @@
             }
 
             httpQueueApi.getState(this.$route.params.shortId).then(res => {
-              if (!res.needQueues || res.needQueues.length === 0) {
+              if (!res.needQueues || res.needQueues.length === 0 || !Boolean(res.needQueues[0])) {
                 this.$router.push(`/c/${this.$route.params.shortId}/queue/close`)
                 return
               }
