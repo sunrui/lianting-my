@@ -4,6 +4,8 @@
 
     <div :class="{ cover_mask_9: ui.vCoverMask}" @click="btnCoverMask"></div>
 
+    <div class="title_bar_printer" v-if="ui.receipt.orderFirst.orderFoods && ui.receipt.orderFirst.orderFoods.length > 0" @click="btnPrint"></div>
+
     <div class="box" v-if="ui.receipt.orderFirst.orderTable">
       <div class="order_table box_radius">
         <div class="order_table_number">{{ui.receipt.orderFirst.orderTable.tableFullNumber}}</div>
@@ -211,7 +213,6 @@
     </div>
 
     <div class="button_box">
-      <div class="button_big" v-if="ui.receipt.orderFirst.orderFoods && ui.receipt.orderFirst.orderFoods.length > 0" @click="btnPrint">打印合并收据</div>
       <div v-if="ui.receipt.orderFirst.status === 'NotPaid' && roleType !== 'admin' && roleType !== 'retailer'">
         <div class="button_small" @click="btnPayOffline" v-if="roleType === 'cashier'">线下结算</div>
       </div>
