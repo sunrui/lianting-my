@@ -71,7 +71,7 @@
             <div class="order_food_name_detail_name_category">{{orderFood.foodName}}</div>
           </div>
           <div class="order_food_count order_food_count_2">{{orderFood.count}}</div>
-          <div class="order_food_price order_food_price_2">{{(orderFood.count * orderFood.foodPrice).toFixed(2)}}</div>
+          <div class="order_food_price order_food_price_2">{{parseFloat(orderFood.count * orderFood.foodPrice).toFixed(2)}}</div>
           <div class="order_food_button_group">
             <div class="order_food_button button_gray" v-if="orderFood.status === 'Cancel'">已取消</div>
             <div v-else-if="(roleType === 'admin' || roleType === 'retailer') && orderFood.status !== 'Finish'">
@@ -145,7 +145,7 @@
           <div class="order_tableware_icon">餐位费</div>
           <div class="order_tableware_label">餐具</div>
           <div class="order_tableware_count">{{http.res.order.people}}</div>
-          <div class="order_tableware_price">{{http.res.order.priceTableware.toFixed(2)}}</div>
+          <div class="order_tableware_price">{{parseFloat(http.res.order.priceTableware).toFixed(2)}}</div>
         </div>
 
         <div class="order_tableware" v-if="http.res.order.priceTakeoutFee > 0">
@@ -884,7 +884,7 @@
         }
 
         this.http.req.changePrice.price = this.http.res.order.price * this.ui.priceSale / 100
-        this.http.req.changePrice.price.toFixed(2)
+        this.http.req.changePrice.price = parseFloat(this.http.req.changePrice.price).toFixed(2)
       },
       btnChangePrice() {
         this.ui.vCoverMask = true

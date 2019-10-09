@@ -183,7 +183,7 @@
 
         return {
           order: order,
-          price: price.toFixed(2)
+          price: parseFloat(price).toFixed(2)
         }
       },
       sortOrder() {

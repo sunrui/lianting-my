@@ -31,7 +31,7 @@ export const cartApi = {
       this.cart.price += this.cart.people * this.cart.perTablewarePrice
     }
 
-    this.cart.price.toFixed(2)
+    this.cart.price = parseFloat(this.cart.price).toFixed(2)
 
     storeApi.object.set(this._key, this.cart)
   },

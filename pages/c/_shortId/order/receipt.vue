@@ -342,7 +342,7 @@
           price += orderOne.price
         }
 
-        return price.toFixed(2)
+        return parseFloat(price).toFixed(2)
       },
       getTotalPriceTableware() {
         let priceTableware = 0

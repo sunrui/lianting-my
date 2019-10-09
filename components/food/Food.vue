@@ -194,7 +194,7 @@
         <div v-bind:class="{footer_cart:!ui.vCart, footer_cart_extend: ui.vCart}"></div>
         <div class="footer_cart_badge" v-show="!ui.vCart && cart.select > 0">{{cart.select}}</div>
       </div>
-      <div class="footer_price">{{cart.price ? cart.price.toFixed(2) : '0.00'}}</div>
+      <div class="footer_price">{{cart.price ? parseFloat(cart.price).toFixed(2) : '0.00'}}</div>
       <div class="footer_button" v-if="cart.select > 0" @click="btnOrder">立即下单</div>
       <div class="footer_button footer_button_gray" v-else>立即下单</div>
     </div>

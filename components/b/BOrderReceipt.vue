@@ -685,7 +685,7 @@
           priceOriginal += orderOne.priceOriginal
         }
 
-        return priceOriginal.toFixed(2)
+        return parseFloat(priceOriginal).toFixed(2)
       },
       getTotalPrice() {
         let price = 0
@@ -696,7 +696,7 @@
           price += orderOne.price
         }
 
-        return price.toFixed(2)
+        return parseFloat(price).toFixed(2)
       },
       getTotalPriceTableware() {
         let priceTableware = 0
