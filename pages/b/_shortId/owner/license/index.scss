@@ -205,10 +205,15 @@
   display: inline-block;
   vertical-align: middle;
   color: white;
-  background: linear-gradient(90deg, rgba(255, 207, 76, 1), rgba(255, 166, 102, 1));
+  background: linear-gradient(90deg, rgba(62, 198, 247, 1), rgba(48, 145, 242, 1));
   border-radius: 5px;
   height: 40px;
   line-height: 40px;
   font-size: 24px;
   padding: 0 10px;
 }
+
+.charge_year_tip_forever {
+  background: linear-gradient(90deg, rgba(255, 207, 76, 1), rgba(255, 166, 102, 1));
+}
+
