@@ -12,7 +12,7 @@
               :on-refresh="onRefresh"
               refresh-text=""
               :on-infinite="onInfinite">
-      <div v-for="wall in ui.scroller.elements">
+      <div v-for="(wall, index) in ui.scroller.elements">
         <div class="box">
           <div class="wall box_radius_header">
             <div class="wall_user_info">
@@ -63,7 +63,11 @@
           </div>
 
           <div class="wall_message box_radius_footer">
-            <div class="wall_message_paper" @click="btnWallOne(wall)">{{wall.message}}</div>
+            <div class="wall_message_paper" v-bind:class="{
+            wall_message_paper_1: index % 4 === 1,
+            wall_message_paper_2: index % 4 === 2,
+            wall_message_paper_3: index % 4 === 3,
+            }" @click="btnWallOne(wall)">{{wall.message}}</div>
             <div class="wall_message_extra">
               <div class="wall_message_one" @click="btnWallOne(wall)">
                 <img class="wall_message_icon" src="/img/c/wall/wall_message.png" alt="">

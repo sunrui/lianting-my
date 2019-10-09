@@ -152,14 +152,22 @@
 
 .wall_message_paper {
   background: #fffaec;
-  //background: #eaf7ff;
-  //background: #eafff0;
-  //background: #fff1f1;
   border-radius: 20px;
   color: #666666;
-  height: 50px;
   line-height: 50px;
   padding: 25px;
+}
+
+.wall_message_paper_1 {
+  background: #eaf7ff;
+}
+
+.wall_message_paper_2 {
+  background: #eafff0;
+}
+
+.wall_message_paper_3 {
+  background: #fff1f1;
 }
 
 .wall_message_extra {
