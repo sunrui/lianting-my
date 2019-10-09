@@ -1192,38 +1192,62 @@
         }
       },
       btnPrint() {
-        this.$msgBox.doModal({
-          type: 'yesOrNo',
-          title: '打印顾客收据',
-          content: '打印顾客收据请求将发送至打印机，您确认吗？'
-        }).then(async (val) => {
-          if (val !== 'Yes') {
+        httpPrinterAdminApi.getStatus(this.$route.params.shortId).then(res => {
+          if (res.printerOnline === 0) {
+            this.btnCoverMask()
+            this.$msgBox.doModal({
+              type: 'yes',
+              title: '无法打印顾客收据',
+              content: '没有在线的打印机。'
+            })
+
             return
           }
 
-          let orderOneIds = []
-          orderOneIds.push(this.$route.params.orderOneId)
+          if (res.printerReceiptOk === 0) {
+            this.btnCoverMask()
+            this.$msgBox.doModal({
+              type: 'yes',
+              title: '无法打印顾客收据',
+              content: `有在线 ${this.http.res.printerStatus.printerOnline} 台打印机，但是没有允许打印顾客收据。`
+            })
 
-          httpPrinterAdminApi.postReceipt(this.$route.params.shortId, orderOneIds).then(res => {
-            if (res.orderIdNotExists) {
-              this.$msgBox.doModal({
-                type: 'yes',
-                title: '无法打印顾客收据',
-                content: '部分订单号不存在。'
-              }).then(async (val) => {
-                this.httpOrder()
-              })
+            return
+          }
+
+          this.$msgBox.doModal({
+            type: 'yesOrNo',
+            title: '打印顾客收据',
+            content: '打印顾客收据请求将发送至打印机，您确认吗？'
+          }).then(async (val) => {
+            if (val !== 'Yes') {
+              return
             }
 
-            if (res.printerTaskId) {
-              this.$msgBox.doModal({
-                type: 'yes',
-                title: '顾客收据',
-                content: '顾客收据已打印。'
-              }).then(async (val) => {
-                this.httpOrder()
-              })
-            }
+            let orderOneIds = []
+            orderOneIds.push(this.$route.params.orderOneId)
+
+            httpPrinterAdminApi.postReceipt(this.$route.params.shortId, orderOneIds).then(res => {
+              if (res.orderIdNotExists) {
+                this.$msgBox.doModal({
+                  type: 'yes',
+                  title: '无法打印顾客收据',
+                  content: '部分订单号不存在。'
+                }).then(async (val) => {
+                  this.httpOrder()
+                })
+              }
+
+              if (res.printerTaskId) {
+                this.$msgBox.doModal({
+                  type: 'yes',
+                  title: '顾客收据',
+                  content: '顾客收据已打印。'
+                }).then(async (val) => {
+                  this.httpOrder()
+                })
+              }
+            })
           })
         })
       }
