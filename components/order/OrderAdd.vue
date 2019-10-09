@@ -85,7 +85,7 @@
             <div class="order_food_status order_food_status_cooked" v-if="orderFood.status === 'Cooked'">做好了</div>
             <div class="order_food_status order_food_status_finish" v-if="orderFood.status === 'Finish'">已上菜</div>
             <div class="order_food_count">{{orderFood.count}}</div>
-            <div class="order_food_price">{{orderFood.count * orderFood.foodPrice}}</div>
+            <div class="order_food_price">{{(orderFood.count * orderFood.foodPrice).toFixed(2)}}</div>
           </div>
         </div>
 

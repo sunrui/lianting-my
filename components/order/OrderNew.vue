@@ -71,7 +71,7 @@
             </div>
             <div class="order_food_status order_food_status_new">新增</div>
             <div class="order_food_count">{{food.select}}</div>
-            <div class="order_food_price">{{food.select * food.food.price}}</div>
+            <div class="order_food_price">{{(food.select * food.food.price).toFixed(2)}}</div>
           </div>
         </div>
 
@@ -81,8 +81,8 @@
           <div class="order_tableware">
             <div class="order_tableware_icon">餐位费</div>
             <div class="order_tableware_label">餐具</div>
-            <div class="order_tableware_count">{{cart.people }}</div>
-            <div class="order_tableware_price">{{cart.people * cart.perTablewarePrice}}</div>
+            <div class="order_tableware_count">{{cart.people}}</div>
+            <div class="order_tableware_price">{{(cart.people * cart.perTablewarePrice).toFixed(2)}}</div>
           </div>
         </div>
 
