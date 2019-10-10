@@ -26,7 +26,7 @@
             <div class="addition_item_label_text_area">地址</div>
             <div class="addition_item_text_area">
               <label>
-                <textarea class="addition_item_text_input" placeholder="请输入您的配送地址" v-model="http.req.order.takeout.address"></textarea>
+                <textarea class="addition_item_text_input" placeholder="请输入您的配送地址" maxlength="255" v-model="http.req.order.takeout.address"></textarea>
               </label>
             </div>
           </div>
