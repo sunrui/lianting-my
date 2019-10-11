@@ -290,7 +290,7 @@
             this.sortOrder()
           })
         } else if (this.ui.userId) {
-          httpOrderAdminApi.getAllByUserId(this.$route.params.shortId, null, this.ui.userId, live, this.ui.scroller.page++, 20).then(res => {
+          httpOrderAdminApi.getAllByUserId(this.$route.params.shortId, null, this.ui.userId, false, this.ui.scroller.page++, 20).then(res => {
             if (done) {
               done()
             }

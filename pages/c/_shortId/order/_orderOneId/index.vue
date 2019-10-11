@@ -270,7 +270,7 @@
         title: {
           canBack: true,
           title: '订单详情',
-          backUri: `/c/${this.$route.params.shortId}/order/history`,
+          backUri: `/c/${this.$route.params.shortId}`,
           theme: 'image',
           imageHeight: 330
         },
