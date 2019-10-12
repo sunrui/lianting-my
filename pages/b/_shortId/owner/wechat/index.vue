@@ -7,27 +7,10 @@
         <ul class="tip_ul">
           <li>恋厅可在您的公众号中单独使用，并仅作为底层技术通道支持，同时顾客排队、加菜、支付等消息会在私有公众号中推送。</li>
           <li>您可自由选择将点餐、排队、预订、订单记录、个人中心、我的优惠券等常用入口放至在私有公众号菜单中。</li>
-          <li>恋厅公众号并非顾客所需，恋厅仅作为您餐厅的管理后台和工作台入口。如您尚未拥有私有公众号，您也可推荐顾客关注恋厅来接收消息通知。</li>
+          <li>恋厅公众号并非顾客所需，恋厅仅作为您餐厅的管理后台和工作台入口。</li>如您尚未拥有私有公众号，您也可推荐顾客关注恋厅来接收消息通知。</li>
+          <li>接入文档请<a class="tip_link" href="https://www.honeysense.com/doc/mp_wechat.docx">下载</a>。</li>
         </ul>
       </div>
-    </div>
-
-    <div class="box">
-      <div class="tip">
-        <ul class="tip_ul">
-          <li>要保证私有公众号开发配置生效，还需要公众号主页右上角功能设置，将 <a class="tip_highlight">shop.lt.city</a> 分别加入到业务域名、JS接口安全域名、网页授权域名中。</li>
-          <li>同时还需要将微信通知特定模版消息类型加入到模版消息中，恋厅用到的模版包含<a class="tip_highlight">'排队叫号提醒'</a>，<a class="tip_highlight">'外卖订单通知'</a>，<a class="tip_highlight">'支付完成通知'</a>，<a
-              class="tip_highlight">'预订结果通知'</a>，<a class="tip_highlight">'点餐成功通知'</a>。
-          </li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="template_text_box">
-      <div class="template_title">请手动复制模版 ID</div>
-      <label>
-        <textarea class="template_text" v-model="ui.template" onclick="this.select()"></textarea>
-      </label>
     </div>
 
     <div class="box">
@@ -83,17 +66,6 @@
           }
         },
         ui: {
-          template:
-              '排队叫号提醒\n' +
-              '0NYWOuUmFedirJVk6nHgS8IOzT96lo6wN6TNjfth20Y\n\n' +
-              '外卖订单通知\n' +
-              'KxCo3w_2pNdzGYzgxuYgODdfrPhc7LWLiTZaUwlfCWY\n\n' +
-              '支付完成通知\n' +
-              'eMsFDEBYBlQpcjwBuCqwQt1dCY6610t2cLUgqvSHgKI\n\n' +
-              '预订结果通知\n' +
-              'nmJsI9A6kxq78xrnrJAsaTsAEpIYhXMGG6qvKxyVrhc\n\n' +
-              '点餐成功通知\n' +
-              'KR2Y0Ufki_BPXB4kzYQP2R7cNT6z\n'
         }
       }
     },
