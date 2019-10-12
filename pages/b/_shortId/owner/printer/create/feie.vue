@@ -5,7 +5,8 @@
     <div class="box">
       <div class="tip">
         <ul class="tip_ul">
-          <li>飞鹅云官网请参考: <a class="tip_link" :href="getUrl()">http://www.feieyun.com</a>。</li>
+          <li>飞鹅云官网请参考: <a class="tip_link" href="http://www.feieyun.com">http://www.feieyun.com</a>。</li>
+          <li>飞鹅云接入文档请<a class="tip_link" href="https://www.honseysense.com/doc/printer_feie.docx">下载</a>。</li>
         </ul>
       </div>
     </div>
@@ -92,9 +93,6 @@
       }
     },
     methods: {
-      getUrl() {
-        return 'http://www.feieyun.com'
-      },
       btnCreate() {
         if (!Boolean(this.http.req.printer.user)) {
           this.$msgBox.doModal({

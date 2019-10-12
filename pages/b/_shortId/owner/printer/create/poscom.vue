@@ -5,7 +5,8 @@
     <div class="box">
       <div class="tip">
         <ul class="tip_ul">
-          <li>佳博云官网请参考: <a class="tip_link" :href="getUrl()">http://cloud.poscom.cn/</a>。</li>
+          <li>佳博云官网请参考: <a class="tip_link" href="http://cloud.poscom.cn/">http://cloud.poscom.cn/</a>。</li>
+          <li>佳博云接入文档请<a class="tip_link" href="https://www.honseysense.com/doc/printer_poscom.docx">下载</a>。</li>
         </ul>
       </div>
     </div>
@@ -100,9 +101,6 @@
       }
     },
     methods: {
-      getUrl() {
-        return 'http://cloud.poscom.cn/'
-      },
       btnEightyMM(eightyMM) {
         this.http.req.printer.eightyMM = eightyMM
       },

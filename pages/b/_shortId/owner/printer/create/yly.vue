@@ -5,7 +5,8 @@
     <div class="box">
       <div class="tip">
         <ul class="tip_ul">
-          <li>易联云官网请参考: <a class="tip_link" :href="getUrl()">https://www.yilianyun.net</a>。</li>
+          <li>易联云官网请参考: <a class="tip_link" href="https://www.yilianyun.net">https://www.yilianyun.net</a>。</li>
+          <li>易联云接入文档请<a class="tip_link" href="https://www.honseysense.com/doc/printer_yly.docx">下载</a>。</li>
         </ul>
       </div>
     </div>
@@ -100,9 +101,6 @@
       }
     },
     methods: {
-      getUrl() {
-        return 'https://www.yilianyun.net'
-      },
       btnEightyMM(eightyMM) {
         this.http.req.printer.eightyMM = eightyMM
       },
