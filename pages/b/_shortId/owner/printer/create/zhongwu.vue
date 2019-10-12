@@ -5,8 +5,7 @@
     <div class="box">
       <div class="tip">
         <ul class="tip_ul">
-          <li>中午云官网请参考: <a class="tip_link" href="http://www.zhongwu.co/">http://www.zhongwu.co/</a>。</li>
-          <li>中午云接入文档请<a class="tip_link" href="https://www.honseysense.com/doc/printer_zhongwu.docx">下载</a>。</li>
+          <li>中午云<a class="tip_link" href="http://www.zhongwu.co/">官网</a>接入文档请<a class="tip_link" href="https://www.honseysense.com/doc/printer_zhongwu.docx">下载</a>。</li>
         </ul>
       </div>
     </div>
