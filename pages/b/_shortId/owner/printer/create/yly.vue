@@ -5,7 +5,7 @@
     <div class="box">
       <div class="tip">
         <ul class="tip_ul">
-          <li>易联云<a class="tip_link" href="https://www.yilianyun.net">官网</a>接入文档请<a class="tip_link" href="https://www.honseysense.com/doc/printer_yly.docx">下载</a>。</li>
+          <li>易联云<a class="tip_link" href="https://www.yilianyun.net">官网</a>接入文档请<a class="tip_link" href="https://www.honeysense.com/doc/printer_yly.docx">下载</a>。</li>
         </ul>
       </div>
     </div>
