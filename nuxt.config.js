@@ -4,6 +4,7 @@ const modifyHtml = (html) => {
   html = html.replace(/ data-n-head-ssr/g, '')
   html = html.replace(/ data-n-head=""/g, '')
   html = html.replace(/ data-hid="description"/g, '')
+  html = html.replace(/ data-hid="keywords"/g, '')
   html = html.replace(/ data-n-head="ssr"/g, '')
   html = html.replace(/ data-server-rendered="true"/g, '')
   html = html.replace(/ data-n-head=""/g, '')
