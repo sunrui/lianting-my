@@ -21,7 +21,7 @@
         <div class="box_divide"></div>
 
         <div class="addition_item">
-          <div class="addition_item_label">饭前买单 (下单时向导顾客立即支付)</div>
+          <div class="addition_item_label">饭前买单 (下单时引导顾客立即支付)</div>
           <div class="addition_item_check">
             <div class="addition_item_check_on" v-if="http.req.config.prepayment" @click="btnPrepayment(false)"></div>
             <div class="addition_item_check_off" v-else @click="btnPrepayment(true)"></div>
@@ -31,7 +31,7 @@
         <div class="box_divide"></div>
 
         <div class="addition_item">
-          <div class="addition_item_label">自动上菜 (无需服务员手动确认上菜状态)</div>
+          <div class="addition_item_label">自动上菜 (无需管理上菜状态)</div>
           <div class="addition_item_check">
             <div class="addition_item_check_on" v-if="http.req.config.foodFinishAuto" @click="btnFoodFinishAuto(false)"></div>
             <div class="addition_item_check_off" v-else @click="btnFoodFinishAuto(true)"></div>
@@ -78,9 +78,6 @@
       </div>
     </div>
 
-    <div class="button_box">
-      <div class="button_big" @click="btnUpdate">更新</div>
-    </div>
   </div>
 </template>
 
@@ -149,9 +146,11 @@
       },
       btnPrepayment(enable) {
         this.http.req.config.prepayment = enable
+        this.btnUpdate()
       },
       btnFoodFinishAuto(enable) {
         this.http.req.config.foodFinishAuto = enable
+        this.btnUpdate()
       },
       btnOpenWechat(enable) {
         if (enable && !Boolean(this.http.res.configWechat.subAppId)) {
@@ -165,6 +164,7 @@
         }
 
         this.http.req.config.openWechat = enable
+        this.btnUpdate()
       },
       btnOpenAlipay(enable) {
         if (enable && !Boolean(this.http.res.configAlipay.partnerId)) {
@@ -178,6 +178,7 @@
         }
 
         this.http.req.config.openAlipay = enable
+        this.btnUpdate()
       },
       btnUpdate() {
         if (Boolean(this.http.req.config.prepayment) &&
@@ -193,13 +194,6 @@
         }
 
         httpOrderAdminApi.putConfig(this.$route.params.shortId, this.http.req.config).then(res => {
-          this.$msgBox.doModal({
-            type: 'yes',
-            title: '支付',
-            content: '已更新。'
-          }).then(async (val) => {
-            this.$router.push(this.title.backUri)
-          })
         })
       },
       btnPayWechat() {
