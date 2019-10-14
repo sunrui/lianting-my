@@ -118,14 +118,14 @@
     text-align: right;
     height: 130px;
     line-height: 130px;
-    color: #666666;
     vertical-align: middle;
   }
 
   .order_food_count:before {
     font-size: 24px;
     content: "x";
-    right: 5px;
+    margin-right: 5px;
+    color: #666666;
   }
 
   .order_food_price {
