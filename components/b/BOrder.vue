@@ -183,7 +183,7 @@
 
         return {
           order: order,
-          price: parseFloat(price).toFixed(2)
+          price: Math.round(parseFloat(price) * 100) / 100
         }
       },
       sortOrder() {

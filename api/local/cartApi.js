@@ -1,4 +1,4 @@
-import { storeApi } from './storeApi'
+import {storeApi} from './storeApi'
 
 export const cartApi = {
   _key: 'cart',
@@ -31,7 +31,7 @@ export const cartApi = {
       this.cart.price += this.cart.people * this.cart.perTablewarePrice
     }
 
-    this.cart.price = parseFloat(this.cart.price).toFixed(2)
+    this.cart.price = Math.round(parseFloat(this.cart.price) * 100) / 100
 
     storeApi.object.set(this._key, this.cart)
   },

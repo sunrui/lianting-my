@@ -71,7 +71,7 @@
             </div>
             <div class="order_food_status order_food_status_new">新增</div>
             <div class="order_food_count">{{food.select}}</div>
-            <div class="order_food_price">{{parseFloat(food.select * food.food.price).toFixed(2)}}</div>
+            <div class="order_food_price">{{Math.round(parseFloat(food.select * food.food.price) * 100) / 100}}</div>
           </div>
         </div>
 
@@ -82,7 +82,7 @@
             <div class="order_tableware_icon">餐位费</div>
             <div class="order_tableware_label">餐具</div>
             <div class="order_tableware_count">{{cart.people}}</div>
-            <div class="order_tableware_price">{{parseFloat(cart.people * cart.perTablewarePrice).toFixed(2)}}</div>
+            <div class="order_tableware_price">{{Math.round(parseFloat(cart.people * cart.perTablewarePrice) * 100) / 100}}</div>
           </div>
         </div>
 
@@ -294,7 +294,7 @@
           price += this.http.req.takeoutConfig.takeoutFee
         }
 
-        return parseFloat(price).toFixed(2)
+        return Math.round(parseFloat(price) * 100) / 100
       },
       btnPeople() {
         this.ui.vCoverMask = true

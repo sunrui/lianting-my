@@ -55,7 +55,7 @@
           </div>
           <div class="order_food_status order_food_status_new">新增</div>
           <div class="order_food_count">{{food.select}}</div>
-          <div class="order_food_price">{{parseFloat(food.select * food.food.price).toFixed(2)}}</div>
+          <div class="order_food_price">{{Math.round(parseFloat(food.select * food.food.price) * 100) / 100}}</div>
         </div>
 
         <div class="blank_10"></div>
@@ -85,7 +85,7 @@
             <div class="order_food_status order_food_status_cooked" v-if="orderFood.status === 'Cooked'">做好了</div>
             <div class="order_food_status order_food_status_finish" v-if="orderFood.status === 'Finish'">已上菜</div>
             <div class="order_food_count">{{orderFood.count}}</div>
-            <div class="order_food_price">{{parseFloat(orderFood.count * orderFood.foodPrice).toFixed(2)}}</div>
+            <div class="order_food_price">{{Math.round(parseFloat(orderFood.count * orderFood.foodPrice) * 100) / 100}}</div>
           </div>
         </div>
 
@@ -96,7 +96,7 @@
             <div class="order_tableware_icon">餐位费</div>
             <div class="order_tableware_label">餐具</div>
             <div class="order_tableware_count">{{ui.orderAnyOne.people}}</div>
-            <div class="order_tableware_price">{{parseFloat(ui.orderAnyOne.priceTableware).toFixed(2)}}</div>
+            <div class="order_tableware_price">{{Math.round(parseFloat(ui.orderAnyOne.priceTableware) * 100) / 100}}</div>
           </div>
         </div>
 
@@ -326,7 +326,7 @@
 
         price += this.ui.orderAnyOne.priceTableware | 0
 
-        return parseFloat(price).toFixed(2)
+        return Math.round(parseFloat(price) * 100) / 100
       },
       btnScanCaptcha() {
         if (!wechatApi.inWechat() && !alipayApi.inAlipay()) {

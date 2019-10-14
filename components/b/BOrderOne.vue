@@ -88,7 +88,7 @@
               <div class="order_food_name_detail_name_category">{{orderFood.foodName}}</div>
             </div>
             <div class="order_food_count order_food_count_2">{{orderFood.count}}</div>
-            <div class="order_food_price order_food_price_2">{{parseFloat(orderFood.count * orderFood.foodPrice).toFixed(2)}}</div>
+            <div class="order_food_price order_food_price_2">{{Math.round(parseFloat(orderFood.count * orderFood.foodPrice) * 100) / 100}}</div>
             <div class="order_food_button_group">
               <div v-if="(roleType === 'admin' || roleType === 'retailer')">
                 <div class="order_food_button order_food_button_finish" v-if="!http.res.config.foodFinishAuto" @click="btnChangeStatus(orderFood, 'Finish')">上菜</div>
@@ -164,7 +164,7 @@
           <div class="order_tableware_icon">餐位费</div>
           <div class="order_tableware_label">餐具</div>
           <div class="order_tableware_count">{{http.res.order.people}}</div>
-          <div class="order_tableware_price">{{parseFloat(http.res.order.priceTableware).toFixed(2)}}</div>
+          <div class="order_tableware_price">{{Math.round(parseFloat(http.res.order.priceTableware) * 100) / 100}}</div>
         </div>
 
         <div class="order_tableware" v-if="http.res.order.priceTakeoutFee > 0">
@@ -916,7 +916,7 @@
         }
 
         this.http.req.changePrice.price = this.http.res.order.price * this.ui.priceSale / 100
-        this.http.req.changePrice.price = parseFloat(this.http.req.changePrice.price).toFixed(2)
+        this.http.req.changePrice.price = Math.round(parseFloat(this.http.req.changePrice.price) * 100) / 100
       },
       btnChangePrice() {
         this.ui.vCoverMask = true

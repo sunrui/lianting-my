@@ -342,7 +342,7 @@
           price += orderOne.price
         }
 
-        return parseFloat(price).toFixed(2)
+        return Math.round(parseFloat(price) * 100) / 100
       },
       getTotalPriceTableware() {
         let priceTableware = 0

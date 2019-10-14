@@ -712,7 +712,7 @@
           priceOriginal += orderOne.priceOriginal
         }
 
-        return parseFloat(priceOriginal).toFixed(2)
+        return Math.round(parseFloat(priceOriginal) * 100) / 100
       },
       getTotalPrice() {
         let price = 0
@@ -723,7 +723,7 @@
           price += orderOne.price
         }
 
-        return parseFloat(price).toFixed(2)
+        return Math.round(parseFloat(price) * 100) / 100
       },
       getTotalPriceTableware() {
         let priceTableware = 0
