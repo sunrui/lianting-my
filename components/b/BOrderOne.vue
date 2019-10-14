@@ -64,7 +64,7 @@
       box_radius_footer: index === 0,
       box_radius: index !== 0
       }">
-        <div v-if="http.res.config.foodFinishAuto || http.res.order.status === 'Finish' || http.res.order.status === 'Closed'">
+        <div v-if="(http.res.config.foodFinishAuto && (roleType !== 'admin' && roleType !== 'retailer')) || http.res.order.status === 'Finish' || http.res.order.status === 'Closed'">
           <div class="order_food">
             <img class="order_food_image" :src="orderFood.foodCategoryImage" :alt="orderFood.foodCategoryName">
             <div class="order_food_name_detail">
@@ -90,7 +90,7 @@
             <div class="order_food_price order_food_price_2">{{parseFloat(orderFood.count * orderFood.foodPrice).toFixed(2)}}</div>
             <div class="order_food_button_group">
               <div v-if="(roleType === 'admin' || roleType === 'retailer')">
-                <div class="order_food_button order_food_button_finish" @click="btnChangeStatus(orderFood, 'Finish')">上菜</div>
+                <div class="order_food_button order_food_button_finish" v-if="!http.res.config.foodFinishAuto" @click="btnChangeStatus(orderFood, 'Finish')">上菜</div>
                 <div class="order_food_button order_food_button_return" @click="btnFoodReturn(orderFood)">退菜</div>
               </div>
               <div class="order_food_button button_gray" v-else-if="orderFood.status === 'Cancel'">已取消</div>
@@ -101,7 +101,7 @@
             </div>
           </div>
 
-          <div class="order_operator" v-if="roleType !== 'retailer'">
+          <div class="order_operator" v-if="!http.res.config.foodFinishAuto">
             <div class="order_operator_one" @click="btnChangeStatus(orderFood, 'Wait')">
               <div class="order_operator_status">
                 <div class="order_operator_line_right" v-bind:class="{order_food_button_cooking: orderFood.status === 'Wait'}"></div>
@@ -155,6 +155,7 @@
         </div>
         <div class="blank_20"></div>
       </div>
+      <div class="blank_20"></div>
     </div>
 
     <div class="box">
