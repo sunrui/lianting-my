@@ -78,6 +78,7 @@
             <div class="order_food_count">{{orderFood.count}}</div>
             <div class="order_food_price">{{orderFood.count * orderFood.foodPrice}}</div>
           </div>
+          <div class="blank_20"></div>
         </div>
         <div v-else>
           <div class="order_food">
@@ -153,7 +154,6 @@
           </div>
           <div class="blank_20" v-else></div>
         </div>
-        <div class="blank_20"></div>
       </div>
       <div class="blank_20"></div>
     </div>
