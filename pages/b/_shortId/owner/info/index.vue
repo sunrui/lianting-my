@@ -55,10 +55,7 @@
         <div class="addition_item">
           <div class="addition_item_label">电话</div>
           <label>
-            <input type="number" class="addition_item_input" placeholder="请输入电话"
-                   oninput="value=value.replace(/[^0-9]/g,'');
-                            if (value.length > 12) value = value.slice(0, 12);"
-                   v-model="http.req.info.phone">
+            <input class="addition_item_input" placeholder="请输入电话" v-model="http.req.info.phone">
           </label>
         </div>
 
@@ -67,8 +64,7 @@
         <div class="addition_item">
           <div class="addition_item_label">营业时间</div>
           <label>
-            <input class="addition_item_input" placeholder="请输入营业时间" maxlength="64"
-                   v-model="http.req.info.time">
+            <input class="addition_item_input" placeholder="请输入营业时间" maxlength="64" v-model="http.req.info.time">
           </label>
         </div>
 
