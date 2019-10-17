@@ -174,7 +174,7 @@
               shortcut: '',
               title: '',
               content: '',
-              referName: '',
+              referName: '网络',
               referUrl: '',
               referDate: ''
             }
