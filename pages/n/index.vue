@@ -27,7 +27,9 @@
         <div class="addition_item">
           <div class="addition_item_label">hashKey</div>
           <label>
-            <input class="addition_item_input" placeholder="请输入 hashKey" maxlength="20" v-model="http.req.news.hashKey" @change="btnChangeHashKey()">
+            <input class="addition_item_input" placeholder="请输入 hashKey" maxlength="20"
+                   oninput="value=value.replace(/[^0-9]/g,'');"
+                   v-model="http.req.news.hashKey" @change="btnChangeHashKey()">
           </label>
         </div>
 

@@ -474,7 +474,7 @@
           vSmsPrice: false,
           licensePlan: null,
           year: 1,
-          smsPrice: 100
+          smsPrice: 50
         }
       }
     },
