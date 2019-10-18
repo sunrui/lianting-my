@@ -84,6 +84,7 @@
   import {timeApi} from '../../api/local/timeApi'
   import {wechatApi} from '../../api/local/wechatApi'
   import {httpOrderApi} from '../../api/http/lt/httpOrderApi'
+  import {highlightApi} from '../../api/local/highlightApi'
 
   export default {
     metaInfo: {
@@ -178,8 +179,8 @@
           if (wechatApi.inWechat()) {
             this.$msgBox.doModal({
               type: 'yesOrNo',
-              title: '立即支付',
-              content: '在微信中使用支付宝时会受到阻止，但您仍可以在复制链接后继续付款。'
+              title: '微信阻止提醒',
+              content: `在微信中使用支付宝支付会受到阻止，但您仍可以${highlightApi.highlight('在浏览器打开')}后继续付款。`
             }).then(async (val) => {
               if (val !== 'Yes') {
                 return
@@ -212,7 +213,9 @@
                     title: '立即支付',
                     content: '支付已成功，支付结果可能存在延迟，请稍候刷新等待服务器返回。'
                   }).then(async (val) => {
-                    pThis.httpShop()
+                    if (wechatApi.inWechat()) {
+                      wechatApi.closeWindow()
+                    }
                   })
                 } else if (res.err_msg === 'get_brand_wcpay_request:cancel') {
                 }
@@ -309,10 +312,19 @@
             }
 
             if (res.pay.alipayForm) {
-              const div = document.createElement('div')
-              div.innerHTML = res.pay.alipayForm
-              document.body.appendChild(div)
-              document.forms[0].submit()
+              if (wechatApi.inWechat()) {
+                this.$router.push({
+                  path: 'pay/tip',
+                  query: {
+                    alipayForm: encodeURIComponent(res.pay.alipayForm)
+                  }
+                })
+              } else {
+                const div = document.createElement('div')
+                div.innerHTML = res.pay.alipayForm
+                document.body.appendChild(div)
+                document.forms[0].submit()
+              }
             }
           }
         })
