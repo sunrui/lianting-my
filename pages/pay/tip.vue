@@ -25,14 +25,14 @@
       this.alipayForm = this.$route.query.alipayForm
     },
     mounted() {
-      // if (!wechatApi.inWechat()) {
-      //   if (this.alipayForm) {
-      //     const div = document.createElement('div')
-      //     div.innerHTML = decodeURIComponent(this.alipayForm)
-      //     document.body.appendChild(div)
-      //     document.forms[0].submit()
-      //   }
-      // }
+      if (!wechatApi.inWechat()) {
+        if (this.alipayForm) {
+          const div = document.createElement('div')
+          div.innerHTML = decodeURIComponent(this.alipayForm)
+          document.body.appendChild(div)
+          document.forms[0].submit()
+        }
+      }
     }
   }
 </script>
