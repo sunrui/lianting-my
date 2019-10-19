@@ -79,6 +79,15 @@
             <input class="addition_item_input" placeholder="请输入来源时间" minlength="1" maxlength="256" v-model="http.req.news.referDate">
           </label>
         </div>
+
+        <div class="box_divide"></div>
+
+        <div class="addition_item">
+          <div class="addition_item_label">关键词</div>
+          <label>
+            <input class="addition_item_input" placeholder="请输入关键词" maxlength="256" v-model="http.req.news.keywords">
+          </label>
+        </div>
       </div>
     </div>
 
@@ -178,7 +187,8 @@
               content: '',
               referName: '网络',
               referUrl: '',
-              referDate: ''
+              referDate: '',
+              keywords: ''
             }
           },
           res: {}
