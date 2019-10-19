@@ -5,10 +5,10 @@
   "viewport": "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0",
   "keywords": [
     "恋厅",
-    "餐饮管理系统",
+    "点餐系统",
     "上海唏美网络科技有限公司"
   ],
-  "description": "恋厅涵盖了餐饮收银、扫码点餐、排队叫号、会员管理系统、点餐软件、点菜软件等各项解决方案, 恋厅SaaS级智能餐饮系统将大数据与互联网+创新融为一体形成服务闭环。",
+  "description": "恋厅涵盖了餐饮收银、扫码点餐、排队叫号、会员管理等各项解决方案, 恋厅SaaS级智能餐饮系统将大数据与互联网+创新融为一体形成服务闭环。",
   "author": "上海唏美网络科技有限公司",
   "private": true,
   "scripts": {
