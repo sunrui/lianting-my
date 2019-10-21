@@ -18,11 +18,8 @@ export const httpFoodAdminApi = {
   postGroup(shortId, foodGroup) {
     return axios.post(`${base}/${shortId}/food/group`, foodGroup).then(res => res.data)
   },
-  putGroup(shortId, foodGroupId, name, orderIndex) {
-    return axios.put(`${base}/${shortId}/food/group/${foodGroupId}`, {
-      name: name,
-      orderIndex: orderIndex
-    }).then(res => res.data)
+  putGroup(shortId, foodGroupId, model) {
+    return axios.put(`${base}/${shortId}/food/group/${foodGroupId}`, model).then(res => res.data)
   },
   deleteGroup(shortId, foodGroupId) {
     return axios.delete(`${base}/${shortId}/food/group/${foodGroupId}`).then(res => res.data)

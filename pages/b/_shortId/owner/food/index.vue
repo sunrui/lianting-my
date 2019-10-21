@@ -115,8 +115,18 @@
       <div class="modal_input_box">
         <div class="modal_input_area">
           <label>
-            <input class="modal_input" placeholder="请输入餐食组名称，如：热菜。" maxlength="10" v-model="http.req.group.name">
+            <input class="modal_input" placeholder="请输入餐食组名称，如：热菜。" minlength="1" maxlength="20" v-model="http.req.group.name">
           </label>
+        </div>
+      </div>
+
+      <div class="addition">
+        <div class="addition_item">
+          <div class="addition_item_label">默认启用大图模式</div>
+          <div class="addition_item_check">
+            <div class="addition_item_check_on" v-if="http.req.group.groupModeBig" @click="btnGroupModeBig(false)"></div>
+            <div class="addition_item_check_off" v-else @click="btnGroupModeBig(true)"></div>
+          </div>
         </div>
       </div>
 
@@ -136,8 +146,18 @@
       <div class="modal_input_box">
         <div class="modal_input_area">
           <label>
-            <input class="modal_input" placeholder="请输入新餐食组名称" maxlength="10" v-model="http.req.group.name">
+            <input class="modal_input" placeholder="请输入新餐食组名称" minlength="1" maxlength="20" v-model="http.req.group.name">
           </label>
+        </div>
+      </div>
+
+      <div class="addition">
+        <div class="addition_item">
+          <div class="addition_item_label">默认启用大图模式</div>
+          <div class="addition_item_check">
+            <div class="addition_item_check_on" v-if="http.req.group.groupModeBig" @click="btnGroupModeBig(false)"></div>
+            <div class="addition_item_check_off" v-else @click="btnGroupModeBig(true)"></div>
+          </div>
         </div>
       </div>
 
@@ -183,7 +203,8 @@
         http: {
           req: {
             group: {
-              name: ''
+              name: '',
+              groupModeBig: false
             }
           },
           res: {
@@ -261,7 +282,7 @@
               pThis.http.res.foodGroups.elements[index].orderIndex = parseInt(index)
               foodGroup.orderIndex = parseInt(index)
 
-              httpFoodAdminApi.putGroup(pThis.$route.params.shortId, foodGroup.id, foodGroup.name, foodGroup.orderIndex).then(res => {
+              httpFoodAdminApi.putGroup(pThis.$route.params.shortId, foodGroup.id, foodGroup).then(res => {
                 if (res.foodGroupIdNotExists) {
                   pThis.$msgBox.doModal({
                     type: 'yes',
@@ -432,6 +453,10 @@
         this.http.req.group.id = foodGroup.id
         this.http.req.group.name = foodGroup.name
         this.http.req.group.orderIndex = foodGroup.orderIndex
+        this.http.req.group.groupModeBig = foodGroup.groupModeBig
+      },
+      btnGroupModeBig(groupModeBig) {
+        this.http.req.group.groupModeBig = groupModeBig
       },
       btnGroupAddConfirm() {
         httpFoodAdminApi.postGroup(this.$route.params.shortId, this.http.req.group).then(res => {
@@ -465,7 +490,7 @@
         })
       },
       btnGroupEditConfirm() {
-        httpFoodAdminApi.putGroup(this.$route.params.shortId, this.http.req.group.id, this.http.req.group.name, this.http.req.group.orderIndex).then(res => {
+        httpFoodAdminApi.putGroup(this.$route.params.shortId, this.http.req.group.id, this.http.req.group).then(res => {
           this.ui.vGroupEdit = false
           this.ui.vCoverMask = false
           scrollApi.enable(true)
