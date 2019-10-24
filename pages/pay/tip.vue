@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="ui.showTip">
     <div class="empty">
       <img class="empty_image" src="/img/no/no_coupon.png" alt="">
       <div class="empty_label">请选择<span class="empty_label_tip_link">在浏览器中打开</span>后使用支付宝。</div>
@@ -18,20 +18,27 @@
   export default {
     data() {
       return {
-        alipayForm: null
+        ui: {
+          alipayForm: null,
+          showTip: false,
+        }
       }
     },
     created() {
-      this.alipayForm = this.$route.query.alipayForm
+      this.ui.alipayForm = this.$route.query.alipayForm
     },
     mounted() {
       if (!wechatApi.inWechat()) {
-        if (this.alipayForm) {
+        if (this.ui.alipayForm) {
           const div = document.createElement('div')
           div.innerHTML = decodeURIComponent(this.alipayForm)
           document.body.appendChild(div)
           document.forms[0].submit()
+        } else {
+          this.ui.showTip = true
         }
+      } else {
+        this.ui.showTip = true
       }
     }
   }
