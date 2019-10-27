@@ -6,7 +6,7 @@
       <div class="tip">
         <ul class="tip_ul">
           <li>在顾客扫码点餐前，需您自行购买摆放至顾客餐桌或贴至餐桌一角。</li>
-          <li>您可淘宝或京东等搜索"亚克力二维码"或“扫码点餐桌贴"来获取您想要的风格定制。</li>
+          <li>您可淘宝或京东等搜索<span class="tip_highlight">亚克力二维码</span>或<span class="tip_highlight">扫码点餐桌贴</span>来获取您想要的风格定制。</li>
           <li>生成预览可能会显示错位，以下生成样式仅供您参考。</li>
         </ul>
       </div>
@@ -30,7 +30,7 @@
       <div class="blank_50"></div>
 
       <div class="title">
-        <div class="title_table">{{http.res.shop.name}} - 店铺二维码</div>
+        <div class="title_table">店铺二维码 (适用于外卖宣传需求)</div>
         <div class="title_download" @click="btnDownloadShop()">下载</div>
       </div>
 
@@ -156,13 +156,41 @@
 
         this.ui.tableText = ''
         this.ui.tableText += divide
-        this.ui.tableText += '店铺二维码 (适用于外卖、远程排队等宣传店铺需求)'
+        this.ui.tableText += '店铺二维码 (适用于宣传店铺主页，集点餐、排队、预订等需求)'
         this.ui.tableText += '\n\n'
         this.ui.tableText += `${this.http.res.shop.name}`
         this.ui.tableText += '\n'
         this.ui.tableText += document.location.protocol + '//' + window.location.host + `/c/${this.http.res.shop.shortId}`
         this.ui.tableText += '\n\n'
 
+        this.ui.tableText += ''
+        this.ui.tableText += divide
+        this.ui.tableText += '点餐二维码 (适用于外卖宣传需求)'
+        this.ui.tableText += '\n\n'
+        this.ui.tableText += `${this.http.res.shop.name}`
+        this.ui.tableText += '\n'
+        this.ui.tableText += document.location.protocol + '//' + window.location.host + `/c/${this.http.res.shop.shortId}/food`
+        this.ui.tableText += '\n\n'
+
+        this.ui.tableText += ''
+        this.ui.tableText += divide
+        this.ui.tableText += '排队二维码 (适用于排队宣传需求)'
+        this.ui.tableText += '\n\n'
+        this.ui.tableText += `${this.http.res.shop.name}`
+        this.ui.tableText += '\n'
+        this.ui.tableText += document.location.protocol + '//' + window.location.host + `/c/${this.http.res.shop.shortId}/queue`
+        this.ui.tableText += '\n\n'
+
+        this.ui.tableText += ''
+        this.ui.tableText += divide
+        this.ui.tableText += '预订二维码 (适用于预订宣传需求)'
+        this.ui.tableText += '\n\n'
+        this.ui.tableText += `${this.http.res.shop.name}`
+        this.ui.tableText += '\n'
+        this.ui.tableText += document.location.protocol + '//' + window.location.host + `/c/${this.http.res.shop.shortId}/reserve`
+        this.ui.tableText += '\n\n'
+
+        this.ui.tableText += ''
         this.ui.tableText += divide
         this.ui.tableText += '餐桌二维码 (适用于餐桌堂食扫码点餐)'
         this.ui.tableText += '\n\n'
@@ -183,7 +211,7 @@
       renderCaptcha() {
         let canvasShop = document.getElementById(this.http.res.shop.id)
         if (canvasShop) {
-          let uri = document.location.protocol + '//' + window.location.host + `/c/${this.http.res.shop.shortId}`
+          let uri = document.location.protocol + '//' + window.location.host + `/c/${this.http.res.shop.shortId}/food`
           QRCode.toCanvas(canvasShop, uri)
         }
 
@@ -233,20 +261,6 @@
         }
       },
       btnRender(type) {
-        if (this.http.res.tableGroups.elements.length === 0) {
-          this.$msgBox.doModal({
-            type: 'yes',
-            title: '暂无餐桌',
-            content: `请先添加餐桌，点击确认将转至餐桌页。`
-          }).then(async (val) => {
-            if (val === 'Yes') {
-              this.$router.push(`/b/${this.$route.params.shortId}/owner/table`)
-            }
-          })
-
-          return
-        }
-
         this.ui.vRenderType = type
 
         if (this.ui.vRenderType === 'text') {

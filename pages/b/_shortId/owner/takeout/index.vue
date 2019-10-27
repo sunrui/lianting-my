@@ -30,14 +30,14 @@
 
         <div class="addition_item">
           <div class="addition_item_label">外卖配送费</div>
-          <currency-input class="addition_item_input" right="true" placeholder="请输入外卖配送费"
+          <currency-input class="addition_item_input" right="true" placeholder="请输入外卖配送费" @input="btnUpdate"
                           v-model="http.req.tableOutConfig.takeoutFee"></currency-input>
         </div>
       </div>
     </div>
 
     <div class="button_box">
-      <div class="button_big" @click="btnUpdate">更新</div>
+      <div class="button_big" @click="btnCaptcha">转到二维码下载</div>
     </div>
   </div>
 </template>
@@ -84,17 +84,15 @@
       },
       btnUpdate() {
         httpTakeoutAdminApi.putConfig(this.$route.params.shortId, this.http.req.tableOutConfig).then(res => {
-          this.$msgBox.doModal({
-            type: 'yes',
-            title: '外卖',
-            content: '已更新。'
-          }).then(async (val) => {
-            this.$router.push(this.title.backUri)
-          })
         })
       },
       btnTableOutEnable(enable) {
         this.http.req.tableOutConfig.enable = enable
+
+        this.btnUpdate()
+      },
+      btnCaptcha() {
+        this.$router.push(`/b/${this.$route.params.shortId}/owner/captcha`)
       }
     }
   }
