@@ -77,7 +77,7 @@
           shop_license_label_normal: license.plan.licenseType === 'Lite' || license.plan.licenseType === 'Normal',
           shop_license_label_senior: license.plan.licenseType === 'Senior',
           shop_license_price_free: license.plan.licenseType === 'Free',
-          }">{{'￥' + license.plan.pricePerYear + '/套'}} (永久使用)
+          }">{{'￥' + license.plan.pricePerYear + '/套'}} (无年费)
         </div>
 
         <div class="blank_10"></div>
@@ -425,7 +425,7 @@
         <div class="modal_title">选择套餐</div>
 
         <div class="modal_menu" v-bind:class="{modal_menu_select: ui.year === 1}"
-             @click="btnChooseYear(1)">一次付费 (永久使用)
+             @click="btnChooseYear(1)">一次付费 (无年费)
         </div>
 
         <div class="modal_button_box">
