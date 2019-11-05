@@ -7,6 +7,10 @@ export default function({route, redirect, req}) {
     let path = route.path.split('/')
 
     if (path.length > 2) {
+      if (path[1] === 'c' && (path[3] === 'food' || path[3] === 'info')) {
+        return
+      }
+
       if (path[1] === 'b' || path[1] === 'c') {
         redirect(`/login?r=${route.path}&shortId=${path[2]}`)
       } else {
