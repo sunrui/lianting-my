@@ -134,7 +134,11 @@
         })
       },
       btnChooseWechat(enable) {
-        if (!this.canWechatPay()) {
+        if (enable && !this.canWechatPay()) {
+          return
+        }
+
+        if (!enable && !this.canAlipay()) {
           return
         }
 
