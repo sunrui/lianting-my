@@ -25,7 +25,10 @@
     </div>
 
     <div class="box" v-for="day in ui.week" v-if="http.req.reserve.enable">
-      <div class="addition box_radius">
+      <div class="addition" v-bind:class="{
+      box_radius: !day.enable,
+      box_radius_header: day.enable
+      }">
         <div class="addition_item">
           <div class="addition_item_label">{{day.name}}</div>
           <div class="addition_item_check">
