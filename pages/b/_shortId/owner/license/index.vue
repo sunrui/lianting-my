@@ -267,6 +267,17 @@
           (license.plan.licenseType === 'Lite' || license.plan.licenseType === 'Normal') ? '/img/b/license/b_license_normal_check.png' :
           license.plan.licenseType === 'Senior' ? '/img/b/license/b_license_senior_check.png' : '/img/b/license/b_license_free_check.png'
           " alt="">
+            <div class="shop_feature_one_label">独立微信公众号</div>
+          </div>
+
+          <div class="box_divide"></div>
+
+          <div class="shop_feature_one">
+            <img class="shop_feature_one_icon" :src="
+            license.plan.licenseType === 'Free' ? '/img/b/license/b_license_free_check.png' :
+          (license.plan.licenseType === 'Lite' || license.plan.licenseType === 'Normal') ? '/img/b/license/b_license_normal_check.png' :
+          license.plan.licenseType === 'Senior' ? '/img/b/license/b_license_senior_check.png' : '/img/b/license/b_license_free_check.png'
+          " alt="">
             <div class="shop_feature_one_label">专业技术人员贴心服务</div>
           </div>
 
@@ -283,19 +294,6 @@
             </div>
 
             <div class="box_divide"></div>
-          </div>
-
-          <div v-if="license.plan.licenseType === 'Senior'">
-            <div class="box_divide"></div>
-
-            <div class="shop_feature_one">
-              <img class="shop_feature_one_icon" :src="
-            license.plan.licenseType === 'Free' ? '/img/b/license/b_license_free_check.png' :
-          (license.plan.licenseType === 'Lite' || license.plan.licenseType === 'Normal') ? '/img/b/license/b_license_normal_check.png' :
-          license.plan.licenseType === 'Senior' ? '/img/b/license/b_license_senior_check.png' : '/img/b/license/b_license_free_check.png'
-          " alt="">
-              <div class="shop_feature_one_label">独立微信公众号<span class="shop_feature_one_label_star addition_item_tag_color_1">专享</span></div>
-            </div>
           </div>
         </div>
 
