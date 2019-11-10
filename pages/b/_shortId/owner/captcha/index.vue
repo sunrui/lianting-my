@@ -18,7 +18,8 @@
     </div>
 
     <div class="captcha_text_box" v-if="ui.vRenderType === 'text'">
-      <div class="captcha_title">请手动复制文本</div>
+      <div class="captcha_title">请复制文本发给制作二维码的店铺</div>
+      <div class="blank_20"></div>
       <label>
         <textarea class="captcha_text" v-model="ui.tableText" onclick="this.select()"></textarea>
       </label>
