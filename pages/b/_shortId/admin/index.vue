@@ -79,23 +79,23 @@
             text: ''
           },
           navs: [
+            // {
+            //   tag: 'table',
+            //   name: '餐桌',
+            //   icon: '/img/b/nav/role/b_nav_role_table.png',
+            //   url: `/b/${this.$route.params.shortId}/admin/table`
+            // },
+            // {
+            //   tag: 'order',
+            //   name: '订单',
+            //   icon: '/img/b/nav/role/b_nav_role_order.png',
+            //   url: `/b/${this.$route.params.shortId}/admin/order`
+            // },
             {
-              tag: 'table',
-              name: '餐桌',
-              icon: '/img/b/nav/role/b_nav_role_table.png',
-              url: `/b/${this.$route.params.shortId}/admin/table`
-            },
-            {
-              tag: 'order',
-              name: '订单',
-              icon: '/img/b/nav/role/b_nav_role_order.png',
-              url: `/b/${this.$route.params.shortId}/admin/order`
-            },
-            {
-              tag: 'radio',
-              name: '播报',
-              icon: '/img/b/nav/role/b_nav_role_radio.png',
-              url: `/b/${this.$route.params.shortId}/admin/radio`
+              tag: 'food',
+              name: '餐食',
+              icon: '/img/b/nav/role/b_nav_role_food.png',
+              url: `/b/${this.$route.params.shortId}/admin/food`
             },
             {
               tag: 'queue',
@@ -104,10 +104,10 @@
               url: `/b/${this.$route.params.shortId}/admin/queue`
             },
             {
-              tag: 'food',
-              name: '餐食',
-              icon: '/img/b/nav/role/b_nav_role_food.png',
-              url: `/b/${this.$route.params.shortId}/admin/food`
+              tag: 'radio',
+              name: '播报',
+              icon: '/img/b/nav/role/b_nav_role_radio.png',
+              url: `/b/${this.$route.params.shortId}/admin/radio`
             },
             {
               tag: 'printer',
