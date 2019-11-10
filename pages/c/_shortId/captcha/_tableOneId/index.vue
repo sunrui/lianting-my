@@ -1,5 +1,12 @@
 <template>
-  <loading></loading>
+  <div>
+    <loading v-if="ui.loading"></loading>
+    <div v-else>
+      <div v-if="ui.captchaExpired">
+        <empty image="/img/no/no_table.png" content="餐桌二维码已失效。"></empty>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -9,17 +16,24 @@
   import Loading from '../../../../../components/common/Loading'
   import {cartApi} from '../../../../../api/local/cartApi'
   import {httpOrderApi} from '../../../../../api/http/lt/httpOrderApi'
+  import Empty from '../../../../../components/common/Empty'
 
   export default {
     middleware: 'auth',
-    components: {Loading},
+    components: {Loading, Empty},
     data() {
-      return {}
+      return {
+        ui: {
+          loading: true,
+          captchaExpired: false
+        }
+      }
     },
     mounted() {
       let tableOneId = this.$route.params.tableOneId
       if (!Boolean(tableOneId)) {
         this.invalidTable()
+        this.ui.loading = false
         return
       }
 
@@ -27,29 +41,29 @@
     },
     methods: {
       invalidTable() {
-        this.$msgBox.doModal({
-          type: 'yes',
-          title: '无效餐桌',
-          content: '餐桌二维码已过期，请重新扫码或联系服务员。'
-        })
-
         userApi.setCaptchaTableId(null)
         userApi.setTableName(null)
         userApi.setTableNumber(null)
+
+        this.ui.captchaExpired = true
       },
       httpTable(tableOneId) {
         httpTableApi.getTable(this.$route.params.shortId, tableOneId).then(res => {
           if (res.notExists) {
             this.invalidTable()
+            this.ui.loading = false
           } else if (res.tableOne) {
             this.httpCaptchaTable(res.tableOne.id)
           } else {
             this.invalidTable()
+            this.ui.loading = false
           }
         })
       },
       httpCaptchaTable(tableOneId) {
         httpCaptchaApi.postCaptchaTable(this.$route.params.shortId, tableOneId).then(res => {
+          this.ui.loading = false
+
           if (res.tableOneNotExists) {
             this.invalidTable()
           } else {
