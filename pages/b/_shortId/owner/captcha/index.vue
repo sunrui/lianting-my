@@ -12,9 +12,9 @@
       </div>
     </div>
 
-    <div class="button_box" v-if="ui.vRenderType === ''">
-      <div class="button_big" @click="btnRender('text')">餐桌文本生成</div>
-      <div class="button_big" @click="btnRender('captcha')">餐桌贴生成</div>
+    <div class="button_box">
+      <div class="button_big" v-if="ui.vRenderType !== 'text'" @click="btnRender('text')">餐桌文本生成</div>
+      <div class="button_big" v-if="ui.vRenderType !== 'captcha'" @click="btnRender('captcha')">餐桌贴生成</div>
     </div>
 
     <div class="captcha_text_box" v-if="ui.vRenderType === 'text'">
@@ -25,13 +25,9 @@
     </div>
 
     <div class="captcha" v-if="ui.vRenderType === 'captcha'">
-      <div class="blank_100"></div>
-      <div class="button_big" @click="btnDownloadAll">图片全部下载</div>
-      <div class="blank_50"></div>
-
       <div class="title">
         <div class="title_table">店铺二维码 (适用于外卖宣传需求)</div>
-        <div class="title_download" @click="btnDownloadShop()">下载</div>
+<!--        <div class="title_download" @click="btnDownloadShop()">下载</div>-->
       </div>
 
       <div class="captcha_one" :id="'shop_' + http.res.shop.id">
@@ -55,7 +51,7 @@
       <div v-for="table in tableGroup.tableOnes">
         <div class="title">
           <div class="title_table">{{tableGroup.name}} - {{table.tableGroup_Name}}{{table.fullNumber}}</div>
-          <div class="title_download" @click="btnDownload(table)">下载</div>
+<!--          <div class="title_download" @click="btnDownload(table)">下载</div>-->
         </div>
 
         <div class="captcha_one" :id="'table_' + table.id">
@@ -123,7 +119,7 @@
         },
         ui: {
           vRenderType: '',
-          vCopyright: true,
+          vCopyright: false,
           tableText: ''
         }
       }
@@ -215,20 +211,20 @@
           QRCode.toCanvas(canvasShop, uri)
         }
 
-        let shopId = document.getElementById('shop_' + this.http.res.shop.id)
 
-        if (process.browser) {
-          let html2canvas = require('html2canvas')
-
-          html2canvas(shopId, {
-            logging: false
-          }).then(canvas => {
-            let canvasIdText = 'shop_' + this.http.res.shop.id + '_canvas'
-            canvas.setAttribute('id', canvasIdText)
-            shopId.parentNode.appendChild(canvas)
-            shopId.parentNode.removeChild(shopId)
-          })
-        }
+        // if (process.browser) {
+        //   let html2canvas = require('html2canvas')
+        //   let shopId = document.getElementById('shop_' + this.http.res.shop.id)
+        //
+        //   html2canvas(shopId, {
+        //     logging: false
+        //   }).then(canvas => {
+        //     let canvasIdText = 'shop_' + this.http.res.shop.id + '_canvas'
+        //     canvas.setAttribute('id', canvasIdText)
+        //     shopId.parentNode.appendChild(canvas)
+        //     shopId.parentNode.removeChild(shopId)
+        //   })
+        // }
 
         for (let tableGroupIndex in this.http.res.tableGroups.elements) {
           let tableGroup = this.http.res.tableGroups.elements[tableGroupIndex]
@@ -242,21 +238,20 @@
               QRCode.toCanvas(canvasTable, uri)
             }
 
-            let tableId = document.getElementById('table_' + tableOne.id)
-
-            if (process.browser) {
-              let html2canvas = require('html2canvas')
-
-              html2canvas(tableId, {
-                logging: false
-              }).then(canvas => {
-                let canvasIdText = 'table_' + tableOne.id + '_canvas'
-
-                canvas.setAttribute('id', canvasIdText)
-                tableId.parentNode.appendChild(canvas)
-                tableId.parentNode.removeChild(tableId)
-              })
-            }
+            // if (process.browser) {
+            //   let html2canvas = require('html2canvas')
+            //   let tableId = document.getElementById('table_' + tableOne.id)
+            //
+            //   html2canvas(tableId, {
+            //     logging: false
+            //   }).then(canvas => {
+            //     let canvasIdText = 'table_' + tableOne.id + '_canvas'
+            //
+            //     canvas.setAttribute('id', canvasIdText)
+            //     tableId.parentNode.appendChild(canvas)
+            //     tableId.parentNode.removeChild(tableId)
+            //   })
+            // }
           }
         }
       },
