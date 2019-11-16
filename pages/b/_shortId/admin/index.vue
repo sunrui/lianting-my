@@ -79,18 +79,18 @@
             text: ''
           },
           navs: [
-            // {
-            //   tag: 'table',
-            //   name: '餐桌',
-            //   icon: '/img/b/nav/role/b_nav_role_table.png',
-            //   url: `/b/${this.$route.params.shortId}/admin/table`
-            // },
-            // {
-            //   tag: 'order',
-            //   name: '订单',
-            //   icon: '/img/b/nav/role/b_nav_role_order.png',
-            //   url: `/b/${this.$route.params.shortId}/admin/order`
-            // },
+            {
+              tag: 'table',
+              name: '餐桌',
+              icon: '/img/b/nav/role/b_nav_role_table.png',
+              url: `/b/${this.$route.params.shortId}/admin/table`
+            },
+            {
+              tag: 'order',
+              name: '订单',
+              icon: '/img/b/nav/role/b_nav_role_order.png',
+              url: `/b/${this.$route.params.shortId}/admin/order`
+            },
             {
               tag: 'food',
               name: '餐食',

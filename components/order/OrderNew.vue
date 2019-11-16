@@ -10,7 +10,7 @@
         <div class="order_table_name">{{ui.table.tableName}}</div>
       </div>
       <div class="addition box_radius" v-else-if="roleType === 'c' && http.req.takeoutConfig.enable">
-        <div class="addition_item">
+        <div class="addition_item" v-if="!http.req.takeoutConfig.onlyTakeout">
           <div class="addition_item_label">外卖配送</div>
           <div class="addition_item_check">
             <div class="addition_item_check_on" v-if="ui.takeoutEnable"
@@ -278,6 +278,10 @@
       httpTakeoutConfig() {
         httpTakeoutApi.getConfig(this.$route.params.shortId).then(res => {
           this.http.req.takeoutConfig = res
+
+          if (this.http.req.takeoutConfig.enable && this.http.req.takeoutConfig.onlyTakeout) {
+            this.ui.takeoutEnable = true
+          }
         })
       },
       getTotalPrice() {

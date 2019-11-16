@@ -29,6 +29,18 @@
         <div class="box_divide"></div>
 
         <div class="addition_item">
+          <div class="addition_item_label">专属外卖模式 (忽略堂食扫码点餐)</div>
+          <div class="addition_item_check">
+            <div class="addition_item_check_on" v-if="http.req.tableOutConfig.onlyTakeout"
+                 @click="btnTableOutOnlyTakeout(false)"></div>
+            <div class="addition_item_check_off" v-else @click="btnTableOutOnlyTakeout(true)"></div>
+          </div>
+        </div>
+
+
+        <div class="box_divide"></div>
+
+        <div class="addition_item">
           <div class="addition_item_label">外卖配送费</div>
           <currency-input class="addition_item_input" right="true" placeholder="请输入外卖配送费" @input="btnUpdate"
                           v-model="http.req.tableOutConfig.takeoutFee"></currency-input>
@@ -84,11 +96,15 @@
       },
       btnUpdate() {
         httpTakeoutAdminApi.putConfig(this.$route.params.shortId, this.http.req.tableOutConfig).then(res => {
+          this.httpConfig()
         })
       },
       btnTableOutEnable(enable) {
         this.http.req.tableOutConfig.enable = enable
-
+        this.btnUpdate()
+      },
+      btnTableOutOnlyTakeout(enable) {
+        this.http.req.tableOutConfig.onlyTakeout = enable
         this.btnUpdate()
       },
       btnCaptcha() {
