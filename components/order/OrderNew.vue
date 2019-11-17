@@ -69,7 +69,7 @@
               <div class="order_food_name_detail_name">{{food.category.name}}</div>
               <div class="order_food_name_detail_name_category">{{food.food.name}}</div>
             </div>
-            <div class="order_food_status order_food_status_new">新增</div>
+            <div class="order_food_status order_food_status_new" v-if="!ui.takeoutEnable">新增</div>
             <div class="order_food_count">{{food.select}}</div>
             <div class="order_food_price">{{Math.round(parseFloat(food.select * food.food.price) * 100) / 100}}</div>
           </div>
