@@ -85,7 +85,7 @@ module.exports = {
       '/api',
       {
         target: 'http://localhost:8080',
-        // target: 'http://shop.lt.city/api',
+        // target: 'https://shop.lt.city/api',
         pathRewrite: {
           '^/api': '/',
           changeOrigin: true
@@ -96,13 +96,13 @@ module.exports = {
   /*
   ** Axios module configuration
   */
-  axios: {
-    // See https://github.com/nuxt-community/axios-module#options
-    proxy: true,
-    debug: false,
-    prefix: '/api',
-    credentials: true
-  },
+  // axios: {
+  //   // See https://github.com/nuxt-community/axios-module#options
+  //   proxy: true,
+  //   debug: false,
+  //   prefix: '/api',
+  //   credentials: true
+  // },
 
   /*
   ** Build configuration
@@ -125,7 +125,7 @@ module.exports = {
   },
   render: {
     static: {
-      maxAge: 1000 * 60 * 60 * 24 * 7
+      maxAge: 1000 * 60 * 60
     },
     resourceHints: false,
   },
