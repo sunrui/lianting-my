@@ -20,7 +20,7 @@
           <div class="addition_item_label_text_area">地址</div>
           <div class="addition_item_text_area">
             <label>
-              <textarea class="addition_item_text_input" placeholder="请输入您的配送地址" v-model="http.res.order.orderTakeout.address"></textarea>
+              <textarea class="addition_item_text_input" placeholder="请输入您的配送地址" v-model="http.res.order.orderTakeout.address" onclick="this.select()"></textarea>
             </label>
           </div>
         </div>
