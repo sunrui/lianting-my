@@ -35,10 +35,10 @@
         <div class="captcha_part_cover"></div>
         <div class="captcha_part_label"></div>
         <div class="captcha_part_panel"></div>
-        <div class="captcha_part_desk">{{http.res.shop.name}}</div>
+        <div class="captcha_part_desk"></div>
         <div class="captcha_part_title">
           <div class="captcha_part_title_left"></div>
-          <div class="captcha_part_title_label">店铺二维码</div>
+          <div class="captcha_part_title_label">{{http.res.shop.name}}</div>
           <div class="captcha_part_title_right"></div>
         </div>
 
