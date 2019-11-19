@@ -1290,5 +1290,6 @@
 <style scoped lang="scss">
   @import '~assets/common';
   @import '~assets/c/order';
+  @import '~assets/b/b_order';
   @import 'BOrderOne';
 </style>

@@ -2,6 +2,8 @@
   <div>
     <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
+    <div class="title_bar_printer" v-if="http.res.order.orderFoods && http.res.order.orderFoods.length > 0" @click="btnPrint"></div>
+
     <div :class="{ cover_mask_9: ui.vCoverMask}" @click="btnCoverMask"></div>
 
     <div class="box" v-if="http.res.order.orderTakeout">
@@ -18,7 +20,7 @@
           <div class="addition_item_label_text_area">地址</div>
           <div class="addition_item_text_area">
             <label>
-              <textarea class="addition_item_text_input" placeholder="请输入您的配送地址" readonly v-model="http.res.order.orderTakeout.address"></textarea>
+              <textarea class="addition_item_text_input" placeholder="请输入您的配送地址" v-model="http.res.order.orderTakeout.address"></textarea>
             </label>
           </div>
         </div>
@@ -254,6 +256,7 @@
   import {httpInfoApi} from '../../../../../../api/http/lt/httpInfoApi'
   import {httpSmsAdminApi} from '../../../../../../api/http/lt/httpSmsAdminApi'
   import {timeApi} from '../../../../../../api/local/timeApi'
+  import {httpPrinterAdminApi} from '../../../../../../api/http/lt/httpPrinterAdminApi'
 
   export default {
     metaInfo: {
@@ -481,6 +484,66 @@
         } else {
           this.replyConfirm()
         }
+      },
+      btnPrint() {
+        httpPrinterAdminApi.getStatus(this.$route.params.shortId).then(res => {
+          if (res.printerOnline === 0) {
+            this.btnCoverMask()
+            this.$msgBox.doModal({
+              type: 'yes',
+              title: '无法打印顾客收据',
+              content: '没有在线的打印机。'
+            })
+
+            return
+          }
+
+          if (res.printerReceiptOk === 0) {
+            this.btnCoverMask()
+            this.$msgBox.doModal({
+              type: 'yes',
+              title: '无法打印顾客收据',
+              content: `有在线 ${this.http.res.printerStatus.printerOnline} 台打印机，但是没有允许打印顾客收据。`
+            })
+
+            return
+          }
+
+          this.$msgBox.doModal({
+            type: 'yesOrNo',
+            title: '打印顾客收据',
+            content: '打印顾客收据请求将发送至打印机，您确认吗？'
+          }).then(async (val) => {
+            if (val !== 'Yes') {
+              return
+            }
+
+            let orderOneIds = []
+            orderOneIds.push(this.$route.params.orderOneId)
+
+            httpPrinterAdminApi.postReceipt(this.$route.params.shortId, orderOneIds).then(res => {
+              if (res.orderIdNotExists) {
+                this.$msgBox.doModal({
+                  type: 'yes',
+                  title: '无法打印顾客收据',
+                  content: '部分订单号不存在。'
+                }).then(async (val) => {
+                  this.httpOrder()
+                })
+              }
+
+              if (res.printerTaskId) {
+                this.$msgBox.doModal({
+                  type: 'yes',
+                  title: '顾客收据',
+                  content: '顾客收据已打印。'
+                }).then(async (val) => {
+                  this.httpOrder()
+                })
+              }
+            })
+          })
+        })
       }
     }
   }
@@ -489,4 +552,5 @@
 <style scoped lang="scss">
   @import '~assets/common';
   @import '~assets/c/order';
+  @import '~assets/b/b_order';
 </style>
