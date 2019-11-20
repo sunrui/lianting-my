@@ -112,7 +112,22 @@
                 'borderWidth': 1
               }]
             },
-            'options': {'scales': {'yAxes': [{'ticks': {'beginAtZero': true}}]}}
+            'options': {
+              'scales': {
+                'yAxes': [
+                  {
+                    'ticks': {
+                      'beginAtZero': true,
+                      'userCallback': function (label, index, labels) {
+                        if (Math.floor(label) === label) {
+                          return label
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
           }
         }
       }
