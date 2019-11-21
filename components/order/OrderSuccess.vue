@@ -217,6 +217,16 @@
         return true
       },
       btnPay() {
+        if (!this.canPayOnline()) {
+          this.$msgBox.doModal({
+            type: 'yes',
+            title: '立即支付',
+            content: '店铺尚未开通在线支付，请您线下付款。'
+          })
+
+          return
+        }
+
         this.$router.push({
           path: `/pay`,
           query: {

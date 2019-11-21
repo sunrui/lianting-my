@@ -47,22 +47,22 @@
         <div class="pay_method_title">请选择支付方式</div>
         <div class="box_divide"></div>
 
-        <div class="pay_method_one" @click="btnChooseWechat(true)">
+        <div class="pay_method_one" @click="btnChoose('wechat')">
           <img class="pay_method_icon" src="/img/login/login_wechat.png" alt="微信支付">
           <div class="pay_method_label">微信支付 <span v-if="!canWechatPay()" class="pay_method_label_disable">(不可用)</span></div>
           <div class="addition_item_radio">
-            <div class="addition_item_radio_icon_select" v-if="ui.chooseWechat"></div>
+            <div class="addition_item_radio_icon_select" v-if="ui.choose === 'wechat'"></div>
             <div class="addition_item_radio_icon_unselect" v-else></div>
           </div>
         </div>
 
         <div class="box_divide"></div>
 
-        <div class="pay_method_one" @click="btnChooseWechat(false)">
+        <div class="pay_method_one" @click="btnChoose('alipay')">
           <img class="pay_method_icon" src="/img/login/login_alipay.png" alt="支付宝支付">
           <div class="pay_method_label">支付宝支付 <span v-if="!canAlipay()" class="pay_method_label_disable">(不可用)</span></div>
           <div class="addition_item_radio">
-            <div class="addition_item_radio_icon_select" v-if="!ui.chooseWechat"></div>
+            <div class="addition_item_radio_icon_select" v-if="ui.choose === 'alipay'"></div>
             <div class="addition_item_radio_icon_unselect" v-else></div>
           </div>
         </div>
@@ -113,7 +113,7 @@
           }
         },
         ui: {
-          chooseWechat: true,
+          choose: null,
           type: 'order',
           price: null
         }
@@ -130,19 +130,25 @@
         httpOrderApi.getConfig(this.$route.query.shortId).then(res => {
           this.http.res.config = res
 
-          this.ui.chooseWechat = this.canWechatPay()
+          if (this.canAlipay()) {
+            this.ui.choose = 'alipay'
+          }
+
+          if (this.canWechatPay()) {
+            this.ui.choose = 'wechat'
+          }
         })
       },
-      btnChooseWechat(enable) {
-        if (enable && !this.canWechatPay()) {
+      btnChoose(payMethod) {
+        if (payMethod === 'wechat' && !this.canWechatPay()) {
           return
         }
 
-        if (!enable && !this.canAlipay()) {
+        if (payMethod === 'alipay' && !this.canAlipay()) {
           return
         }
 
-        this.ui.chooseWechat = enable
+        this.ui.choose = payMethod
       },
       dateFormat(date) {
         return timeApi.dateFormat(date)
@@ -177,9 +183,9 @@
           return
         }
 
-        if (this.ui.chooseWechat) {
+        if (this.ui.choose === 'wechat') {
           this.httpPay('WECHAT_JSAPI')
-        } else {
+        } else if (this.ui.choose === 'alipay') {
           if (wechatApi.inWechat()) {
             this.$msgBox.doModal({
               type: 'yesOrNo',
