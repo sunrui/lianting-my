@@ -181,7 +181,7 @@
           <div class="addition_item_label">顾客收据打印</div>
           <div class="addition_item_check">
             <div class="addition_item_check_on" v-if="printer.enableReceipt" @click="btnEnableZhongwuReceipt(printer)"></div>
-            <div class="addition_item_check_off" v-else @click="btnEnableZhongwuReciept(printer)"></div>
+            <div class="addition_item_check_off" v-else @click="btnEnableZhongwuReceipt(printer)"></div>
           </div>
         </div>
       </div>
