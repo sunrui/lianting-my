@@ -6,7 +6,6 @@
       <div class="tip">
         <ul class="tip_ul">
           <li>开通支付宝支付请查阅<a class="tip_link" rel="nofollow" href="https://render.alipay.com/p/f/fd-iztoosq3/index.html">支付宝官网文档</a>，绑定恋厅请下载<a class="tip_link" href="https://lt.city/doc/pay_alipay.docx">恋厅支付宝开通文档.docx</a></li>
-          <li>您的交易没有任何订单抽成，所有交易将直接与支付宝通讯并实时打款至您的收款账户。</li>
         </ul>
       </div>
     </div>
