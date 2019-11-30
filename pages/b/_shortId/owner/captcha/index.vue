@@ -21,7 +21,7 @@
       <div class="captcha_title">请复制文本发给制作二维码的店铺</div>
       <div class="blank_20"></div>
       <label>
-        <textarea class="captcha_text" v-model="ui.tableText" onclick="this.select()"></textarea>
+        <textarea class="captcha_text" v-model="ui.tableText"></textarea>
       </label>
     </div>
 
