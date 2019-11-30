@@ -63,7 +63,7 @@
             <div class="order_food_name_detail_name">{{orderFood.foodCategoryName}}</div>
             <div class="order_food_name_detail_name_category">{{orderFood.foodName}}</div>
           </div>
-          <div v-if="http.res.order.status !== 'Finish' && http.res.order.status !== 'Cancel'">
+          <div v-if="!http.res.config.foodFinishAuto && !http.res.order.orderTakeout && http.res.order.status !== 'Finish' && http.res.order.status !== 'Cancel'">
             <div class="order_food_status order_food_status_wait" v-if="orderFood.status === 'Wait'">已下单</div>
             <div class="order_food_status order_food_status_cooking" v-if="orderFood.status === 'Cooking'">正在做</div>
             <div class="order_food_status order_food_status_cooked" v-if="orderFood.status === 'Cooked'">做好了</div>

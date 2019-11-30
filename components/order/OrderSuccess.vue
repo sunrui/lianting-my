@@ -70,6 +70,7 @@
 
       <div class="button_box">
         <div class="button_big" @click="btnPay">立即支付</div>
+        <div class="button_big" @click="btnOrder">我的订单</div>
       </div>
     </div>
     <div v-else>
@@ -105,6 +106,7 @@
           <div v-else class="button_big" @click="btnFood">继续点餐</div>
         </div>
         <div v-else class="button_big" @click="btnFood">继续点餐</div>
+        <div class="button_big" @click="btnOrder">我的订单</div>
       </div>
     </div>
 
@@ -237,6 +239,9 @@
           }
         })
 
+      },
+      btnOrder() {
+        this.$router.push(`/c/${this.$route.params.shortId}/order/history`)
       }
     }
   }

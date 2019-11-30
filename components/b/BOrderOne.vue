@@ -64,7 +64,7 @@
       box_radius_footer: index === 0,
       box_radius: index !== 0
       }">
-        <div v-if="(http.res.config.foodFinishAuto && (roleType !== 'admin' && roleType !== 'retailer')) || http.res.order.status === 'Finish' || http.res.order.status === 'Closed'">
+        <div v-if="(!http.res.order.orderTakeout && http.res.config.foodFinishAuto && (roleType !== 'admin' && roleType !== 'retailer')) || http.res.order.status === 'Finish' || http.res.order.status === 'Closed'">
           <div class="order_food">
             <img class="order_food_image" :src="orderFood.foodCategoryImage" :alt="orderFood.foodCategoryName">
             <div class="order_food_name_detail">
