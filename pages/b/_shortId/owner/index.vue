@@ -74,7 +74,7 @@
           navs: [
             {
               tag: 'info',
-              name: '资料',
+              name: '信息',
               icon: '/img/b/nav/owner/b_nav_owner_info.png',
               url: `/b/${this.$route.params.shortId}/owner/info`
             },
@@ -116,7 +116,7 @@
             },
             {
               tag: 'role',
-              name: '人事',
+              name: '店员',
               icon: '/img/b/nav/owner/b_nav_owner_role.png',
               url: `/b/${this.$route.params.shortId}/owner/role`
             },
@@ -134,7 +134,7 @@
             },
             {
               tag: 'tv',
-              name: '打印',
+              name: '打印机',
               icon: '/img/b/nav/owner/b_nav_owner_printer.png',
               url: `/b/${this.$route.params.shortId}/owner/printer`
             },

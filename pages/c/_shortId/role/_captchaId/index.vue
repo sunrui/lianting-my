@@ -39,7 +39,7 @@
 
   export default {
     metaInfo: {
-      title: '恋厅 - 人事邀请'
+      title: '恋厅 - 店员邀请'
     },
     middleware: 'auth',
     components: {TitleBar, Captcha},
@@ -47,7 +47,7 @@
       return {
         title: {
           canBack: false,
-          title: '恋厅 - 人事邀请',
+          title: '恋厅 - 店员邀请',
           backUri: `/c/${this.$route.params.shortId}/`,
           theme: 'image',
           imageHeight: 300
@@ -95,7 +95,7 @@
           if (res.captchaIdNotExists) {
             this.$msgBox.doModal({
               type: 'yes',
-              title: '人事邀请',
+              title: '店员邀请',
               content: '二维码已失效，请重新接受邀请。'
             }).then(async (val) => {
               wechatApi.closeWindow()
@@ -103,7 +103,7 @@
           } else if (res.userExists) {
             this.$msgBox.doModal({
               type: 'yes',
-              title: '人事邀请',
+              title: '店员邀请',
               content: '您已经是本店铺的一员了。'
             }).then(async (val) => {
               wechatApi.closeWindow()
@@ -111,7 +111,7 @@
           } else if (res.maxLimit) {
             this.$msgBox.doModal({
               type: 'yes',
-              title: '人事邀请',
+              title: '店员邀请',
               content: '已超过当前店铺最大邀请限制。'
             }).then(async (val) => {
               wechatApi.closeWindow()
@@ -119,7 +119,7 @@
           } else if (res.roleId) {
             this.$msgBox.doModal({
               type: 'yes',
-              title: '人事邀请',
+              title: '店员邀请',
               content: '恭喜您，您已成为本店铺的一员。'
             }).then(async (val) => {
               if (this.ui.inWechat) {

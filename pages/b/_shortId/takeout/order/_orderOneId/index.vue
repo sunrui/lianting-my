@@ -440,7 +440,7 @@
             this.$msgBox.doModal({
               type: 'yes',
               title: '发送短信',
-              content: '没有设置商家电话，请先在资料页设置。'
+              content: '没有设置商家电话，请先在信息页设置。'
             })
 
             return
@@ -469,7 +469,7 @@
               this.$msgBox.doModal({
                 type: 'yes',
                 title: '发送短信',
-                content: '没有设置商家电话，请先在资料页设置。'
+                content: '没有设置商家电话，请先在信息页设置。'
               })
             } else if (res.noLeft) {
               this.$msgBox.doModal({

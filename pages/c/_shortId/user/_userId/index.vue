@@ -54,7 +54,7 @@
 
   export default {
     metaInfo: {
-      title: '用户资料'
+      title: '用户信息'
     },
     middleware: 'auth',
     components: { TitleBar },
@@ -62,7 +62,7 @@
       return {
         title: {
           canBack: true,
-          title: '用户资料',
+          title: '用户信息',
           backUri: `/c/${this.$route.params.shortId}`,
           theme: 'image',
           imageHeight: 330
@@ -88,7 +88,7 @@
           if (res.userIdNotExists) {
             this.$msgBox.doModal({
               type: 'yes',
-              title: '查看资料',
+              title: '查看信息',
               content: '用户不存在。'
             }).then(async (val) => {
               this.$router.push(this.title.backUri)

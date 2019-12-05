@@ -11,7 +11,7 @@
         <ul class="tip_ul">
           <li>为了及时收到店铺消息需工作人员关注恋厅公众号。</li>
           <li>工作人员可在公众号菜单工作台中处理日常工作。</li>
-          <li>您可以直接<a class="tip_highlight">点击人事头像</a>进入相关工作台。</li>
+          <li>您可以直接<a class="tip_highlight">点击店员头像</a>进入相关工作台。</li>
         </ul>
       </div>
     </div>
@@ -100,7 +100,7 @@
 
   export default {
     metaInfo: {
-      title: '人事'
+      title: '店员'
     },
     middleware: 'auth',
     components: {TitleBar, Captcha},
@@ -108,7 +108,7 @@
       return {
         title: {
           canBack: true,
-          title: '人事',
+          title: '店员',
           backUri: `/b/${this.$route.params.shortId}/owner`,
           theme: 'image',
           imageHeight: 300
@@ -265,7 +265,7 @@
                 this.$msgBox.doModal({
                   type: 'yes',
                   title: '删除' + this.getRoleTypeName(this.http.req.role.type),
-                  content: '人事不存在。'
+                  content: '店员不存在。'
                 }).then(async (val) => {
                   this.httpRole()
                 })
