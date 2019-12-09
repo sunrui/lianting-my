@@ -14,6 +14,7 @@
 
 <script>
   import {wechatApi} from '../../api/local/wechatApi'
+  import {base64Api} from '../../api/local/base64Api'
 
   export default {
     data() {
@@ -31,7 +32,7 @@
       if (!wechatApi.inWechat()) {
         if (this.ui.alipayForm) {
           const div = document.createElement('div')
-          div.innerHTML = decodeURIComponent(this.alipayForm)
+          div.innerHTML = base64Api.decode(this.ui.alipayForm)
           document.body.appendChild(div)
           document.forms[0].submit()
         } else {

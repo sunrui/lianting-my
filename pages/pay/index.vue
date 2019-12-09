@@ -84,7 +84,7 @@
   import {timeApi} from '../../api/local/timeApi'
   import {wechatApi} from '../../api/local/wechatApi'
   import {httpOrderApi} from '../../api/http/lt/httpOrderApi'
-  import {highlightApi} from '../../api/local/highlightApi'
+  import {base64Api} from '../../api/local/base64Api'
 
   export default {
     metaInfo: {
@@ -186,21 +186,7 @@
         if (this.ui.choose === 'wechat') {
           this.httpPay('WECHAT_JSAPI')
         } else if (this.ui.choose === 'alipay') {
-          if (wechatApi.inWechat()) {
-            this.$msgBox.doModal({
-              type: 'yesOrNo',
-              title: '微信阻止提醒',
-              content: `在微信中使用支付宝支付会受到阻止，但您仍可以${highlightApi.highlight('在浏览器打开')}后继续付款。`
-            }).then(async (val) => {
-              if (val !== 'Yes') {
-                return
-              }
-
-              this.httpPay('ALIPAY_QUICK_WAP_WAY')
-            })
-          } else {
-            this.httpPay('ALIPAY_QUICK_WAP_WAY')
-          }
+          this.httpPay('ALIPAY_QUICK_WAP_WAY')
         }
       },
       weixinJSBridgePay(jsPay) {
@@ -319,6 +305,7 @@
 
             if (res.pay.wechat) {
               this.weixinJSBridgePay(res.pay.wechat.jsPay)
+              return
             }
 
             if (res.pay.alipayForm) {
@@ -326,7 +313,7 @@
                 this.$router.push({
                   path: 'pay/tip',
                   query: {
-                    alipayForm: encodeURIComponent(res.pay.alipayForm)
+                    alipayForm: base64Api.encode(res.pay.alipayForm)
                   }
                 })
               } else {

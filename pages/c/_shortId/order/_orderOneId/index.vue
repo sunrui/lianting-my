@@ -390,18 +390,6 @@
           return
         }
 
-        if (Boolean(this.http.res.config.openWechat)) {
-          if (!wechatApi.inWechat()) {
-            this.$msgBox.doModal({
-              type: 'yes',
-              title: '立即支付',
-              content: '店铺已开通微信在线支付，请使用微信扫码后付款。'
-            })
-
-            return
-          }
-        }
-
         this.$router.push({
           path: `/pay`,
           query: {
