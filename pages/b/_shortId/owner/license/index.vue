@@ -357,7 +357,13 @@
         <div class="modal_title">选择套餐</div>
 
         <div class="modal_menu" v-bind:class="{modal_menu_select: ui.year === 1}"
-             @click="btnChooseYear(1)">一次付费 (无年费)
+             @click="btnChooseYear(1)">购买 1 年
+        </div>
+        <div class="modal_menu" v-bind:class="{modal_menu_select: ui.year === 2}"
+             @click="btnChooseYear(2)">购买 2 年
+        </div>
+        <div class="modal_menu" v-bind:class="{modal_menu_select: ui.year === 5}"
+             @click="btnChooseYear(5)">购买 5 年
         </div>
 
         <div class="modal_button_box">
