@@ -63,7 +63,7 @@
 
   export default {
     metaInfo: {
-      title: '订单记录'
+      title: '我的订单'
     },
     middleware: 'auth',
     components: {TitleBar},
@@ -72,7 +72,7 @@
         title: {
           canBack: true,
           backUri: `/c/${this.$route.params.shortId}/me`,
-          title: '订单记录',
+          title: '我的订单',
           theme: 'image',
           imageHeight: 220
         },
