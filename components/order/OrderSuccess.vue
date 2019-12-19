@@ -93,20 +93,20 @@
       <div class="box" v-if="http.res.config.prepayment && roleType === 'c'">
         <div class="tip">
           <ul class="tip_ul">
-            <li>为了您的正常用餐，请您立即支付。</li>
+            <li>本店需要提前买单，为了您的正常用餐，请您立即支付。</li>
           </ul>
         </div>
       </div>
 
       <div class="button_box">
-        <div v-if="canPayOnline()">
-          <div v-if="http.res.config.prepayment && roleType === 'c'">
-            <div class="button_big" @click="btnPay">立即支付</div>
-          </div>
-          <div v-else class="button_big" @click="btnFood">继续点餐</div>
-        </div>
-        <div v-else class="button_big" @click="btnFood">继续点餐</div>
-        <div class="button_big" @click="btnOrder">我的订单</div>
+<!--        <div v-if="canPayOnline()">-->
+<!--          <div v-if="http.res.config.prepayment && roleType === 'c'">-->
+<!--            <div class="button_big" @click="btnPay">立即支付</div>-->
+<!--          </div>-->
+<!--          <div v-else class="button_big" @click="btnFood">继续点餐</div>-->
+<!--        </div>-->
+<!--        <div v-else class="button_big" @click="btnFood">继续点餐</div>-->
+        <div class="button_big" @click="btnOrder">转到我的订单</div>
       </div>
     </div>
 
