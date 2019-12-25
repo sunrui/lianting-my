@@ -46,7 +46,7 @@
             </a>
           </div>
 
-          <div class="coupon" v-if="http.res.coupons.length > 0" @click="btnCouponFetch">
+          <div class="coupon_fetch" v-if="http.res.coupons.length > 0" @click="btnCouponFetch">
             <div class="coupon_label_left">￥{{getLittleCoupon().deductPrice}}满{{getLittleCoupon().chargePrice}}元可用</div>
             <div class="coupon_divide_radius"></div>
             <div class="coupon_label_right">领取</div>
@@ -357,5 +357,6 @@
 <style scoped lang="scss">
   @import '~assets/common';
   @import "~assets/c/shop";
+  @import "~assets/c/coupon";
   @import 'index';
 </style>

@@ -2,6 +2,12 @@
   <div>
     <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
+    <div class="coupon_fetch" v-if="http.res.coupons.length > 0" @click="btnCouponFetch">
+      <div class="coupon_label_left">￥{{getLittleCoupon().deductPrice}}满{{getLittleCoupon().chargePrice}}元可用</div>
+      <div class="coupon_divide_radius"></div>
+      <div class="coupon_label_right">领取</div>
+    </div>
+
     <div :class="{ cover_mask_9: ui.vCoverMask}" @click="btnCoverMask"></div>
 
     <div class="box" v-if="http.res.order.orderTakeout">
@@ -287,7 +293,8 @@
             coupon: {
               valid: []
             },
-            config: {}
+            config: {},
+            coupons: [],
           }
         },
         ui: {
@@ -299,8 +306,14 @@
     mounted() {
       this.httpOrder()
       this.httpConfig()
+      this.httpCouponFetch()
     },
     methods: {
+      httpCouponFetch() {
+        httpCouponApi.getFetch(this.$route.params.shortId).then(res => {
+          this.http.res.coupons = res
+        })
+      },
       dateFormat(date) {
         return timeApi.dateFormat(date)
       },
@@ -459,6 +472,22 @@
             })
           }
         })
+      },
+      getLittleCoupon() {
+        let price
+
+        for (let index in this.http.res.coupons) {
+          let coupon = this.http.res.coupons[index]
+
+          if (!price || coupon.chargePrice < price) {
+            return coupon
+          }
+        }
+
+        return null
+      },
+      btnCouponFetch() {
+        this.$router.push(`/c/${this.$route.params.shortId}/coupon/fetch`)
       }
     }
   }
@@ -467,4 +496,5 @@
 <style scoped lang="scss">
   @import '~assets/common';
   @import '~assets/c/order';
+  @import "~assets/c/coupon";
 </style>

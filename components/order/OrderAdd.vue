@@ -2,6 +2,12 @@
   <div>
     <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
+    <div class="coupon_fetch" v-if="http.res.coupons.length > 0" @click="btnCouponFetch">
+      <div class="coupon_label_left">￥{{getLittleCoupon().deductPrice}}满{{getLittleCoupon().chargePrice}}元可用</div>
+      <div class="coupon_divide_radius"></div>
+      <div class="coupon_label_right">领取</div>
+    </div>
+
     <div class="box" v-if="ui.orderAnyOne.orderTakeout">
       <div class="addition box_radius">
         <div class="addition_item">
@@ -148,6 +154,7 @@
   import {timeApi} from '../../api/local/timeApi'
   import {alipayApi} from '../../api/local/alipayApi'
   import {imageApi} from '../../api/local/imageApi'
+  import {httpCouponApi} from '../../api/http/lt/httpCouponApi'
 
   export default {
     metaInfo: {
@@ -190,6 +197,9 @@
               people: 0,
               createdAt: new Date().getTime()
             }
+          },
+          res: {
+            coupons: [],
           }
         }
       }
@@ -202,6 +212,7 @@
     },
     mounted() {
       this.httpOrderAllByCaptchaTableId()
+      this.httpCoupon()
     },
     created() {
       this.$store.commit('cart/update', cartApi.getCart())
@@ -235,6 +246,11 @@
       }
     },
     methods: {
+      httpCoupon() {
+        httpCouponApi.getFetch(this.$route.params.shortId).then(res => {
+          this.http.res.coupons = res
+        })
+      },
       getXOssProcess() {
         return imageApi.getXOssProcess()
       },
@@ -446,6 +462,22 @@
             })
           }
         })
+      },
+      getLittleCoupon() {
+        let price
+
+        for (let index in this.http.res.coupons) {
+          let coupon = this.http.res.coupons[index]
+
+          if (!price || coupon.chargePrice < price) {
+            return coupon
+          }
+        }
+
+        return null
+      },
+      btnCouponFetch() {
+        this.$router.push(`/c/${this.$route.params.shortId}/coupon/fetch`)
       }
     }
   }
@@ -454,5 +486,6 @@
 <style scoped lang="scss">
   @import '~assets/common';
   @import '~assets/c/order';
+  @import "~assets/c/coupon";
   @import 'OrderAdd';
 </style>

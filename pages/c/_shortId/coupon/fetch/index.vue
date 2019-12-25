@@ -116,7 +116,7 @@
             this.$msgBox.doModal({
               type: 'yes',
               title: '领取优惠券',
-              content: '领取成功。'
+              content: '领取成功，如店铺多次发券您可继续领取。'
             }).then(async (val) => {
               this.httpFetch()
             })

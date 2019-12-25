@@ -4,6 +4,12 @@
 
     <div :class="{ cover_mask_9: ui.vCoverMask}" @click="btnCoverMask"></div>
 
+    <div class="coupon_fetch" v-if="http.res.coupons.length > 0" @click="btnCouponFetch">
+      <div class="coupon_label_left">￥{{getLittleCoupon().deductPrice}}满{{getLittleCoupon().chargePrice}}元可用</div>
+      <div class="coupon_divide_radius"></div>
+      <div class="coupon_label_right">领取</div>
+    </div>
+
     <div class="box">
       <div class="order_table box_radius" v-if="ui.table.captchaTableId">
         <div class="order_table_number">{{ui.table.tableNumber}}</div>
@@ -171,6 +177,7 @@
   import {timeApi} from '../../api/local/timeApi'
   import {alipayApi} from '../../api/local/alipayApi'
   import {imageApi} from '../../api/local/imageApi'
+  import {httpCouponApi} from '../../api/http/lt/httpCouponApi'
 
   export default {
     metaInfo: {
@@ -213,7 +220,9 @@
               createdAt: new Date().getTime()
             }
           },
-          res: {}
+          res: {
+            coupons: [],
+          }
         },
         ui: {
           vPeople: false,
@@ -248,6 +257,7 @@
       }
 
       this.httpTakeoutConfig()
+      this.httpCoupon()
     },
     created() {
       this.$store.commit('cart/update', cartApi.getCart())
@@ -269,6 +279,11 @@
       this.ui.table.tableNumber = userApi.getTableNumber()
     },
     methods: {
+      httpCoupon() {
+        httpCouponApi.getFetch(this.$route.params.shortId).then(res => {
+          this.http.res.coupons = res
+        })
+      },
       getXOssProcess() {
         return imageApi.getXOssProcess()
       },
@@ -495,6 +510,22 @@
       },
       btnBindPhone() {
         this.$router.push(`/c/${this.$route.params.shortId}/me/bind/phone`)
+      },
+      getLittleCoupon() {
+        let price
+
+        for (let index in this.http.res.coupons) {
+          let coupon = this.http.res.coupons[index]
+
+          if (!price || coupon.chargePrice < price) {
+            return coupon
+          }
+        }
+
+        return null
+      },
+      btnCouponFetch() {
+        this.$router.push(`/c/${this.$route.params.shortId}/coupon/fetch`)
       }
     }
   }
@@ -503,4 +534,5 @@
 <style scoped lang="scss">
   @import '~assets/common';
   @import '~assets/c/order';
+  @import "~assets/c/coupon";
 </style>
