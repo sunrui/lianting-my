@@ -60,6 +60,12 @@
         ui: {}
       }
     },
+    created() {
+      let r = this.$route.query.r
+      if (Boolean(r)) {
+        this.title.backUri = r
+      }
+    },
     mounted() {
       this.httpFetch()
     },

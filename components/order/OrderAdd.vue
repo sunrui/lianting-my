@@ -2,7 +2,7 @@
   <div>
     <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
-    <div class="coupon_fetch" v-if="http.res.coupons.length > 0" @click="btnCouponFetch">
+    <div class="coupon_fetch" v-if="(roleType === 'c') && (http.res.coupons.length > 0)" @click="btnCouponFetch">
       <div class="coupon_label_left">￥{{getLittleCoupon().deductPrice}}满{{getLittleCoupon().chargePrice}}元可用</div>
       <div class="coupon_divide_radius"></div>
       <div class="coupon_label_right">领取</div>
@@ -477,7 +477,12 @@
         return null
       },
       btnCouponFetch() {
-        this.$router.push(`/c/${this.$route.params.shortId}/coupon/fetch`)
+        this.$router.push({
+          path: `/c/${this.$route.params.shortId}/coupon/fetch`,
+          query: {
+            r: `/c/${this.$route.params.shortId}/order/add`
+          }
+        })
       }
     }
   }

@@ -487,7 +487,12 @@
         return null
       },
       btnCouponFetch() {
-        this.$router.push(`/c/${this.$route.params.shortId}/coupon/fetch`)
+        this.$router.push({
+          path: `/c/${this.$route.params.shortId}/coupon/fetch`,
+          query: {
+            r: `/c/${this.$route.params.shortId}/order/${this.$route.params.orderOneId}`
+          }
+        })
       }
     }
   }
