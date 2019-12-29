@@ -403,7 +403,7 @@
             this.$msgBox.doModal({
               type: 'yes',
               title: '下单',
-              content: '最低配送标准为 ' + this.http.res.takeoutConfig.takeoutLeastPrice + ' 元起。'
+              content: '未达到最低配送标准，最低配送标准为 ' + this.http.res.takeoutConfig.takeoutLeastPrice + ' 元起。'
             })
 
             return
