@@ -66,6 +66,15 @@
         </div>
       </div>
     </div>
+
+    <div class="box">
+      <div class="addition box_radius">
+        <div class="addition_item" @click="btnPrinterConfig">
+          <div class="addition_item_label">更多打印设置</div>
+          <div class="addition_item_link"></div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -138,6 +147,9 @@
         httpPrinterAdminApi.getConfig(this.$route.params.shortId).then(res => {
           this.http.req.printerConfig = res
         })
+      },
+      btnPrinterConfig() {
+        this.$router.push(`/b/${this.$route.params.shortId}/owner/printer/config`)
       },
       btnPrinterList() {
         this.$router.push(`/b/${this.$route.params.shortId}/owner/printer/list`)

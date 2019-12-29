@@ -2,12 +2,6 @@
   <div>
     <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
-    <div class="coupon_fetch" v-if="(roleType === 'c') && (http.res.coupons.length > 0)" @click="btnCouponFetch">
-      <div class="coupon_label_left">￥{{getLittleCoupon().deductPrice}}满{{getLittleCoupon().chargePrice}}元可用</div>
-      <div class="coupon_divide_radius"></div>
-      <div class="coupon_label_right">领取</div>
-    </div>
-
     <div class="box" v-if="ui.orderAnyOne.orderTakeout">
       <div class="addition box_radius">
         <div class="addition_item">
@@ -199,7 +193,6 @@
             }
           },
           res: {
-            coupons: [],
           }
         }
       }
@@ -212,7 +205,6 @@
     },
     mounted() {
       this.httpOrderAllByCaptchaTableId()
-      this.httpCoupon()
     },
     created() {
       this.$store.commit('cart/update', cartApi.getCart())
@@ -246,11 +238,6 @@
       }
     },
     methods: {
-      httpCoupon() {
-        httpCouponApi.getFetch(this.$route.params.shortId).then(res => {
-          this.http.res.coupons = res
-        })
-      },
       getXOssProcess() {
         return imageApi.getXOssProcess()
       },
@@ -460,27 +447,6 @@
                 cartSelect: select
               }
             })
-          }
-        })
-      },
-      getLittleCoupon() {
-        let price
-
-        for (let index in this.http.res.coupons) {
-          let coupon = this.http.res.coupons[index]
-
-          if (!price || coupon.chargePrice < price) {
-            return coupon
-          }
-        }
-
-        return null
-      },
-      btnCouponFetch() {
-        this.$router.push({
-          path: `/c/${this.$route.params.shortId}/coupon/fetch`,
-          query: {
-            r: `/c/${this.$route.params.shortId}/order/add`
           }
         })
       }

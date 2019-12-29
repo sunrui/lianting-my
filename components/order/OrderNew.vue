@@ -15,8 +15,8 @@
         <div class="order_table_number">{{ui.table.tableNumber}}</div>
         <div class="order_table_name">{{ui.table.tableName}}</div>
       </div>
-      <div class="addition box_radius" v-else-if="roleType === 'c' && http.req.takeoutConfig.enable">
-        <div class="addition_item" v-if="!http.req.takeoutConfig.onlyTakeout">
+      <div class="addition box_radius" v-else-if="roleType === 'c' && http.res.takeoutConfig.enable">
+        <div class="addition_item" v-if="!http.res.takeoutConfig.onlyTakeout">
           <div class="addition_item_label">外卖配送</div>
           <div class="addition_item_check">
             <div class="addition_item_check_on" v-if="ui.takeoutEnable"
@@ -97,7 +97,7 @@
 
           <div class="order_tableware_icon">配送费</div>
           <div class="order_tableware_label">外卖配送</div>
-          <div class="order_tableware_price">{{http.req.takeoutConfig.takeoutFee}}</div>
+          <div class="order_tableware_price">{{http.res.takeoutConfig.takeoutFee}}</div>
         </div>
 
         <div class="box_divide"></div>
@@ -202,10 +202,6 @@
         },
         http: {
           req: {
-            takeoutConfig: {
-              enable: false,
-              takeoutFee: 0,
-            },
             order: {
               type: 'ForHere',
               captchaTableId: null,
@@ -221,6 +217,11 @@
             }
           },
           res: {
+            takeoutConfig: {
+              enable: false,
+              takeoutFee: 0,
+              takeoutLeastPrice: 0
+            },
             coupons: [],
           }
         },
@@ -292,9 +293,9 @@
       },
       httpTakeoutConfig() {
         httpTakeoutApi.getConfig(this.$route.params.shortId).then(res => {
-          this.http.req.takeoutConfig = res
+          this.http.res.takeoutConfig = res
 
-          if (this.http.req.takeoutConfig.enable && this.http.req.takeoutConfig.onlyTakeout) {
+          if (this.http.res.takeoutConfig.enable && this.http.res.takeoutConfig.onlyTakeout) {
             this.ui.takeoutEnable = true
           }
         })
@@ -310,7 +311,7 @@
         price += this.cart.people && this.cart.perTablewarePrice ? this.cart.people * this.cart.perTablewarePrice : 0
 
         if (this.ui.takeoutEnable) {
-          price += this.http.req.takeoutConfig.takeoutFee
+          price += this.http.res.takeoutConfig.takeoutFee
         }
 
         return Math.round(parseFloat(price) * 100) / 100
@@ -351,7 +352,7 @@
           return
         }
 
-        if (this.ui.takeoutEnable) {
+        if (!this.ui.table.captchaTableId && this.ui.takeoutEnable) {
           if (!Boolean(this.http.req.order.takeout.address)) {
             this.$msgBox.doModal({
               type: 'yes',
@@ -394,6 +395,19 @@
             foodId: cartFood.food.id,
             count: cartFood.select
           })
+        }
+
+        if (this.ui.takeoutEnable) {
+          if (this.http.res.takeoutConfig.takeoutLeastPrice &&
+              parseFloat(this.http.res.takeoutConfig.takeoutLeastPrice) > parseFloat(this.getTotalPrice())) {
+            this.$msgBox.doModal({
+              type: 'yes',
+              title: '下单',
+              content: '最低配送标准为 ' + this.http.res.takeoutConfig.takeoutLeastPrice + ' 元起。'
+            })
+
+            return
+          }
         }
 
         this.http.req.order.tasteNote = this.ui.tasteNote
@@ -509,7 +523,12 @@
         this.ui.takeoutEnable = enable
       },
       btnBindPhone() {
-        this.$router.push(`/c/${this.$route.params.shortId}/me/bind/phone`)
+        this.$router.push({
+          path: `/c/${this.$route.params.shortId}/me/bind/phone`,
+          query: {
+            r: `/c/${this.$route.params.shortId}/order/new`
+          }
+        })
       },
       getLittleCoupon() {
         let price

@@ -69,8 +69,8 @@
       </div>
 
       <div class="button_box">
-        <div class="button_big" @click="btnPay">立即支付</div>
-        <div class="button_big" @click="btnOrder">我的订单</div>
+       <div class="button_big" @click="btnPay">立即支付</div>
+<!--       <div class="button_big" @click="btnOrder">我的订单</div>-->
       </div>
     </div>
     <div v-else>
@@ -99,14 +99,13 @@
       </div>
 
       <div class="button_box">
-<!--        <div v-if="canPayOnline()">-->
-<!--          <div v-if="http.res.config.prepayment && roleType === 'c'">-->
-<!--            <div class="button_big" @click="btnPay">立即支付</div>-->
-<!--          </div>-->
-<!--          <div v-else class="button_big" @click="btnFood">继续点餐</div>-->
-<!--        </div>-->
-<!--        <div v-else class="button_big" @click="btnFood">继续点餐</div>-->
-        <div class="button_big" @click="btnOrder">转到我的订单</div>
+        <div v-if="canPayOnline()">
+          <div v-if="http.res.config.prepayment && roleType === 'c'">
+            <div class="button_big" @click="btnPay">立即支付</div>
+          </div>
+          <div v-else class="button_big" @click="btnFood">继续点餐</div>
+        </div>
+        <div v-else class="button_big" @click="btnFood">继续点餐</div>
       </div>
     </div>
 
@@ -219,26 +218,24 @@
         return true
       },
       btnPay() {
-        if (!this.canPayOnline()) {
-          this.$msgBox.doModal({
-            type: 'yes',
-            title: '立即支付',
-            content: '店铺尚未开通在线支付，请您线下付款。'
-          })
+        // if (!this.canPayOnline()) {
+        //   this.$msgBox.doModal({
+        //     type: 'yes',
+        //     title: '立即支付',
+        //     content: '店铺尚未开通在线支付，请您线下付款。'
+        //   })
 
-          return
-        }
+        this.$router.push(`/c/${this.$route.params.shortId}/order/${this.$route.params.orderOneId}`)
 
-        this.$router.push({
-          path: `/pay`,
-          query: {
-            type: 'order',
-            shortId: this.$route.params.shortId,
-            orderOneId: this.$route.params.orderOneId,
-            price: this.http.res.order.price
-          }
-        })
-
+        // this.$router.push({
+        //   path: `/pay`,
+        //   query: {
+        //     type: 'order',
+        //     shortId: this.$route.params.shortId,
+        //     orderOneId: this.$route.params.orderOneId,
+        //     price: this.http.res.order.price
+        //   }
+        // })
       },
       btnOrder() {
         this.$router.push(`/c/${this.$route.params.shortId}/order/history`)

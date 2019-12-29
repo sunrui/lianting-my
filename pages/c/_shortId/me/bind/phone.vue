@@ -82,6 +82,11 @@
       }
     },
     mounted() {
+      let r = this.$route.query.r
+      if (Boolean(r)) {
+        this.title.backUri = r
+      }
+
       let phone = userApi.getUserPhone()
       if (Boolean(phone)) {
         this.$msgBox.doModal({
