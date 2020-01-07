@@ -296,7 +296,9 @@
           this.http.res.takeoutConfig = res
 
           if (this.http.res.takeoutConfig.enable && this.http.res.takeoutConfig.onlyTakeout) {
-            this.ui.takeoutEnable = true
+            if (!Boolean(userApi.getCaptchaTableId())) {
+              this.ui.takeoutEnable = true
+            }
           }
         })
       },
