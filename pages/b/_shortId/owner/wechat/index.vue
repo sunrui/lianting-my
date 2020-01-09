@@ -33,6 +33,55 @@
       </div>
     </div>
 
+
+    <div class="box">
+      <div class="addition box_radius">
+        <div class="addition_item">
+          <div class="addition_item_label">排队叫号提醒	</div>
+          <label>
+            <input class="addition_item_input" placeholder="请输入模板 ID" maxlength="256" v-model="http.req.pushTemplate.queueTemplateId">
+          </label>
+        </div>
+
+        <div class="box_divide"></div>
+
+        <div class="addition_item">
+          <div class="addition_item_label">外卖订单通知</div>
+          <label>
+            <input class="addition_item_input" placeholder="请输入模板 ID" maxlength="256" v-model="http.req.pushTemplate.takeoutTemplateId">
+          </label>
+        </div>
+
+        <div class="box_divide"></div>
+
+        <div class="addition_item">
+          <div class="addition_item_label">支付完成通知</div>
+          <label>
+            <input class="addition_item_input" placeholder="请输入模板 ID" maxlength="256" v-model="http.req.pushTemplate.paidTemplateId">
+          </label>
+        </div>
+
+        <div class="box_divide"></div>
+
+        <div class="addition_item">
+          <div class="addition_item_label">预订结果通知</div>
+          <label>
+            <input class="addition_item_input" placeholder="请输入模板 ID" maxlength="256" v-model="http.req.pushTemplate.reserveTemplateId">
+          </label>
+        </div>
+
+        <div class="box_divide"></div>
+
+        <div class="addition_item">
+          <div class="addition_item_label">点餐成功通知</div>
+          <label>
+            <input class="addition_item_input" placeholder="请输入模板 ID" maxlength="256" v-model="http.req.pushTemplate.orderTemplateId">
+          </label>
+        </div>
+      </div>
+    </div>
+
+
     <div class="button_box">
       <div class="button_big" @click="btnUpdate">更新</div>
     </div>
@@ -44,6 +93,7 @@
   import TitleBar from '../../../../../components/common/TitleBar'
   import {httpConfigAdminApi} from '../../../../../api/http/lt/httpConfigAdminApi'
   import {httpUserApi} from '../../../../../api/http/user/httpUserApi'
+  import {httpPushAdminApi} from '../../../../../api/http/lt/httpPushAdminApi'
 
   export default {
     metaInfo: {
@@ -62,7 +112,14 @@
         },
         http: {
           req: {
-            mp: {}
+            mp: {},
+            pushTemplate: {
+              queueTemplateId: null,
+              takeoutTemplateId: null,
+              paidTemplateId: null,
+              reserveTemplateId: null,
+              orderTemplateId: null
+            }
           }
         },
         ui: {
@@ -71,6 +128,7 @@
     },
     mounted() {
       this.httpConfigWechatMp()
+      this.httpPushTemplate()
     },
     methods: {
       httpConfigWechatMp() {
@@ -78,22 +136,15 @@
           this.http.req.mp = res
         })
       },
+      httpPushTemplate() {
+        httpPushAdminApi.getTemplate(this.$route.params.shortId).then(res => {
+          this.http.req.pushTemplate = res
+        })
+      },
       btnUpdate() {
-        if (!Boolean(this.http.req.mp.appId) || !Boolean(this.http.req.mp.appSecret)) {
-          httpConfigAdminApi.putMpConfigWechat(this.$route.params.shortId, this.http.req.mp).then(res => {
-            this.$msgBox.doModal({
-              type: 'yes',
-              title: '公众号',
-              content: '已更新。'
-            }).then(async (val) => {
-              this.$router.push(this.title.backUri)
-            })
-          })
-          return
-        }
+        httpPushAdminApi.putTemplate(this.$route.params.shortId, this.http.req.pushTemplate).then(res => {
 
-        httpUserApi.postLoginWechatShopTest(this.http.req.mp.appId, this.http.req.mp.appSecret).then(res => {
-          if (res.success) {
+          if (!Boolean(this.http.req.mp.appId) || !Boolean(this.http.req.mp.appSecret)) {
             httpConfigAdminApi.putMpConfigWechat(this.$route.params.shortId, this.http.req.mp).then(res => {
               this.$msgBox.doModal({
                 type: 'yes',
@@ -103,13 +154,28 @@
                 this.$router.push(this.title.backUri)
               })
             })
-          } else if (res.reason) {
-            this.$msgBox.doModal({
-              type: 'yes',
-              title: '更新失败',
-              content: res.reason
-            })
+            return
           }
+
+          httpUserApi.postLoginWechatShopTest(this.http.req.mp.appId, this.http.req.mp.appSecret).then(res => {
+            if (res.success) {
+              httpConfigAdminApi.putMpConfigWechat(this.$route.params.shortId, this.http.req.mp).then(res => {
+                this.$msgBox.doModal({
+                  type: 'yes',
+                  title: '公众号',
+                  content: '已更新。'
+                }).then(async (val) => {
+                  this.$router.push(this.title.backUri)
+                })
+              })
+            } else if (res.reason) {
+              this.$msgBox.doModal({
+                type: 'yes',
+                title: '更新失败',
+                content: res.reason
+              })
+            }
+          })
         })
       }
     }

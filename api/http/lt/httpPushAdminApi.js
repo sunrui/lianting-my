@@ -12,5 +12,11 @@ export const httpPushAdminApi = {
   },
   put(shortId, rolePush) {
     return axios.put(`${base}/${shortId}/push`, rolePush).then(res => res.data)
+  },
+  getTemplate(shortId) {
+    return axios.get(`${base}/${shortId}/push/template`).then(res => res.data)
+  },
+  putTemplate(shortId, pushTemplate) {
+    return axios.put(`${base}/${shortId}/push/template`, pushTemplate).then(res => res.data)
   }
 }
