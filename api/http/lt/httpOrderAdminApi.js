@@ -70,7 +70,7 @@ export const httpOrderAdminApi = {
     }).then(res => res.data)
   },
   putDelete(shortId, orderOneId, deleted) {
-    return axios.put(`${base}/${shortId}/order/${orderOneId}/delete`, {
+    return axios.delete(`${base}/${shortId}/order/${orderOneId}`, {
       delete: deleted
     }).then(res => res.data)
   },

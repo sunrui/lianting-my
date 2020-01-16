@@ -23,7 +23,7 @@
           <div class="order_history_table_label">订单数</div>
           <div class="order_history_table_content">{{getTableNotPaidTotal().order}}</div>
         </div>
-        <div class="order_history_detail order_history_detail_mix" @click="btnOrderReceipt()">合并查看</div>
+        <div class="order_history_detail order_history_detail_mix" @click="btnOrderReceipt()">线下结算</div>
       </div>
 
       <div class="white blank_10 box_radius_footer"></div>
