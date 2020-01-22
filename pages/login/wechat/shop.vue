@@ -41,7 +41,17 @@
           userApi.setUserShopWechatOpenId(res.user.shopWechatOpenId)
           userApi.setUserAlipayOpenId(res.user.alipayOpenId)
 
-          window.location.href = r
+          if (Boolean(!res.user.shopWechatOpenId)) {
+            this.$msgBox.doModal({
+              type: 'yes',
+              title: '店铺授权',
+              content: '获取不到店铺公众号 openId，有可能是您的店铺配置不正确。请您在管理员-公众号一栏先将错误的 appId 配对值清空。'
+            }).then(async (val) => {
+              window.location.href = r
+            })
+          } else {
+            window.location.href = r
+          }
         }
       })
     }

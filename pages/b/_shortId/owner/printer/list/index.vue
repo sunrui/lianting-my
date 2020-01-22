@@ -6,7 +6,10 @@
       <div :class="{ cover_mask_9: ui.vCoverMask}" @click="btnCoverMask"></div>
     </transition>
 
-    <div class="empty" v-if="http.res.printerFeie.elements.length === 0 && http.res.printerPoscom.elements.length === 0">
+    <div class="empty" v-if="http.res.printerFeie.elements.length === 0 &&
+                              http.res.printerPoscom.elements.length === 0 &&
+                              http.res.printerYly.elements.length === 0 &&
+                              http.res.printerZhongwu.elements.length === 0">
       <img class="empty_image" src="/img/no/no_order.png" alt="没有打印机">
       <div class="empty_label">没有打印机</div>
 
