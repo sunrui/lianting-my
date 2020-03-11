@@ -50,8 +50,11 @@
 
           <div class="addition_item">
             <div class="addition_item_label">手机号</div>
-            <div class="addition_item_content" style="user-select: text;" v-if="phone">{{phone}}</div>
-            <div class="addition_item_link" v-else @click="btnBindPhone">未绑定</div>
+            <label>
+              <input class="addition_item_input" placeholder="请输入您的手机号" maxlength="20" v-model="http.req.order.takeout.phone">
+            </label>
+            <!--            <div class="addition_item_content" style="user-select: text;" v-if="phone">{{phone}}</div>-->
+<!--            <div class="addition_item_link" v-else @click="btnBindPhone">未绑定</div>-->
           </div>
         </div>
       </div>
@@ -246,9 +249,9 @@
         let cart = this.$store.state.cart
         return cart.cart
       },
-      phone() {
-        return userApi.getUserPhone()
-      }
+      // phone() {
+      //   return userApi.getUserPhone()
+      // }
     },
     mounted() {
       if (this.roleType === 'c') {
@@ -256,6 +259,8 @@
       } else {
         this.title.backUri = `/b/${this.$route.params.shortId}/${this.roleType}/food`
       }
+
+      this.http.req.order.takeout.phone = userApi.getUserPhone()
 
       this.httpTakeoutConfig()
       this.httpCoupon()
@@ -365,7 +370,7 @@
             return
           }
 
-          this.http.req.order.takeout.phone = this.phone
+          //this.http.req.order.takeout.phone = this.phone
 
           if (!Boolean(this.http.req.order.takeout.phone)) {
             this.$msgBox.doModal({

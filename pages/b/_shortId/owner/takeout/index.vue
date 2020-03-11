@@ -29,7 +29,7 @@
         <div class="box_divide"></div>
 
         <div class="addition_item">
-          <div class="addition_item_label">专属外卖模式 (忽略堂食扫码点餐)</div>
+          <div class="addition_item_label">优先外卖模式 (忽略堂食/外卖按钮)</div>
           <div class="addition_item_check">
             <div class="addition_item_check_on" v-if="http.req.tableOutConfig.onlyTakeout"
                  @click="btnTableOutOnlyTakeout(false)"></div>
