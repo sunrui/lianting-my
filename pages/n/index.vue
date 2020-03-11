@@ -160,6 +160,7 @@
   import {httpNewsApi} from '../../api/http/news/httpNewsApi'
   import {stringApi} from '../../api/local/stringApi'
   import {scrollApi} from '../../api/local/scrollApi'
+  import {timeApi} from "../../api/local/timeApi";
 
   export default {
     metaInfo: {
@@ -181,7 +182,7 @@
             news: {
               magicId: 'honeysense',
               type: 'IndustryNews',
-              hashKey: '2019',
+              hashKey: '2020',
               shortcut: '',
               title: '',
               content: '',
@@ -205,6 +206,11 @@
     mounted() {
       this.$refs.imageUpload_AddContent.setFileName(null)
       this.$refs.imageUpload_AddContent.setFileUrl(null)
+
+      this.http.req.news.hashKey = timeApi.dateFormat(new Date(), 'yyyyMMddHHmmss');
+      this.http.req.news.referName = '网络'
+      this.http.req.news.referDate = timeApi.dateFormat(new Date(), 'yyyy-MM-dd HH:mm:ss');
+      this.http.req.news.keywords = '微信外卖系统,点餐系统,点餐小程序,校园外卖平台,订餐软件'
     },
     methods: {
       btnChooseType(type) {
