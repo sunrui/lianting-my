@@ -56,7 +56,7 @@
 
   export default {
     metaInfo: {
-      title: '零售员'
+      title: '点餐员'
     },
     middleware: 'auth',
     components: {TitleBar, Captcha},
@@ -64,7 +64,7 @@
       return {
         title: {
           canBack: false,
-          title: '零售员',
+          title: '点餐员',
           backUri: `/b/${this.$route.params.shortId}/retailer`,
           theme: 'image',
           imageHeight: 460

@@ -77,7 +77,7 @@
           loading: true,
           roles: [
             {image: '/img/role/role_owner.png', name: '管理员', role: 'owner'},
-            {image: '/img/role/role_cashier.png', name: '零售员', role: 'retailer'},
+            {image: '/img/role/role_cashier.png', name: '点餐员', role: 'retailer'},
             {image: '/img/role/role_waiter.png', name: '外卖员', role: 'takeout'},
             {image: '/img/role/role_admin.png', name: '店长', role: 'admin'},
             {image: '/img/role/role_waiter.png', name: '服务员', role: 'waiter'},

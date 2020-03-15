@@ -21,7 +21,7 @@ export const roleApi = {
     } else if (type === 'owner') {
       return '管理员'
     } else if (type === 'retailer') {
-      return '零售员'
+      return '点餐员'
     } else {
       return type
     }

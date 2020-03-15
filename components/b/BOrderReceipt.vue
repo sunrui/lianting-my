@@ -769,7 +769,7 @@
             this.$msgBox.doModal({
               type: 'yes',
               title: '上菜',
-              content: `仅允许${highlightApi.highlight('店长')}、${highlightApi.highlight('零售员')}可以操作，您只有查看权限。`
+              content: `仅允许${highlightApi.highlight('店长')}、${highlightApi.highlight('点餐员')}可以操作，您只有查看权限。`
             })
 
             return
@@ -803,7 +803,7 @@
             this.$msgBox.doModal({
               type: 'yes',
               title: '上菜',
-              content: `仅允许${highlightApi.highlight('店长')}、${highlightApi.highlight('零售员')}、${highlightApi.highlight('服务员')}可以操作，您只有查看权限。`
+              content: `仅允许${highlightApi.highlight('店长')}、${highlightApi.highlight('点餐员')}、${highlightApi.highlight('服务员')}可以操作，您只有查看权限。`
             })
 
             return

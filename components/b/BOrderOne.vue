@@ -692,7 +692,7 @@
             this.$msgBox.doModal({
               type: 'yes',
               title: '上菜',
-              content: `仅允许${highlightApi.highlight('店长')}、${highlightApi.highlight('零售员')}可以操作，您只有查看权限。`
+              content: `仅允许${highlightApi.highlight('店长')}、${highlightApi.highlight('点餐员')}可以操作，您只有查看权限。`
             })
 
             return
@@ -726,7 +726,7 @@
             this.$msgBox.doModal({
               type: 'yes',
               title: '上菜',
-              content: `仅允许${highlightApi.highlight('店长')}、${highlightApi.highlight('零售员')}、${highlightApi.highlight('服务员')}可以操作，您只有查看权限。`
+              content: `仅允许${highlightApi.highlight('店长')}、${highlightApi.highlight('点餐员')}、${highlightApi.highlight('服务员')}可以操作，您只有查看权限。`
             })
 
             return
@@ -934,7 +934,7 @@
           this.$msgBox.doModal({
             type: 'yes',
             title: '更改价格',
-            content: `仅允许${highlightApi.highlight('店长')}、${highlightApi.highlight('收银员')}、${highlightApi.highlight('零售员')}可以操作，您只有查看权限。`
+            content: `仅允许${highlightApi.highlight('店长')}、${highlightApi.highlight('收银员')}、${highlightApi.highlight('点餐员')}可以操作，您只有查看权限。`
           })
 
           return
@@ -944,7 +944,7 @@
           this.$msgBox.doModal({
             type: 'yes',
             title: '更改价格',
-            content: `更改价格不能为零，如您要取消订单请联系${highlightApi.highlight('店长')}或${highlightApi.highlight('零售员')}。`
+            content: `更改价格不能为零，如您要取消订单请联系${highlightApi.highlight('店长')}或${highlightApi.highlight('点餐员')}。`
           })
 
           return

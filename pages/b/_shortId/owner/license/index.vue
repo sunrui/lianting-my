@@ -179,7 +179,7 @@
           (license.plan.licenseType === 'Lite' || license.plan.licenseType === 'Normal') ? '/img/b/license/b_license_normal_check.png' :
           license.plan.licenseType === 'Senior' ? '/img/b/license/b_license_senior_check.png' : '/img/b/license/b_license_free_check.png'
           " alt="">
-            <div class="shop_feature_one_label">{{license.limit.maxRetailer}} 个零售员</div>
+            <div class="shop_feature_one_label">{{license.limit.maxRetailer}} 个点餐员</div>
           </div>
 
           <div class="box_divide"></div>
