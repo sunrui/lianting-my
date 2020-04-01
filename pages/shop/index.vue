@@ -130,7 +130,7 @@
           loading: true,
           roles: [
             {image: '/img/role/role_owner.png', name: '管理员', role: 'owner'},
-            {image: '/img/role/role_cashier.png', name: '顾客(演示)', role: 'c'}
+            {image: '/img/role/role_cashier.png', name: '顾客', role: 'c'}
           ]
         }
       }
