@@ -91,7 +91,7 @@
             <div class="order_food_price order_food_price_2">{{Math.round(parseFloat(orderFood.count * orderFood.foodPrice) * 100) / 100}}</div>
             <div class="order_food_button_group">
               <div v-if="(roleType === 'admin' || roleType === 'retailer')">
-                <div class="order_food_button order_food_button_finish" v-if="!http.res.config.foodFinishAuto" @click="btnChangeStatus(orderFood, 'Finish')">上菜</div>
+                <div class="order_food_button order_food_button_finish" v-if="!http.res.config.foodFinishAuto && orderFood.status === 'Cooked'" @click="btnChangeStatus(orderFood, 'Finish')">上菜</div>
                 <div class="order_food_button order_food_button_return" @click="btnFoodReturn(orderFood)">退菜</div>
               </div>
               <div class="order_food_button button_gray" v-else-if="orderFood.status === 'Cancel'">已取消</div>

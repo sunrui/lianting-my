@@ -144,12 +144,12 @@
               icon: '/img/b/nav/owner/b_nav_owner_stat.png',
               url: `/b/${this.$route.params.shortId}/owner/stat`
             },
-            {
-              tag: 'wechat',
-              name: '公众号',
-              icon: '/img/b/nav/owner/b_nav_owner_wechat.png',
-              url: `/b/${this.$route.params.shortId}/owner/wechat`
-            },
+            // {
+            //   tag: 'wechat',
+            //   name: '公众号',
+            //   icon: '/img/b/nav/owner/b_nav_owner_wechat.png',
+            //   url: `/b/${this.$route.params.shortId}/owner/wechat`
+            // },
             {
               tag: 'captcha',
               name: '二维码',
