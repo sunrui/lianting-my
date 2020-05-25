@@ -24,10 +24,7 @@
           <div class="queue_ring">
             <div class="queue_ring_icon"></div>
             <div class="queue_ring_label">请{{getQueueNowTableNumber(tableGroup)}}号顾客前往迎宾台就餐。</div>
-            <div class="queue_ring_button" v-if="getQueueNow(tableGroup).queueTicket.status === 'Now'"
-                 @click="btnRadio(getQueueNowTableNumber(tableGroup))">播报
-            </div>
-            <div class="queue_ring_button queue_ring_button_gray" v-else>播报
+            <div class="queue_ring_button" @click="btnRadio(getQueueNowTableNumber(tableGroup))">播报</div>
             </div>
           </div>
 
