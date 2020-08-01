@@ -122,7 +122,7 @@
             },
             {
               tag: 'pay',
-              name: '支付',
+              name: '结算',
               icon: '/img/b/nav/owner/b_nav_owner_pay.png',
               url: `/b/${this.$route.params.shortId}/owner/pay`
             },
