@@ -25,7 +25,6 @@
             <div class="queue_ring_icon"></div>
             <div class="queue_ring_label">请{{getQueueNowTableNumber(tableGroup)}}号顾客前往迎宾台就餐。</div>
             <div class="queue_ring_button" @click="btnRadio(getQueueNowTableNumber(tableGroup))">播报</div>
-            </div>
           </div>
 
           <div class="queue_table">

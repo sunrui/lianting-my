@@ -88,6 +88,7 @@
   import {httpNotifyAdminApi} from '../../../../api/http/lt/httpNotifyAdminApi'
   import QRCode from 'qrcode'
   import {httpRadioAdminApi} from '../../../../api/http/lt/httpRadioAdminApi'
+  import {userApi} from "../../../../api/local/userApi"
 
   export default {
     metaInfo: {
@@ -151,6 +152,12 @@
 
       setInterval(this.updateTime, 1000)
       setInterval(this.httpState, 10 * 1000)
+
+      if (window.screen.height <= window.screen.width) {
+        if (Boolean(userApi.getUserId())) {
+          this.fullScreen()
+        }
+      }
     },
     methods: {
       getTvUrl() {
@@ -422,6 +429,11 @@
 
         this.ui.drewCaptcha = false
       },
+      fullScreen() {
+        let element = window.document.getElementById('tv_full_screen')
+        screenApi.enterFullScreen(element)
+        this.ui.fullScreen = true
+      },
       btnFullScreen() {
         if (window.screen.height > window.screen.width) {
           this.$msgBox.doModal({
@@ -433,12 +445,6 @@
           return
         }
 
-        function fullScreen(pThis) {
-          let element = window.document.getElementById('tv_full_screen')
-          screenApi.enterFullScreen(element)
-          pThis.ui.fullScreen = true
-        }
-
         if (this.ui.limit.licenseType || this.ui.limit.licenseExpiredAt) {
           this.$msgBox.doModal({
             type: 'yes',
@@ -446,14 +452,14 @@
             content: '展屏为高级会员、旗舰会员专享，您可继续预览此功能，展屏将在一定时间内自动关闭。'
           }).then(async (val) => {
             if (val === 'Yes') {
-              fullScreen(this)
+              this.fullScreen()
             }
           })
 
           return
         }
 
-        fullScreen(this)
+        this.fullScreen()
       }
     }
   }
