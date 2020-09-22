@@ -104,7 +104,7 @@
     <div class="box">
       <div class="food_price box_radius">
         <div class="food_price_title">
-          <div class="food_price_title_label">餐食价格</div>
+          <div class="food_price_title_label">餐食规格</div>
           <div class="food_price_table_add" @click="btnFoodAdd"></div>
         </div>
 
@@ -118,14 +118,42 @@
 
           <div class="box_divide"></div>
         </div>
-        <div v-if="http.req.category.foods && http.req.category.foods.length === 0">
+        <div v-if="!http.req.category.foods || http.req.category.foods.length === 0">
           <div class="food_price_empty">
             <div class="food_price_empty_image"></div>
-            <div class="food_price_empty_label">暂无价格</div>
+            <div class="food_price_empty_label">暂无规格</div>
           </div>
         </div>
       </div>
     </div>
+
+<!--    <div class="blank_20"></div>-->
+
+<!--    <div class="box">-->
+<!--      <div class="food_price box_radius">-->
+<!--        <div class="food_price_title">-->
+<!--          <div class="food_price_title_label">餐食配菜（可选）</div>-->
+<!--          <div class="food_price_table_add" @click="btnGarnishAdd"></div>-->
+<!--        </div>-->
+
+<!--        <div v-if="http.req.garnishes" v-for="garnish in http.req.garnishes">-->
+<!--          <div class="food_price_one">-->
+<!--            <div class="food_price_name">{{garnish.name}}</div>-->
+<!--            <div class="food_price_now">{{garnish.price}}</div>-->
+<!--            <div class="food_price_delete" @click="btnGarnishDelete(garnish)"></div>-->
+<!--          </div>-->
+
+<!--          <div class="box_divide"></div>-->
+<!--        </div>-->
+
+<!--        <div v-if="!http.req.garnishes || http.req.garnishes.length === 0">-->
+<!--          <div class="food_price_empty">-->
+<!--            <div class="food_price_empty_image"></div>-->
+<!--            <div class="food_price_empty_label">暂无配菜</div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
 
     <div class="button_box">
       <div class="button_big" @click="btnUpdate">更新</div>
@@ -163,6 +191,34 @@
         <div class="button_big button_gray" v-else>确定</div>
       </div>
     </div>
+
+
+    <div class="modal_center" v-if="ui.vGarnishAdd">
+      <div class="modal_close_box" @click="btnCoverMask">
+        <img class="modal_close" src="/img/common/close.png" alt="">
+      </div>
+
+      <div class="modal_title">添加餐食配菜</div>
+
+      <div class="modal_input_box">
+        <div class="modal_input_area">
+          <label>
+            <input class="modal_input" placeholder="请输入配菜，如：土豆。" maxlength="10" v-model="ui.garnish.name">
+          </label>
+        </div>
+      </div>
+
+      <div class="modal_input_box">
+        <div class="modal_input_area">
+          <currency-input placeholder="请输入价格" v-model="ui.garnish.price"></currency-input>
+        </div>
+      </div>
+
+      <div class="modal_button_box">
+        <div class="button_big" v-if="ui.garnish.name && ui.garnish.price !== undefined && ui.garnish.price !== null" @click="btnGarnishAddConfirm">确定</div>
+        <div class="button_big button_gray" v-else>确定</div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -172,7 +228,7 @@
   import {httpFoodAdminApi} from '../../../../../../../api/http/lt/httpFoodAdminApi'
   import {httpFoodApi} from '../../../../../../../api/http/lt/httpFoodApi'
   import {highlightApi} from '../../../../../../../api/local/highlightApi'
-  import ImageUpload from "../../../../../../../components/common/ImageUpload"
+  import ImageUpload from '../../../../../../../components/common/ImageUpload'
   import {scrollApi} from '../../../../../../../api/local/scrollApi'
 
   export default {
@@ -199,24 +255,33 @@
               detail: null,
               tagName: null,
               tagIndex: 0,
-              foods: []
-            }
+              foods: [],
+            },
+            garnishes: {}
           }
         },
         ui: {
           vPriceAdd: false,
+          vGarnishAdd: false,
           vCoverMask: false,
           tagEnable: false,
           food: {
+            foodCategoryId: null,
             name: null,
             price: null,
             originalPrice: null
+          },
+          garnish: {
+            foodCategoryId: null,
+            name: null,
+            price: null
           }
         }
       }
     },
     mounted() {
       this.httpFoodCategory()
+      // this.httpFoodGarnish()
     },
     methods: {
       uploadSuccess(fileName) {
@@ -232,8 +297,14 @@
           this.ui.tagEnable = Boolean(res.tagName)
         })
       },
+      httpFoodGarnish() {
+        httpFoodApi.getGarnish(this.$route.params.shortId, this.$route.params.categoryId, 0, 10).then(res => {
+          this.http.req.garnishes = res.elements
+        })
+      },
       btnCoverMask() {
         this.ui.vPriceAdd = false
+        this.ui.vGarnishAdd = false
         this.ui.vCoverMask = false
         scrollApi.enable(true)
       },
@@ -259,23 +330,49 @@
         this.ui.vPriceAdd = true
         this.ui.food = {}
       },
+      btnGarnishAdd() {
+        this.ui.vCoverMask = true
+        scrollApi.enable(false)
+
+        this.ui.vGarnishAdd = true
+        this.ui.garnish = {}
+      },
       btnFoodDelete(food) {
         httpFoodAdminApi.deleteFood(this.$route.params.shortId, food.id).then(res => {
           if (res.foodIdNotExists) {
             this.$msgBox.doModal({
               type: 'yes',
-              title: '删除价格',
-              content: '价格不存在。'
+              title: '删除餐食规格',
+              content: '餐食规格不存在。'
             })
           } else if (res.success) {
             this.$msgBox.doModal({
               type: 'yes',
-              title: '删除价格',
+              title: '删除餐食规格',
               content: '删除成功。'
             })
           }
 
           this.httpFoodCategory()
+        })
+      },
+      btnGarnishDelete(garnish) {
+        httpFoodAdminApi.deleteGarnish(this.$route.params.shortId, garnish.id).then(res => {
+          if (res.garnishIdNotExists) {
+            this.$msgBox.doModal({
+              type: 'yes',
+              title: '删除餐食配菜',
+              content: '餐食配菜不存在。'
+            })
+          } else if (res.success) {
+            this.$msgBox.doModal({
+              type: 'yes',
+              title: '删除餐食配菜',
+              content: '删除成功。'
+            })
+          }
+
+          // this.httpFoodGarnish()
         })
       },
       btnFoodAddConfirm() {
@@ -288,7 +385,6 @@
 
           return
         }
-
 
         if (this.ui.food.price === null || this.ui.food.price === undefined) {
           this.$msgBox.doModal({
@@ -348,6 +444,65 @@
         })
 
         this.ui.vPriceAdd = false
+        this.ui.vCoverMask = false
+        scrollApi.enable(true)
+      },
+      btnGarnishAddConfirm() {
+        if (!Boolean(this.ui.garnish.name)) {
+          this.$msgBox.doModal({
+            type: 'yes',
+            title: '添加配菜',
+            content: '请输入配菜，如：土豆。'
+          })
+
+          return
+        }
+
+        if (this.ui.garnish.price === null || this.ui.garnish.price === undefined) {
+          this.$msgBox.doModal({
+            type: 'yes',
+            title: '添加配菜',
+            content: '请输入价格。'
+          })
+
+          return
+        }
+
+        this.ui.garnish.foodCategoryId = this.$route.params.categoryId
+
+        httpFoodAdminApi.postGarnish(this.$route.params.shortId, this.ui.garnish).then(res => {
+          if (res.maxLimit10) {
+            this.$msgBox.doModal({
+              type: 'yes',
+              title: '添加餐食配菜',
+              content: `您最多可添加 10 个配菜。`
+            })
+
+            return
+          }
+
+          if (res.nameExists) {
+            this.$msgBox.doModal({
+              type: 'yes',
+              title: '添加餐食配菜',
+              content: `名称${highlightApi.highlight(this.ui.garnish.name)}已存在。`
+            })
+
+            return
+          }
+
+          if (res.foodGarnishId) {
+            this.$msgBox.doModal({
+              type: 'yes',
+              title: '添加餐食配菜',
+              content: `添加成功。`
+            })
+
+            // this.httpFoodGarnish()
+          }
+        })
+
+        this.ui.vGarnishAdd = false
         this.ui.vCoverMask = false
         scrollApi.enable(true)
       },

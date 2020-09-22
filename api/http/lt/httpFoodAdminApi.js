@@ -42,9 +42,18 @@ export const httpFoodAdminApi = {
     return axios.post(`${base}/${shortId}/food/food`, food).then(res => res.data)
   },
   putFood(shortId, food) {
-    return axios.put(`${base}/${shortId}/food/food/${food.id}`, Food).then(res => res.data)
+    return axios.put(`${base}/${shortId}/food/food/${food.id}`, food).then(res => res.data)
   },
   deleteFood(shortId, foodId) {
     return axios.delete(`${base}/${shortId}/food/food/${foodId}`).then(res => res.data)
+  },
+  postGarnish(shortId, garnish) {
+    return axios.post(`${base}/${shortId}/food/garnish`, garnish).then(res => res.data)
+  },
+  putGarnish(shortId, garnish) {
+    return axios.put(`${base}/${shortId}/food/garnish/${garnish.id}`, garnish).then(res => res.data)
+  },
+  deleteGarnish(shortId, garnishId) {
+    return axios.delete(`${base}/${shortId}/food/garnish/${garnishId}`).then(res => res.data)
   }
 }

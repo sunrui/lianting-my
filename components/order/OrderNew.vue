@@ -54,7 +54,7 @@
               <input class="addition_item_input" placeholder="请输入您的手机号" maxlength="20" v-model="http.req.order.takeout.phone">
             </label>
             <!--            <div class="addition_item_content" style="user-select: text;" v-if="phone">{{phone}}</div>-->
-<!--            <div class="addition_item_link" v-else @click="btnBindPhone">未绑定</div>-->
+            <!--            <div class="addition_item_link" v-else @click="btnBindPhone">未绑定</div>-->
           </div>
         </div>
       </div>
@@ -71,17 +71,21 @@
       </div>
 
       <div class="order_content box_radius_footer">
-        <div>
-          <div class="order_food" v-for="food in cart.foods">
-            <img class="order_food_image" :src="food.category.image + getXOssProcess()" :alt="food.category.name">
-            <div class="order_food_name_detail">
-              <div class="order_food_name_detail_name">{{food.category.name}}</div>
-              <div class="order_food_name_detail_name_category">{{food.food.name}}</div>
+        <div class="order_food" v-for="food in cart.foods">
+          <img class="order_food_image" :src="food.category.image + getXOssProcess()" :alt="food.category.name">
+          <div class="order_food_name_detail">
+            <div class="order_food_name_detail_name">{{food.category.name}}
+              <span class="order_food_name_detail_name_category">({{food.food.name}})</span>
             </div>
-            <div class="order_food_status order_food_status_new" v-if="!ui.takeoutEnable">新增</div>
-            <div class="order_food_count">{{food.select}}</div>
-            <div class="order_food_price">{{Math.round(parseFloat(food.select * food.food.price) * 100) / 100}}</div>
+            <div class="order_food_name_detail_name_garnish">
+                <span v-if="food.garnishes" v-for="garnish in food.garnishes">
+                  {{garnish.name}}
+                </span>
+            </div>
           </div>
+          <div class="order_food_status order_food_status_new" v-if="!ui.takeoutEnable">新增</div>
+          <div class="order_food_count">{{food.select}}</div>
+          <div class="order_food_price">{{Math.round(parseFloat(food.select * food.food.price) * 100) / 100}}</div>
         </div>
 
         <div v-if="cart.people">

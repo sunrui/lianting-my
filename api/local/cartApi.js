@@ -25,6 +25,11 @@ export const cartApi = {
       let cartFood = this.cart.foods[index]
       this.cart.select += cartFood.select
       this.cart.price += cartFood.food.price * cartFood.select
+
+      for (let index2 in cartFood.garnishes) {
+        let garnish = cartFood.garnishes[index2]
+        this.cart.price += garnish.price * this.cart.select
+      }
     }
 
     if (Boolean(this.cart.perTablewarePrice)) {
@@ -110,6 +115,12 @@ export const cartApi = {
       if (cartFood.category.id === foodCategoryId) {
         this.cart.select -= cartFood.select
         this.cart.price -= cartFood.food.price * cartFood.select
+
+        for (let index2 in cartFood.garnishes) {
+          let garnish = cartFood.garnishes[index2]
+          this.cart.price -= garnish.price
+        }
+
         this.cart.foods.splice(index, 1)
 
         this.saveCart()
@@ -120,7 +131,7 @@ export const cartApi = {
 
     this._removeByFoodCategoryId(foodCategoryId, removeOk)
   },
-  increase(foodGroupId, foodCategory, food) {
+  increase(foodGroupId, foodCategory, food, garnishes) {
     this._verifyCart()
 
     let one = null
@@ -138,6 +149,7 @@ export const cartApi = {
         foodGroupId: foodGroupId,
         category: foodCategory,
         food: food,
+        garnishes: garnishes,
         select: 0
       }
 
@@ -145,6 +157,7 @@ export const cartApi = {
     }
 
     one.select++
+    one.garnishes = garnishes
 
     this.saveCart()
   },

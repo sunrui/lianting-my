@@ -96,7 +96,7 @@
 
           <div v-bind:class="{
           food_big: foodGroup.groupModeBig,
-          food: !foodGroup.groupModeBig,
+          food: !foodGroup.groupModeBig
           }" class="box_radius">
             <div class="food_category_anchor" :id="foodCategory.id"></div>
             <div v-bind:class="{
@@ -120,10 +120,10 @@
                 <div class="food_detail">{{foodCategory.detail}}</div>
                 <div v-if="foodCategory.foods && foodCategory.foods.length > 0 && foodCategory.status === 'ONLINE'">
                   <div class="food_price_box">
-                    <div class="food_price_now">{{foodCategory.foods[0].price}}</div>
+                    <div class="food_price_now">{{getCategoryOneFood(foodCategory, true).price}}</div>
                     <div class="food_price_original"
-                         v-if="foodCategory.foods[0].price !== foodCategory.foods[0].originalPrice">
-                      {{foodCategory.foods[0].originalPrice}}
+                         v-if="getCategoryOneFood(foodCategory, true).price !== getCategoryOneFood(foodCategory, true).originalPrice">
+                      {{getCategoryOneFood(foodCategory, true).originalPrice}}
                     </div>
                   </div>
                 </div>
@@ -162,26 +162,36 @@
         </div>
 
         <div class="cart_box">
-          <div class="cart_food" v-if="cart.foods" v-for="cartFood in cart.foods">
-            <div class="box_divide" v-if="cartFood !== cart.foods[0]"></div>
+          <div v-if="cart.foods" v-for="cartFood in cart.foods">
+            <div class="cart_food">
+              <div class="box_divide" v-if="cartFood !== cart.foods[0]"></div>
 
-            <div class="cart_food_info">
-              <div class="cart_food_name">{{cartFood.category.name}}</div>
-              <div class="cart_food_detail">({{cartFood.food.name}})</div>
-            </div>
-            <div class="cart_food_price">{{cartFood.food.price}}</div>
-            <div class="cart_food_button">
-              <div class="cart_food_button_add"
-                   @click="btnCartFoodAdd(cartFood.foodGroupId, cartFood.category, cartFood.food)"></div>
-              <label>
-                <input class="cart_food_button_count" type="number"
-                       oninput="value=value.replace(/[^0-9]/g,'');
+              <div class="cart_food_info">
+                <div class="cart_food_name">{{cartFood.category.name}}</div>
+                <div class="cart_food_detail">({{cartFood.food.name}})
+                </div>
+              </div>
+              <div class="cart_food_price">{{cartFood.food.price}}</div>
+              <div class="cart_food_button">
+                <div class="cart_food_button_add"
+                     @click="btnCartFoodAdd(cartFood.foodGroupId, cartFood.category, cartFood.food)"></div>
+                <label>
+                  <input class="cart_food_button_count" type="number"
+                         oninput="value=value.replace(/[^0-9]/g,'');
                           if (value.length === 0) value = 1;
                           if (parseInt(value) > 999) value = 999;"
-                       @input="btnCartFoodInput($event, cartFood.category, cartFood.food)" v-model="cartFood.select">
-              </label>
-              <div class="cart_food_button_minus" @click="btnCartFoodMinus(cartFood.category, cartFood.food)"></div>
+                         @input="btnCartFoodInput($event, cartFood.category, cartFood.food)" v-model="cartFood.select">
+                </label>
+                <div class="cart_food_button_minus" @click="btnCartFoodMinus(cartFood.category, cartFood.food)"></div>
+              </div>
             </div>
+
+            <div class="cart_food_garnish" v-if="cartFood.garnishes && cartFood.garnishes.length > 0">
+              <div class="cart_food_garnish_one" v-for="garnish in cartFood.garnishes">
+                <div class="cart_food_garnish_one_name">{{garnish.name}} (¥{{garnish.price}})</div>
+              </div>
+            </div>
+
           </div>
 
           <div class="blank_20"></div>
@@ -223,15 +233,30 @@
 
         <div class="box_divide"></div>
 
-        <div class="category_label">规格</div>
-        <div class="category_box">
-          <div class="category_one" v-if="ui.modalCategory.category.foods" v-for="food in ui.modalCategory.category.foods">
-            <div class="category_one_name_select" v-if="food.id === ui.modalCategory.selectFood.id">{{food.name}}</div>
-            <div class="category_one_name" v-if="food.id !== ui.modalCategory.selectFood.id"
-                 @click="btnCategoryChoose(food)">{{food.name}}
+        <div class="category_label_box">
+          <div class="category_label">规格</div>
+          <div class="category_box">
+            <div class="category_one" v-if="ui.modalCategory.category.foods" v-for="food in ui.modalCategory.category.foods">
+              <div class="category_one_name_select" v-if="food.id === ui.modalCategory.selectFood.id">{{food.name}}</div>
+              <div class="category_one_name" v-if="food.id !== ui.modalCategory.selectFood.id"
+                   @click="btnCategoryChoose(food)">{{food.name}}
+              </div>
             </div>
           </div>
         </div>
+
+<!--        <div class="blank_100"></div>-->
+<!--        <div class="box_divide"></div>-->
+
+<!--        <div class="category_label_box">-->
+<!--          <div class="category_label">配菜</div>-->
+<!--          <div class="category_box">-->
+<!--            <div class="category_one" v-if="ui.modalCategory.garnishes" v-for="garnish in ui.modalCategory.garnishes">-->
+<!--              <div class="category_one_name_select" v-if="isGarnishChoose(garnish)" @click="btnGarnishUnchoose(garnish)">{{garnish.name}} (¥{{garnish.price}})</div>-->
+<!--              <div class="category_one_name" v-else @click="btnGarnishChoose(garnish)">{{garnish.name}} (¥{{garnish.price}})</div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
 
         <div class="blank_50"></div>
         <div class="blank_30"></div>
@@ -267,6 +292,7 @@
   import {highlightApi} from '../../api/local/highlightApi'
   import {userApi} from '../../api/local/userApi'
   import {imageApi} from '../../api/local/imageApi'
+  import {logApi} from '../../api/local/logApi'
 
   export default {
     metaInfo: {
@@ -302,7 +328,9 @@
             foodGroupId: null,
             category: null,
             selectFood: null,
-            selectEvent: null
+            selectEvent: null,
+            garnishes: [],
+            selectGarnishes: []
           },
           modalPreview: {
             foodGroup: null,
@@ -439,6 +467,25 @@
             scrollApi.scrollAnimation(0, posY)
           }
         }
+      },
+      getCategoryOneFood(foodCategory, cheaper) {
+        let selectFood = foodCategory.foods[0]
+
+        for (let index in foodCategory.foods) {
+          let food = foodCategory.foods[index]
+
+          if (cheaper) {
+            if (food.price < selectFood.price) {
+              selectFood = food
+            }
+          } else {
+            if (food.price > selectFood.price) {
+              selectFood = food
+            }
+          }
+        }
+
+        return selectFood
       },
       httpFoodGroup() {
         httpFoodApi.getGroupAll(this.$route.params.shortId, 0, 999).then(res => {
@@ -636,18 +683,24 @@
           return
         }
 
-        cartApi.increase(foodGroupId, cloneApi.clone(foodCategory), cloneApi.clone(food))
+        cartApi.increase(foodGroupId, cloneApi.clone(foodCategory), cloneApi.clone(food), this.ui.modalCategory.selectGarnishes)
+
         this.$store.commit('cart/update', cartApi.getCart())
         this.computedCartSelect()
       },
       btnFoodAdd(event, foodGroupId, foodCategory) {
+        this.ui.modalCategory.selectGarnishes = []
+        this.ui.modalCategory.garnishes = []
+
         if (foodCategory.foods && foodCategory.foods.length === 1) {
           this.btnCartFoodAdd(foodGroupId, foodCategory, foodCategory.foods[0])
         } else {
           this.ui.modalCategory.foodGroupId = foodGroupId
           this.ui.modalCategory.category = foodCategory
-          this.ui.modalCategory.selectFood = foodCategory.foods[0]
+          this.ui.modalCategory.selectFood = this.getCategoryOneFood(foodCategory, false)
           this.ui.modalCategory.selectEvent = event
+
+          // this.httpFoodGarnish(foodCategory.id)
 
           scrollApi.enable(false)
           this.ui.vCart = false
@@ -729,6 +782,47 @@
       },
       btnCategoryChoose(food) {
         this.ui.modalCategory.selectFood = food
+      },
+      isGarnishChoose(garnish) {
+        for (let index in this.ui.modalCategory.selectGarnishes) {
+          let garnishOne = this.ui.modalCategory.selectGarnishes[index]
+          if (garnishOne.id === garnish.id) {
+            return true
+          }
+        }
+
+        return false
+      },
+      btnGarnishChoose(garnish) {
+        if (this.ui.modalCategory.selectGarnishes.length >= 5) {
+          this.btnCoverMask()
+
+          this.$msgBox.doModal({
+            type: 'yes',
+            title: '选择配菜',
+            content: '您最多可以选择 5 个配菜。'
+          })
+
+          return
+        }
+
+        for (let index in this.ui.modalCategory.selectGarnishes) {
+          let garnishOne = this.ui.modalCategory.selectGarnishes[index]
+          if (garnishOne.id === garnish.id) {
+            return true
+          }
+        }
+
+        this.ui.modalCategory.selectGarnishes.push(garnish)
+      },
+      btnGarnishUnchoose(garnish) {
+        for (let index in this.ui.modalCategory.selectGarnishes) {
+          let garnishOne = this.ui.modalCategory.selectGarnishes[index]
+          if (garnishOne.id === garnish.id) {
+            this.ui.modalCategory.selectGarnishes.splice(index, 1)
+            break
+          }
+        }
       },
       btnCategoryConfirm() {
         scrollApi.enable(true)
@@ -855,7 +949,12 @@
         this.ui.modalPreview.foodGroup = foodGroup
         this.ui.modalPreview.foodCategory = foodCategory
         this.ui.vPreview = true
-      }
+      },
+      httpFoodGarnish(categoryId) {
+        httpFoodApi.getGarnish(this.$route.params.shortId, categoryId, 0, 10).then(res => {
+          this.ui.modalCategory.garnishes = res.elements
+        })
+      },
     }
   }
 </script>

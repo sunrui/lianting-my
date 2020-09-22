@@ -40,11 +40,12 @@
     "weixin-js-sdk": "^1.4.0-test"
   },
   "devDependencies": {
+    "@nuxt/types": "^2.14.6",
     "node-sass": "^4.11.0",
     "nodemon": "^1.19.4",
     "postcss-loader": "^3.0.0",
     "postcss-px2rem": "^0.3.0",
     "sass-loader": "^7.3.1",
-    "webpack": "^4.41.2"
+    "webpack": "^4.44.2"
   }
 }

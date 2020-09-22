@@ -63,11 +63,16 @@
     .order_food_name_detail_name {
       font-size: 28px;
       color: #333333;
+
+      .order_food_name_detail_name_category {
+        display: inline-block;
+        color: #999999;
+      }
     }
 
-    .order_food_name_detail_name_category {
+    .order_food_name_detail_name_garnish {
       margin-top: 5px;
-      font-size: 24px;
+      margin-right: 5px;
       color: #999999;
     }
   }
@@ -334,7 +339,7 @@
     margin-right: 15px;
     height: 100px;
     line-height: 100px;
-    text-decoration:line-through;
+    text-decoration: line-through;
   }
 
   .order_price_total_original:before {

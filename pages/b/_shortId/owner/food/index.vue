@@ -73,10 +73,10 @@
                 <div class="food_detail">{{foodCategory.detail}}</div>
                 <div v-if="foodCategory.foods && foodCategory.foods.length > 0">
                   <div class="food_price_box">
-                    <div class="food_price_now">{{foodCategory.foods[0].price}}</div>
+                    <div class="food_price_now">{{getCheaperFood(foodCategory).price}}</div>
                     <div class="food_price_original"
-                         v-if="foodCategory.foods[0].price !== foodCategory.foods[0].originalPrice">
-                      {{foodCategory.foods[0].originalPrice}}
+                         v-if="getCheaperFood(foodCategory).price !== getCheaperFood(foodCategory).originalPrice">
+                      {{getCheaperFood(foodCategory).originalPrice}}
                     </div>
                   </div>
                 </div>
@@ -318,6 +318,18 @@
         this.ui.vGroupEdit = false
         this.ui.vCoverMask = false
         scrollApi.enable(true)
+      },
+      getCheaperFood(foodCategory) {
+        let cheaperFood = foodCategory.foods[0]
+
+        for (let index in foodCategory.foods) {
+          let food = foodCategory.foods[index]
+          if (food.price < cheaperFood.price) {
+            cheaperFood = food;
+          }
+        }
+
+        return cheaperFood
       },
       navToHash() {
         let hash = window.location.hash

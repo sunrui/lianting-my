@@ -33,13 +33,21 @@ export const httpFoodApi = {
       }
     }).then(res => res.data)
   },
-  getFood(shortId, foodId) {
-    return axios.get(`${base}/${shortId}/food/food/${foodId}`).then(res => res.data)
+  getGarnish(shortId, foodCategoryId, page, size) {
+    return axios.get(`${base}/${shortId}/food/garnish`, {
+      params: {
+        foodCategoryId: foodCategoryId,
+        page: page,
+        size: size
+      }
+    }).then(res => res.data)
   },
-  getFoodAll(shortId, foodCategoryId) {
+  getFoodAll(shortId, foodCategoryId, page, size) {
     return axios.get(`${base}/${shortId}/food/food`, {
       params: {
-        foodCategoryId: foodCategoryId
+        foodCategoryId: foodCategoryId,
+        page: page,
+        size: size
       }
     }).then(res => res.data)
   }
