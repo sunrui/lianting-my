@@ -1,6 +1,6 @@
 <template>
   <div class="empty">
-    <img class="empty_image" src="/img/no/no_queue_user.png" alt="">
+    <img class="empty_image" data-src="/img/no/no_queue_user.png" alt="">
     <div class="empty_label">为了更好的服务，恋厅正在维护升级中。</div>
     <div class="empty_label_tip">当前时间：{{ui.time}}</div>
   </div>

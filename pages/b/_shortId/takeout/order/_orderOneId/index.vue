@@ -180,7 +180,7 @@
     <transition name="toggle">
       <div class="modal_bottom" v-if="ui.vReply">
         <div class="modal_close_box" @click="btnCoverMask">
-          <img class="modal_close" src="/img/common/close.png" alt="">
+          <img class="modal_close" data-src="/img/common/close.png" alt="">
         </div>
 
         <div class="modal_title">回复订单</div>

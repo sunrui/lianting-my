@@ -53,7 +53,7 @@
 
     <div class="modal_center" v-if="ui.vRoleAdd">
       <div class="modal_close_box" @click="btnCoverMask">
-        <img class="modal_close" src="/img/common/close.png" alt="">
+        <img class="modal_close" data-src="/img/common/close.png" alt="">
       </div>
 
       <div class="modal_title">添加{{getRoleTypeName(http.req.role.type)}}

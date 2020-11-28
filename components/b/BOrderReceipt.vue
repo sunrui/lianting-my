@@ -243,7 +243,7 @@
     <transition name="toggle">
       <div class="modal_bottom" v-if="ui.vPeople">
         <div class="modal_close_box" @click="btnCoverMask">
-          <img class="modal_close" src="/img/common/close.png" alt="">
+          <img class="modal_close" data-src="/img/common/close.png" alt="">
         </div>
 
         <div class="modal_title">请选择人数</div>
@@ -265,7 +265,7 @@
     <transition name="toggle">
       <div class="modal_bottom" v-if="ui.vCancel">
         <div class="modal_close_box" @click="btnCoverMask">
-          <img class="modal_close" src="/img/common/close.png" alt="">
+          <img class="modal_close" data-src="/img/common/close.png" alt="">
         </div>
 
         <div class="modal_title">取消订单</div>
@@ -296,7 +296,7 @@
     <transition name="toggle">
       <div class="modal_bottom" v-if="ui.vPayOffline">
         <div class="modal_close_box" @click="btnCoverMask">
-          <img class="modal_close" src="/img/common/close.png" alt="">
+          <img class="modal_close" data-src="/img/common/close.png" alt="">
         </div>
 
         <div class="modal_title">线下结算</div>
@@ -342,7 +342,7 @@
     <transition name="toggle">
       <div class="modal_bottom" v-if="ui.vReturn">
         <div class="modal_close_box" @click="btnCoverMask">
-          <img class="modal_close" src="/img/common/close.png" alt="">
+          <img class="modal_close" data-src="/img/common/close.png" alt="">
         </div>
 
         <div class="modal_title">退菜</div>

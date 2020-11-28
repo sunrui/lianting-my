@@ -79,7 +79,7 @@
       <div class="modal_title">无线</div>
 
       <div class="modal_close_box" @click="btnCoverMask">
-        <img class="modal_close" src="/img/common/close.png" alt="">
+        <img class="modal_close" data-src="/img/common/close.png" alt="">
       </div>
 
       <div class="wifi_box">

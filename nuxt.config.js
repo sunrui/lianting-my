@@ -64,6 +64,7 @@ module.exports = {
     {src: '~plugins/route', ssr: false},
     {src: '~plugins/scroller', ssr: false},
     {src: '~plugins/stat', ssr: false},
+    {src: '~plugins/lazyload', ssr: false},
   ],
 
   /*

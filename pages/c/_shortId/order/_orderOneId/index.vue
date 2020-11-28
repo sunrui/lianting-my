@@ -225,7 +225,7 @@
     <transition name="toggle">
       <div class="modal_bottom" v-if="ui.vCancel">
         <div class="modal_close_box" @click="btnCoverMask">
-          <img class="modal_close" src="/img/common/close.png" alt="">
+          <img class="modal_close" data-src="/img/common/close.png" alt="">
         </div>
 
         <div class="modal_title">取消订单</div>

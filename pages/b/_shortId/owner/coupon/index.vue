@@ -3,7 +3,7 @@
     <title-bar ref="titleBar_Coupon" :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
 
     <div class="empty" v-if="http.res.coupons.elements.length === 0">
-      <img class="empty_image" src="/img/no/no_coupon.png" alt="没有优惠券">
+      <img class="empty_image" data-src="/img/no/no_coupon.png" alt="没有优惠券">
       <div class="empty_label">没有优惠券</div>
 
       <div class="button_box">

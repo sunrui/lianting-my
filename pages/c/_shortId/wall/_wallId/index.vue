@@ -19,19 +19,19 @@
 
       <div class="wall_order">
         <div class="wall_order_one">
-          <img class="wall_order_icon" src="/img/c/wall/wall_order.png" alt="">
+          <img class="wall_order_icon" data-src="/img/c/wall/wall_order.png" alt="">
           <div class="wall_order_label">{{http.res.wall.tableGroupName}} {{http.res.wall.tableFullNumber}}</div>
         </div>
         <div class="wall_order_one">
-          <img class="wall_order_icon" src="/img/c/wall/wall_food.png" alt="">
+          <img class="wall_order_icon" data-src="/img/c/wall/wall_food.png" alt="">
           <div class="wall_order_label">{{http.res.wall.countFood}}</div>
         </div>
         <div class="wall_order_one">
-          <img class="wall_order_icon" src="/img/c/wall/wall_people.png" alt="">
+          <img class="wall_order_icon" data-src="/img/c/wall/wall_people.png" alt="">
           <div class="wall_order_label">{{http.res.wall.people}}</div>
         </div>
         <div class="wall_order_one">
-          <img class="wall_order_icon" src="/img/c/wall/wall_time.png" alt="">
+          <img class="wall_order_icon" data-src="/img/c/wall/wall_time.png" alt="">
           <div class="wall_order_label">{{http.res.wall.elapsedTime === 0 ? '进行中' : elapsedTime(http.res.wall.elapsedTime)}}</div>
         </div>
       </div>
@@ -42,11 +42,11 @@
 
       <div class="wall_message_reply_more">
         <div class="wall_message_one">
-          <img class="wall_message_icon" src="/img/c/wall/wall_message.png" alt="">
+          <img class="wall_message_icon" data-src="/img/c/wall/wall_message.png" alt="">
           <div class="wall_message_label">{{http.res.wall.countReply}}</div>
         </div>
         <!--<div class="wall_message_one">-->
-        <!--<img class="wall_message_icon" src="/img/c/wall/wall_like.png" alt="">-->
+        <!--<img class="wall_message_icon" data-src="/img/c/wall/wall_like.png" alt="">-->
         <!--<div class="wall_message_label">20</div>-->
         <!--</div>-->
 
@@ -83,7 +83,7 @@
           <div class="modal_title">分享菜谱</div>
 
           <div class="modal_close_box" @click="btnCoverMask">
-            <img class="modal_close" src="/img/common/close.png" alt="">
+            <img class="modal_close" data-src="/img/common/close.png" alt="">
           </div>
         </div>
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="container" v-show="false" id="nuxt_div">
+  <div class="container" v-show="false" id="nuxt_div" v-lazy-container="{ selector: 'img' }">
     <nuxt/>
     <loading v-show="false" id="nuxt_loading"></loading>
   </div>

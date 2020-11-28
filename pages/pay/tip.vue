@@ -1,7 +1,7 @@
 <template>
   <div v-if="ui.showTip">
     <div class="empty">
-      <img class="empty_image" src="/img/no/no_coupon.png" alt="">
+      <img class="empty_image" data-src="/img/no/no_coupon.png" alt="">
       <div class="empty_label">请选择<span class="empty_label_tip_link">在浏览器中打开</span>后使用支付宝。</div>
       <div class="empty_label_tip">微信内使用支付宝解决方案</div>
     </div>

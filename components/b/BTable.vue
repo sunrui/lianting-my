@@ -76,25 +76,25 @@
               <div class="table_busy" v-else>
                 <div class="table_time">
                   <div class="table_one">
-                    <img class="table_one_icon" src="/img/b/table/b_table_time.png" alt="">
+                    <img class="table_one_icon" data-src="/img/b/table/b_table_time.png" alt="">
                     <div class="table_one_label">{{getElapsedTime(getTableOrder(table))}}</div>
                   </div>
                 </div>
                 <div class="table_extra">
                   <div class="table_one">
-                    <img class="table_one_icon" src="/img/b/table/b_table_people.png" alt="">
+                    <img class="table_one_icon" data-src="/img/b/table/b_table_people.png" alt="">
                     <div class="table_one_label">{{getTableOrder(table)[0].people}}</div>
                   </div>
                   <div class="table_one">
-                    <img class="table_one_icon" src="/img/b/table/b_table_order.png" alt="">
+                    <img class="table_one_icon" data-src="/img/b/table/b_table_order.png" alt="">
                     <div class="table_one_label">{{getTableOrder(table).length}}</div>
                   </div>
                   <div class="table_one">
-                    <img class="table_one_icon" src="/img/b/table/b_table_food.png" alt="">
+                    <img class="table_one_icon" data-src="/img/b/table/b_table_food.png" alt="">
                     <div class="table_one_label">{{countFood(getTableOrder(table))}}</div>
                   </div>
                   <div class="table_one">
-                    <img class="table_one_icon" src="/img/b/table/b_table_wait.png" alt="">
+                    <img class="table_one_icon" data-src="/img/b/table/b_table_wait.png" alt="">
                     <div class="table_one_label">{{countWaitFood(getTableOrder(table))}}</div>
                   </div>
                 </div>
@@ -113,7 +113,7 @@
     <transition name="toggle">
       <div class="modal_bottom" v-if="ui.vMenuTable">
         <div class="modal_close_box" @click="btnCoverMask">
-          <img class="modal_close" src="/img/common/close.png" alt="">
+          <img class="modal_close" data-src="/img/common/close.png" alt="">
         </div>
 
         <div class="modal_title">{{ui.selectTable.tableGroup_name}} - {{ui.selectTable.fullNumber}}</div>
@@ -132,7 +132,7 @@
 
     <div class="modal_center" v-if="ui.vTableChange">
       <div class="modal_close_box" @click="btnCoverMask">
-        <img class="modal_close" src="/img/common/close.png" alt="">
+        <img class="modal_close" data-src="/img/common/close.png" alt="">
       </div>
 
       <div class="modal_title">{{ui.selectTable.tableGroup_name}} - {{ui.selectTable.fullNumber}}</div>

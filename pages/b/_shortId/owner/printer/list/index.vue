@@ -10,7 +10,7 @@
                               http.res.printerPoscom.elements.length === 0 &&
                               http.res.printerYly.elements.length === 0 &&
                               http.res.printerZhongwu.elements.length === 0">
-      <img class="empty_image" src="/img/no/no_order.png" alt="没有打印机">
+      <img class="empty_image" data-src="/img/no/no_order.png" alt="没有打印机">
       <div class="empty_label">没有打印机</div>
 
       <div class="button_box">
@@ -193,7 +193,7 @@
     <transition name="toggle">
       <div class="modal_bottom" v-if="ui.vPrinter">
         <div class="modal_close_box" @click="btnCoverMask">
-          <img class="modal_close" src="/img/common/close.png" alt="">
+          <img class="modal_close" data-src="/img/common/close.png" alt="">
         </div>
 
         <div class="modal_title">选择品牌</div>

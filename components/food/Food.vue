@@ -82,11 +82,11 @@
           <div class="food_group_name">{{foodGroup.name}}</div>
           <div class="food_group_count">({{foodGroup.foodCategories.length}})</div>
           <div class="food_group_mode" v-if="!foodGroup.groupModeBig" @click="btnGroupModeBig(foodGroup, true)">
-            <img class="food_group_mode_icon" src="/img/c/food/group_mode_big.png" alt="">
+            <img class="food_group_mode_icon" data-src="/img/c/food/group_mode_big.png" alt="">
             <div class="food_group_mode_label">大图模式</div>
           </div>
           <div class="food_group_mode" v-else @click="btnGroupModeBig(foodGroup, false)">
-            <img class="food_group_mode_icon" src="/img/c/food/group_mode_small.png" alt="">
+            <img class="food_group_mode_icon" data-src="/img/c/food/group_mode_small.png" alt="">
             <div class="food_group_mode_label">小图模式</div>
           </div>
         </div>
@@ -103,7 +103,7 @@
             food_image_big_box:foodGroup.groupModeBig,
             food_image_box: !foodGroup.groupModeBig,
             }" class="">
-              <img class="food_image" :src="foodCategory.image + getXOssProcess()" :alt="foodCategory.name" @click="btnPreview(foodGroup, foodCategory)">
+              <img class="food_image" :data-src="foodCategory.image + getXOssProcess()" :alt="foodCategory.name" @click="btnPreview(foodGroup, foodCategory)">
               <div class="addition_item_tag_label food_image_tag" v-if="foodCategory.tagName" v-bind:class="{
                    addition_item_tag_color_1: foodCategory.tagIndex === 1,
                    addition_item_tag_color_2: foodCategory.tagIndex === 2,
@@ -212,11 +212,11 @@
     <transition name="toggle">
       <div class="modal_bottom" v-if="ui.vCategory">
         <div class="modal_close_box" @click="btnCoverMask">
-          <img class="modal_close" src="/img/common/close.png" alt="">
+          <img class="modal_close" data-src="/img/common/close.png" alt="">
         </div>
 
         <div class="category_food">
-          <img class="category_food_image" :src="ui.modalCategory.category.image + getXOssProcess()" :alt="ui.modalCategory.selectFood.name">
+          <img class="category_food_image" :data-src="ui.modalCategory.category.image + getXOssProcess()" :alt="ui.modalCategory.selectFood.name">
 
           <div class="category_food_info">
             <div class="category_food_name">{{ui.modalCategory.category.name}}</div>
@@ -270,7 +270,7 @@
     <transition name="fade">
       <div class="modal_center preview_modal_center" v-if="ui.vPreview">
         <div class="modal_close_box" @click="btnCoverMask">
-          <img class="modal_close" src="/img/common/close.png" alt="">
+          <img class="modal_close" data-src="/img/common/close.png" alt="">
         </div>
 
         <img class="preview_image" :src="ui.modalPreview.foodCategory.image + getXOssProcess()" alt="" @click="btnCoverMask">

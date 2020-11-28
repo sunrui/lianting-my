@@ -1,13 +1,13 @@
 <template>
   <div>
     <div class="empty" v-if="ui.error.frequent">
-      <img class="empty_image" src="/img/no/no_crash.png" alt="">
+      <img class="empty_image" data-src="/img/no/no_crash.png" alt="">
       <div class="empty_label">您的访问过于频繁，请于{{elapsedTime(ui.error.frequent)}}后重试。</div>
       <div class="empty_label_tip">我们已为您记录，请不要乱操作。</div>
     </div>
     <div v-else>
       <div class="empty" v-if="!ui.vReport">
-        <img class="empty_image" src="/img/no/no_crash.png" alt="">
+        <img class="empty_image" data-src="/img/no/no_crash.png" alt="">
         <div v-if="!ui.reported">
           <div class="empty_label">{{ui.error.notFound? '糟糕〜恋厅好像迷路了！' : '糟糕〜恋厅服务器通讯异常！'}}</div>
           <div class="blank_100"></div>
