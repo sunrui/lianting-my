@@ -12,7 +12,6 @@ const modifyHtml = (html) => {
 }
 
 module.exports = {
-  mode: 'universal',
   htmlAttrs: {
     lang: 'zh-cmn-Hans',
   },
