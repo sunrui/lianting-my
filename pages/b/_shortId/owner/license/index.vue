@@ -330,7 +330,7 @@
     <transition name="toggle">
       <div class="modal_bottom" v-if="ui.vSmsPrice">
         <div class="modal_close_box" @click="btnCoverMask">
-          <img class="modal_close" data-src="/img/common/close.png" alt="">
+          <img class="modal_close" src="/img/common/close.png" alt="">
         </div>
 
         <div class="modal_title">选择套餐</div>
@@ -351,7 +351,7 @@
     <transition name="toggle">
       <div class="modal_bottom" v-if="ui.vChargeYear">
         <div class="modal_close_box" @click="btnCoverMask">
-          <img class="modal_close" data-src="/img/common/close.png" alt="">
+          <img class="modal_close" src="/img/common/close.png" alt="">
         </div>
 
         <div class="modal_title">选择套餐</div>

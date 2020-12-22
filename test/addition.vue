@@ -92,7 +92,7 @@
         <div class="addition_item">
           <div class="addition_item_label">店铺头像</div>
           <div class="addition_item_avatar_input">
-            <img class="addition_item_avatar_img" data-src="/img/lt.png" alt="店铺头像">
+            <img class="addition_item_avatar_img" src="/img/lt.png" alt="店铺头像">
             <div class="addition_item_avatar_input_link">></div>
           </div>
         </div>

@@ -15,7 +15,7 @@
         <div class="blank_20"></div>
 
         <div class="reserve_reply">
-          <img class="reserve_reply_icon" data-src="/img/b/reserve/b_reserve_reply.png" alt="">
+          <img class="reserve_reply_icon" src="/img/b/reserve/b_reserve_reply.png" alt="">
           <div class="reserve_reply_label">待回复 {{getNeedReply(getTodayReserves())}}</div>
         </div>
 
@@ -34,10 +34,10 @@
               reserve_process_content_time: index !== 0}">{{getReserveTitle(reserve.timeStamp)}}
               </div>
               <div class="reserve_process_content_name">
-                <img class="reserve_reply_icon" data-src="/img/b/reserve/b_reserve_people.png" alt="">
+                <img class="reserve_reply_icon" src="/img/b/reserve/b_reserve_people.png" alt="">
                 <div class="reserve_reply_label">预订 {{reserve.reserves.length}} 人</div>
                 <div class="reserve_reply_divide"></div>
-                <img class="reserve_reply_icon" data-src="/img/b/reserve/b_reserve_reply.png" alt="">
+                <img class="reserve_reply_icon" src="/img/b/reserve/b_reserve_reply.png" alt="">
                 <div class="reserve_reply_label">待回复 {{getNeedReply(reserve.reserves)}}</div>
               </div>
             </div>

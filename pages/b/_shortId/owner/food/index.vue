@@ -38,7 +38,7 @@
       </div>
 
       <div class="empty_center" v-if="http.res.foodGroups.elements.length === 0">
-        <img class="empty_image" data-src="/img/no/no_food.png" alt="餐食">
+        <img class="empty_image" src="/img/no/no_food.png" alt="餐食">
         <div class="empty_label">要添加餐食组，请点击右上角 + 号。</div>
       </div>
       <div class="food_group_box" v-else :id="'box_' + foodGroup.id" v-for="foodGroup in http.res.foodGroups.elements">
@@ -52,7 +52,7 @@
           </div>
         </div>
 
-        <div class="box" v-for="(foodCategory, index) in foodGroup.foodCategories">
+        <div class="box" v-for="(foodCategory, index) in foodGroup.foodCategories" v-lazy-container="{ selector: 'img' }">
           <div class="blank_20" v-if="index !== 0"></div>
 
           <div class="food box_radius">
@@ -107,7 +107,7 @@
 
     <div class="modal_center" v-if="ui.vGroupAdd">
       <div class="modal_close_box" @click="btnCoverMask">
-        <img class="modal_close" data-src="/img/common/close.png" alt="">
+        <img class="modal_close" src="/img/common/close.png" alt="">
       </div>
 
       <div class="modal_title">添加餐食组</div>
@@ -138,7 +138,7 @@
 
     <div class="modal_center" v-if="ui.vGroupEdit">
       <div class="modal_close_box" @click="btnCoverMask">
-        <img class="modal_close" data-src="/img/common/close.png" alt="">
+        <img class="modal_close" src="/img/common/close.png" alt="">
       </div>
 
       <div class="modal_title">更新餐食组</div>

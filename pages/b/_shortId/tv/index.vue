@@ -66,7 +66,7 @@
       </div>
 
       <div class="tv_preview">
-        <img class="tv_preview_img" data-src="/img/b/tv/tv_preview.png" alt="展屏">
+        <img class="tv_preview_img" src="/img/b/tv/tv_preview.png" alt="展屏">
       </div>
 
       <div class="button_box">

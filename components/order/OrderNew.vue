@@ -72,7 +72,7 @@
 
       <div class="order_content box_radius_footer">
         <div class="order_food" v-for="food in cart.foods">
-          <img class="order_food_image" :data-src="food.category.image + getXOssProcess()" :alt="food.category.name">
+          <img class="order_food_image" :src="food.category.image + getXOssProcess()" :alt="food.category.name">
           <div class="order_food_name_detail">
             <div class="order_food_name_detail_name">{{food.category.name}}
               <span class="order_food_name_detail_name_category">({{food.food.name}})</span>
@@ -151,7 +151,7 @@
     <transition name="toggle">
       <div class="modal_bottom" v-if="ui.vPeople">
         <div class="modal_close_box" @click="btnCoverMask">
-          <img class="modal_close" data-src="/img/common/close.png" alt="">
+          <img class="modal_close" src="/img/common/close.png" alt="">
         </div>
 
         <div class="modal_title">请选择人数</div>

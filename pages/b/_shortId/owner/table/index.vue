@@ -38,7 +38,7 @@
       </div>
 
       <div class="empty_center" v-if="http.res.tableGroups.elements && http.res.tableGroups.elements.length === 0">
-        <img class="empty_image" data-src="/img/no/no_table.png" alt="餐桌">
+        <img class="empty_image" src="/img/no/no_table.png" alt="餐桌">
         <div class="empty_label">要添加餐桌组，请点击右上角 + 号。</div>
       </div>
       <div class="food_group_box" v-else :id="'box_' + tableGroup.id" v-for="tableGroup in http.res.tableGroups.elements">
@@ -79,7 +79,7 @@
 
     <div class="modal_center" v-if="ui.vTableAdd">
       <div class="modal_close_box" @click="btnCoverMask">
-        <img class="modal_close" data-src="/img/common/close.png" alt="">
+        <img class="modal_close" src="/img/common/close.png" alt="">
       </div>
 
       <div class="modal_title">添加餐桌</div>

@@ -48,7 +48,7 @@
 
       <div class="order_add_content box_radius_footer">
         <div class="order_food" v-for="food in cart.foods">
-          <img class="order_food_image" :data-src="food.category.image + getXOssProcess()" :alt="food.category.name">
+          <img class="order_food_image" :src="food.category.image + getXOssProcess()" :alt="food.category.name">
           <div class="order_food_name_detail">
             <div class="order_food_name_detail_name">{{food.category.name}}
               <span class="order_food_name_detail_name_category">({{food.food.name}})</span>

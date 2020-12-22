@@ -15,19 +15,19 @@
 
       <div class="wall_order">
         <div class="wall_order_one">
-          <img class="wall_order_icon" data-src="/img/c/wall/wall_order.png" alt="">
+          <img class="wall_order_icon" src="/img/c/wall/wall_order.png" alt="">
           <div class="wall_order_label" v-if="http.res.order.orderTable">{{http.res.order.orderTable.tableGroupName}} {{http.res.order.orderTable.tableFullNumber}}</div>
         </div>
         <div class="wall_order_one">
-          <img class="wall_order_icon" data-src="/img/c/wall/wall_food.png" alt="">
+          <img class="wall_order_icon" src="/img/c/wall/wall_food.png" alt="">
           <div class="wall_order_label">{{countFood(http.res.order)}}</div>
         </div>
         <div class="wall_order_one">
-          <img class="wall_order_icon" data-src="/img/c/wall/wall_people.png" alt="">
+          <img class="wall_order_icon" src="/img/c/wall/wall_people.png" alt="">
           <div class="wall_order_label">{{http.res.order.people}}</div>
         </div>
         <div class="wall_order_one">
-          <img class="wall_order_icon" data-src="/img/c/wall/wall_time.png" alt="">
+          <img class="wall_order_icon" src="/img/c/wall/wall_time.png" alt="">
           <div class="wall_order_label">{{http.res.order.finishedAt ? elapsedTime(http.res.order.finishedAt - http.res.order.createdAt) : '进行中'}}</div>
         </div>
       </div>

@@ -2,7 +2,7 @@
   <div>
     <title-bar :can-back="title.canBack" :title="title.title" :back-uri="title.backUri" :theme="title.theme" :imageHeight="title.imageHeight"></title-bar>
     <div class="empty">
-      <img class="empty_image" data-src="/img/no/no_shop.png" alt="">
+      <img class="empty_image" src="/img/no/no_shop.png" alt="">
         <div class="empty_label">很抱歉，当前会员受到限制。</div>
         <div class="empty_label_tip">请转至<span class="empty_label_tip_link" @click="btnLicense">续费</span>页升级您的授权。</div>
     </div>

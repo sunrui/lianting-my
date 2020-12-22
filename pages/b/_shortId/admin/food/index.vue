@@ -67,7 +67,7 @@
           <div class="food box_radius">
             <div class="food_category_anchor" :id="foodCategory.id"></div>
             <div class="food_image_box">
-              <img class="food_image" :data-src="foodCategory.image + getXOssProcess()" :alt="foodCategory.name">
+              <img class="food_image" :src="foodCategory.image + getXOssProcess()" :alt="foodCategory.name">
               <div class="addition_item_tag_label food_image_tag" v-if="foodCategory.tagName" v-bind:class="{
                    addition_item_tag_color_1: foodCategory.tagIndex === 1,
                    addition_item_tag_color_2: foodCategory.tagIndex === 2,
@@ -108,7 +108,7 @@
     <transition name="toggle">
       <div class="modal_bottom" v-if="ui.vSelectStatus">
         <div class="modal_close_box" @click="btnCoverMask">
-          <img class="modal_close" data-src="/img/common/close.png" alt="">
+          <img class="modal_close" src="/img/common/close.png" alt="">
         </div>
 
         <div class="modal_title">选择状态</div>

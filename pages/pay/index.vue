@@ -48,7 +48,7 @@
         <div class="box_divide"></div>
 
         <div class="pay_method_one" @click="btnChoose('wechat')">
-          <img class="pay_method_icon" data-src="/img/login/login_wechat.png" alt="微信支付">
+          <img class="pay_method_icon" src="/img/login/login_wechat.png" alt="微信支付">
           <div class="pay_method_label">微信支付 <span v-if="!canWechatPay()" class="pay_method_label_disable">(不可用)</span></div>
           <div class="addition_item_radio">
             <div class="addition_item_radio_icon_select" v-if="ui.choose === 'wechat'"></div>
@@ -59,7 +59,7 @@
         <div class="box_divide"></div>
 
         <div class="pay_method_one" @click="btnChoose('alipay')">
-          <img class="pay_method_icon" data-src="/img/login/login_alipay.png" alt="支付宝支付">
+          <img class="pay_method_icon" src="/img/login/login_alipay.png" alt="支付宝支付">
           <div class="pay_method_label">支付宝支付 <span v-if="!canAlipay()" class="pay_method_label_disable">(不可用)</span></div>
           <div class="addition_item_radio">
             <div class="addition_item_radio_icon_select" v-if="ui.choose === 'alipay'"></div>

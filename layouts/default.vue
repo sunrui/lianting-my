@@ -1,6 +1,6 @@
 <template>
   <div class="container" v-show="false" id="nuxt_div">
-    <nuxt v-lazy-container="{ selector: 'img' }"/>
+    <nuxt/>
     <loading v-show="false" id="nuxt_loading" v-lazy-container="{ selector: 'img' }"></loading>
   </div>
 </template>
