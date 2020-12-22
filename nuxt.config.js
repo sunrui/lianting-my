@@ -76,7 +76,7 @@ module.exports = {
     '@nuxtjs/style-resources'
   ],
   styleResources: {
-    sass: ['@/assets/px2rem.scss'],
+    scss: ['@/assets/px2rem.scss'],
     less: [],
     stylus: []
   },
