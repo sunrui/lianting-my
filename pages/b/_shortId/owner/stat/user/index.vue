@@ -89,8 +89,6 @@ export default {
   mounted() {
     this.httpShop()
     this.httpShopLicenseExpiredAt()
-
-    loadingApi.enable = false
     this.httpStatUser()
   },
   destroyed() {
@@ -111,6 +109,7 @@ export default {
       })
     },
     httpStatUser() {
+      loadingApi.enable = false
       httpStatAdminApi.getUser(this.$route.params.shortId, 0, 200).then(res => {
         this.http.res.statUser = res
       })
@@ -140,7 +139,7 @@ export default {
 
       this.ui.infoLoads.push(userId)
       this.httpGetInfo(userId)
-      return ''
+      return '加载中'
     },
     getPhone(userId) {
       for (let index in this.ui.infos) {
