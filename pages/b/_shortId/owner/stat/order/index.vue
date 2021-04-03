@@ -142,7 +142,7 @@
         new Chart(document.getElementById('orderChart'), this.ui.chart)
       },
       httpStatOrder() {
-        httpStatAdminApi.getOrder(this.$route.params.shortId, 0, 200).then(res => {
+        httpStatAdminApi.getOrder(this.$route.params.shortId, 0, 365).then(res => {
           this.ui.chart.data.datasets[0].label = '订单'
           this.ui.chart.data.datasets[0].data = []
           this.ui.chart.data.labels = []

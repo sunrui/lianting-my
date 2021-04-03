@@ -164,7 +164,7 @@
         statFoodCategoryOne.totalFoodCategory = totalFoodCategory
       },
       httpStatFoodCategory(page) {
-        httpStatAdminApi.getFood(this.$route.params.shortId, page, 99).then(res => {
+        httpStatAdminApi.getFood(this.$route.params.shortId, page, 999).then(res => {
           for (let foodCategoryIndex in res.elements) {
             let foodCategory = res.elements[foodCategoryIndex]
             this.addFoodCategory(foodCategory)

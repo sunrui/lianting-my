@@ -156,7 +156,7 @@
         new Chart(document.getElementById('chargeChart'), this.ui.chart)
       },
       httpStatOrder() {
-        httpStatAdminApi.getCharge(this.$route.params.shortId, 0, 200).then(res => {
+        httpStatAdminApi.getCharge(this.$route.params.shortId, 0, 365).then(res => {
           this.ui.chart.data.datasets[0].label = '订单'
           this.ui.chart.data.datasets[0].data = []
           this.ui.chart.data.labels = []

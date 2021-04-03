@@ -146,7 +146,7 @@
         if (this.canBack && Boolean(this.backUri)) {
           this.$router.push(this.backUri)
         } else {
-          wechatApi.closeWindow()
+          // wechatApi.closeWindow()
           window.history.back()
         }
       }
