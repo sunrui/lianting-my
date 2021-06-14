@@ -560,7 +560,7 @@
           let foodGroupTop = groupBox.getBoundingClientRect().top + scrollTop
 
           if (foodGroupTop < scrollTop) {
-            let nextIndex = index + 1
+            let nextIndex = index
             if (nextIndex === groupBoxes.length) {
               nextIndex = groupBoxes.length - 1
             }
