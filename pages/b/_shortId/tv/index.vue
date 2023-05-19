@@ -161,7 +161,7 @@
     },
     methods: {
       getTvUrl() {
-        return `https://shop.lt.city/b/${this.$route.params.shortId}/tv`
+        return `https://shop.lianting.store/b/${this.$route.params.shortId}/tv`
       },
       updateTime() {
         let date = new Date()

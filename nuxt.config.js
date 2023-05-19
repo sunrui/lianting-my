@@ -85,7 +85,7 @@ module.exports = {
       '/api',
       {
         target: 'http://localhost:8080',
-        // target: 'https://shop.lt.city/api',
+        // target: 'https://shop.lianting.store/api',
         pathRewrite: {
           '^/api': '/',
           changeOrigin: true

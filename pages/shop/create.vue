@@ -310,7 +310,7 @@
           return
         }
 
-        let url = 'https://shop.lt.city/c/'
+        let url = 'https://shop.lianting.store/c/'
         let content = `请您认真阅读以上开店流程，如您在使用中遇到任何问题可联系我们客服。`
         content += `<br/><br/>您的店铺名称为：<br/>${highlightApi.highlight(this.http.req.shop.name)}`
         content += `<br/><br/>您的店铺地址为：<br/>${url}${highlightApi.highlight(this.http.req.shop.shortId)}`

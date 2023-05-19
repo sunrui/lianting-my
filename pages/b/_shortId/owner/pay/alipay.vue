@@ -5,7 +5,7 @@
     <div class="box">
       <div class="tip">
         <ul class="tip_ul">
-          <li>开通支付宝支付请查阅<a class="tip_link" rel="nofollow" href="https://render.alipay.com/p/f/fd-iztoosq3/index.html">支付宝官网文档</a>，绑定恋厅请下载<a class="tip_link" href="https://lt.city/doc/pay_alipay.docx">恋厅支付宝开通文档.docx</a></li>
+          <li>开通支付宝支付请查阅<a class="tip_link" rel="nofollow" href="https://render.alipay.com/p/f/fd-iztoosq3/index.html">支付宝官网文档</a>，绑定恋厅请下载<a class="tip_link" href="https://lianting.store/doc/pay_alipay.docx">恋厅支付宝开通文档.docx</a></li>
         </ul>
       </div>
     </div>

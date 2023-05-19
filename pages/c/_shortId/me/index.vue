@@ -193,7 +193,7 @@
         this.$router.push(`/c/${this.$route.params.shortId}/me/edit`)
       },
       btnCopyrightLink() {
-        window.location.href = 'https://m.lt.city/'
+        window.location.href = 'https://m.lianting.store/'
       }
     }
   }
