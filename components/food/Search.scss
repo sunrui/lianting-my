@@ -12,7 +12,7 @@
 
       margin-left: 20px;
       margin-right: 120px;
-      border-radius: px2rem(70 / 2);
+      border-radius: px2rem(70 * 0.5);
 
       .search_icon {
         background-image: url("/img/common/search.png");
@@ -124,7 +124,7 @@
           width: 28px;
 
           margin-left: 30px;
-          margin-top: px2rem((90 - 27) / 2);
+          margin-top: px2rem((90 - 27) * 0.5);
         }
       }
     }

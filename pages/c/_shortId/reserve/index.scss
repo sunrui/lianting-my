@@ -20,7 +20,7 @@
   margin-right: 15px;
   margin-top: 30px;
 
-  border-radius: px2rem(88 / 2);
+  border-radius: px2rem(88 * 0.5);
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 
   .reserve_notice_icon {
@@ -108,7 +108,7 @@
       height: 70px;
       background: rgba(230, 230, 230, 0.5);
       right: px2rem(120 + 10);
-      top: px2rem((80 - 70) / 2);
+      top: px2rem((80 - 70) * 0.5);
     }
 
     .calendar_box {
@@ -127,7 +127,7 @@
         position: absolute;
         top: 50%;
         transform: translate(0, -50%);
-        left: px2rem((90 - 36) / 2)
+        left: px2rem((90 - 36) * 0.5)
       }
     }
   }

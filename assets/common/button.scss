@@ -9,7 +9,7 @@
   color: white;
   display: inline-block;
   background: linear-gradient(90deg, rgba(255, 51, 68, 1), rgba(255, 136, 51, 1));
-  border-radius: px2rem(90 / 2);
+  border-radius: px2rem(90 * 0.5);
   margin-bottom: 30px;
 
   width: 60%;
@@ -23,7 +23,7 @@
   font-size: 30px;
   color: white;
   background: linear-gradient(90deg, rgba(255, 51, 68, 1), rgba(255, 136, 51, 1));
-  border-radius: px2rem(74 / 2);
+  border-radius: px2rem(74 * 0.5);
   width: 40%;
   height: 74px;
   line-height: 74px;

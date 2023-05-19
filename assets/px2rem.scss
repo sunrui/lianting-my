@@ -1,8 +1,10 @@
+@use "sass:math";
+
 $baseFontSize: 100;
 @function px2rem($px) {
   @if ($px == 1) {
     @return 1PX
   }
 
-  @return $px / $baseFontSize * 1rem;
+  @return math.div($px, $baseFontSize) * 1rem;
 }

@@ -556,7 +556,7 @@
       .cart_food_button {
         position: absolute;
         right: 30px;
-        top: px2rem((90 - 40) / 2);
+        top: px2rem((90 - 40) * 0.5);
 
         .cart_food_button_count {
           color: #666666;

@@ -43,8 +43,8 @@
   "devDependencies": {
     "@nuxt/types": "^2.14.7",
     "nodemon": "^2.0.6",
-    "postcss-loader": "^4.1.0",
-    "postcss-px2rem": "^0.3.0",
+    "postcss-loader": "^4.3.0",
+    "postcss-pxtorem": "^6.0.0",
     "sass-loader": "^10.1.0",
     "sass": "^1.62.1",
     "webpack": "^4.0.1"

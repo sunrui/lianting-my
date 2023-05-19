@@ -23,7 +23,7 @@
       background-size: 100% 100%;
       width: 32px;
       height: 32px;
-      margin-top: px2rem((90 - 32) / 2);
+      margin-top: px2rem((90 - 32) * 0.5);
       margin-left: 30px;
     }
 
@@ -35,7 +35,7 @@
       background-size: 100% 100%;
       width: 32px;
       height: 32px;
-      margin-top: px2rem((90 - 32) / 2);
+      margin-top: px2rem((90 - 32) * 0.5);
     }
   }
 }

@@ -117,13 +117,13 @@ module.exports = {
       video: ({ isDev }) => isDev ? '[path][name].[ext]' : 'videos/[hash:7].[ext]'
     },
     extractCSS: true,
-    postcss: {
-      plugins: {
-        'postcss-px2rem': {
-          remUnit: 100
-        }
-      }
-    },
+    // postcss: {
+      // plugins: {
+      //   'postcss-px2rem': {
+      //     remUnit: 100
+      //   }
+      // }
+    // },
     /*
     ** You can extend webpack config here
     */

@@ -45,7 +45,7 @@
   width: 44px;
   height: 44px;
   float: right;
-  margin-top: px2rem((88 - 44) / 2);
+  margin-top: px2rem((88 - 44) * 0.5);
   margin-right: 35px;
 }
 
@@ -56,7 +56,7 @@
   width: 44px;
   height: 44px;
   float: right;
-  margin-top: px2rem((88 - 44) / 2);
+  margin-top: px2rem((88 - 44) * 0.5);
   margin-right: 20px;
   opacity: 0.6;
 }

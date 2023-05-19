@@ -274,7 +274,7 @@
     width: 72px;
     height: 36px;
     right: 35px;
-    margin-top: px2rem((90 - 36) / 2);
+    margin-top: px2rem((90 - 36) * 0.5);
   }
 
   .addition_item_check_off {
@@ -284,7 +284,7 @@
     width: 72px;
     height: 36px;
     right: 35px;
-    margin-top: px2rem((90 - 36) / 2);
+    margin-top: px2rem((90 - 36) * 0.5);
   }
 }
 
@@ -297,7 +297,7 @@
 
   .addition_item_tag_one {
     display: inline-block;
-    margin-top: px2rem((90 - 40) / 2);
+    margin-top: px2rem((90 - 40) * 0.5);
     text-align: center;
   }
 }

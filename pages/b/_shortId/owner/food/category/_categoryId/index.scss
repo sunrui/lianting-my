@@ -1,5 +1,5 @@
 .food_status_online {
-  margin-top: px2rem((90 - 40) / 2);
+  margin-top: px2rem((90 - 40) * 0.5);
   color: rgb(1, 176, 107);
   background: rgba(1, 176, 107, 0.1);
   height: 40px;
@@ -9,7 +9,7 @@
 }
 
 .food_status_offline {
-  margin-top: px2rem((90 - 40) / 2);
+  margin-top: px2rem((90 - 40) * 0.5);
   color: rgb(247, 127, 128);
   background: rgba(247, 127, 128, 0.1);
   height: 40px;
@@ -19,7 +19,7 @@
 }
 
 .food_status_sold_out {
-  margin-top: px2rem((90 - 40) / 2);
+  margin-top: px2rem((90 - 40) * 0.5);
   color: rgb(221, 221, 221);
   background: rgba(221, 221, 221, 0.1);
   height: 40px;
