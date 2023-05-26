@@ -1,0 +1,92 @@
+docker pull ubuntu
+docker pull ubuntu:18.04.6
+
+docker run -p 3001:3001 -p 3002:3002 -p 3003:3003 -p 8080:8080 -p 3306:3306 -p 6379:6379 -p 80:80 --name ubuntu_lianting -itd ubuntu
+docker port ubuntu_lianting
+
+docker exec -it ubuntu_lianting sh
+
+apt update
+apt upgrade
+
+apt install zsh
+zsh
+
+apt install vim
+
+apt install npm
+淘宝镜像
+npm config set registry https://registry.npmmirror.com/
+npm config set ELECTRON_MIRROR https://npmmirror.com/mirrors/electron/
+官方
+npm config set https://registry.npmjs.org/
+npm install -g n
+
+yarn config get registry
+淘宝镜像
+yarn config set registry https://registry.npmmirror.com
+官方
+yarn config set registry https://registry.yarnpkg.com
+
+apt install curl
+
+apt purge nodejs
+apt autoremove
+
+curl -fsSL https://deb.nodesource.com/setup_16.x | bash -
+
+docker中文乱码问题解决方法
+1.进入docker，执行 vim /etc/profile 打开profile文件
+2.将export LANG="C.UTF-8"命令添加在profile文件最后,保存退出
+3.执行source /etc/profile ，即可正常显示中文
+
+git@github.com:sunrui/lianting-www.git
+
+
+cat ~/.ssh/id_rsa.pub
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDdWG9mhFsltKX6ryoMbQAiKixMPlLQ3NYsvaiJYvovQ2koJkEfC7+vj0E30AirlpjalUItsJzLpQ6/Cw0r5efn6SwvLvOWq+lXQtFL2bO6E5/zok+BZdRJpcSt0GYDvfHrQeTiQjfZVB9EiFD/cpe65vrVZk95ff8XH4Rf44flZVmb2lsri3xyQ+1jee7k3UMKan1ItD5ywiInCcSZpezYri33bjVShiKAfTHBYIzhBoy47GnKWCCB9zhN7ZlRFIgcMVL43mpjs0X6vhNhM5YbCGwRX2Yol2WG2WNZteKb+mkLlzsalC7y+UpoLSyyRtDOPGIhpGRy3KDt1C8nNZPFHw/YpvNepJcavyksKMcRkBPQumFwxG0+G/Z+KU7lRyWHrn/J6+48H85zUs0eUHTUdMla9yBWUVe24WUKg5DGlY2C8a0N7XZMg1yyn0k9y6YcQ4i0ze9VusN9jTryu5S7PKBkNKr/nHGn8cd5tKvo6yPd01nRADueV+/AalWNP/M= sunrui@sunruis-MacBook-Pro.local
+
+
+cat ~/.ssh/id_rsa
+-----BEGIN OPENSSH PRIVATE KEY-----
+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
+-----END OPENSSH PRIVATE KEY-----
+
+
+npm install -g sass-migrator
+sass-migrator division **/*.scss
