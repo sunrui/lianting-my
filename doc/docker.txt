@@ -1,7 +1,7 @@
 docker pull ubuntu
 docker pull ubuntu:18.04.6
 
-docker run -p 13001:3001 -p 13002:13002 -p 13003:3003 -p 18080:8080 -p 13306:3306 -p 16379:6379 -p 180:80 --name ubuntu_lianting -itd ubuntu
+docker run -p 13001:3001 -p 13002:3002 -p 13003:3003 -p 18080:8080 -p 13306:3306 -p 16379:6379 -p 180:80 --name ubuntu_lianting -itd ubuntu
 docker port ubuntu_lianting
 
 docker exec -it ubuntu_lianting sh
