@@ -1,7 +1,7 @@
 docker pull ubuntu
 docker pull ubuntu:18.04.6
 
-docker run -p 3001:3001 -p 3002:3002 -p 3003:3003 -p 8080:8080 -p 3306:3306 -p 6379:6379 -p 80:80 --name ubuntu_lianting -itd ubuntu
+docker run -p 3001:3001 -p 13002:13002 -p 13003:3003 -p 18080:8080 -p 13306:3306 -p 16379:6379 -p 180:80 --name ubuntu_lianting -itd ubuntu
 docker port ubuntu_lianting
 
 docker exec -it ubuntu_lianting sh
@@ -40,14 +40,12 @@ docker中文乱码问题解决方法
 2.将export LANG="C.UTF-8"命令添加在profile文件最后,保存退出
 3.执行source /etc/profile ，即可正常显示中文
 
-git@github.com:sunrui/lianting-www.git
 
-
-cat ~/.ssh/id_rsa.pub
+vim ~/.ssh/id_rsa.pub
 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDdWG9mhFsltKX6ryoMbQAiKixMPlLQ3NYsvaiJYvovQ2koJkEfC7+vj0E30AirlpjalUItsJzLpQ6/Cw0r5efn6SwvLvOWq+lXQtFL2bO6E5/zok+BZdRJpcSt0GYDvfHrQeTiQjfZVB9EiFD/cpe65vrVZk95ff8XH4Rf44flZVmb2lsri3xyQ+1jee7k3UMKan1ItD5ywiInCcSZpezYri33bjVShiKAfTHBYIzhBoy47GnKWCCB9zhN7ZlRFIgcMVL43mpjs0X6vhNhM5YbCGwRX2Yol2WG2WNZteKb+mkLlzsalC7y+UpoLSyyRtDOPGIhpGRy3KDt1C8nNZPFHw/YpvNepJcavyksKMcRkBPQumFwxG0+G/Z+KU7lRyWHrn/J6+48H85zUs0eUHTUdMla9yBWUVe24WUKg5DGlY2C8a0N7XZMg1yyn0k9y6YcQ4i0ze9VusN9jTryu5S7PKBkNKr/nHGn8cd5tKvo6yPd01nRADueV+/AalWNP/M= sunrui@sunruis-MacBook-Pro.local
 
 
-cat ~/.ssh/id_rsa
+vim ~/.ssh/id_rsa
 -----BEGIN OPENSSH PRIVATE KEY-----
 b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAABlwAAAAdzc2gtcn
 NhAAAAAwEAAQAAAYEA3VhvZoRbJbSl+q8qDG0AIiosTD5S0NzWLL2oiWL6L0NpKCZBHwu/
@@ -87,6 +85,13 @@ c5BvXGcfIYHC3i2y2S9vFqS4cE4AwqWSTQxxx/T9gNXztlujT2uLQ8kXeFiIC3ydAqyyvC
 4FE/KLy/SMvXEAAAAgc3VucnVpQHN1bnJ1aXMtTWFjQm9vay1Qcm8ubG9jYWwBAgM=
 -----END OPENSSH PRIVATE KEY-----
 
+chmod 0600 ~/.ssh/id_rsa
+chmod 0600 ~/.ssh/id_rsa.pub
+
+git clone git@github.com:sunrui/lianting-www.git
+git clone git@github.com:sunrui/lianting-m.git
+git clone git@github.com:sunrui/lianting-shop.git
+git clone git@github.com:sunrui/lianting-server.git
 
 npm install -g sass-migrator
 sass-migrator division **/*.scss
