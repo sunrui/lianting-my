@@ -95,3 +95,5 @@ git clone git@github.com:sunrui/lianting-server.git
 
 npm install -g sass-migrator
 sass-migrator division **/*.scss
+
+npm install -g pm2
