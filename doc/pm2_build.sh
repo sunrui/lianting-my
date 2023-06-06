@@ -13,11 +13,11 @@ npm install
 npm run build
 pm2 start npm --name "lianting-m" -- run start --watch
 cd ..
-cd lianting-shop
+cd lianting-b
 rm -rf package-lock.json
 git pull
 npm install
 npm run build
-pm2 start npm --name "lianting-shop" -- run start --watch
+pm2 start npm --name "lianting-b" -- run start --watch
 cd ..
 ~
