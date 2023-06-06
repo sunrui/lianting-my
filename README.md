@@ -1,6 +1,6 @@
-# ltcity-shop
+# ltcity-b
 
-> My polished Nuxt.js project
+> 恋厅商家 h5
 
 ## Build Setup
 
