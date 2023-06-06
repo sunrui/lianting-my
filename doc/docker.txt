@@ -98,3 +98,29 @@ npm install -g sass-migrator
 sass-migrator division **/*.scss
 
 npm install -g pm2
+
+https://dev.mysql.com/downloads/file/?id=519241
+curl -O https://repo.mysql.com//mysql-apt-config_0.8.25-1_all.deb
+
+systemctl enable docker
+systemctl start docker
+
+
+docker pull mysql
+docker run --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root -d mysql
+docker exec -it mysql bash
+mysql -u root -p
+
+GRANT ALL ON *.* TO 'root'@'%';
+flush privileges
+
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'root' PASSWORD EXPIRE NEVER;
+ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY 'root';
+flush privileges;
+
+grant all privileges on *.* to 'root'@'%' identified by 'root';
+grant all privileges on *.*  to 'root'@'%';
+flush privileges;
+
+mysql -h localhost -u root -P 3306 -p
+
