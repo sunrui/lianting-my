@@ -1,11 +1,3 @@
-apt install docker.io
-docker pull ubuntu
-
-docker run -p 13001:3001 -p 13002:3002 -p 13003:3003 -p 18080:8080 -p 13306:3306 -p 16379:6379 -p 180:80 --name ubuntu_lianting -itd ubuntu
-docker port ubuntu_lianting
-
-docker exec -it ubuntu_lianting sh
-
 apt update
 apt upgrade
 
@@ -109,19 +101,13 @@ apt install mysql-server
 
 systemctl enable mysql.service
 
-systemctl enable docker
-systemctl start docker
-
-
-docker pull mysql
-docker run --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=1Vw#tRAHB5nvMyB! -d mysql
-docker exec -it mysql bash
-mysql -u root -p
-1Vw#tRAHB5nvMyB!
 
 mysql_secure_installation
 
 systemctl enable mysql.service
+
+mysql -uroot -p
+1Vw#tRAHB5nvMyB!
 
 use mysql
 
@@ -131,6 +117,8 @@ flush privileges;
 ALTER USER 'root'@'localhost' IDENTIFIED BY '1Vw#tRAHB5nvMyB!' PASSWORD EXPIRE NEVER;
 ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY '1Vw#tRAHB5nvMyB!';
 flush privileges;
+
+ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY '1Vw#tRAHB5nvMyB!';
 
 select Host,User,grant_priv from user;
 
@@ -142,15 +130,6 @@ mysql -h localhost -u root -P 3306 -p
 update user set host='%' where user ='root';
 FLUSH PRIVILEGES;
 GRANT ALL PRIVILEGES ON *.* TO 'root'@'%'WITH GRANT OPTION;
-
-
-docker pull tomcat:9.0.76
-docker run -dti --name tomcat_lianting --restart=always -p 8080:8080 --link mysql -v /webapps:/usr/local/tomcat/webapps tomcat:9.0.76 redis
-docker exec -it tomcat_lianting sh
-
-
-docker pull redis
-docker run -p 6379:6379 --name redis -itd redis
 
 
 apt install nginx
@@ -174,18 +153,11 @@ mysqldump -uroot -p --all-databases > /backup/mysqldump/all.db
 mysqldump -uroot -p lt > ~/lt.db
 
 mysqladmin -uroot -p create lianting
+1Vw#tRAHB5nvMyB!
 mysql -uroot -p  lianting < lt.db
 
-cdn 预热
-https://www.lianting.store/
-https://m.lianting.store/
 
-mysql -uroot -p
-1Vw#tRAHB5nvMyB!
-use lianting;
+自动启动打开 /etc/rc.d/rc.local
+加入 ~/init.d.sh
 
-UPDATE food_category
-SET image = REPLACE(image, 'cdn.lt.city', 'cdn.lianting.store');
-
-UPDATE news_content
-SET content = REPLACE(content, 'cdn.lt.city', 'cdn.lianting.store');
+chmod +x /etc/rc.d/rc.local
