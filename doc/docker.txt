@@ -185,12 +185,8 @@ mysql -uroot -p
 use lianting;
 
 UPDATE food_category SET image = REPLACE(image, 'cdn.lt.city', 'cdn.lianting.store');
-
 UPDATE news_content SET content = REPLACE(content, 'cdn.lt.city', 'cdn.lianting.store');
-
 UPDATE info SET image = REPLACE(image, 'cdn.lt.city', 'cdn.lianting.store');
-
 UPDATE info SET logo = REPLACE(logo, 'cdn.lt.city', 'cdn.lianting.store');
-
-
 UPDATE order_food SET food_category_image = REPLACE(food_category_image, 'cdn.lt.city', 'cdn.lianting.store');
+UPDATE user_info SET head_img_url = REPLACE(head_img_url, 'cdn.lt.city', 'cdn.lianting.store');
