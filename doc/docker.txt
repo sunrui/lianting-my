@@ -91,7 +91,7 @@ chmod 0600 ~/.ssh/id_rsa.pub
 
 git clone git@github.com:sunrui/lianting-www.git
 git clone git@github.com:sunrui/lianting-m.git
-git clone git@github.com:sunrui/lianting-shop.git
+git clone git@github.com:sunrui/lianting-b.git
 git clone git@github.com:sunrui/lianting-server.git
 
 npm install -g sass-migrator
@@ -101,26 +101,56 @@ npm install -g pm2
 
 https://dev.mysql.com/downloads/file/?id=519241
 curl -O https://repo.mysql.com//mysql-apt-config_0.8.25-1_all.deb
+dpkg -i mysql-apt-config_0.8.25-1_all.deb
 
 systemctl enable docker
 systemctl start docker
 
 
 docker pull mysql
-docker run --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root -d mysql
+docker run --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=1Vw#tRAHB5nvMyB! -d mysql
 docker exec -it mysql bash
 mysql -u root -p
+1Vw#tRAHB5nvMyB!
+
+mysql_secure_installation
+
+use mysql
 
 GRANT ALL ON *.* TO 'root'@'%';
-flush privileges
-
-ALTER USER 'root'@'localhost' IDENTIFIED BY 'root' PASSWORD EXPIRE NEVER;
-ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY 'root';
 flush privileges;
 
-grant all privileges on *.* to 'root'@'%' identified by 'root';
+ALTER USER 'root'@'localhost' IDENTIFIED BY '1Vw#tRAHB5nvMyB!' PASSWORD EXPIRE NEVER;
+ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY '1Vw#tRAHB5nvMyB!';
+flush privileges;
+
 grant all privileges on *.*  to 'root'@'%';
 flush privileges;
 
 mysql -h localhost -u root -P 3306 -p
 
+update user set host='%' where user ='root';
+FLUSH PRIVILEGES;
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%'WITH GRANT OPTION;
+
+
+docker pull tomcat:9.0.76
+docker run -dti --name tomcat_lianting --restart=always -p 8080:8080 --link mysql -v /webapps:/usr/local/tomcat/webapps tomcat:9.0.76 redis
+docker exec -it tomcat_lianting sh
+
+
+docker pull redis
+docker run -p 6379:6379 --name redis -itd redis
+
+
+https://ftp.riken.jp/net/apache/tomcat/tomcat-9/v9.0.76/bin/apache-tomcat-9.0.76.tar.gz
+
+
+chmod -R 600 ~/.ssh
+cat id_rsa.pub >> authorized_keys
+编辑 /etc/ssh/sshd_config，检查并设置以下选项。
+PubkeyAuthentication yes
+AuthorizedKeysFile .ssh/authorized_keys
+PasswordAuthentication no
+
+apt install openjdk-17-jdk
