@@ -35,6 +35,7 @@ apt purge nodejs
 apt autoremove
 
 curl -fsSL https://deb.nodesource.com/setup_16.x | bash -
+apt install -y nodejs
 
 docker中文乱码问题解决方法
 1.进入docker，执行 vim /etc/profile 打开profile文件
@@ -91,7 +92,7 @@ chmod 0600 ~/.ssh/id_rsa.pub
 
 git clone git@github.com:sunrui/lianting-www.git
 git clone git@github.com:sunrui/lianting-m.git
-git clone git@github.com:sunrui/lianting-b.git
+git clone git@github.com:sunrui/lianting-my.git
 git clone git@github.com:sunrui/lianting-server.git
 
 npm install -g sass-migrator
@@ -102,6 +103,7 @@ npm install -g pm2
 https://dev.mysql.com/downloads/file/?id=519241
 curl -O https://repo.mysql.com//mysql-apt-config_0.8.25-1_all.deb
 dpkg -i mysql-apt-config_0.8.25-1_all.deb
+apt install mysql-server
 
 systemctl enable docker
 systemctl start docker
@@ -115,6 +117,8 @@ mysql -u root -p
 
 mysql_secure_installation
 
+systemctl enable mysql.service
+
 use mysql
 
 GRANT ALL ON *.* TO 'root'@'%';
@@ -123,6 +127,8 @@ flush privileges;
 ALTER USER 'root'@'localhost' IDENTIFIED BY '1Vw#tRAHB5nvMyB!' PASSWORD EXPIRE NEVER;
 ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY '1Vw#tRAHB5nvMyB!';
 flush privileges;
+
+select Host,User,grant_priv from user;
 
 grant all privileges on *.*  to 'root'@'%';
 flush privileges;
@@ -143,7 +149,11 @@ docker pull redis
 docker run -p 6379:6379 --name redis -itd redis
 
 
-https://ftp.riken.jp/net/apache/tomcat/tomcat-9/v9.0.76/bin/apache-tomcat-9.0.76.tar.gz
+apt install nginx
+systemctl enable nginx.service
+
+curl -O https://ftp.riken.jp/net/apache/tomcat/tomcat-9/v9.0.76/bin/apache-tomcat-9.0.76.tar.gz
+tar -xvf apache-tomcat-9.0.76.tar.gz
 
 
 chmod -R 600 ~/.ssh
@@ -154,3 +164,10 @@ AuthorizedKeysFile .ssh/authorized_keys
 PasswordAuthentication no
 
 apt install openjdk-17-jdk
+
+
+mysqldump -uroot -p --all-databases > /backup/mysqldump/all.db
+mysqldump -uroot -p lt > ~/lt.db
+
+mysqladmin -uroot -p create lianting
+mysql -uroot -p  lianting < lt.db
