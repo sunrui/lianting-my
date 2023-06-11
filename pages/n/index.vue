@@ -182,7 +182,7 @@
             news: {
               magicId: 'honeysense',
               type: 'IndustryNews',
-              hashKey: '2020',
+              hashKey: '2023',
               shortcut: '',
               title: '',
               content: '',
@@ -208,9 +208,10 @@
       this.$refs.imageUpload_AddContent.setFileUrl(null)
 
       this.http.req.news.hashKey = timeApi.dateFormat(new Date(), 'yyyyMMddHHmmss');
-      this.http.req.news.referName = '网络'
+      this.http.req.news.referName = '恋厅资讯'
+      this.http.req.news.referUrl = '恋厅' + timeApi.dateFormat(new Date(), 'yyyy-MM-dd HH:mm:ss');
       this.http.req.news.referDate = timeApi.dateFormat(new Date(), 'yyyy-MM-dd HH:mm:ss');
-      this.http.req.news.keywords = '微信外卖系统,点餐系统,点餐小程序,校园外卖平台,订餐软件'
+      this.http.req.news.keywords = '点餐系统,扫码点餐'
     },
     methods: {
       btnChooseType(type) {
@@ -428,26 +429,9 @@
                 type: 'yes',
                 title: '添加新闻',
                 content: '添加成功。'
+              }).then(async (val) => {
+                location.reload()
               })
-
-              this.http.req.news = {
-                magicId: 'honeysense',
-                type: 'IndustryNews',
-                hashKey: '2019',
-                shortcut: '',
-                title: '',
-                content: '',
-                referName: '',
-                referUrl: '',
-                referDate: ''
-              }
-
-              this.ui.content = {
-                url: null,
-                text: null
-              }
-
-              this.ui.contents = []
             }
           })
         })
