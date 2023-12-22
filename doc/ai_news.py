@@ -21,7 +21,7 @@ def http_post_ai():
             {
                 'role': 'user',
                 'content': '写一篇软文，其中第一句为标题，介绍恋厅是一款支持微信、支付宝和小程序的 SAAS 点餐软件，中小客户可以免费使用。'
-                           '请对核心功能中【扫码点餐、排队叫号、在线预订、微信外卖、后厨打印、餐饮收银】任选一个方向为题材重点介绍。'
+                           '请对核心功能中扫码点餐、排队叫号、在线预订、微信外卖、后厨打印、餐饮收银任选一个方向为题材重点介绍。'
             }
         ],
         'temperature': 0.7
@@ -77,6 +77,6 @@ def http_post_news(title, content):
 if __name__ == '__main__':
     while True:
         http_post_ai()
-        # 第一篇文章 1 到 3 小时
-        r = random.uniform(60 * 60, 3 * 60 * 60)
+        # 第一篇文章 1.5 到 3 小时
+        r = random.uniform(1.5 * 60 * 60, 3 * 60 * 60)
         time.sleep(r)
